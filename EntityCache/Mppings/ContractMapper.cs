@@ -38,7 +38,6 @@ namespace EntityCache.Mppings
                 SetDocDate = cls.SetDocDate,
                 SetDocPlace = cls.SetDocPlace,
                 DateM = cls.DateM,
-                HardSerial = cls.HardSerial,
                 BazaryabGuid = cls.BazaryabGuid,
                 BazaryabPrice = cls.BazaryabPrice,
                 ServerStatus = cls.ServerStatus,

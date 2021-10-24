@@ -14,7 +14,6 @@ namespace EntityCache.Mppings
             return new WebBuildingRelatedOptions()
             {
                 Guid = cls.Guid,
-                HardSerial = cls.HardSerial,
                 BuildingOptionGuid = cls.BuildingOptionGuid,
                 BuildinGuid = cls.BuildinGuid,
                 Modified = cls.Modified,

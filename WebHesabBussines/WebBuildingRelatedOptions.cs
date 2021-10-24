@@ -15,7 +15,6 @@ namespace WebHesabBussines
         public Guid BuildinGuid { get; set; }
         public Guid BuildingOptionGuid { get; set; }
         public DateTime Modified { get; set; }
-        public string HardSerial { get; set; }
         public ServerStatus ServerStatus { get; set; }
         public DateTime ServerDeliveryDate { get; set; }
 
@@ -23,15 +22,22 @@ namespace WebHesabBussines
 
         private static void RaiseEvent(Guid objGuid, ServerStatus st, DateTime dateM)
         {
-            var handler = OnSaveResult;
-            if (handler != null)
-                OnSaveResult(objGuid, st, dateM);
+            try
+            {
+                var handler = OnSaveResult;
+                if (handler != null)
+                    OnSaveResult?.Invoke(objGuid, st, dateM);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
-        public async Task SaveAsync()
+        private async Task SaveAsync()
         {
             try
             {
-                var res = await Extentions.PostToApi<WebBuildingRelatedOptions, WebBuildingRelatedOptions>(this, Url);
+                var res = await Extentions.PostToApi<WebBuildingRelatedOptions, WebBuildingRelatedOptions>(this, Url, WebCustomer.Customer.Guid);
                 if (res!=null&& res.ResponseStatus != ResponseStatus.Success)
                 {
 
@@ -50,17 +56,7 @@ namespace WebHesabBussines
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var obj = new WebBuildingRelatedOptions()
-                {
-                    Guid = cls.Guid,
-                    HardSerial = cls.HardSerial,
-                    BuildingOptionGuid = cls.BuildingOptionGuid,
-                    BuildinGuid = cls.BuildinGuid,
-                    Modified = cls.Modified,
-                    ServerStatus = cls.ServerStatus,
-                    ServerDeliveryDate = cls.ServerDeliveryDate
-                };
-                await obj.SaveAsync();
+                await cls.SaveAsync();
             }
             catch (Exception ex)
             {

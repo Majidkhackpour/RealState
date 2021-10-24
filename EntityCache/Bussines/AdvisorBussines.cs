@@ -29,7 +29,6 @@ namespace EntityCache.Bussines
         public string Mobile2 { get; set; }
         public decimal Account_ => Math.Abs(Account);
         public string Diagnosis => Account.AccountDiagnosis();
-        public string HardSerial => Cache.HardSerial;
 
         
         public static async Task<List<AdvisorBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Advisor.GetAllAsync(Cache.ConnectionString, token);

@@ -29,7 +29,6 @@ namespace EntityCache.Mppings
                 PlaceBirth = cls.PlaceBirth,
                 IssuedFrom = cls.IssuedFrom,
                 PostalCode = cls.PostalCode,
-                HardSerial = cls.HardSerial,
                 TellList = PhoneBookMapper.Instance.MapList(cls.TellList),
                 ServerStatus = cls.ServerStatus,
                 ServerDeliveryDate = cls.ServerDeliveryDate

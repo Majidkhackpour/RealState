@@ -93,21 +93,27 @@ namespace WebHesabBussines
         public int TreeCount { get; set; }
         public EnConstructionStage? ConstructionStage { get; set; }
         public EnBuildingParent? Parent { get; set; }
-        public string HardSerial { get; set; }
         public List<WebBuildingRelatedOptions> OptionList { get; set; }
 
 
         private static void RaiseEvent(Guid objGuid, ServerStatus st, DateTime dateM)
         {
-            var handler = OnSaveResult;
-            if (handler != null)
-                OnSaveResult(objGuid, st, dateM);
+            try
+            {
+                var handler = OnSaveResult;
+                if (handler != null)
+                    OnSaveResult?.Invoke(objGuid, st, dateM);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
-        public async Task SaveAsync()
+        private async Task SaveAsync()
         {
             try
             {
-                var res = await Extentions.PostToApi<WebBuilding, WebBuilding>(this, Url);
+                var res = await Extentions.PostToApi<WebBuilding, WebBuilding>(this, Url, WebCustomer.Customer.Guid);
                 if (res!=null&& res.ResponseStatus != ResponseStatus.Success)
                 {
                     RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);

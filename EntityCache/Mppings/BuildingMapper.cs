@@ -70,7 +70,6 @@ namespace EntityCache.Mppings
                 Barq = cls.Barq,
                 Gas = cls.Gas,
                 DateParvane = cls.DateParvane,
-                HardSerial = cls.HardSerial,
                 Image = cls.Image,
                 ServerStatus = cls.ServerStatus,
                 ServerDeliveryDate = cls.ServerDeliveryDate,

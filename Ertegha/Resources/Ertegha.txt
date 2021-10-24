@@ -6567,7 +6567,7 @@ GO
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Temp_UpdateEntities]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Temp_UpdateEntities]	As Begin print 11 end')  
 GO
-Alter PROCEDURE sp_Temp_UpdateEntities
+ALTER PROCEDURE [dbo].[sp_Temp_UpdateEntities]
 	@type smallint,
 	@entityGuid uniqueidentifier,
 	@st smallint,
@@ -6709,7 +6709,7 @@ BEGIN
 	end
 	else if @type = 22
 	begin
-		update BuildingOptions
+		update Buildingoptions
 		set   ServerDeliveryDate = @deliveryDate
 			, ServerStatus = @st
 		where Guid = @entityGuid
@@ -6784,6 +6784,13 @@ BEGIN
 			, ServerStatus = @st
 		where Guid = @entityGuid
 	end
+	else if @type = 33
+	begin
+		update BuildingNotes
+		set   ServerDeliveryDate = @deliveryDate
+			, ServerStatus = @st
+		where Guid = @entityGuid
+	end
 END
 GO
 --========================================================================================================
@@ -6834,7 +6841,7 @@ GO
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Temp_SaveOnModified]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Temp_SaveOnModified]	As Begin print 11 end')  
 GO
-Alter PROCEDURE sp_Temp_SaveOnModified
+ALTER PROCEDURE [dbo].[sp_Temp_SaveOnModified]
 	@date datetime
 AS
 BEGIN
@@ -6897,7 +6904,7 @@ BEGIN
 		from Pardakhts where Modified>@date)
 	union all
 	(select NEWID() As Guid,Guid As ObjectGuid,22 As Type
-		from BuildingOptions where Modified>@date)
+		from Buildingoptions where Modified>@date)
 	union all
 	(select NEWID() As Guid,Guid As ObjectGuid,23 As Type
 		from BuildingRelatedOptions where Modified>@date)
@@ -6928,6 +6935,9 @@ BEGIN
 	union all
 	(select NEWID() As Guid,Guid As ObjectGuid,32 As Type
 		from SanadDetails where Modified>@date)
+	union all
+	(select NEWID() As Guid,Guid As ObjectGuid,33 As Type
+		from BuildingNotes where Modified>@date)
 END
 GO
 --========================================================================================================

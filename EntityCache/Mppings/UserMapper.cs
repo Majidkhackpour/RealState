@@ -24,7 +24,6 @@ namespace EntityCache.Mppings
                 AnswerQuestion = cls.AnswerQuestion,
                 SecurityQuestion = cls.SecurityQuestion,
                 Password = cls.Password,
-                HardSerial = cls.HardSerial,
                 ServerStatus = cls.ServerStatus,
                 ServerDeliveryDate = cls.ServerDeliveryDate
             };

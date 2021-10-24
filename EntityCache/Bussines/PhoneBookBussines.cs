@@ -27,7 +27,6 @@ namespace EntityCache.Bussines
         public string GroupName => Group.GetDisplay();
         public Guid ParentGuid { get; set; }
         public bool IsChecked { get; set; }
-        public string HardSerial => Cache.HardSerial;
 
 
         public static async Task<List<PhoneBookBussines>> GetAllAsync(Guid parentGuid, bool status) =>

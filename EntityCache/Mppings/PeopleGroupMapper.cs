@@ -18,7 +18,6 @@ namespace EntityCache.Mppings
                 Modified = cls.Modified,
                 Status = cls.Status,
                 ParentGuid = cls.ParentGuid,
-                HardSerial = cls.HardSerial,
                 ServerStatus = cls.ServerStatus,
                 ServerDeliveryDate = cls.ServerDeliveryDate
             };

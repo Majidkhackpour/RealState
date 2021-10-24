@@ -50,7 +50,6 @@ namespace EntityCache.Bussines
         public Guid BuildingAccountTypeGuid { get; set; }
         public Guid BuildingConditionGuid { get; set; }
         public string ShortDesc { get; set; }
-        public string HardSerial => Cache.HardSerial;
         public bool IsModified { get; set; } = false;
         public List<BuildingRequestRegionBussines> RegionList { get; set; }
         #endregion

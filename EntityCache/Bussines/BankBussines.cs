@@ -34,7 +34,6 @@ namespace EntityCache.Bussines
         public decimal Account_ => Math.Abs(Account);
         public string Diagnosis => Account.AccountDiagnosis();
         public bool IsModified { get; set; } = false;
-        public string HardSerial => Cache.HardSerial;
 
 
         public static async Task<List<BankBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Bank.GetAllAsync(Cache.ConnectionString, token);

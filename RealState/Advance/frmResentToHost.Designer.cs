@@ -58,6 +58,7 @@ namespace RealState.Advance
             this.chbKol = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbTafsil = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbSanad = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.lblDesc = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnSend
@@ -88,7 +89,7 @@ namespace RealState.Advance
             // 
             this.chbCity.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbCity.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbCity.Location = new System.Drawing.Point(293, 92);
+            this.chbCity.Location = new System.Drawing.Point(194, 92);
             this.chbCity.Name = "chbCity";
             this.chbCity.Size = new System.Drawing.Size(104, 23);
             this.chbCity.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -104,7 +105,7 @@ namespace RealState.Advance
             // 
             this.chbPeopleGroup.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbPeopleGroup.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbPeopleGroup.Location = new System.Drawing.Point(572, 93);
+            this.chbPeopleGroup.Location = new System.Drawing.Point(538, 93);
             this.chbPeopleGroup.Name = "chbPeopleGroup";
             this.chbPeopleGroup.Size = new System.Drawing.Size(95, 23);
             this.chbPeopleGroup.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -136,7 +137,7 @@ namespace RealState.Advance
             // 
             this.chbState.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbState.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbState.Location = new System.Drawing.Point(321, 64);
+            this.chbState.Location = new System.Drawing.Point(222, 64);
             this.chbState.Name = "chbState";
             this.chbState.Size = new System.Drawing.Size(76, 23);
             this.chbState.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -152,7 +153,7 @@ namespace RealState.Advance
             // 
             this.chbRegion.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbRegion.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbRegion.Location = new System.Drawing.Point(321, 123);
+            this.chbRegion.Location = new System.Drawing.Point(222, 123);
             this.chbRegion.Name = "chbRegion";
             this.chbRegion.Size = new System.Drawing.Size(76, 23);
             this.chbRegion.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -168,7 +169,7 @@ namespace RealState.Advance
             // 
             this.chbPeople.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbPeople.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbPeople.Location = new System.Drawing.Point(591, 64);
+            this.chbPeople.Location = new System.Drawing.Point(557, 64);
             this.chbPeople.Name = "chbPeople";
             this.chbPeople.Size = new System.Drawing.Size(76, 23);
             this.chbPeople.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -216,7 +217,7 @@ namespace RealState.Advance
             // 
             this.chbUsers.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbUsers.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbUsers.Location = new System.Drawing.Point(558, 121);
+            this.chbUsers.Location = new System.Drawing.Point(524, 121);
             this.chbUsers.Name = "chbUsers";
             this.chbUsers.Size = new System.Drawing.Size(109, 23);
             this.chbUsers.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -264,7 +265,7 @@ namespace RealState.Advance
             // 
             this.chbPardakht.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbPardakht.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbPardakht.Location = new System.Drawing.Point(418, 123);
+            this.chbPardakht.Location = new System.Drawing.Point(365, 123);
             this.chbPardakht.Name = "chbPardakht";
             this.chbPardakht.Size = new System.Drawing.Size(102, 23);
             this.chbPardakht.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -312,7 +313,7 @@ namespace RealState.Advance
             // 
             this.chbReception.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbReception.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbReception.Location = new System.Drawing.Point(444, 93);
+            this.chbReception.Location = new System.Drawing.Point(391, 93);
             this.chbReception.Name = "chbReception";
             this.chbReception.Size = new System.Drawing.Size(76, 23);
             this.chbReception.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -344,7 +345,7 @@ namespace RealState.Advance
             // 
             this.chbContract.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbContract.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbContract.Location = new System.Drawing.Point(576, 177);
+            this.chbContract.Location = new System.Drawing.Point(542, 177);
             this.chbContract.Name = "chbContract";
             this.chbContract.Size = new System.Drawing.Size(91, 23);
             this.chbContract.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -376,7 +377,7 @@ namespace RealState.Advance
             // 
             this.chbRequest.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbRequest.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbRequest.Location = new System.Drawing.Point(576, 149);
+            this.chbRequest.Location = new System.Drawing.Point(542, 149);
             this.chbRequest.Name = "chbRequest";
             this.chbRequest.Size = new System.Drawing.Size(91, 23);
             this.chbRequest.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -426,7 +427,7 @@ namespace RealState.Advance
             // 
             this.chbAdvisor.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbAdvisor.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbAdvisor.Location = new System.Drawing.Point(576, 206);
+            this.chbAdvisor.Location = new System.Drawing.Point(542, 206);
             this.chbAdvisor.Name = "chbAdvisor";
             this.chbAdvisor.Size = new System.Drawing.Size(91, 23);
             this.chbAdvisor.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -442,7 +443,7 @@ namespace RealState.Advance
             // 
             this.chbBank.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbBank.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbBank.Location = new System.Drawing.Point(444, 64);
+            this.chbBank.Location = new System.Drawing.Point(391, 64);
             this.chbBank.Name = "chbBank";
             this.chbBank.Size = new System.Drawing.Size(76, 23);
             this.chbBank.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -458,7 +459,7 @@ namespace RealState.Advance
             // 
             this.chbMoein.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbMoein.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbMoein.Location = new System.Drawing.Point(407, 180);
+            this.chbMoein.Location = new System.Drawing.Point(354, 180);
             this.chbMoein.Name = "chbMoein";
             this.chbMoein.Size = new System.Drawing.Size(113, 23);
             this.chbMoein.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -474,7 +475,7 @@ namespace RealState.Advance
             // 
             this.chbKol.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbKol.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbKol.Location = new System.Drawing.Point(418, 151);
+            this.chbKol.Location = new System.Drawing.Point(365, 151);
             this.chbKol.Name = "chbKol";
             this.chbKol.Size = new System.Drawing.Size(102, 23);
             this.chbKol.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -490,7 +491,7 @@ namespace RealState.Advance
             // 
             this.chbTafsil.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbTafsil.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbTafsil.Location = new System.Drawing.Point(383, 210);
+            this.chbTafsil.Location = new System.Drawing.Point(330, 210);
             this.chbTafsil.Name = "chbTafsil";
             this.chbTafsil.Size = new System.Drawing.Size(137, 23);
             this.chbTafsil.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -506,18 +507,29 @@ namespace RealState.Advance
             // 
             this.chbSanad.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chbSanad.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbSanad.Location = new System.Drawing.Point(383, 239);
+            this.chbSanad.Location = new System.Drawing.Point(330, 239);
             this.chbSanad.Name = "chbSanad";
             this.chbSanad.Size = new System.Drawing.Size(137, 23);
             this.chbSanad.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.chbSanad.TabIndex = 38;
             this.chbSanad.Text = "اسناد";
             // 
+            // lblDesc
+            // 
+            this.lblDesc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDesc.Location = new System.Drawing.Point(114, 350);
+            this.lblDesc.Name = "lblDesc";
+            this.lblDesc.Size = new System.Drawing.Size(571, 20);
+            this.lblDesc.TabIndex = 55758;
+            this.lblDesc.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // frmResentToHost
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 422);
+            this.Controls.Add(this.lblDesc);
             this.Controls.Add(this.ucHeader);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.chbCity);
@@ -593,5 +605,6 @@ namespace RealState.Advance
         private DevComponents.DotNetBar.Controls.CheckBoxX chbKol;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbTafsil;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbSanad;
+        private System.Windows.Forms.Label lblDesc;
     }
 }

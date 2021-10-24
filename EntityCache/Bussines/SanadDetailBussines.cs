@@ -29,7 +29,6 @@ namespace EntityCache.Bussines
         public decimal Debit { get; set; }
         public decimal Credit { get; set; }
         public string Description { get; set; }
-        public string HardSerial => Cache.HardSerial;
 
 
         public static async Task<List<SanadDetailBussines>> GetAllAsync(Guid masterGuid) => await UnitOfWork.SanadDetail.GetAllAsync(Cache.ConnectionString, masterGuid);

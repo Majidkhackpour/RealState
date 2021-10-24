@@ -24,7 +24,6 @@ namespace EntityCache.Bussines
         public string Name { get; set; }
         public Guid StateGuid { get; set; }
         public string StateName { get; set; }
-        public string HardSerial => Cache.HardSerial;
         public bool IsModified { get; set; } = false;
 
 

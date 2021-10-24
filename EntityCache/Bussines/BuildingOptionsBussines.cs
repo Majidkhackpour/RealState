@@ -29,7 +29,6 @@ namespace EntityCache.Bussines
         public string Name { get; set; }
         public bool IsFullOption { get; set; }
         public bool Checked { get; set; }
-        public string HardSerial => Cache.HardSerial;
         public bool IsModified { get; set; } = false;
         public static Guid EveletorGuid
         {

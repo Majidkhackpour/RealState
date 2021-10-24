@@ -38,7 +38,6 @@ namespace EntityCache.Mppings
                 ShortDate = cls.ShortDate,
                 HasVam = cls.HasVam,
                 HasOwner = cls.HasOwner,
-                HardSerial = cls.HardSerial,
                 RegionList = BuildingRequestRegionMapper.Instance.MapList(cls.RegionList),
                 ServerStatus = cls.ServerStatus,
                 ServerDeliveryDate = cls.ServerDeliveryDate

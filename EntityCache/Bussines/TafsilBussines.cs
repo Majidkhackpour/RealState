@@ -31,7 +31,6 @@ namespace EntityCache.Bussines
         public bool isSystem { get; set; }
         public decimal Account_ => Math.Abs(Account);
         public string Diagnosis => Account.AccountDiagnosis();
-        public string HardSerial => Cache.HardSerial;
 
 
         public static async Task<List<TafsilBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Tafsil.GetAllAsync(Cache.ConnectionString, token);

@@ -33,7 +33,6 @@ namespace EntityCache.Bussines
         public Guid UserGuid { get; set; }
         public string UserName { get; set; }
         public long SanadNumber { get; set; }
-        public string HardSerial => Cache.HardSerial;
         public decimal SumCheck
         {
             get

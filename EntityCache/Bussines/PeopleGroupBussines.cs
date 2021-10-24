@@ -22,7 +22,6 @@ namespace EntityCache.Bussines
         public bool Status { get; set; } = true;
         public string Name { get; set; }
         public Guid ParentGuid { get; set; }
-        public string HardSerial => Cache.HardSerial;
 
 
         public static async Task<List<PeopleGroupBussines>> GetAllAsync(Guid? parentGuid = null) => await UnitOfWork.PeopleGroup.GetAllAsync(Cache.ConnectionString, parentGuid);

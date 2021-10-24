@@ -28,7 +28,6 @@ namespace EntityCache.Bussines
         public string StateName { get; set; }
         public string CityName { get; set; }
         public bool IsChecked { get; set; }
-        public string HardSerial => Cache.HardSerial;
         public bool IsModified { get; set; } = false;
 
         public static async Task<List<RegionsBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Regions.GetAllAsync(Cache.ConnectionString, token);

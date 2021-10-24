@@ -21,7 +21,6 @@ namespace EntityCache.Bussines
         public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
         public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public string Name { get; set; }
-        public string HardSerial => Cache.HardSerial;
 
         public static async Task<List<StatesBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.States.GetAllAsync(Cache.ConnectionString, token);
         public static List<StatesBussines> GetAll(CancellationToken token = default) => AsyncContext.Run(() => GetAllAsync(token));

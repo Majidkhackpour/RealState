@@ -15,7 +15,6 @@ namespace EntityCache.Mppings
             {
                 Guid = cls.Guid,
                 Modified = cls.Modified,
-                HardSerial = cls.HardSerial,
                 RegionGuid = cls.RegionGuid,
                 RequestGuid = cls.RequestGuid,
                 ServerStatus = cls.ServerStatus,

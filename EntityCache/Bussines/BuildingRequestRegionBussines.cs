@@ -20,7 +20,6 @@ namespace EntityCache.Bussines
         public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public Guid RequestGuid { get; set; }
         public Guid RegionGuid { get; set; }
-        public string HardSerial => Cache.HardSerial;
 
 
         public static async Task<List<BuildingRequestRegionBussines>> GetAllAsync(Guid parentGuid) =>

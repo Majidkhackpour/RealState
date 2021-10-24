@@ -44,7 +44,6 @@ namespace EntityCache.Bussines
         public string AccountType => Account.AccountDiagnosis();
         public string FirstNumber => TellList?.FirstOrDefault()?.Tell ?? "";
         public bool IsChecked { get; set; }
-        public string HardSerial => Cache.HardSerial;
         public List<PhoneBookBussines> TellList { get; set; }
         public List<PeoplesBankAccountBussines> BankList { get; set; }
         public bool IsModified { get; set; } = false;

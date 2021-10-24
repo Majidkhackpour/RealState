@@ -21,21 +21,27 @@ namespace WebHesabBussines
         public EnSanadStatus SanadStatus { get; set; }
         public Guid UserGuid { get; set; }
         public EnSanadType SanadType { get; set; }
-        public string HardSerial { get; set; }
         public List<WebSanadDetail> DetList { get; set; }
 
 
         private static void RaiseEvent(Guid objGuid, ServerStatus st, DateTime dateM)
         {
-            var handler = OnSaveResult;
-            if (handler != null)
-                OnSaveResult(objGuid, st, dateM);
+            try
+            {
+                var handler = OnSaveResult;
+                if (handler != null)
+                    OnSaveResult?.Invoke(objGuid, st, dateM);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
-        public async Task SaveAsync()
+        private async Task SaveAsync()
         {
             try
             {
-                var res = await Extentions.PostToApi<WebSanad, WebSanad>(this, Url);
+                var res = await Extentions.PostToApi<WebSanad, WebSanad>(this, Url, WebCustomer.Customer.Guid);
                 if (res.ResponseStatus != ResponseStatus.Success)
                 {
                     RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);

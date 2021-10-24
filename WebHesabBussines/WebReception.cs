@@ -26,22 +26,28 @@ namespace WebHesabBussines
         public decimal SumHavale { get; set; }
         public decimal SumNaqd { get; set; }
         public decimal Sum { get; set; }
-        public string HardSerial { get; set; }
 
 
 
 
         private static void RaiseEvent(Guid objGuid, ServerStatus st, DateTime dateM)
         {
-            var handler = OnSaveResult;
-            if (handler != null)
-                OnSaveResult(objGuid, st, dateM);
+            try
+            {
+                var handler = OnSaveResult;
+                if (handler != null)
+                    OnSaveResult?.Invoke(objGuid, st, dateM);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
-        public async Task SaveAsync()
+        private async Task SaveAsync()
         {
             try
             {
-                var res = await Extentions.PostToApi<WebReception, WebReception>(this, Url);
+                var res = await Extentions.PostToApi<WebReception, WebReception>(this, Url, WebCustomer.Customer.Guid);
                 if (res.ResponseStatus != ResponseStatus.Success)
                 {
                     RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);

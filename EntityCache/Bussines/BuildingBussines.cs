@@ -100,7 +100,6 @@ namespace EntityCache.Bussines
         public int RoomCount { get; set; }
         public EnBuildingPriority Priority { get; set; }
         public bool IsArchive { get; set; }
-        public string HardSerial => Cache.HardSerial;
         public string Image { get; set; }
         public int TelegramCount { get; set; }
         public int WhatsAppCount { get; set; }

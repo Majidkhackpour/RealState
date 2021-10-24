@@ -34,7 +34,6 @@ namespace EntityCache.Bussines
         public string UserName { get; set; }
         public long Number { get; set; }
         public long SanadNumber { get; set; }
-        public string HardSerial => Cache.HardSerial;
         public List<PardakhtNaqdBussines> NaqdList { get; set; }
         public List<PardakhtHavaleBussines> HavaleList { get; set; }
         public List<PardakhtCheckShakhsiBussines> CheckShakhsiList { get; set; }

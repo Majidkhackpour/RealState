@@ -54,7 +54,6 @@ namespace EntityCache.Bussines
         public string AnswerQuestion { get; set; }
         public string Email { get; set; }
         public string Mobile { get; set; }
-        public string HardSerial => Cache.HardSerial;
         public bool IsModified { get; set; } = false;
         public static UserBussines CurrentUser { get; set; }
         public static DateTime DateVorrod { get; set; }

@@ -25,21 +25,27 @@ namespace WebHesabBussines
         public decimal Account { get; set; }
         public decimal AccountFirst { get; set; }
         public bool isSystem { get; set; }
-        public string HardSerial { get; set; }
 
 
 
         private static void RaiseEvent(Guid objGuid, ServerStatus st, DateTime dateM)
         {
-            var handler = OnSaveResult;
-            if (handler != null)
-                OnSaveResult(objGuid, st, dateM);
+            try
+            {
+                var handler = OnSaveResult;
+                if (handler != null)
+                    OnSaveResult?.Invoke(objGuid, st, dateM);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
-        public async Task SaveAsync()
+        private async Task SaveAsync()
         {
             try
             {
-                var res = await Extentions.PostToApi<WebTafsil, WebTafsil>(this, Url);
+                var res = await Extentions.PostToApi<WebTafsil, WebTafsil>(this, Url, WebCustomer.Customer.Guid);
                 if (res.ResponseStatus != ResponseStatus.Success)
                 {
                     RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);

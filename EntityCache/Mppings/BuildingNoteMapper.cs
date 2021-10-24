@@ -6,28 +6,24 @@ using WebHesabBussines;
 
 namespace EntityCache.Mppings
 {
-    public class SanadDetailMapper
+    public class BuildingNoteMapper
     {
-        public static SanadDetailMapper Instance { get; private set; } = new SanadDetailMapper();
-        public WebSanadDetail Map(SanadDetailBussines cls)
+        public static BuildingNoteMapper Instance { get; private set; } = new BuildingNoteMapper();
+        public WebBuildingNote Map(BuildingNoteBussines cls)
         {
-            return new WebSanadDetail()
+            return new WebBuildingNote()
             {
                 Guid = cls.Guid,
                 Modified = cls.Modified,
                 ServerStatus = cls.ServerStatus,
                 ServerDeliveryDate = cls.ServerDeliveryDate,
-                Description = cls.Description,
-                Debit = cls.Debit,
-                Credit = cls.Credit,
-                TafsilGuid = cls.TafsilGuid,
-                MoeinGuid = cls.MoeinGuid,
-                MasterGuid = cls.MasterGuid
+                BuildingGuid = cls.BuildingGuid,
+                Note = cls.Note
             };
         }
-        public List<WebSanadDetail> MapList(List<SanadDetailBussines> cls)
+        public List<WebBuildingNote> MapList(List<BuildingNoteBussines> cls)
         {
-            var list = new List<WebSanadDetail>();
+            var list = new List<WebBuildingNote>();
             try
             {
                 foreach (var item in cls)

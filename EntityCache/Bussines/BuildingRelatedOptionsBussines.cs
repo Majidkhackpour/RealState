@@ -20,7 +20,6 @@ namespace EntityCache.Bussines
         public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
         public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public Guid BuildingOptionGuid { get; set; }
-        public string HardSerial => Cache.HardSerial;
         public string OptionName => BuildingOptionsBussines.Get(BuildingOptionGuid).Name;
 
 

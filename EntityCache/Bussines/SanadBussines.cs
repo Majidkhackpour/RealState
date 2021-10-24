@@ -46,7 +46,6 @@ namespace EntityCache.Bussines
         }
         public EnSanadType SanadType { get; set; }
         public string SanadTypeName => SanadType.GetDisplay();
-        public string HardSerial => Cache.HardSerial;
         public List<SanadDetailBussines> Details { get; set; }
 
 

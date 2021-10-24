@@ -11,7 +11,7 @@ namespace EntityCache.Assistence
 {
     public static class ClsCache
     {
-        public static void Init(string connectionString, string hardSerial, string appStart)
+        public static void Init(string connectionString, string hardSerial)
         {
             try
             {

@@ -62,12 +62,16 @@ namespace EntityCache.WebService
                 WebStates.OnSaveResult += WebStatesOnOnSaveResult;
                 WebTafsil.OnSaveResult += WebTafsilOnOnSaveResult;
                 WebUser.OnSaveResult += WebUserOnOnSaveResult;
+                WebBuildingNote.OnSaveResult += WebBuildingNoteOnOnSaveResult;
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
+        private async Task WebBuildingNoteOnOnSaveResult(Guid objGuid, ServerStatus st, DateTime dateM)
+            => await TempBussines.UpdateEntityAsync(EnTemp.BuildingNote, objGuid, st, dateM);
         private async Task WebUserOnOnSaveResult(Guid objGuid, ServerStatus st, DateTime dateM)
             => await TempBussines.UpdateEntityAsync(EnTemp.Users, objGuid, st, dateM);
         private async Task WebTafsilOnOnSaveResult(Guid objGuid, ServerStatus st, DateTime dateM)
@@ -131,6 +135,19 @@ namespace EntityCache.WebService
                 {
                     var bu = await BuildingBussines.GetAsync(objGuid);
                     if (bu == null) return;
+
+                    if (bu.OptionList != null && bu.OptionList.Count > 0)
+                    {
+                        var options = BuildingRelatedOptionMapper.Instance.MapList(bu.OptionList);
+                        await WebBuildingRelatedOptions.SaveAsync(options);
+                    }
+
+                    if (bu.NoteList != null && bu.NoteList.Count > 0)
+                    {
+                        var notes = BuildingNoteMapper.Instance.MapList(bu.NoteList);
+                        await WebBuildingNote.SaveAsync(notes);
+                    }
+
                     if (string.IsNullOrEmpty(bu.Image)) return;
                     var file = await FileInfoBussines.GetAsync(bu.Image);
                     if (file != null)
@@ -206,7 +223,7 @@ namespace EntityCache.WebService
                                     await WebPeopleGroup.SaveAsync(PeopleGroupMapper.Instance.Map(pg));
                                 break;
                             case EnTemp.Peoples:
-                                var p = await PeoplesBussines.GetAsync(item.ObjectGuid,null);
+                                var p = await PeoplesBussines.GetAsync(item.ObjectGuid, null);
                                 if (p != null)
                                     await WebPeople.SaveAsync(PeopleMapper.Instance.Map(p));
                                 break;

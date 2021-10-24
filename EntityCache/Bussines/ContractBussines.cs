@@ -66,7 +66,6 @@ namespace EntityCache.Bussines
         public decimal SecondTotalPrice { get; set; }
         public decimal FirstSum => FirstTotalPrice + FirstAvarez + FirstTax;
         public decimal SecondSum => SecondTotalPrice + SecondAvarez + SecondTax;
-        public string HardSerial => Cache.HardSerial;
         public bool IsModified { get; set; } = false;
 
 

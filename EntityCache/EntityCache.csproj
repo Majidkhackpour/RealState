@@ -240,6 +240,7 @@
     <Compile Include="Mppings\BuildingAccountTypeMapper.cs" />
     <Compile Include="Mppings\BuildingConditionMapper.cs" />
     <Compile Include="Mppings\BuildingMapper.cs" />
+    <Compile Include="Mppings\BuildingNoteMapper.cs" />
     <Compile Include="Mppings\BuildingOptionsMapper.cs" />
     <Compile Include="Mppings\BuildingRelatedOptionMapper.cs" />
     <Compile Include="Mppings\BuildingRequestMapper.cs" />

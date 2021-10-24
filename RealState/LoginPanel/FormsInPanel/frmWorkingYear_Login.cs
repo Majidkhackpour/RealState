@@ -69,13 +69,13 @@ namespace RealState.LoginPanel.FormsInPanel
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void InitConfigs(string appStart)
+        private void InitConfigs()
         {
             try
             {
                 ErrorHandler.AddHandler(Assembly.GetExecutingAssembly().GetName().Version.ToString(), ENSource.Building,
                     Application.StartupPath, clsRegistery.GetRegistery("X1001MA"));
-                ClsCache.Init(AppSettings.DefaultConnectionString, clsRegistery.GetRegistery("X1001MA"), appStart);
+                ClsCache.Init(AppSettings.DefaultConnectionString, clsRegistery.GetRegistery("X1001MA"));
                 Logger.init(Application.StartupPath, "BuidlingEventLog.txt", true);
                 ErrorManager.Init(ENSource.Building, null);
             }
@@ -276,14 +276,15 @@ namespace RealState.LoginPanel.FormsInPanel
                     Cache.ConnectionString = conString.value;
                 }
 
-                InitConfigs(Application.StartupPath);
+                InitConfigs();
 
                 LoadWorkingYearData();
                 Invoke(new MethodInvoker(() => prgBar.Value = 1));
                 if (workingYearBindingSource.Count <= 0)
                 {
                     prgBar.Value = 0;
-                    this.ShowWarning("متاسفانه هیچ واحد اقتصادی فعال یافت نشد. لطفا ابتدا واحد اقتصادی خود را ایجاد نمایید");                    return;
+                    this.ShowWarning("متاسفانه هیچ واحد اقتصادی فعال یافت نشد. لطفا ابتدا واحد اقتصادی خود را ایجاد نمایید");
+                    return;
                 }
 
                 result.AddReturnedValue(await SetDefultsAsync());
