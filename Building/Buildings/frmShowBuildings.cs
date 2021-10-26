@@ -76,8 +76,11 @@ namespace Building.Buildings
                                 ?.ToList();
                         }
                     }
-                Task.Run(() => ucPagger.PagingAsync(new CancellationToken(), lst?.OrderBy(q => q.IsArchive)?.ThenByDescending(q => q.CreateDate), 100, PagingPosition.GotoStartPage));
-
+                BuildingBindingSource.DataSource = lst?.OrderBy(q => q.IsArchive)?.
+                                ThenByDescending(q => q.CreateDate)?.
+                                ThenByDescending(q => q.Code)?.
+                                ToSortableBindingList();
+                SetGridColor();
                 VisibleColumns();
                 lblCounter.Text = (lst?.Count() ?? 0).ToString();
             }
@@ -673,7 +676,6 @@ namespace Building.Buildings
                 ucHeader.Text = "نمایش لیست املاک";
                 _st = filter.Status;
                 isShowMode = _isShowMode;
-                ucPagger.OnBindDataReady += UcPagger_OnBindDataReady;
                 SetAccess();
                 SetColumns();
                 if (_isShowMode || (filter.IsArchive != null && filter.IsArchive.Value)) contextMenu.Enabled = false;
@@ -684,28 +686,6 @@ namespace Building.Buildings
             }
         }
 
-        private async void UcPagger_OnBindDataReady(object sender, WindowsSerivces.Pagging.FooterBindingDataReadyEventArg e)
-        {
-            try
-            {
-                while (!IsHandleCreated)
-                {
-                    await Task.Delay(100);
-                    if (e.Token.IsCancellationRequested) return;
-                }
-                var count = e?.ListData?.Count ?? 0;
-                if (count <= 0) count = 50;
-                Invoke(new MethodInvoker(() =>
-                {
-                    BuildingBindingSource.DataSource = e?.ListData?.Take(count)?.ToSortableBindingList();
-                    SetGridColor();
-                }));
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
         private void frmShowBuildings_Load(object sender, EventArgs e)
         {
             try
@@ -1507,28 +1487,6 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void DGrid_Scroll(object sender, ScrollEventArgs e)
-        {
-            try
-            {
-                if (BuildingBindingSource.Count <= 0 || BuildingBindingSource.Count == ucPagger.list.Count)
-                    return;
-                var addedItem = 0;
-                var percent = 100 * (double)e.NewValue / BuildingBindingSource.Count;
-                if (percent <= 70) return;
-                foreach (var item in ucPagger.NextItemsInPage(BuildingBindingSource.Count, 50))
-                {
-                    BuildingBindingSource.Add(item);
-                    addedItem++;
-                }
-
-                SetGridColor();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
         private async void mnuSlideShow_Click(object sender, EventArgs e)
         {
             try
@@ -1892,6 +1850,7 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void DGrid_Sorted(object sender, EventArgs e) => SetGridColor();
         private async void mnuPrintInherit_Click(object sender, EventArgs e)
         {
             try

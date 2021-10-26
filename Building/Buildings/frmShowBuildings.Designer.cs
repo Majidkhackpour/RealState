@@ -141,7 +141,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.ucPagger = new WindowsSerivces.Pagging.UC_FooterPaging();
             this.ucHeader = new WindowsSerivces.UC_Header();
             this.picFilter = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
@@ -271,9 +270,9 @@
             this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(1018, 507);
+            this.DGrid.Size = new System.Drawing.Size(1018, 508);
             this.DGrid.TabIndex = 55744;
-            this.DGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGrid_Scroll);
+            this.DGrid.Sorted += new System.EventHandler(this.DGrid_Sorted);
             this.DGrid.DoubleClick += new System.EventHandler(this.DGrid_DoubleClick);
             // 
             // dgCode
@@ -1129,20 +1128,6 @@
             this.label6.TabIndex = 55760;
             this.label6.Text = "اولویت فوق العاده بالا";
             // 
-            // ucPagger
-            // 
-            this.ucPagger.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ucPagger.BackColor = System.Drawing.Color.Transparent;
-            this.ucPagger.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucPagger.Location = new System.Drawing.Point(4, 599);
-            this.ucPagger.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ucPagger.Name = "ucPagger";
-            this.ucPagger.PageIdx = 1;
-            this.ucPagger.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucPagger.Size = new System.Drawing.Size(987, 28);
-            this.ucPagger.TabIndex = 55771;
-            // 
             // ucHeader
             // 
             this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -1280,7 +1265,6 @@
             this.Controls.Add(this.DGrid);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.ucPagger);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -1360,7 +1344,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuBView;
         private System.Windows.Forms.ToolStripMenuItem mnuFloor;
         private System.Windows.Forms.ToolStripMenuItem mnuKitchen;
-        private WindowsSerivces.Pagging.UC_FooterPaging ucPagger;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
