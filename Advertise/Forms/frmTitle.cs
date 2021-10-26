@@ -29,8 +29,10 @@ namespace Advertise.Forms
             try
             {
                 var regionName = "";
+                var m = bu.Masahat;
+                if (m <= 0) m = bu.ZirBana;
                 if (bu.RegionGuid != Guid.Empty) regionName = RegionsBussines.Get(bu.RegionGuid)?.Name ?? "";
-                return $"{regionName} ** {bu.Masahat} متری {bu.RoomCount} خواب";
+                return $"{regionName} ** {m} متری {bu.RoomCount} خواب";
             }
             catch (Exception ex)
             {

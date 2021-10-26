@@ -25,14 +25,7 @@ namespace Advertise.Forms.MatchRegions
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
                 var list = await RegionsBussines.GetAllAsync((Guid.Parse(Settings.Classes.clsEconomyUnit.EconomyCity)), _token.Token);
-                var allRelated = await AdvertiseRelatedRegionBussines.GetAllAsync();
-                var query =
-                    from c in list
-                    where !(from o in allRelated
-                            select o.LocalRegionGuid)
-                        .Contains(c.Guid)
-                    select c;
-                regBingingSource.DataSource = query.OrderBy(q => q.Name).ToSortableBindingList();
+                regBingingSource.DataSource = list?.OrderBy(q => q.Name)?.ToSortableBindingList();
 
                 await SetRelatedRegionsAsync(Region.Name.Trim());
             }

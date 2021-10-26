@@ -115,7 +115,7 @@ namespace Advertise.ViewModels.Divar.Sell.Office
                 await Utility.Wait();
 
                 cat.SendAdv();
-
+                await Utility.Wait(5);
                 res.AddReturnedValue(await Utility.SaveAdv(AdvertiseType.Divar, FisrtCat, SecondCat, ThirdCat, State,
                     City,
                     Region, title, content, number, bu.SellPrice, 0, cat.Url));

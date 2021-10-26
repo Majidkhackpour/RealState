@@ -397,113 +397,92 @@ namespace Advertise.Classes
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var accType = await BuildingAccountTypeBussines.GetAsync(bu.BuildingAccountTypeGuid);
-                if (accType == null)
+                if (bu.Parent == null || bu.Parent == EnBuildingParent.None)
                 {
                     res.AddError("کاربری ملک معتبر نمی باشد");
                     return res;
                 }
-
+                if (bu.Parent == EnBuildingParent.RentAprtment)
+                {
+                    var ret = new Divar_ResidentialApartmentRent(bu, imageCount, isGiveChat, sender, title, content);
+                    res.AddReturnedValue(await ret.SendAsync(simCardNumber));
+                    return res;
+                }
+                if (bu.Parent == EnBuildingParent.RentHome)
+                {
+                    var ret = new Divar_ResidentialVillaRent(bu, imageCount, isGiveChat, sender, title, content);
+                    res.AddReturnedValue(await ret.SendAsync(simCardNumber));
+                    return res;
+                }
+                if (bu.Parent == EnBuildingParent.RentOffice)
+                {
+                    var ret = new Divar_OfficeOfficeRent(bu, imageCount, isGiveChat, sender, title, content);
+                    res.AddReturnedValue(await ret.SendAsync(simCardNumber));
+                    return res;
+                }
+                if (bu.Parent == EnBuildingParent.RentStore)
+                {
+                    var ret = new Divar_OfficeStoreRent(bu, imageCount, isGiveChat, sender, title, content);
+                    res.AddReturnedValue(await ret.SendAsync(simCardNumber));
+                    return res;
+                }
                 if (bu.RahnPrice1 > 0 || bu.EjarePrice1 > 0)
                 {
-                    if (accType.Name.Contains("مسکونی") && !accType.Name.Contains("زمین"))
-                    {
-                        var type = await BuildingTypeBussines.GetAsync(bu.BuildingTypeGuid);
-                        if (type == null)
-                        {
-                            res.AddError("نوع ملک معتبر نمی باشد");
-                            return res;
-                        }
-                        if (type.Name.Contains("پارتمان"))
-                        {
-                            var ret = new Divar_ResidentialApartmentRent(bu, imageCount, isGiveChat, sender, title, content);
-                            res.AddReturnedValue(await ret.SendAsync(simCardNumber));
-                            return res;
-                        }
-                        if (type.Name.Contains("خانه") || accType.Name.Contains("ویلا"))
-                        {
-                            var ret = new Divar_ResidentialVillaRent(bu, imageCount, isGiveChat, sender, title, content);
-                            res.AddReturnedValue(await ret.SendAsync(simCardNumber));
-                            return res;
-                        }
-                    }
-                    if (accType.Name.Contains("دفتر") || accType.Name.Contains("اداری") || accType.Name.Contains("مطب"))
-                    {
-                        var ret = new Divar_OfficeOfficeRent(bu, imageCount, isGiveChat, sender, title, content);
-                        res.AddReturnedValue(await ret.SendAsync(simCardNumber));
-                        return res;
-                    }
-                    if (accType.Name.Contains("صنعتی") || accType.Name.Contains("کشاورزی") ||
-                        accType.Name.Contains("دامداری") || accType.Name.Contains("مرغداری") ||
-                        accType.Name.Contains("زراعی"))
+                    if (bu.BuildingAccountTypeName.Contains("صنعتی") ||
+                        bu.BuildingAccountTypeName.Contains("کشاورزی") ||
+                        bu.BuildingAccountTypeName.Contains("دامداری") ||
+                        bu.BuildingAccountTypeName.Contains("مرغداری") ||
+                        bu.BuildingAccountTypeName.Contains("زراعی"))
                     {
                         var ret = new Divar_OfficeKeshavarziRent(bu, imageCount, isGiveChat, sender, title, content);
                         res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                         return res;
                     }
-                    if (accType.Name.Contains("مغازه") || accType.Name.Contains("غرفه") || accType.Name.Contains("تجاری"))
-                    {
-                        var ret = new Divar_OfficeStoreRent(bu, imageCount, isGiveChat, sender, title, content);
-                        res.AddReturnedValue(await ret.SendAsync(simCardNumber));
-                        return res;
-                    }
-                }
 
-                else if (bu.SellPrice > 0)
+                }
+                if (bu.Parent == EnBuildingParent.SellAprtment)
                 {
-                    if (accType.Name.Contains("مسکونی"))
-                    {
-                        var type = await BuildingTypeBussines.GetAsync(bu.BuildingTypeGuid);
-                        if (type == null)
-                        {
-                            res.AddError("نوع ملک معتبر نمی باشد");
-                            return res;
-                        }
-                        if (type.Name.Contains("پارتمان"))
-                        {
-                            var ret = new Divar_ResidentialApartmentSell(bu, imageCount, isGiveChat, sender, title, content);
-                            res.AddReturnedValue(await ret.SendAsync(simCardNumber));
-                            return res;
-                        }
-                        if (type.Name.Contains("خانه") || accType.Name.Contains("ویلا"))
-                        {
-                            var ret = new Divar_ResidentialVillaSell(bu, imageCount, isGiveChat, sender, title, content);
-                            res.AddReturnedValue(await ret.SendAsync(simCardNumber));
-                            return res;
-                        }
-                        if (type.Name.Contains("زمین") || type.Name.Contains("کلنگی"))
-                        {
-                            var ret = new Divar_ResidentialZaminSell(bu, imageCount, isGiveChat, sender, title, content);
-                            res.AddReturnedValue(await ret.SendAsync(simCardNumber));
-                            return res;
-                        }
-                    }
-                    if (accType.Name.Contains("زمین") || accType.Name.Contains("کلنگی"))
-                    {
-                        var ret = new Divar_ResidentialZaminSell(bu, imageCount, isGiveChat, sender, title, content);
-                        res.AddReturnedValue(await ret.SendAsync(simCardNumber));
-                        return res;
-                    }
-                    if (accType.Name.Contains("دفتر") || accType.Name.Contains("اداری") || accType.Name.Contains("مطب"))
-                    {
-                        var ret = new Divar_OfficeOfficeSell(bu, imageCount, isGiveChat, sender, title, content);
-                        res.AddReturnedValue(await ret.SendAsync(simCardNumber));
-                        return res;
-                    }
-                    if (accType.Name.Contains("صنعتی") || accType.Name.Contains("کشاورزی") ||
-                        accType.Name.Contains("دامداری") || accType.Name.Contains("مرغداری") ||
-                        accType.Name.Contains("زراعی"))
+                    var ret = new Divar_ResidentialApartmentSell(bu, imageCount, isGiveChat, sender, title, content);
+                    res.AddReturnedValue(await ret.SendAsync(simCardNumber));
+                    return res;
+                }
+                if (bu.Parent == EnBuildingParent.SellHome || bu.Parent == EnBuildingParent.SellVilla)
+                {
+                    var ret = new Divar_ResidentialVillaSell(bu, imageCount, isGiveChat, sender, title, content);
+                    res.AddReturnedValue(await ret.SendAsync(simCardNumber));
+                    return res;
+                }
+                if (bu.Parent == EnBuildingParent.SellOldHouse || bu.Parent == EnBuildingParent.SellLand)
+                {
+                    var ret = new Divar_ResidentialZaminSell(bu, imageCount, isGiveChat, sender, title, content);
+                    res.AddReturnedValue(await ret.SendAsync(simCardNumber));
+                    return res;
+                }
+                if (bu.Parent == EnBuildingParent.SellOffice)
+                {
+                    var ret = new Divar_OfficeOfficeSell(bu, imageCount, isGiveChat, sender, title, content);
+                    res.AddReturnedValue(await ret.SendAsync(simCardNumber));
+                    return res;
+                }
+                if (bu.Parent == EnBuildingParent.SellStore)
+                {
+                    var ret = new Divar_OfficeStoreSell(bu, imageCount, isGiveChat, sender, title, content);
+                    res.AddReturnedValue(await ret.SendAsync(simCardNumber));
+                    return res;
+                }
+                if (bu.SellPrice > 0)
+                {
+                    if (bu.BuildingAccountTypeName.Contains("صنعتی") ||
+                        bu.BuildingAccountTypeName.Contains("کشاورزی") ||
+                        bu.BuildingAccountTypeName.Contains("دامداری") ||
+                        bu.BuildingAccountTypeName.Contains("مرغداری") ||
+                        bu.BuildingAccountTypeName.Contains("زراعی"))
                     {
                         var ret = new Divar_OfficeKeshavarziSell(bu, imageCount, isGiveChat, sender, title, content);
                         res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                         return res;
                     }
-                    if (accType.Name.Contains("مغازه") || accType.Name.Contains("غرفه") || accType.Name.Contains("تجاری"))
-                    {
-                        var ret = new Divar_OfficeStoreSell(bu, imageCount, isGiveChat, sender, title, content);
-                        res.AddReturnedValue(await ret.SendAsync(simCardNumber));
-                        return res;
-                    }
+
                 }
             }
             catch (Exception ex)
