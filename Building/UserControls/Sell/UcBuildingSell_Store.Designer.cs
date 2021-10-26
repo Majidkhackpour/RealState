@@ -226,7 +226,7 @@ namespace Building.UserControls.Sell
             this.ucPricePerMasahat.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucPricePerMasahat.Size = new System.Drawing.Size(359, 36);
             this.ucPricePerMasahat.TabIndex = 22;
-            this.ucPricePerMasahat.Title = "قیمت هر متر زمین";
+            this.ucPricePerMasahat.Title = "قیمت هر متر بنا";
             this.ucPricePerMasahat.OnTextChanged += new System.Action(this.ucPricePerMasahat_OnTextChanged);
             // 
             // ucTotalPrice

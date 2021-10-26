@@ -64,7 +64,7 @@ namespace Building.Buildings
             this.UcPeople.BackColor = System.Drawing.Color.Transparent;
             this.UcPeople.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.UcPeople.Guid = new System.Guid("00000000-0000-0000-0000-000000000000");
-            this.UcPeople.Location = new System.Drawing.Point(12, 5);
+            this.UcPeople.Location = new System.Drawing.Point(12, 7);
             this.UcPeople.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.UcPeople.Name = "UcPeople";
             this.UcPeople.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -100,7 +100,7 @@ namespace Building.Buildings
             | System.Windows.Forms.AnchorStyles.Right)));
             this.UcNotes.BackColor = System.Drawing.Color.Transparent;
             this.UcNotes.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.UcNotes.Location = new System.Drawing.Point(8, 1307);
+            this.UcNotes.Location = new System.Drawing.Point(8, 1359);
             this.UcNotes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.UcNotes.Name = "UcNotes";
             this.UcNotes.Notes = null;
@@ -111,7 +111,7 @@ namespace Building.Buildings
             // groupPanel3
             // 
             this.groupPanel3.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.groupPanel3.Location = new System.Drawing.Point(8, 999);
+            this.groupPanel3.Location = new System.Drawing.Point(8, 1051);
             this.groupPanel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupPanel3.Name = "groupPanel3";
             this.groupPanel3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -124,7 +124,7 @@ namespace Building.Buildings
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ucBuildingHitting1.BackColor = System.Drawing.Color.Transparent;
             this.ucBuildingHitting1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucBuildingHitting1.Location = new System.Drawing.Point(369, 997);
+            this.ucBuildingHitting1.Location = new System.Drawing.Point(369, 1049);
             this.ucBuildingHitting1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucBuildingHitting1.Name = "ucBuildingHitting1";
             this.ucBuildingHitting1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -137,7 +137,7 @@ namespace Building.Buildings
             this.groupPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.groupPanel2.Controls.Add(this.txtShortDesc);
             this.groupPanel2.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel2.Location = new System.Drawing.Point(8, 691);
+            this.groupPanel2.Location = new System.Drawing.Point(8, 745);
             this.groupPanel2.Name = "groupPanel2";
             this.groupPanel2.Size = new System.Drawing.Size(354, 300);
             // 
@@ -188,7 +188,7 @@ namespace Building.Buildings
             | System.Windows.Forms.AnchorStyles.Right)));
             this.UcOptions.BackColor = System.Drawing.Color.Transparent;
             this.UcOptions.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.UcOptions.Location = new System.Drawing.Point(369, 691);
+            this.UcOptions.Location = new System.Drawing.Point(369, 745);
             this.UcOptions.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.UcOptions.Name = "UcOptions";
             this.UcOptions.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -203,7 +203,7 @@ namespace Building.Buildings
             this.ucType.BuildingAccountTypeGuid = new System.Guid("3497ca54-5ef1-4449-be84-540838ee78c4");
             this.ucType.BuildingTypeGuid = new System.Guid("b9566d92-40bc-4789-a9e2-66ac3c0e022d");
             this.ucType.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucType.Location = new System.Drawing.Point(8, 638);
+            this.ucType.Location = new System.Drawing.Point(8, 692);
             this.ucType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucType.Name = "ucType";
             this.ucType.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -218,7 +218,7 @@ namespace Building.Buildings
             this.UcHitting_Colling.Colling = "";
             this.UcHitting_Colling.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.UcHitting_Colling.Hitting = "";
-            this.UcHitting_Colling.Location = new System.Drawing.Point(8, 585);
+            this.UcHitting_Colling.Location = new System.Drawing.Point(8, 638);
             this.UcHitting_Colling.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.UcHitting_Colling.Name = "UcHitting_Colling";
             this.UcHitting_Colling.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -235,7 +235,7 @@ namespace Building.Buildings
             this.groupPanel1.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel1.Location = new System.Drawing.Point(8, 319);
             this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(758, 262);
+            this.groupPanel1.Size = new System.Drawing.Size(758, 311);
             // 
             // 
             // 
@@ -273,7 +273,7 @@ namespace Building.Buildings
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContent.Location = new System.Drawing.Point(0, 0);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(752, 256);
+            this.pnlContent.Size = new System.Drawing.Size(752, 305);
             this.pnlContent.TabIndex = 0;
             // 
             // UcCode

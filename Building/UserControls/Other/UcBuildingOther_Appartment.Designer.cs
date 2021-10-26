@@ -49,6 +49,7 @@ namespace Building.UserControls.Other
             this.ucConstructionStage1 = new Building.UserControls.Objects.UcConstructionStage();
             this.label1 = new System.Windows.Forms.Label();
             this.txtDeliveryDate = new BPersianCalender.BPersianCalenderTextBox();
+            this.ucPricePerZirBana = new Building.UserControls.Objects.UcPrice();
             this.SuspendLayout();
             // 
             // ucPricePerMasahat
@@ -75,7 +76,7 @@ namespace Building.UserControls.Other
             this.ucTotalPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ucTotalPrice.BackColor = System.Drawing.Color.Transparent;
             this.ucTotalPrice.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucTotalPrice.Location = new System.Drawing.Point(16, 180);
+            this.ucTotalPrice.Location = new System.Drawing.Point(386, 219);
             this.ucTotalPrice.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucTotalPrice.Name = "ucTotalPrice";
             this.ucTotalPrice.Price = new decimal(new int[] {
@@ -94,7 +95,7 @@ namespace Building.UserControls.Other
             this.ucVam.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ucVam.BackColor = System.Drawing.Color.Transparent;
             this.ucVam.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucVam.Location = new System.Drawing.Point(386, 214);
+            this.ucVam.Location = new System.Drawing.Point(386, 260);
             this.ucVam.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucVam.Name = "ucVam";
             this.ucVam.Price = new decimal(new int[] {
@@ -112,7 +113,7 @@ namespace Building.UserControls.Other
             this.ucQest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ucQest.BackColor = System.Drawing.Color.Transparent;
             this.ucQest.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucQest.Location = new System.Drawing.Point(16, 214);
+            this.ucQest.Location = new System.Drawing.Point(16, 260);
             this.ucQest.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucQest.Name = "ucQest";
             this.ucQest.Price = new decimal(new int[] {
@@ -147,6 +148,7 @@ namespace Building.UserControls.Other
             this.ucSide1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucSide1.Name = "ucSide1";
             this.ucSide1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucSide1.Side = null;
             this.ucSide1.Size = new System.Drawing.Size(192, 36);
             this.ucSide1.TabIndex = 30;
             // 
@@ -256,6 +258,7 @@ namespace Building.UserControls.Other
             this.ucZirBana1.TabIndex = 22;
             this.ucZirBana1.Title = "زیربنا";
             this.ucZirBana1.Value = 0;
+            this.ucZirBana1.OnValueChanged += new System.Action(this.ucZirBana1_OnValueChanged);
             // 
             // UcDong
             // 
@@ -321,6 +324,25 @@ namespace Building.UserControls.Other
             this.txtDeliveryDate.Size = new System.Drawing.Size(154, 27);
             this.txtDeliveryDate.TabIndex = 40;
             // 
+            // ucPricePerZirBana
+            // 
+            this.ucPricePerZirBana.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucPricePerZirBana.BackColor = System.Drawing.Color.Transparent;
+            this.ucPricePerZirBana.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucPricePerZirBana.Location = new System.Drawing.Point(16, 180);
+            this.ucPricePerZirBana.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucPricePerZirBana.Name = "ucPricePerZirBana";
+            this.ucPricePerZirBana.Price = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.ucPricePerZirBana.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucPricePerZirBana.Size = new System.Drawing.Size(359, 36);
+            this.ucPricePerZirBana.TabIndex = 34;
+            this.ucPricePerZirBana.Title = "قیمت هر متر بنا";
+            this.ucPricePerZirBana.OnTextChanged += new System.Action(this.ucPricePerZirBana_OnTextChanged);
+            // 
             // UcBuildingOther_Appartment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -328,6 +350,7 @@ namespace Building.UserControls.Other
             this.Controls.Add(this.txtDeliveryDate);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ucConstructionStage1);
+            this.Controls.Add(this.ucPricePerZirBana);
             this.Controls.Add(this.ucPricePerMasahat);
             this.Controls.Add(this.ucTotalPrice);
             this.Controls.Add(this.ucVam);
@@ -348,7 +371,7 @@ namespace Building.UserControls.Other
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "UcBuildingOther_Appartment";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Size = new System.Drawing.Size(751, 256);
+            this.Size = new System.Drawing.Size(751, 301);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -375,5 +398,6 @@ namespace Building.UserControls.Other
         private Objects.UcConstructionStage ucConstructionStage1;
         private System.Windows.Forms.Label label1;
         private BPersianCalender.BPersianCalenderTextBox txtDeliveryDate;
+        private Objects.UcPrice ucPricePerZirBana;
     }
 }

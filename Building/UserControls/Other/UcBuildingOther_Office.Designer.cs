@@ -68,7 +68,7 @@ namespace Building.UserControls.Other
             this.ucPricePerMasahat.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucPricePerMasahat.Size = new System.Drawing.Size(359, 36);
             this.ucPricePerMasahat.TabIndex = 45;
-            this.ucPricePerMasahat.Title = "قیمت هر متر زمین";
+            this.ucPricePerMasahat.Title = "قیمت هر متر بنا";
             this.ucPricePerMasahat.OnTextChanged += new System.Action(this.ucPricePerMasahat_OnTextChanged);
             // 
             // ucTotalPrice
@@ -242,6 +242,7 @@ namespace Building.UserControls.Other
             this.ucSide1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucSide1.Name = "ucSide1";
             this.ucSide1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucSide1.Side = null;
             this.ucSide1.Size = new System.Drawing.Size(192, 36);
             this.ucSide1.TabIndex = 36;
             // 

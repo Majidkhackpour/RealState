@@ -402,25 +402,25 @@ namespace Advertise.Classes
                     res.AddError("کاربری ملک معتبر نمی باشد");
                     return res;
                 }
-                if (bu.Parent == EnBuildingParent.RentAprtment)
+                if (bu.Parent == EnBuildingParent.RentAprtment || bu.Parent == EnBuildingParent.FullRentAprtment)
                 {
                     var ret = new Divar_ResidentialApartmentRent(bu, imageCount, isGiveChat, sender, title, content);
                     res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                     return res;
                 }
-                if (bu.Parent == EnBuildingParent.RentHome)
+                if (bu.Parent == EnBuildingParent.RentHome || bu.Parent == EnBuildingParent.FullRentHome)
                 {
                     var ret = new Divar_ResidentialVillaRent(bu, imageCount, isGiveChat, sender, title, content);
                     res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                     return res;
                 }
-                if (bu.Parent == EnBuildingParent.RentOffice)
+                if (bu.Parent == EnBuildingParent.RentOffice || bu.Parent == EnBuildingParent.FullRentOffice)
                 {
                     var ret = new Divar_OfficeOfficeRent(bu, imageCount, isGiveChat, sender, title, content);
                     res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                     return res;
                 }
-                if (bu.Parent == EnBuildingParent.RentStore)
+                if (bu.Parent == EnBuildingParent.RentStore || bu.Parent == EnBuildingParent.FullRentStore)
                 {
                     var ret = new Divar_OfficeStoreRent(bu, imageCount, isGiveChat, sender, title, content);
                     res.AddReturnedValue(await ret.SendAsync(simCardNumber));

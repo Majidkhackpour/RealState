@@ -78,9 +78,16 @@ namespace Building.UserControls.Other
                         ucConstructionStage1.Stage = _bu.ConstructionStage;
                         txtDeliveryDate.Text = Calendar.MiladiToShamsi(_bu.DeliveryDate);
                     }
-                    if (_bu.Masahat <= 0) return;
-                    var m = Math.Truncate(_bu.SellPrice / _bu.Masahat);
-                    ucPricePerMasahat.Price = m;
+                    if (_bu.Masahat > 0)
+                    {
+                        var m = Math.Truncate(_bu.SellPrice / _bu.Masahat);
+                        ucPricePerMasahat.Price = m;
+                    }
+                    if (_bu.ZirBana > 0)
+                    {
+                        var m = Math.Truncate(_bu.SellPrice / _bu.ZirBana);
+                        ucPricePerZirBana.Price = m;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -101,6 +108,10 @@ namespace Building.UserControls.Other
 
                 if (ucMasahat.Value > 0)
                     ucTotalPrice.Price = ucPricePerMasahat.Price * ucMasahat.Value;
+                if (ucZirBana1.Value <= 0) return;
+                ucPricePerZirBana.Price = 0;
+                var m = Math.Truncate(ucTotalPrice.Price / ucZirBana1.Value);
+                ucPricePerZirBana.Price = m;
             }
             catch (Exception ex)
             {
@@ -115,9 +126,38 @@ namespace Building.UserControls.Other
                 if (string.IsNullOrEmpty(currentControl)) return;
                 if (currentControl != ucTotalPrice.Name) return;
 
-                ucPricePerMasahat.Price = 0;
+                ucPricePerMasahat.Price = ucPricePerZirBana.Price = 0;
 
+                if (ucMasahat.Value > 0)
+                {
+                    var m = Math.Truncate(ucTotalPrice.Price / ucMasahat.Value);
+                    ucPricePerMasahat.Price = m;
+                }
+
+                if (ucZirBana1.Value > 0)
+                {
+                    var m = Math.Truncate(ucTotalPrice.Price / ucZirBana1.Value);
+                    ucPricePerZirBana.Price = m;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void ucMasahat_OnValueChanged() => CalculateSellPrice(0);
+        private void ucPricePerZirBana_OnTextChanged()
+        {
+            try
+            {
+                var currentControl = ActiveControl?.Name;
+                if (string.IsNullOrEmpty(currentControl)) return;
+                if (currentControl != ucPricePerZirBana.Name) return;
+
+                if (ucZirBana1.Value > 0)
+                    ucTotalPrice.Price = ucPricePerZirBana.Price * ucZirBana1.Value;
                 if (ucMasahat.Value <= 0) return;
+                ucPricePerMasahat.Price = 0;
                 var m = Math.Truncate(ucTotalPrice.Price / ucMasahat.Value);
                 ucPricePerMasahat.Price = m;
             }
@@ -126,14 +166,26 @@ namespace Building.UserControls.Other
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void ucMasahat_OnValueChanged()
+        private void ucZirBana1_OnValueChanged() => CalculateSellPrice(1);
+        private void CalculateSellPrice(short type)
         {
             try
             {
-                ucTotalPrice.Price = ucPricePerMasahat.Price * ucMasahat.Value;
-                if (ucMasahat.Value <= 0) return;
-                ucPricePerMasahat.Price = 0;
-                ucPricePerMasahat.Price = ucTotalPrice.Price / ucMasahat.Value;
+                if (type == 0)
+                    ucTotalPrice.Price = ucPricePerMasahat.Price * ucMasahat.Value;
+                else if (type == 1)
+                    ucTotalPrice.Price = ucPricePerZirBana.Price * ucZirBana1.Value;
+
+                if (ucMasahat.Value > 0)
+                {
+                    ucPricePerMasahat.Price = 0;
+                    ucPricePerMasahat.Price = ucTotalPrice.Price / ucMasahat.Value;
+                }
+                if (ucZirBana1.Value > 0)
+                {
+                    ucPricePerZirBana.Price = 0;
+                    ucPricePerZirBana.Price = ucTotalPrice.Price / ucZirBana1.Value;
+                }
             }
             catch (Exception ex)
             {
