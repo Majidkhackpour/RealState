@@ -1,10 +1,9 @@
-﻿using System;
+﻿using MetroFramework.Forms;
+using Services;
+using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using WindowsSerivces;
-using MetroFramework.Forms;
-using Notification;
-using Services;
 
 namespace RealState.Advance
 {
