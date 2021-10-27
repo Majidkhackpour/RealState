@@ -16,6 +16,15 @@ namespace Advertise.Forms.Simcard
     {
         private bool _st = true;
         public Guid SelectedGuid { get; set; }
+        public string Number
+        {
+            get
+            {
+                if (SelectedGuid == Guid.Empty) return "";
+                var sim = SimcardBussines.Get(SelectedGuid);
+                return sim == null ? "" : sim.Number.ToString();
+            }
+        }
         private bool isShowMode = false;
         private async Task LoadDataAsync(bool status, string search = "")
         {

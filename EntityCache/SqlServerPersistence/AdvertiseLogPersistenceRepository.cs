@@ -2,6 +2,7 @@
 using EntityCache.Core;
 using Services;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
@@ -102,6 +103,32 @@ namespace EntityCache.SqlServerPersistence
             }
 
             return res;
+        }
+        public async Task<List<AdvertiseLogBussines>> GetAllAsync(string connectionString, DateTime? d1, DateTime? d2, long number)
+        {
+            var list = new List<AdvertiseLogBussines>();
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_AdvertiseLog_GetAll", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@d1", d1);
+                    cmd.Parameters.AddWithValue("@d2", d2);
+                    cmd.Parameters.AddWithValue("@number", number);
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read())
+                        list.Add(LoadData(dr));
+                    dr.Close();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
         }
     }
 }

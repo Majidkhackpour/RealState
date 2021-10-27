@@ -1,51 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Windows.Forms;
-using WindowsSerivces;
-using Advertise.Classes;
+﻿using Advertise.Classes;
 using Advertise.Forms.MatchRegions;
 using Advertise.Forms.Simcard;
 using EntityCache.Bussines;
-using EntityCache.ViewModels;
 using MetroFramework.Forms;
 using Services;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
+using WindowsSerivces;
+using Advertise.Forms.AdvertiseLog;
 
 namespace Advertise.Forms
 {
     public partial class frmRobotPanel : MetroForm
     {
-        public frmRobotPanel()
-        {
-            InitializeComponent();
-        }
+        public frmRobotPanel() => InitializeComponent();
 
         private void frmRobotPanel_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape) Close();
         }
-
-        private void lblSimcard_MouseEnter(object sender, System.EventArgs e)
-        {
-            lblSimcard.ForeColor = Color.Red;
-        }
-
-        private void lblBaseInfo_MouseEnter(object sender, System.EventArgs e)
-        {
-            lblBaseInfo.ForeColor = Color.Red;
-        }
-
-        private void lblBaseInfo_MouseLeave(object sender, System.EventArgs e)
-        {
-            lblBaseInfo.ForeColor = Color.Black;
-        }
-
-        private void lblSimcard_MouseLeave(object sender, System.EventArgs e)
-        {
-            lblSimcard.ForeColor = Color.Black;
-        }
-
+        private void lblSimcard_MouseEnter(object sender, System.EventArgs e) => lblSimcard.ForeColor = Color.Red;
+        private void lblBaseInfo_MouseEnter(object sender, System.EventArgs e) => lblBaseInfo.ForeColor = Color.Red;
+        private void lblBaseInfo_MouseLeave(object sender, System.EventArgs e) => lblBaseInfo.ForeColor = Color.Black;
+        private void lblSimcard_MouseLeave(object sender, System.EventArgs e) => lblSimcard.ForeColor = Color.Black;
         private void lblSimcard_Click(object sender, System.EventArgs e)
         {
             try
@@ -57,12 +35,7 @@ namespace Advertise.Forms
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void picSimcard_Click(object sender, EventArgs e)
-        {
-            lblSimcard_Click(null, null);
-        }
-
+        private void picSimcard_Click(object sender, EventArgs e) => lblSimcard_Click(null, null);
         private async void lblBaseInfo_Click(object sender, EventArgs e)
         {
             try
@@ -130,22 +103,9 @@ namespace Advertise.Forms
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void picBaseInfo_Click(object sender, EventArgs e)
-        {
-            lblBaseInfo_Click(null, null);
-        }
-
-        private void lblMatchRegion_MouseEnter(object sender, EventArgs e)
-        {
-            lblMatchRegion.ForeColor = Color.Red;
-        }
-
-        private void lblMatchRegion_MouseLeave(object sender, EventArgs e)
-        {
-            lblMatchRegion.ForeColor = Color.Black;
-        }
-
+        private void picBaseInfo_Click(object sender, EventArgs e) => lblBaseInfo_Click(null, null);
+        private void lblMatchRegion_MouseEnter(object sender, EventArgs e) => lblMatchRegion.ForeColor = Color.Red;
+        private void lblMatchRegion_MouseLeave(object sender, EventArgs e) => lblMatchRegion.ForeColor = Color.Black;
         private void lblMatchRegion_Click(object sender, EventArgs e)
         {
             try
@@ -157,22 +117,9 @@ namespace Advertise.Forms
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void picMatchRegion_Click(object sender, EventArgs e)
-        {
-            lblMatchRegion_Click(null, null);
-        }
-
-        private void lblSetting_MouseEnter(object sender, EventArgs e)
-        {
-            lblSetting.ForeColor = Color.Red;
-        }
-
-        private void lblSetting_MouseLeave(object sender, EventArgs e)
-        {
-            lblSetting.ForeColor = Color.Black;
-        }
-
+        private void picMatchRegion_Click(object sender, EventArgs e) => lblMatchRegion_Click(null, null);
+        private void lblSetting_MouseEnter(object sender, EventArgs e) => lblSetting.ForeColor = Color.Red;
+        private void lblSetting_MouseLeave(object sender, EventArgs e) => lblSetting.ForeColor = Color.Black;
         private void lblSetting_Click(object sender, EventArgs e)
         {
             try
@@ -185,15 +132,22 @@ namespace Advertise.Forms
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void pictureBox1_Click(object sender, EventArgs e) => lblSetting_Click(null, null);
+        private void frmRobotPanel_Load(object sender, EventArgs e) => clsLoadNewForm.LoadNewForm(new frmRobotLogo(), fPanel);
+        private void picReport_Click(object sender, EventArgs e) => lblReport_Click(null, null);
+        private void lblReport_Click(object sender, EventArgs e)
         {
-            lblSetting_Click(null, null);
+            try
+            {
+                var frm = new frmLogFilter();
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
-
-        private void frmRobotPanel_Load(object sender, EventArgs e)
-        {
-            clsLoadNewForm.LoadNewForm(new frmRobotLogo(), fPanel);
-        }
+        private void lblReport_MouseEnter(object sender, EventArgs e) => lblReport.ForeColor = Color.Red;
+        private void lblReport_MouseLeave(object sender, EventArgs e) => lblReport.ForeColor = Color.Black;
     }
 }

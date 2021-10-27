@@ -35,12 +35,15 @@
             this.lblSetting = new System.Windows.Forms.Label();
             this.grp = new DevComponents.DotNetBar.PanelEx();
             this.picSimcard = new System.Windows.Forms.PictureBox();
+            this.lblReport = new System.Windows.Forms.Label();
+            this.picReport = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.picBaseInfo = new System.Windows.Forms.PictureBox();
             this.picMatchRegion = new System.Windows.Forms.PictureBox();
             this.fPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.grp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSimcard)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBaseInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMatchRegion)).BeginInit();
@@ -101,7 +104,7 @@
             this.lblSetting.BackColor = System.Drawing.Color.Transparent;
             this.lblSetting.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblSetting.ForeColor = System.Drawing.Color.Black;
-            this.lblSetting.Location = new System.Drawing.Point(47, 449);
+            this.lblSetting.Location = new System.Drawing.Point(47, 588);
             this.lblSetting.Name = "lblSetting";
             this.lblSetting.Size = new System.Drawing.Size(47, 20);
             this.lblSetting.TabIndex = 1;
@@ -117,8 +120,10 @@
             this.grp.CanvasColor = System.Drawing.SystemColors.Control;
             this.grp.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.grp.Controls.Add(this.picSimcard);
+            this.grp.Controls.Add(this.lblReport);
             this.grp.Controls.Add(this.lblSetting);
             this.grp.Controls.Add(this.lblBaseInfo);
+            this.grp.Controls.Add(this.picReport);
             this.grp.Controls.Add(this.pictureBox1);
             this.grp.Controls.Add(this.lblMatchRegion);
             this.grp.Controls.Add(this.lblSimcard);
@@ -127,7 +132,7 @@
             this.grp.DisabledBackColor = System.Drawing.Color.Empty;
             this.grp.Location = new System.Drawing.Point(825, 31);
             this.grp.Name = "grp";
-            this.grp.Size = new System.Drawing.Size(152, 555);
+            this.grp.Size = new System.Drawing.Size(152, 620);
             this.grp.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.grp.Style.BackColor1.Color = System.Drawing.Color.White;
             this.grp.Style.BackColor2.Color = System.Drawing.Color.White;
@@ -152,12 +157,41 @@
             this.picSimcard.TabStop = false;
             this.picSimcard.Click += new System.EventHandler(this.picSimcard_Click);
             // 
+            // lblReport
+            // 
+            this.lblReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblReport.AutoSize = true;
+            this.lblReport.BackColor = System.Drawing.Color.Transparent;
+            this.lblReport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblReport.ForeColor = System.Drawing.Color.Black;
+            this.lblReport.Location = new System.Drawing.Point(34, 468);
+            this.lblReport.Name = "lblReport";
+            this.lblReport.Size = new System.Drawing.Size(82, 20);
+            this.lblReport.TabIndex = 1;
+            this.lblReport.Text = "گزارش آگهی ها";
+            this.lblReport.Click += new System.EventHandler(this.lblReport_Click);
+            this.lblReport.MouseEnter += new System.EventHandler(this.lblReport_MouseEnter);
+            this.lblReport.MouseLeave += new System.EventHandler(this.lblReport_MouseLeave);
+            // 
+            // picReport
+            // 
+            this.picReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picReport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picReport.Image = global::Advertise.Properties.Resources._043;
+            this.picReport.Location = new System.Drawing.Point(34, 380);
+            this.picReport.Name = "picReport";
+            this.picReport.Size = new System.Drawing.Size(82, 81);
+            this.picReport.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picReport.TabIndex = 0;
+            this.picReport.TabStop = false;
+            this.picReport.Click += new System.EventHandler(this.picReport_Click);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Image = global::Advertise.Properties.Resources._122;
-            this.pictureBox1.Location = new System.Drawing.Point(34, 363);
+            this.pictureBox1.Location = new System.Drawing.Point(34, 502);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(82, 81);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -199,7 +233,7 @@
             this.fPanel.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
             this.fPanel.Location = new System.Drawing.Point(5, 34);
             this.fPanel.Name = "fPanel";
-            this.fPanel.Size = new System.Drawing.Size(814, 552);
+            this.fPanel.Size = new System.Drawing.Size(814, 617);
             this.fPanel.TabIndex = 14;
             // 
             // frmRobotPanel
@@ -207,7 +241,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(989, 598);
+            this.ClientSize = new System.Drawing.Size(989, 663);
             this.ControlBox = false;
             this.Controls.Add(this.fPanel);
             this.Controls.Add(this.grp);
@@ -228,6 +262,7 @@
             this.grp.ResumeLayout(false);
             this.grp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSimcard)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picReport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBaseInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMatchRegion)).EndInit();
@@ -247,5 +282,7 @@
         private System.Windows.Forms.Label lblSetting;
         private DevComponents.DotNetBar.PanelEx grp;
         private System.Windows.Forms.FlowLayoutPanel fPanel;
+        private System.Windows.Forms.Label lblReport;
+        private System.Windows.Forms.PictureBox picReport;
     }
 }

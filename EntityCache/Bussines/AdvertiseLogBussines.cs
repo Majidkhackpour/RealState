@@ -1,11 +1,12 @@
 ﻿using EntityCache.Assistence;
+using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Threading.Tasks;
-using Persistence;
 
 namespace EntityCache.Bussines
 {
@@ -18,6 +19,7 @@ namespace EntityCache.Bussines
         public string Category { get; set; } = "-";
         public string SubCategory1 { get; set; } = "-";
         public string SubCategory2 { get; set; } = "-";
+        public string FullCategory => $"{Category} - {SubCategory1} - {SubCategory2}";
         public string City { get; set; } = "-";
         public string Region { get; set; } = "-";
         public decimal Price1 { get; set; } = 0;
@@ -70,5 +72,39 @@ namespace EntityCache.Bussines
             return res;
         }
         public static async Task<AdvertiseLogBussines> GetAsync(string url) => await UnitOfWork.AdvertiseLog.GetAsync(Cache.ConnectionString, url);
+        public static async Task<List<AdvertiseLogBussines>> GetAllAsync(DateTime? d1 = null, DateTime? d2 = null, long number = 0)
+            => await UnitOfWork.AdvertiseLog.GetAllAsync(Cache.ConnectionString, d1, d2, number);
+        public static async Task<List<AdvertiseLogBussines>> GetAllAsync(string search, DateTime? d1 = null, DateTime? d2 = null, long number = 0)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(search)) search = "";
+                var res = await GetAllAsync(d1, d2, number);
+                var searchItems = search.SplitString();
+                if (searchItems?.Count > 0)
+                    foreach (var item in searchItems)
+                    {
+                        if (!string.IsNullOrEmpty(item) && item.Trim() != "")
+                        {
+                            res = res.Where(x => x.SimcardNumber.ToString().ToLower().Contains(item.ToLower()) ||
+                                                 x.FullCategory.Contains(item) ||
+                                                 x.Region.Contains(item) ||
+                                                 x.Title.Contains(item) ||
+                                                 x.Content.Contains(item))
+                                ?.ToList();
+                        }
+                    }
+
+                res = res?.OrderByDescending(o => o.DateM).ToList();
+                return res;
+            }
+            catch (TaskCanceledException) { return null; }
+            catch (OperationCanceledException) { return null; }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return new List<AdvertiseLogBussines>();
+            }
+        }
     }
 }

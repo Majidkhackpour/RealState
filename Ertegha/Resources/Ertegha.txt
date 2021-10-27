@@ -7893,3 +7893,18 @@ BEGIN
 		   ,@serverDate)
 	 end
 END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_AdvertiseLog_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_AdvertiseLog_GetAll]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_AdvertiseLog_GetAll
+	@d1 datetime=null,
+	@d2 datetime=null,
+	@number bigint=0
+AS
+BEGIN
+	select * from AdvertiseLogs
+	where (@d1 is null and @d2 is null) or DateM between @d1 and @d2 and
+	(ISNULL(@number,0)=0 or SimcardNumber=@number)
+END
