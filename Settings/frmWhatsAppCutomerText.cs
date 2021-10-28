@@ -105,5 +105,17 @@ namespace Settings
             DialogResult = DialogResult.Cancel;
             Close();
         }
+        private void frmWhatsAppCutomerText_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Escape) btnCancel.PerformClick();
+                else if (e.KeyCode == Keys.F5) btnFinish.PerformClick();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
     }
 }

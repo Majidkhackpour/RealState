@@ -738,6 +738,7 @@ namespace Settings
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Style = MetroFramework.MetroColorStyle.Teal;
             this.Load += new System.EventHandler(this.frmWhatsAppCutomerText_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmWhatsAppCutomerText_KeyDown);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

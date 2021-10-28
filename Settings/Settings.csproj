@@ -205,12 +205,6 @@
     <Compile Include="frmEconomyUnit.Designer.cs">
       <DependentUpon>frmEconomyUnit.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmSettings.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmSettings.Designer.cs">
-      <DependentUpon>frmSettings.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmTelegramManager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -279,14 +273,26 @@
     <EmbeddedResource Include="Forms\frmBackUp.resx">
       <DependentUpon>frmBackUp.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmPublicSetting.resx">
+      <DependentUpon>frmPublicSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSandouq.resx">
+      <DependentUpon>frmSandouq.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmSetting.resx">
       <DependentUpon>frmSetting.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSms.resx">
+      <DependentUpon>frmSms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmTelegram.resx">
+      <DependentUpon>frmTelegram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmWhatsApp.resx">
+      <DependentUpon>frmWhatsApp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmEconomyUnit.resx">
       <DependentUpon>frmEconomyUnit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmSettings.resx">
-      <DependentUpon>frmSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTelegramManager.resx">
       <DependentUpon>frmTelegramManager.cs</DependentUpon>

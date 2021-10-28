@@ -57,6 +57,7 @@ using WindowsSerivces;
 using Building.Buildings.Selector;
 using Persistence;
 using Services.FilterObjects;
+using Settings.Forms;
 using WebHesabBussines;
 
 namespace RealState
@@ -197,7 +198,7 @@ namespace RealState
                     case EnForms.CheckBook: frm = new frmShowDasteCheck(); break;
                     case EnForms.ReceptionCheck: frm = new frmShowCheckM(false); break;
                     case EnForms.PardakhtCheck: frm = new frmShowCheckSh(); break;
-                    case EnForms.Setting: frm = new frmSettings(); break;
+                    case EnForms.Setting: frm = new frmSetting(); break;
                     case EnForms.Phonebook: frm = new frmShowPhoneBook(); break;
                     case EnForms.Note: frm = new frmShowNotes(); break;
                     case EnForms.SmsPanel: frm = new frmShowPanels(); break;

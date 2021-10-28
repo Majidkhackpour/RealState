@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 using MetroFramework.Forms;
 using Services;
 
@@ -127,5 +128,9 @@ namespace Settings.Forms
         private void lblWhatsapp_Click(object sender, System.EventArgs e) => WhatsApp();
         private void picBackUp_Click(object sender, System.EventArgs e) => BackUp();
         private void lblBackUp_Click(object sender, System.EventArgs e) => BackUp();
+        private void frmSetting_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape) Close();
+        }
     }
 }

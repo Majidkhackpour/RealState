@@ -270,6 +270,7 @@ namespace Settings.Forms
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Style = MetroFramework.MetroColorStyle.Teal;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSetting_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.picSms)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSandouq)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBackUp)).EndInit();

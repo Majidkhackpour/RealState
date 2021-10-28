@@ -58,8 +58,6 @@
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.txtTell = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.grp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RegionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CityBindingSource)).BeginInit();
@@ -69,12 +67,13 @@
             // btnFinish
             // 
             this.btnFinish.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnFinish.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnFinish.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnFinish.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFinish.Image = global::Settings.Properties.Resources.tab_checkbox__;
-            this.btnFinish.Location = new System.Drawing.Point(326, 628);
+            this.btnFinish.Location = new System.Drawing.Point(326, 544);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnFinish.Size = new System.Drawing.Size(125, 31);
@@ -194,13 +193,14 @@
             // btnCancel
             // 
             this.btnCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCancel.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::Settings.Properties.Resources.tab_close_;
-            this.btnCancel.Location = new System.Drawing.Point(26, 628);
+            this.btnCancel.Location = new System.Drawing.Point(26, 544);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnCancel.Size = new System.Drawing.Size(125, 31);
@@ -237,7 +237,7 @@
             this.grp.Controls.Add(this.label3);
             this.grp.Controls.Add(this.label1);
             this.grp.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grp.Location = new System.Drawing.Point(4, 92);
+            this.grp.Location = new System.Drawing.Point(4, 10);
             this.grp.Name = "grp";
             this.grp.Size = new System.Drawing.Size(463, 527);
             this.grp.Style.Alignment = System.Drawing.StringAlignment.Center;
@@ -382,37 +382,15 @@
             this.label11.TabIndex = 4;
             this.label11.Text = "آدرس";
             // 
-            // label9
-            // 
-            this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Font = new System.Drawing.Font("B Yekan", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label9.Location = new System.Drawing.Point(110, 32);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(225, 34);
-            this.label9.TabIndex = 8;
-            this.label9.Text = "ثبت واحد اقتصادی";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Location = new System.Drawing.Point(74, 66);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(346, 20);
-            this.label10.TabIndex = 8;
-            this.label10.Text = "توجه داشته باشید که با انصراف از این مرحله، برنامه بسته خواهد شد";
-            // 
             // frmEconomyUnit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(474, 666);
+            this.ClientSize = new System.Drawing.Size(474, 582);
             this.Controls.Add(this.btnFinish);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.grp);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label10);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
@@ -420,7 +398,6 @@
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(474, 666);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(474, 666);
             this.Name = "frmEconomyUnit";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -433,7 +410,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.CityBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StateBindingSource)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -453,8 +429,6 @@
         private System.Windows.Forms.Label label1;
         private DevComponents.DotNetBar.ButtonX btnCancel;
         private DevComponents.DotNetBar.PanelEx grp;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtMobile;
