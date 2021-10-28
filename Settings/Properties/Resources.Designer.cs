@@ -103,6 +103,16 @@ namespace Settings.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _1671149_telegram_logo_twitter_icon_vector_circle_png_download {
+            get {
+                object obj = ResourceManager.GetObject("1671149_telegram-logo-twitter-icon-vector-circle-png-download", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _62 {
             get {
                 object obj = ResourceManager.GetObject("62", resourceCulture);

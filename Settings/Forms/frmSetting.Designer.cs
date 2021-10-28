@@ -74,6 +74,7 @@ namespace Settings.Forms
             // 
             // picSms
             // 
+            this.picSms.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picSms.Image = global::Settings.Properties.Resources._10;
             this.picSms.Location = new System.Drawing.Point(30, 65);
             this.picSms.Name = "picSms";
@@ -85,6 +86,7 @@ namespace Settings.Forms
             // 
             // picSandouq
             // 
+            this.picSandouq.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picSandouq.Image = global::Settings.Properties.Resources._001;
             this.picSandouq.Location = new System.Drawing.Point(194, 65);
             this.picSandouq.Name = "picSandouq";
@@ -96,6 +98,7 @@ namespace Settings.Forms
             // 
             // picBackUp
             // 
+            this.picBackUp.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picBackUp.Image = global::Settings.Properties.Resources._62;
             this.picBackUp.Location = new System.Drawing.Point(114, 206);
             this.picBackUp.Name = "picBackUp";
@@ -107,6 +110,7 @@ namespace Settings.Forms
             // 
             // picWhatsapp
             // 
+            this.picWhatsapp.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picWhatsapp.Image = global::Settings.Properties.Resources._843786_whatsapp_icon;
             this.picWhatsapp.Location = new System.Drawing.Point(289, 206);
             this.picWhatsapp.Name = "picWhatsapp";
@@ -118,6 +122,7 @@ namespace Settings.Forms
             // 
             // picEconomyUnit
             // 
+            this.picEconomyUnit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picEconomyUnit.Image = global::Settings.Properties.Resources._019;
             this.picEconomyUnit.Location = new System.Drawing.Point(358, 65);
             this.picEconomyUnit.Name = "picEconomyUnit";
@@ -129,7 +134,8 @@ namespace Settings.Forms
             // 
             // picTelegram
             // 
-            this.picTelegram.Image = global::Settings.Properties.Resources.icons8_telegram_app_24;
+            this.picTelegram.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picTelegram.Image = global::Settings.Properties.Resources._1671149_telegram_logo_twitter_icon_vector_circle_png_download;
             this.picTelegram.Location = new System.Drawing.Point(464, 206);
             this.picTelegram.Name = "picTelegram";
             this.picTelegram.Size = new System.Drawing.Size(109, 102);
@@ -140,6 +146,7 @@ namespace Settings.Forms
             // 
             // picPublic
             // 
+            this.picPublic.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picPublic.Image = global::Settings.Properties.Resources._02;
             this.picPublic.Location = new System.Drawing.Point(522, 65);
             this.picPublic.Name = "picPublic";
