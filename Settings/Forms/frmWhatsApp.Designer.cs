@@ -32,7 +32,6 @@ namespace Settings.Forms
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWhatsApp));
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.pnlTelegram = new DevComponents.DotNetBar.PanelEx();
-            this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.btnWhatsAppManager = new DevComponents.DotNetBar.ButtonX();
             this.btnWhatsAppCustomer = new DevComponents.DotNetBar.ButtonX();
             this.txtWhatsAppManagerText = new System.Windows.Forms.TextBox();
@@ -43,6 +42,7 @@ namespace Settings.Forms
             this.label37 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
+            this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.pnlTelegram.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,25 +94,6 @@ namespace Settings.Forms
             this.pnlTelegram.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.pnlTelegram.Style.GradientAngle = 90;
             this.pnlTelegram.TabIndex = 14;
-            // 
-            // btnFinish
-            // 
-            this.btnFinish.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnFinish.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFinish.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.btnFinish.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFinish.Image = global::Settings.Properties.Resources.tab_checkbox__;
-            this.btnFinish.Location = new System.Drawing.Point(587, 575);
-            this.btnFinish.Name = "btnFinish";
-            this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnFinish.Size = new System.Drawing.Size(125, 31);
-            this.btnFinish.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnFinish.TabIndex = 15;
-            this.btnFinish.Text = "تایید (F5)";
-            this.btnFinish.TextColor = System.Drawing.Color.Black;
-            this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
             // btnWhatsAppManager
             // 
@@ -194,7 +175,7 @@ namespace Settings.Forms
             // 
             this.txtWhatsAppToken.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtWhatsAppToken.Location = new System.Drawing.Point(359, 10);
+            this.txtWhatsAppToken.Location = new System.Drawing.Point(363, 10);
             this.txtWhatsAppToken.Name = "txtWhatsAppToken";
             this.txtWhatsAppToken.Size = new System.Drawing.Size(243, 27);
             this.txtWhatsAppToken.TabIndex = 26;
@@ -231,6 +212,25 @@ namespace Settings.Forms
             this.label34.Size = new System.Drawing.Size(100, 20);
             this.label34.TabIndex = 30;
             this.label34.Text = "توکن ارتباط با ربات";
+            // 
+            // btnFinish
+            // 
+            this.btnFinish.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnFinish.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFinish.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnFinish.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFinish.Image = global::Settings.Properties.Resources.tab_checkbox__;
+            this.btnFinish.Location = new System.Drawing.Point(587, 575);
+            this.btnFinish.Name = "btnFinish";
+            this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnFinish.Size = new System.Drawing.Size(125, 31);
+            this.btnFinish.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnFinish.TabIndex = 15;
+            this.btnFinish.Text = "تایید (F5)";
+            this.btnFinish.TextColor = System.Drawing.Color.Black;
+            this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
             // frmWhatsApp
             // 
