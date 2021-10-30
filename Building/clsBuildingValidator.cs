@@ -194,7 +194,6 @@ namespace Building
             {
                 if (bu.ZirBana <= 0) res.AddError("وارد کردن زیربنا اجباری می باشد");
                 if (bu.TedadTabaqe <= 0) res.AddError("وارد کردن تعداد طبقات اجباری است");
-                if (bu.TabaqeNo <= 0) res.AddError("وارد کردن شماره طبقه اجباری است");
                 if (bu.SellPrice <= 0) res.AddError("وارد کردن قیمت کل اجباری است");
             }
             catch (Exception ex)
@@ -246,7 +245,6 @@ namespace Building
             {
                 if (bu.ZirBana <= 0) res.AddError("وارد کردن زیربنا اجباری می باشد");
                 if (bu.TedadTabaqe <= 0) res.AddError("وارد کردن تعداد طبقات اجباری است");
-                if (bu.TabaqeNo <= 0) res.AddError("وارد کردن شماره طبقه اجباری است");
                 if (bu.RahnPrice1 <= 0) res.AddError("وارد کردن رهن اجباری است");
                 if (!isFullRahn)
                     if (bu.EjarePrice1 <= 0) res.AddError("وارد کردن اجاره اجباری است");
@@ -302,7 +300,6 @@ namespace Building
             {
                 if (bu.ZirBana <= 0) res.AddError("وارد کردن زیربنا اجباری می باشد");
                 if (bu.TedadTabaqe <= 0) res.AddError("وارد کردن تعداد طبقات اجباری است");
-                if (bu.TabaqeNo <= 0) res.AddError("وارد کردن شماره طبقه اجباری است");
                 if (bu.RahnPrice1 <= 0) res.AddError("وارد کردن رهن اجباری است");
                 if (!isFullRahn)
                     if (bu.EjarePrice1 <= 0) res.AddError("وارد کردن اجاره اجباری است");
@@ -322,7 +319,6 @@ namespace Building
             {
                 if (bu.ZirBana <= 0) res.AddError("وارد کردن زیربنا اجباری می باشد");
                 if (bu.TedadTabaqe <= 0) res.AddError("وارد کردن تعداد طبقات اجباری است");
-                if (bu.TabaqeNo <= 0) res.AddError("وارد کردن شماره طبقه اجباری است");
                 if (bu.SellPrice <= 0) res.AddError("وارد کردن قیمت کل اجباری است");
             }
             catch (Exception ex)
@@ -372,7 +368,6 @@ namespace Building
             {
                 if (bu.ZirBana <= 0) res.AddError("وارد کردن زیربنا اجباری می باشد");
                 if (bu.TedadTabaqe <= 0) res.AddError("وارد کردن تعداد طبقات اجباری است");
-                if (bu.TabaqeNo <= 0) res.AddError("وارد کردن شماره طبقه اجباری است");
                 if (bu.SellPrice <= 0) res.AddError("وارد کردن قیمت کل اجباری است");
             }
             catch (Exception ex)

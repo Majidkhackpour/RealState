@@ -512,8 +512,8 @@ namespace Building
                     {
                         var index = list.IndexOf(type);
                         type = type.Replace("\r", "");
-                        type = type.Replace(Replacor.TelegramBuilding.OwnerAddress, owner?.Address ?? "");
-                        if (!string.IsNullOrEmpty(owner?.Address ?? ""))
+                        type = type.Replace(Replacor.TelegramBuilding.OwnerAddress, bu?.Address ?? "");
+                        if (!string.IsNullOrEmpty(bu?.Address ?? ""))
                             list[index] = type;
                         else list[index] = "";
                     }
