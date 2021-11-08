@@ -405,5 +405,6 @@ namespace EntityCache.Bussines
             return res;
         }
         public static async Task<List<BuildingBussines>> GetAllWithoutParentAsync() => await UnitOfWork.Building.GetAllWithoutParentAsync(Cache.ConnectionString);
+        public async Task<int> CheckAsync() => await UnitOfWork.Building.CheckAsync(Cache.ConnectionString, this);
     }
 }

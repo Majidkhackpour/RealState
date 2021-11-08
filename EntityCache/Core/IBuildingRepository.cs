@@ -27,5 +27,6 @@ namespace EntityCache.Core
         Task<List<string>> GetAllCollingAsync(string connectionString);
         Task<List<string>> GetAllHittingAsync(string connectionString);
         Task<List<BuildingReportBussines>> SearchAsync(string connectionString, BuildingFilter filter);
+        Task<int> CheckAsync(string connectionString, BuildingBussines bu);
     }
 }

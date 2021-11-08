@@ -541,6 +541,39 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
+        public async Task<int> CheckAsync(string connectionString, BuildingBussines bu)
+        {
+            var res = 0;
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Buildings_Check", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@Guid", bu.Guid);
+                    cmd.Parameters.AddWithValue("@OwnerGuid", bu.OwnerGuid);
+                    cmd.Parameters.AddWithValue("@regionGuid", bu.RegionGuid);
+                    cmd.Parameters.AddWithValue("@zirbana", bu.ZirBana);
+                    cmd.Parameters.AddWithValue("@masahat", bu.Masahat);
+                    cmd.Parameters.AddWithValue("@Parent", bu.Parent);
+                    cmd.Parameters.AddWithValue("@roomCount", bu.RoomCount);
+                    cmd.Parameters.AddWithValue("@tabaqeNo", bu.TabaqeNo);
+                    cmd.Parameters.AddWithValue("@rahn", bu.RahnPrice1);
+                    cmd.Parameters.AddWithValue("@ejare", bu.EjarePrice1);
+                    cmd.Parameters.AddWithValue("@sell", bu.SellPrice);
+                    cmd.Parameters.AddWithValue("@tabaqeCount", bu.TedadTabaqe);
+
+                    await cn.OpenAsync();
+                    var count = await cmd.ExecuteScalarAsync();
+                    if (count == null) return res;
+                    res = count.ToString().ParseToInt();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+            return res;
+        }
         private BuildingBussines LoadData(SqlDataReader dr, bool isLoadDets)
         {
             var res = new BuildingBussines();

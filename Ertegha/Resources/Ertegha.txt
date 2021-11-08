@@ -7908,3 +7908,37 @@ BEGIN
 	where (@d1 is null and @d2 is null) or DateM between @d1 and @d2 and
 	(ISNULL(@number,0)=0 or SimcardNumber=@number)
 END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Buildings_Check]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Buildings_Check]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Buildings_Check
+	@Guid uniqueidentifier,
+	@OwnerGuid uniqueidentifier,
+	@regionGuid uniqueidentifier,
+	@zirbana int=0,
+	@masahat int=0,
+	@Parent smallint,
+	@roomCount int=0,
+	@tabaqeNo int=0,
+	@rahn bigint=0,
+	@ejare bigint=0,
+	@sell bigint=0,
+	@tabaqeCount int=0
+AS
+BEGIN
+	select COUNT(*) from Buildings
+	where OwnerGuid=@OwnerGuid and
+		  RegionGuid=@regionGuid and
+		  Parent=@Parent and
+		  (@zirbana=0 or ZirBana=@zirbana) and
+		  (@masahat=0 or Masahat=@masahat) and
+		  (@roomCount=0 or RoomCount=@roomCount) and 
+		  (@tabaqeNo=0 or TabaqeNo=@tabaqeNo) and
+		  (@rahn=0 or RahnPrice1=@rahn) and
+		  (@ejare=0 or EjarePrice1=@ejare) and
+		  (@sell=0 or SellPrice=@sell) and
+		  (@tabaqeCount=0 or TedadTabaqe=@tabaqeCount) and
+		  Guid<>@Guid
+END

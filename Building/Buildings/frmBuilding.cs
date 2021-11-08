@@ -348,6 +348,22 @@ namespace Building.Buildings
                 res.AddReturnedValue(await clsBuildingValidator.CheckValidationAsync(cls));
                 if (res.HasError) return res;
 
+                if (cls.OwnerGuid != PeoplesBussines.DefualtGuid)
+                {
+                    var count = await cls.CheckAsync();
+                    if (count > 0)
+                    {
+                        var msg = $"تعداد {count} فایل دیگر دقیقا مشابه با فایل وارد شده وجود دارد. \r\n" +
+                                  $"توجه داشته باشید که ممکن است در صورت ثبت، فایل تکراری ثبت کرده باشید \r\n" +
+                                  $"آیا ادامه می دهید؟";
+                        if (MessageBox.Show(msg, "هشدار", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                        {
+                            res.AddError("فایل مورد نظر ثبت نشد لطفا پس از تغییر مقادیر مجددا تلاش نمایید");
+                            return res;
+                        }
+                    }
+                }
+
                 res.AddReturnedValue(await cls.SaveAsync());
             }
             catch (Exception ex)
@@ -364,7 +380,7 @@ namespace Building.Buildings
             try
             {
                 res.AddReturnedValue(await SaveAsync(advType));
-                if (res.HasError) return;
+                if (res.HasError || res.HasWarning) return;
 
                 if (Settings.Classes.Payamak.IsSendToOwner.ParseToBoolean() && isSendSms)
                 {
