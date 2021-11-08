@@ -2680,13 +2680,20 @@ namespace Advertise.Classes
                             SellPrice = 0,
                             Balcony = false,
                             DateM = DateTime.Now,
-                            Type = AdvertiseType.Divar,
-                            Parent = EnBuildingParent.RentAprtment
+                            Type = AdvertiseType.Divar
                         };
 
                         if (item.listData[2].value == "مجانی") web.EjarePrice = 0;
                         else
                             web.EjarePrice = item.listData[2].value.FixString().Replace("٫", "").Replace("تومان", "").ParseToDecimal();
+
+                        if (web.RahnPrice > 0 && web.EjarePrice > 0)
+                            web.Parent = EnBuildingParent.RentAprtment;
+                        else if (web.RahnPrice > 0 && web.EjarePrice <= 0)
+                            web.Parent = EnBuildingParent.FullRentAprtment;
+                        else 
+                            web.Parent = EnBuildingParent.RentAprtment;
+
                         if (item.listData[6].value.Contains("از"))
                         {
                             if (item.listData[6].value.Contains("همکف"))
@@ -2844,13 +2851,19 @@ namespace Advertise.Classes
                             DateM = DateTime.Now,
                             Type = AdvertiseType.Divar,
                             TabaqeCount = 1,
-                            TabaqeNo = 1,
-                            Parent = EnBuildingParent.RentHome
+                            TabaqeNo = 1
                         };
 
                         if (item.listData[2].value == "مجانی") web.EjarePrice = 0;
                         else
                             web.EjarePrice = item.listData[2].value.FixString().Replace("٫", "").Replace("تومان", "").ParseToDecimal();
+
+                        if (web.RahnPrice > 0 && web.EjarePrice > 0)
+                            web.Parent = EnBuildingParent.RentHome;
+                        else if (web.RahnPrice > 0 && web.EjarePrice <= 0)
+                            web.Parent = EnBuildingParent.FullRentHome;
+                        else
+                            web.Parent = EnBuildingParent.RentHome;
 
                         if (item.listData[6].items[0].value.FixString().Contains("ندارد"))
                             web.Parking = false;
@@ -2980,13 +2993,19 @@ namespace Advertise.Classes
                             SellPrice = 0,
                             Balcony = false,
                             DateM = DateTime.Now,
-                            Type = AdvertiseType.Divar,
-                            Parent = EnBuildingParent.RentOffice
+                            Type = AdvertiseType.Divar
                         };
 
                         if (item.listData[2].value == "مجانی") web.EjarePrice = 0;
                         else
                             web.EjarePrice = item.listData[2].value.FixString().Replace("٫", "").Replace("تومان", "").ParseToDecimal();
+
+                        if (web.RahnPrice > 0 && web.EjarePrice > 0)
+                            web.Parent = EnBuildingParent.RentOffice;
+                        else if (web.RahnPrice > 0 && web.EjarePrice <= 0)
+                            web.Parent = EnBuildingParent.FullRentOffice;
+                        else
+                            web.Parent = EnBuildingParent.RentOffice;
 
                         if (item.listData[5].value.Contains("از"))
                         {
@@ -3132,13 +3151,19 @@ namespace Advertise.Classes
                             SellPrice = 0,
                             Balcony = false,
                             DateM = DateTime.Now,
-                            Type = AdvertiseType.Divar,
-                            Parent = EnBuildingParent.RentStore
+                            Type = AdvertiseType.Divar
                         };
 
                         if (item.listData[2].value == "مجانی") web.EjarePrice = 0;
                         else
                             web.EjarePrice = item.listData[2].value.FixString().Replace("٫", "").Replace("تومان", "").ParseToDecimal();
+
+                        if (web.RahnPrice > 0 && web.EjarePrice > 0)
+                            web.Parent = EnBuildingParent.RentStore;
+                        else if (web.RahnPrice > 0 && web.EjarePrice <= 0)
+                            web.Parent = EnBuildingParent.FullRentStore;
+                        else
+                            web.Parent = EnBuildingParent.RentStore;
 
                         _driver.Navigate().GoToUrl(item.Url);
 
@@ -3222,8 +3247,7 @@ namespace Advertise.Classes
                             SellPrice = 0,
                             Balcony = false,
                             DateM = DateTime.Now,
-                            Type = AdvertiseType.Divar,
-                            Parent = EnBuildingParent.RentStore
+                            Type = AdvertiseType.Divar
                         };
 
                         if (item.listData[0].items.Count >= 3)
@@ -3232,6 +3256,13 @@ namespace Advertise.Classes
                         if (item.listData[2].value == "مجانی") web.EjarePrice = 0;
                         else
                             web.EjarePrice = item.listData[2].value.FixString().Replace("٫", "").Replace("تومان", "").ParseToDecimal();
+
+                        if (web.RahnPrice > 0 && web.EjarePrice > 0)
+                            web.Parent = EnBuildingParent.RentStore;
+                        else if (web.RahnPrice > 0 && web.EjarePrice <= 0)
+                            web.Parent = EnBuildingParent.FullRentStore;
+                        else
+                            web.Parent = EnBuildingParent.RentStore;
 
                         _driver.Navigate().GoToUrl(item.Url);
 

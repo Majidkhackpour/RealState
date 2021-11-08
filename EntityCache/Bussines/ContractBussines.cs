@@ -215,8 +215,16 @@ namespace EntityCache.Bussines
             try
             {
                 var nextMounth = DateTime.Now.AddMonths(1);
+                var newYear = nextMounth.Year;
+                var newMounth = nextMounth.Month;
+                if (newMounth == 12)
+                {
+                    newMounth = 1;
+                    newYear++;
+                }
+                else newMounth += 1;
                 var d1 = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
-                var d2 = new DateTime(nextMounth.Year, nextMounth.Month + 1, nextMounth.Day, 23, 59, 59);
+                var d2 = new DateTime(newYear, newMounth, nextMounth.Day, 23, 59, 59);
 
                 return await UnitOfWork.Contract.DischargeListAsync(Cache.ConnectionString, d1, d2);
             }

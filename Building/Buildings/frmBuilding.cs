@@ -13,6 +13,7 @@ using MetroFramework.Forms;
 using Notification;
 using Payamak.PhoneBook;
 using Services;
+using Services.FilterObjects;
 
 namespace Building.Buildings
 {
@@ -473,5 +474,29 @@ namespace Building.Buildings
             }
         }
         private async void btnSavePersonal_Click(object sender, EventArgs e) => await SaveAsync_(null);
+        private void UcPeople_OnShowFiles()
+        {
+            try
+            {
+                var owner = PeoplesBussines.Get(UcPeople.Guid, cls?.Guid);
+                if (owner == null)
+                {
+                    this.ShowWarning("برایمالک مورد نظر شناسایی نشد");
+                    return;
+                }
+                var filter = new BuildingFilter()
+                {
+                    Status = true,
+                    OwnerGuid = owner.Guid
+                };
+
+                var frm = new frmShowBuildings(true, filter);
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
     }
 }

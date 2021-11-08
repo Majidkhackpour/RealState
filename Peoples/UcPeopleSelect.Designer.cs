@@ -29,6 +29,7 @@ namespace Peoples
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.btnCreateOwner = new DevComponents.DotNetBar.ButtonX();
             this.btnSearchOwner = new DevComponents.DotNetBar.ButtonX();
@@ -42,16 +43,18 @@ namespace Peoples
             this.lblOwnerName = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.picTellList = new System.Windows.Forms.PictureBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuFiles = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuPhone = new System.Windows.Forms.ToolStripMenuItem();
             this.groupPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picTellList)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupPanel1
             // 
             this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.groupPanel1.Controls.Add(this.picTellList);
+            this.groupPanel1.ContextMenuStrip = this.contextMenuStrip1;
             this.groupPanel1.Controls.Add(this.btnCreateOwner);
             this.groupPanel1.Controls.Add(this.btnSearchOwner);
             this.groupPanel1.Controls.Add(this.txttxtOwnerCode);
@@ -141,6 +144,7 @@ namespace Peoples
             // txttxtOwnerCode
             // 
             this.txttxtOwnerCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txttxtOwnerCode.ContextMenuStrip = this.contextMenuStrip1;
             this.txttxtOwnerCode.Enabled = false;
             this.txttxtOwnerCode.Location = new System.Drawing.Point(447, 3);
             this.txttxtOwnerCode.Name = "txttxtOwnerCode";
@@ -153,6 +157,7 @@ namespace Peoples
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.ContextMenuStrip = this.contextMenuStrip1;
             this.label6.Location = new System.Drawing.Point(603, 64);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(39, 20);
@@ -164,6 +169,7 @@ namespace Peoples
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.ContextMenuStrip = this.contextMenuStrip1;
             this.label4.Location = new System.Drawing.Point(252, 35);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(58, 20);
@@ -175,6 +181,7 @@ namespace Peoples
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.ContextMenuStrip = this.contextMenuStrip1;
             this.label3.Location = new System.Drawing.Point(599, 35);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 20);
@@ -187,9 +194,10 @@ namespace Peoples
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblOwnerAddress.BackColor = System.Drawing.Color.Transparent;
+            this.lblOwnerAddress.ContextMenuStrip = this.contextMenuStrip1;
             this.lblOwnerAddress.Location = new System.Drawing.Point(3, 64);
             this.lblOwnerAddress.Name = "lblOwnerAddress";
-            this.lblOwnerAddress.Size = new System.Drawing.Size(573, 36);
+            this.lblOwnerAddress.Size = new System.Drawing.Size(573, 77);
             this.lblOwnerAddress.TabIndex = 9;
             // 
             // lblOwnerNCode
@@ -197,6 +205,7 @@ namespace Peoples
             this.lblOwnerNCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblOwnerNCode.BackColor = System.Drawing.Color.Transparent;
+            this.lblOwnerNCode.ContextMenuStrip = this.contextMenuStrip1;
             this.lblOwnerNCode.Location = new System.Drawing.Point(16, 35);
             this.lblOwnerNCode.Name = "lblOwnerNCode";
             this.lblOwnerNCode.Size = new System.Drawing.Size(228, 20);
@@ -206,6 +215,7 @@ namespace Peoples
             // 
             this.lblOwnerFatherName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblOwnerFatherName.BackColor = System.Drawing.Color.Transparent;
+            this.lblOwnerFatherName.ContextMenuStrip = this.contextMenuStrip1;
             this.lblOwnerFatherName.Location = new System.Drawing.Point(316, 35);
             this.lblOwnerFatherName.Name = "lblOwnerFatherName";
             this.lblOwnerFatherName.Size = new System.Drawing.Size(260, 20);
@@ -243,24 +253,37 @@ namespace Peoples
             this.label1.TabIndex = 9;
             this.label1.Text = "کد شناسایی";
             // 
-            // picTellList
+            // contextMenuStrip1
             // 
-            this.picTellList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.picTellList.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picTellList.Image = global::Peoples.Properties.Resources._28;
-            this.picTellList.Location = new System.Drawing.Point(3, 109);
-            this.picTellList.Name = "picTellList";
-            this.picTellList.Size = new System.Drawing.Size(39, 32);
-            this.picTellList.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picTellList.TabIndex = 12;
-            this.picTellList.TabStop = false;
-            this.picTellList.Click += new System.EventHandler(this.picTellList_Click);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuFiles,
+            this.mnuPhone});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.contextMenuStrip1.Size = new System.Drawing.Size(282, 52);
+            // 
+            // mnuFiles
+            // 
+            this.mnuFiles.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.mnuFiles.Name = "mnuFiles";
+            this.mnuFiles.Size = new System.Drawing.Size(281, 24);
+            this.mnuFiles.Text = "مشاهده فایل های مالک انتخاب شده";
+            this.mnuFiles.Click += new System.EventHandler(this.mnuFiles_Click);
+            // 
+            // mnuPhone
+            // 
+            this.mnuPhone.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.mnuPhone.Name = "mnuPhone";
+            this.mnuPhone.Size = new System.Drawing.Size(281, 24);
+            this.mnuPhone.Text = "مشاهده شماره تماس های مالک انتخاب شده";
+            this.mnuPhone.Click += new System.EventHandler(this.mnuPhone_Click);
             // 
             // UcPeopleSelect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.groupPanel1);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -269,7 +292,7 @@ namespace Peoples
             this.Size = new System.Drawing.Size(651, 169);
             this.groupPanel1.ResumeLayout(false);
             this.groupPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picTellList)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -289,6 +312,8 @@ namespace Peoples
         private System.Windows.Forms.Label lblOwnerName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox picTellList;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem mnuFiles;
+        private System.Windows.Forms.ToolStripMenuItem mnuPhone;
     }
 }

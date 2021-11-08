@@ -345,7 +345,7 @@ namespace Building.UserControls.Sell
             this.ucPricePerZirBana.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucPricePerZirBana.Size = new System.Drawing.Size(359, 36);
             this.ucPricePerZirBana.TabIndex = 22;
-            this.ucPricePerZirBana.Title = "قیمت هر متر زمین";
+            this.ucPricePerZirBana.Title = "قیمت هر متر بنا";
             this.ucPricePerZirBana.OnTextChanged += new System.Action(this.ucPricePerZirBana_OnTextChanged);
             // 
             // UcBuildingSell_Home

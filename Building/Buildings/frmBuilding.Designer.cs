@@ -33,6 +33,7 @@ namespace Building.Buildings
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBuilding));
             this.UcPeople = new Peoples.UcPeopleSelect();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -71,6 +72,7 @@ namespace Building.Buildings
             this.UcPeople.Size = new System.Drawing.Size(758, 138);
             this.UcPeople.TabIndex = 0;
             this.UcPeople.OnShowNumbers += new System.Action(this.UcPeople_OnShowNumbers);
+            this.UcPeople.OnShowFiles += new System.Action(this.UcPeople_OnShowFiles);
             // 
             // panel1
             // 
@@ -303,7 +305,7 @@ namespace Building.Buildings
             this.UcCity.Location = new System.Drawing.Point(8, 146);
             this.UcCity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.UcCity.Name = "UcCity";
-            this.UcCity.RegionGuid = new System.Guid("b5f70143-1686-4c10-9504-b3aa518391f5");
+            this.UcCity.RegionGuid = new System.Guid("e223ead0-b5cb-4763-a192-4a11bf087c86");
             this.UcCity.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.UcCity.Size = new System.Drawing.Size(758, 103);
             this.UcCity.StateGuid = new System.Guid("c22580f8-619c-4eca-a4f2-09b662caf6bb");

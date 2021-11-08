@@ -76,6 +76,13 @@ namespace Building.Buildings
                                 ?.ToList();
                         }
                     }
+
+                if (!(lst?.Any() ?? false))
+                {
+                    this.ShowMessage("داده ای جهت نمایش وجود ندارد");
+                    return;
+                }
+
                 BuildingBindingSource.DataSource = lst?.OrderBy(q => q.IsArchive)?.
                                 ThenByDescending(q => q.CreateDate)?.
                                 ThenByDescending(q => q.Code)?.

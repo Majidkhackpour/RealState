@@ -9,6 +9,7 @@ namespace Peoples
     {
         private Guid _guid;
         public event Action OnShowNumbers;
+        public event Action OnShowFiles;
         public Guid Guid
         {
             get => _guid;
@@ -48,6 +49,18 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void RaiseShowFiles()
+        {
+            try
+            {
+                var handler = OnShowFiles;
+                if (handler != null) OnShowFiles?.Invoke();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public UcPeopleSelect() => InitializeComponent();
         private void btnCreateOwner_Click(object sender, EventArgs e)
         {
@@ -75,6 +88,7 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void picTellList_Click(object sender, EventArgs e) => RaiseShowNumber();
+        private void mnuPhone_Click(object sender, EventArgs e) => RaiseShowNumber();
+        private void mnuFiles_Click(object sender, EventArgs e) => RaiseShowFiles();
     }
 }
