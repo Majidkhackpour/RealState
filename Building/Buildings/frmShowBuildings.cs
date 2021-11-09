@@ -349,7 +349,8 @@ namespace Building.Buildings
                     };
                     await telegram.SaveAsync();
                     bu.TelegramCount += 1;
-                    await bu.SaveAsync();
+                    await UserLogBussines.SaveBuildingLogAsync(EnLogAction.SendToTelegram, bu.Guid, text);
+                    await bu.SaveAsync(false);
                     this.ShowMessage("فایل مورد نظر به تلگرام ارسال شد");
                     if (WebCustomer.CheckCustomer())
                     {
@@ -390,7 +391,8 @@ namespace Building.Buildings
                     };
                     await telegram.SaveAsync();
                     bu.TelegramCount += 1;
-                    await bu.SaveAsync();
+                    await UserLogBussines.SaveBuildingLogAsync(EnLogAction.SendToTelegram, bu.Guid, text);
+                    await bu.SaveAsync(false);
                     this.ShowMessage("فایل مورد نظر به تلگرام ارسال شد");
                     if (WebCustomer.CheckCustomer())
                     {
@@ -443,7 +445,8 @@ namespace Building.Buildings
                 _ = Task.Run(() => telegram_.SaveAsync());
 
                 bu.TelegramCount += 1;
-                await bu.SaveAsync();
+                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.SendToTelegram, bu.Guid, text);
+                await bu.SaveAsync(false);
                 this.ShowMessage("فایل مورد نظر به تلگرام ارسال شد");
 
                 if (WebCustomer.CheckCustomer())
@@ -482,7 +485,8 @@ namespace Building.Buildings
                     };
                     await telegram.SaveAsync();
                     bu.WhatsAppCount += 1;
-                    await bu.SaveAsync();
+                    await UserLogBussines.SaveBuildingLogAsync(EnLogAction.SendToWhatsApp, bu.Guid, text);
+                    await bu.SaveAsync(false);
                     this.ShowMessage("فایل مورد نظر به واتساپ ارسال شد");
                     if (WebCustomer.CheckCustomer())
                     {
@@ -522,7 +526,8 @@ namespace Building.Buildings
                     };
                     await telegram.SaveAsync();
                     bu.WhatsAppCount += 1;
-                    await bu.SaveAsync();
+                    await UserLogBussines.SaveBuildingLogAsync(EnLogAction.SendToWhatsApp, bu.Guid, text);
+                    await bu.SaveAsync(false);
                     this.ShowMessage("فایل مورد نظر به واتساپ ارسال شد");
                     if (WebCustomer.CheckCustomer())
                     {
@@ -571,7 +576,8 @@ namespace Building.Buildings
                 _ = Task.Run(() => telegram_.SaveAsync());
 
                 bu.WhatsAppCount += 1;
-                await bu.SaveAsync();
+                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.SendToWhatsApp, bu.Guid, text);
+                await bu.SaveAsync(false);
                 this.ShowMessage("فایل مورد نظر به واتساپ ارسال شد");
                 if (WebCustomer.CheckCustomer())
                 {
@@ -835,7 +841,7 @@ namespace Building.Buildings
                     clsAdvertise.IsGiveChat, clsAdvertise.Sender, clsAdvertise.Divar_PicCountInPerAdv, title, content));
 
                 if (res.HasError) return;
-
+                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.SendToDivar, bu.Guid, content);
                 this.ShowMessage("آگهی شما باموفقیت در دیوار ثبت شد");
                 if (!WebCustomer.CheckCustomer()) return;
                 var msg = $"ارسال ملک به دیوار \r\n کدملک: {bu.Code} \r\n عنوان آگهی: {title} \r\n شرح آگهی: {content}";
@@ -1506,7 +1512,7 @@ namespace Building.Buildings
                     frmNotification.PublicInfo.ShowMessage("داده ای جهت نمایش وجود ندارد");
                     return;
                 }
-
+                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.ShowSlideShow, bu.Guid);
                 var frm = new frmSlideShow(bu.GalleryList);
                 frm.ShowDialog();
             }
@@ -1531,7 +1537,8 @@ namespace Building.Buildings
                 }
 
                 cls.IsArchive = true;
-                res.AddReturnedValue(await cls.SaveAsync());
+                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.AddToArchive, cls.Guid);
+                res.AddReturnedValue(await cls.SaveAsync(false));
             }
             catch (Exception ex)
             {
@@ -1564,8 +1571,8 @@ namespace Building.Buildings
                 }
 
                 cls.IsArchive = false;
-                await cls.SaveAsync();
-                res.AddReturnedValue(await cls.SaveAsync());
+                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.RemoveFromArchive, cls.Guid);
+                res.AddReturnedValue(await cls.SaveAsync(false));
             }
             catch (Exception ex)
             {
@@ -1674,6 +1681,7 @@ namespace Building.Buildings
                 var cls_ = new ReportGenerator(StiType.Building_One, EnPrintType.Pdf_A4)
                 { Lst = new List<object>() { rpt } };
                 cls_.PrintNew();
+                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.FullPrint, cls.Guid);
             }
             catch (Exception ex)
             {
@@ -1844,7 +1852,8 @@ namespace Building.Buildings
                 }
 
                 cls.AdvertiseType = null;
-                var res = await cls.SaveAsync();
+                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.AddToPersonalFiles, cls.Guid);
+                var res = await cls.SaveAsync(false);
                 if (res.HasError) this.ShowError(res);
                 else
                 {
@@ -1858,6 +1867,25 @@ namespace Building.Buildings
             }
         }
         private void DGrid_Sorted(object sender, EventArgs e) => SetGridColor();
+        private void mnuSendSms_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void mnuViewLog_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+
+                var frm = new frmBuildingLog(guid);
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private async void mnuPrintInherit_Click(object sender, EventArgs e)
         {
             try
@@ -1908,6 +1936,7 @@ namespace Building.Buildings
                 var cls_ = new ReportGenerator(StiType.Building_One, EnPrintType.Pdf_A5)
                 { Lst = new List<object>() { rpt } };
                 cls_.PrintNew();
+                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.CustomPrint, cls.Guid);
             }
             catch (Exception ex)
             {
@@ -1926,7 +1955,7 @@ namespace Building.Buildings
                     frmNotification.PublicInfo.ShowMessage("داده ای جهت نمایش وجود ندارد");
                     return;
                 }
-
+                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.ShowMedia, bu.Guid);
                 var frm = new frmShowMedia(bu);
                 frm.ShowDialog();
             }

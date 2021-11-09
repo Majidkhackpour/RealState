@@ -36,7 +36,8 @@ namespace RealState.UserControls
                     return;
                 bu.IsArchive = false;
                 bu.CreateDate = DateTime.Now;
-                await bu.SaveAsync();
+                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.RemoveFromArchive, bu.Guid);
+                await bu.SaveAsync(false);
                 this.ShowMessage("ملک قرارداد موردنظر از بایگانی خارج شد");
             }
             catch (Exception ex)

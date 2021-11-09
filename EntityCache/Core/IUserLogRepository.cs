@@ -11,5 +11,6 @@ namespace EntityCache.Core
     {
         Task<ReturnedSaveFuncInfo> SaveAsync(UserLogBussines item, SqlTransaction tr);
         Task<List<UserLogBussines>> GetAllAsync(string _connectionString, Guid userGuid, DateTime d1, DateTime d2);
+        Task<List<UserLogBussines>> GetBuildingLogAsync(string connectionString, Guid buGuid);
     }
 }

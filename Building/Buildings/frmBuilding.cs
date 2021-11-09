@@ -363,8 +363,13 @@ namespace Building.Buildings
                         }
                     }
                 }
-
-                res.AddReturnedValue(await cls.SaveAsync());
+                if (advType == null)
+                    res.AddReturnedValue(await cls.SaveAsync(true));
+                else
+                {
+                    await UserLogBussines.SaveBuildingLogAsync(EnLogAction.AddToPersonalFiles, cls.Guid);
+                    res.AddReturnedValue(await cls.SaveAsync(false));
+                }
             }
             catch (Exception ex)
             {

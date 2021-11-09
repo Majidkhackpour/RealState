@@ -74,9 +74,11 @@
             this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.مشاهدهToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
-            this.مشاهدهبااطلاعاتمحدودToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuView2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuViewLog = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.بایگانیToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAddToArchive = new System.Windows.Forms.ToolStripMenuItem();
@@ -525,9 +527,7 @@
             this.mnuEdit,
             this.mnuDelete,
             this.toolStripMenuItem1,
-            this.mnuView,
-            this.مشاهدهبااطلاعاتمحدودToolStripMenuItem,
-            this.mnuView2,
+            this.مشاهدهToolStripMenuItem,
             this.toolStripMenuItem2,
             this.بایگانیToolStripMenuItem,
             this.mnuChangeAdvType,
@@ -548,7 +548,7 @@
             this.مدیریتستونهاToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(246, 496);
+            this.contextMenu.Size = new System.Drawing.Size(246, 470);
             // 
             // mnuAdd
             // 
@@ -579,27 +579,46 @@
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(242, 6);
             // 
+            // مشاهدهToolStripMenuItem
+            // 
+            this.مشاهدهToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuView,
+            this.mnuView2,
+            this.toolStripMenuItem7,
+            this.mnuViewLog});
+            this.مشاهدهToolStripMenuItem.Image = global::Building.Properties.Resources.article_1_;
+            this.مشاهدهToolStripMenuItem.Name = "مشاهدهToolStripMenuItem";
+            this.مشاهدهToolStripMenuItem.Size = new System.Drawing.Size(245, 24);
+            this.مشاهدهToolStripMenuItem.Text = "مشاهده";
+            // 
             // mnuView
             // 
             this.mnuView.Image = global::Building.Properties.Resources.article_1_;
             this.mnuView.Name = "mnuView";
-            this.mnuView.Size = new System.Drawing.Size(245, 24);
+            this.mnuView.Size = new System.Drawing.Size(235, 24);
             this.mnuView.Text = "مشاهده (F12)";
             this.mnuView.Click += new System.EventHandler(this.mnuView_Click);
-            // 
-            // مشاهدهبااطلاعاتمحدودToolStripMenuItem
-            // 
-            this.مشاهدهبااطلاعاتمحدودToolStripMenuItem.Name = "مشاهدهبااطلاعاتمحدودToolStripMenuItem";
-            this.مشاهدهبااطلاعاتمحدودToolStripMenuItem.Size = new System.Drawing.Size(245, 24);
-            this.مشاهدهبااطلاعاتمحدودToolStripMenuItem.Text = "مشاهده با اطلاعات محدود (F11)";
             // 
             // mnuView2
             // 
             this.mnuView2.Image = global::Building.Properties.Resources.article_1_;
             this.mnuView2.Name = "mnuView2";
-            this.mnuView2.Size = new System.Drawing.Size(245, 24);
+            this.mnuView2.Size = new System.Drawing.Size(235, 24);
             this.mnuView2.Text = "مشاهده با اطلاعات محدود (F11)";
             this.mnuView2.Click += new System.EventHandler(this.mnuView2_Click);
+            // 
+            // toolStripMenuItem7
+            // 
+            this.toolStripMenuItem7.Name = "toolStripMenuItem7";
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(232, 6);
+            // 
+            // mnuViewLog
+            // 
+            this.mnuViewLog.Image = global::Building.Properties.Resources.article_1_;
+            this.mnuViewLog.Name = "mnuViewLog";
+            this.mnuViewLog.Size = new System.Drawing.Size(235, 24);
+            this.mnuViewLog.Text = "مشاهده سابقه ملک";
+            this.mnuViewLog.Click += new System.EventHandler(this.mnuViewLog_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -661,6 +680,7 @@
             this.mnuSendSms.Name = "mnuSendSms";
             this.mnuSendSms.Size = new System.Drawing.Size(245, 24);
             this.mnuSendSms.Text = "ارسال پیامک به مالک";
+            this.mnuSendSms.Click += new System.EventHandler(this.mnuSendSms_Click);
             // 
             // mnuSendToDivar
             // 
@@ -1309,7 +1329,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuEdit;
         private System.Windows.Forms.ToolStripMenuItem mnuDelete;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem mnuView;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem mnuPrint;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
@@ -1373,8 +1392,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuWhatsAppCustomer;
         private System.Windows.Forms.ToolStripMenuItem mnuWhatsAppManager;
         private System.Windows.Forms.ToolStripMenuItem mnuWhatsAppBoth;
-        private System.Windows.Forms.ToolStripMenuItem مشاهدهبااطلاعاتمحدودToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mnuView2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgDateSh;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgOwnerName;
@@ -1406,5 +1423,10 @@
         private System.Windows.Forms.ToolStripMenuItem mnuChangeAdvType;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblCounter;
+        private System.Windows.Forms.ToolStripMenuItem مشاهدهToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuView;
+        private System.Windows.Forms.ToolStripMenuItem mnuView2;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem7;
+        private System.Windows.Forms.ToolStripMenuItem mnuViewLog;
     }
 }

@@ -1388,13 +1388,14 @@ GO
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_UserLog_Insert]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_UserLog_Insert]	As Begin print 11 end')
 GO
-Alter PROCEDURE sp_UserLog_Insert
+ALTER PROCEDURE [dbo].[sp_UserLog_Insert]
 	@guid uniqueidentifier,
 	@userGuid uniqueidentifier,
 	@date datetime,
 	@action smallint,
 	@part smallint,
-	@desc nvarchar(max)
+	@desc nvarchar(max),
+	@buGuid uniqueidentifier=null
 AS
 BEGIN	
 	insert into [dbo].[UserLogs](
@@ -1403,14 +1404,16 @@ BEGIN
 			,Date
 			,Action
 			,Part
-			,Description)
+			,Description
+			,BuildingGuid)
 			values(
 			 @guid
 			,@userGuid
 			,@date
 			,@action
 			,@part
-			,@desc)
+			,@desc
+			,@buGuid)
 END
 GO
 -- ==========================================================================================
@@ -7942,3 +7945,18 @@ BEGIN
 		  (@tabaqeCount=0 or TedadTabaqe=@tabaqeCount) and
 		  Guid<>@Guid
 END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_UserLog_SelectAll_ByBuilding]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_UserLog_SelectAll_ByBuilding]	As Begin print 11 end')  
+GO
+Alter PROCEDURE [dbo].[sp_UserLog_SelectAll_ByBuilding] 
+	@buGuid uniqueidentifier
+AS
+BEGIN
+	select [dbo].[UserLogs].*
+		  ,[dbo].[Users].Name as UserName
+	from [dbo].[UserLogs] inner join [dbo].[Users]
+	on [dbo].[UserLogs].UserGuid=[dbo].[Users].Guid
+	where BuildingGuid=@buGuid
+End

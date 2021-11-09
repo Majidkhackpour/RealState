@@ -126,7 +126,7 @@ namespace EntityCache.Bussines
         public static async Task<List<BuildingBussines>> GetAllAsync(CancellationToken token, bool isLoadDet) => await UnitOfWork.Building.GetAllAsync(Cache.ConnectionString, token, isLoadDet);
         public static async Task<BuildingBussines> GetAsync(Guid guid) => await UnitOfWork.Building.GetAsync(Cache.ConnectionString, guid);
         public static BuildingBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null, bool isRaiseEvent = true, bool isFromServer = false)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool isAddLog, SqlTransaction tr = null, bool isRaiseEvent = true, bool isFromServer = false)
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = tr == null;
@@ -194,7 +194,7 @@ namespace EntityCache.Bussines
                     if (res.HasError) return res;
                 }
 
-                if (!isFromServer)
+                if (isAddLog)
                 {
                     var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
                     res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Building, tr));
@@ -386,7 +386,7 @@ namespace EntityCache.Bussines
                     Number = number,
                     BuildingGuid = bu.Guid
                 };
-                res.AddReturnedValue(await bu.SaveAsync(tr, false, true));
+                res.AddReturnedValue(await bu.SaveAsync(true, tr, false, true));
                 if (res.HasError) return res;
 
                 if (!string.IsNullOrEmpty(number))

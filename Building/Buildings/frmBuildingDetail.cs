@@ -66,9 +66,12 @@ namespace Building.Buildings
 
                 if (!_loadForCustomer)
                 {
+                    await UserLogBussines.SaveBuildingLogAsync(EnLogAction.ManagerView, bu.Guid);
                     var city = await CitiesBussines.GetAsync(bu.CityGuid);
                     lblAddress.Text = $@"{city.Name} - {bu.RegionName} - {bu.Address}";
                 }
+                else
+                    await UserLogBussines.SaveBuildingLogAsync(EnLogAction.CustomerView, bu.Guid);
 
                 if (!_loadForCustomer)
                 {

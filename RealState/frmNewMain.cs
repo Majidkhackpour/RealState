@@ -714,9 +714,27 @@ namespace RealState
         private void lblBuildingView_Click(object sender, EventArgs e) => DisplayFrm(EnForms.BuildingView);
         private void lblBuildingCondition_Click(object sender, EventArgs e) => DisplayFrm(EnForms.BuildingCondition);
         private void lblBuildingType_Click(object sender, EventArgs e) => DisplayFrm(EnForms.BuildingType);
-        private void lblBuilding_Click(object sender, EventArgs e) => DisplayFrm(EnForms.Building);
+        private void lblBuilding_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var filter = new BuildingFilter() {Status = true};
+                if (Cache.IsClient)
+                {
+                    var frmFilter = new frmBuildingFilter { Filter = filter };
+                    if (frmFilter.ShowDialog(this) != DialogResult.OK) return;
+                    filter = frmFilter.Filter;
+                }
+
+                var frm = new frmShowBuildings(false, filter);
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private void lblBuildingFast_Click(object sender, EventArgs e) => DisplayFrm(EnForms.BuildingFast);
-        private void lblBuildingSearch_Click(object sender, EventArgs e) => DisplayFrm(EnForms.AdvancedSearch);
         private void lblBuildingArchive_Click(object sender, EventArgs e) => DisplayFrm(EnForms.BuildingArchive);
         private void lblBuildingMatches_Click(object sender, EventArgs e) => DisplayFrm(EnForms.BuildingMatch);
         private void lblContract_Click(object sender, EventArgs e) => DisplayFrm(EnForms.Contract);

@@ -16,6 +16,7 @@ namespace Persistence.Entities
         public EnLogAction Action { get; set; }
         public EnLogPart Part { get; set; }
         public string Description { get; set; }
+        public Guid? BuildingGuid { get; set; }
         public virtual Users User { get; set; }
     }
 }
