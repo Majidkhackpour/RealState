@@ -390,6 +390,8 @@ namespace RealState
                 var firstText = text;
                 var number = num;
 
+                if (!File.Exists(filePath)) return;
+
                 var imageFilePath = filePath;
                 var bitmap = (Bitmap)Image.FromFile(imageFilePath);
 

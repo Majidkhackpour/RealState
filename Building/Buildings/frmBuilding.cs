@@ -363,13 +363,14 @@ namespace Building.Buildings
                         }
                     }
                 }
-                if (advType == null)
-                    res.AddReturnedValue(await cls.SaveAsync(true));
-                else
+
+                if (advType == null && btnSavePersonal.Visible)
                 {
                     await UserLogBussines.SaveBuildingLogAsync(EnLogAction.AddToPersonalFiles, cls.Guid);
                     res.AddReturnedValue(await cls.SaveAsync(false));
                 }
+                else
+                    res.AddReturnedValue(await cls.SaveAsync(true));
             }
             catch (Exception ex)
             {
@@ -384,6 +385,8 @@ namespace Building.Buildings
             var res = new ReturnedSaveFuncInfo();
             try
             {
+                btnFinish.Enabled = false;
+                btnSavePersonal.Enabled = false;
                 res.AddReturnedValue(await SaveAsync(advType));
                 if (res.HasError || res.HasWarning) return;
 
@@ -416,6 +419,8 @@ namespace Building.Buildings
             }
             finally
             {
+                btnFinish.Enabled = true;
+                btnSavePersonal.Enabled = true;
                 if (res.HasError) this.ShowError(res);
                 else
                 {

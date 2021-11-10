@@ -197,7 +197,7 @@ namespace EntityCache.Bussines
                 if (isAddLog)
                 {
                     var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
-                    res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Building, tr));
+                    res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Building, tr, Guid));
                     if (res.HasError) return res;
                 }
 

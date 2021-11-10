@@ -57,7 +57,7 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(EnLogAction action, EnLogPart part, SqlTransaction tr)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(EnLogAction action, EnLogPart part, SqlTransaction tr, Guid? buildingGuid = null)
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = tr == null;
@@ -78,7 +78,9 @@ namespace EntityCache.Bussines
                     Description =
                         $"انجام عملیات {action.GetDisplay()} در بخش {part.GetDisplay()} در تاریخ {Calendar.MiladiToShamsi(DateTime.Now)} در ساعت {DateTime.Now.ToShortTimeString()}",
                     Action = action,
-                    Part = part
+                    Part = part,
+                    BuildingGuid = buildingGuid,
+                    Date = DateTime.Now
                 };
                 res.AddReturnedValue(await UnitOfWork.UserLog.SaveAsync(log, tr));
             }
