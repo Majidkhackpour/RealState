@@ -366,7 +366,9 @@ namespace RealState
         {
             try
             {
+                if (!File.Exists(bannerPath)) return;
                 var banner = Image.FromFile(bannerPath);
+                if (!File.Exists(bodyPath)) return;
                 var body = Image.FromFile(bodyPath);
                 var bitmap = new Bitmap(body.Width, body.Height);
                 var canvas = Graphics.FromImage(bitmap);
@@ -380,7 +382,8 @@ namespace RealState
             }
             catch (Exception e)
             {
-                WebErrorLog.ErrorInstence.StartErrorLog(e);
+                if (!e.Message.Contains("Out of memory"))
+                    WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
         private static void WriteTextOnImage(string text, string num, string filePath, string savePath)

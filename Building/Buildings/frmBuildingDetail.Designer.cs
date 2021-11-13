@@ -50,7 +50,6 @@ namespace Building.Buildings
             this.serverStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.serverDeliveryDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buildingOptionGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hardSerialDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BuildingOptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.grpOwner = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.label42 = new System.Windows.Forms.Label();
@@ -107,7 +106,7 @@ namespace Building.Buildings
             this.groupPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.groupPanel3.Controls.Add(this.txtShortDesc);
             this.groupPanel3.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel3.Location = new System.Drawing.Point(269, 671);
+            this.groupPanel3.Location = new System.Drawing.Point(269, 719);
             this.groupPanel3.Name = "groupPanel3";
             this.groupPanel3.Size = new System.Drawing.Size(503, 223);
             // 
@@ -160,7 +159,7 @@ namespace Building.Buildings
             this.groupPanel4.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.groupPanel4.Controls.Add(this.DGrid);
             this.groupPanel4.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel4.Location = new System.Drawing.Point(266, 453);
+            this.groupPanel4.Location = new System.Drawing.Point(266, 501);
             this.groupPanel4.Name = "groupPanel4";
             this.groupPanel4.Size = new System.Drawing.Size(506, 212);
             // 
@@ -225,8 +224,7 @@ namespace Building.Buildings
             this.modifiedDataGridViewTextBoxColumn,
             this.serverStatusDataGridViewTextBoxColumn,
             this.serverDeliveryDateDataGridViewTextBoxColumn,
-            this.buildingOptionGuidDataGridViewTextBoxColumn,
-            this.hardSerialDataGridViewTextBoxColumn});
+            this.buildingOptionGuidDataGridViewTextBoxColumn});
             this.DGrid.DataSource = this.BuildingOptionBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
@@ -313,14 +311,6 @@ namespace Building.Buildings
             this.buildingOptionGuidDataGridViewTextBoxColumn.Name = "buildingOptionGuidDataGridViewTextBoxColumn";
             this.buildingOptionGuidDataGridViewTextBoxColumn.Visible = false;
             // 
-            // hardSerialDataGridViewTextBoxColumn
-            // 
-            this.hardSerialDataGridViewTextBoxColumn.DataPropertyName = "HardSerial";
-            this.hardSerialDataGridViewTextBoxColumn.HeaderText = "HardSerial";
-            this.hardSerialDataGridViewTextBoxColumn.Name = "hardSerialDataGridViewTextBoxColumn";
-            this.hardSerialDataGridViewTextBoxColumn.ReadOnly = true;
-            this.hardSerialDataGridViewTextBoxColumn.Visible = false;
-            // 
             // BuildingOptionBindingSource
             // 
             this.BuildingOptionBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingRelatedOptionsBussines);
@@ -337,7 +327,7 @@ namespace Building.Buildings
             this.grpOwner.Controls.Add(this.lblTell1);
             this.grpOwner.Controls.Add(this.lblOwnerName);
             this.grpOwner.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grpOwner.Location = new System.Drawing.Point(13, 454);
+            this.grpOwner.Location = new System.Drawing.Point(13, 502);
             this.grpOwner.Name = "grpOwner";
             this.grpOwner.Size = new System.Drawing.Size(251, 440);
             // 
@@ -454,7 +444,7 @@ namespace Building.Buildings
             this.groupPanel1.Enabled = false;
             this.groupPanel1.Location = new System.Drawing.Point(10, 147);
             this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(758, 300);
+            this.groupPanel1.Size = new System.Drawing.Size(758, 349);
             // 
             // 
             // 
@@ -493,7 +483,7 @@ namespace Building.Buildings
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContent.Location = new System.Drawing.Point(0, 0);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(752, 272);
+            this.pnlContent.Size = new System.Drawing.Size(752, 321);
             this.pnlContent.TabIndex = 1;
             // 
             // groupPanel2

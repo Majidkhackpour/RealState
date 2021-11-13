@@ -53,6 +53,10 @@ namespace Building.Buildings
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(592, 658);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(592, 658);
             this.Name = "frmBuildingLog";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;

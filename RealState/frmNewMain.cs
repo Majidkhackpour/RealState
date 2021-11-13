@@ -718,7 +718,7 @@ namespace RealState
         {
             try
             {
-                var filter = new BuildingFilter() {Status = true};
+                var filter = new BuildingFilter();
                 if (Cache.IsClient)
                 {
                     var frmFilter = new frmBuildingFilter { Filter = filter };
@@ -726,6 +726,7 @@ namespace RealState
                     filter = frmFilter.Filter;
                 }
 
+                filter.Status = true;
                 var frm = new frmShowBuildings(false, filter);
                 frm.ShowDialog(this);
             }

@@ -22,6 +22,11 @@ namespace RealState.CalendarForms
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
                 var list = await CalendarBussines.GetAllAsync(search, (int)txtYear.Value, _token.Token);
+                while (!IsHandleCreated)
+                {
+                    await Task.Delay(100);
+                    if (IsDisposed) return;
+                }
                 Invoke(new MethodInvoker(() => CalendarBindingSource.DataSource =
                     list?.OrderBy(q => q.DateM).ToSortableBindingList()));
                 SetGridColor();
