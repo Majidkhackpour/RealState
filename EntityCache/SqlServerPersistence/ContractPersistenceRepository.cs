@@ -344,7 +344,7 @@ namespace EntityCache.SqlServerPersistence
                 res.MinorPrice = (decimal)dr["MinorPrice"];
                 res.CheckNo = dr["CheckNo"].ToString();
                 res.Shobe = dr["Shobe"].ToString();
-                res.SarResid = dr["SarResid"].ToString();
+               // res.SarResid = dr["SarResid"].ToString();
                 res.DischargeDate = (DateTime)dr["DischargeDate"];
                 if (dr["SetDocDate"] != DBNull.Value) res.SetDocDate = (DateTime?)dr["SetDocDate"];
                 res.SetDocPlace = dr["SetDocPlace"].ToString();

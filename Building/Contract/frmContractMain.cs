@@ -49,7 +49,7 @@ namespace Building.Contract
 
                 txtDisCharge.Text = Calendar.MiladiToShamsi(cls?.DischargeDate);
                 txtCheckNo.Text = cls?.CheckNo;
-                txtSarResid.Text = cls?.SarResid;
+                //txtSarResid.Text = cls?.SarResid;
                 txtBankName.Text = cls?.BankName;
                 txtShobe.Text = cls?.Shobe;
 
@@ -315,7 +315,7 @@ namespace Building.Contract
 
                 cls.CheckNo = txtCheckNo.Text;
                 cls.BankName = txtBankName.Text;
-                cls.SarResid = txtSarResid.Text;
+                //cls.SarResid = txtSarResid.Text;
                 cls.Shobe = txtShobe.Text;
                 cls.DischargeDate = string.IsNullOrEmpty(txtDisCharge.Text)
                     ? DateTime.Now.AddYears(1)

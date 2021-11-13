@@ -19,6 +19,8 @@ namespace WebHesabBussines
         public DateTime DateM { get; set; }
         public long Code { get; set; }
         public string CodeInArchive { get; set; }
+        public string RealStateCode { get; set; }
+        public string HologramCode { get; set; }
         public bool IsTemp { get; set; }
         public Guid FirstSideGuid { get; set; }
         public Guid SecondSideGuid { get; set; }
@@ -28,14 +30,21 @@ namespace WebHesabBussines
         public DateTime? FromDate { get; set; }
         public decimal TotalPrice { get; set; }
         public decimal MinorPrice { get; set; }
+        public string CheckNoTo { get; set; }
         public string CheckNo { get; set; }
         public string BankName { get; set; }
+        public string BankNameEjare { get; set; }
         public string Shobe { get; set; }
-        public string SarResid { get; set; }
-        public DateTime DischargeDate { get; set; }
+        public string ShobeEjare { get; set; }
+        public DateTime? SarResidTo { get; set; }
+        public DateTime? SarResid { get; set; }
+        public DateTime? DischargeDate { get; set; }
         public DateTime? SetDocDate { get; set; }
         public string SetDocPlace { get; set; }
+        public int SetDocNo { get; set; }
         public decimal SarQofli { get; set; }
+        public decimal FirstSideDelay { get; set; }
+        public decimal SecondSideDelay { get; set; }
         public decimal Delay { get; set; }
         public string Description { get; set; }
         public EnRequestType Type { get; set; }
@@ -52,6 +61,35 @@ namespace WebHesabBussines
         public decimal SecondAvarez { get; set; }
         public decimal FirstTotalPrice { get; set; }
         public decimal SecondTotalPrice { get; set; }
+        public string BuildingPlack { get; set; }
+        public string BuildingZip { get; set; }
+        public string SanadSerial { get; set; }
+        public int PartNo { get; set; }
+        public int Page { get; set; }
+        public string Office { get; set; }
+        public string BuildingNumber { get; set; }
+        public int ParkingNo { get; set; }
+        public float ParkingMasahat { get; set; }
+        public int StoreNo { get; set; }
+        public float StoreMasahat { get; set; }
+        public int PhoneLineCount { get; set; }
+        public string BuildingPhoneNumber { get; set; }
+        public int PeopleCount { get; set; }
+        public string PayankarNo { get; set; }
+        public DateTime? PayankarDate { get; set; }
+        public decimal PishPrice { get; set; }
+        public string Witness1 { get; set; }
+        public string Witness2 { get; set; }
+        public string BuildingRegistrationNo { get; set; }
+        public string BuildingRegistrationNoSub { get; set; }
+        public string BuildingRegistrationNoOrigin { get; set; }
+        public string BuildingCosumable { get; set; }
+        public string ManufacturingLicensePlace { get; set; }
+        public DateTime? ManufacturingLicenseDate { get; set; }
+        public DateTime? SettlementDate { get; set; }
+        public decimal AmountOfRent { get; set; }
+        public string GulidType { get; set; }
+        public string DocumentAdjust { get; set; }
 
 
         private static void RaiseEvent(Guid objGuid, ServerStatus st, DateTime dateM)
