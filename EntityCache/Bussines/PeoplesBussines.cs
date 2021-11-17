@@ -112,7 +112,8 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
-                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Peoples, tr));
+                var desc = $"عنوان:( {Name} ) ** کد شخص:( {Code} )";
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Peoples,Guid,desc, tr));
                 if (res.HasError) return res;
                 RaiseEvent();
                 if (Cache.IsSendToServer)
@@ -162,7 +163,8 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 var action = status ? EnLogAction.Enable : EnLogAction.Delete;
-                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Peoples, tr));
+                var desc = $"عنوان:( {Name} ) ** کد شخص: ( {Code} )";
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Peoples,Guid,desc, tr));
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)

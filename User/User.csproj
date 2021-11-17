@@ -41,6 +41,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\BPersianCalender.dll</HintPath>
     </Reference>
+    <Reference Include="Building">
+      <HintPath>..\..\..\References\RealState\Building.dll</HintPath>
+    </Reference>
+    <Reference Include="Cities">
+      <HintPath>..\..\..\References\RealState\Cities.dll</HintPath>
+    </Reference>
     <Reference Include="DevComponents.Charts.Design">
       <HintPath>..\..\..\References\DevComponents.Charts.Design.dll</HintPath>
     </Reference>
@@ -115,6 +121,10 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Peoples, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\RealState\Peoples.dll</HintPath>
     </Reference>
     <Reference Include="Stimulsoft.Report.Design, Version=2018.1.6.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -197,6 +207,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Switcher.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

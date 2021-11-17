@@ -18,7 +18,7 @@ namespace Building.Buildings
     {
         private BuildingBussines bu;
         readonly List<string> lstList = new List<string>();
-        private bool _loadForCustomer = false;
+        private bool _loadForCustomer = false, _isAddLog = true;
 
         private async Task SetDataAsync()
         {
@@ -63,15 +63,15 @@ namespace Building.Buildings
 
                 GetContent();
                 BuildingOptionBindingSource.DataSource = bu?.OptionList;
-
-                if (!_loadForCustomer)
+                var desc = $"کد ملک:( {bu.Code} ) ** محدوده:( {bu.RegionName} ) ** آدرس:( {bu.Address} )";
+                if (!_loadForCustomer && _isAddLog)
                 {
-                    await UserLogBussines.SaveBuildingLogAsync(EnLogAction.ManagerView, bu.Guid);
+                    await UserLogBussines.SaveBuildingLogAsync(EnLogAction.ManagerView, bu.Guid, desc);
                     var city = await CitiesBussines.GetAsync(bu.CityGuid);
                     lblAddress.Text = $@"{city.Name} - {bu.RegionName} - {bu.Address}";
                 }
-                else
-                    await UserLogBussines.SaveBuildingLogAsync(EnLogAction.CustomerView, bu.Guid);
+                else if (_loadForCustomer && _isAddLog)
+                    await UserLogBussines.SaveBuildingLogAsync(EnLogAction.CustomerView, bu.Guid, desc);
 
                 if (!_loadForCustomer)
                 {
@@ -301,12 +301,13 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-        public frmBuildingDetail(BuildingBussines _bu, bool loadForCustomer)
+        public frmBuildingDetail(BuildingBussines _bu, bool loadForCustomer, bool isAddLog = true)
         {
             InitializeComponent();
             exPanel.Expanded = false;
             bu = _bu;
             _loadForCustomer = loadForCustomer;
+            _isAddLog = isAddLog;
         }
         private async void frmBuildingDetail_Load(object sender, System.EventArgs e) => await SetDataAsync();
         private void frmBuildingDetail_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)

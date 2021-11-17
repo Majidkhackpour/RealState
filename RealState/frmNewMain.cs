@@ -824,7 +824,7 @@ namespace RealState
         {
             try
             {
-                await UserLogBussines.SaveAsync(EnLogAction.Logout, EnLogPart.Logout, null);
+                await UserLogBussines.SaveAsync(EnLogAction.Logout, EnLogPart.Logout,null,"", null);
                 Application.Exit();
             }
             catch (Exception ex)

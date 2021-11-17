@@ -18,7 +18,7 @@ namespace User
         private async Task LoadDataAsync()
         {
             try
-            { 
+            {
                 list = await UserLogBussines.GetAllAsync(userGuid, d1, d2);
                 logBindingSource.DataSource = list.OrderByDescending(q => q.Date).ToSortableBindingList();
             }
@@ -27,9 +27,7 @@ namespace User
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private async void frmUserLog_Load(object sender, EventArgs e) => await LoadDataAsync();
-
         private void frmUserLog_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -41,7 +39,6 @@ namespace User
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void btnPrint_Click(object sender, EventArgs e)
         {
             try
@@ -52,24 +49,38 @@ namespace User
                 if (frm._PrintType != EnPrintType.Excel)
                 {
                     var cls = new ReportGenerator(StiType.User_Performence_List, frm._PrintType)
-                        {Lst = new List<object>(list)};
+                    { Lst = new List<object>(list) };
                     cls.PrintNew();
                     return;
                 }
 
-                ExportToExcel.ExportLog(list,this);
+                ExportToExcel.ExportLog(list, this);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
         }
+        private void DGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode != Keys.Enter) return;
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid?)DGrid[dgObjGuid.Index, DGrid.CurrentRow.Index].Value;
+                var part = (EnLogPart)DGrid[dgLogPart.Index, DGrid.CurrentRow.Index].Value;
 
+                Switcher.Switch(part, guid);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public frmUserLog(Guid _userGuid, DateTime _d1, DateTime _d2)
         {
             InitializeComponent();

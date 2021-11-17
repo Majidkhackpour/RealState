@@ -389,7 +389,7 @@ namespace RealState.LoginPanel.FormsInPanel
 
                 clsGlobalSetting.LastUser = user.UserName;
 
-                await UserLogBussines.SaveAsync(EnLogAction.Login, EnLogPart.Login, null);
+                await UserLogBussines.SaveAsync(EnLogAction.Login, EnLogPart.Login,null,"", null);
             }
             catch (Exception ex)
             {

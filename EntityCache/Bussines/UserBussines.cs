@@ -62,7 +62,7 @@ namespace EntityCache.Bussines
 
         public static async Task<UserBussines> GetAsync(Guid guid) => await UnitOfWork.Users.GetAsync(Cache.ConnectionString, guid);
         public static async Task<List<UserBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Users.GetAllAsync(Cache.ConnectionString, token);
-        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool isLog=true,SqlTransaction tr = null)
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(bool isLog = true, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = tr == null;
@@ -89,7 +89,8 @@ namespace EntityCache.Bussines
                 if (isLog)
                 {
                     var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
-                    res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Users, tr));
+                    var desc = $"عنوان کاربر:( {Name} ) ** نام کاربری:( {UserName} )";
+                    res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Users, Guid, desc, tr));
                     if (res.HasError) return res;
                 }
 
@@ -132,7 +133,8 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 var action = status ? EnLogAction.Enable : EnLogAction.Delete;
-                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Users, tr));
+                var desc = $"عنوان کاربر:( {Name} ) ** نام کاربری:( {UserName} )";
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Users, Guid, desc, tr));
                 if (res.HasError) return res;
             }
             catch (Exception ex)

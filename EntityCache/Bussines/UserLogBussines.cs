@@ -57,7 +57,7 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(EnLogAction action, EnLogPart part, SqlTransaction tr, Guid? buildingGuid = null)
+        public static async Task<ReturnedSaveFuncInfo> SaveAsync(EnLogAction action, EnLogPart part, Guid? objGuid, string desc, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = tr == null;
@@ -71,16 +71,18 @@ namespace EntityCache.Bussines
                     await cn.OpenAsync();
                     tr = cn.BeginTransaction();
                 }
+
                 var log = new UserLogBussines
                 {
                     Guid = Guid.NewGuid(),
                     UserGuid = UserBussines.CurrentUser.Guid,
-                    Description =
-                        $"انجام عملیات {action.GetDisplay()} در بخش {part.GetDisplay()} در تاریخ {Calendar.MiladiToShamsi(DateTime.Now)} در ساعت {DateTime.Now.ToShortTimeString()}",
                     Action = action,
                     Part = part,
-                    BuildingGuid = buildingGuid,
-                    Date = DateTime.Now
+                    BuildingGuid = objGuid,
+                    Date = DateTime.Now,
+                    Description = string.IsNullOrEmpty(desc)
+                        ? $"انجام عملیات {action.GetDisplay()} در بخش {part.GetDisplay()} در تاریخ {Calendar.MiladiToShamsi(DateTime.Now)} در ساعت {DateTime.Now.ToShortTimeString()}"
+                        : desc
                 };
                 res.AddReturnedValue(await UnitOfWork.UserLog.SaveAsync(log, tr));
             }
@@ -101,7 +103,7 @@ namespace EntityCache.Bussines
         }
         public static async Task<List<UserLogBussines>> GetAllAsync(Guid userGuid, DateTime d1, DateTime d2) =>
             await UnitOfWork.UserLog.GetAllAsync(Cache.ConnectionString, userGuid, d1, d2);
-        public static async Task<ReturnedSaveFuncInfo> SaveBuildingLogAsync(EnLogAction action, Guid buGuid, string desc = "", SqlTransaction tr = null)
+        public static async Task<ReturnedSaveFuncInfo> SaveBuildingLogAsync(EnLogAction action, Guid buGuid, string desc, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = tr == null;

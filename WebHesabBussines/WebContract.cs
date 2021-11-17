@@ -45,7 +45,6 @@ namespace WebHesabBussines
         public decimal SarQofli { get; set; }
         public decimal FirstSideDelay { get; set; }
         public decimal SecondSideDelay { get; set; }
-        public decimal Delay { get; set; }
         public string Description { get; set; }
         public EnRequestType Type { get; set; }
         public Guid? BazaryabGuid { get; set; }

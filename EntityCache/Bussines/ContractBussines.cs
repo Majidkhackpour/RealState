@@ -57,7 +57,6 @@ namespace EntityCache.Bussines
         public decimal SarQofli { get; set; }
         public decimal FirstSideDelay { get; set; }
         public decimal SecondSideDelay { get; set; }
-        public decimal Delay { get; set; }
         public string Description { get; set; }
         public EnRequestType Type { get; set; }
         public Guid? BazaryabGuid { get; set; }
@@ -171,7 +170,8 @@ namespace EntityCache.Bussines
                 }
 
                 var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
-                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Contracts, tr));
+                var desc = $"کد قرارداد:( {Code} ) ** شماره پرونده:( {CodeInArchive} ) ** نوع قرارداد: ( {Type.GetDisplay()} )";
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Contracts,Guid,desc, tr));
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
@@ -216,7 +216,8 @@ namespace EntityCache.Bussines
                     if (res.HasError) return res;
                 }
 
-                res.AddReturnedValue(await UserLogBussines.SaveAsync(EnLogAction.Delete, EnLogPart.Contracts, tr));
+                var desc = $"کد قرارداد: ( {Code} ) ** شماره پرونده:( {CodeInArchive} ) ** نوع قرارداد:( {Type.GetDisplay()} )";
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(EnLogAction.Delete, EnLogPart.Contracts,Guid,desc, tr));
                 if (res.HasError) return res;
 
                 //if (Cache.IsSendToServer)

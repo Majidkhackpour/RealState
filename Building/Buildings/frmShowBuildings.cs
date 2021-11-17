@@ -1512,7 +1512,8 @@ namespace Building.Buildings
                     frmNotification.PublicInfo.ShowMessage("داده ای جهت نمایش وجود ندارد");
                     return;
                 }
-                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.ShowSlideShow, bu.Guid);
+                var desc = $"کد ملک:( {bu.Code} ) ** محدوده:( {bu.RegionName} ) ** آدرس:( {bu.Address} )";
+                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.ShowSlideShow, bu.Guid, desc);
                 var frm = new frmSlideShow(bu.GalleryList);
                 frm.ShowDialog();
             }
@@ -1537,7 +1538,8 @@ namespace Building.Buildings
                 }
 
                 cls.IsArchive = true;
-                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.AddToArchive, cls.Guid);
+                var desc = $"کد ملک:( {cls.Code} ) ** محدوده:( {cls.RegionName} ) ** آدرس:( {cls.Address} )";
+                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.AddToArchive, cls.Guid, desc);
                 res.AddReturnedValue(await cls.SaveAsync(false));
             }
             catch (Exception ex)
@@ -1571,7 +1573,8 @@ namespace Building.Buildings
                 }
 
                 cls.IsArchive = false;
-                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.RemoveFromArchive, cls.Guid);
+                var desc = $"کد ملک:( {cls.Code} ) ** محدوده:( {cls.RegionName} ) ** آدرس:( {cls.Address} )";
+                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.RemoveFromArchive, cls.Guid, desc);
                 res.AddReturnedValue(await cls.SaveAsync(false));
             }
             catch (Exception ex)
@@ -1681,7 +1684,8 @@ namespace Building.Buildings
                 var cls_ = new ReportGenerator(StiType.Building_One, EnPrintType.Pdf_A4)
                 { Lst = new List<object>() { rpt } };
                 cls_.PrintNew();
-                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.FullPrint, cls.Guid);
+                var desc = $"کد ملک:( {cls.Code} ) ** محدوده:( {cls.RegionName} ) ** آدرس:( {cls.Address} )";
+                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.FullPrint, cls.Guid, desc);
             }
             catch (Exception ex)
             {
@@ -1852,7 +1856,8 @@ namespace Building.Buildings
                 }
 
                 cls.AdvertiseType = null;
-                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.AddToPersonalFiles, cls.Guid);
+                var desc = $"کد ملک:( {cls.Code} ) ** محدوده:( {cls.RegionName} ) ** آدرس:( {cls.Address} )";
+                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.AddToPersonalFiles, cls.Guid, desc);
                 var res = await cls.SaveAsync(false);
                 if (res.HasError) this.ShowError(res);
                 else
@@ -1936,7 +1941,8 @@ namespace Building.Buildings
                 var cls_ = new ReportGenerator(StiType.Building_One, EnPrintType.Pdf_A5)
                 { Lst = new List<object>() { rpt } };
                 cls_.PrintNew();
-                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.CustomPrint, cls.Guid);
+                var desc = $"کد ملک:( {cls.Code} ) ** محدوده:( {cls.RegionName} ) ** آدرس:( {cls.Address} )";
+                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.CustomPrint, cls.Guid, desc);
             }
             catch (Exception ex)
             {
@@ -1955,7 +1961,8 @@ namespace Building.Buildings
                     frmNotification.PublicInfo.ShowMessage("داده ای جهت نمایش وجود ندارد");
                     return;
                 }
-                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.ShowMedia, bu.Guid);
+                var desc = $"کد ملک:( {bu.Code} ) ** محدوده:( {bu.RegionName} ) ** آدرس:( {bu.Address} )";
+                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.ShowMedia, bu.Guid, desc);
                 var frm = new frmShowMedia(bu);
                 frm.ShowDialog();
             }

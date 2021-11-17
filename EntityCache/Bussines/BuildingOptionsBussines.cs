@@ -126,7 +126,7 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
-                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingOptions, tr));
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingOptions, Guid, "", tr));
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
@@ -166,7 +166,7 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 var action = status ? EnLogAction.Enable : EnLogAction.Delete;
-                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingOptions, tr));
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingOptions, Guid,"",tr));
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)

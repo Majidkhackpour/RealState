@@ -341,7 +341,8 @@ namespace EntityCache.Bussines
                 if (VersionAccess.Accounting)
                 {
                     var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
-                    res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Pardakht, tr));
+                    var desc = $"شماره برگه:( {Number} ) ** شماره سند:( {SanadNumber} ) ** طرف حساب:( {TafsilName} ) ** مبلغ:( {Sum:N0} )";
+                    res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Pardakht, Guid, desc, tr));
                     if (res.HasError) return res;
                 }
 
@@ -439,7 +440,8 @@ namespace EntityCache.Bussines
 
                 if (VersionAccess.Accounting)
                 {
-                    res.AddReturnedValue(await UserLogBussines.SaveAsync(EnLogAction.Delete, EnLogPart.Pardakht, tr));
+                    var desc = $"شماره برگه:( {Number} ) ** شماره سند:( {SanadNumber} ) ** طرف حساب:( {TafsilName} ) ** مبلغ:( {Sum:N0} )";
+                    res.AddReturnedValue(await UserLogBussines.SaveAsync(EnLogAction.Delete, EnLogPart.Pardakht, Guid, desc, tr));
                     if (res.HasError) return res;
                 }
 

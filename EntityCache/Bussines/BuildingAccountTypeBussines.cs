@@ -93,7 +93,8 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
-                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingAccountType, tr));
+                var desc = $"عنوان کاربری ملک:( {Name} )";
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingAccountType,Guid, desc,tr));
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
@@ -132,7 +133,8 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 var action = status ? EnLogAction.Enable : EnLogAction.Delete;
-                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingAccountType, tr));
+                var desc = $"کاربری حذف شده:( {Name} )";
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingAccountType, Guid,desc,tr));
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)

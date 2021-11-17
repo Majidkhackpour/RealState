@@ -239,7 +239,6 @@ namespace Building.Contract
                 }
 
                 txtSarQofli.TextDecimal = cls?.SarQofli ?? 0;
-                txtDelay.TextDecimal = cls?.Delay ?? 0;
 
                 if (cls?.Type == EnRequestType.Forush)
                 {
@@ -324,7 +323,6 @@ namespace Building.Contract
                 cls.SetDocDate = Calendar.ShamsiToMiladi(txtSetDocDate.Text);
                 cls.SarQofli = txtSarQofli.TextDecimal;
                 cls.Description = txtDesc.Text;
-                cls.Delay = txtDelay.TextDecimal;
 
                 cls.FirstTax = txtfAddedValue.TextDecimal;
                 cls.FirstAvarez = txtfAvarez.TextDecimal;

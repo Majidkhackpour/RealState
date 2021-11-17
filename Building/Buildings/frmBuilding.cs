@@ -366,7 +366,9 @@ namespace Building.Buildings
 
                 if (advType == null && btnSavePersonal.Visible)
                 {
-                    await UserLogBussines.SaveBuildingLogAsync(EnLogAction.AddToPersonalFiles, cls.Guid);
+                    var reg = await RegionsBussines.GetAsync(cls.RegionGuid);
+                    var desc = $"کد ملک:( {cls.Code} ) ** محدوده:( {reg?.Name} ) ** آدرس:( {cls.Address} )";
+                    await UserLogBussines.SaveBuildingLogAsync(EnLogAction.AddToPersonalFiles, cls.Guid,desc);
                     res.AddReturnedValue(await cls.SaveAsync(false));
                 }
                 else

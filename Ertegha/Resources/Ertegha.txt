@@ -1046,22 +1046,20 @@ GO
 
 ALTER PROCEDURE [dbo].[sp_Contract_Save]
 	@Guid uniqueidentifier,
-	@modif datetime,
 	@code bigint,
 	@isTemp bit,
 	@term int,
-	@fromDate datetime,
+	@fromDate datetime=null,
 	@totalPrice bigint=0,
 	@minorPrice bigint=0,
 	@checkNo nvarchar(200)='',
 	@bankName nvarchar(200)='',
 	@shobe nvarchar(200)='',
-	@sareresid nvarchar(20)='',
-	@discharcgDate datetime,
-	@setDocDate datetime,
+	@sareresid datetime=null,
+	@discharcgDate datetime=null,
+	@setDocDate datetime=null,
 	@setDocPlace nvarchar(500)='',
 	@sarqofli bigint=0,
-	@delay bigint=0,
 	@desc nvarchar(Max)='',
 	@userGuid uniqueidentifier,
 	@buGuid uniqueidentifier,
@@ -1072,19 +1070,57 @@ ALTER PROCEDURE [dbo].[sp_Contract_Save]
 	@fSideGuid uniqueidentifier,
 	@sSideGuid uniqueidentifier,
 	@sanadNumber bigint,
-	@fBabat smallint,
-	@sBabat smallint,
-	@fDiscount decimal,
-	@sDiscount decimal,
-	@fTax decimal,
-	@sTax decimal,
-	@fAvarez decimal,
-	@sAvarez decimal,
-	@fTotalPrice decimal,
-	@sTotalPrice decimal,
-	@serverSt smallint,
+	@fBabat smallint=0,
+	@sBabat smallint=0,
+	@fDiscount decimal=0,
+	@sDiscount decimal=0,
+	@fTax decimal=0,
+	@sTax decimal=0,
+	@fAvarez decimal=0,
+	@sAvarez decimal=0,
+	@fTotalPrice decimal=0,
+	@sTotalPrice decimal=0,
+	@serverSt smallint=0,
 	@serverDate datetime,
-	@codeInArchive nvarchar(100)
+	@codeInArchive nvarchar(100)='',
+	@RealStateCode nvarchar(200)='',
+	@HologramCode nvarchar(200)='',
+	@CheckNoTo nvarchar(200)='',
+	@BankNameEjare nvarchar(200)='',
+	@ShobeEjare nvarchar(200)='',
+	@SarResidTo datetime=null,
+	@SetDocNo int=0,
+	@FirstSideDelay bigint=0,
+	@SecondSideDelay bigint=0,
+	@BuildingPlack nvarchar(200)='',
+	@BuildingZip nvarchar(200)='',
+	@SanadSerial nvarchar(200)='',
+	@PartNo int=0,
+	@Page int=0,
+	@Office nvarchar(200)='',
+	@BuildingNumber nvarchar(200)='',
+	@ParkingNo int=0,
+	@ParkingMasahat float=0,
+	@StoreNo int=0,
+	@StoreMasahat float=0,
+	@PhoneLineCount int=0,
+	@BuildingPhoneNumber nvarchar(200)='',
+	@PeopleCount int=0,
+	@PayankarNo nvarchar(200)='',
+	@PayankarDate datetime=null,
+	@PishPrice bigint=0,
+	@Witness1 nvarchar(200)='',
+	@Witness2 nvarchar(200)='',
+	@BuildingRegistrationNo nvarchar(200)='',
+	@BuildingRegistrationNoSub nvarchar(200)='',
+	@BuildingRegistrationNoOrigin nvarchar(200)='',
+	@BuildingCosumable nvarchar(200)='',
+	@ManufacturingLicensePlace nvarchar(200)='',
+	@ManufacturingLicenseDate datetime=null,
+	@SettlementDate datetime=null,
+	@AmountOfRent bigint=0,
+	@GulidType nvarchar(200)='',
+	@DocumentAdjust nvarchar(200)=''
 AS
 BEGIN	
 	 update Buildings
@@ -1092,45 +1128,81 @@ BEGIN
 	 where Guid=@buGuid
 
 	 UPDATE [dbo].[Contracts]
-	   SET [Modified] = @modif
-		  ,[Code] = @code
-		  ,[IsTemp] = @isTemp
-		  ,[FirstSideGuid] = @fSideGuid
-		  ,[SecondSideGuid] = @sSideGuid
-		  ,[Term] = @term
-		  ,[FromDate] = @fromDate
-		  ,[TotalPrice] = @totalPrice
-		  ,[MinorPrice] = @minorPrice
-		  ,[CheckNo] = @checkNo
-		  ,[BankName] = @bankName
-		  ,[Shobe] = @shobe
-		  ,[SarResid] = @sareresid
-		  ,[DischargeDate] = @discharcgDate
-		  ,[SetDocDate] = @SetDocDate
-		  ,[SetDocPlace] = @SetDocPlace
-		  ,[SarQofli] = @SarQofli
-		  ,[Delay] = @Delay
-		  ,[Description] = @desc
-		  ,[BuildingGuid] = @buGuid
-		  ,[Type] = @type
-		  ,[DateM] = @dateM
-		  ,[BazaryabGuid] = @bazaryabGuid
-		  ,[BazaryabPrice] = @bazaryabPrice
-		  ,[SanadNumber] = @sanadNumber
-		  ,[fBabat] = @fBabat
-		  ,[sBabat] = @sBabat
-		  ,[FirstDiscount] = @fDiscount
-		  ,[SecondDiscount] = @sDiscount
-		  ,[FirstTax] = @fTax
-		  ,[FirstAvarez] = @fAvarez
-		  ,[SecondTax] = @sTax
-		  ,[SecondAvarez] = @sAvarez
-		  ,[FirstTotalPrice] = @fTotalPrice
-		  ,[SecondTotalPrice] = @sTotalPrice
-		  ,[ServerStatus] = @serverSt
-		  ,[ServerDeliveryDate] = @serverDate
-		  ,[CodeInArchive] = @codeInArchive
-	 WHERE [Guid] = @Guid
+	    SET [Modified] = getdate()
+		   ,[Code] = @code
+		   ,[IsTemp] = @IsTemp
+		   ,[FirstSideGuid] = @fSideGuid
+		   ,[SecondSideGuid] = @sSideGuid
+		   ,[Term] = @Term
+		   ,[FromDate] = @FromDate
+		   ,[TotalPrice] = @TotalPrice
+		   ,[MinorPrice] = @MinorPrice
+		   ,[CheckNo] = @CheckNo
+		   ,[BankName] = @BankName
+		   ,[Shobe] = @Shobe
+		   ,[SarResid] = @sareresid
+		   ,[DischargeDate] = @discharcgDate
+		   ,[SetDocDate] = @SetDocDate
+		   ,[SetDocPlace] = @SetDocPlace
+		   ,[SarQofli] = @SarQofli
+		   ,[Description] = @desc
+		   ,[BuildingGuid] = @buGuid
+		   ,[Type] = @Type
+		   ,[BazaryabGuid] = @BazaryabGuid
+		   ,[BazaryabPrice] = @BazaryabPrice
+		   ,[SanadNumber] = @SanadNumber
+		   ,[fBabat] = @fBabat
+		   ,[sBabat] = @sBabat
+		   ,[FirstDiscount] = @fDiscount
+		   ,[SecondDiscount] = @sDiscount
+		   ,[FirstTax] = @fTax
+		   ,[FirstAvarez] = @fAvarez
+		   ,[SecondTax] = @sTax
+		   ,[SecondAvarez] = @sAvarez
+		   ,[FirstTotalPrice] = @fTotalPrice
+		   ,[SecondTotalPrice] = @sTotalPrice
+		   ,[ServerStatus] = @serverSt
+		   ,[ServerDeliveryDate] = @serverDate
+		   ,[CodeInArchive] = @CodeInArchive
+		   ,[RealStateCode] = @RealStateCode
+		   ,[HologramCode] = @HologramCode
+		   ,[CheckNoTo] = @CheckNoTo
+		   ,[BankNameEjare] = @BankNameEjare
+		   ,[ShobeEjare] = @ShobeEjare
+		   ,[SarResidTo] = @SarResidTo
+		   ,[SetDocNo] = @SetDocNo
+		   ,[FirstSideDelay] = @FirstSideDelay
+		   ,[SecondSideDelay] = @SecondSideDelay
+		   ,[BuildingPlack] = @BuildingPlack
+		   ,[BuildingZip] = @BuildingZip
+		   ,[SanadSerial] = @SanadSerial
+		   ,[PartNo] = @PartNo
+		   ,[Page] = @Page
+		   ,[Office] = @Office
+		   ,[BuildingNumber] = @BuildingNumber
+		   ,[ParkingNo] = @ParkingNo
+		   ,[ParkingMasahat] = @ParkingMasahat
+		   ,[StoreNo] = @StoreNo
+		   ,[StoreMasahat] = @StoreMasahat
+		   ,[PhoneLineCount] = @PhoneLineCount
+		   ,[BuildingPhoneNumber] = @BuildingPhoneNumber
+		   ,[PeopleCount] = @PeopleCount
+		   ,[PayankarNo] = @PayankarNo
+		   ,[PayankarDate] = @PayankarDate
+		   ,[PishPrice] = @PishPrice
+		   ,[Witness1] = @Witness1
+		   ,[Witness2] = @Witness2
+		   ,[BuildingRegistrationNo] = @BuildingRegistrationNo
+		   ,[BuildingRegistrationNoSub] = @BuildingRegistrationNoSub
+		   ,[BuildingRegistrationNoOrigin] = @BuildingRegistrationNoOrigin
+		   ,[BuildingCosumable] = @BuildingCosumable
+		   ,[ManufacturingLicensePlace] = @ManufacturingLicensePlace
+		   ,[ManufacturingLicenseDate] = @ManufacturingLicenseDate
+		   ,[SettlementDate] = @SettlementDate
+		   ,[AmountOfRent] = @AmountOfRent
+		   ,[GulidType] = @GulidType
+		   ,[DocumentAdjust] = @DocumentAdjust
+	 WHERE  [Guid] = @Guid
 	 if @@ROWCOUNT = 0
 	 begin
 		INSERT INTO [dbo].[Contracts]
@@ -1153,7 +1225,6 @@ BEGIN
            ,[SetDocDate]
            ,[SetDocPlace]
            ,[SarQofli]
-           ,[Delay]
            ,[Description]
            ,[UserGuid]
            ,[BuildingGuid]
@@ -1172,51 +1243,126 @@ BEGIN
            ,[SecondAvarez]
            ,[FirstTotalPrice]
            ,[SecondTotalPrice]
-		   ,[ServerStatus]
-		   ,[ServerDeliveryDate]
-		   ,[CodeInArchive])
-		VALUES
+           ,[ServerStatus]
+           ,[ServerDeliveryDate]
+           ,[CodeInArchive]
+           ,[RealStateCode]
+           ,[HologramCode]
+           ,[CheckNoTo]
+           ,[BankNameEjare]
+           ,[ShobeEjare]
+           ,[SarResidTo]
+           ,[SetDocNo]
+           ,[FirstSideDelay]
+           ,[SecondSideDelay]
+           ,[BuildingPlack]
+           ,[BuildingZip]
+           ,[SanadSerial]
+           ,[PartNo]
+           ,[Page]
+           ,[Office]
+           ,[BuildingNumber]
+           ,[ParkingNo]
+           ,[ParkingMasahat]
+           ,[StoreNo]
+           ,[StoreMasahat]
+           ,[PhoneLineCount]
+           ,[BuildingPhoneNumber]
+           ,[PeopleCount]
+           ,[PayankarNo]
+           ,[PayankarDate]
+           ,[PishPrice]
+           ,[Witness1]
+           ,[Witness2]
+           ,[BuildingRegistrationNo]
+           ,[BuildingRegistrationNoSub]
+           ,[BuildingRegistrationNoOrigin]
+           ,[BuildingCosumable]
+           ,[ManufacturingLicensePlace]
+           ,[ManufacturingLicenseDate]
+           ,[SettlementDate]
+           ,[AmountOfRent]
+           ,[GulidType]
+           ,[DocumentAdjust])
+     VALUES
            (@Guid
-           ,@modif
+           ,GETDATE()
            ,'true'
-           ,@code
-           ,@isTemp
+           ,@Code
+           ,@IsTemp
            ,@fSideGuid
-           ,@sSideGuid
-           ,@term
-           ,@fromDate
-           ,@totalPrice
-           ,@minorPrice
-           ,@checkNo
-           ,@bankName
-           ,@shobe
+           ,@SSideGuid
+           ,@Term
+           ,@FromDate
+           ,@TotalPrice
+           ,@MinorPrice
+           ,@CheckNo
+           ,@BankName
+           ,@Shobe
            ,@sareresid
            ,@discharcgDate
-           ,@setDocDate
-           ,@setDocPlace
-           ,@sarqofli
-           ,@delay
+           ,@SetDocDate
+           ,@SetDocPlace
+           ,@SarQofli
            ,@desc
-           ,@userGuid
+           ,@UserGuid
            ,@buGuid
-           ,@type
-           ,@dateM
-           ,@bazaryabGuid
-           ,@bazaryabPrice
-           ,@sanadNumber
+           ,@Type
+           ,@DateM
+           ,@BazaryabGuid
+           ,@BazaryabPrice
+           ,@SanadNumber
            ,@fBabat
            ,@sBabat
-           ,@fDiscount
-           ,@sDiscount
-           ,@fTax
-           ,@fAvarez
-           ,@sTax
-           ,@sAvarez
+           ,@FDiscount
+           ,@SDiscount
+           ,@FTax
+           ,@FAvarez
+           ,@STax
+           ,@SAvarez
            ,@fTotalPrice
-           ,@sTotalPrice
-		   ,@serverSt
-		   ,@serverDate
-		   ,@codeInArchive)
+           ,@STotalPrice
+           ,@serverSt
+           ,@serverDate
+           ,@CodeInArchive
+           ,@RealStateCode
+           ,@HologramCode
+           ,@CheckNoTo
+           ,@BankNameEjare
+           ,@ShobeEjare
+           ,@SarResidTo
+           ,@SetDocNo
+           ,@FirstSideDelay
+           ,@SecondSideDelay
+           ,@BuildingPlack
+           ,@BuildingZip
+           ,@SanadSerial
+           ,@PartNo
+           ,@Page
+           ,@Office
+           ,@BuildingNumber
+           ,@ParkingNo
+           ,@ParkingMasahat
+           ,@StoreNo
+           ,@StoreMasahat
+           ,@PhoneLineCount
+           ,@BuildingPhoneNumber
+           ,@PeopleCount
+           ,@PayankarNo
+           ,@PayankarDate
+           ,@PishPrice
+           ,@Witness1
+           ,@Witness2
+           ,@BuildingRegistrationNo
+           ,@BuildingRegistrationNoSub
+           ,@BuildingRegistrationNoOrigin
+           ,@BuildingCosumable
+           ,@ManufacturingLicensePlace
+           ,@ManufacturingLicenseDate
+           ,@SettlementDate
+           ,@AmountOfRent
+           ,@GulidType
+           ,@DocumentAdjust)
 	 end
 END
 GO
