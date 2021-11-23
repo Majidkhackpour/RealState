@@ -113,7 +113,11 @@ namespace Building.Contract
         {
             try
             {
-                var frm = new frmContractMain();
+                //var frm = new frmContractMain();
+                //if (frm.ShowDialog(this) == DialogResult.OK)
+                //    await LoadDataAsync(txtSearch.Text);
+
+                var frm = new frmContractTypeSelector();
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(txtSearch.Text);
             }

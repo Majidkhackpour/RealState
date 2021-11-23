@@ -578,6 +578,18 @@
     <Compile Include="Contract\frmContractMain.Designer.cs">
       <DependentUpon>frmContractMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Contract\frmContractMain_Sell.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contract\frmContractMain_Sell.Designer.cs">
+      <DependentUpon>frmContractMain_Sell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contract\frmContractTypeSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contract\frmContractTypeSelector.Designer.cs">
+      <DependentUpon>frmContractTypeSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Contract\frmHelpCalculateCommition.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -650,6 +662,18 @@
     </Compile>
     <Compile Include="RentalAuthority\frmShowRentalAuthority.Designer.cs">
       <DependentUpon>frmShowRentalAuthority.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contract\Public\UcContractHeader.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Contract\Public\UcContractHeader.Designer.cs">
+      <DependentUpon>UcContractHeader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contract\Public\UcSerial.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Contract\Public\UcSerial.Designer.cs">
+      <DependentUpon>UcSerial.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Objects\UcBuildingCondition.cs">
       <SubType>UserControl</SubType>
@@ -921,6 +945,12 @@
     <Compile Include="UserControls\UcBuildingType.Designer.cs">
       <DependentUpon>UcBuildingType.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UcDate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcDate.Designer.cs">
+      <DependentUpon>UcDate.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -1070,6 +1100,12 @@
     <EmbeddedResource Include="Contract\frmContractMain.resx">
       <DependentUpon>frmContractMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Contract\frmContractMain_Sell.resx">
+      <DependentUpon>frmContractMain_Sell.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contract\frmContractTypeSelector.resx">
+      <DependentUpon>frmContractTypeSelector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Contract\frmHelpCalculateCommition.resx">
       <DependentUpon>frmHelpCalculateCommition.cs</DependentUpon>
     </EmbeddedResource>
@@ -1107,6 +1143,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RentalAuthority\frmShowRentalAuthority.resx">
       <DependentUpon>frmShowRentalAuthority.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Contract\Public\UcContractHeader.resx">
+      <DependentUpon>UcContractHeader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Contract\Public\UcSerial.resx">
+      <DependentUpon>UcSerial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Objects\UcBuildingCondition.resx">
       <DependentUpon>UcBuildingCondition.cs</DependentUpon>
@@ -1243,6 +1285,9 @@
     <EmbeddedResource Include="UserControls\UcBuildingType.resx">
       <DependentUpon>UcBuildingType.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcDate.resx">
+      <DependentUpon>UcDate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\DataSources\EntityCache.Bussines.BuildingMediaBussines.datasource" />
@@ -1355,6 +1400,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\add1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\photo_2021-11-17_18-34-50.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
