@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Building.Buildings.Selector;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -31,14 +32,18 @@ namespace Building.Contract
             try
             {
                 SetIsSelect();
-                await Task.Delay(1000);
-                var frm=new frmContractMain_Sell(new ContractBussines());
+                await Task.Delay(500);
+                var frm = new frmContractMain_Sell(new ContractBussines());
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+        }
+        private void frmContractTypeSelector_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape) Close();
         }
     }
 }

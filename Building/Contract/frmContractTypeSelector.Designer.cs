@@ -182,6 +182,7 @@ namespace Building.Contract
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Style = MetroFramework.MetroColorStyle.Teal;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmContractTypeSelector_KeyDown);
             this.groupPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

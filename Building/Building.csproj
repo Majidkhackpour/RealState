@@ -675,6 +675,12 @@
     <Compile Include="UserControls\Contract\Public\UcSerial.Designer.cs">
       <DependentUpon>UcSerial.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Contract\Sell\UcContractSell_2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Contract\Sell\UcContractSell_2.Designer.cs">
+      <DependentUpon>UcContractSell_2.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Objects\UcBuildingCondition.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1150,6 +1156,9 @@
     <EmbeddedResource Include="UserControls\Contract\Public\UcSerial.resx">
       <DependentUpon>UcSerial.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Contract\Sell\UcContractSell_2.resx">
+      <DependentUpon>UcContractSell_2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Objects\UcBuildingCondition.resx">
       <DependentUpon>UcBuildingCondition.cs</DependentUpon>
     </EmbeddedResource>
@@ -1404,6 +1413,7 @@
   <ItemGroup>
     <None Include="Resources\photo_2021-11-17_18-34-50.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

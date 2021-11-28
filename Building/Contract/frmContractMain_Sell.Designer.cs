@@ -31,6 +31,7 @@ namespace Building.Contract
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmContractMain_Sell));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.uc2 = new Building.UserControls.Contract.Sell.UcContractSell_2();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.ucFSide = new Peoples.UcPeopleContract();
             this.ucSecondSide = new Peoples.UcPeopleContract();
@@ -48,6 +49,7 @@ namespace Building.Contract
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.uc2);
             this.panel1.Controls.Add(this.splitContainer1);
             this.panel1.Controls.Add(this.ucContractHeader1);
             this.panel1.Location = new System.Drawing.Point(3, 22);
@@ -55,11 +57,42 @@ namespace Building.Contract
             this.panel1.Size = new System.Drawing.Size(816, 529);
             this.panel1.TabIndex = 3;
             // 
+            // uc2
+            // 
+            this.uc2.Address = "";
+            this.uc2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uc2.BackColor = System.Drawing.Color.Transparent;
+            this.uc2.BuildingNumber = "";
+            this.uc2.BuildingType = "";
+            this.uc2.Dong = 1F;
+            this.uc2.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.uc2.Location = new System.Drawing.Point(20, 492);
+            this.uc2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uc2.Masahat = 0F;
+            this.uc2.Name = "uc2";
+            this.uc2.Office = "";
+            this.uc2.Page = 0;
+            this.uc2.ParkingNo = 0;
+            this.uc2.PartNo = 0;
+            this.uc2.PhoneCount = 0;
+            this.uc2.PhoneNumber = "";
+            this.uc2.RegistryNo = "";
+            this.uc2.RegistryNoOrigin = "";
+            this.uc2.RegistryNoSub = "";
+            this.uc2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.uc2.SanadSerial = "";
+            this.uc2.Size = new System.Drawing.Size(779, 195);
+            this.uc2.StoreMasahat = 0F;
+            this.uc2.StoreNo = 0;
+            this.uc2.TabIndex = 2;
+            this.uc2.Zip = "";
+            // 
             // splitContainer1
             // 
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(24, 226);
+            this.splitContainer1.Location = new System.Drawing.Point(30, 226);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -71,8 +104,8 @@ namespace Building.Contract
             // 
             this.splitContainer1.Panel2.Controls.Add(this.ucSecondSide);
             this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.splitContainer1.Size = new System.Drawing.Size(789, 260);
-            this.splitContainer1.SplitterDistance = 401;
+            this.splitContainer1.Size = new System.Drawing.Size(741, 260);
+            this.splitContainer1.SplitterDistance = 375;
             this.splitContainer1.TabIndex = 1;
             // 
             // ucFSide
@@ -85,7 +118,7 @@ namespace Building.Contract
             this.ucFSide.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucFSide.Name = "ucFSide";
             this.ucFSide.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucFSide.Size = new System.Drawing.Size(401, 260);
+            this.ucFSide.Size = new System.Drawing.Size(375, 260);
             this.ucFSide.TabIndex = 0;
             this.ucFSide.Title = "مشخصات فروشنده";
             // 
@@ -99,7 +132,7 @@ namespace Building.Contract
             this.ucSecondSide.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucSecondSide.Name = "ucSecondSide";
             this.ucSecondSide.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucSecondSide.Size = new System.Drawing.Size(384, 260);
+            this.ucSecondSide.Size = new System.Drawing.Size(362, 260);
             this.ucSecondSide.TabIndex = 1;
             this.ucSecondSide.Title = "مشخصات خریدار";
             // 
@@ -113,12 +146,12 @@ namespace Building.Contract
             this.ucContractHeader1.ContractDate = new System.DateTime(2021, 11, 23, 0, 0, 0, 0);
             this.ucContractHeader1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.ucContractHeader1.HologramCode = "";
-            this.ucContractHeader1.Location = new System.Drawing.Point(24, 5);
+            this.ucContractHeader1.Location = new System.Drawing.Point(30, 5);
             this.ucContractHeader1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucContractHeader1.Name = "ucContractHeader1";
             this.ucContractHeader1.RealStateCode = "";
             this.ucContractHeader1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucContractHeader1.Size = new System.Drawing.Size(789, 213);
+            this.ucContractHeader1.Size = new System.Drawing.Size(741, 213);
             this.ucContractHeader1.TabIndex = 0;
             this.ucContractHeader1.Title = "مبایعه نامه";
             // 
@@ -139,6 +172,7 @@ namespace Building.Contract
             this.Style = MetroFramework.MetroColorStyle.Teal;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmContractMain_Sell_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmContractMain_Sell_KeyDown);
             this.panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -155,5 +189,6 @@ namespace Building.Contract
         private System.Windows.Forms.SplitContainer splitContainer1;
         private Peoples.UcPeopleContract ucFSide;
         private Peoples.UcPeopleContract ucSecondSide;
+        private UserControls.Contract.Sell.UcContractSell_2 uc2;
     }
 }

@@ -116,6 +116,8 @@ namespace EntityCache.Bussines
         public int TreeCount { get; set; }
         public EnConstructionStage? ConstructionStage { get; set; }
         public EnBuildingParent? Parent { get; set; }
+        public int PhoneLineCount { get; set; }
+        public string PhoneNumber { get; set; }
         public bool IsModified { get; set; } = false;
         public List<BuildingRelatedOptionsBussines> OptionList { get; set; }
         public List<BuildingGalleryBussines> GalleryList { get; set; }
@@ -198,7 +200,7 @@ namespace EntityCache.Bussines
                 {
                     var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
                     var desc = $"کد ملک:( {Code} ) ** محدوده:( {RegionName} ) ** آدرس:( {Address} )";
-                    res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Building,  Guid,desc,tr));
+                    res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Building, Guid, desc, tr));
                     if (res.HasError) return res;
                 }
 
@@ -241,7 +243,7 @@ namespace EntityCache.Bussines
 
                 var action = status ? EnLogAction.Enable : EnLogAction.Delete;
                 var desc = $"کدملک: ( {Code} ) ** محدوده:( {RegionName} )";
-                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Building, Guid,desc,tr));
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Building, Guid, desc, tr));
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
