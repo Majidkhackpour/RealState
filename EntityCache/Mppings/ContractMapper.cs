@@ -90,7 +90,9 @@ namespace EntityCache.Mppings
                 BuildingRegistrationNoOrigin = cls.BuildingRegistrationNoOrigin,
                 GulidType = cls.GulidType,
                 Witness1 = cls.Witness1,
-                Witness2 = cls.Witness2
+                Witness2 = cls.Witness2,
+                CheckPrice1 = cls.CheckPrice1,
+                CheckPrice2 = cls.CheckPrice2
             };
         }
         public List<WebContract> MapList(List<ContractBussines> cls)

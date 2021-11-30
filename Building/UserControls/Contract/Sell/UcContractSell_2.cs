@@ -70,7 +70,7 @@ namespace Building.UserControls.Contract.Sell
         {
             try
             {
-                var frm = new frmShowBuildings(true, new BuildingFilter() { Status = true });
+                var frm = new frmShowBuildings(true, new BuildingFilter() { Status = true, IsSell = true });
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
                 var bu = BuildingBussines.Get(frm.SelectedGuid);
                 if (bu == null) return;

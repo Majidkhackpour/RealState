@@ -42,8 +42,21 @@ namespace Building.Contract
                 uc2.Barq = bu?.Barq ?? EnKhadamati.None;
                 uc2.Gas = bu?.Gas ?? EnKhadamati.None;
                 uc2.Address = bu?.Address;
-                uc2.PhoneCount = bu?.PhoneLineCount??0;
+                uc2.PhoneCount = bu?.PhoneLineCount ?? 0;
                 uc2.PhoneNumber = bu?.PhoneNumber;
+
+                uc3.Price = cls.TotalPrice;
+                uc3.Naqd = cls.MinorPrice;
+                uc3.BankName1 = cls.BankName;
+                uc3.BankName2 = cls.BankNameEjare;
+                uc3.CheckNo1 = cls.CheckNo;
+                uc3.CheckNo2 = cls.CheckNoTo;
+                uc3.Sarresid1 = cls.SarResid;
+                uc3.Sarresid2 = cls.SarResidTo;
+                uc3.Shobe1 = cls.Shobe;
+                uc3.Shobe2 = cls.ShobeEjare;
+                uc3.CheckPrice1 = cls.CheckPrice1;
+                uc3.CheckPrice2 = cls.CheckPrice2;
             }
             catch (Exception ex)
             {
@@ -58,7 +71,19 @@ namespace Building.Contract
             uc2.OnBuildingSelect += Uc2OnOnBuildingSelect;
         }
 
-        private void Uc2OnOnBuildingSelect(Guid buGuid) => cls.BuildingGuid = buGuid;
+        private void Uc2OnOnBuildingSelect(Guid buGuid)
+        {
+            try
+            {
+                cls.BuildingGuid = buGuid;
+                var bu = BuildingBussines.Get(buGuid);
+                uc3.Price = bu?.SellPrice ?? 0;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private async void frmContractMain_Sell_Load(object sender, System.EventArgs e) => await SetDataAsync();
         private void frmContractMain_Sell_KeyDown(object sender, KeyEventArgs e)
         {

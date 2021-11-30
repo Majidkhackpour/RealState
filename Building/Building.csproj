@@ -663,6 +663,12 @@
     <Compile Include="RentalAuthority\frmShowRentalAuthority.Designer.cs">
       <DependentUpon>frmShowRentalAuthority.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Contract\Public\UcContractCheck.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Contract\Public\UcContractCheck.Designer.cs">
+      <DependentUpon>UcContractCheck.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Contract\Public\UcContractHeader.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -680,6 +686,12 @@
     </Compile>
     <Compile Include="UserControls\Contract\Sell\UcContractSell_2.Designer.cs">
       <DependentUpon>UcContractSell_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contract\Sell\UcContractSell_3.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Contract\Sell\UcContractSell_3.Designer.cs">
+      <DependentUpon>UcContractSell_3.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Objects\UcBuildingCondition.cs">
       <SubType>UserControl</SubType>
@@ -1150,6 +1162,9 @@
     <EmbeddedResource Include="RentalAuthority\frmShowRentalAuthority.resx">
       <DependentUpon>frmShowRentalAuthority.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Contract\Public\UcContractCheck.resx">
+      <DependentUpon>UcContractCheck.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Contract\Public\UcContractHeader.resx">
       <DependentUpon>UcContractHeader.cs</DependentUpon>
     </EmbeddedResource>
@@ -1158,6 +1173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Contract\Sell\UcContractSell_2.resx">
       <DependentUpon>UcContractSell_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Contract\Sell\UcContractSell_3.resx">
+      <DependentUpon>UcContractSell_3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Objects\UcBuildingCondition.resx">
       <DependentUpon>UcBuildingCondition.cs</DependentUpon>

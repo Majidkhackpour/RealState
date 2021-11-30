@@ -38,6 +38,8 @@ namespace WebHesabBussines
         public string ShobeEjare { get; set; }
         public DateTime? SarResidTo { get; set; }
         public DateTime? SarResid { get; set; }
+        public decimal CheckPrice1 { get; set; }
+        public decimal CheckPrice2 { get; set; }
         public DateTime? DischargeDate { get; set; }
         public DateTime? SetDocDate { get; set; }
         public string SetDocPlace { get; set; }
