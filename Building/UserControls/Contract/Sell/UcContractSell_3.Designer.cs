@@ -178,7 +178,7 @@ namespace Building.UserControls.Contract.Sell
             this.ucContractCheck1.BankName = "";
             this.ucContractCheck1.CheckNo = "";
             this.ucContractCheck1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucContractCheck1.Location = new System.Drawing.Point(7, 5);
+            this.ucContractCheck1.Location = new System.Drawing.Point(1, 5);
             this.ucContractCheck1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucContractCheck1.Name = "ucContractCheck1";
             this.ucContractCheck1.Price = new decimal(new int[] {
@@ -396,7 +396,7 @@ namespace Building.UserControls.Contract.Sell
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.grpPanel);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
