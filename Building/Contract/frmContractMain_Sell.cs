@@ -57,6 +57,11 @@ namespace Building.Contract
                 uc3.Shobe2 = cls.ShobeEjare;
                 uc3.CheckPrice1 = cls.CheckPrice1;
                 uc3.CheckPrice2 = cls.CheckPrice2;
+
+                ucContractSell_41.SetDocDate = cls.SetDocDate;
+                ucContractSell_41.SetDocNo = cls.SetDocNo;
+                ucContractSell_41.SetDocPlace = cls.SetDocPlace;
+                ucContractSell_41.DischargeDate = cls.DischargeDate;
             }
             catch (Exception ex)
             {
@@ -69,8 +74,9 @@ namespace Building.Contract
             InitializeComponent();
             cls = _cls;
             uc2.OnBuildingSelect += Uc2OnOnBuildingSelect;
+            ucContractHeader1.OnDateChanged += UcContractHeader1_OnDateChanged;
         }
-
+        private void UcContractHeader1_OnDateChanged(string date) => ucContractSell_41.ContractDateSh = date;
         private void Uc2OnOnBuildingSelect(Guid buGuid)
         {
             try

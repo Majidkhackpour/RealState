@@ -39,11 +39,6 @@ namespace Building.UserControls
             // 
             // txtYear
             // 
-            this.txtYear.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             this.txtYear.Location = new System.Drawing.Point(3, 8);
             this.txtYear.Maximum = new decimal(new int[] {
             10000,
@@ -53,6 +48,7 @@ namespace Building.UserControls
             this.txtYear.Name = "txtYear";
             this.txtYear.Size = new System.Drawing.Size(73, 27);
             this.txtYear.TabIndex = 55747;
+            this.txtYear.ValueChanged += new System.EventHandler(this.txtYear_ValueChanged);
             // 
             // lblTitle
             // 
@@ -89,6 +85,7 @@ namespace Building.UserControls
             this.cmbMounth.Size = new System.Drawing.Size(78, 28);
             this.cmbMounth.TabIndex = 55750;
             this.cmbMounth.ValueMember = "Guid";
+            this.cmbMounth.SelectedIndexChanged += new System.EventHandler(this.cmbMounth_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -144,6 +141,7 @@ namespace Building.UserControls
             this.cmbDay.Size = new System.Drawing.Size(46, 28);
             this.cmbDay.TabIndex = 55750;
             this.cmbDay.ValueMember = "Guid";
+            this.cmbDay.SelectedIndexChanged += new System.EventHandler(this.cmbDay_SelectedIndexChanged);
             // 
             // UcDate
             // 

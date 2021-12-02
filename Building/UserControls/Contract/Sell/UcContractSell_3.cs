@@ -6,16 +6,7 @@ namespace Building.UserControls.Contract.Sell
 {
     public partial class UcContractSell_3 : UserControl
     {
-        public decimal Price
-        {
-            get => txtPrice.TextDecimal;
-            set
-            {
-                txtPrice.TextDecimal = value;
-                lblDigit.Text =$"{NumberToString.Num2Str(((double)value).ToString())} ریال";
-                lblToman.Text = NumberToString.Num2Str(((double)value / 10).ToString());
-            }
-        }
+        public decimal Price { get => txtPrice.TextDecimal; set => txtPrice.TextDecimal = value; }
         public decimal Naqd { get => txtNaqd.TextDecimal; set => txtNaqd.TextDecimal = value; }
         public decimal CheckPrice1 { get => ucContractCheck1.Price; set => ucContractCheck1.Price = value; }
         public decimal CheckPrice2 { get => ucContractCheck2.Price; set => ucContractCheck2.Price = value; }
@@ -28,5 +19,17 @@ namespace Building.UserControls.Contract.Sell
         public DateTime? Sarresid1 { get => ucContractCheck1.Sarresid; set => ucContractCheck1.Sarresid = value; }
         public DateTime? Sarresid2 { get => ucContractCheck2.Sarresid; set => ucContractCheck2.Sarresid = value; }
         public UcContractSell_3() => InitializeComponent();
+        private void txtPrice_OnTextChanged()
+        {
+            try
+            {
+                lblDigit.Text = $"{NumberToString.Num2Str(((double)txtPrice.TextDecimal).ToString())} ریال";
+                lblToman.Text = NumberToString.Num2Str(((double)txtPrice.TextDecimal / 10).ToString());
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
     }
 }

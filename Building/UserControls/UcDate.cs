@@ -6,6 +6,7 @@ namespace Building.UserControls
 {
     public partial class UcDate : UserControl
     {
+        public event Action<string> OnDateChanged;
         private string _dateSh;
         public string DateSh
         {
@@ -26,7 +27,7 @@ namespace Building.UserControls
             {
                 try
                 {
-                    if (string.IsNullOrEmpty(value))
+                    if (string.IsNullOrEmpty(value) || value == "0/0/0")
                         value = Calendar.MiladiToShamsi(DateTime.Now);
                     _dateSh = value;
                     var year = _dateSh.Substring(0, 4).ParseToInt();
@@ -43,5 +44,20 @@ namespace Building.UserControls
             }
         }
         public UcDate() => InitializeComponent();
+        private void RaiseDateChange(string date)
+        {
+            try
+            {
+                var handler = OnDateChanged;
+                if (handler != null) OnDateChanged?.Invoke(date);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void cmbDay_SelectedIndexChanged(object sender, EventArgs e) => RaiseDateChange(DateSh);
+        private void cmbMounth_SelectedIndexChanged(object sender, EventArgs e) => RaiseDateChange(DateSh);
+        private void txtYear_ValueChanged(object sender, EventArgs e) => RaiseDateChange(DateSh);
     }
 }

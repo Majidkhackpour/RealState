@@ -178,7 +178,7 @@ namespace Building.UserControls.Contract.Sell
             this.ucContractCheck1.BankName = "";
             this.ucContractCheck1.CheckNo = "";
             this.ucContractCheck1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucContractCheck1.Location = new System.Drawing.Point(1, 5);
+            this.ucContractCheck1.Location = new System.Drawing.Point(-5, 5);
             this.ucContractCheck1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucContractCheck1.Name = "ucContractCheck1";
             this.ucContractCheck1.Price = new decimal(new int[] {
@@ -292,6 +292,7 @@ namespace Building.UserControls.Contract.Sell
             0,
             0,
             0});
+            this.txtPrice.OnTextChanged += new System.Action(this.txtPrice_OnTextChanged);
             // 
             // lblToman
             // 
