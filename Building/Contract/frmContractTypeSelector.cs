@@ -32,9 +32,9 @@ namespace Building.Contract
             try
             {
                 SetIsSelect();
-                await Task.Delay(500);
                 var frm = new frmContractMain_Sell(new ContractBussines());
-                frm.ShowDialog(this);
+                DialogResult = frm.ShowDialog(this);
+                Close();
             }
             catch (Exception ex)
             {

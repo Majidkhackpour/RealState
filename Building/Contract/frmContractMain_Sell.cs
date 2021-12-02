@@ -62,6 +62,8 @@ namespace Building.Contract
                 ucContractSell_41.SetDocNo = cls.SetDocNo;
                 ucContractSell_41.SetDocPlace = cls.SetDocPlace;
                 ucContractSell_41.DischargeDate = cls.DischargeDate;
+
+                ucContractSell_51.AmountOfRent = cls.AmountOfRent;
             }
             catch (Exception ex)
             {
@@ -75,7 +77,9 @@ namespace Building.Contract
             cls = _cls;
             uc2.OnBuildingSelect += Uc2OnOnBuildingSelect;
             ucContractHeader1.OnDateChanged += UcContractHeader1_OnDateChanged;
+            ucContractSell_41.OnDischargeChanged += UcContractSell_41_OnDischargeChanged;    
         }
+        private void UcContractSell_41_OnDischargeChanged(string date) => ucContractSell_51.DischargeDateSh = date;
         private void UcContractHeader1_OnDateChanged(string date) => ucContractSell_41.ContractDateSh = date;
         private void Uc2OnOnBuildingSelect(Guid buGuid)
         {
