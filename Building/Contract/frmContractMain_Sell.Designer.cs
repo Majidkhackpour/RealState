@@ -31,6 +31,8 @@ namespace Building.Contract
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmContractMain_Sell));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ucContractSell_71 = new Building.UserControls.Contract.Sell.UcContractSell_7();
+            this.ucContractSell_61 = new Building.UserControls.Contract.Sell.UcContractSell_6();
             this.ucContractSell_51 = new Building.UserControls.Contract.Sell.UcContractSell_5();
             this.ucContractSell_41 = new Building.UserControls.Contract.Sell.UcContractSell_4();
             this.uc3 = new Building.UserControls.Contract.Sell.UcContractSell_3();
@@ -40,7 +42,6 @@ namespace Building.Contract
             this.ucSecondSide = new Peoples.UcPeopleContract();
             this.ucContractHeader1 = new Building.UserControls.Contract.Public.UcContractHeader();
             this.ucContractSell_31 = new Building.UserControls.Contract.Sell.UcContractSell_3();
-            this.ucContractSell_61 = new Building.UserControls.Contract.Sell.UcContractSell_6();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -54,6 +55,7 @@ namespace Building.Contract
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.ucContractSell_71);
             this.panel1.Controls.Add(this.ucContractSell_61);
             this.panel1.Controls.Add(this.ucContractSell_51);
             this.panel1.Controls.Add(this.ucContractSell_41);
@@ -65,6 +67,42 @@ namespace Building.Contract
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(816, 529);
             this.panel1.TabIndex = 3;
+            // 
+            // ucContractSell_71
+            // 
+            this.ucContractSell_71.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucContractSell_71.BackColor = System.Drawing.Color.Transparent;
+            this.ucContractSell_71.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucContractSell_71.Location = new System.Drawing.Point(11, 1836);
+            this.ucContractSell_71.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucContractSell_71.Name = "ucContractSell_71";
+            this.ucContractSell_71.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucContractSell_71.Size = new System.Drawing.Size(784, 266);
+            this.ucContractSell_71.TabIndex = 7;
+            // 
+            // ucContractSell_61
+            // 
+            this.ucContractSell_61.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucContractSell_61.BackColor = System.Drawing.Color.Transparent;
+            this.ucContractSell_61.FirstDelay = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.ucContractSell_61.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucContractSell_61.Location = new System.Drawing.Point(11, 1449);
+            this.ucContractSell_61.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucContractSell_61.Name = "ucContractSell_61";
+            this.ucContractSell_61.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucContractSell_61.SecondDelay = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.ucContractSell_61.Size = new System.Drawing.Size(784, 381);
+            this.ucContractSell_61.TabIndex = 6;
             // 
             // ucContractSell_51
             // 
@@ -280,29 +318,6 @@ namespace Building.Contract
             this.ucContractSell_31.Size = new System.Drawing.Size(766, 276);
             this.ucContractSell_31.TabIndex = 3;
             // 
-            // ucContractSell_61
-            // 
-            this.ucContractSell_61.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ucContractSell_61.BackColor = System.Drawing.Color.Transparent;
-            this.ucContractSell_61.FirstDelay = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.ucContractSell_61.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucContractSell_61.Location = new System.Drawing.Point(11, 1449);
-            this.ucContractSell_61.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ucContractSell_61.Name = "ucContractSell_61";
-            this.ucContractSell_61.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucContractSell_61.SecondDelay = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.ucContractSell_61.Size = new System.Drawing.Size(784, 381);
-            this.ucContractSell_61.TabIndex = 6;
-            // 
             // frmContractMain_Sell
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -343,5 +358,6 @@ namespace Building.Contract
         private UserControls.Contract.Sell.UcContractSell_4 ucContractSell_41;
         private UserControls.Contract.Sell.UcContractSell_5 ucContractSell_51;
         private UserControls.Contract.Sell.UcContractSell_6 ucContractSell_61;
+        private UserControls.Contract.Sell.UcContractSell_7 ucContractSell_71;
     }
 }
