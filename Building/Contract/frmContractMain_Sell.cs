@@ -64,6 +64,9 @@ namespace Building.Contract
                 ucContractSell_41.DischargeDate = cls.DischargeDate;
 
                 ucContractSell_51.AmountOfRent = cls.AmountOfRent;
+
+                ucContractSell_61.FirstDelay = cls.FirstSideDelay;
+                ucContractSell_61.SecondDelay = cls.SecondSideDelay;
             }
             catch (Exception ex)
             {

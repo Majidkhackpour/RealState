@@ -705,6 +705,12 @@
     <Compile Include="UserControls\Contract\Sell\UcContractSell_5.Designer.cs">
       <DependentUpon>UcContractSell_5.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Contract\Sell\UcContractSell_6.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Contract\Sell\UcContractSell_6.Designer.cs">
+      <DependentUpon>UcContractSell_6.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Objects\UcBuildingCondition.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1194,6 +1200,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Contract\Sell\UcContractSell_5.resx">
       <DependentUpon>UcContractSell_5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Contract\Sell\UcContractSell_6.resx">
+      <DependentUpon>UcContractSell_6.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Objects\UcBuildingCondition.resx">
       <DependentUpon>UcBuildingCondition.cs</DependentUpon>
