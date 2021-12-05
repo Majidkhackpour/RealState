@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsSerivces;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Services;
@@ -14,7 +15,7 @@ namespace Building.Contract
         {
             try
             {
-                ucContractHeader1.Title = "مبایعه نامه";
+                ucContractHeader1.Title = "مـبــایـعـه نــامـه";
                 ucContractHeader1.ContractCode = cls.Code;
                 ucContractHeader1.CodeInArchive = cls.CodeInArchive;
                 ucContractHeader1.RealStateCode = cls.RealStateCode;
@@ -77,14 +78,83 @@ namespace Building.Contract
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private async Task GetDataAsync()
+        {
+            try
+            {
+                if (cls.Guid == Guid.Empty)
+                {
+                    cls.Guid = Guid.NewGuid();
+                    cls.SanadNumber = await SanadBussines.NextNumberAsync();
+                }
+
+                cls.Code = ucContractHeader1.ContractCode;
+                cls.CodeInArchive = ucContractHeader1.CodeInArchive;
+                cls.RealStateCode = ucContractHeader1.RealStateCode;
+                cls.HologramCode = ucContractHeader1.HologramCode;
+                cls.DateM = ucContractHeader1.ContractDate;
+
+                cls.FirstSideGuid = ucFSide.Guid;
+                cls.SecondSideGuid = ucSecondSide.Guid;
+
+                cls.BuildingRegistrationNo = uc2.RegistryNo;
+                cls.BuildingRegistrationNoSub = uc2.RegistryNoSub;
+                cls.BuildingRegistrationNoOrigin = uc2.RegistryNoOrigin;
+                cls.ParkingNo = uc2.ParkingNo;
+                cls.StoreNo = uc2.StoreNo;
+                cls.StoreMasahat = uc2.StoreMasahat;
+                cls.SanadSerial = uc2.SanadSerial;
+                cls.Page = uc2.Page;
+                cls.Office = uc2.Office;
+                cls.BuildingNumber = uc2.BuildingNumber;
+
+                cls.TotalPrice = uc3.Price;
+                cls.MinorPrice = uc3.Naqd;
+                cls.BankName = uc3.BankName1;
+                cls.BankNameEjare = uc3.BankName2;
+                cls.CheckNo = uc3.CheckNo1;
+                cls.CheckNoTo = uc3.CheckNo2;
+                cls.SarResid = uc3.Sarresid1;
+                cls.SarResidTo = uc3.Sarresid2;
+                cls.Shobe = uc3.Shobe1;
+                cls.ShobeEjare = uc3.Shobe2;
+                cls.CheckPrice1 = uc3.CheckPrice1;
+                cls.CheckPrice2 = uc3.CheckPrice2;
+
+                cls.SetDocDate = ucContractSell_41.SetDocDate;
+                cls.SetDocNo = ucContractSell_41.SetDocNo;
+                cls.SetDocPlace = ucContractSell_41.SetDocPlace;
+                cls.DischargeDate = ucContractSell_41.DischargeDate ?? DateTime.Now.AddYears(1);
+
+                cls.AmountOfRent = ucContractSell_51.AmountOfRent;
+
+                cls.FirstSideDelay = ucContractSell_61.FirstDelay;
+                cls.SecondSideDelay = ucContractSell_61.SecondDelay;
+
+                cls.Description = ucContractDescription1.Description;
+                cls.Witness1 = ucContractDescription1.Witness1;
+                cls.Witness2 = ucContractDescription1.Witness2;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
 
         public frmContractMain_Sell(ContractBussines _cls)
         {
-            InitializeComponent();
-            cls = _cls;
-            uc2.OnBuildingSelect += Uc2OnOnBuildingSelect;
-            ucContractHeader1.OnDateChanged += UcContractHeader1_OnDateChanged;
-            ucContractSell_41.OnDischargeChanged += UcContractSell_41_OnDischargeChanged;    
+            try
+            {
+                InitializeComponent();
+                cls = _cls;
+                uc2.OnBuildingSelect += Uc2OnOnBuildingSelect;
+                ucContractHeader1.OnDateChanged += UcContractHeader1_OnDateChanged;
+                ucContractSell_41.OnDischargeChanged += UcContractSell_41_OnDischargeChanged;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
         private void UcContractSell_41_OnDischargeChanged(string date) => ucContractSell_51.DischargeDateSh = date;
         private void UcContractHeader1_OnDateChanged(string date) => ucContractSell_41.ContractDateSh = date;
@@ -108,15 +178,43 @@ namespace Building.Contract
             {
                 switch (e.KeyCode)
                 {
-                    case Keys.Escape:
-                        DialogResult = DialogResult.Cancel;
-                        Close();
-                        break;
+                    case Keys.Escape: btnCancel.PerformClick(); break;
+                    case Keys.F5: btnFinish.PerformClick(); break;
                 }
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
+        private async void btnFinish_Click(object sender, EventArgs e)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                btnFinish.Enabled = false;
+                await GetDataAsync();
+                res.AddReturnedValue(await cls.SaveAsync());
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                btnFinish.Enabled = true;
+                if (res.HasError) this.ShowError(res);
+                else
+                {
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
             }
         }
     }

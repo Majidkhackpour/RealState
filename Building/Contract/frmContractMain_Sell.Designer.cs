@@ -31,6 +31,7 @@ namespace Building.Contract
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmContractMain_Sell));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ucContractDescription1 = new Building.UserControls.Contract.Public.UcContractDescription();
             this.ucContractSell_71 = new Building.UserControls.Contract.Sell.UcContractSell_7();
             this.ucContractSell_61 = new Building.UserControls.Contract.Sell.UcContractSell_6();
             this.ucContractSell_51 = new Building.UserControls.Contract.Sell.UcContractSell_5();
@@ -42,7 +43,8 @@ namespace Building.Contract
             this.ucSecondSide = new Peoples.UcPeopleContract();
             this.ucContractHeader1 = new Building.UserControls.Contract.Public.UcContractHeader();
             this.ucContractSell_31 = new Building.UserControls.Contract.Sell.UcContractSell_3();
-            this.ucContractDescription1 = new Building.UserControls.Contract.Public.UcContractDescription();
+            this.btnCancel = new DevComponents.DotNetBar.ButtonX();
+            this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -69,6 +71,22 @@ namespace Building.Contract
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(816, 529);
             this.panel1.TabIndex = 3;
+            // 
+            // ucContractDescription1
+            // 
+            this.ucContractDescription1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucContractDescription1.BackColor = System.Drawing.Color.Transparent;
+            this.ucContractDescription1.Description = "";
+            this.ucContractDescription1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucContractDescription1.Location = new System.Drawing.Point(11, 2106);
+            this.ucContractDescription1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucContractDescription1.Name = "ucContractDescription1";
+            this.ucContractDescription1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucContractDescription1.Size = new System.Drawing.Size(784, 199);
+            this.ucContractDescription1.TabIndex = 8;
+            this.ucContractDescription1.Witness1 = "";
+            this.ucContractDescription1.Witness2 = "";
             // 
             // ucContractSell_71
             // 
@@ -320,27 +338,52 @@ namespace Building.Contract
             this.ucContractSell_31.Size = new System.Drawing.Size(766, 276);
             this.ucContractSell_31.TabIndex = 3;
             // 
-            // ucContractDescription1
+            // btnCancel
             // 
-            this.ucContractDescription1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ucContractDescription1.BackColor = System.Drawing.Color.Transparent;
-            this.ucContractDescription1.Description = "";
-            this.ucContractDescription1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucContractDescription1.Location = new System.Drawing.Point(11, 2106);
-            this.ucContractDescription1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ucContractDescription1.Name = "ucContractDescription1";
-            this.ucContractDescription1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucContractDescription1.Size = new System.Drawing.Size(784, 199);
-            this.ucContractDescription1.TabIndex = 8;
-            this.ucContractDescription1.Witness1 = "";
-            this.ucContractDescription1.Witness2 = "";
+            this.btnCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCancel.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Image = global::Building.Properties.Resources.tab_close_;
+            this.btnCancel.Location = new System.Drawing.Point(31, 561);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnCancel.Size = new System.Drawing.Size(125, 31);
+            this.btnCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnCancel.TabIndex = 55803;
+            this.btnCancel.Text = "انصراف (Esc)";
+            this.btnCancel.TextColor = System.Drawing.Color.Black;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnFinish
+            // 
+            this.btnFinish.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnFinish.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFinish.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnFinish.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFinish.Image = global::Building.Properties.Resources.tab_checkbox__;
+            this.btnFinish.Location = new System.Drawing.Point(679, 561);
+            this.btnFinish.Name = "btnFinish";
+            this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnFinish.Size = new System.Drawing.Size(125, 31);
+            this.btnFinish.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnFinish.TabIndex = 55802;
+            this.btnFinish.Text = "تایید (F5)";
+            this.btnFinish.TextColor = System.Drawing.Color.Black;
+            this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
             // frmContractMain_Sell
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(821, 600);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnFinish);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -378,5 +421,7 @@ namespace Building.Contract
         private UserControls.Contract.Sell.UcContractSell_6 ucContractSell_61;
         private UserControls.Contract.Sell.UcContractSell_7 ucContractSell_71;
         private UserControls.Contract.Public.UcContractDescription ucContractDescription1;
+        private DevComponents.DotNetBar.ButtonX btnCancel;
+        private DevComponents.DotNetBar.ButtonX btnFinish;
     }
 }

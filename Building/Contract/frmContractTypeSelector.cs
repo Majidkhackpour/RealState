@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Building.Buildings.Selector;
-using EntityCache.Bussines;
+﻿using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Services;
+using System;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Building.Contract
 {
@@ -32,6 +30,7 @@ namespace Building.Contract
             try
             {
                 SetIsSelect();
+                await Task.Delay(100);
                 var frm = new frmContractMain_Sell(new ContractBussines());
                 DialogResult = frm.ShowDialog(this);
                 Close();
