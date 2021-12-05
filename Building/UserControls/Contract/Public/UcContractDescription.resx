@@ -117,7 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label1.Text" xml:space="preserve">
-    <value>7-4 متعاملین باید به این نکته توجه داشته باشند که مشاور املاک، ملزم به وارد کردن شماره تلفن همراه صحیح متعاملین است، لذا در صورتیکه مشاور املاک تلفن همراه صحیح طرف قراداد را وارد نکرده است، مرتکب تخلف صنفی شده است، زیرا تمام اطلاعات مربوط به قرارداد و تغییرات احتمالی آتی آن از طریق شماره تلفن همراه وارد شده، اطلاع رسانی خواهد شد.</value>
-  </data>
 </root>

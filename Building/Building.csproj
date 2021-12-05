@@ -669,6 +669,12 @@
     <Compile Include="UserControls\Contract\Public\UcContractCheck.Designer.cs">
       <DependentUpon>UcContractCheck.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Contract\Public\UcContractDescription.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Contract\Public\UcContractDescription.Designer.cs">
+      <DependentUpon>UcContractDescription.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Contract\Public\UcContractHeader.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1188,6 +1194,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Contract\Public\UcContractCheck.resx">
       <DependentUpon>UcContractCheck.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Contract\Public\UcContractDescription.resx">
+      <DependentUpon>UcContractDescription.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Contract\Public\UcContractHeader.resx">
       <DependentUpon>UcContractHeader.cs</DependentUpon>

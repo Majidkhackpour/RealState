@@ -42,6 +42,7 @@ namespace Building.Contract
             this.ucSecondSide = new Peoples.UcPeopleContract();
             this.ucContractHeader1 = new Building.UserControls.Contract.Public.UcContractHeader();
             this.ucContractSell_31 = new Building.UserControls.Contract.Sell.UcContractSell_3();
+            this.ucContractDescription1 = new Building.UserControls.Contract.Public.UcContractDescription();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -55,6 +56,7 @@ namespace Building.Contract
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.ucContractDescription1);
             this.panel1.Controls.Add(this.ucContractSell_71);
             this.panel1.Controls.Add(this.ucContractSell_61);
             this.panel1.Controls.Add(this.ucContractSell_51);
@@ -318,6 +320,22 @@ namespace Building.Contract
             this.ucContractSell_31.Size = new System.Drawing.Size(766, 276);
             this.ucContractSell_31.TabIndex = 3;
             // 
+            // ucContractDescription1
+            // 
+            this.ucContractDescription1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucContractDescription1.BackColor = System.Drawing.Color.Transparent;
+            this.ucContractDescription1.Description = "";
+            this.ucContractDescription1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucContractDescription1.Location = new System.Drawing.Point(11, 2106);
+            this.ucContractDescription1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucContractDescription1.Name = "ucContractDescription1";
+            this.ucContractDescription1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucContractDescription1.Size = new System.Drawing.Size(784, 199);
+            this.ucContractDescription1.TabIndex = 8;
+            this.ucContractDescription1.Witness1 = "";
+            this.ucContractDescription1.Witness2 = "";
+            // 
             // frmContractMain_Sell
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -359,5 +377,6 @@ namespace Building.Contract
         private UserControls.Contract.Sell.UcContractSell_5 ucContractSell_51;
         private UserControls.Contract.Sell.UcContractSell_6 ucContractSell_61;
         private UserControls.Contract.Sell.UcContractSell_7 ucContractSell_71;
+        private UserControls.Contract.Public.UcContractDescription ucContractDescription1;
     }
 }

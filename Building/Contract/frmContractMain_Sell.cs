@@ -67,6 +67,10 @@ namespace Building.Contract
 
                 ucContractSell_61.FirstDelay = cls.FirstSideDelay;
                 ucContractSell_61.SecondDelay = cls.SecondSideDelay;
+
+                ucContractDescription1.Description = cls.Description;
+                ucContractDescription1.Witness1 = cls.Witness1;
+                ucContractDescription1.Witness2 = cls.Witness2;
             }
             catch (Exception ex)
             {
