@@ -1048,7 +1048,7 @@ ALTER PROCEDURE [dbo].[sp_Contract_Save]
 	@Guid uniqueidentifier,
 	@code bigint,
 	@isTemp bit,
-	@term int,
+	@term int=null,
 	@fromDate datetime=null,
 	@totalPrice bigint=0,
 	@minorPrice bigint=0,
@@ -1120,7 +1120,9 @@ ALTER PROCEDURE [dbo].[sp_Contract_Save]
 	@SettlementDate datetime=null,
 	@AmountOfRent bigint=0,
 	@GulidType nvarchar(200)='',
-	@DocumentAdjust nvarchar(200)=''
+	@DocumentAdjust nvarchar(200)='',
+	@checkPrice1 bigint=0,
+	@checkPrice2 bigint=0
 AS
 BEGIN	
 	 update Buildings
@@ -1202,6 +1204,8 @@ BEGIN
 		   ,[AmountOfRent] = @AmountOfRent
 		   ,[GulidType] = @GulidType
 		   ,[DocumentAdjust] = @DocumentAdjust
+		   ,[CheckPrice1] = @checkPrice1
+		   ,[CheckPrice2] = @checkPrice2
 	 WHERE  [Guid] = @Guid
 	 if @@ROWCOUNT = 0
 	 begin
@@ -1283,7 +1287,9 @@ BEGIN
            ,[SettlementDate]
            ,[AmountOfRent]
            ,[GulidType]
-           ,[DocumentAdjust])
+           ,[DocumentAdjust]
+		   ,[CheckPrice1]
+		   ,[CheckPrice2])
      VALUES
            (@Guid
            ,GETDATE()
@@ -1362,7 +1368,9 @@ BEGIN
            ,@SettlementDate
            ,@AmountOfRent
            ,@GulidType
-           ,@DocumentAdjust)
+           ,@DocumentAdjust
+		   ,@checkPrice1
+		   ,@checkPrice2)
 	 end
 END
 GO

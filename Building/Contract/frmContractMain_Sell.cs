@@ -43,8 +43,8 @@ namespace Building.Contract
                 uc2.Barq = bu?.Barq ?? EnKhadamati.None;
                 uc2.Gas = bu?.Gas ?? EnKhadamati.None;
                 uc2.Address = bu?.Address;
-                uc2.PhoneCount = bu?.PhoneLineCount ?? 0;
-                uc2.PhoneNumber = bu?.PhoneNumber;
+                uc2.PhoneCount = cls.PhoneLineCount;
+                uc2.PhoneNumber = cls.BuildingPhoneNumber;
 
                 uc3.Price = cls.TotalPrice;
                 uc3.Naqd = cls.MinorPrice;
@@ -86,8 +86,12 @@ namespace Building.Contract
                 {
                     cls.Guid = Guid.NewGuid();
                     cls.SanadNumber = await SanadBussines.NextNumberAsync();
+                    cls.UserGuid = UserBussines.CurrentUser.Guid;
+                    cls.Modified = DateTime.Now;
+                    cls.IsTemp = false;
                 }
 
+                cls.Type = EnRequestType.Forush;
                 cls.Code = ucContractHeader1.ContractCode;
                 cls.CodeInArchive = ucContractHeader1.CodeInArchive;
                 cls.RealStateCode = ucContractHeader1.RealStateCode;
@@ -107,6 +111,8 @@ namespace Building.Contract
                 cls.Page = uc2.Page;
                 cls.Office = uc2.Office;
                 cls.BuildingNumber = uc2.BuildingNumber;
+                cls.PhoneLineCount = uc2.PhoneCount;
+                cls.BuildingPhoneNumber = uc2.PhoneNumber;
 
                 cls.TotalPrice = uc3.Price;
                 cls.MinorPrice = uc3.Naqd;
@@ -141,21 +147,39 @@ namespace Building.Contract
             }
         }
 
-        public frmContractMain_Sell(ContractBussines _cls)
+        public frmContractMain_Sell(ContractBussines _cls, bool isShowMode = false)
         {
             try
             {
                 InitializeComponent();
                 cls = _cls;
-                uc2.OnBuildingSelect += Uc2OnOnBuildingSelect;
-                ucContractHeader1.OnDateChanged += UcContractHeader1_OnDateChanged;
-                ucContractSell_41.OnDischargeChanged += UcContractSell_41_OnDischargeChanged;
+                if (isShowMode)
+                {
+                    ucContractHeader1.Enabled = false;
+                    ucFSide.Enabled = false;
+                    ucSecondSide.Enabled = false;
+                    uc2.Enabled = false;
+                    uc3.Enabled = false;
+                    ucContractSell_41.Enabled = false;
+                    ucContractSell_51.Enabled = false;
+                    ucContractSell_61.Enabled = false;
+                    ucContractDescription1.Enabled = false;
+                    ucContractSell_71.Enabled = false;
+                    btnFinish.Enabled = false;
+                }
+                else
+                {
+                    uc2.OnBuildingSelect += Uc2OnOnBuildingSelect;
+                    ucContractHeader1.OnDateChanged += UcContractHeader1_OnDateChanged;
+                    ucContractSell_41.OnDischargeChanged += UcContractSell_41_OnDischargeChanged;
+                }
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
         private void UcContractSell_41_OnDischargeChanged(string date) => ucContractSell_51.DischargeDateSh = date;
         private void UcContractHeader1_OnDateChanged(string date) => ucContractSell_41.ContractDateSh = date;
         private void Uc2OnOnBuildingSelect(Guid buGuid)

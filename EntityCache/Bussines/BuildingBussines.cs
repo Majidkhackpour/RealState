@@ -116,8 +116,6 @@ namespace EntityCache.Bussines
         public int TreeCount { get; set; }
         public EnConstructionStage? ConstructionStage { get; set; }
         public EnBuildingParent? Parent { get; set; }
-        public int PhoneLineCount { get; set; }
-        public string PhoneNumber { get; set; }
         public bool IsModified { get; set; } = false;
         public List<BuildingRelatedOptionsBussines> OptionList { get; set; }
         public List<BuildingGalleryBussines> GalleryList { get; set; }

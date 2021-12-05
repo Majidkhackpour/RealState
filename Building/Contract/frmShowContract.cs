@@ -113,10 +113,6 @@ namespace Building.Contract
         {
             try
             {
-                //var frm = new frmContractMain();
-                //if (frm.ShowDialog(this) == DialogResult.OK)
-                //    await LoadDataAsync(txtSearch.Text);
-
                 var frm = new frmContractTypeSelector();
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(txtSearch.Text);
@@ -328,15 +324,24 @@ namespace Building.Contract
                 else await LoadDataAsync(txtSearch.Text);
             }
         }
-        private void mnuView_Click(object sender, EventArgs e)
+        private async void mnuView_Click(object sender, EventArgs e)
         {
             try
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmContractMain(guid, true);
-                frm.ShowDialog(this);
+                var con = await ContractBussines.GetAsync(guid);
+                if (con == null) return;
+                Form frm_ = null;
+                switch (con.Type)
+                {
+                    case EnRequestType.Forush:
+                        frm_ = new frmContractMain_Sell(con, true);
+                        break;
+                }
+
+                frm_?.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -353,12 +358,27 @@ namespace Building.Contract
                 if (con == null) return;
                 if (!con.IsTemp)
                 {
-                    frmNotification.PublicInfo.ShowMessage(
-                        "شما مجاز به ویرایش داده نهایی شده نمی باشید");
+                    this.ShowWarning("قراداد جاری نهایی و بسته شده. در این حالت شما فقط مجاز به مشاهده آن می باشید");
+                    Form frm_ = null;
+                    switch (con.Type)
+                    {
+                        case EnRequestType.Forush:
+                            frm_ = new frmContractMain_Sell(con, true);
+                            break;
+                    }
+
+                    frm_?.ShowDialog(this);
                     return;
                 }
-                var frm = new frmContractMain(guid, false);
-                if (frm.ShowDialog(this) == DialogResult.OK)
+
+                Form frm = null;
+                switch (con.Type)
+                {
+                    case EnRequestType.Forush:
+                        frm = new frmContractMain_Sell(con);
+                        break;
+                }
+                if (frm?.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(txtSearch.Text);
             }
             catch (Exception ex)
