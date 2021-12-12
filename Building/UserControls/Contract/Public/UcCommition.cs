@@ -26,6 +26,18 @@ namespace Building.UserControls.Contract.Public
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void SetSallary()
+        {
+            try
+            {
+                lblSallary.Text = (TotalPrice - Discount).ToString("N0") + " ریال";
+                lblTotal.Text = ((TotalPrice + Tax + Avarez) - Discount).ToString("N0") + " ریال";
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public UcCommition()
         {
             InitializeComponent();
@@ -35,10 +47,12 @@ namespace Building.UserControls.Contract.Public
         {
             try
             {
+                SetSallary();
                 var currentControl = ActiveControl?.Name;
                 if (string.IsNullOrEmpty(currentControl)) return;
                 if (currentControl != txtDiscount.Name) return;
-                txtDiscountPercent.Text = Discount > 0 ? (Math.Round(TotalPrice / Discount), 3).ToString() : "";
+                txtDiscountPercent.Text = Discount > 0 ? (Math.Round(Discount / TotalPrice, 3) * 100).ToString() : "";
+                txtDiscountPercent.Text = txtDiscountPercent.Text.Replace(".", "/");
             }
             catch (Exception ex)
             {
@@ -51,7 +65,10 @@ namespace Building.UserControls.Contract.Public
             {
                 if (!txtDiscountPercent.Focused) return;
                 if (txtDiscountPercent.Text.ParseToDecimal() != 0)
-                    Discount = TotalPrice * (txtDiscountPercent.Text.ParseToDecimal() / 100);
+                {
+                    var d = txtDiscountPercent.Text.ParseToDecimal() / 100;
+                    Discount = TotalPrice * d;
+                }
                 else Discount = 0;
             }
             catch (Exception ex)
@@ -63,10 +80,12 @@ namespace Building.UserControls.Contract.Public
         {
             try
             {
+                SetSallary();
                 var currentControl = ActiveControl?.Name;
                 if (string.IsNullOrEmpty(currentControl)) return;
                 if (currentControl != txtTax.Name) return;
-                txtTaxPercent.Text = Tax > 0 ? (Math.Round(TotalPrice / Tax), 3).ToString() : "";
+                txtTaxPercent.Text = Tax > 0 ? (Math.Round(Tax / TotalPrice, 3) * 100).ToString() : "";
+                txtTaxPercent.Text = txtTaxPercent.Text.Replace(".", "/");
             }
             catch (Exception ex)
             {
@@ -91,10 +110,12 @@ namespace Building.UserControls.Contract.Public
         {
             try
             {
+                SetSallary();
                 var currentControl = ActiveControl?.Name;
                 if (string.IsNullOrEmpty(currentControl)) return;
                 if (currentControl != txtAvarez.Name) return;
-                txtAvarezPercent.Text = Avarez > 0 ? (Math.Round(TotalPrice / Avarez), 3).ToString() : "";
+                txtAvarezPercent.Text = Avarez > 0 ? (Math.Round(Avarez / TotalPrice, 3) * 100).ToString() : "";
+                txtAvarezPercent.Text = txtAvarezPercent.Text.Replace(".", "/");
             }
             catch (Exception ex)
             {
@@ -115,5 +136,6 @@ namespace Building.UserControls.Contract.Public
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void txtTotalPrice_OnTextChanged() => SetSallary();
     }
 }

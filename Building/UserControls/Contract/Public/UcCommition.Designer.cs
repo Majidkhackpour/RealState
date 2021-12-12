@@ -116,7 +116,7 @@ namespace Building.UserControls.Contract.Public
             // 
             this.txtDiscountPercent.Location = new System.Drawing.Point(292, 87);
             this.txtDiscountPercent.Name = "txtDiscountPercent";
-            this.txtDiscountPercent.Size = new System.Drawing.Size(33, 27);
+            this.txtDiscountPercent.Size = new System.Drawing.Size(63, 27);
             this.txtDiscountPercent.TabIndex = 2;
             this.txtDiscountPercent.TextChanged += new System.EventHandler(this.txtDiscountPercent_TextChanged);
             // 
@@ -124,7 +124,7 @@ namespace Building.UserControls.Contract.Public
             // 
             this.txtTaxPercent.Location = new System.Drawing.Point(292, 165);
             this.txtTaxPercent.Name = "txtTaxPercent";
-            this.txtTaxPercent.Size = new System.Drawing.Size(33, 27);
+            this.txtTaxPercent.Size = new System.Drawing.Size(63, 27);
             this.txtTaxPercent.TabIndex = 4;
             this.txtTaxPercent.TextChanged += new System.EventHandler(this.txtTaxPercent_TextChanged);
             // 
@@ -132,7 +132,7 @@ namespace Building.UserControls.Contract.Public
             // 
             this.txtAvarezPercent.Location = new System.Drawing.Point(292, 202);
             this.txtAvarezPercent.Name = "txtAvarezPercent";
-            this.txtAvarezPercent.Size = new System.Drawing.Size(33, 27);
+            this.txtAvarezPercent.Size = new System.Drawing.Size(63, 27);
             this.txtAvarezPercent.TabIndex = 6;
             this.txtAvarezPercent.TextChanged += new System.EventHandler(this.txtAvarezPercent_TextChanged);
             // 
@@ -218,6 +218,7 @@ namespace Building.UserControls.Contract.Public
             0,
             0,
             0});
+            this.txtTotalPrice.OnTextChanged += new System.Action(this.txtTotalPrice_OnTextChanged);
             // 
             // cmbBabat
             // 
@@ -306,11 +307,11 @@ namespace Building.UserControls.Contract.Public
             this.label49.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label49.AutoSize = true;
             this.label49.BackColor = System.Drawing.Color.Transparent;
-            this.label49.Location = new System.Drawing.Point(327, 205);
+            this.label49.Location = new System.Drawing.Point(361, 205);
             this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(83, 20);
+            this.label49.Size = new System.Drawing.Size(49, 20);
             this.label49.TabIndex = 59;
-            this.label49.Text = "عوارض قانونی:";
+            this.label49.Text = "عوارض:";
             // 
             // label17
             // 
