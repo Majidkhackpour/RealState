@@ -27,7 +27,7 @@ namespace Accounting.Hesab
                 _token = new CancellationTokenSource();
                 var list = await TafsilBussines.GetAllAsync(search, _token.Token);
                 Invoke(new MethodInvoker(() => TafsilBindingSource.DataSource =
-                    list.OrderBy(q => q.Code).Where(q => q.Status == _st).ToSortableBindingList()));
+                    list?.OrderBy(q => q.Code)?.Where(q => q.Status == _st)?.ToSortableBindingList()));
             }
             catch (Exception ex)
             {
