@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using Services;
+using Services.Interfaces.Building;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Services;
-using Services.Interfaces.Building;
 
 namespace Persistence.Entities
 {
@@ -38,6 +37,7 @@ namespace Persistence.Entities
         public virtual ICollection<Contract> fSideContract { get; set; }
         public virtual ICollection<Contract> sSideContract { get; set; }
         public virtual ICollection<Contract> BazaryabContract { get; set; }
+        public virtual ICollection<Contract> Bazaryab2Contract { get; set; }
         public virtual ICollection<BuildingRequest> BuildingRequest { get; set; }
         public virtual ICollection<CheckPage> CheckPage { get; set; }
         public virtual ICollection<PeopleBankAccount> PeopleBankAccount { get; set; }

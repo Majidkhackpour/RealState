@@ -31,6 +31,11 @@ namespace Building.Contract
                     ucTotalCommition1.SecondAvarez = _con.SecondAvarez;
                 }
                 else CalculateCommition();
+
+                UcV1.BazatyabGuid = _con.BazaryabGuid;
+                UcV2.BazatyabGuid = _con.Bazaryab2Guid;
+                UcV1.Price = _con.BazaryabPrice;
+                UcV2.Price = _con.Bazaryab2Price;
             }
             catch (Exception ex)
             {

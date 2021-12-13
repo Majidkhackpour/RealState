@@ -51,6 +51,8 @@ namespace WebHesabBussines
         public EnRequestType Type { get; set; }
         public Guid? BazaryabGuid { get; set; }
         public decimal BazaryabPrice { get; set; }
+        public Guid? Bazaryab2Guid { get; set; }
+        public decimal Bazaryab2Price { get; set; }
         public long SanadNumber { get; set; }
         public EnContractBabat fBabat { get; set; }
         public EnContractBabat sBabat { get; set; }

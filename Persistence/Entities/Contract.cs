@@ -54,6 +54,9 @@ namespace Persistence.Entities
         [ForeignKey("BazaryabTafsil"), Column(Order = 3)]
         public Guid? BazaryabGuid { get; set; }
         public decimal BazaryabPrice { get; set; }
+        [ForeignKey("Bazaryab2Tafsil"), Column(Order = 4)]
+        public Guid? Bazaryab2Guid { get; set; }
+        public decimal Bazaryab2Price { get; set; }
         public long SanadNumber { get; set; }
         public EnContractBabat fBabat { get; set; }
         public EnContractBabat sBabat { get; set; }
@@ -102,6 +105,8 @@ namespace Persistence.Entities
         public virtual Tafsil sTafsil { get; set; }
         [InverseProperty("BazaryabContract")]
         public virtual Tafsil BazaryabTafsil { get; set; }
+        [InverseProperty("Bazaryab2Contract")]
+        public virtual Tafsil Bazaryab2Tafsil { get; set; }
         public virtual Building Building { get; set; }
     }
 }

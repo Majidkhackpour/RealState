@@ -32,6 +32,7 @@ namespace EntityCache.Bussines
 
         
         public static async Task<List<AdvisorBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Advisor.GetAllAsync(Cache.ConnectionString, token);
+        public static List<AdvisorBussines> GetAll() => AsyncContext.Run(() => GetAllAsync(default));
         public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();

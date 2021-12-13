@@ -63,6 +63,8 @@ namespace EntityCache.Bussines
         public EnRequestType Type { get; set; }
         public Guid? BazaryabGuid { get; set; }
         public decimal BazaryabPrice { get; set; }
+        public Guid? Bazaryab2Guid { get; set; }
+        public decimal Bazaryab2Price { get; set; }
         public long SanadNumber { get; set; }
         public EnContractBabat fBabat { get; set; }
         public EnContractBabat sBabat { get; set; }
@@ -448,6 +450,21 @@ namespace EntityCache.Bussines
                         Debit = 0,
                         MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein10304,
                         TafsilGuid = BazaryabGuid.Value,
+                        Description = $"پورسانت عقدقرارداد({Code}) فی مابین {FirstSideName} و {SecondSideName} منعقد شده در تاریخ {DateSh}",
+                        Guid = Guid.NewGuid(),
+                        Modified = DateTime.Now,
+                        MasterGuid = sanad.Guid
+                    });
+                }
+                if (Bazaryab2Price > 0 && Bazaryab2Guid != null && Bazaryab2Guid != Guid.Empty)
+                {
+                    //طرف حساب بستانکار مشاور
+                    sanad.AddToListSanad(new SanadDetailBussines()
+                    {
+                        Credit = Bazaryab2Price,
+                        Debit = 0,
+                        MoeinGuid = ParentDefaults.MoeinCoding.CLSMoein10304,
+                        TafsilGuid = Bazaryab2Guid.Value,
                         Description = $"پورسانت عقدقرارداد({Code}) فی مابین {FirstSideName} و {SecondSideName} منعقد شده در تاریخ {DateSh}",
                         Guid = Guid.NewGuid(),
                         Modified = DateTime.Now,

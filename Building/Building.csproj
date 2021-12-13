@@ -693,6 +693,12 @@
     <Compile Include="UserControls\Contract\Public\UcContractHeader.Designer.cs">
       <DependentUpon>UcContractHeader.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Contract\Public\UcContractVisitor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Contract\Public\UcContractVisitor.Designer.cs">
+      <DependentUpon>UcContractVisitor.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Contract\Public\UcSerial.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1224,6 +1230,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Contract\Public\UcContractHeader.resx">
       <DependentUpon>UcContractHeader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Contract\Public\UcContractVisitor.resx">
+      <DependentUpon>UcContractVisitor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Contract\Public\UcSerial.resx">
       <DependentUpon>UcSerial.cs</DependentUpon>

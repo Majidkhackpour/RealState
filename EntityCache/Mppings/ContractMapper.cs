@@ -92,7 +92,9 @@ namespace EntityCache.Mppings
                 Witness1 = cls.Witness1,
                 Witness2 = cls.Witness2,
                 CheckPrice1 = cls.CheckPrice1,
-                CheckPrice2 = cls.CheckPrice2
+                CheckPrice2 = cls.CheckPrice2,
+                Bazaryab2Guid = cls.Bazaryab2Guid,
+                Bazaryab2Price = cls.Bazaryab2Price
             };
         }
         public List<WebContract> MapList(List<ContractBussines> cls)

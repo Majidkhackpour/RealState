@@ -172,6 +172,8 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@DocumentAdjust", item.DocumentAdjust);
                 cmd.Parameters.AddWithValue("@checkPrice1", item.CheckPrice1);
                 cmd.Parameters.AddWithValue("@checkPrice2", item.CheckPrice2);
+                cmd.Parameters.AddWithValue("@V2Guid", item.Bazaryab2Guid);
+                cmd.Parameters.AddWithValue("@V2Price", item.Bazaryab2Price);
 
                 await cmd.ExecuteNonQueryAsync();
             }
@@ -451,6 +453,8 @@ namespace EntityCache.SqlServerPersistence
                 if (dr["DocumentAdjust"] != DBNull.Value) res.DocumentAdjust = dr["DocumentAdjust"].ToString();
                 if (dr["CheckPrice1"] != DBNull.Value) res.CheckPrice1 = (decimal)dr["CheckPrice1"];
                 if (dr["CheckPrice2"] != DBNull.Value) res.CheckPrice2 = (decimal)dr["CheckPrice2"];
+                if (dr["Bazaryab2Guid"] != DBNull.Value) res.Bazaryab2Guid = (Guid?) dr["Bazaryab2Guid"];
+                if (dr["Bazaryab2Price"] != DBNull.Value) res.Bazaryab2Price = (decimal)dr["Bazaryab2Price"];
             }
             catch (Exception ex)
             {
