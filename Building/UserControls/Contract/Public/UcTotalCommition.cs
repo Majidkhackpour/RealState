@@ -1,10 +1,12 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using Services;
 
 namespace Building.UserControls.Contract.Public
 {
     public partial class UcTotalCommition : UserControl
     {
+        public event Action<decimal> OnSumChanged;
         public string FirstTitle { set => UcCom1.Title = value; }
         public decimal FirstTotalPrice { get => UcCom1.TotalPrice; set => UcCom1.TotalPrice = value; }
         public decimal FirstDiscount { get => UcCom1.Discount; set => UcCom1.Discount = value; }
@@ -20,6 +22,22 @@ namespace Building.UserControls.Contract.Public
         public UcTotalCommition()
         {
             InitializeComponent();
+            UcCom1.OnSumChanged += UcCom1_OnSumChanged;
+            UcCom2.OnSumChanged += UcCom2_OnSumChanged;
+        }
+        private void UcCom2_OnSumChanged(decimal sum) => RaiseSumChange(sum + UcCom1.TotalSum);
+        private void UcCom1_OnSumChanged(decimal sum) => RaiseSumChange(sum + UcCom2.TotalSum);
+        private void RaiseSumChange(decimal sum)
+        {
+            try
+            {
+                var handler = OnSumChanged;
+                if (handler != null) OnSumChanged?.Invoke(sum);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
     }
 }

@@ -248,7 +248,7 @@ namespace Building.Contract
             {
                 await GetDataAsync();
                 var frm = new frmCommition(cls);
-                if (frm.ShowDialog(this) != DialogResult.OK) return;
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {

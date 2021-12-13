@@ -55,6 +55,7 @@ namespace Building.Contract
             this.btnFinish.TabIndex = 55803;
             this.btnFinish.Text = "تایید (F5)";
             this.btnFinish.TextColor = System.Drawing.Color.Black;
+            this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
             // btnCancel
             // 
@@ -74,6 +75,7 @@ namespace Building.Contract
             this.btnCancel.TabIndex = 55804;
             this.btnCancel.Text = "انصراف (Esc)";
             this.btnCancel.TextColor = System.Drawing.Color.Black;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // UcV1
             // 

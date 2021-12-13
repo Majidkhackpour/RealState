@@ -79,6 +79,19 @@ namespace Building.Contract
         {
             InitializeComponent();
             _con = contract;
+            ucTotalCommition1.OnSumChanged += UcTotalCommition1_OnSumChanged;
+        }
+        private void UcTotalCommition1_OnSumChanged(decimal sum)
+        {
+            try
+            {
+                UcV1.TotalPrice = sum;
+                UcV2.TotalPrice = sum;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
         private void frmCommition_Load(object sender, System.EventArgs e)
         {
@@ -111,6 +124,46 @@ namespace Building.Contract
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+        }
+        private void btnFinish_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _con.FirstTotalPrice = ucTotalCommition1.FirstTotalPrice;
+                _con.fBabat = ucTotalCommition1.FirstBabat;
+                _con.FirstDiscount = ucTotalCommition1.FirstDiscount;
+                _con.FirstTax = ucTotalCommition1.FirstTax;
+                _con.FirstAvarez = ucTotalCommition1.FirstAvarez;
+
+                _con.SecondTotalPrice = ucTotalCommition1.SecondTotalPrice;
+                _con.sBabat = ucTotalCommition1.SecondBabat;
+                _con.SecondDiscount = ucTotalCommition1.SecondDiscount;
+                _con.SecondTax = ucTotalCommition1.SecondTax;
+                _con.SecondAvarez = ucTotalCommition1.SecondAvarez;
+
+                if (UcV1.BazatyabGuid != null && UcV1.BazatyabGuid != Guid.Empty)
+                {
+                    _con.BazaryabGuid = UcV1.BazatyabGuid;
+                    _con.BazaryabPrice = UcV1.Price;
+                }
+                if (UcV2.BazatyabGuid != null && UcV2.BazatyabGuid != Guid.Empty)
+                {
+                    _con.Bazaryab2Guid = UcV2.BazatyabGuid;
+                    _con.Bazaryab2Price = UcV2.Price;
+                }
+
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }

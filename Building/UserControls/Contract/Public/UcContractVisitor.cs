@@ -1,10 +1,8 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using EntityCache.Bussines;
+﻿using EntityCache.Bussines;
 using Services;
+using System;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Building.UserControls.Contract.Public
 {
@@ -21,7 +19,17 @@ namespace Building.UserControls.Contract.Public
             }
         }
         public decimal Price { get => txtBazaryabPrice.TextDecimal; set => txtBazaryabPrice.TextDecimal = value; }
-        public decimal TotalPrice { get => _totalPrice; set => _totalPrice = value; }
+        public decimal TotalPrice
+        {
+            get => _totalPrice;
+            set
+            {
+                _totalPrice = value;
+                if (txtBazaryabPrice.TextDecimal == 0) return;
+                txtPercent.Text = Price > 0 ? (Math.Round(Price / TotalPrice, 3) * 100).ToString() : "";
+                txtPercent.Text = txtPercent.Text.Replace(".", "/");
+            }
+        }
         private void LoadBazaryab()
         {
             try
@@ -52,7 +60,7 @@ namespace Building.UserControls.Contract.Public
                 var currentControl = ActiveControl?.Name;
                 if (string.IsNullOrEmpty(currentControl)) return;
                 if (currentControl != txtBazaryabPrice.Name) return;
-                txtBazaryabPrice.Text = Price > 0 ? (Math.Round(Price / TotalPrice, 3) * 100).ToString() : "";
+                txtPercent.Text = Price > 0 ? (Math.Round(Price / TotalPrice, 3) * 100).ToString() : "";
                 txtPercent.Text = txtPercent.Text.Replace(".", "/");
             }
             catch (Exception ex)

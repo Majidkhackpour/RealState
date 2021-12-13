@@ -7,12 +7,14 @@ namespace Building.UserControls.Contract.Public
 {
     public partial class UcCommition : UserControl
     {
+        public event Action<decimal> OnSumChanged;
         public string Title { set => grpPanel.Text = value; }
         public decimal TotalPrice { get => txtTotalPrice.TextDecimal; set => txtTotalPrice.TextDecimal = value; }
         public decimal Discount { get => txtDiscount.TextDecimal; set => txtDiscount.TextDecimal = value; }
         public decimal Tax { get => txtTax.TextDecimal; set => txtTax.TextDecimal = value; }
         public decimal Avarez { get => txtAvarez.TextDecimal; set => txtAvarez.TextDecimal = value; }
         public EnContractBabat Babat { get => (EnContractBabat)cmbBabat.SelectedIndex; set => cmbBabat.SelectedIndex = (int)value; }
+        public decimal TotalSum => (TotalPrice + Tax + Avarez) - Discount;
         private void FillCmbBabat()
         {
             try
@@ -31,7 +33,20 @@ namespace Building.UserControls.Contract.Public
             try
             {
                 lblSallary.Text = (TotalPrice - Discount).ToString("N0") + " ریال";
-                lblTotal.Text = ((TotalPrice + Tax + Avarez) - Discount).ToString("N0") + " ریال";
+                lblTotal.Text = TotalSum.ToString("N0") + " ریال";
+                RaiseSumChange(TotalSum);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void RaiseSumChange(decimal sum)
+        {
+            try
+            {
+                var handler = OnSumChanged;
+                if (handler != null) OnSumChanged?.Invoke(sum);
             }
             catch (Exception ex)
             {
