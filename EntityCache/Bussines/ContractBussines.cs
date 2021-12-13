@@ -486,6 +486,7 @@ namespace EntityCache.Bussines
             var res = new ReturnedSaveFuncInfo();
             try
             {
+                var bu = await BuildingBussines.GetAsync(BuildingGuid);
                 if (Code <= 0) res.AddError("کد قرارداد نمی تواند خالی باشد");
                 if (!await CheckCodeAsync(Code.ToString().Trim(), Guid)) res.AddError("کد ملک وارد شده تکراری است");
                 if (FirstSideGuid == Guid.Empty) res.AddError("لطفا طرف اول قرارداد را انتخاب نمایید");
@@ -495,6 +496,33 @@ namespace EntityCache.Bussines
                 if (MinorPrice == 0 && TotalPrice == 0) res.AddError("لطفا یکی از فیلدهای مبلغ را وارد نمایید");
                 if ((BazaryabGuid == null || BazaryabGuid == Guid.Empty) && BazaryabPrice > 0) res.AddError("لطفا بازاریاب را انتخاب نمایید");
                 if ((BazaryabGuid != null && BazaryabGuid != Guid.Empty) && BazaryabPrice <= 0) res.AddError("لطفا مبلغ پورسانت بازاریاب را مشخص نمایید");
+                if ((Bazaryab2Guid == null || Bazaryab2Guid == Guid.Empty) && Bazaryab2Price > 0) res.AddError("لطفا بازاریاب را انتخاب نمایید");
+                if ((Bazaryab2Guid != null && Bazaryab2Guid != Guid.Empty) && Bazaryab2Price <= 0) res.AddError("لطفا مبلغ پورسانت بازاریاب را مشخص نمایید");
+                if (bu != null)
+                {
+                    if (bu.OwnerGuid != FirstSideGuid)
+                        res.AddError("مالک حقیق ملک انتخاب شده با طرف حساب انتخاب شده، مغایرت دارد");
+                }
+                if (Type == EnRequestType.Forush)
+                {
+                    var s = CheckPrice1 + CheckPrice2 + MinorPrice;
+                    if (s > TotalPrice)
+                        res.AddError($"جمع مبالغ دریافتی ({s:N0}) از ثمن معامله ({TotalPrice:N0}) بیشتر می باشد");
+                    if (CheckPrice1 > 0)
+                    {
+                        if (string.IsNullOrEmpty(BankName)) res.AddError("بانک صادر کننده چک نمی تواند خالی باشد");
+                        if (string.IsNullOrEmpty(CheckNo)) res.AddError("شماره چک نمی تواند خالی باشد");
+                        if (SarResid == null) res.AddWarning($"لطفا در اسرع وقت، تاریخ سررسید چک ({CheckNo}) را وارد نمایید");
+                    }
+                    if (CheckPrice2 > 0)
+                    {
+                        if (string.IsNullOrEmpty(BankNameEjare)) res.AddError("بانک صادر کننده چک نمی تواند خالی باشد");
+                        if (string.IsNullOrEmpty(CheckNoTo)) res.AddError("شماره چک نمی تواند خالی باشد");
+                        if (SarResidTo == null) res.AddWarning($"لطفا در اسرع وقت، تاریخ سررسید چک ({CheckNoTo}) را وارد نمایید");
+                    }
+                }
+                if (PhoneLineCount > 0 && string.IsNullOrEmpty(BuildingPhoneNumber))
+                    res.AddWarning("لطفا در اسرع وقت، شماره تلفن ملک را وارد نمایید");
             }
             catch (Exception ex)
             {

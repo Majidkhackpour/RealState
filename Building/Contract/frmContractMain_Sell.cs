@@ -239,6 +239,7 @@ namespace Building.Contract
                 if (res.HasError) this.ShowError(res);
                 else
                 {
+                    if (res.HasWarning) this.ShowError(res);
                     DialogResult = DialogResult.OK;
                     Close();
                 }
