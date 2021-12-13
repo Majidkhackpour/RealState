@@ -8,6 +8,7 @@ namespace Peoples
     public partial class UcPeopleContract : UserControl
     {
         private Guid _guid;
+        public event Action<Guid> OnChanged;
         public Guid Guid
         {
             get => _guid;
@@ -17,6 +18,7 @@ namespace Peoples
                 _guid = value;
                 var pe = PeoplesBussines.Get(_guid, null);
                 if (pe == null) return;
+                RaiseChange(_guid);
                 LoadData(pe);
             }
         }
@@ -57,6 +59,18 @@ namespace Peoples
                 var frm = new frmShowPeoples(true);
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
                 Guid = frm.SelectedGuid;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void RaiseChange(Guid guid)
+        {
+            try
+            {
+                var handler = OnChanged;
+                if (handler != null) OnChanged?.Invoke(guid);
             }
             catch (Exception ex)
             {

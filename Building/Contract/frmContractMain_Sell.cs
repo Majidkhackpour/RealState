@@ -88,7 +88,7 @@ namespace Building.Contract
                     cls.SanadNumber = await SanadBussines.NextNumberAsync();
                     cls.UserGuid = UserBussines.CurrentUser.Guid;
                     cls.Modified = DateTime.Now;
-                    cls.IsTemp = false;
+                    cls.IsTemp = true;
                 }
 
                 cls.Type = EnRequestType.Forush;
@@ -172,6 +172,7 @@ namespace Building.Contract
                     uc2.OnBuildingSelect += Uc2OnOnBuildingSelect;
                     ucContractHeader1.OnDateChanged += UcContractHeader1_OnDateChanged;
                     ucContractSell_41.OnDischargeChanged += UcContractSell_41_OnDischargeChanged;
+                    ucFSide.OnChanged += UcFSide_OnChanged;
                 }
             }
             catch (Exception ex)
@@ -180,6 +181,7 @@ namespace Building.Contract
             }
         }
 
+        private void UcFSide_OnChanged(Guid guid) => uc2.OwnerGuid = guid;
         private void UcContractSell_41_OnDischargeChanged(string date) => ucContractSell_51.DischargeDateSh = date;
         private void UcContractHeader1_OnDateChanged(string date) => ucContractSell_41.ContractDateSh = date;
         private void Uc2OnOnBuildingSelect(Guid buGuid)

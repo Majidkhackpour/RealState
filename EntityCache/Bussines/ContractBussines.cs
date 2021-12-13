@@ -173,9 +173,12 @@ namespace EntityCache.Bussines
                     if (res.HasError) return res;
                 }
 
-                var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
                 var desc = $"کد قرارداد:( {Code} ) ** شماره پرونده:( {CodeInArchive} ) ** نوع قرارداد: ( {Type.GetDisplay()} )";
-                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Contracts,Guid,desc, tr));
+                var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
+                if (action == EnLogAction.Update)
+                    res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Contracts, Guid, desc, tr));
+                else
+                    res.AddReturnedValue(await UserLogBussines.SaveAsync(EnLogAction.Contract, EnLogPart.Contracts, BuildingGuid, desc, tr));
                 if (res.HasError) return res;
 
                 if (Cache.IsSendToServer)
@@ -221,7 +224,7 @@ namespace EntityCache.Bussines
                 }
 
                 var desc = $"کد قرارداد: ( {Code} ) ** شماره پرونده:( {CodeInArchive} ) ** نوع قرارداد:( {Type.GetDisplay()} )";
-                res.AddReturnedValue(await UserLogBussines.SaveAsync(EnLogAction.Delete, EnLogPart.Contracts,Guid,desc, tr));
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(EnLogAction.Delete, EnLogPart.Contracts, Guid, desc, tr));
                 if (res.HasError) return res;
 
                 //if (Cache.IsSendToServer)

@@ -32,6 +32,7 @@ namespace Building.UserControls.Contract.Sell
         public int PhoneCount { get => (int)txtPhoneCount.Value; set => txtPhoneCount.Value = value; }
         public string PhoneNumber { get => txtPhoneNumber.Text; set => txtPhoneNumber.Text = value; }
         public string Zip { get => txtZip.Text; set => txtZip.Text = value; }
+        public Guid OwnerGuid { get; set; }
         public UcContractSell_2()
         {
             InitializeComponent();
@@ -70,7 +71,7 @@ namespace Building.UserControls.Contract.Sell
         {
             try
             {
-                var frm = new frmShowBuildings(true, new BuildingFilter() { Status = true, IsSell = true });
+                var frm = new frmShowBuildings(true, new BuildingFilter() { Status = true, IsSell = true, OwnerGuid = OwnerGuid });
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
                 var bu = BuildingBussines.Get(frm.SelectedGuid);
                 if (bu == null) return;
