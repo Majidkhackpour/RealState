@@ -26,25 +26,27 @@ namespace Building.Contract
                 ucSecondSide.Guid = cls.SecondSideGuid;
 
                 var bu = await BuildingBussines.GetAsync(cls.BuildingGuid);
-                //uc2.Dong = bu?.Dang ?? 6;
-                //uc2.BuildingType = bu?.BuildingTypeName;
-                //uc2.RegistryNo = cls.BuildingRegistrationNo;
-                //uc2.RegistryNoSub = cls.BuildingRegistrationNoSub;
-                //uc2.RegistryNoOrigin = cls.BuildingRegistrationNoOrigin;
-                //uc2.Masahat = bu?.Masahat ?? 0;
-                //uc2.ParkingNo = cls.ParkingNo;
-                //uc2.StoreNo = cls.StoreNo;
-                //uc2.StoreMasahat = cls.StoreMasahat;
-                //uc2.SanadSerial = cls.SanadSerial;
-                //uc2.Page = cls.Page;
-                //uc2.Office = cls.Office;
-                //uc2.BuildingNumber = cls.BuildingNumber;
-                //uc2.Water = bu?.Water ?? EnKhadamati.None;
-                //uc2.Barq = bu?.Barq ?? EnKhadamati.None;
-                //uc2.Gas = bu?.Gas ?? EnKhadamati.None;
-                //uc2.Address = bu?.Address;
-                //uc2.PhoneCount = cls.PhoneLineCount;
-                //uc2.PhoneNumber = cls.BuildingPhoneNumber;
+                ucContractRahn_21.Dong = bu?.Dang ?? 6;
+                ucContractRahn_21.BuildingType = bu?.BuildingTypeName;
+                ucContractRahn_21.RegistryNo = cls.BuildingRegistrationNo;
+                ucContractRahn_21.RegistryNoSub = cls.BuildingRegistrationNoSub;
+                ucContractRahn_21.RegistryNoOrigin = cls.BuildingRegistrationNoOrigin;
+                ucContractRahn_21.Masahat = bu?.Masahat ?? 0;
+                ucContractRahn_21.ParkingNo = cls.ParkingNo;
+                ucContractRahn_21.StoreNo = cls.StoreNo;
+                ucContractRahn_21.StoreMasahat = cls.StoreMasahat;
+                ucContractRahn_21.SanadSerial = cls.SanadSerial;
+                ucContractRahn_21.Page = cls.Page;
+                ucContractRahn_21.Office = cls.Office;
+                ucContractRahn_21.BuildingNumber = cls.BuildingNumber;
+                ucContractRahn_21.Water = bu?.Water ?? EnKhadamati.None;
+                ucContractRahn_21.Barq = bu?.Barq ?? EnKhadamati.None;
+                ucContractRahn_21.Gas = bu?.Gas ?? EnKhadamati.None;
+                ucContractRahn_21.Address = bu?.Address;
+                ucContractRahn_21.BuildingPlack = cls.BuildingPlack;
+                ucContractRahn_21.PhoneCount = cls.PhoneLineCount;
+                ucContractRahn_21.PhoneNumber = cls.BuildingPhoneNumber;
+                ucContractRahn_21.RoomCount = bu?.RoomCount ?? 0;
             }
             catch (Exception ex)
             {
@@ -63,7 +65,7 @@ namespace Building.Contract
                     ucContractHeader1.Enabled = false;
                     ucFSide.Enabled = false;
                     ucSecondSide.Enabled = false;
-                    //uc2.Enabled = false;
+                    ucContractRahn_21.Enabled = false;
                     //uc3.Enabled = false;
                     //ucContractSell_41.Enabled = false;
                     //ucContractSell_51.Enabled = false;
@@ -77,7 +79,7 @@ namespace Building.Contract
                     //uc2.OnBuildingSelect += Uc2OnOnBuildingSelect;
                     //ucContractHeader1.OnDateChanged += UcContractHeader1_OnDateChanged;
                     //ucContractSell_41.OnDischargeChanged += UcContractSell_41_OnDischargeChanged;
-                    //ucFSide.OnChanged += UcFSide_OnChanged;
+                    ucFSide.OnChanged += UcFSide_OnChanged;
                 }
             }
             catch (Exception ex)
@@ -86,6 +88,7 @@ namespace Building.Contract
             }
         }
 
+        private void UcFSide_OnChanged(Guid guid) => ucContractRahn_21.OwnerGuid = guid;
         private async void frmContractMain_Rahn_Load(object sender, EventArgs e) => await SetDataAsync();
         private void frmContractMain_Rahn_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {

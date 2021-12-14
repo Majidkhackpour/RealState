@@ -74,7 +74,15 @@ namespace Building.UserControls.Contract.Rahn
         {
             try
             {
-                var frm = new frmShowBuildings(true, new BuildingFilter() { Status = true, IsSell = true, OwnerGuid = OwnerGuid });
+                var filter = new BuildingFilter()
+                {
+                    Status = true,
+                    IsSell = false,
+                    IsMosharekat = false,
+                    IsPishForoush = false,
+                    OwnerGuid = OwnerGuid
+                };
+                var frm = new frmShowBuildings(true, filter);
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
                 var bu = BuildingBussines.Get(frm.SelectedGuid);
                 if (bu == null) return;

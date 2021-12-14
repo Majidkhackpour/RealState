@@ -38,6 +38,7 @@ namespace Building.UserControls.Contract.Rahn
             this.txtPhoneNumber = new System.Windows.Forms.TextBox();
             this.txtBuildingNumber = new System.Windows.Forms.TextBox();
             this.txtRegistryNo_Sub = new System.Windows.Forms.TextBox();
+            this.txtBuildingPlack = new System.Windows.Forms.TextBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.txtSanadSerial = new System.Windows.Forms.TextBox();
             this.txtRegistryNo = new System.Windows.Forms.TextBox();
@@ -46,51 +47,50 @@ namespace Building.UserControls.Contract.Rahn
             this.txtRegistryNo_Origin = new System.Windows.Forms.TextBox();
             this.txtBuildingType = new System.Windows.Forms.TextBox();
             this.txtPhoneCount = new System.Windows.Forms.NumericUpDown();
+            this.txtVahedNo = new System.Windows.Forms.NumericUpDown();
+            this.txtTabaqeNo = new System.Windows.Forms.NumericUpDown();
             this.txtPage = new System.Windows.Forms.NumericUpDown();
             this.txtStoteMasahat = new System.Windows.Forms.NumericUpDown();
+            this.label22 = new System.Windows.Forms.Label();
+            this.txtParkingNo = new System.Windows.Forms.NumericUpDown();
             this.txtStoreNo = new System.Windows.Forms.NumericUpDown();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.txtMasahat = new System.Windows.Forms.NumericUpDown();
+            this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.txtDong = new System.Windows.Forms.NumericUpDown();
+            this.label25 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.txtBuildingPlack = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.txtTabaqeNo = new System.Windows.Forms.NumericUpDown();
-            this.label24 = new System.Windows.Forms.Label();
-            this.txtVahedNo = new System.Windows.Forms.NumericUpDown();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtParkingNo = new System.Windows.Forms.NumericUpDown();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
             this.grpPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtRoomCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhoneCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtVahedNo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTabaqeNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStoteMasahat)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtParkingNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStoreNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMasahat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDong)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTabaqeNo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtVahedNo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtParkingNo)).BeginInit();
             this.SuspendLayout();
             // 
             // grpPanel
@@ -275,6 +275,13 @@ namespace Building.UserControls.Contract.Rahn
             this.txtRegistryNo_Sub.Size = new System.Drawing.Size(100, 27);
             this.txtRegistryNo_Sub.TabIndex = 3;
             // 
+            // txtBuildingPlack
+            // 
+            this.txtBuildingPlack.Location = new System.Drawing.Point(3, 5);
+            this.txtBuildingPlack.Name = "txtBuildingPlack";
+            this.txtBuildingPlack.Size = new System.Drawing.Size(51, 27);
+            this.txtBuildingPlack.TabIndex = 17;
+            // 
             // txtAddress
             // 
             this.txtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -346,6 +353,32 @@ namespace Building.UserControls.Contract.Rahn
             this.txtPhoneCount.Size = new System.Drawing.Size(56, 27);
             this.txtPhoneCount.TabIndex = 18;
             // 
+            // txtVahedNo
+            // 
+            this.txtVahedNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtVahedNo.Location = new System.Drawing.Point(641, 40);
+            this.txtVahedNo.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtVahedNo.Name = "txtVahedNo";
+            this.txtVahedNo.Size = new System.Drawing.Size(56, 27);
+            this.txtVahedNo.TabIndex = 11;
+            // 
+            // txtTabaqeNo
+            // 
+            this.txtTabaqeNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTabaqeNo.Location = new System.Drawing.Point(736, 40);
+            this.txtTabaqeNo.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtTabaqeNo.Name = "txtTabaqeNo";
+            this.txtTabaqeNo.Size = new System.Drawing.Size(56, 27);
+            this.txtTabaqeNo.TabIndex = 11;
+            // 
             // txtPage
             // 
             this.txtPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -371,6 +404,29 @@ namespace Building.UserControls.Contract.Rahn
             this.txtStoteMasahat.Name = "txtStoteMasahat";
             this.txtStoteMasahat.Size = new System.Drawing.Size(77, 27);
             this.txtStoteMasahat.TabIndex = 9;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.BackColor = System.Drawing.Color.Transparent;
+            this.label22.Location = new System.Drawing.Point(60, 8);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(30, 20);
+            this.label22.TabIndex = 9;
+            this.label22.Text = "پلاک";
+            // 
+            // txtParkingNo
+            // 
+            this.txtParkingNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtParkingNo.Location = new System.Drawing.Point(641, 142);
+            this.txtParkingNo.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtParkingNo.Name = "txtParkingNo";
+            this.txtParkingNo.Size = new System.Drawing.Size(57, 27);
+            this.txtParkingNo.TabIndex = 8;
             // 
             // txtStoreNo
             // 
@@ -442,6 +498,18 @@ namespace Building.UserControls.Contract.Rahn
             this.txtMasahat.Size = new System.Drawing.Size(66, 27);
             this.txtMasahat.TabIndex = 6;
             // 
+            // label19
+            // 
+            this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label19.AutoSize = true;
+            this.label19.BackColor = System.Drawing.Color.Transparent;
+            this.label19.Location = new System.Drawing.Point(313, 176);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(516, 20);
+            this.label19.TabIndex = 9;
+            this.label19.Text = "و سایر منصوبات و مشاعات مربوطه که جهت استفاده برای سکونت یا محل کار به رویت مستاج" +
+    "ر رسیده است.";
+            // 
             // label20
             // 
             this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -486,6 +554,17 @@ namespace Building.UserControls.Contract.Rahn
             0,
             0,
             0});
+            // 
+            // label25
+            // 
+            this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label25.AutoSize = true;
+            this.label25.BackColor = System.Drawing.Color.Transparent;
+            this.label25.Location = new System.Drawing.Point(587, 42);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(48, 20);
+            this.label25.TabIndex = 9;
+            this.label25.Text = "کدپستی";
             // 
             // label4
             // 
@@ -542,6 +621,17 @@ namespace Building.UserControls.Contract.Rahn
             this.label13.TabIndex = 9;
             this.label13.Text = "دفتر";
             // 
+            // label15
+            // 
+            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.Transparent;
+            this.label15.Location = new System.Drawing.Point(197, 144);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(96, 20);
+            this.label15.TabIndex = 9;
+            this.label15.Text = "متر مربع تعداد خط";
+            // 
             // label10
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -552,6 +642,28 @@ namespace Building.UserControls.Contract.Rahn
             this.label10.Size = new System.Drawing.Size(58, 20);
             this.label10.TabIndex = 9;
             this.label10.Text = "و به متراژ";
+            // 
+            // label24
+            // 
+            this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label24.AutoSize = true;
+            this.label24.BackColor = System.Drawing.Color.Transparent;
+            this.label24.Location = new System.Drawing.Point(703, 42);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(33, 20);
+            this.label24.TabIndex = 9;
+            this.label24.Text = "واحد";
+            // 
+            // label23
+            // 
+            this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label23.AutoSize = true;
+            this.label23.BackColor = System.Drawing.Color.Transparent;
+            this.label23.Location = new System.Drawing.Point(798, 42);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(31, 20);
+            this.label23.TabIndex = 9;
+            this.label23.Text = "طبقه";
             // 
             // label6
             // 
@@ -574,6 +686,17 @@ namespace Building.UserControls.Contract.Rahn
             this.label12.Size = new System.Drawing.Size(38, 20);
             this.label12.TabIndex = 9;
             this.label12.Text = "صفحه";
+            // 
+            // label11
+            // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Location = new System.Drawing.Point(700, 144);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(129, 20);
+            this.label11.TabIndex = 9;
+            this.label11.Text = "و قطعه پارکینگ به شماره";
             // 
             // label9
             // 
@@ -619,129 +742,6 @@ namespace Building.UserControls.Contract.Rahn
             this.label1.TabIndex = 9;
             this.label1.Text = "عبات است از تملیک منافع استیجاری";
             // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.BackColor = System.Drawing.Color.Transparent;
-            this.label22.Location = new System.Drawing.Point(60, 8);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(30, 20);
-            this.label22.TabIndex = 9;
-            this.label22.Text = "پلاک";
-            // 
-            // txtBuildingPlack
-            // 
-            this.txtBuildingPlack.Location = new System.Drawing.Point(3, 5);
-            this.txtBuildingPlack.Name = "txtBuildingPlack";
-            this.txtBuildingPlack.Size = new System.Drawing.Size(51, 27);
-            this.txtBuildingPlack.TabIndex = 17;
-            // 
-            // label23
-            // 
-            this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label23.AutoSize = true;
-            this.label23.BackColor = System.Drawing.Color.Transparent;
-            this.label23.Location = new System.Drawing.Point(798, 42);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(31, 20);
-            this.label23.TabIndex = 9;
-            this.label23.Text = "طبقه";
-            // 
-            // txtTabaqeNo
-            // 
-            this.txtTabaqeNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTabaqeNo.Location = new System.Drawing.Point(736, 40);
-            this.txtTabaqeNo.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtTabaqeNo.Name = "txtTabaqeNo";
-            this.txtTabaqeNo.Size = new System.Drawing.Size(56, 27);
-            this.txtTabaqeNo.TabIndex = 11;
-            // 
-            // label24
-            // 
-            this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label24.AutoSize = true;
-            this.label24.BackColor = System.Drawing.Color.Transparent;
-            this.label24.Location = new System.Drawing.Point(703, 42);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(33, 20);
-            this.label24.TabIndex = 9;
-            this.label24.Text = "واحد";
-            // 
-            // txtVahedNo
-            // 
-            this.txtVahedNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtVahedNo.Location = new System.Drawing.Point(641, 40);
-            this.txtVahedNo.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtVahedNo.Name = "txtVahedNo";
-            this.txtVahedNo.Size = new System.Drawing.Size(56, 27);
-            this.txtVahedNo.TabIndex = 11;
-            // 
-            // label25
-            // 
-            this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label25.AutoSize = true;
-            this.label25.BackColor = System.Drawing.Color.Transparent;
-            this.label25.Location = new System.Drawing.Point(587, 42);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(48, 20);
-            this.label25.TabIndex = 9;
-            this.label25.Text = "کدپستی";
-            // 
-            // label11
-            // 
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Location = new System.Drawing.Point(700, 144);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(129, 20);
-            this.label11.TabIndex = 9;
-            this.label11.Text = "و قطعه پارکینگ به شماره";
-            // 
-            // txtParkingNo
-            // 
-            this.txtParkingNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtParkingNo.Location = new System.Drawing.Point(641, 142);
-            this.txtParkingNo.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtParkingNo.Name = "txtParkingNo";
-            this.txtParkingNo.Size = new System.Drawing.Size(57, 27);
-            this.txtParkingNo.TabIndex = 8;
-            // 
-            // label15
-            // 
-            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label15.AutoSize = true;
-            this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.label15.Location = new System.Drawing.Point(197, 144);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(96, 20);
-            this.label15.TabIndex = 9;
-            this.label15.Text = "متر مربع تعداد خط";
-            // 
-            // label19
-            // 
-            this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label19.AutoSize = true;
-            this.label19.BackColor = System.Drawing.Color.Transparent;
-            this.label19.Location = new System.Drawing.Point(313, 176);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(516, 20);
-            this.label19.TabIndex = 9;
-            this.label19.Text = "و سایر منصوبات و مشاعات مربوطه که جهت استفاده برای سکونت یا محل کار به رویت مستاج" +
-    "ر رسیده است.";
-            // 
             // UcContractRahn_2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -757,14 +757,14 @@ namespace Building.UserControls.Contract.Rahn
             this.grpPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtRoomCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhoneCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtVahedNo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTabaqeNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStoteMasahat)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtParkingNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStoreNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMasahat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDong)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTabaqeNo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtVahedNo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtParkingNo)).EndInit();
             this.ResumeLayout(false);
 
         }
