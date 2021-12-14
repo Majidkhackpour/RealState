@@ -729,6 +729,12 @@
     <Compile Include="UserControls\Contract\Rahn\UcContractRahn_3.Designer.cs">
       <DependentUpon>UcContractRahn_3.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Contract\Rahn\UcContractRahn_4.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Contract\Rahn\UcContractRahn_4.Designer.cs">
+      <DependentUpon>UcContractRahn_4.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Contract\Sell\UcContractSell_2.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1266,6 +1272,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Contract\Rahn\UcContractRahn_3.resx">
       <DependentUpon>UcContractRahn_3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Contract\Rahn\UcContractRahn_4.resx">
+      <DependentUpon>UcContractRahn_4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Contract\Sell\UcContractSell_2.resx">
       <DependentUpon>UcContractSell_2.cs</DependentUpon>

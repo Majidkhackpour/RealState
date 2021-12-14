@@ -7,6 +7,7 @@ namespace Building.UserControls.Contract.Rahn
     public partial class UcContractRahn_3 : UserControl
     {
         public event Action<string> OnDischargeChanged;
+        public event Action<int> OnTermChanged;
         public DateTime? FromDate { get => Calendar.ShamsiToMiladi(ucFromDate.DateSh); set => ucFromDate.DateSh = Calendar.MiladiToShamsi(value); }
         public int Term { get => (int)txtTerm.Value; set => txtTerm.Value = value; }
         public string ContractDateSh { get => lblContractDate.Text; set => lblContractDate.Text = value; }
@@ -29,10 +30,23 @@ namespace Building.UserControls.Contract.Rahn
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void RaiseTermChanged(int term)
+        {
+            try
+            {
+                var handler = OnTermChanged;
+                if (handler != null) OnTermChanged?.Invoke(term);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private void txtTerm_ValueChanged(object sender, EventArgs e)
         {
             try
             {
+                RaiseTermChanged((int)txtTerm.Value);
                 SetMaxDate();
             }
             catch (Exception ex)
