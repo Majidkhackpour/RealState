@@ -51,6 +51,15 @@ namespace Building.Contract
                 ucContractRahn_31.DischargeDate = cls.DischargeDate;
                 ucContractRahn_31.FromDate = cls.FromDate;
                 ucContractRahn_31.Term = cls.Term ?? 12;
+
+                ucContractRahn_41.BankName = cls.BankName;
+                ucContractRahn_41.CheckNoFrom = cls.CheckNo;
+                ucContractRahn_41.CheckNoTo = cls.CheckNoTo;
+                ucContractRahn_41.Ejare = cls.MinorPrice;
+                ucContractRahn_41.Rahn = cls.TotalPrice;
+                ucContractRahn_41.SarresidFrom = cls.SarResid;
+                ucContractRahn_41.SarresidTo = cls.SarResidTo;
+                ucContractRahn_41.Shobe = cls.Shobe;
             }
             catch (Exception ex)
             {
@@ -71,7 +80,7 @@ namespace Building.Contract
                     ucSecondSide.Enabled = false;
                     ucContractRahn_21.Enabled = false;
                     ucContractRahn_31.Enabled = false;
-                    //ucContractSell_41.Enabled = false;
+                    ucContractRahn_41.Enabled = false;
                     //ucContractSell_51.Enabled = false;
                     //ucContractSell_61.Enabled = false;
                     //ucContractDescription1.Enabled = false;
@@ -80,10 +89,11 @@ namespace Building.Contract
                 }
                 else
                 {
-                    //uc2.OnBuildingSelect += Uc2OnOnBuildingSelect;
+                    ucContractRahn_21.OnBuildingSelect += Uc2OnOnBuildingSelect;
                     ucContractHeader1.OnDateChanged += UcContractHeader1_OnDateChanged;
                     //ucContractSell_41.OnDischargeChanged += UcContractSell_41_OnDischargeChanged;
                     ucFSide.OnChanged += UcFSide_OnChanged;
+                    ucContractRahn_31.OnTermChanged += UcContractRahn_31_OnTermChanged;
                 }
             }
             catch (Exception ex)
@@ -92,8 +102,23 @@ namespace Building.Contract
             }
         }
 
+        private void UcContractRahn_31_OnTermChanged(int term) => ucContractRahn_41.Term = term;
         private void UcContractHeader1_OnDateChanged(string date) => ucContractRahn_31.ContractDateSh = date;
         private void UcFSide_OnChanged(Guid guid) => ucContractRahn_21.OwnerGuid = guid;
+        private void Uc2OnOnBuildingSelect(Guid buGuid)
+        {
+            try
+            {
+                cls.BuildingGuid = buGuid;
+                var bu = BuildingBussines.Get(buGuid);
+                ucContractRahn_41.Rahn = bu?.RahnPrice1 ?? 0;
+                ucContractRahn_41.Ejare = bu?.EjarePrice1 ?? 0;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private async void frmContractMain_Rahn_Load(object sender, EventArgs e) => await SetDataAsync();
         private void frmContractMain_Rahn_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {

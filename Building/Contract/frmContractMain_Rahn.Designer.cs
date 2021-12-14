@@ -38,9 +38,10 @@ namespace Building.Contract
             this.ucSecondSide = new Peoples.UcPeopleContract();
             this.btnCommition = new DevComponents.DotNetBar.ButtonX();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ucContractRahn_41 = new Building.UserControls.Contract.Rahn.UcContractRahn_4();
+            this.ucContractRahn_31 = new Building.UserControls.Contract.Rahn.UcContractRahn_3();
             this.ucContractRahn_21 = new Building.UserControls.Contract.Rahn.UcContractRahn_2();
             this.ucContractHeader1 = new Building.UserControls.Contract.Public.UcContractHeader();
-            this.ucContractRahn_31 = new Building.UserControls.Contract.Rahn.UcContractRahn_3();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -176,6 +177,7 @@ namespace Building.Contract
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.ucContractRahn_41);
             this.panel1.Controls.Add(this.ucContractRahn_31);
             this.panel1.Controls.Add(this.ucContractRahn_21);
             this.panel1.Controls.Add(this.splitContainer1);
@@ -184,6 +186,56 @@ namespace Building.Contract
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(816, 529);
             this.panel1.TabIndex = 55805;
+            // 
+            // ucContractRahn_41
+            // 
+            this.ucContractRahn_41.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucContractRahn_41.BackColor = System.Drawing.Color.Transparent;
+            this.ucContractRahn_41.BankName = "";
+            this.ucContractRahn_41.CheckNoFrom = "";
+            this.ucContractRahn_41.CheckNoTo = "";
+            this.ucContractRahn_41.Ejare = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.ucContractRahn_41.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucContractRahn_41.Location = new System.Drawing.Point(4, 842);
+            this.ucContractRahn_41.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucContractRahn_41.Name = "ucContractRahn_41";
+            this.ucContractRahn_41.Rahn = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.ucContractRahn_41.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucContractRahn_41.SarresidFrom = null;
+            this.ucContractRahn_41.SarresidTo = null;
+            this.ucContractRahn_41.Shobe = "";
+            this.ucContractRahn_41.Size = new System.Drawing.Size(791, 168);
+            this.ucContractRahn_41.TabIndex = 4;
+            this.ucContractRahn_41.TotalPrice = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // ucContractRahn_31
+            // 
+            this.ucContractRahn_31.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucContractRahn_31.BackColor = System.Drawing.Color.Transparent;
+            this.ucContractRahn_31.ContractDateSh = "1400/12/29";
+            this.ucContractRahn_31.DischargeDate = new System.DateTime(2021, 12, 14, 0, 0, 0, 0);
+            this.ucContractRahn_31.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucContractRahn_31.FromDate = new System.DateTime(2021, 12, 14, 0, 0, 0, 0);
+            this.ucContractRahn_31.Location = new System.Drawing.Point(4, 728);
+            this.ucContractRahn_31.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucContractRahn_31.Name = "ucContractRahn_31";
+            this.ucContractRahn_31.Size = new System.Drawing.Size(791, 108);
+            this.ucContractRahn_31.TabIndex = 3;
+            this.ucContractRahn_31.Term = 0;
             // 
             // ucContractRahn_21
             // 
@@ -239,22 +291,6 @@ namespace Building.Contract
             this.ucContractHeader1.TabIndex = 0;
             this.ucContractHeader1.Title = "مبایعه نامه";
             // 
-            // ucContractRahn_31
-            // 
-            this.ucContractRahn_31.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ucContractRahn_31.BackColor = System.Drawing.Color.Transparent;
-            this.ucContractRahn_31.ContractDateSh = "1400/12/29";
-            this.ucContractRahn_31.DischargeDate = new System.DateTime(2021, 12, 14, 0, 0, 0, 0);
-            this.ucContractRahn_31.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucContractRahn_31.FromDate = new System.DateTime(2021, 12, 14, 0, 0, 0, 0);
-            this.ucContractRahn_31.Location = new System.Drawing.Point(4, 728);
-            this.ucContractRahn_31.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ucContractRahn_31.Name = "ucContractRahn_31";
-            this.ucContractRahn_31.Size = new System.Drawing.Size(795, 108);
-            this.ucContractRahn_31.TabIndex = 3;
-            this.ucContractRahn_31.Term = 0;
-            // 
             // frmContractMain_Rahn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -299,5 +335,6 @@ namespace Building.Contract
         private System.Windows.Forms.Panel panel1;
         private UserControls.Contract.Rahn.UcContractRahn_2 ucContractRahn_21;
         private UserControls.Contract.Rahn.UcContractRahn_3 ucContractRahn_31;
+        private UserControls.Contract.Rahn.UcContractRahn_4 ucContractRahn_41;
     }
 }

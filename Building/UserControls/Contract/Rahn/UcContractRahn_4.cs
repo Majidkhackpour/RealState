@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Windows.Forms;
+using GMap.NET.MapProviders;
 using Services;
 
 namespace Building.UserControls.Contract.Rahn
 {
     public partial class UcContractRahn_4 : UserControl
     {
+        private int _term = 12;
         public decimal Ejare { get => txtMinorPrice.TextDecimal; set => txtMinorPrice.TextDecimal = value; }
         public decimal Rahn { get => txtMajorPrice.TextDecimal; set => txtMajorPrice.TextDecimal = value; }
         public decimal TotalPrice { get => txtTotalPrice.TextDecimal; set => txtTotalPrice.TextDecimal = value; }
@@ -39,13 +41,32 @@ namespace Building.UserControls.Contract.Rahn
         }
         public string BankName { get => txtBankName.Text; set => txtBankName.Text = value; }
         public string Shobe { get => txtShobe.Text; set => txtShobe.Text = value; }
-        public int Term { set => TotalPrice = value * Ejare; }
+        public int Term
+        {
+            get => _term;
+            set
+            {
+                _term = value;
+                TotalPrice = _term * Ejare;
+            }
+        }
         public UcContractRahn_4() => InitializeComponent();
         private void txtMajorPrice_OnTextChanged()
         {
             try
             {
                 lblToman.Text = NumberToString.Num2Str(((double)Rahn / 10).ToString());
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void txtMinorPrice_OnTextChanged()
+        {
+            try
+            {
+                TotalPrice = Term * Ejare;
             }
             catch (Exception ex)
             {
