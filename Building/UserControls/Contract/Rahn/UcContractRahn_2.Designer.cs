@@ -211,7 +211,7 @@ namespace Building.UserControls.Contract.Rahn
             this.cmbGas.FormattingEnabled = true;
             this.cmbGas.Location = new System.Drawing.Point(83, 108);
             this.cmbGas.Name = "cmbGas";
-            this.cmbGas.Size = new System.Drawing.Size(88, 28);
+            this.cmbGas.Size = new System.Drawing.Size(83, 28);
             this.cmbGas.TabIndex = 16;
             this.cmbGas.ValueMember = "Guid";
             // 
@@ -222,9 +222,9 @@ namespace Building.UserControls.Contract.Rahn
             this.cmbBarq.DisplayMember = "Name";
             this.cmbBarq.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbBarq.FormattingEnabled = true;
-            this.cmbBarq.Location = new System.Drawing.Point(198, 108);
+            this.cmbBarq.Location = new System.Drawing.Point(191, 108);
             this.cmbBarq.Name = "cmbBarq";
-            this.cmbBarq.Size = new System.Drawing.Size(65, 28);
+            this.cmbBarq.Size = new System.Drawing.Size(72, 28);
             this.cmbBarq.TabIndex = 15;
             this.cmbBarq.ValueMember = "Guid";
             // 
@@ -457,7 +457,7 @@ namespace Building.UserControls.Contract.Rahn
             this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label17.AutoSize = true;
             this.label17.BackColor = System.Drawing.Color.Transparent;
-            this.label17.Location = new System.Drawing.Point(172, 111);
+            this.label17.Location = new System.Drawing.Point(168, 112);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(23, 20);
             this.label17.TabIndex = 9;
@@ -593,11 +593,11 @@ namespace Building.UserControls.Contract.Rahn
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Location = new System.Drawing.Point(290, 76);
+            this.label8.Location = new System.Drawing.Point(285, 77);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(216, 20);
+            this.label8.Size = new System.Drawing.Size(220, 20);
             this.label8.TabIndex = 9;
-            this.label8.Text = "متر مربعدارای سند مالکیت به شماره سریال";
+            this.label8.Text = "متر مربع دارای سند مالکیت به شماره سریال";
             // 
             // label7
             // 
