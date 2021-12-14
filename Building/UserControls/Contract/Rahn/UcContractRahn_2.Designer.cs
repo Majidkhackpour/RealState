@@ -515,11 +515,11 @@ namespace Building.UserControls.Contract.Rahn
             this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label20.AutoSize = true;
             this.label20.BackColor = System.Drawing.Color.Transparent;
-            this.label20.Location = new System.Drawing.Point(36, 145);
+            this.label20.Location = new System.Drawing.Point(62, 145);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(100, 20);
+            this.label20.Size = new System.Drawing.Size(77, 20);
             this.label20.TabIndex = 9;
-            this.label20.Text = "تلفن دایر به شماره";
+            this.label20.Text = "تلفن به شماره";
             // 
             // label14
             // 
@@ -615,7 +615,7 @@ namespace Building.UserControls.Contract.Rahn
             this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
             this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.label13.Location = new System.Drawing.Point(45, 76);
+            this.label13.Location = new System.Drawing.Point(52, 76);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(32, 20);
             this.label13.TabIndex = 9;
