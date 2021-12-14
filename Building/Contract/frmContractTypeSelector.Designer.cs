@@ -148,6 +148,7 @@ namespace Building.Contract
             this.ucRahnEjare.TabIndex = 1;
             this.ucRahnEjare.Title = "اجاره نامه";
             this.ucRahnEjare.Type = Services.EnContractType_.Appartment;
+            this.ucRahnEjare.OnClick += new System.Func<WindowsSerivces.UcButton, System.Threading.Tasks.Task>(this.ucRahnEjare_OnClick);
             // 
             // ucForoush
             // 

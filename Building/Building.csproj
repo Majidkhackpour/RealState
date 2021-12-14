@@ -584,6 +584,12 @@
     <Compile Include="Contract\frmContractMain.Designer.cs">
       <DependentUpon>frmContractMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Contract\frmContractMain_Rahn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contract\frmContractMain_Rahn.Designer.cs">
+      <DependentUpon>frmContractMain_Rahn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Contract\frmContractMain_Sell.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -710,6 +716,12 @@
     </Compile>
     <Compile Include="UserControls\Contract\Public\UcTotalCommition.Designer.cs">
       <DependentUpon>UcTotalCommition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contract\Rahn\UcContractRahn_2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Contract\Rahn\UcContractRahn_2.Designer.cs">
+      <DependentUpon>UcContractRahn_2.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Contract\Sell\UcContractSell_2.cs">
       <SubType>UserControl</SubType>
@@ -1175,6 +1187,9 @@
     <EmbeddedResource Include="Contract\frmContractMain.resx">
       <DependentUpon>frmContractMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Contract\frmContractMain_Rahn.resx">
+      <DependentUpon>frmContractMain_Rahn.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Contract\frmContractMain_Sell.resx">
       <DependentUpon>frmContractMain_Sell.cs</DependentUpon>
     </EmbeddedResource>
@@ -1239,6 +1254,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Contract\Public\UcTotalCommition.resx">
       <DependentUpon>UcTotalCommition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Contract\Rahn\UcContractRahn_2.resx">
+      <DependentUpon>UcContractRahn_2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Contract\Sell\UcContractSell_2.resx">
       <DependentUpon>UcContractSell_2.cs</DependentUpon>

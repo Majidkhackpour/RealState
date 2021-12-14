@@ -9,15 +9,26 @@ namespace Building.Contract
 {
     public partial class frmContractTypeSelector : MetroForm
     {
-        private void SetIsSelect()
+        private void SetIsSelect(EnRequestType type)
         {
             try
             {
-                ucForoush.IsSelect = true;
-                ucRahnEjare.IsSelect = false;
-                ucPishForosh.IsSelect = false;
-                ucSarQofli.IsSelect = false;
-                ucTamlic.IsSelect = false;
+                if (type == EnRequestType.Forush)
+                {
+                    ucForoush.IsSelect = true;
+                    ucRahnEjare.IsSelect = false;
+                    ucPishForosh.IsSelect = false;
+                    ucSarQofli.IsSelect = false;
+                    ucTamlic.IsSelect = false;
+                }
+                else if (type == EnRequestType.Rahn)
+                {
+                    ucForoush.IsSelect = false;
+                    ucRahnEjare.IsSelect = true;
+                    ucPishForosh.IsSelect = false;
+                    ucSarQofli.IsSelect = false;
+                    ucTamlic.IsSelect = false;
+                }
             }
             catch (Exception ex)
             {
@@ -29,7 +40,7 @@ namespace Building.Contract
         {
             try
             {
-                SetIsSelect();
+                SetIsSelect(EnRequestType.Forush);
                 await Task.Delay(100);
                 var frm = new frmContractMain_Sell(new ContractBussines());
                 DialogResult = frm.ShowDialog(this);
@@ -43,6 +54,21 @@ namespace Building.Contract
         private void frmContractTypeSelector_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape) Close();
+        }
+        private async Task ucRahnEjare_OnClick(WindowsSerivces.UcButton arg)
+        {
+            try
+            {
+                SetIsSelect(EnRequestType.Rahn);
+                await Task.Delay(100);
+                var frm = new frmContractMain_Rahn(new ContractBussines());
+                DialogResult = frm.ShowDialog(this);
+                Close();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
     }
 }

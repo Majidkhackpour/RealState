@@ -217,6 +217,7 @@ namespace Building.Contract
             this.uc2.Masahat = 0F;
             this.uc2.Name = "uc2";
             this.uc2.Office = "";
+            this.uc2.OwnerGuid = new System.Guid("00000000-0000-0000-0000-000000000000");
             this.uc2.Page = 0;
             this.uc2.ParkingNo = 0;
             this.uc2.PartNo = 0;
@@ -427,7 +428,7 @@ namespace Building.Contract
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.MinimumSize = new System.Drawing.Size(800, 600);
+            this.MinimumSize = new System.Drawing.Size(821, 600);
             this.Name = "frmContractMain_Sell";
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;

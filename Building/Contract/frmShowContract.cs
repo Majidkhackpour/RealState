@@ -339,6 +339,9 @@ namespace Building.Contract
                     case EnRequestType.Forush:
                         frm_ = new frmContractMain_Sell(con, true);
                         break;
+                    case EnRequestType.Rahn:
+                        frm_ = new frmContractMain_Rahn(con, true);
+                        break;
                 }
 
                 frm_?.ShowDialog(this);
@@ -365,6 +368,9 @@ namespace Building.Contract
                         case EnRequestType.Forush:
                             frm_ = new frmContractMain_Sell(con, true);
                             break;
+                        case EnRequestType.Rahn:
+                            frm_ = new frmContractMain_Rahn(con, true);
+                            break;
                     }
 
                     frm_?.ShowDialog(this);
@@ -376,6 +382,9 @@ namespace Building.Contract
                 {
                     case EnRequestType.Forush:
                         frm = new frmContractMain_Sell(con);
+                        break;
+                    case EnRequestType.Rahn:
+                        frm = new frmContractMain_Rahn(con);
                         break;
                 }
                 if (frm?.ShowDialog(this) == DialogResult.OK)
