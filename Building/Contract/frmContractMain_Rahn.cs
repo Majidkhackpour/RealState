@@ -47,6 +47,10 @@ namespace Building.Contract
                 ucContractRahn_21.PhoneCount = cls.PhoneLineCount;
                 ucContractRahn_21.PhoneNumber = cls.BuildingPhoneNumber;
                 ucContractRahn_21.RoomCount = bu?.RoomCount ?? 0;
+
+                ucContractRahn_31.DischargeDate = cls.DischargeDate;
+                ucContractRahn_31.FromDate = cls.FromDate;
+                ucContractRahn_31.Term = cls.Term ?? 12;
             }
             catch (Exception ex)
             {
@@ -66,7 +70,7 @@ namespace Building.Contract
                     ucFSide.Enabled = false;
                     ucSecondSide.Enabled = false;
                     ucContractRahn_21.Enabled = false;
-                    //uc3.Enabled = false;
+                    ucContractRahn_31.Enabled = false;
                     //ucContractSell_41.Enabled = false;
                     //ucContractSell_51.Enabled = false;
                     //ucContractSell_61.Enabled = false;
@@ -77,7 +81,7 @@ namespace Building.Contract
                 else
                 {
                     //uc2.OnBuildingSelect += Uc2OnOnBuildingSelect;
-                    //ucContractHeader1.OnDateChanged += UcContractHeader1_OnDateChanged;
+                    ucContractHeader1.OnDateChanged += UcContractHeader1_OnDateChanged;
                     //ucContractSell_41.OnDischargeChanged += UcContractSell_41_OnDischargeChanged;
                     ucFSide.OnChanged += UcFSide_OnChanged;
                 }
@@ -88,6 +92,7 @@ namespace Building.Contract
             }
         }
 
+        private void UcContractHeader1_OnDateChanged(string date) => ucContractRahn_31.ContractDateSh = date;
         private void UcFSide_OnChanged(Guid guid) => ucContractRahn_21.OwnerGuid = guid;
         private async void frmContractMain_Rahn_Load(object sender, EventArgs e) => await SetDataAsync();
         private void frmContractMain_Rahn_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)

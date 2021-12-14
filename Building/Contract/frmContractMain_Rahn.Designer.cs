@@ -40,6 +40,7 @@ namespace Building.Contract
             this.panel1 = new System.Windows.Forms.Panel();
             this.ucContractRahn_21 = new Building.UserControls.Contract.Rahn.UcContractRahn_2();
             this.ucContractHeader1 = new Building.UserControls.Contract.Public.UcContractHeader();
+            this.ucContractRahn_31 = new Building.UserControls.Contract.Rahn.UcContractRahn_3();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -120,8 +121,8 @@ namespace Building.Contract
             // 
             this.splitContainer1.Panel2.Controls.Add(this.ucSecondSide);
             this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.splitContainer1.Size = new System.Drawing.Size(792, 260);
-            this.splitContainer1.SplitterDistance = 398;
+            this.splitContainer1.Size = new System.Drawing.Size(791, 260);
+            this.splitContainer1.SplitterDistance = 397;
             this.splitContainer1.TabIndex = 1;
             // 
             // ucFSide
@@ -134,7 +135,7 @@ namespace Building.Contract
             this.ucFSide.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucFSide.Name = "ucFSide";
             this.ucFSide.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucFSide.Size = new System.Drawing.Size(398, 260);
+            this.ucFSide.Size = new System.Drawing.Size(397, 260);
             this.ucFSide.TabIndex = 0;
             this.ucFSide.Title = "مشخصات فروشنده";
             // 
@@ -175,6 +176,7 @@ namespace Building.Contract
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.ucContractRahn_31);
             this.panel1.Controls.Add(this.ucContractRahn_21);
             this.panel1.Controls.Add(this.splitContainer1);
             this.panel1.Controls.Add(this.ucContractHeader1);
@@ -233,9 +235,25 @@ namespace Building.Contract
             this.ucContractHeader1.Name = "ucContractHeader1";
             this.ucContractHeader1.RealStateCode = "";
             this.ucContractHeader1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucContractHeader1.Size = new System.Drawing.Size(795, 213);
+            this.ucContractHeader1.Size = new System.Drawing.Size(791, 213);
             this.ucContractHeader1.TabIndex = 0;
             this.ucContractHeader1.Title = "مبایعه نامه";
+            // 
+            // ucContractRahn_31
+            // 
+            this.ucContractRahn_31.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucContractRahn_31.BackColor = System.Drawing.Color.Transparent;
+            this.ucContractRahn_31.ContractDateSh = "1400/12/29";
+            this.ucContractRahn_31.DischargeDate = new System.DateTime(2021, 12, 14, 0, 0, 0, 0);
+            this.ucContractRahn_31.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucContractRahn_31.FromDate = new System.DateTime(2021, 12, 14, 0, 0, 0, 0);
+            this.ucContractRahn_31.Location = new System.Drawing.Point(4, 728);
+            this.ucContractRahn_31.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucContractRahn_31.Name = "ucContractRahn_31";
+            this.ucContractRahn_31.Size = new System.Drawing.Size(795, 108);
+            this.ucContractRahn_31.TabIndex = 3;
+            this.ucContractRahn_31.Term = 0;
             // 
             // frmContractMain_Rahn
             // 
@@ -280,5 +298,6 @@ namespace Building.Contract
         private UserControls.Contract.Public.UcContractHeader ucContractHeader1;
         private System.Windows.Forms.Panel panel1;
         private UserControls.Contract.Rahn.UcContractRahn_2 ucContractRahn_21;
+        private UserControls.Contract.Rahn.UcContractRahn_3 ucContractRahn_31;
     }
 }
