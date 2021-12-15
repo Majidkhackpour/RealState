@@ -60,6 +60,9 @@ namespace Building.Contract
                 ucContractRahn_41.SarresidFrom = cls.SarResid;
                 ucContractRahn_41.SarresidTo = cls.SarResidTo;
                 ucContractRahn_41.Shobe = cls.Shobe;
+
+                ucContractRahn_51.PeopleCount = cls.PeopleCount;
+                ucContractRahn_51.DischargeDateSh = cls.DischargeDateSh;
             }
             catch (Exception ex)
             {
@@ -81,7 +84,7 @@ namespace Building.Contract
                     ucContractRahn_21.Enabled = false;
                     ucContractRahn_31.Enabled = false;
                     ucContractRahn_41.Enabled = false;
-                    //ucContractSell_51.Enabled = false;
+                    ucContractRahn_51.Enabled = false;
                     //ucContractSell_61.Enabled = false;
                     //ucContractDescription1.Enabled = false;
                     //ucContractSell_71.Enabled = false;
@@ -91,7 +94,7 @@ namespace Building.Contract
                 {
                     ucContractRahn_21.OnBuildingSelect += Uc2OnOnBuildingSelect;
                     ucContractHeader1.OnDateChanged += UcContractHeader1_OnDateChanged;
-                    //ucContractSell_41.OnDischargeChanged += UcContractSell_41_OnDischargeChanged;
+                    ucContractRahn_31.OnDischargeChanged += UcContractSell_41_OnDischargeChanged;
                     ucFSide.OnChanged += UcFSide_OnChanged;
                     ucContractRahn_31.OnTermChanged += UcContractRahn_31_OnTermChanged;
                 }
@@ -102,6 +105,7 @@ namespace Building.Contract
             }
         }
 
+        private void UcContractSell_41_OnDischargeChanged(string date) => ucContractRahn_51.DischargeDateSh = date;
         private void UcContractRahn_31_OnTermChanged(int term) => ucContractRahn_41.Term = term;
         private void UcContractHeader1_OnDateChanged(string date) => ucContractRahn_31.ContractDateSh = date;
         private void UcFSide_OnChanged(Guid guid) => ucContractRahn_21.OwnerGuid = guid;
