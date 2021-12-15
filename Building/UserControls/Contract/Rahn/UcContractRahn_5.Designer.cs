@@ -30,12 +30,12 @@ namespace Building.UserControls.Contract.Rahn
         private void InitializeComponent()
         {
             this.grpPanel = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.txtPeopleCount = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.lblContractDate = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtPeopleCount = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
             this.grpPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPeopleCount)).BeginInit();
             this.SuspendLayout();
@@ -89,12 +89,25 @@ namespace Building.UserControls.Contract.Rahn
             this.grpPanel.TabIndex = 4;
             this.grpPanel.Text = "ماده 5 - شرایط تسلیم عین مستاجره";
             // 
+            // txtPeopleCount
+            // 
+            this.txtPeopleCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPeopleCount.Location = new System.Drawing.Point(450, 33);
+            this.txtPeopleCount.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtPeopleCount.Name = "txtPeopleCount";
+            this.txtPeopleCount.Size = new System.Drawing.Size(68, 27);
+            this.txtPeopleCount.TabIndex = 14;
+            // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(0, 6);
+            this.label1.Location = new System.Drawing.Point(12, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(376, 20);
             this.label1.TabIndex = 11;
@@ -105,18 +118,29 @@ namespace Building.UserControls.Contract.Rahn
             this.lblContractDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblContractDate.AutoSize = true;
             this.lblContractDate.BackColor = System.Drawing.Color.Transparent;
-            this.lblContractDate.Location = new System.Drawing.Point(378, 6);
+            this.lblContractDate.Location = new System.Drawing.Point(390, 6);
             this.lblContractDate.Name = "lblContractDate";
             this.lblContractDate.Size = new System.Drawing.Size(85, 20);
             this.lblContractDate.TabIndex = 11;
             this.lblContractDate.Text = "1400/12/29";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Location = new System.Drawing.Point(313, 35);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(131, 20);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "نفر اجاره داده شده است.";
             // 
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(512, 35);
+            this.label3.Location = new System.Drawing.Point(524, 35);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(113, 20);
             this.label3.TabIndex = 11;
@@ -127,35 +151,11 @@ namespace Building.UserControls.Contract.Rahn
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Location = new System.Drawing.Point(469, 6);
+            this.label7.Location = new System.Drawing.Point(481, 6);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(156, 20);
             this.label7.TabIndex = 11;
             this.label7.Text = "5-1 موجر مکلف است در تاریخ";
-            // 
-            // txtPeopleCount
-            // 
-            this.txtPeopleCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPeopleCount.Location = new System.Drawing.Point(438, 33);
-            this.txtPeopleCount.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtPeopleCount.Name = "txtPeopleCount";
-            this.txtPeopleCount.Size = new System.Drawing.Size(68, 27);
-            this.txtPeopleCount.TabIndex = 14;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(301, 35);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(131, 20);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "نفر اجاره داده شده است.";
             // 
             // UcContractRahn_5
             // 

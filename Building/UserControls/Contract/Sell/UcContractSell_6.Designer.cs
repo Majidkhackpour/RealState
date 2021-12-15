@@ -31,16 +31,16 @@ namespace Building.UserControls.Contract.Sell
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcContractSell_6));
             this.grpPanel = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.ucFirstDelay = new Building.UserControls.Objects.UcPrice();
             this.ucSecondDelay = new Building.UserControls.Objects.UcPrice();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.grpPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -99,65 +99,6 @@ namespace Building.UserControls.Contract.Sell
             this.grpPanel.TabIndex = 3;
             this.grpPanel.Text = "ماده 6 -آثار قرارداد";
             // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Location = new System.Drawing.Point(3, 90);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(830, 42);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "6-3 قیمت مورد معامله در بند 1 ماده 3 این قرارداد، به هیچ عنوان به جهت نوسانات قیم" +
-    "ت ها و یا تورم قابل تغییر نیست و از این حیث حق و ادعایی برای طرفین قرارداد متصور" +
-    " نمی باشد.";
-            // 
-            // label8
-            // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Location = new System.Drawing.Point(397, 132);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(436, 20);
-            this.label8.TabIndex = 11;
-            this.label8.Text = "6-4 کلیه خیارات از جمله خیار غبن به استثنای خیار تدلیس با اقرار طرفین اسقاط گردید" +
-    ".";
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(146, 67);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(687, 20);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "6-2 هزینه نقل و انتقال اعم از دارایی، شهرداری، اوقاف و ... به عهده فروشنده است و " +
-    "هزینه های حق الثبت و حق التحریر بالمناصفه می باشد.";
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(3, 3);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(830, 64);
-            this.label4.TabIndex = 11;
-            this.label4.Text = resources.GetString("label4.Text");
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(3, 156);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(830, 70);
-            this.label1.TabIndex = 11;
-            this.label1.Text = resources.GetString("label1.Text");
-            // 
             // splitContainer1
             // 
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -214,6 +155,55 @@ namespace Building.UserControls.Contract.Sell
             this.ucSecondDelay.TabIndex = 1;
             this.ucSecondDelay.Title = "میزان خسارت خریدار";
             // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Location = new System.Drawing.Point(3, 299);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(830, 44);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "6-7 طرفین پس از  احراز هویت یکدیگر، اصل سند و کلیه اوراق مربوطه به رویت و قبولی ط" +
+    "رفین قرارداد رسیده و با امضای رونوشت یا فتوکپی اوراق مذبور، به این امر اقرار نمو" +
+    "ده اند.";
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(3, 156);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(830, 70);
+            this.label1.TabIndex = 11;
+            this.label1.Text = resources.GetString("label1.Text");
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Location = new System.Drawing.Point(3, 90);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(830, 42);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "6-3 قیمت مورد معامله در بند 1 ماده 3 این قرارداد، به هیچ عنوان به جهت نوسانات قیم" +
+    "ت ها و یا تورم قابل تغییر نیست و از این حیث حق و ادعایی برای طرفین قرارداد متصور" +
+    " نمی باشد.";
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.Location = new System.Drawing.Point(397, 132);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(436, 20);
+            this.label8.TabIndex = 11;
+            this.label8.Text = "6-4 کلیه خیارات از جمله خیار غبن به استثنای خیار تدلیس با اقرار طرفین اسقاط گردید" +
+    ".";
+            // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -225,18 +215,28 @@ namespace Building.UserControls.Contract.Sell
             this.label2.TabIndex = 11;
             this.label2.Text = "6-6 این قرارداد در صورت فقدان مهر و امضای مشاور املاک فاقد اعتبار می باشد.";
             // 
-            // label3
+            // label5
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Location = new System.Drawing.Point(146, 67);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(687, 20);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "6-2 هزینه نقل و انتقال اعم از دارایی، شهرداری، اوقاف و ... به عهده فروشنده است و " +
+    "هزینه های حق الثبت و حق التحریر بالمناصفه می باشد.";
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(3, 299);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(830, 44);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "6-7 طرفین پس ار احراز هویت یکدیگر، اصل سند و کلیه اوراق مربوطه به رویت و قبولی طر" +
-    "فین قرارداد رسیده و با امضای رونوشت یا فتوکپی اوراق مذبور، به این امر اقرار نمود" +
-    "ه اند.";
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Location = new System.Drawing.Point(3, 3);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(830, 64);
+            this.label4.TabIndex = 11;
+            this.label4.Text = resources.GetString("label4.Text");
             // 
             // UcContractSell_6
             // 

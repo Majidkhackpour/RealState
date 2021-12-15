@@ -63,6 +63,9 @@ namespace Building.Contract
 
                 ucContractRahn_51.PeopleCount = cls.PeopleCount;
                 ucContractRahn_51.DischargeDateSh = cls.DischargeDateSh;
+
+                ucContractRahn_61.FirstDelay = cls.FirstSideDelay;
+                ucContractRahn_61.SecondDelay = cls.SecondSideDelay;
             }
             catch (Exception ex)
             {
@@ -85,7 +88,7 @@ namespace Building.Contract
                     ucContractRahn_31.Enabled = false;
                     ucContractRahn_41.Enabled = false;
                     ucContractRahn_51.Enabled = false;
-                    //ucContractSell_61.Enabled = false;
+                    ucContractRahn_61.Enabled = false;
                     //ucContractDescription1.Enabled = false;
                     //ucContractSell_71.Enabled = false;
                     btnFinish.Enabled = false;
