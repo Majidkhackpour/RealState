@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsSerivces;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Services;
@@ -66,6 +67,74 @@ namespace Building.Contract
 
                 ucContractRahn_61.FirstDelay = cls.FirstSideDelay;
                 ucContractRahn_61.SecondDelay = cls.SecondSideDelay;
+
+                ucContractDescription1.Description = cls.Description;
+                ucContractDescription1.Witness1 = cls.Witness1;
+                ucContractDescription1.Witness2 = cls.Witness2;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task GetDataAsync()
+        {
+            try
+            {
+                if (cls.Guid == Guid.Empty)
+                {
+                    cls.Guid = Guid.NewGuid();
+                    cls.SanadNumber = await SanadBussines.NextNumberAsync();
+                    cls.UserGuid = UserBussines.CurrentUser.Guid;
+                    cls.Modified = DateTime.Now;
+                    cls.IsTemp = true;
+                }
+
+                cls.Type = EnRequestType.Rahn;
+                cls.Code = ucContractHeader1.ContractCode;
+                cls.CodeInArchive = ucContractHeader1.CodeInArchive;
+                cls.RealStateCode = ucContractHeader1.RealStateCode;
+                cls.HologramCode = ucContractHeader1.HologramCode;
+                cls.DateM = ucContractHeader1.ContractDate;
+
+                cls.FirstSideGuid = ucFSide.Guid;
+                cls.SecondSideGuid = ucSecondSide.Guid;
+
+                cls.BuildingRegistrationNo = ucContractRahn_21.RegistryNo;
+                cls.BuildingRegistrationNoSub = ucContractRahn_21.RegistryNoSub;
+                cls.BuildingRegistrationNoOrigin = ucContractRahn_21.RegistryNoOrigin;
+                cls.ParkingNo = ucContractRahn_21.ParkingNo;
+                cls.StoreNo = ucContractRahn_21.StoreNo;
+                cls.StoreMasahat = ucContractRahn_21.StoreMasahat;
+                cls.SanadSerial = ucContractRahn_21.SanadSerial;
+                cls.Page = ucContractRahn_21.Page;
+                cls.Office = ucContractRahn_21.Office;
+                cls.BuildingNumber = ucContractRahn_21.BuildingNumber;
+                cls.BuildingPlack = ucContractRahn_21.BuildingPlack;
+                cls.PhoneLineCount = ucContractRahn_21.PhoneCount;
+                cls.BuildingPhoneNumber = ucContractRahn_21.PhoneNumber;
+
+                cls.DischargeDate = ucContractRahn_31.DischargeDate;
+                cls.FromDate = ucContractRahn_31.FromDate;
+                cls.Term = ucContractRahn_31.Term;
+
+                cls.BankName = ucContractRahn_41.BankName;
+                cls.CheckNo = ucContractRahn_41.CheckNoFrom;
+                cls.CheckNoTo = ucContractRahn_41.CheckNoTo;
+                cls.MinorPrice = ucContractRahn_41.Ejare;
+                cls.TotalPrice = ucContractRahn_41.Rahn;
+                cls.SarResid = ucContractRahn_41.SarresidFrom;
+                cls.SarResidTo = ucContractRahn_41.SarresidTo;
+                cls.Shobe = ucContractRahn_41.Shobe;
+
+                cls.PeopleCount = ucContractRahn_51.PeopleCount;
+
+                cls.FirstSideDelay = ucContractRahn_61.FirstDelay;
+                cls.SecondSideDelay = ucContractRahn_61.SecondDelay;
+
+                cls.Description = ucContractDescription1.Description;
+                cls.Witness1 = ucContractDescription1.Witness1;
+                cls.Witness2 = ucContractDescription1.Witness2;
             }
             catch (Exception ex)
             {
@@ -89,8 +158,8 @@ namespace Building.Contract
                     ucContractRahn_41.Enabled = false;
                     ucContractRahn_51.Enabled = false;
                     ucContractRahn_61.Enabled = false;
-                    //ucContractDescription1.Enabled = false;
-                    //ucContractSell_71.Enabled = false;
+                    ucContractDescription1.Enabled = false;
+                    ucContractRahn_71.Enabled = false;
                     btnFinish.Enabled = false;
                 }
                 else
@@ -148,13 +217,44 @@ namespace Building.Contract
             DialogResult = DialogResult.Cancel;
             Close();
         }
-        private void btnFinish_Click(object sender, EventArgs e)
+        private async void btnFinish_Click(object sender, EventArgs e)
         {
-
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                btnFinish.Enabled = false;
+                await GetDataAsync();
+                res.AddReturnedValue(await cls.SaveAsync());
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                btnFinish.Enabled = true;
+                if (res.HasError) this.ShowError(res);
+                else
+                {
+                    if (res.HasWarning) this.ShowError(res);
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
+            }
         }
-        private void buttonX1_Click(object sender, EventArgs e)
+        private async void buttonX1_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                await GetDataAsync();
+                var frm = new frmCommition(cls);
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
     }
 }

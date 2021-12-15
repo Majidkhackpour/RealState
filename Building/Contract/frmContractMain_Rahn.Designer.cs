@@ -44,6 +44,8 @@ namespace Building.Contract
             this.ucContractRahn_31 = new Building.UserControls.Contract.Rahn.UcContractRahn_3();
             this.ucContractRahn_21 = new Building.UserControls.Contract.Rahn.UcContractRahn_2();
             this.ucContractHeader1 = new Building.UserControls.Contract.Public.UcContractHeader();
+            this.ucContractRahn_71 = new Building.UserControls.Contract.Rahn.UcContractRahn_7();
+            this.ucContractDescription1 = new Building.UserControls.Contract.Public.UcContractDescription();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -179,6 +181,8 @@ namespace Building.Contract
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.ucContractDescription1);
+            this.panel1.Controls.Add(this.ucContractRahn_71);
             this.panel1.Controls.Add(this.ucContractRahn_61);
             this.panel1.Controls.Add(this.ucContractRahn_51);
             this.panel1.Controls.Add(this.ucContractRahn_41);
@@ -333,6 +337,34 @@ namespace Building.Contract
             this.ucContractHeader1.TabIndex = 0;
             this.ucContractHeader1.Title = "مبایعه نامه";
             // 
+            // ucContractRahn_71
+            // 
+            this.ucContractRahn_71.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucContractRahn_71.BackColor = System.Drawing.Color.Transparent;
+            this.ucContractRahn_71.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucContractRahn_71.Location = new System.Drawing.Point(4, 1885);
+            this.ucContractRahn_71.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucContractRahn_71.Name = "ucContractRahn_71";
+            this.ucContractRahn_71.Size = new System.Drawing.Size(791, 240);
+            this.ucContractRahn_71.TabIndex = 7;
+            // 
+            // ucContractDescription1
+            // 
+            this.ucContractDescription1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucContractDescription1.BackColor = System.Drawing.Color.Transparent;
+            this.ucContractDescription1.Description = "";
+            this.ucContractDescription1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucContractDescription1.Location = new System.Drawing.Point(4, 2132);
+            this.ucContractDescription1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucContractDescription1.Name = "ucContractDescription1";
+            this.ucContractDescription1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucContractDescription1.Size = new System.Drawing.Size(791, 199);
+            this.ucContractDescription1.TabIndex = 8;
+            this.ucContractDescription1.Witness1 = "";
+            this.ucContractDescription1.Witness2 = "";
+            // 
             // frmContractMain_Rahn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -380,5 +412,7 @@ namespace Building.Contract
         private UserControls.Contract.Rahn.UcContractRahn_4 ucContractRahn_41;
         private UserControls.Contract.Rahn.UcContractRahn_5 ucContractRahn_51;
         private UserControls.Contract.Rahn.UcContractRahn_6 ucContractRahn_61;
+        private UserControls.Contract.Rahn.UcContractRahn_7 ucContractRahn_71;
+        private UserControls.Contract.Public.UcContractDescription ucContractDescription1;
     }
 }
