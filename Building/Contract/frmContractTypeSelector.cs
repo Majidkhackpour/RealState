@@ -51,9 +51,24 @@ namespace Building.Contract
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void frmContractTypeSelector_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        private async void frmContractTypeSelector_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Escape) Close();
+            try
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.Escape:
+                        DialogResult = DialogResult.Cancel;
+                        Close();
+                        break;
+                    case Keys.F1: await ucForoush_OnClick(ucForoush); break;
+                    case Keys.F2: await ucRahnEjare_OnClick(ucRahnEjare); break;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
         private async Task ucRahnEjare_OnClick(WindowsSerivces.UcButton arg)
         {

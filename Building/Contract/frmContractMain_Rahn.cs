@@ -52,6 +52,7 @@ namespace Building.Contract
                 ucContractRahn_31.DischargeDate = cls.DischargeDate;
                 ucContractRahn_31.FromDate = cls.FromDate;
                 ucContractRahn_31.Term = cls.Term ?? 12;
+                ucContractRahn_31.ContractDateSh = cls.DateSh;
 
                 ucContractRahn_41.BankName = cls.BankName;
                 ucContractRahn_41.CheckNoFrom = cls.CheckNo;
@@ -61,6 +62,7 @@ namespace Building.Contract
                 ucContractRahn_41.SarresidFrom = cls.SarResid;
                 ucContractRahn_41.SarresidTo = cls.SarResidTo;
                 ucContractRahn_41.Shobe = cls.Shobe;
+                ucContractRahn_41.Term = cls.Term ?? 12;
 
                 ucContractRahn_51.PeopleCount = cls.PeopleCount;
                 ucContractRahn_51.DischargeDateSh = cls.DischargeDateSh;

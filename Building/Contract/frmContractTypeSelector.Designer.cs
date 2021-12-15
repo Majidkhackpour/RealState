@@ -98,7 +98,7 @@ namespace Building.Contract
             this.ucPishForosh.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucPishForosh.Size = new System.Drawing.Size(288, 44);
             this.ucPishForosh.TabIndex = 1;
-            this.ucPishForosh.Title = "پیش فروش";
+            this.ucPishForosh.Title = "پیش فروش (F5)";
             this.ucPishForosh.Type = Services.EnContractType_.Appartment;
             // 
             // ucSarQofli
@@ -114,7 +114,7 @@ namespace Building.Contract
             this.ucSarQofli.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucSarQofli.Size = new System.Drawing.Size(288, 44);
             this.ucSarQofli.TabIndex = 1;
-            this.ucSarQofli.Title = "انتقال سرقفلی";
+            this.ucSarQofli.Title = "انتقال سرقفلی (F4)";
             this.ucSarQofli.Type = Services.EnContractType_.Appartment;
             // 
             // ucTamlic
@@ -130,7 +130,7 @@ namespace Building.Contract
             this.ucTamlic.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucTamlic.Size = new System.Drawing.Size(288, 44);
             this.ucTamlic.TabIndex = 1;
-            this.ucTamlic.Title = "اجاره به شرط تملیک";
+            this.ucTamlic.Title = "اجاره به شرط تملیک (F3)";
             this.ucTamlic.Type = Services.EnContractType_.Appartment;
             // 
             // ucRahnEjare
@@ -146,7 +146,7 @@ namespace Building.Contract
             this.ucRahnEjare.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucRahnEjare.Size = new System.Drawing.Size(288, 44);
             this.ucRahnEjare.TabIndex = 1;
-            this.ucRahnEjare.Title = "اجاره نامه";
+            this.ucRahnEjare.Title = "اجاره نامه (F2)";
             this.ucRahnEjare.Type = Services.EnContractType_.Appartment;
             this.ucRahnEjare.OnClick += new System.Func<WindowsSerivces.UcButton, System.Threading.Tasks.Task>(this.ucRahnEjare_OnClick);
             // 
@@ -163,7 +163,7 @@ namespace Building.Contract
             this.ucForoush.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucForoush.Size = new System.Drawing.Size(288, 44);
             this.ucForoush.TabIndex = 1;
-            this.ucForoush.Title = "مبایعه نامه";
+            this.ucForoush.Title = "مبایعه نامه (F1)";
             this.ucForoush.Type = Services.EnContractType_.Appartment;
             this.ucForoush.OnClick += new System.Func<WindowsSerivces.UcButton, System.Threading.Tasks.Task>(this.ucForoush_OnClick);
             // 

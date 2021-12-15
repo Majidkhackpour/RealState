@@ -119,5 +119,25 @@ namespace Building.Buildings.Selector
         private async System.Threading.Tasks.Task ucPishForoush_OnClick(UcButton arg) => SwitchSelect(arg);
         private async System.Threading.Tasks.Task ucMoaveze_OnClick(UcButton arg) => SwitchSelect(arg);
         private async System.Threading.Tasks.Task ucMosharekat_OnClick(UcButton arg) => SwitchSelect(arg);
+        private async void frmSelectBuildingType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.Escape: Close(); break;
+                    case Keys.F1: await ucForoush_OnClick_1(ucForoush); break;
+                    case Keys.F2: await ucRahnEjare_OnClick(ucRahnEjare); break;
+                    case Keys.F3: await ucFullRahn_OnClick(ucFullRahn); break;
+                    case Keys.F4: await ucPishForoush_OnClick(ucPishForoush); break;
+                    case Keys.F5: await ucMoaveze_OnClick(ucMoaveze); break;
+                    case Keys.F6: await ucMosharekat_OnClick(ucMosharekat); break;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
     }
 }

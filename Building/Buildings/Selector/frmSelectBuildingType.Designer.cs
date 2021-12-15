@@ -106,7 +106,7 @@ namespace Building.Buildings.Selector
             this.ucMosharekat.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucMosharekat.Size = new System.Drawing.Size(294, 44);
             this.ucMosharekat.TabIndex = 1;
-            this.ucMosharekat.Title = "مشارکت در ساخت";
+            this.ucMosharekat.Title = "مشارکت در ساخت (F6)";
             this.ucMosharekat.OnClick += new System.Func<WindowsSerivces.UcButton, System.Threading.Tasks.Task>(this.ucMosharekat_OnClick);
             // 
             // ucMoaveze
@@ -122,7 +122,7 @@ namespace Building.Buildings.Selector
             this.ucMoaveze.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucMoaveze.Size = new System.Drawing.Size(294, 44);
             this.ucMoaveze.TabIndex = 1;
-            this.ucMoaveze.Title = "معاوضه";
+            this.ucMoaveze.Title = "معاوضه (F5)";
             this.ucMoaveze.OnClick += new System.Func<WindowsSerivces.UcButton, System.Threading.Tasks.Task>(this.ucMoaveze_OnClick);
             // 
             // ucPishForoush
@@ -138,7 +138,7 @@ namespace Building.Buildings.Selector
             this.ucPishForoush.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucPishForoush.Size = new System.Drawing.Size(294, 44);
             this.ucPishForoush.TabIndex = 1;
-            this.ucPishForoush.Title = "پیش فروش";
+            this.ucPishForoush.Title = "پیش فروش (F4)";
             this.ucPishForoush.OnClick += new System.Func<WindowsSerivces.UcButton, System.Threading.Tasks.Task>(this.ucPishForoush_OnClick);
             // 
             // ucFullRahn
@@ -154,7 +154,7 @@ namespace Building.Buildings.Selector
             this.ucFullRahn.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucFullRahn.Size = new System.Drawing.Size(294, 44);
             this.ucFullRahn.TabIndex = 1;
-            this.ucFullRahn.Title = "رهن کامل";
+            this.ucFullRahn.Title = "رهن کامل (F3)";
             this.ucFullRahn.OnClick += new System.Func<WindowsSerivces.UcButton, System.Threading.Tasks.Task>(this.ucFullRahn_OnClick);
             // 
             // ucRahnEjare
@@ -170,7 +170,7 @@ namespace Building.Buildings.Selector
             this.ucRahnEjare.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucRahnEjare.Size = new System.Drawing.Size(294, 44);
             this.ucRahnEjare.TabIndex = 1;
-            this.ucRahnEjare.Title = "رهن و اجاره";
+            this.ucRahnEjare.Title = "رهن و اجاره (F2)";
             this.ucRahnEjare.OnClick += new System.Func<WindowsSerivces.UcButton, System.Threading.Tasks.Task>(this.ucRahnEjare_OnClick);
             // 
             // ucForoush
@@ -186,7 +186,7 @@ namespace Building.Buildings.Selector
             this.ucForoush.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucForoush.Size = new System.Drawing.Size(294, 44);
             this.ucForoush.TabIndex = 1;
-            this.ucForoush.Title = "فروش";
+            this.ucForoush.Title = "فروش (F1)";
             this.ucForoush.OnClick += new System.Func<WindowsSerivces.UcButton, System.Threading.Tasks.Task>(this.ucForoush_OnClick_1);
             // 
             // timer1
@@ -212,6 +212,7 @@ namespace Building.Buildings.Selector
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Style = MetroFramework.MetroColorStyle.Teal;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSelectBuildingType_KeyDown);
             this.groupPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
