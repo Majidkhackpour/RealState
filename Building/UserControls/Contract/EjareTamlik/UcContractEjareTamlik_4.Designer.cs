@@ -50,7 +50,7 @@ namespace Building.UserControls.Contract.EjareTamlik
             // 
             this.lblToman.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblToman.BackColor = System.Drawing.Color.Transparent;
-            this.lblToman.Location = new System.Drawing.Point(263, 13);
+            this.lblToman.Location = new System.Drawing.Point(307, 13);
             this.lblToman.Name = "lblToman";
             this.lblToman.Size = new System.Drawing.Size(192, 20);
             this.lblToman.TabIndex = 39;
@@ -61,7 +61,7 @@ namespace Building.UserControls.Contract.EjareTamlik
             this.txtShobe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtShobe.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtShobe.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtShobe.Location = new System.Drawing.Point(263, 45);
+            this.txtShobe.Location = new System.Drawing.Point(307, 45);
             this.txtShobe.Name = "txtShobe";
             this.txtShobe.Size = new System.Drawing.Size(86, 27);
             this.txtShobe.TabIndex = 37;
@@ -71,7 +71,7 @@ namespace Building.UserControls.Contract.EjareTamlik
             this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label15.AutoSize = true;
             this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.label15.Location = new System.Drawing.Point(348, 48);
+            this.label15.Location = new System.Drawing.Point(392, 48);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(34, 20);
             this.label15.TabIndex = 38;
@@ -82,7 +82,7 @@ namespace Building.UserControls.Contract.EjareTamlik
             this.txtBankName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBankName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtBankName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtBankName.Location = new System.Drawing.Point(388, 45);
+            this.txtBankName.Location = new System.Drawing.Point(432, 45);
             this.txtBankName.Name = "txtBankName";
             this.txtBankName.Size = new System.Drawing.Size(109, 27);
             this.txtBankName.TabIndex = 35;
@@ -92,7 +92,7 @@ namespace Building.UserControls.Contract.EjareTamlik
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.Color.Transparent;
-            this.label14.Location = new System.Drawing.Point(497, 48);
+            this.label14.Location = new System.Drawing.Point(541, 48);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(31, 20);
             this.label14.TabIndex = 36;
@@ -103,7 +103,7 @@ namespace Building.UserControls.Contract.EjareTamlik
             this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label18.AutoSize = true;
             this.label18.BackColor = System.Drawing.Color.Transparent;
-            this.label18.Location = new System.Drawing.Point(142, 12);
+            this.label18.Location = new System.Drawing.Point(186, 12);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(115, 20);
             this.label18.TabIndex = 34;
@@ -114,7 +114,7 @@ namespace Building.UserControls.Contract.EjareTamlik
             this.txtCheckNo1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCheckNo1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtCheckNo1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtCheckNo1.Location = new System.Drawing.Point(534, 45);
+            this.txtCheckNo1.Location = new System.Drawing.Point(578, 45);
             this.txtCheckNo1.Name = "txtCheckNo1";
             this.txtCheckNo1.Size = new System.Drawing.Size(80, 27);
             this.txtCheckNo1.TabIndex = 31;
@@ -128,7 +128,7 @@ namespace Building.UserControls.Contract.EjareTamlik
             this.txtPishPrice.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.txtPishPrice.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtPishPrice.Font = new System.Drawing.Font("B Titr", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.txtPishPrice.Location = new System.Drawing.Point(9, 9);
+            this.txtPishPrice.Location = new System.Drawing.Point(53, 9);
             this.txtPishPrice.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPishPrice.Name = "txtPishPrice";
             this.txtPishPrice.Size = new System.Drawing.Size(132, 31);
@@ -147,7 +147,7 @@ namespace Building.UserControls.Contract.EjareTamlik
             this.txtTotalEjare.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.txtTotalEjare.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtTotalEjare.Font = new System.Drawing.Font("B Titr", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.txtTotalEjare.Location = new System.Drawing.Point(534, 9);
+            this.txtTotalEjare.Location = new System.Drawing.Point(578, 9);
             this.txtTotalEjare.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtTotalEjare.Name = "txtTotalEjare";
             this.txtTotalEjare.Size = new System.Drawing.Size(122, 31);
@@ -164,7 +164,7 @@ namespace Building.UserControls.Contract.EjareTamlik
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(611, 48);
+            this.label3.Location = new System.Drawing.Point(655, 48);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(183, 20);
             this.label3.TabIndex = 11;
@@ -175,7 +175,7 @@ namespace Building.UserControls.Contract.EjareTamlik
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(461, 13);
+            this.label2.Location = new System.Drawing.Point(505, 13);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 20);
             this.label2.TabIndex = 11;
@@ -186,7 +186,7 @@ namespace Building.UserControls.Contract.EjareTamlik
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Location = new System.Drawing.Point(656, 12);
+            this.label7.Location = new System.Drawing.Point(700, 12);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(138, 20);
             this.label7.TabIndex = 11;
@@ -253,7 +253,7 @@ namespace Building.UserControls.Contract.EjareTamlik
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(-344, 48);
+            this.label1.Location = new System.Drawing.Point(-300, 48);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(601, 20);
             this.label1.TabIndex = 11;

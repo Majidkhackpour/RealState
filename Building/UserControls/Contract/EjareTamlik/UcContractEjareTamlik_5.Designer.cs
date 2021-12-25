@@ -35,25 +35,25 @@ namespace Building.UserControls.Contract.EjareTamlik
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.grpPanel = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.ucSetDocDate = new Building.UserControls.UcDate();
-            this.txtSetDocNo = new System.Windows.Forms.NumericUpDown();
-            this.label16 = new System.Windows.Forms.Label();
-            this.txtSetDocPlace = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtDocAdjust = new System.Windows.Forms.NumericUpDown();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
             this.txtDelay = new WindowsSerivces.CurrencyTextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtDocAdjust = new System.Windows.Forms.NumericUpDown();
+            this.txtSetDocPlace = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtSetDocNo = new System.Windows.Forms.NumericUpDown();
+            this.label16 = new System.Windows.Forms.Label();
+            this.ucSetDocDate = new Building.UserControls.UcDate();
             this.label11 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.grpPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSetDocNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDocAdjust)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSetDocNo)).BeginInit();
             this.SuspendLayout();
             // 
             // label10
@@ -166,133 +166,6 @@ namespace Building.UserControls.Contract.EjareTamlik
             this.grpPanel.TabIndex = 5;
             this.grpPanel.Text = "ماده 5 - شرایط و آثار قرارداد";
             // 
-            // ucSetDocDate
-            // 
-            this.ucSetDocDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ucSetDocDate.DateSh = "0/0/0";
-            this.ucSetDocDate.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucSetDocDate.Location = new System.Drawing.Point(214, 20);
-            this.ucSetDocDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ucSetDocDate.Name = "ucSetDocDate";
-            this.ucSetDocDate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucSetDocDate.Size = new System.Drawing.Size(246, 41);
-            this.ucSetDocDate.TabIndex = 14;
-            // 
-            // txtSetDocNo
-            // 
-            this.txtSetDocNo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSetDocNo.Location = new System.Drawing.Point(1, 30);
-            this.txtSetDocNo.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtSetDocNo.Name = "txtSetDocNo";
-            this.txtSetDocNo.Size = new System.Drawing.Size(68, 27);
-            this.txtSetDocNo.TabIndex = 16;
-            // 
-            // label16
-            // 
-            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Location = new System.Drawing.Point(75, 32);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(132, 20);
-            this.label16.TabIndex = 15;
-            this.label16.Text = "در دفترخانه رسمی شماره";
-            // 
-            // txtSetDocPlace
-            // 
-            this.txtSetDocPlace.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSetDocPlace.Location = new System.Drawing.Point(654, 64);
-            this.txtSetDocPlace.Name = "txtSetDocPlace";
-            this.txtSetDocPlace.Size = new System.Drawing.Size(122, 27);
-            this.txtSetDocPlace.TabIndex = 23;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(782, 66);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 20);
-            this.label1.TabIndex = 22;
-            this.label1.Text = "واقع در";
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(316, 67);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(335, 20);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "حاضر شده و نسبت به تنظیم سند رسمی به نام مستاجر اقدام نمایند.";
-            // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Location = new System.Drawing.Point(-10, 140);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(839, 20);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "5-3 درصورتیکه مستاجر تمامی مبلغ اجاره بها را یکجا و زودتر ازموعد پرداخت کند، عین " +
-    "مستاجره از همان تاریخ به مالکیت مستاجر درآمده و طرفین مکلف خواهند بود ظرف مدت";
-            // 
-            // txtDocAdjust
-            // 
-            this.txtDocAdjust.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDocAdjust.Location = new System.Drawing.Point(757, 163);
-            this.txtDocAdjust.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtDocAdjust.Name = "txtDocAdjust";
-            this.txtDocAdjust.Size = new System.Drawing.Size(68, 27);
-            this.txtDocAdjust.TabIndex = 24;
-            // 
-            // label7
-            // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Location = new System.Drawing.Point(464, 165);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(287, 20);
-            this.label7.TabIndex = 11;
-            this.label7.Text = "از تاریخ پرداخت، تسبت به تنظیم سند رسمی اقدام نمایند.";
-            // 
-            // label8
-            // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Location = new System.Drawing.Point(184, 193);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(645, 20);
-            this.label8.TabIndex = 11;
-            this.label8.Text = "درصورت امتناع موجر از دریافت اجاره بها، مستاجر می تواند با پرداخت اجاره بهای مذکو" +
-    "ر به صندوق دادگستری تعهد خود را اجرا نماید.";
-            // 
-            // label17
-            // 
-            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label17.BackColor = System.Drawing.Color.Transparent;
-            this.label17.Location = new System.Drawing.Point(-1, 223);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(830, 63);
-            this.label17.TabIndex = 25;
-            this.label17.Text = resources.GetString("label17.Text");
-            // 
             // txtDelay
             // 
             this.txtDelay.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -334,6 +207,97 @@ namespace Building.UserControls.Contract.EjareTamlik
             this.label19.TabIndex = 26;
             this.label19.Text = "میزان خسارت برابر با";
             // 
+            // label17
+            // 
+            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label17.BackColor = System.Drawing.Color.Transparent;
+            this.label17.Location = new System.Drawing.Point(-1, 223);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(830, 63);
+            this.label17.TabIndex = 25;
+            this.label17.Text = resources.GetString("label17.Text");
+            // 
+            // txtDocAdjust
+            // 
+            this.txtDocAdjust.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDocAdjust.Location = new System.Drawing.Point(757, 163);
+            this.txtDocAdjust.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtDocAdjust.Name = "txtDocAdjust";
+            this.txtDocAdjust.Size = new System.Drawing.Size(68, 27);
+            this.txtDocAdjust.TabIndex = 24;
+            // 
+            // txtSetDocPlace
+            // 
+            this.txtSetDocPlace.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSetDocPlace.Location = new System.Drawing.Point(654, 64);
+            this.txtSetDocPlace.Name = "txtSetDocPlace";
+            this.txtSetDocPlace.Size = new System.Drawing.Size(122, 27);
+            this.txtSetDocPlace.TabIndex = 23;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(782, 66);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(47, 20);
+            this.label1.TabIndex = 22;
+            this.label1.Text = "واقع در";
+            // 
+            // txtSetDocNo
+            // 
+            this.txtSetDocNo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSetDocNo.Location = new System.Drawing.Point(1, 30);
+            this.txtSetDocNo.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtSetDocNo.Name = "txtSetDocNo";
+            this.txtSetDocNo.Size = new System.Drawing.Size(68, 27);
+            this.txtSetDocNo.TabIndex = 16;
+            // 
+            // label16
+            // 
+            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.Color.Transparent;
+            this.label16.Location = new System.Drawing.Point(75, 32);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(132, 20);
+            this.label16.TabIndex = 15;
+            this.label16.Text = "در دفترخانه رسمی شماره";
+            // 
+            // ucSetDocDate
+            // 
+            this.ucSetDocDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucSetDocDate.DateSh = "1400/10/04";
+            this.ucSetDocDate.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucSetDocDate.Location = new System.Drawing.Point(214, 20);
+            this.ucSetDocDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucSetDocDate.Name = "ucSetDocDate";
+            this.ucSetDocDate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucSetDocDate.Size = new System.Drawing.Size(246, 41);
+            this.ucSetDocDate.TabIndex = 14;
+            // 
+            // label11
+            // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Location = new System.Drawing.Point(11, 406);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(818, 44);
+            this.label11.TabIndex = 11;
+            this.label11.Text = resources.GetString("label11.Text");
+            // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -347,16 +311,51 @@ namespace Building.UserControls.Contract.EjareTamlik
     "رنده از حیث اجرای تعهدات و پرداخت اقساط و سایر آثار قرارداد، قائم مقام مستاجر سا" +
     "بق خواهد بود.";
             // 
-            // label11
+            // label6
             // 
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Location = new System.Drawing.Point(11, 406);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(818, 44);
-            this.label11.TabIndex = 11;
-            this.label11.Text = resources.GetString("label11.Text");
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Location = new System.Drawing.Point(-10, 140);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(839, 20);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "5-3 درصورتیکه مستاجر تمامی مبلغ اجاره بها را یکجا و زودتر ازموعد پرداخت کند، عین " +
+    "مستاجره از همان تاریخ به مالکیت مستاجر درآمده و طرفین مکلف خواهند بود ظرف مدت";
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.Location = new System.Drawing.Point(184, 193);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(645, 20);
+            this.label8.TabIndex = 11;
+            this.label8.Text = "درصورت امتناع موجر از دریافت اجاره بها، مستاجر می تواند با پرداخت اجاره بهای مذکو" +
+    "ر به صندوق دادگستری تعهد خود را اجرا نماید.";
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Location = new System.Drawing.Point(464, 165);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(287, 20);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "از تاریخ پرداخت، تسبت به تنظیم سند رسمی اقدام نمایند.";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Location = new System.Drawing.Point(316, 67);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(335, 20);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "حاضر شده و نسبت به تنظیم سند رسمی به نام مستاجر اقدام نمایند.";
             // 
             // UcContractEjareTamlik_5
             // 
@@ -371,8 +370,8 @@ namespace Building.UserControls.Contract.EjareTamlik
             this.Size = new System.Drawing.Size(848, 477);
             this.grpPanel.ResumeLayout(false);
             this.grpPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSetDocNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDocAdjust)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSetDocNo)).EndInit();
             this.ResumeLayout(false);
 
         }

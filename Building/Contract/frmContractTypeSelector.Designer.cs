@@ -132,6 +132,7 @@ namespace Building.Contract
             this.ucTamlic.TabIndex = 1;
             this.ucTamlic.Title = "اجاره به شرط تملیک (F3)";
             this.ucTamlic.Type = Services.EnContractType_.Appartment;
+            this.ucTamlic.OnClick += new System.Func<WindowsSerivces.UcButton, System.Threading.Tasks.Task>(this.ucTamlic_OnClick);
             // 
             // ucRahnEjare
             // 

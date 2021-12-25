@@ -27,7 +27,7 @@ namespace Building.UserControls
             {
                 try
                 {
-                    if (string.IsNullOrEmpty(value) || value == "0/0/0")
+                    if (string.IsNullOrEmpty(value) || value == "0/0/0" || value.Length < 10)
                         value = Calendar.MiladiToShamsi(DateTime.Now);
                     _dateSh = value;
                     var year = _dateSh.Substring(0, 4).ParseToInt();

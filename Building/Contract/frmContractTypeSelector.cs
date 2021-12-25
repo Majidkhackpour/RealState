@@ -29,6 +29,14 @@ namespace Building.Contract
                     ucSarQofli.IsSelect = false;
                     ucTamlic.IsSelect = false;
                 }
+                else if (type == EnRequestType.EjareTamlik)
+                {
+                    ucForoush.IsSelect = false;
+                    ucRahnEjare.IsSelect = false;
+                    ucPishForosh.IsSelect = false;
+                    ucSarQofli.IsSelect = false;
+                    ucTamlic.IsSelect = true;
+                }
             }
             catch (Exception ex)
             {
@@ -63,6 +71,7 @@ namespace Building.Contract
                         break;
                     case Keys.F1: await ucForoush_OnClick(ucForoush); break;
                     case Keys.F2: await ucRahnEjare_OnClick(ucRahnEjare); break;
+                    case Keys.F3: await ucTamlic_OnClick(ucTamlic); break;
                 }
             }
             catch (Exception ex)
@@ -77,6 +86,21 @@ namespace Building.Contract
                 SetIsSelect(EnRequestType.Rahn);
                 await Task.Delay(100);
                 var frm = new frmContractMain_Rahn(new ContractBussines());
+                DialogResult = frm.ShowDialog(this);
+                Close();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task ucTamlic_OnClick(WindowsSerivces.UcButton arg)
+        {
+            try
+            {
+                SetIsSelect(EnRequestType.EjareTamlik);
+                await Task.Delay(100);
+                var frm = new frmContractMain_EjareTamlik(new ContractBussines());
                 DialogResult = frm.ShowDialog(this);
                 Close();
             }

@@ -342,6 +342,9 @@ namespace Building.Contract
                     case EnRequestType.Rahn:
                         frm_ = new frmContractMain_Rahn(con, true);
                         break;
+                    case EnRequestType.EjareTamlik:
+                        frm_ = new frmContractMain_EjareTamlik(con, true);
+                        break;
                 }
 
                 frm_?.ShowDialog(this);
@@ -371,6 +374,9 @@ namespace Building.Contract
                         case EnRequestType.Rahn:
                             frm_ = new frmContractMain_Rahn(con, true);
                             break;
+                        case EnRequestType.EjareTamlik:
+                            frm_ = new frmContractMain_EjareTamlik(con, true);
+                            break;
                     }
 
                     frm_?.ShowDialog(this);
@@ -385,6 +391,9 @@ namespace Building.Contract
                         break;
                     case EnRequestType.Rahn:
                         frm = new frmContractMain_Rahn(con);
+                        break;
+                    case EnRequestType.EjareTamlik:
+                        frm = new frmContractMain_EjareTamlik(con);
                         break;
                 }
                 if (frm?.ShowDialog(this) == DialogResult.OK)
