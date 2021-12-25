@@ -16,6 +16,7 @@ namespace Building.UserControls.Contract.EjareTamlik
         public string RegistryNo { get => txtRegistryNo.Text; set => txtRegistryNo.Text = value; }
         public string RegistryNoSub { get => txtRegistryNo_Sub.Text; set => txtRegistryNo_Sub.Text = value; }
         public string RegistryNoOrigin { get => txtRegistryNo_Origin.Text; set => txtRegistryNo_Origin.Text = value; }
+        public float Masahat { get => (float)txtMasahat.Value; set => txtMasahat.Value = (decimal)value; }
         public int PartNo { get => txtPartNo.Text.ParseToInt(); set => txtPartNo.Text = value.ToString(); }
         public string SanadSerial { get => txtSanadSerial.Text; set => txtSanadSerial.Text = value; }
         public int Page { get => (int)txtPage.Value; set => txtPage.Value = value; }
@@ -80,6 +81,7 @@ namespace Building.UserControls.Contract.EjareTamlik
                 Water = bu.Water ?? EnKhadamati.None;
                 Barq = bu.Barq ?? EnKhadamati.None;
                 Gas = bu.Gas ?? EnKhadamati.None;
+                Masahat = bu?.Masahat ?? 0;
             }
             catch (Exception ex)
             {
