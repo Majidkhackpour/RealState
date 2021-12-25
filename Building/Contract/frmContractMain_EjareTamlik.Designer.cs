@@ -38,15 +38,15 @@ namespace Building.Contract
             this.ucSecondSide = new Peoples.UcPeopleContract();
             this.btnCommition = new DevComponents.DotNetBar.ButtonX();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ucContractHeader1 = new Building.UserControls.Contract.Public.UcContractHeader();
-            this.ucContractEjareTamlik_21 = new Building.UserControls.Contract.EjareTamlik.UcContractEjareTamlik_2();
-            this.ucContractRahn_31 = new Building.UserControls.Contract.Rahn.UcContractRahn_3();
-            this.ucContractEjareTamlik_41 = new Building.UserControls.Contract.EjareTamlik.UcContractEjareTamlik_4();
-            this.ucContractEjareTamlik_51 = new Building.UserControls.Contract.EjareTamlik.UcContractEjareTamlik_5();
-            this.ucContractEjareTamlik_61 = new Building.UserControls.Contract.EjareTamlik.UcContractEjareTamlik_6();
-            this.ucContractEjareTamlik_71 = new Building.UserControls.Contract.EjareTamlik.UcContractEjareTamlik_7();
-            this.ucContractEjareTamlik_Notice1 = new Building.UserControls.Contract.EjareTamlik.UcContractEjareTamlik_Notice();
             this.ucContractDescription1 = new Building.UserControls.Contract.Public.UcContractDescription();
+            this.ucContractEjareTamlik_Notice1 = new Building.UserControls.Contract.EjareTamlik.UcContractEjareTamlik_Notice();
+            this.ucContractEjareTamlik_71 = new Building.UserControls.Contract.EjareTamlik.UcContractEjareTamlik_7();
+            this.ucContractEjareTamlik_61 = new Building.UserControls.Contract.EjareTamlik.UcContractEjareTamlik_6();
+            this.ucContractEjareTamlik_51 = new Building.UserControls.Contract.EjareTamlik.UcContractEjareTamlik_5();
+            this.ucContractEjareTamlik_41 = new Building.UserControls.Contract.EjareTamlik.UcContractEjareTamlik_4();
+            this.ucContractRahn_31 = new Building.UserControls.Contract.Rahn.UcContractRahn_3();
+            this.ucContractEjareTamlik_21 = new Building.UserControls.Contract.EjareTamlik.UcContractEjareTamlik_2();
+            this.ucContractHeader1 = new Building.UserControls.Contract.Public.UcContractHeader();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -70,6 +70,7 @@ namespace Building.Contract
             this.buttonX1.TabIndex = 55811;
             this.buttonX1.Text = "کمیسیون و مالی (F8)";
             this.buttonX1.TextColor = System.Drawing.Color.Black;
+            this.buttonX1.Click += new System.EventHandler(this.buttonX1_Click);
             // 
             // btnCancel
             // 
@@ -89,6 +90,7 @@ namespace Building.Contract
             this.btnCancel.TabIndex = 55814;
             this.btnCancel.Text = "انصراف (Esc)";
             this.btnCancel.TextColor = System.Drawing.Color.Black;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnFinish
             // 
@@ -107,6 +109,7 @@ namespace Building.Contract
             this.btnFinish.TabIndex = 55812;
             this.btnFinish.Text = "تایید (F5)";
             this.btnFinish.TextColor = System.Drawing.Color.Black;
+            this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
             // splitContainer1
             // 
@@ -124,8 +127,8 @@ namespace Building.Contract
             // 
             this.splitContainer1.Panel2.Controls.Add(this.ucSecondSide);
             this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.splitContainer1.Size = new System.Drawing.Size(792, 260);
-            this.splitContainer1.SplitterDistance = 397;
+            this.splitContainer1.Size = new System.Drawing.Size(775, 260);
+            this.splitContainer1.SplitterDistance = 388;
             this.splitContainer1.TabIndex = 1;
             // 
             // ucFSide
@@ -138,7 +141,7 @@ namespace Building.Contract
             this.ucFSide.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucFSide.Name = "ucFSide";
             this.ucFSide.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucFSide.Size = new System.Drawing.Size(397, 260);
+            this.ucFSide.Size = new System.Drawing.Size(388, 260);
             this.ucFSide.TabIndex = 0;
             this.ucFSide.Title = "مشخصات فروشنده";
             // 
@@ -152,7 +155,7 @@ namespace Building.Contract
             this.ucSecondSide.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucSecondSide.Name = "ucSecondSide";
             this.ucSecondSide.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucSecondSide.Size = new System.Drawing.Size(391, 260);
+            this.ucSecondSide.Size = new System.Drawing.Size(383, 260);
             this.ucSecondSide.TabIndex = 1;
             this.ucSecondSide.Title = "مشخصات خریدار";
             // 
@@ -194,24 +197,123 @@ namespace Building.Contract
             this.panel1.Size = new System.Drawing.Size(816, 529);
             this.panel1.TabIndex = 55810;
             // 
-            // ucContractHeader1
+            // ucContractDescription1
             // 
-            this.ucContractHeader1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ucContractDescription1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ucContractHeader1.BackColor = System.Drawing.Color.Transparent;
-            this.ucContractHeader1.CodeInArchive = "";
-            this.ucContractHeader1.ContractCode = ((long)(4));
-            this.ucContractHeader1.ContractDate = new System.DateTime(2021, 11, 23, 0, 0, 0, 0);
-            this.ucContractHeader1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucContractHeader1.HologramCode = "";
-            this.ucContractHeader1.Location = new System.Drawing.Point(4, 5);
-            this.ucContractHeader1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ucContractHeader1.Name = "ucContractHeader1";
-            this.ucContractHeader1.RealStateCode = "";
-            this.ucContractHeader1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucContractHeader1.Size = new System.Drawing.Size(792, 213);
-            this.ucContractHeader1.TabIndex = 0;
-            this.ucContractHeader1.Title = "مبایعه نامه";
+            this.ucContractDescription1.BackColor = System.Drawing.Color.Transparent;
+            this.ucContractDescription1.Description = "";
+            this.ucContractDescription1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucContractDescription1.Location = new System.Drawing.Point(11, 2098);
+            this.ucContractDescription1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucContractDescription1.Name = "ucContractDescription1";
+            this.ucContractDescription1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucContractDescription1.Size = new System.Drawing.Size(768, 199);
+            this.ucContractDescription1.TabIndex = 9;
+            this.ucContractDescription1.Witness1 = "";
+            this.ucContractDescription1.Witness2 = "";
+            // 
+            // ucContractEjareTamlik_Notice1
+            // 
+            this.ucContractEjareTamlik_Notice1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucContractEjareTamlik_Notice1.BackColor = System.Drawing.Color.Transparent;
+            this.ucContractEjareTamlik_Notice1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucContractEjareTamlik_Notice1.Location = new System.Drawing.Point(11, 1714);
+            this.ucContractEjareTamlik_Notice1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucContractEjareTamlik_Notice1.Name = "ucContractEjareTamlik_Notice1";
+            this.ucContractEjareTamlik_Notice1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucContractEjareTamlik_Notice1.Size = new System.Drawing.Size(767, 374);
+            this.ucContractEjareTamlik_Notice1.TabIndex = 8;
+            // 
+            // ucContractEjareTamlik_71
+            // 
+            this.ucContractEjareTamlik_71.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucContractEjareTamlik_71.BackColor = System.Drawing.Color.Transparent;
+            this.ucContractEjareTamlik_71.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucContractEjareTamlik_71.Location = new System.Drawing.Point(11, 1540);
+            this.ucContractEjareTamlik_71.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucContractEjareTamlik_71.Name = "ucContractEjareTamlik_71";
+            this.ucContractEjareTamlik_71.Size = new System.Drawing.Size(767, 167);
+            this.ucContractEjareTamlik_71.TabIndex = 7;
+            this.ucContractEjareTamlik_71.TaxPercent = 0F;
+            // 
+            // ucContractEjareTamlik_61
+            // 
+            this.ucContractEjareTamlik_61.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucContractEjareTamlik_61.BackColor = System.Drawing.Color.Transparent;
+            this.ucContractEjareTamlik_61.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucContractEjareTamlik_61.Location = new System.Drawing.Point(11, 1444);
+            this.ucContractEjareTamlik_61.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucContractEjareTamlik_61.Name = "ucContractEjareTamlik_61";
+            this.ucContractEjareTamlik_61.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucContractEjareTamlik_61.Size = new System.Drawing.Size(768, 86);
+            this.ucContractEjareTamlik_61.TabIndex = 6;
+            // 
+            // ucContractEjareTamlik_51
+            // 
+            this.ucContractEjareTamlik_51.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucContractEjareTamlik_51.BackColor = System.Drawing.Color.Transparent;
+            this.ucContractEjareTamlik_51.Delay = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.ucContractEjareTamlik_51.DocumentAsjust = "0";
+            this.ucContractEjareTamlik_51.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucContractEjareTamlik_51.Location = new System.Drawing.Point(11, 965);
+            this.ucContractEjareTamlik_51.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucContractEjareTamlik_51.Name = "ucContractEjareTamlik_51";
+            this.ucContractEjareTamlik_51.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucContractEjareTamlik_51.SetDocDate = new System.DateTime(2021, 12, 25, 0, 0, 0, 0);
+            this.ucContractEjareTamlik_51.SetDocNo = 0;
+            this.ucContractEjareTamlik_51.SetDocPlace = "";
+            this.ucContractEjareTamlik_51.Size = new System.Drawing.Size(767, 477);
+            this.ucContractEjareTamlik_51.TabIndex = 5;
+            // 
+            // ucContractEjareTamlik_41
+            // 
+            this.ucContractEjareTamlik_41.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucContractEjareTamlik_41.BackColor = System.Drawing.Color.Transparent;
+            this.ucContractEjareTamlik_41.BankName = "";
+            this.ucContractEjareTamlik_41.CheckNo = "";
+            this.ucContractEjareTamlik_41.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucContractEjareTamlik_41.Location = new System.Drawing.Point(11, 838);
+            this.ucContractEjareTamlik_41.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucContractEjareTamlik_41.Name = "ucContractEjareTamlik_41";
+            this.ucContractEjareTamlik_41.PishPrice = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.ucContractEjareTamlik_41.Shobe = "";
+            this.ucContractEjareTamlik_41.Size = new System.Drawing.Size(767, 122);
+            this.ucContractEjareTamlik_41.TabIndex = 4;
+            this.ucContractEjareTamlik_41.TotalEjare = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // ucContractRahn_31
+            // 
+            this.ucContractRahn_31.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucContractRahn_31.BackColor = System.Drawing.Color.Transparent;
+            this.ucContractRahn_31.ContractDateSh = "1400/12/29";
+            this.ucContractRahn_31.DischargeDate = new System.DateTime(2021, 12, 25, 0, 0, 0, 0);
+            this.ucContractRahn_31.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucContractRahn_31.FromDate = new System.DateTime(2021, 12, 25, 0, 0, 0, 0);
+            this.ucContractRahn_31.Location = new System.Drawing.Point(11, 725);
+            this.ucContractRahn_31.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucContractRahn_31.Name = "ucContractRahn_31";
+            this.ucContractRahn_31.Size = new System.Drawing.Size(771, 108);
+            this.ucContractRahn_31.TabIndex = 3;
+            this.ucContractRahn_31.Term = 0;
             // 
             // ucContractEjareTamlik_21
             // 
@@ -239,128 +341,29 @@ namespace Building.Contract
             this.ucContractEjareTamlik_21.RegistryNoSub = "";
             this.ucContractEjareTamlik_21.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucContractEjareTamlik_21.SanadSerial = "";
-            this.ucContractEjareTamlik_21.Size = new System.Drawing.Size(788, 231);
+            this.ucContractEjareTamlik_21.Size = new System.Drawing.Size(771, 231);
             this.ucContractEjareTamlik_21.StoreMasahat = 0F;
             this.ucContractEjareTamlik_21.StoreNo = 0;
             this.ucContractEjareTamlik_21.TabIndex = 2;
             // 
-            // ucContractRahn_31
+            // ucContractHeader1
             // 
-            this.ucContractRahn_31.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ucContractHeader1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ucContractRahn_31.BackColor = System.Drawing.Color.Transparent;
-            this.ucContractRahn_31.ContractDateSh = "1400/12/29";
-            this.ucContractRahn_31.DischargeDate = new System.DateTime(2021, 12, 25, 0, 0, 0, 0);
-            this.ucContractRahn_31.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucContractRahn_31.FromDate = new System.DateTime(2021, 12, 25, 0, 0, 0, 0);
-            this.ucContractRahn_31.Location = new System.Drawing.Point(11, 725);
-            this.ucContractRahn_31.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ucContractRahn_31.Name = "ucContractRahn_31";
-            this.ucContractRahn_31.Size = new System.Drawing.Size(788, 108);
-            this.ucContractRahn_31.TabIndex = 3;
-            this.ucContractRahn_31.Term = 0;
-            // 
-            // ucContractEjareTamlik_41
-            // 
-            this.ucContractEjareTamlik_41.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ucContractEjareTamlik_41.BackColor = System.Drawing.Color.Transparent;
-            this.ucContractEjareTamlik_41.BankName = "";
-            this.ucContractEjareTamlik_41.CheckNo = "";
-            this.ucContractEjareTamlik_41.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucContractEjareTamlik_41.Location = new System.Drawing.Point(11, 838);
-            this.ucContractEjareTamlik_41.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ucContractEjareTamlik_41.Name = "ucContractEjareTamlik_41";
-            this.ucContractEjareTamlik_41.PishPrice = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.ucContractEjareTamlik_41.Shobe = "";
-            this.ucContractEjareTamlik_41.Size = new System.Drawing.Size(784, 122);
-            this.ucContractEjareTamlik_41.TabIndex = 4;
-            this.ucContractEjareTamlik_41.TotalEjare = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            // 
-            // ucContractEjareTamlik_51
-            // 
-            this.ucContractEjareTamlik_51.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ucContractEjareTamlik_51.BackColor = System.Drawing.Color.Transparent;
-            this.ucContractEjareTamlik_51.Delay = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.ucContractEjareTamlik_51.DocumentAsjust = "0";
-            this.ucContractEjareTamlik_51.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucContractEjareTamlik_51.Location = new System.Drawing.Point(11, 965);
-            this.ucContractEjareTamlik_51.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ucContractEjareTamlik_51.Name = "ucContractEjareTamlik_51";
-            this.ucContractEjareTamlik_51.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucContractEjareTamlik_51.SetDocDate = new System.DateTime(2021, 12, 25, 0, 0, 0, 0);
-            this.ucContractEjareTamlik_51.SetDocNo = 0;
-            this.ucContractEjareTamlik_51.SetDocPlace = "";
-            this.ucContractEjareTamlik_51.Size = new System.Drawing.Size(784, 477);
-            this.ucContractEjareTamlik_51.TabIndex = 5;
-            // 
-            // ucContractEjareTamlik_61
-            // 
-            this.ucContractEjareTamlik_61.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ucContractEjareTamlik_61.BackColor = System.Drawing.Color.Transparent;
-            this.ucContractEjareTamlik_61.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucContractEjareTamlik_61.Location = new System.Drawing.Point(11, 1444);
-            this.ucContractEjareTamlik_61.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ucContractEjareTamlik_61.Name = "ucContractEjareTamlik_61";
-            this.ucContractEjareTamlik_61.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucContractEjareTamlik_61.Size = new System.Drawing.Size(785, 86);
-            this.ucContractEjareTamlik_61.TabIndex = 6;
-            // 
-            // ucContractEjareTamlik_71
-            // 
-            this.ucContractEjareTamlik_71.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ucContractEjareTamlik_71.BackColor = System.Drawing.Color.Transparent;
-            this.ucContractEjareTamlik_71.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucContractEjareTamlik_71.Location = new System.Drawing.Point(11, 1540);
-            this.ucContractEjareTamlik_71.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ucContractEjareTamlik_71.Name = "ucContractEjareTamlik_71";
-            this.ucContractEjareTamlik_71.Size = new System.Drawing.Size(784, 167);
-            this.ucContractEjareTamlik_71.TabIndex = 7;
-            this.ucContractEjareTamlik_71.TaxPercent = 0F;
-            // 
-            // ucContractEjareTamlik_Notice1
-            // 
-            this.ucContractEjareTamlik_Notice1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ucContractEjareTamlik_Notice1.BackColor = System.Drawing.Color.Transparent;
-            this.ucContractEjareTamlik_Notice1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucContractEjareTamlik_Notice1.Location = new System.Drawing.Point(11, 1714);
-            this.ucContractEjareTamlik_Notice1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ucContractEjareTamlik_Notice1.Name = "ucContractEjareTamlik_Notice1";
-            this.ucContractEjareTamlik_Notice1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucContractEjareTamlik_Notice1.Size = new System.Drawing.Size(784, 374);
-            this.ucContractEjareTamlik_Notice1.TabIndex = 8;
-            // 
-            // ucContractDescription1
-            // 
-            this.ucContractDescription1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ucContractDescription1.BackColor = System.Drawing.Color.Transparent;
-            this.ucContractDescription1.Description = "";
-            this.ucContractDescription1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucContractDescription1.Location = new System.Drawing.Point(11, 2098);
-            this.ucContractDescription1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ucContractDescription1.Name = "ucContractDescription1";
-            this.ucContractDescription1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucContractDescription1.Size = new System.Drawing.Size(785, 199);
-            this.ucContractDescription1.TabIndex = 9;
-            this.ucContractDescription1.Witness1 = "";
-            this.ucContractDescription1.Witness2 = "";
+            this.ucContractHeader1.BackColor = System.Drawing.Color.Transparent;
+            this.ucContractHeader1.CodeInArchive = "";
+            this.ucContractHeader1.ContractCode = ((long)(4));
+            this.ucContractHeader1.ContractDate = new System.DateTime(2021, 11, 23, 0, 0, 0, 0);
+            this.ucContractHeader1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucContractHeader1.HologramCode = "";
+            this.ucContractHeader1.Location = new System.Drawing.Point(4, 5);
+            this.ucContractHeader1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucContractHeader1.Name = "ucContractHeader1";
+            this.ucContractHeader1.RealStateCode = "";
+            this.ucContractHeader1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucContractHeader1.Size = new System.Drawing.Size(775, 213);
+            this.ucContractHeader1.TabIndex = 0;
+            this.ucContractHeader1.Title = "مبایعه نامه";
             // 
             // frmContractMain_EjareTamlik
             // 
@@ -382,6 +385,8 @@ namespace Building.Contract
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Style = MetroFramework.MetroColorStyle.Teal;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmContractMain_EjareTamlik_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmContractMain_EjareTamlik_KeyDown);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();

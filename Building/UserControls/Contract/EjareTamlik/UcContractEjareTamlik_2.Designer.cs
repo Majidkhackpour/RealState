@@ -259,7 +259,7 @@ namespace Building.UserControls.Contract.EjareTamlik
             0,
             0});
             this.txtParkingNo.Name = "txtParkingNo";
-            this.txtParkingNo.Size = new System.Drawing.Size(51, 27);
+            this.txtParkingNo.Size = new System.Drawing.Size(27, 27);
             this.txtParkingNo.TabIndex = 8;
             // 
             // txtStoreNo
@@ -673,7 +673,7 @@ namespace Building.UserControls.Contract.EjareTamlik
             // ucPayankarDate
             // 
             this.ucPayankarDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ucPayankarDate.DateSh = "0/0/0";
+            this.ucPayankarDate.DateSh = "1400/10/4";
             this.ucPayankarDate.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.ucPayankarDate.Location = new System.Drawing.Point(557, 95);
             this.ucPayankarDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -682,7 +682,7 @@ namespace Building.UserControls.Contract.EjareTamlik
             this.ucPayankarDate.Size = new System.Drawing.Size(246, 41);
             this.ucPayankarDate.TabIndex = 22;
             // 
-            // UcContractEjareTaklik_2
+            // UcContractEjareTamlik_2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -690,7 +690,7 @@ namespace Building.UserControls.Contract.EjareTamlik
             this.Controls.Add(this.grpPanel);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "UcContractEjareTaklik_2";
+            this.Name = "UcContractEjareTamlik_2";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Size = new System.Drawing.Size(848, 231);
             ((System.ComponentModel.ISupportInitialize)(this.txtParkingMasahat)).EndInit();

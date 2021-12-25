@@ -71,7 +71,7 @@ namespace Building.UserControls.Contract.EjareTamlik
         {
             try
             {
-                var frm = new frmShowBuildings(true, new BuildingFilter() { Status = true, IsSell = true, OwnerGuid = OwnerGuid });
+                var frm = new frmShowBuildings(true, new BuildingFilter() { Status = true, OwnerGuid = OwnerGuid });
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
                 var bu = BuildingBussines.Get(frm.SelectedGuid);
                 if (bu == null) return;
