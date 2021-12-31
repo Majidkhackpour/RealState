@@ -795,6 +795,18 @@
     <Compile Include="UserControls\Contract\Rahn\UcContractRahn_7.Designer.cs">
       <DependentUpon>UcContractRahn_7.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Contract\Sarqofli\UcContractSarqofli_10.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Contract\Sarqofli\UcContractSarqofli_10.Designer.cs">
+      <DependentUpon>UcContractSarqofli_10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contract\Sarqofli\UcContractSarqofli_11.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Contract\Sarqofli\UcContractSarqofli_11.Designer.cs">
+      <DependentUpon>UcContractSarqofli_11.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Contract\Sarqofli\UcContractSarqofli_2.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -818,6 +830,36 @@
     </Compile>
     <Compile Include="UserControls\Contract\Sarqofli\UcContractSarqofli_5.Designer.cs">
       <DependentUpon>UcContractSarqofli_5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contract\Sarqofli\UcContractSarqofli_6.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Contract\Sarqofli\UcContractSarqofli_6.Designer.cs">
+      <DependentUpon>UcContractSarqofli_6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contract\Sarqofli\UcContractSarqofli_7.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Contract\Sarqofli\UcContractSarqofli_7.Designer.cs">
+      <DependentUpon>UcContractSarqofli_7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contract\Sarqofli\UcContractSarqofli_8.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Contract\Sarqofli\UcContractSarqofli_8.Designer.cs">
+      <DependentUpon>UcContractSarqofli_8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contract\Sarqofli\UcContractSarqofli_9.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Contract\Sarqofli\UcContractSarqofli_9.Designer.cs">
+      <DependentUpon>UcContractSarqofli_9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contract\Sarqofli\UcContractSarqofli_Notice.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Contract\Sarqofli\UcContractSarqofli_Notice.Designer.cs">
+      <DependentUpon>UcContractSarqofli_Notice.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Contract\Sell\UcContractSell_2.cs">
       <SubType>UserControl</SubType>
@@ -1390,6 +1432,12 @@
     <EmbeddedResource Include="UserControls\Contract\Rahn\UcContractRahn_7.resx">
       <DependentUpon>UcContractRahn_7.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Contract\Sarqofli\UcContractSarqofli_10.resx">
+      <DependentUpon>UcContractSarqofli_10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Contract\Sarqofli\UcContractSarqofli_11.resx">
+      <DependentUpon>UcContractSarqofli_11.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Contract\Sarqofli\UcContractSarqofli_2.resx">
       <DependentUpon>UcContractSarqofli_2.cs</DependentUpon>
     </EmbeddedResource>
@@ -1401,6 +1449,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Contract\Sarqofli\UcContractSarqofli_5.resx">
       <DependentUpon>UcContractSarqofli_5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Contract\Sarqofli\UcContractSarqofli_6.resx">
+      <DependentUpon>UcContractSarqofli_6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Contract\Sarqofli\UcContractSarqofli_7.resx">
+      <DependentUpon>UcContractSarqofli_7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Contract\Sarqofli\UcContractSarqofli_8.resx">
+      <DependentUpon>UcContractSarqofli_8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Contract\Sarqofli\UcContractSarqofli_9.resx">
+      <DependentUpon>UcContractSarqofli_9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Contract\Sarqofli\UcContractSarqofli_Notice.resx">
+      <DependentUpon>UcContractSarqofli_Notice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Contract\Sell\UcContractSell_2.resx">
       <DependentUpon>UcContractSell_2.cs</DependentUpon>
