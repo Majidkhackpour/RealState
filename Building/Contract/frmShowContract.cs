@@ -345,6 +345,9 @@ namespace Building.Contract
                     case EnRequestType.EjareTamlik:
                         frm_ = new frmContractMain_EjareTamlik(con, true);
                         break;
+                    case EnRequestType.Sarqofli:
+                        frm_ = new frmContractMain_Sarqofli(con, true);
+                        break;
                 }
 
                 frm_?.ShowDialog(this);
@@ -377,6 +380,9 @@ namespace Building.Contract
                         case EnRequestType.EjareTamlik:
                             frm_ = new frmContractMain_EjareTamlik(con, true);
                             break;
+                        case EnRequestType.Sarqofli:
+                            frm_ = new frmContractMain_Sarqofli(con, true);
+                            break;
                     }
 
                     frm_?.ShowDialog(this);
@@ -394,6 +400,9 @@ namespace Building.Contract
                         break;
                     case EnRequestType.EjareTamlik:
                         frm = new frmContractMain_EjareTamlik(con);
+                        break;
+                    case EnRequestType.Sarqofli:
+                        frm = new frmContractMain_Sarqofli(con);
                         break;
                 }
                 if (frm?.ShowDialog(this) == DialogResult.OK)

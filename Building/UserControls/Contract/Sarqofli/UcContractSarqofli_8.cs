@@ -7,4 +7,3 @@ namespace Building.UserControls.Contract.Sarqofli
         public UcContractSarqofli_8() => InitializeComponent();
     }
 }
-}

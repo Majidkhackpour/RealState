@@ -127,8 +127,8 @@ namespace Building.Contract
             // 
             this.splitContainer1.Panel2.Controls.Add(this.ucSecondSide);
             this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.splitContainer1.Size = new System.Drawing.Size(775, 260);
-            this.splitContainer1.SplitterDistance = 388;
+            this.splitContainer1.Size = new System.Drawing.Size(792, 260);
+            this.splitContainer1.SplitterDistance = 396;
             this.splitContainer1.TabIndex = 1;
             // 
             // ucFSide
@@ -141,7 +141,7 @@ namespace Building.Contract
             this.ucFSide.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucFSide.Name = "ucFSide";
             this.ucFSide.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucFSide.Size = new System.Drawing.Size(388, 260);
+            this.ucFSide.Size = new System.Drawing.Size(396, 260);
             this.ucFSide.TabIndex = 0;
             this.ucFSide.Title = "مشخصات فروشنده";
             // 
@@ -155,7 +155,7 @@ namespace Building.Contract
             this.ucSecondSide.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucSecondSide.Name = "ucSecondSide";
             this.ucSecondSide.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucSecondSide.Size = new System.Drawing.Size(383, 260);
+            this.ucSecondSide.Size = new System.Drawing.Size(392, 260);
             this.ucSecondSide.TabIndex = 1;
             this.ucSecondSide.Title = "مشخصات خریدار";
             // 
@@ -208,7 +208,7 @@ namespace Building.Contract
             this.ucContractDescription1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucContractDescription1.Name = "ucContractDescription1";
             this.ucContractDescription1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucContractDescription1.Size = new System.Drawing.Size(768, 199);
+            this.ucContractDescription1.Size = new System.Drawing.Size(788, 199);
             this.ucContractDescription1.TabIndex = 9;
             this.ucContractDescription1.Witness1 = "";
             this.ucContractDescription1.Witness2 = "";
@@ -223,7 +223,7 @@ namespace Building.Contract
             this.ucContractEjareTamlik_Notice1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucContractEjareTamlik_Notice1.Name = "ucContractEjareTamlik_Notice1";
             this.ucContractEjareTamlik_Notice1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucContractEjareTamlik_Notice1.Size = new System.Drawing.Size(767, 374);
+            this.ucContractEjareTamlik_Notice1.Size = new System.Drawing.Size(788, 374);
             this.ucContractEjareTamlik_Notice1.TabIndex = 8;
             // 
             // ucContractEjareTamlik_71
@@ -235,7 +235,7 @@ namespace Building.Contract
             this.ucContractEjareTamlik_71.Location = new System.Drawing.Point(11, 1540);
             this.ucContractEjareTamlik_71.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucContractEjareTamlik_71.Name = "ucContractEjareTamlik_71";
-            this.ucContractEjareTamlik_71.Size = new System.Drawing.Size(767, 167);
+            this.ucContractEjareTamlik_71.Size = new System.Drawing.Size(788, 167);
             this.ucContractEjareTamlik_71.TabIndex = 7;
             this.ucContractEjareTamlik_71.TaxPercent = 0F;
             // 
@@ -249,7 +249,7 @@ namespace Building.Contract
             this.ucContractEjareTamlik_61.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucContractEjareTamlik_61.Name = "ucContractEjareTamlik_61";
             this.ucContractEjareTamlik_61.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucContractEjareTamlik_61.Size = new System.Drawing.Size(768, 86);
+            this.ucContractEjareTamlik_61.Size = new System.Drawing.Size(789, 86);
             this.ucContractEjareTamlik_61.TabIndex = 6;
             // 
             // ucContractEjareTamlik_51
@@ -271,7 +271,7 @@ namespace Building.Contract
             this.ucContractEjareTamlik_51.SetDocDate = new System.DateTime(2021, 12, 25, 0, 0, 0, 0);
             this.ucContractEjareTamlik_51.SetDocNo = 0;
             this.ucContractEjareTamlik_51.SetDocPlace = "";
-            this.ucContractEjareTamlik_51.Size = new System.Drawing.Size(767, 477);
+            this.ucContractEjareTamlik_51.Size = new System.Drawing.Size(785, 477);
             this.ucContractEjareTamlik_51.TabIndex = 5;
             // 
             // ucContractEjareTamlik_41
@@ -291,7 +291,7 @@ namespace Building.Contract
             0,
             0});
             this.ucContractEjareTamlik_41.Shobe = "";
-            this.ucContractEjareTamlik_41.Size = new System.Drawing.Size(767, 122);
+            this.ucContractEjareTamlik_41.Size = new System.Drawing.Size(785, 122);
             this.ucContractEjareTamlik_41.TabIndex = 4;
             this.ucContractEjareTamlik_41.TotalEjare = new decimal(new int[] {
             0,
@@ -311,7 +311,7 @@ namespace Building.Contract
             this.ucContractRahn_31.Location = new System.Drawing.Point(11, 725);
             this.ucContractRahn_31.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucContractRahn_31.Name = "ucContractRahn_31";
-            this.ucContractRahn_31.Size = new System.Drawing.Size(771, 108);
+            this.ucContractRahn_31.Size = new System.Drawing.Size(789, 108);
             this.ucContractRahn_31.TabIndex = 3;
             this.ucContractRahn_31.Term = 0;
             // 
@@ -325,6 +325,7 @@ namespace Building.Contract
             this.ucContractEjareTamlik_21.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.ucContractEjareTamlik_21.Location = new System.Drawing.Point(11, 489);
             this.ucContractEjareTamlik_21.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucContractEjareTamlik_21.Masahat = 0F;
             this.ucContractEjareTamlik_21.Name = "ucContractEjareTamlik_21";
             this.ucContractEjareTamlik_21.Office = "";
             this.ucContractEjareTamlik_21.OwnerGuid = new System.Guid("00000000-0000-0000-0000-000000000000");
@@ -341,7 +342,7 @@ namespace Building.Contract
             this.ucContractEjareTamlik_21.RegistryNoSub = "";
             this.ucContractEjareTamlik_21.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucContractEjareTamlik_21.SanadSerial = "";
-            this.ucContractEjareTamlik_21.Size = new System.Drawing.Size(771, 231);
+            this.ucContractEjareTamlik_21.Size = new System.Drawing.Size(789, 231);
             this.ucContractEjareTamlik_21.StoreMasahat = 0F;
             this.ucContractEjareTamlik_21.StoreNo = 0;
             this.ucContractEjareTamlik_21.TabIndex = 2;
@@ -361,7 +362,7 @@ namespace Building.Contract
             this.ucContractHeader1.Name = "ucContractHeader1";
             this.ucContractHeader1.RealStateCode = "";
             this.ucContractHeader1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucContractHeader1.Size = new System.Drawing.Size(775, 213);
+            this.ucContractHeader1.Size = new System.Drawing.Size(792, 213);
             this.ucContractHeader1.TabIndex = 0;
             this.ucContractHeader1.Title = "مبایعه نامه";
             // 

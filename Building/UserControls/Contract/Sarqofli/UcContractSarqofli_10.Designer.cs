@@ -39,7 +39,7 @@ namespace Building.UserControls.Contract.Sarqofli
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Location = new System.Drawing.Point(220, 8);
+            this.label7.Location = new System.Drawing.Point(226, 8);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(594, 20);
             this.label7.TabIndex = 11;

@@ -116,6 +116,7 @@ namespace Building.Contract
             this.ucSarQofli.TabIndex = 1;
             this.ucSarQofli.Title = "انتقال سرقفلی (F4)";
             this.ucSarQofli.Type = Services.EnContractType_.Appartment;
+            this.ucSarQofli.OnClick += new System.Func<WindowsSerivces.UcButton, System.Threading.Tasks.Task>(this.ucSarQofli_OnClick);
             // 
             // ucTamlic
             // 

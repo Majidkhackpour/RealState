@@ -54,10 +54,9 @@ namespace Building.UserControls.Contract.Sarqofli
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.grpPanel = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.txtPartNo = new System.Windows.Forms.TextBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.txtParkingNo = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.txtPayankarNo = new System.Windows.Forms.TextBox();
+            this.label32 = new System.Windows.Forms.Label();
             this.txtPhoneNumber = new System.Windows.Forms.TextBox();
             this.txtParkingMasahat = new System.Windows.Forms.NumericUpDown();
             this.txtPhoneCount = new System.Windows.Forms.NumericUpDown();
@@ -68,18 +67,19 @@ namespace Building.UserControls.Contract.Sarqofli
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
-            this.txtPayankarNo = new System.Windows.Forms.TextBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
+            this.txtParkingNo = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtPartNo = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
             this.ucPayankarDate = new Building.UserControls.UcDate();
             ((System.ComponentModel.ISupportInitialize)(this.txtPage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMasahat)).BeginInit();
             this.grpPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtParkingNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtParkingMasahat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhoneCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStoteMasahat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStoreNo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtParkingNo)).BeginInit();
             this.SuspendLayout();
             // 
             // btnChooseBuilding
@@ -102,15 +102,14 @@ namespace Building.UserControls.Contract.Sarqofli
             // 
             // cmbGas
             // 
-            this.cmbGas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbGas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbGas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbGas.DisplayMember = "Name";
             this.cmbGas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbGas.FormattingEnabled = true;
-            this.cmbGas.Location = new System.Drawing.Point(8, 63);
+            this.cmbGas.Location = new System.Drawing.Point(-40, 63);
             this.cmbGas.Name = "cmbGas";
-            this.cmbGas.Size = new System.Drawing.Size(17, 28);
+            this.cmbGas.Size = new System.Drawing.Size(66, 28);
             this.cmbGas.TabIndex = 16;
             this.cmbGas.ValueMember = "Guid";
             // 
@@ -433,48 +432,35 @@ namespace Building.UserControls.Contract.Sarqofli
             this.grpPanel.TabIndex = 2;
             this.grpPanel.Text = "ماده 2 - موضوع و مشخصات مورد معامله";
             // 
-            // txtPartNo
+            // label33
             // 
-            this.txtPartNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPartNo.Location = new System.Drawing.Point(238, 32);
-            this.txtPartNo.Name = "txtPartNo";
-            this.txtPartNo.Size = new System.Drawing.Size(68, 27);
-            this.txtPartNo.TabIndex = 22;
+            this.label33.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label33.AutoSize = true;
+            this.label33.BackColor = System.Drawing.Color.Transparent;
+            this.label33.Location = new System.Drawing.Point(246, 138);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(33, 20);
+            this.label33.TabIndex = 38;
+            this.label33.Text = "مورخ";
             // 
-            // label27
+            // txtPayankarNo
             // 
-            this.label27.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label27.AutoSize = true;
-            this.label27.BackColor = System.Drawing.Color.Transparent;
-            this.label27.Location = new System.Drawing.Point(307, 35);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(76, 20);
-            this.label27.TabIndex = 23;
-            this.label27.Text = "واقع در بخش";
+            this.txtPayankarNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPayankarNo.Location = new System.Drawing.Point(282, 134);
+            this.txtPayankarNo.Name = "txtPayankarNo";
+            this.txtPayankarNo.Size = new System.Drawing.Size(96, 27);
+            this.txtPayankarNo.TabIndex = 37;
             // 
-            // txtParkingNo
+            // label32
             // 
-            this.txtParkingNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtParkingNo.Location = new System.Drawing.Point(647, 101);
-            this.txtParkingNo.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtParkingNo.Name = "txtParkingNo";
-            this.txtParkingNo.Size = new System.Drawing.Size(51, 27);
-            this.txtParkingNo.TabIndex = 24;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(700, 103);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(129, 20);
-            this.label2.TabIndex = 25;
-            this.label2.Text = "و قطعه پارکینگ به شماره";
+            this.label32.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label32.AutoSize = true;
+            this.label32.BackColor = System.Drawing.Color.Transparent;
+            this.label32.Location = new System.Drawing.Point(384, 137);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(256, 20);
+            this.label32.TabIndex = 36;
+            this.label32.Text = "دارای پایانکار ساختمان صادره از شهرداری به شماره";
             // 
             // txtPhoneNumber
             // 
@@ -494,16 +480,15 @@ namespace Building.UserControls.Contract.Sarqofli
             // 
             // txtPhoneCount
             // 
-            this.txtPhoneCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPhoneCount.Location = new System.Drawing.Point(9, 101);
+            this.txtPhoneCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPhoneCount.Location = new System.Drawing.Point(-10, 101);
             this.txtPhoneCount.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
             this.txtPhoneCount.Name = "txtPhoneCount";
-            this.txtPhoneCount.Size = new System.Drawing.Size(37, 27);
+            this.txtPhoneCount.Size = new System.Drawing.Size(56, 27);
             this.txtPhoneCount.TabIndex = 34;
             // 
             // txtStoteMasahat
@@ -587,40 +572,53 @@ namespace Building.UserControls.Contract.Sarqofli
             this.label31.TabIndex = 33;
             this.label31.Text = "به متراژ";
             // 
-            // txtPayankarNo
+            // txtParkingNo
             // 
-            this.txtPayankarNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPayankarNo.Location = new System.Drawing.Point(282, 134);
-            this.txtPayankarNo.Name = "txtPayankarNo";
-            this.txtPayankarNo.Size = new System.Drawing.Size(96, 27);
-            this.txtPayankarNo.TabIndex = 37;
+            this.txtParkingNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtParkingNo.Location = new System.Drawing.Point(647, 101);
+            this.txtParkingNo.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtParkingNo.Name = "txtParkingNo";
+            this.txtParkingNo.Size = new System.Drawing.Size(51, 27);
+            this.txtParkingNo.TabIndex = 24;
             // 
-            // label32
+            // label2
             // 
-            this.label32.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label32.AutoSize = true;
-            this.label32.BackColor = System.Drawing.Color.Transparent;
-            this.label32.Location = new System.Drawing.Point(384, 137);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(256, 20);
-            this.label32.TabIndex = 36;
-            this.label32.Text = "دارای پایانکار ساختمان صادره از شهرداری به شماره";
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Location = new System.Drawing.Point(700, 103);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(129, 20);
+            this.label2.TabIndex = 25;
+            this.label2.Text = "و قطعه پارکینگ به شماره";
             // 
-            // label33
+            // txtPartNo
             // 
-            this.label33.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label33.AutoSize = true;
-            this.label33.BackColor = System.Drawing.Color.Transparent;
-            this.label33.Location = new System.Drawing.Point(246, 138);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(33, 20);
-            this.label33.TabIndex = 38;
-            this.label33.Text = "مورخ";
+            this.txtPartNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPartNo.Location = new System.Drawing.Point(238, 32);
+            this.txtPartNo.Name = "txtPartNo";
+            this.txtPartNo.Size = new System.Drawing.Size(68, 27);
+            this.txtPartNo.TabIndex = 22;
+            // 
+            // label27
+            // 
+            this.label27.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label27.AutoSize = true;
+            this.label27.BackColor = System.Drawing.Color.Transparent;
+            this.label27.Location = new System.Drawing.Point(307, 35);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(76, 20);
+            this.label27.TabIndex = 23;
+            this.label27.Text = "واقع در بخش";
             // 
             // ucPayankarDate
             // 
             this.ucPayankarDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ucPayankarDate.DateSh = "1400/10/5";
+            this.ucPayankarDate.DateSh = "1400/10/11";
             this.ucPayankarDate.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.ucPayankarDate.Location = new System.Drawing.Point(-3, 128);
             this.ucPayankarDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -644,11 +642,11 @@ namespace Building.UserControls.Contract.Sarqofli
             ((System.ComponentModel.ISupportInitialize)(this.txtMasahat)).EndInit();
             this.grpPanel.ResumeLayout(false);
             this.grpPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtParkingNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtParkingMasahat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhoneCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStoteMasahat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStoreNo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtParkingNo)).EndInit();
             this.ResumeLayout(false);
 
         }

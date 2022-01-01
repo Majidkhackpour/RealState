@@ -30,14 +30,14 @@ namespace Building.UserControls.Contract.Sarqofli
         private void InitializeComponent()
         {
             this.grpPanel = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.txtGulidType = new System.Windows.Forms.TextBox();
             this.txtAmountOfRent = new WindowsSerivces.CurrencyTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtGulidType = new System.Windows.Forms.TextBox();
             this.grpPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,6 +92,15 @@ namespace Building.UserControls.Contract.Sarqofli
             this.grpPanel.TabIndex = 5;
             this.grpPanel.Text = "ماده 6 - آثار قرارداد";
             // 
+            // txtGulidType
+            // 
+            this.txtGulidType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtGulidType.Location = new System.Drawing.Point(6, 104);
+            this.txtGulidType.Name = "txtGulidType";
+            this.txtGulidType.Size = new System.Drawing.Size(113, 27);
+            this.txtGulidType.TabIndex = 21;
+            // 
             // txtAmountOfRent
             // 
             this.txtAmountOfRent.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -133,6 +142,29 @@ namespace Building.UserControls.Contract.Sarqofli
             this.label2.TabIndex = 11;
             this.label2.Text = "6-3 میزان مال الاجاره پرداختی به مالک، مبلغ";
             // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Location = new System.Drawing.Point(527, 130);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(302, 20);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "می باشد که نیازمند اخذ مفاصا حساب از اتحادیه مربوطه است.";
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(121, 107);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(708, 20);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "6-4 اصل کلیه اسناد و مدارک نزد انتقال دهنده باقی ماند تا نسبت به کارهای اداری آن " +
+    "اقدام نماید و درحال حاضر نوع فعالیت کسب و کار در مغازه،";
+            // 
             // label4
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -156,40 +188,6 @@ namespace Building.UserControls.Contract.Sarqofli
             this.label7.Size = new System.Drawing.Size(350, 20);
             this.label7.TabIndex = 11;
             this.label7.Text = "6-1 انتقال گیرنده حق انتقال سرقفلی و کسب و پیشه به غیر را ندارد.";
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(121, 107);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(708, 20);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "6-4 اصل کلیه اسناد و مدارک نزد انتقال دهنده باقی ماند تا نسبت به کارهای اداری آن " +
-    "اقدام نماید و درحال حاضر نوع فعالیت کسب و کار در مغازه،";
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(527, 130);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(302, 20);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "می باشد که نیازمند اخذ مفاصا حساب از اتحادیه مربوطه است.";
-            // 
-            // txtGulidType
-            // 
-            this.txtGulidType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGulidType.Location = new System.Drawing.Point(6, 104);
-            this.txtGulidType.Name = "txtGulidType";
-            this.txtGulidType.Size = new System.Drawing.Size(113, 27);
-            this.txtGulidType.TabIndex = 21;
             // 
             // UcContractSarqofli_6
             // 

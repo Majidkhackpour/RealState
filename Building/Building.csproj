@@ -596,6 +596,12 @@
     <Compile Include="Contract\frmContractMain_Rahn.Designer.cs">
       <DependentUpon>frmContractMain_Rahn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Contract\frmContractMain_Sarqofli.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contract\frmContractMain_Sarqofli.Designer.cs">
+      <DependentUpon>frmContractMain_Sarqofli.cs</DependentUpon>
+    </Compile>
     <Compile Include="Contract\frmContractMain_Sell.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1330,6 +1336,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Contract\frmContractMain_Rahn.resx">
       <DependentUpon>frmContractMain_Rahn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contract\frmContractMain_Sarqofli.resx">
+      <DependentUpon>frmContractMain_Sarqofli.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Contract\frmContractMain_Sell.resx">
       <DependentUpon>frmContractMain_Sell.cs</DependentUpon>

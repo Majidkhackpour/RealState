@@ -33,10 +33,10 @@ namespace Building.UserControls.Contract.Sarqofli
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.grpPanel = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.grpPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,7 +45,7 @@ namespace Building.UserControls.Contract.Sarqofli
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(1, 27);
+            this.label5.Location = new System.Drawing.Point(7, 27);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(822, 42);
             this.label5.TabIndex = 11;
@@ -58,7 +58,7 @@ namespace Building.UserControls.Contract.Sarqofli
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(170, 4);
+            this.label4.Location = new System.Drawing.Point(176, 4);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(653, 20);
             this.label4.TabIndex = 11;
@@ -114,12 +114,23 @@ namespace Building.UserControls.Contract.Sarqofli
             this.grpPanel.TabIndex = 6;
             this.grpPanel.Text = "تذکر";
             // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Location = new System.Drawing.Point(9, 72);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(820, 44);
+            this.label6.TabIndex = 14;
+            this.label6.Text = resources.GetString("label6.Text");
+            // 
             // label8
             // 
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Location = new System.Drawing.Point(5, 187);
+            this.label8.Location = new System.Drawing.Point(11, 187);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(818, 44);
             this.label8.TabIndex = 12;
@@ -131,7 +142,7 @@ namespace Building.UserControls.Contract.Sarqofli
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(5, 143);
+            this.label3.Location = new System.Drawing.Point(11, 143);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(818, 44);
             this.label3.TabIndex = 12;
@@ -144,23 +155,12 @@ namespace Building.UserControls.Contract.Sarqofli
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(346, 116);
+            this.label2.Location = new System.Drawing.Point(352, 116);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(477, 20);
             this.label2.TabIndex = 13;
             this.label2.Text = "4- نحوه ثبت نام در سرویس پیامکی سامانه املاک ارسال عدد 1 به شماره 110203000 می با" +
     "شد.";
-            // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Location = new System.Drawing.Point(3, 72);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(820, 44);
-            this.label6.TabIndex = 14;
-            this.label6.Text = resources.GetString("label6.Text");
             // 
             // UcContractSarqofli_Notice
             // 
