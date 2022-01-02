@@ -305,7 +305,7 @@ namespace Building.Contract
             // 
             // ucContractSarqofli_51
             // 
-            this.ucContractSarqofli_51.AmountOfRent = new decimal(new int[] {
+            this.ucContractSarqofli_51.Delay = new decimal(new int[] {
             0,
             0,
             0,
