@@ -741,6 +741,24 @@
     <Compile Include="UserControls\Contract\PishForoush\UcContractPishForoush_4.Designer.cs">
       <DependentUpon>UcContractPishForoush_4.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Contract\PishForoush\UcContractPishForoush_5.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Contract\PishForoush\UcContractPishForoush_5.Designer.cs">
+      <DependentUpon>UcContractPishForoush_5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contract\PishForoush\UcContractPishForoush_6.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Contract\PishForoush\UcContractPishForoush_6.Designer.cs">
+      <DependentUpon>UcContractPishForoush_6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contract\PishForoush\UcContractPishForoush_7.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Contract\PishForoush\UcContractPishForoush_7.Designer.cs">
+      <DependentUpon>UcContractPishForoush_7.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Contract\Public\UcCommition.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1428,6 +1446,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Contract\PishForoush\UcContractPishForoush_4.resx">
       <DependentUpon>UcContractPishForoush_4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Contract\PishForoush\UcContractPishForoush_5.resx">
+      <DependentUpon>UcContractPishForoush_5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Contract\PishForoush\UcContractPishForoush_6.resx">
+      <DependentUpon>UcContractPishForoush_6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Contract\PishForoush\UcContractPishForoush_7.resx">
+      <DependentUpon>UcContractPishForoush_7.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Contract\Public\UcCommition.resx">
       <DependentUpon>UcCommition.cs</DependentUpon>
