@@ -85,6 +85,7 @@ namespace EntityCache.Bussines
         public int TedadTabaqe { get; set; }
         public int TabaqeNo { get; set; }
         public int VahedPerTabaqe { get; set; }
+        public int VahedNo { get; set; }
         public float MetrazhKouche { get; set; }
         public float ErtefaSaqf { get; set; }
         public float Hashie { get; set; }

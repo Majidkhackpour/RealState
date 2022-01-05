@@ -1,9 +1,8 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
-using System.Windows.Forms;
-using EntityCache.Bussines;
+﻿using EntityCache.Bussines;
 using Services;
+using System;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Building.UserControls
 {
