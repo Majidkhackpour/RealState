@@ -28,28 +28,23 @@ namespace Building.Contract
                 ucSecondSide.Guid = cls.SecondSideGuid;
                 ucSecondSide.Title = "مشخصات پیش خریدار";
 
-                //var bu = await BuildingBussines.GetAsync(cls.BuildingGuid);
-                //ucContractEjareTamlik_21.Dong = bu?.Dang ?? 6;
-                //ucContractEjareTamlik_21.BuildingType = bu?.BuildingTypeName;
-                //ucContractEjareTamlik_21.RegistryNo = cls.BuildingRegistrationNo;
-                //ucContractEjareTamlik_21.RegistryNoSub = cls.BuildingRegistrationNoSub;
-                //ucContractEjareTamlik_21.RegistryNoOrigin = cls.BuildingRegistrationNoOrigin;
-                //ucContractEjareTamlik_21.ParkingNo = cls.ParkingNo;
-                //ucContractEjareTamlik_21.StoreNo = cls.StoreNo;
-                //ucContractEjareTamlik_21.StoreMasahat = cls.StoreMasahat;
-                //ucContractEjareTamlik_21.ParkingMasahat = cls.ParkingMasahat;
-                //ucContractEjareTamlik_21.SanadSerial = cls.SanadSerial;
-                //ucContractEjareTamlik_21.Page = cls.Page;
-                //ucContractEjareTamlik_21.Office = cls.Office;
-                //ucContractEjareTamlik_21.Water = bu?.Water ?? EnKhadamati.None;
-                //ucContractEjareTamlik_21.Barq = bu?.Barq ?? EnKhadamati.None;
-                //ucContractEjareTamlik_21.Gas = bu?.Gas ?? EnKhadamati.None;
-                //ucContractEjareTamlik_21.PhoneCount = cls.PhoneLineCount;
-                //ucContractEjareTamlik_21.PhoneNumber = cls.BuildingPhoneNumber;
-                //ucContractEjareTamlik_21.Masahat = bu?.Masahat ?? 0;
-                //ucContractEjareTamlik_21.PartNo = cls.PartNo;
-                //ucContractEjareTamlik_21.PayankarDate = cls.PayankarDate;
-                //ucContractEjareTamlik_21.PayankarNo = cls.PayankarNo;
+                var bu = await BuildingBussines.GetAsync(cls.BuildingGuid);
+                ucContractPishForoush_31.Dong = bu?.Dang ?? 6;
+                ucContractPishForoush_31.Masahat = bu?.Masahat ?? 0;
+                ucContractPishForoush_31.RoomCount = bu?.RoomCount ?? 0;
+                ucContractPishForoush_31.TabaqeNo = bu?.TabaqeNo ?? 0;
+                ucContractPishForoush_31.TabaqeCount = bu?.TedadTabaqe ?? 0;
+                ucContractPishForoush_31.VahedNo = bu?.VahedNo ?? 0;
+                ucContractPishForoush_31.VahedCount = bu?.VahedPerTabaqe ?? 0;
+                ucContractPishForoush_31.Side = bu?.Side;
+                ucContractPishForoush_31.BuildingAccountTypeGuid = bu?.BuildingAccountTypeGuid ?? Guid.Empty;
+                ucContractPishForoush_31.BuildingViewGuid = bu?.BuildingViewGuid;
+                ucContractPishForoush_31.Consumable = cls.BuildingCosumable;
+                ucContractPishForoush_31.Hitting = bu?.Hiting;
+                ucContractPishForoush_31.Colling = bu?.Colling;
+
+                ucContractPishForoush_41.TotalPrice = cls.TotalPrice;
+                ucContractPishForoush_41.NaqdPrice = cls.MinorPrice;
 
                 //ucContractRahn_31.DischargeDate = cls.DischargeDate;
                 //ucContractRahn_31.FromDate = cls.FromDate;
@@ -153,19 +148,23 @@ namespace Building.Contract
                     ucContractHeader1.Enabled = false;
                     ucFSide.Enabled = false;
                     ucSecondSide.Enabled = false;
-                    //ucContractEjareTamlik_21.Enabled = false;
-                    //ucContractRahn_31.Enabled = false;
-                    //ucContractEjareTamlik_41.Enabled = false;
-                    //ucContractEjareTamlik_51.Enabled = false;
-                    //ucContractEjareTamlik_61.Enabled = false;
-                    //ucContractDescription1.Enabled = false;
-                    //ucContractEjareTamlik_71.Enabled = false;
-                    //btnFinish.Enabled = false;
-                    //ucContractEjareTamlik_Notice1.Enabled = false;
+                    ucContractPishForoush_21.Enabled = false;
+                    ucContractPishForoush_31.Enabled = false;
+                    ucContractPishForoush_41.Enabled = false;
+                    ucContractPishForoush_51.Enabled = false;
+                    ucContractPishForoush_61.Enabled = false;
+                    ucContractDescription1.Enabled = false;
+                    ucContractPishForoush_71.Enabled = false;
+                    btnFinish.Enabled = false;
+                    ucContractPishForoush_81.Enabled = false;
+                    ucContractPishForoush_91.Enabled = false;
+                    ucContractPishForoush_101.Enabled = false;
+                    ucContractPishForoush_111.Enabled = false;
+                    ucContractPishForoush_Notice1.Enabled = false;
                 }
                 else
                 {
-                    //ucContractEjareTamlik_21.OnBuildingSelect += Uc2OnOnBuildingSelect;
+                    ucContractPishForoush_31.OnBuildingSelect += Uc2OnOnBuildingSelect;
                     //ucContractHeader1.OnDateChanged += UcContractHeader1_OnDateChanged;
                     //ucFSide.OnChanged += UcFSide_OnChanged;
                 }
@@ -176,6 +175,19 @@ namespace Building.Contract
             }
         }
 
+        private void Uc2OnOnBuildingSelect(Guid buGuid)
+        {
+            try
+            {
+                cls.BuildingGuid = buGuid;
+                var bu = BuildingBussines.Get(buGuid);
+                ucContractPishForoush_41.TotalPrice = bu?.PishPrice ?? 0;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private async void frmContractMain_PishForoush_Load(object sender, System.EventArgs e) => await SetDataAsync();
         private async void btnFinish_Click(object sender, System.EventArgs e)
         {
