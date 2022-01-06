@@ -348,6 +348,9 @@ namespace Building.Contract
                     case EnRequestType.Sarqofli:
                         frm_ = new frmContractMain_Sarqofli(con, true);
                         break;
+                    case EnRequestType.PishForush:
+                        frm_ = new frmContractMain_PishForoush(con, true);
+                        break;
                 }
 
                 frm_?.ShowDialog(this);
@@ -383,6 +386,9 @@ namespace Building.Contract
                         case EnRequestType.Sarqofli:
                             frm_ = new frmContractMain_Sarqofli(con, true);
                             break;
+                        case EnRequestType.PishForush:
+                            frm_ = new frmContractMain_PishForoush(con, true);
+                            break;
                     }
 
                     frm_?.ShowDialog(this);
@@ -403,6 +409,9 @@ namespace Building.Contract
                         break;
                     case EnRequestType.Sarqofli:
                         frm = new frmContractMain_Sarqofli(con);
+                        break;
+                    case EnRequestType.PishForush:
+                        frm = new frmContractMain_PishForoush(con);
                         break;
                 }
                 if (frm?.ShowDialog(this) == DialogResult.OK)

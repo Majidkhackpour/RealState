@@ -100,6 +100,7 @@ namespace Building.Contract
             this.ucPishForosh.TabIndex = 1;
             this.ucPishForosh.Title = "پیش فروش (F5)";
             this.ucPishForosh.Type = Services.EnContractType_.Appartment;
+            this.ucPishForosh.OnClick += new System.Func<WindowsSerivces.UcButton, System.Threading.Tasks.Task>(this.ucPishForosh_OnClick);
             // 
             // ucSarQofli
             // 

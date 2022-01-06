@@ -80,7 +80,8 @@ namespace Building.UserControls.Contract.PishForoush
             // 
             // label2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Location = new System.Drawing.Point(5, 3);
             this.label2.Name = "label2";
@@ -89,7 +90,7 @@ namespace Building.UserControls.Contract.PishForoush
             this.label2.Text = "2-1 ساخت و تکمیل و تحویل بنا و تنظیم سند رسمی انتقال از طرف پیش فروشنده که تمام ی" +
     "ا قسمتی از زمین می باشد در ازای مبلغ توافق شده در قرارداد از طرف پیش خریدار";
             // 
-            // UcCountractPishForoush_2
+            // UcContractPishForoush_2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -97,7 +98,7 @@ namespace Building.UserControls.Contract.PishForoush
             this.Controls.Add(this.grpPanel);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "UcCountractPishForoush_2";
+            this.Name = "UcContractPishForoush_2";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Size = new System.Drawing.Size(848, 71);
             this.grpPanel.ResumeLayout(false);

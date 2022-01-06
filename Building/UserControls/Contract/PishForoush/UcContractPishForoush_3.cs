@@ -54,6 +54,18 @@ namespace Building.UserControls.Contract.PishForoush
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void FillBuildingView()
+        {
+            try
+            {
+                var list = BuildingViewBussines.GetAll();
+                BuildingViewBindingSource.DataSource = list.Where(q => q.Status).ToList().OrderBy(q => q.Name);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public float Masahat { get => (float)txtMasahat.Value; set => txtMasahat.Value = (decimal)value; }
         public float Dong { get => (float)txtDong.Value; set => txtDong.Value = (decimal)value; }
         public int RoomCount { get => (int)txtRoomCount.Value; set => txtRoomCount.Value = value; }
@@ -102,6 +114,7 @@ namespace Building.UserControls.Contract.PishForoush
             FillBuildingAccountType();
             FillCmbSide();
             FillHitting_Colling();
+            FillBuildingView();
         }
         private void RaiseBuildingSelect(Guid guid)
         {

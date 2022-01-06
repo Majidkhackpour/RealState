@@ -45,6 +45,14 @@ namespace Building.Contract
                     ucSarQofli.IsSelect = true;
                     ucTamlic.IsSelect = false;
                 }
+                else if (type == EnRequestType.PishForush)
+                {
+                    ucForoush.IsSelect = false;
+                    ucRahnEjare.IsSelect = false;
+                    ucPishForosh.IsSelect = true;
+                    ucSarQofli.IsSelect = false;
+                    ucTamlic.IsSelect = false;
+                }
             }
             catch (Exception ex)
             {
@@ -81,6 +89,7 @@ namespace Building.Contract
                     case Keys.F2: await ucRahnEjare_OnClick(ucRahnEjare); break;
                     case Keys.F3: await ucTamlic_OnClick(ucTamlic); break;
                     case Keys.F4: await ucSarQofli_OnClick(ucSarQofli); break;
+                    case Keys.F5: await ucPishForosh_OnClick(ucPishForosh); break;
                 }
             }
             catch (Exception ex)
@@ -125,6 +134,21 @@ namespace Building.Contract
                 SetIsSelect(EnRequestType.Sarqofli);
                 await Task.Delay(100);
                 var frm = new frmContractMain_Sarqofli(new ContractBussines());
+                DialogResult = frm.ShowDialog(this);
+                Close();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task ucPishForosh_OnClick(WindowsSerivces.UcButton arg)
+        {
+            try
+            {
+                SetIsSelect(EnRequestType.PishForush);
+                await Task.Delay(100);
+                var frm = new frmContractMain_PishForoush(new ContractBussines());
                 DialogResult = frm.ShowDialog(this);
                 Close();
             }
