@@ -590,6 +590,12 @@
     <Compile Include="Contract\frmContractMain_EjareTamlik.Designer.cs">
       <DependentUpon>frmContractMain_EjareTamlik.cs</DependentUpon>
     </Compile>
+    <Compile Include="Contract\frmContractMain_PishForoush.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contract\frmContractMain_PishForoush.Designer.cs">
+      <DependentUpon>frmContractMain_PishForoush.cs</DependentUpon>
+    </Compile>
     <Compile Include="Contract\frmContractMain_Rahn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1399,6 +1405,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Contract\frmContractMain_EjareTamlik.resx">
       <DependentUpon>frmContractMain_EjareTamlik.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contract\frmContractMain_PishForoush.resx">
+      <DependentUpon>frmContractMain_PishForoush.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Contract\frmContractMain_Rahn.resx">
       <DependentUpon>frmContractMain_Rahn.cs</DependentUpon>
