@@ -723,6 +723,18 @@
     <Compile Include="UserControls\Contract\EjareTamlik\UcContractEjareTamlik_Notice.Designer.cs">
       <DependentUpon>UcContractEjareTamlik_Notice.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Contract\PishForoush\UcContractPishForoush_10.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Contract\PishForoush\UcContractPishForoush_10.Designer.cs">
+      <DependentUpon>UcContractPishForoush_10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contract\PishForoush\UcContractPishForoush_11.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Contract\PishForoush\UcContractPishForoush_11.Designer.cs">
+      <DependentUpon>UcContractPishForoush_11.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Contract\PishForoush\UcContractPishForoush_3.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -758,6 +770,24 @@
     </Compile>
     <Compile Include="UserControls\Contract\PishForoush\UcContractPishForoush_7.Designer.cs">
       <DependentUpon>UcContractPishForoush_7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contract\PishForoush\UcContractPishForoush_8.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Contract\PishForoush\UcContractPishForoush_8.Designer.cs">
+      <DependentUpon>UcContractPishForoush_8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contract\PishForoush\UcContractPishForoush_9.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Contract\PishForoush\UcContractPishForoush_9.Designer.cs">
+      <DependentUpon>UcContractPishForoush_9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Contract\PishForoush\UcContractPishForoush_Notice.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Contract\PishForoush\UcContractPishForoush_Notice.Designer.cs">
+      <DependentUpon>UcContractPishForoush_Notice.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Contract\Public\UcCommition.cs">
       <SubType>UserControl</SubType>
@@ -1438,6 +1468,12 @@
     <EmbeddedResource Include="UserControls\Contract\EjareTamlik\UcContractEjareTamlik_Notice.resx">
       <DependentUpon>UcContractEjareTamlik_Notice.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Contract\PishForoush\UcContractPishForoush_10.resx">
+      <DependentUpon>UcContractPishForoush_10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Contract\PishForoush\UcContractPishForoush_11.resx">
+      <DependentUpon>UcContractPishForoush_11.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Contract\PishForoush\UcContractPishForoush_3.resx">
       <DependentUpon>UcContractPishForoush_3.cs</DependentUpon>
     </EmbeddedResource>
@@ -1455,6 +1491,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Contract\PishForoush\UcContractPishForoush_7.resx">
       <DependentUpon>UcContractPishForoush_7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Contract\PishForoush\UcContractPishForoush_8.resx">
+      <DependentUpon>UcContractPishForoush_8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Contract\PishForoush\UcContractPishForoush_9.resx">
+      <DependentUpon>UcContractPishForoush_9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Contract\PishForoush\UcContractPishForoush_Notice.resx">
+      <DependentUpon>UcContractPishForoush_Notice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Contract\Public\UcCommition.resx">
       <DependentUpon>UcCommition.cs</DependentUpon>
