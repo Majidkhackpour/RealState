@@ -11,6 +11,8 @@ namespace Building.Contract
     public partial class frmContractMain_Sell : MetroForm
     {
         private ContractBussines cls;
+        private bool _isShow = false;
+
         private async Task SetDataAsync()
         {
             try
@@ -153,6 +155,7 @@ namespace Building.Contract
             {
                 InitializeComponent();
                 cls = _cls;
+                _isShow = isShowMode;
                 if (isShowMode)
                 {
                     ucContractHeader1.Enabled = false;
@@ -250,7 +253,7 @@ namespace Building.Contract
             try
             {
                 await GetDataAsync();
-                var frm = new frmCommition(cls);
+                var frm = new frmCommition(cls, _isShow);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)

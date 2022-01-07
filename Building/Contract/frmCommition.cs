@@ -75,11 +75,26 @@ namespace Building.Contract
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public frmCommition(ContractBussines contract)
+        public frmCommition(ContractBussines contract, bool isShow)
         {
-            InitializeComponent();
-            _con = contract;
-            ucTotalCommition1.OnSumChanged += UcTotalCommition1_OnSumChanged;
+            try
+            {
+                InitializeComponent();
+                _con = contract;
+                if (!isShow)
+                    ucTotalCommition1.OnSumChanged += UcTotalCommition1_OnSumChanged;
+                else
+                {
+                    ucContractVisitor1.Enabled = false;
+                    ucTotalCommition1.Enabled = false;
+                    UcV1.Enabled = UcV2.Enabled = false;
+                    btnFinish.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
         private void UcTotalCommition1_OnSumChanged(decimal sum)
         {

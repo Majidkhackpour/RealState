@@ -8,15 +8,16 @@ using Services;
 
 namespace Building.Contract
 {
-    public partial class frmContractMain_Rahn : MetroForm
+    public partial class frmContractMain_EjareTamlik : MetroForm
     {
         private ContractBussines cls;
+        private bool _isShow = false;
 
         private async Task SetDataAsync()
         {
             try
             {
-                ucContractHeader1.Title = "اجــــــاره نــامـه";
+                ucContractHeader1.Title = "اجــــــاره به شـــــرط تـــملـــیک";
                 ucContractHeader1.ContractCode = cls.Code;
                 ucContractHeader1.CodeInArchive = cls.CodeInArchive;
                 ucContractHeader1.RealStateCode = cls.RealStateCode;
@@ -29,48 +30,46 @@ namespace Building.Contract
                 ucSecondSide.Title = "مشخصات مستاجر";
 
                 var bu = await BuildingBussines.GetAsync(cls.BuildingGuid);
-                ucContractRahn_21.Dong = bu?.Dang ?? 6;
-                ucContractRahn_21.BuildingType = bu?.BuildingTypeName;
-                ucContractRahn_21.RegistryNo = cls.BuildingRegistrationNo;
-                ucContractRahn_21.RegistryNoSub = cls.BuildingRegistrationNoSub;
-                ucContractRahn_21.RegistryNoOrigin = cls.BuildingRegistrationNoOrigin;
-                ucContractRahn_21.Masahat = bu?.Masahat ?? 0;
-                ucContractRahn_21.ParkingNo = cls.ParkingNo;
-                ucContractRahn_21.StoreNo = cls.StoreNo;
-                ucContractRahn_21.StoreMasahat = cls.StoreMasahat;
-                ucContractRahn_21.SanadSerial = cls.SanadSerial;
-                ucContractRahn_21.Page = cls.Page;
-                ucContractRahn_21.Office = cls.Office;
-                ucContractRahn_21.BuildingNumber = cls.BuildingNumber;
-                ucContractRahn_21.Water = bu?.Water ?? EnKhadamati.None;
-                ucContractRahn_21.Barq = bu?.Barq ?? EnKhadamati.None;
-                ucContractRahn_21.Gas = bu?.Gas ?? EnKhadamati.None;
-                ucContractRahn_21.Address = bu?.Address;
-                ucContractRahn_21.BuildingPlack = cls.BuildingPlack;
-                ucContractRahn_21.PhoneCount = cls.PhoneLineCount;
-                ucContractRahn_21.PhoneNumber = cls.BuildingPhoneNumber;
-                ucContractRahn_21.RoomCount = bu?.RoomCount ?? 0;
+                ucContractEjareTamlik_21.Dong = bu?.Dang ?? 6;
+                ucContractEjareTamlik_21.BuildingType = bu?.BuildingTypeName;
+                ucContractEjareTamlik_21.RegistryNo = cls.BuildingRegistrationNo;
+                ucContractEjareTamlik_21.RegistryNoSub = cls.BuildingRegistrationNoSub;
+                ucContractEjareTamlik_21.RegistryNoOrigin = cls.BuildingRegistrationNoOrigin;
+                ucContractEjareTamlik_21.ParkingNo = cls.ParkingNo;
+                ucContractEjareTamlik_21.StoreNo = cls.StoreNo;
+                ucContractEjareTamlik_21.StoreMasahat = cls.StoreMasahat;
+                ucContractEjareTamlik_21.ParkingMasahat = cls.ParkingMasahat;
+                ucContractEjareTamlik_21.SanadSerial = cls.SanadSerial;
+                ucContractEjareTamlik_21.Page = cls.Page;
+                ucContractEjareTamlik_21.Office = cls.Office;
+                ucContractEjareTamlik_21.Water = bu?.Water ?? EnKhadamati.None;
+                ucContractEjareTamlik_21.Barq = bu?.Barq ?? EnKhadamati.None;
+                ucContractEjareTamlik_21.Gas = bu?.Gas ?? EnKhadamati.None;
+                ucContractEjareTamlik_21.PhoneCount = cls.PhoneLineCount;
+                ucContractEjareTamlik_21.PhoneNumber = cls.BuildingPhoneNumber;
+                ucContractEjareTamlik_21.Masahat = bu?.Masahat ?? 0;
+                ucContractEjareTamlik_21.PartNo = cls.PartNo;
+                ucContractEjareTamlik_21.PayankarDate = cls.PayankarDate;
+                ucContractEjareTamlik_21.PayankarNo = cls.PayankarNo;
 
                 ucContractRahn_31.DischargeDate = cls.DischargeDate;
                 ucContractRahn_31.FromDate = cls.FromDate;
                 ucContractRahn_31.Term = cls.Term ?? 12;
                 ucContractRahn_31.ContractDateSh = cls.DateSh;
 
-                ucContractRahn_41.BankName = cls.BankName;
-                ucContractRahn_41.CheckNoFrom = cls.CheckNo;
-                ucContractRahn_41.CheckNoTo = cls.CheckNoTo;
-                ucContractRahn_41.Ejare = cls.MinorPrice;
-                ucContractRahn_41.Rahn = cls.TotalPrice;
-                ucContractRahn_41.SarresidFrom = cls.SarResid;
-                ucContractRahn_41.SarresidTo = cls.SarResidTo;
-                ucContractRahn_41.Shobe = cls.Shobe;
-                ucContractRahn_41.Term = cls.Term ?? 12;
+                ucContractEjareTamlik_41.BankName = cls.BankName;
+                ucContractEjareTamlik_41.CheckNo = cls.CheckNo;
+                ucContractEjareTamlik_41.PishPrice = cls.PishPrice;
+                ucContractEjareTamlik_41.TotalEjare = cls.TotalPrice;
+                ucContractEjareTamlik_41.Shobe = cls.Shobe;
 
-                ucContractRahn_51.PeopleCount = cls.PeopleCount;
-                ucContractRahn_51.DischargeDateSh = cls.DischargeDateSh;
+                ucContractEjareTamlik_51.Delay = cls.FirstSideDelay;
+                ucContractEjareTamlik_51.DocumentAsjust = cls.DocumentAdjust;
+                ucContractEjareTamlik_51.SetDocDate = cls.SetDocDate;
+                ucContractEjareTamlik_51.SetDocNo = cls.SetDocNo;
+                ucContractEjareTamlik_51.SetDocPlace = cls.SetDocPlace;
 
-                ucContractRahn_61.FirstDelay = cls.FirstSideDelay;
-                ucContractRahn_61.SecondDelay = cls.SecondSideDelay;
+                ucContractEjareTamlik_71.TaxPercent = Settings.Classes.clsSandouq.ArzeshAfzoude.ParseTofloat();
 
                 ucContractDescription1.Description = cls.Description;
                 ucContractDescription1.Witness1 = cls.Witness1;
@@ -94,7 +93,7 @@ namespace Building.Contract
                     cls.IsTemp = true;
                 }
 
-                cls.Type = EnRequestType.Rahn;
+                cls.Type = EnRequestType.EjareTamlik;
                 cls.Code = ucContractHeader1.ContractCode;
                 cls.CodeInArchive = ucContractHeader1.CodeInArchive;
                 cls.RealStateCode = ucContractHeader1.RealStateCode;
@@ -104,37 +103,37 @@ namespace Building.Contract
                 cls.FirstSideGuid = ucFSide.Guid;
                 cls.SecondSideGuid = ucSecondSide.Guid;
 
-                cls.BuildingRegistrationNo = ucContractRahn_21.RegistryNo;
-                cls.BuildingRegistrationNoSub = ucContractRahn_21.RegistryNoSub;
-                cls.BuildingRegistrationNoOrigin = ucContractRahn_21.RegistryNoOrigin;
-                cls.ParkingNo = ucContractRahn_21.ParkingNo;
-                cls.StoreNo = ucContractRahn_21.StoreNo;
-                cls.StoreMasahat = ucContractRahn_21.StoreMasahat;
-                cls.SanadSerial = ucContractRahn_21.SanadSerial;
-                cls.Page = ucContractRahn_21.Page;
-                cls.Office = ucContractRahn_21.Office;
-                cls.BuildingNumber = ucContractRahn_21.BuildingNumber;
-                cls.BuildingPlack = ucContractRahn_21.BuildingPlack;
-                cls.PhoneLineCount = ucContractRahn_21.PhoneCount;
-                cls.BuildingPhoneNumber = ucContractRahn_21.PhoneNumber;
+                cls.BuildingRegistrationNo = ucContractEjareTamlik_21.RegistryNo;
+                cls.BuildingRegistrationNoSub = ucContractEjareTamlik_21.RegistryNoSub;
+                cls.BuildingRegistrationNoOrigin = ucContractEjareTamlik_21.RegistryNoOrigin;
+                cls.ParkingNo = ucContractEjareTamlik_21.ParkingNo;
+                cls.StoreNo = ucContractEjareTamlik_21.StoreNo;
+                cls.StoreMasahat = ucContractEjareTamlik_21.StoreMasahat;
+                cls.ParkingMasahat = ucContractEjareTamlik_21.ParkingMasahat;
+                cls.SanadSerial = ucContractEjareTamlik_21.SanadSerial;
+                cls.Page = ucContractEjareTamlik_21.Page;
+                cls.Office = ucContractEjareTamlik_21.Office;
+                cls.PhoneLineCount = ucContractEjareTamlik_21.PhoneCount;
+                cls.BuildingPhoneNumber = ucContractEjareTamlik_21.PhoneNumber;
+                cls.PartNo = ucContractEjareTamlik_21.PartNo;
+                cls.PayankarDate = ucContractEjareTamlik_21.PayankarDate;
+                cls.PayankarNo = ucContractEjareTamlik_21.PayankarNo;
 
                 cls.DischargeDate = ucContractRahn_31.DischargeDate;
                 cls.FromDate = ucContractRahn_31.FromDate;
                 cls.Term = ucContractRahn_31.Term;
 
-                cls.BankName = ucContractRahn_41.BankName;
-                cls.CheckNo = ucContractRahn_41.CheckNoFrom;
-                cls.CheckNoTo = ucContractRahn_41.CheckNoTo;
-                cls.MinorPrice = ucContractRahn_41.Ejare;
-                cls.TotalPrice = ucContractRahn_41.Rahn;
-                cls.SarResid = ucContractRahn_41.SarresidFrom;
-                cls.SarResidTo = ucContractRahn_41.SarresidTo;
-                cls.Shobe = ucContractRahn_41.Shobe;
+                cls.BankName = ucContractEjareTamlik_41.BankName;
+                cls.CheckNo = ucContractEjareTamlik_41.CheckNo;
+                cls.PishPrice = ucContractEjareTamlik_41.PishPrice;
+                cls.Shobe = ucContractEjareTamlik_41.Shobe;
+                cls.TotalPrice = ucContractEjareTamlik_41.TotalEjare;
 
-                cls.PeopleCount = ucContractRahn_51.PeopleCount;
-
-                cls.FirstSideDelay = ucContractRahn_61.FirstDelay;
-                cls.SecondSideDelay = ucContractRahn_61.SecondDelay;
+                cls.FirstSideDelay = ucContractEjareTamlik_51.Delay;
+                cls.DocumentAdjust = ucContractEjareTamlik_51.DocumentAsjust;
+                cls.SetDocDate = ucContractEjareTamlik_51.SetDocDate;
+                cls.SetDocNo = ucContractEjareTamlik_51.SetDocNo;
+                cls.SetDocPlace = ucContractEjareTamlik_51.SetDocPlace;
 
                 cls.Description = ucContractDescription1.Description;
                 cls.Witness1 = ucContractDescription1.Witness1;
@@ -146,33 +145,33 @@ namespace Building.Contract
             }
         }
 
-        public frmContractMain_Rahn(ContractBussines _cls, bool isShowMode = false)
+        public frmContractMain_EjareTamlik(ContractBussines _cls, bool isShowMode = false)
         {
             try
             {
                 InitializeComponent();
                 cls = _cls;
+                _isShow = isShowMode;
                 if (isShowMode)
                 {
                     ucContractHeader1.Enabled = false;
                     ucFSide.Enabled = false;
                     ucSecondSide.Enabled = false;
-                    ucContractRahn_21.Enabled = false;
+                    ucContractEjareTamlik_21.Enabled = false;
                     ucContractRahn_31.Enabled = false;
-                    ucContractRahn_41.Enabled = false;
-                    ucContractRahn_51.Enabled = false;
-                    ucContractRahn_61.Enabled = false;
+                    ucContractEjareTamlik_41.Enabled = false;
+                    ucContractEjareTamlik_51.Enabled = false;
+                    ucContractEjareTamlik_61.Enabled = false;
                     ucContractDescription1.Enabled = false;
-                    ucContractRahn_71.Enabled = false;
+                    ucContractEjareTamlik_71.Enabled = false;
                     btnFinish.Enabled = false;
+                    ucContractEjareTamlik_Notice1.Enabled = false;
                 }
                 else
                 {
-                    ucContractRahn_21.OnBuildingSelect += Uc2OnOnBuildingSelect;
+                    ucContractEjareTamlik_21.OnBuildingSelect += Uc2OnOnBuildingSelect;
                     ucContractHeader1.OnDateChanged += UcContractHeader1_OnDateChanged;
-                    ucContractRahn_31.OnDischargeChanged += UcContractSell_41_OnDischargeChanged;
                     ucFSide.OnChanged += UcFSide_OnChanged;
-                    ucContractRahn_31.OnTermChanged += UcContractRahn_31_OnTermChanged;
                 }
             }
             catch (Exception ex)
@@ -181,26 +180,23 @@ namespace Building.Contract
             }
         }
 
-        private void UcContractSell_41_OnDischargeChanged(string date) => ucContractRahn_51.DischargeDateSh = date;
-        private void UcContractRahn_31_OnTermChanged(int term) => ucContractRahn_41.Term = term;
         private void UcContractHeader1_OnDateChanged(string date) => ucContractRahn_31.ContractDateSh = date;
-        private void UcFSide_OnChanged(Guid guid) => ucContractRahn_21.OwnerGuid = guid;
+        private void UcFSide_OnChanged(Guid guid) => ucContractEjareTamlik_21.OwnerGuid = guid;
         private void Uc2OnOnBuildingSelect(Guid buGuid)
         {
             try
             {
                 cls.BuildingGuid = buGuid;
                 var bu = BuildingBussines.Get(buGuid);
-                ucContractRahn_41.Rahn = bu?.RahnPrice1 ?? 0;
-                ucContractRahn_41.Ejare = bu?.EjarePrice1 ?? 0;
+                ucContractEjareTamlik_41.TotalEjare = (bu?.EjarePrice1 ?? 0) * (cls?.Term ?? 1);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async void frmContractMain_Rahn_Load(object sender, EventArgs e) => await SetDataAsync();
-        private void frmContractMain_Rahn_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        private async void frmContractMain_EjareTamlik_Load(object sender, EventArgs e) => await SetDataAsync();
+        private void frmContractMain_EjareTamlik_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
             try
             {
@@ -215,11 +211,6 @@ namespace Building.Contract
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
-        }
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-            Close();
         }
         private async void btnFinish_Click(object sender, EventArgs e)
         {
@@ -252,13 +243,18 @@ namespace Building.Contract
             try
             {
                 await GetDataAsync();
-                var frm = new frmCommition(cls);
+                var frm = new frmCommition(cls, _isShow);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+        }
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }

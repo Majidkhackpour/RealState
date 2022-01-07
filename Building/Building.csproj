@@ -578,40 +578,34 @@
     <Compile Include="Contract\frmCommition.Designer.cs">
       <DependentUpon>frmCommition.cs</DependentUpon>
     </Compile>
-    <Compile Include="Contract\frmContractMain.cs">
+    <Compile Include="Contract\Mains\frmContractMain_EjareTamlik.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Contract\frmContractMain.Designer.cs">
-      <DependentUpon>frmContractMain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Contract\frmContractMain_EjareTamlik.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Contract\frmContractMain_EjareTamlik.Designer.cs">
+    <Compile Include="Contract\Mains\frmContractMain_EjareTamlik.Designer.cs">
       <DependentUpon>frmContractMain_EjareTamlik.cs</DependentUpon>
     </Compile>
-    <Compile Include="Contract\frmContractMain_PishForoush.cs">
+    <Compile Include="Contract\Mains\frmContractMain_PishForoush.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Contract\frmContractMain_PishForoush.Designer.cs">
+    <Compile Include="Contract\Mains\frmContractMain_PishForoush.Designer.cs">
       <DependentUpon>frmContractMain_PishForoush.cs</DependentUpon>
     </Compile>
-    <Compile Include="Contract\frmContractMain_Rahn.cs">
+    <Compile Include="Contract\Mains\frmContractMain_Rahn.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Contract\frmContractMain_Rahn.Designer.cs">
+    <Compile Include="Contract\Mains\frmContractMain_Rahn.Designer.cs">
       <DependentUpon>frmContractMain_Rahn.cs</DependentUpon>
     </Compile>
-    <Compile Include="Contract\frmContractMain_Sarqofli.cs">
+    <Compile Include="Contract\Mains\frmContractMain_Sarqofli.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Contract\frmContractMain_Sarqofli.Designer.cs">
+    <Compile Include="Contract\Mains\frmContractMain_Sarqofli.Designer.cs">
       <DependentUpon>frmContractMain_Sarqofli.cs</DependentUpon>
     </Compile>
-    <Compile Include="Contract\frmContractMain_Sell.cs">
+    <Compile Include="Contract\Mains\frmContractMain_Sell.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Contract\frmContractMain_Sell.Designer.cs">
+    <Compile Include="Contract\Mains\frmContractMain_Sell.Designer.cs">
       <DependentUpon>frmContractMain_Sell.cs</DependentUpon>
     </Compile>
     <Compile Include="Contract\frmContractTypeSelector.cs">
@@ -1400,22 +1394,19 @@
     <EmbeddedResource Include="Contract\frmCommition.resx">
       <DependentUpon>frmCommition.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Contract\frmContractMain.resx">
-      <DependentUpon>frmContractMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Contract\frmContractMain_EjareTamlik.resx">
+    <EmbeddedResource Include="Contract\Mains\frmContractMain_EjareTamlik.resx">
       <DependentUpon>frmContractMain_EjareTamlik.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Contract\frmContractMain_PishForoush.resx">
+    <EmbeddedResource Include="Contract\Mains\frmContractMain_PishForoush.resx">
       <DependentUpon>frmContractMain_PishForoush.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Contract\frmContractMain_Rahn.resx">
+    <EmbeddedResource Include="Contract\Mains\frmContractMain_Rahn.resx">
       <DependentUpon>frmContractMain_Rahn.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Contract\frmContractMain_Sarqofli.resx">
+    <EmbeddedResource Include="Contract\Mains\frmContractMain_Sarqofli.resx">
       <DependentUpon>frmContractMain_Sarqofli.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Contract\frmContractMain_Sell.resx">
+    <EmbeddedResource Include="Contract\Mains\frmContractMain_Sell.resx">
       <DependentUpon>frmContractMain_Sell.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Contract\frmContractTypeSelector.resx">
