@@ -46,23 +46,17 @@ namespace Building.Contract
                 ucContractPishForoush_41.TotalPrice = cls.TotalPrice;
                 ucContractPishForoush_41.NaqdPrice = cls.MinorPrice;
 
-                //ucContractRahn_31.DischargeDate = cls.DischargeDate;
-                //ucContractRahn_31.FromDate = cls.FromDate;
-                //ucContractRahn_31.Term = cls.Term ?? 12;
-                //ucContractRahn_31.ContractDateSh = cls.DateSh;
+                ucContractPishForoush_51.DischargeDate = cls.DischargeDate;
+                ucContractPishForoush_51.SetDocDate = cls.SetDocDate;
+                ucContractPishForoush_51.SetDocNo = cls.SetDocNo;
+                ucContractPishForoush_51.SetDocPlace = cls.SetDocPlace;
 
-                //ucContractEjareTamlik_41.BankName = cls.BankName;
-                //ucContractEjareTamlik_41.CheckNo = cls.CheckNo;
-                //ucContractEjareTamlik_41.PishPrice = cls.PishPrice;
-                //ucContractEjareTamlik_41.TotalEjare = cls.TotalPrice;
-                //ucContractEjareTamlik_41.Shobe = cls.Shobe;
+                ucContractPishForoush_61.FirstDelay = cls.FirstSideDelay;
+                ucContractPishForoush_61.ManufacturingLicenseDate = cls.ManufacturingLicenseDate;
+                ucContractPishForoush_61.ManufacturingLicensePlace = cls.ManufacturingLicensePlace;
+                ucContractPishForoush_61.SecondDelay = cls.SecondSideDelay;
 
-                //ucContractEjareTamlik_51.Delay = cls.FirstSideDelay;
-                //ucContractEjareTamlik_51.DocumentAsjust = cls.DocumentAdjust;
-                //ucContractEjareTamlik_51.SetDocDate = cls.SetDocDate;
-                //ucContractEjareTamlik_51.SetDocNo = cls.SetDocNo;
-                //ucContractEjareTamlik_51.SetDocPlace = cls.SetDocPlace;
-
+                ucContractPishForoush_81.DocumentAdjustment = cls.DocumentAdjust;
 
                 ucContractDescription1.Description = cls.Description;
                 ucContractDescription1.Witness1 = cls.Witness1;
@@ -86,7 +80,7 @@ namespace Building.Contract
                     cls.IsTemp = true;
                 }
 
-                cls.Type = EnRequestType.EjareTamlik;
+                cls.Type = EnRequestType.PishForush;
                 cls.Code = ucContractHeader1.ContractCode;
                 cls.CodeInArchive = ucContractHeader1.CodeInArchive;
                 cls.RealStateCode = ucContractHeader1.RealStateCode;
@@ -96,41 +90,27 @@ namespace Building.Contract
                 cls.FirstSideGuid = ucFSide.Guid;
                 cls.SecondSideGuid = ucSecondSide.Guid;
 
-                //cls.BuildingRegistrationNo = ucContractEjareTamlik_21.RegistryNo;
-                //cls.BuildingRegistrationNoSub = ucContractEjareTamlik_21.RegistryNoSub;
-                //cls.BuildingRegistrationNoOrigin = ucContractEjareTamlik_21.RegistryNoOrigin;
-                //cls.ParkingNo = ucContractEjareTamlik_21.ParkingNo;
-                //cls.StoreNo = ucContractEjareTamlik_21.StoreNo;
-                //cls.StoreMasahat = ucContractEjareTamlik_21.StoreMasahat;
-                //cls.ParkingMasahat = ucContractEjareTamlik_21.ParkingMasahat;
-                //cls.SanadSerial = ucContractEjareTamlik_21.SanadSerial;
-                //cls.Page = ucContractEjareTamlik_21.Page;
-                //cls.Office = ucContractEjareTamlik_21.Office;
-                //cls.PhoneLineCount = ucContractEjareTamlik_21.PhoneCount;
-                //cls.BuildingPhoneNumber = ucContractEjareTamlik_21.PhoneNumber;
-                //cls.PartNo = ucContractEjareTamlik_21.PartNo;
-                //cls.PayankarDate = ucContractEjareTamlik_21.PayankarDate;
-                //cls.PayankarNo = ucContractEjareTamlik_21.PayankarNo;
 
-                //cls.DischargeDate = ucContractRahn_31.DischargeDate;
-                //cls.FromDate = ucContractRahn_31.FromDate;
-                //cls.Term = ucContractRahn_31.Term;
+                cls.BuildingCosumable = ucContractPishForoush_31.Consumable;
 
-                //cls.BankName = ucContractEjareTamlik_41.BankName;
-                //cls.CheckNo = ucContractEjareTamlik_41.CheckNo;
-                //cls.PishPrice = ucContractEjareTamlik_41.PishPrice;
-                //cls.Shobe = ucContractEjareTamlik_41.Shobe;
-                //cls.TotalPrice = ucContractEjareTamlik_41.TotalEjare;
+                cls.TotalPrice = ucContractPishForoush_41.TotalPrice;
+                cls.MinorPrice = ucContractPishForoush_41.NaqdPrice;
 
-                //cls.FirstSideDelay = ucContractEjareTamlik_51.Delay;
-                //cls.DocumentAdjust = ucContractEjareTamlik_51.DocumentAsjust;
-                //cls.SetDocDate = ucContractEjareTamlik_51.SetDocDate;
-                //cls.SetDocNo = ucContractEjareTamlik_51.SetDocNo;
-                //cls.SetDocPlace = ucContractEjareTamlik_51.SetDocPlace;
+                cls.DischargeDate = ucContractPishForoush_51.DischargeDate;
+                cls.SetDocDate = ucContractPishForoush_51.SetDocDate;
+                cls.SetDocNo = ucContractPishForoush_51.SetDocNo;
+                cls.SetDocPlace = ucContractPishForoush_51.SetDocPlace;
 
-                //cls.Description = ucContractDescription1.Description;
-                //cls.Witness1 = ucContractDescription1.Witness1;
-                //cls.Witness2 = ucContractDescription1.Witness2;
+                cls.FirstSideDelay = ucContractPishForoush_61.FirstDelay;
+                cls.ManufacturingLicenseDate = ucContractPishForoush_61.ManufacturingLicenseDate;
+                cls.ManufacturingLicensePlace = ucContractPishForoush_61.ManufacturingLicensePlace;
+                cls.SecondSideDelay = ucContractPishForoush_61.SecondDelay;
+
+                cls.DocumentAdjust = ucContractPishForoush_81.DocumentAdjustment;
+
+                cls.Description = ucContractDescription1.Description;
+                cls.Witness1 = ucContractDescription1.Witness1;
+                cls.Witness2 = ucContractDescription1.Witness2;
             }
             catch (Exception ex)
             {
@@ -165,8 +145,7 @@ namespace Building.Contract
                 else
                 {
                     ucContractPishForoush_31.OnBuildingSelect += Uc2OnOnBuildingSelect;
-                    //ucContractHeader1.OnDateChanged += UcContractHeader1_OnDateChanged;
-                    //ucFSide.OnChanged += UcFSide_OnChanged;
+                    ucFSide.OnChanged += UcFSide_OnChanged;
                 }
             }
             catch (Exception ex)
@@ -175,6 +154,7 @@ namespace Building.Contract
             }
         }
 
+        private void UcFSide_OnChanged(Guid guid) => ucContractPishForoush_31.OwnerGuid = guid;
         private void Uc2OnOnBuildingSelect(Guid buGuid)
         {
             try
