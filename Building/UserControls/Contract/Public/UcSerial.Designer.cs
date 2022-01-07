@@ -39,7 +39,7 @@ namespace Building.UserControls.Contract.Public
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.ucDate1 = new Building.UserControls.UcDate();
+            this.ucDate1 = new Print.UcDate();
             this.groupPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -207,7 +207,7 @@ namespace Building.UserControls.Contract.Public
         #endregion
 
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel1;
-        private UcDate ucDate1;
+        private Print.UcDate ucDate1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtRealStateCode;

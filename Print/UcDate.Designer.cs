@@ -1,5 +1,5 @@
 ﻿
-namespace Building.UserControls
+namespace Print
 {
     partial class UcDate
     {

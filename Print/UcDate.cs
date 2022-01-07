@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using Services;
 
-namespace Building.UserControls
+namespace Print
 {
     public partial class UcDate : UserControl
     {
@@ -43,6 +43,7 @@ namespace Building.UserControls
                 }
             }
         }
+        public DateTime DateM => Calendar.ShamsiToMiladi(DateSh);
         public UcDate() => InitializeComponent();
         private void RaiseDateChange(string date)
         {

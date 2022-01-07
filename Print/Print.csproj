@@ -245,6 +245,18 @@
     </Compile>
     <Compile Include="ReportGenerator.cs" />
     <Compile Include="ReportPath.cs" />
+    <Compile Include="UcDate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcDate.Designer.cs">
+      <DependentUpon>UcDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcFilterDate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcFilterDate.Designer.cs">
+      <DependentUpon>UcFilterDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="_clsPrint.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -273,6 +285,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcDate.resx">
+      <DependentUpon>UcDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcFilterDate.resx">
+      <DependentUpon>UcFilterDate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -330,6 +348,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\PDF.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

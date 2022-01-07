@@ -32,7 +32,7 @@ namespace Building.UserControls.Contract.Sarqofli
             this.grpPanel = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.txtSetDocPlace = new System.Windows.Forms.TextBox();
             this.txtSetDocNo = new System.Windows.Forms.NumericUpDown();
-            this.ucSetDocDate = new Building.UserControls.UcDate();
+            this.ucSetDocDate = new Print.UcDate();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -222,7 +222,7 @@ namespace Building.UserControls.Contract.Sarqofli
         private DevComponents.DotNetBar.Controls.GroupPanel grpPanel;
         private System.Windows.Forms.TextBox txtSetDocPlace;
         private System.Windows.Forms.NumericUpDown txtSetDocNo;
-        private UcDate ucSetDocDate;
+        private Print.UcDate ucSetDocDate;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label6;

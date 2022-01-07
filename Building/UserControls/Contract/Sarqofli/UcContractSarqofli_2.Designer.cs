@@ -71,7 +71,7 @@ namespace Building.UserControls.Contract.Sarqofli
             this.label2 = new System.Windows.Forms.Label();
             this.txtPartNo = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
-            this.ucPayankarDate = new Building.UserControls.UcDate();
+            this.ucPayankarDate = new Print.UcDate();
             ((System.ComponentModel.ISupportInitialize)(this.txtPage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMasahat)).BeginInit();
             this.grpPanel.SuspendLayout();
@@ -695,6 +695,6 @@ namespace Building.UserControls.Contract.Sarqofli
         private System.Windows.Forms.TextBox txtPayankarNo;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label33;
-        private UcDate ucPayankarDate;
+        private Print.UcDate ucPayankarDate;
     }
 }

@@ -31,8 +31,8 @@ namespace Building.UserControls.Contract.Rahn
         {
             this.grpPanel = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.txtTerm = new System.Windows.Forms.NumericUpDown();
-            this.ucDischargeDate = new Building.UserControls.UcDate();
-            this.ucFromDate = new Building.UserControls.UcDate();
+            this.ucDischargeDate = new Print.UcDate();
+            this.ucFromDate = new Print.UcDate();
             this.label1 = new System.Windows.Forms.Label();
             this.lblContractDate = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -260,8 +260,8 @@ namespace Building.UserControls.Contract.Rahn
 
         private DevComponents.DotNetBar.Controls.GroupPanel grpPanel;
         private System.Windows.Forms.NumericUpDown txtTerm;
-        private UcDate ucDischargeDate;
-        private UcDate ucFromDate;
+        private Print.UcDate ucDischargeDate;
+        private Print.UcDate ucFromDate;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblContractDate;
         private System.Windows.Forms.Label label11;

@@ -31,7 +31,7 @@ namespace Building.UserControls.Contract.Sell
         {
             this.grpPanel = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.label7 = new System.Windows.Forms.Label();
-            this.ucSetDocDate = new Building.UserControls.UcDate();
+            this.ucSetDocDate = new Print.UcDate();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSetDocNo = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,7 +43,7 @@ namespace Building.UserControls.Contract.Sell
             this.label8 = new System.Windows.Forms.Label();
             this.lblContractDate = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.ucDischargeDate = new Building.UserControls.UcDate();
+            this.ucDischargeDate = new Print.UcDate();
             this.label11 = new System.Windows.Forms.Label();
             this.grpPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSetDocNo)).BeginInit();
@@ -301,7 +301,7 @@ namespace Building.UserControls.Contract.Sell
         #endregion
 
         private DevComponents.DotNetBar.Controls.GroupPanel grpPanel;
-        private UcDate ucSetDocDate;
+        private Print.UcDate ucSetDocDate;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.NumericUpDown txtSetDocNo;
@@ -311,7 +311,7 @@ namespace Building.UserControls.Contract.Sell
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private UcDate ucDischargeDate;
+        private Print.UcDate ucDischargeDate;
         private System.Windows.Forms.Label lblContractDate;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;

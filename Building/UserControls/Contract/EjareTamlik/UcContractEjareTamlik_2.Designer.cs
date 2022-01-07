@@ -74,7 +74,7 @@ namespace Building.UserControls.Contract.EjareTamlik
             this.label29 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
-            this.ucPayankarDate = new Building.UserControls.UcDate();
+            this.ucPayankarDate = new Print.UcDate();
             ((System.ComponentModel.ISupportInitialize)(this.txtParkingMasahat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhoneCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPage)).BeginInit();
@@ -753,7 +753,7 @@ namespace Building.UserControls.Contract.EjareTamlik
         private System.Windows.Forms.TextBox txtPayankarNo;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label28;
-        private UcDate ucPayankarDate;
+        private Print.UcDate ucPayankarDate;
         private System.Windows.Forms.Label label30;
     }
 }

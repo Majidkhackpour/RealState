@@ -37,7 +37,7 @@ namespace Building.UserControls.Contract.Sarqofli
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.ucDischargeDate = new Building.UserControls.UcDate();
+            this.ucDischargeDate = new Print.UcDate();
             this.grpPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -204,6 +204,6 @@ namespace Building.UserControls.Contract.Sarqofli
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label7;
-        private UcDate ucDischargeDate;
+        private Print.UcDate ucDischargeDate;
     }
 }

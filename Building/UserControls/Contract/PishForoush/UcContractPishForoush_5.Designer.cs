@@ -32,7 +32,7 @@ namespace Building.UserControls.Contract.PishForoush
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcContractPishForoush_5));
             this.grpPanel = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.label5 = new System.Windows.Forms.Label();
-            this.ucDischargeDate = new Building.UserControls.UcDate();
+            this.ucDischargeDate = new Print.UcDate();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -40,7 +40,7 @@ namespace Building.UserControls.Contract.PishForoush
             this.label4 = new System.Windows.Forms.Label();
             this.txtSetDocNo = new System.Windows.Forms.NumericUpDown();
             this.label16 = new System.Windows.Forms.Label();
-            this.ucSetDocDate = new Building.UserControls.UcDate();
+            this.ucSetDocDate = new Print.UcDate();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.grpPanel.SuspendLayout();
@@ -257,7 +257,7 @@ namespace Building.UserControls.Contract.PishForoush
 
         private DevComponents.DotNetBar.Controls.GroupPanel grpPanel;
         private System.Windows.Forms.Label label5;
-        private UcDate ucDischargeDate;
+        private Print.UcDate ucDischargeDate;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -265,7 +265,7 @@ namespace Building.UserControls.Contract.PishForoush
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown txtSetDocNo;
         private System.Windows.Forms.Label label16;
-        private UcDate ucSetDocDate;
+        private Print.UcDate ucSetDocDate;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
     }

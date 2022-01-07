@@ -44,7 +44,7 @@ namespace Building.UserControls.Contract.EjareTamlik
             this.label1 = new System.Windows.Forms.Label();
             this.txtSetDocNo = new System.Windows.Forms.NumericUpDown();
             this.label16 = new System.Windows.Forms.Label();
-            this.ucSetDocDate = new Building.UserControls.UcDate();
+            this.ucSetDocDate = new Print.UcDate();
             this.label11 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -382,7 +382,7 @@ namespace Building.UserControls.Contract.EjareTamlik
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private DevComponents.DotNetBar.Controls.GroupPanel grpPanel;
-        private UcDate ucSetDocDate;
+        private Print.UcDate ucSetDocDate;
         private System.Windows.Forms.NumericUpDown txtSetDocNo;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtSetDocPlace;

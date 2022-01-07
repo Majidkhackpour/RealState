@@ -36,7 +36,7 @@ namespace Building.UserControls.Contract.PishForoush
             this.ucSecondDelay = new Building.UserControls.Objects.UcPrice();
             this.txtManuPlace = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.ucManuDate = new Building.UserControls.UcDate();
+            this.ucManuDate = new Print.UcDate();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -363,7 +363,7 @@ namespace Building.UserControls.Contract.PishForoush
         private DevComponents.DotNetBar.Controls.GroupPanel grpPanel;
         private System.Windows.Forms.TextBox txtManuPlace;
         private System.Windows.Forms.Label label6;
-        private UcDate ucManuDate;
+        private Print.UcDate ucManuDate;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label2;
