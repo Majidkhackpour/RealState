@@ -8122,3 +8122,25 @@ BEGIN
 	on [dbo].[UserLogs].UserGuid=[dbo].[Users].Guid
 	where BuildingGuid=@buGuid
 End
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Contract_GetAllReport]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Contract_GetAllReport]	As Begin print 11 end')  
+GO
+Alter PROCEDURE [dbo].[sp_Contract_GetAllReport]
+	@d1 datetime,
+	@d2 datetime,
+	@type smallint=null,
+	@tafsilGuid uniqueidentifier=null
+AS
+BEGIN
+	select Contracts.*, Tafsils.Name As FirstSideName,
+		   P.Name As SecondSideName
+	from Contracts inner join Tafsils on
+	     Contracts.FirstSideGuid=Tafsils.Guid inner join Tafsils As P on
+		 Contracts.SecondSideGuid=P.Guid 
+	Where Contracts.DateM>=@d1
+		  and Contracts.DateM<=@d2
+		  and (@type is null or Contracts.Type=@type)
+		  and (@tafsilGuid is null or Contracts.FirstSideGuid=@tafsilGuid or Contracts.SecondSideGuid=@tafsilGuid)
+END

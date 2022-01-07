@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using EntityCache.Bussines;
 using EntityCache.ViewModels;
 using Services;
+using Services.FilterObjects;
 
 namespace EntityCache.Core
 {
@@ -23,5 +24,6 @@ namespace EntityCache.Core
         Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, SqlTransaction tr);
         Task<decimal> GetTotalCommitionAsync(string _connectionString, DateTime d1, DateTime d2);
         Task<decimal> GetTotalTaxAsync(string _connectionString, DateTime d1, DateTime d2);
+        Task<List<ContractReportBusiness>> GetAllReportAsync(string connectionString, ContractFilter filter);
     }
 }

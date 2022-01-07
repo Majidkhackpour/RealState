@@ -145,7 +145,6 @@ namespace EntityCache.Bussines
             }
         }
         public static async Task<ContractBussines> GetAsync(Guid guid) => await UnitOfWork.Contract.GetAsync(Cache.ConnectionString, guid);
-        public static ContractBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();

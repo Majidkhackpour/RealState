@@ -181,7 +181,7 @@ namespace RealState
                     case EnForms.BuildingFast: frm = new frmSelectBuildingType(this, new BuildingBussines()); break;
                     case EnForms.BuildingArchive: frm = new frmShowBuildings(true, new BuildingFilter() { Status = true, IsArchive = true }); break;
                     case EnForms.BuildingMatch: frm = new frmStartBuildingMatches(); break;
-                    case EnForms.Contract: frm = new frmShowContract(); break;
+                    case EnForms.Contract: frm = new frmShowContract(null); break;
                     case EnForms.Request: frm = new frmShowRequest(); break;
                     case EnForms.Users: frm = new frmShowUsers(false); break;
                     case EnForms.UserAccess: frm = new frmAccessLevel(); break;

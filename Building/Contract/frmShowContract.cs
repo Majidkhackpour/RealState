@@ -11,6 +11,7 @@ using MetroFramework.Forms;
 using Notification;
 using Print;
 using Services;
+using Services.FilterObjects;
 using User;
 
 namespace Building.Contract
@@ -20,16 +21,61 @@ namespace Building.Contract
         private bool _st = true;
         private List<ContractBussines> list;
         private CancellationTokenSource _token = new CancellationTokenSource();
+        private ContractFilter filter;
+        private IEnumerable<ContractReportBusiness> _list;
 
         private async Task LoadDataAsync(string search = "")
         {
             try
             {
+                if (filter == null)
+                    filter = new ContractFilter()
+                    {
+                        Status = _st,
+                        Date1 = new DateTime(2000, 01, 01, 0, 0, 0),
+                        Date2 = new DateTime(2050, 12, 29, 23, 59, 59)
+                    };
+                _list = await ContractReportBusiness.GetAllAsync(filter);
+                Search(search);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void Search(string srach = "")
+        {
+            try
+            {
+                var lst = _list;
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
-                list = await ContractBussines.GetAllAsync(search, _token.Token);
-                Invoke(new MethodInvoker(() => conBindingSource.DataSource =
-                    list.OrderByDescending(q => q.Modified).ToSortableBindingList()));
+                var t = _token.Token;
+                if (string.IsNullOrEmpty(srach)) srach = "";
+                var searchItems = srach.SplitString();
+                if (searchItems?.Count > 0)
+                    foreach (var item in searchItems)
+                    {
+                        if (t.IsCancellationRequested) return;
+                        if (!string.IsNullOrEmpty(item) && item.Trim() != "")
+                        {
+                            lst = lst?.Where(x => x.ContractCode.ToString().ToLower().Contains(item.ToLower()) ||
+                                                 x.CodeInArchive.ToLower().Contains(item.ToLower()) ||
+                                                 x.HologramSerial.ToLower().Contains(item.ToLower()) ||
+                                                 x.FirstSideName.ToLower().Contains(item.ToLower()) ||
+                                                 x.SecondSideName.ToLower().Contains(item.ToLower()) ||
+                                                 x.TypeName.ToLower().Contains(item.ToLower()))
+                                ?.ToList();
+                        }
+                    }
+
+                if (!(lst?.Any() ?? false))
+                {
+                    this.ShowMessage("داده ای جهت نمایش وجود ندارد");
+                    return;
+                }
+
+                conBindingSource.DataSource = lst?.OrderByDescending(q => q.CreateDate)?.ToSortableBindingList();
             }
             catch (Exception ex)
             {
@@ -53,11 +99,12 @@ namespace Building.Contract
             }
         }
 
-        public frmShowContract()
+        public frmShowContract(ContractFilter _filter)
         {
             InitializeComponent();
             ucHeader.Text = "نمایش لیست قراردادها";
             SetAccess();
+            filter = _filter;
         }
 
         private async void frmShowContract_Load(object sender, EventArgs e) => await LoadDataAsync();
@@ -65,7 +112,7 @@ namespace Building.Contract
         {
             DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
         }
-        private async void txtSearch_TextChanged(object sender, EventArgs e) => await LoadDataAsync(txtSearch.Text);
+        private void txtSearch_TextChanged(object sender, EventArgs e) => Search(txtSearch.Text);
         private void frmShowContract_KeyDown(object sender, KeyEventArgs e)
         {
             try

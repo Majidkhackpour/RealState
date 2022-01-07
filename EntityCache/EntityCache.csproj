@@ -131,6 +131,7 @@
     <Compile Include="Bussines\CheckPageBussines.cs" />
     <Compile Include="Bussines\CitiesBussines.cs" />
     <Compile Include="Bussines\ContractBussines.cs" />
+    <Compile Include="Bussines\ContractReportBusiness.cs" />
     <Compile Include="Bussines\DasteCheckBussines.cs" />
     <Compile Include="Bussines\DocumentTypeBussines.cs" />
     <Compile Include="Bussines\FileInfoBussines.cs" />

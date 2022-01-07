@@ -1739,6 +1739,7 @@
     <None Include="Properties\DataSources\EntityCache.Bussines.BuildingViewBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.CitiesBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.ContractBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.ContractReportBusiness.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.DocumentTypeBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.FloorCoverBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.KitchenServiceBussines.datasource" />

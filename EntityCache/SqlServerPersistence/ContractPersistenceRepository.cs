@@ -11,6 +11,7 @@ using EntityCache.ViewModels;
 using Persistence.Entities;
 using Persistence.Model;
 using Services;
+using Services.FilterObjects;
 
 namespace EntityCache.SqlServerPersistence
 {
@@ -41,7 +42,6 @@ namespace EntityCache.SqlServerPersistence
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
-
             return list;
         }
         public async Task<string> NextCodeAsync(string _connectionString)
@@ -364,6 +364,33 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
+        public async Task<List<ContractReportBusiness>> GetAllReportAsync(string connectionString, ContractFilter filter)
+        {
+            var list = new List<ContractReportBusiness>();
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Contract_GetAllReport", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@d1", filter.Date1);
+                    cmd.Parameters.AddWithValue("@d2", filter.Date2);
+                    if (filter.Type != null)
+                        cmd.Parameters.AddWithValue("@type", (short)filter.Type);
+                    cmd.Parameters.AddWithValue("@tafsilGuid", filter.TafsilGuid);
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read()) list.Add(LoadDataReport(dr));
+                    cn.Close();
+                }
+            }
+            catch (TaskCanceledException) { }
+            catch (OperationCanceledException) { }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+            return list;
+        }
         private ContractBussines LoadData(SqlDataReader dr)
         {
             var res = new ContractBussines();
@@ -453,7 +480,7 @@ namespace EntityCache.SqlServerPersistence
                 if (dr["DocumentAdjust"] != DBNull.Value) res.DocumentAdjust = dr["DocumentAdjust"].ToString();
                 if (dr["CheckPrice1"] != DBNull.Value) res.CheckPrice1 = (decimal)dr["CheckPrice1"];
                 if (dr["CheckPrice2"] != DBNull.Value) res.CheckPrice2 = (decimal)dr["CheckPrice2"];
-                if (dr["Bazaryab2Guid"] != DBNull.Value) res.Bazaryab2Guid = (Guid?) dr["Bazaryab2Guid"];
+                if (dr["Bazaryab2Guid"] != DBNull.Value) res.Bazaryab2Guid = (Guid?)dr["Bazaryab2Guid"];
                 if (dr["Bazaryab2Price"] != DBNull.Value) res.Bazaryab2Price = (decimal)dr["Bazaryab2Price"];
             }
             catch (Exception ex)
@@ -485,6 +512,27 @@ namespace EntityCache.SqlServerPersistence
             }
 
             return res;
+        }
+        private ContractReportBusiness LoadDataReport(SqlDataReader dr)
+        {
+            var item = new ContractReportBusiness();
+            try
+            {
+                if (dr["Guid"] != DBNull.Value) item.Guid = (Guid)dr["Guid"];
+                if (dr["DateM"] != DBNull.Value) item.CreateDate = (DateTime)dr["DateM"];
+                if (dr["CodeInArchive"] != DBNull.Value) item.CodeInArchive = dr["CodeInArchive"].ToString();
+                if (dr["HologramCode"] != DBNull.Value) item.HologramSerial = dr["HologramCode"].ToString();
+                if (dr["Code"] != DBNull.Value) item.ContractCode = (long)dr["Code"];
+                if (dr["FirstSideName"] != DBNull.Value) item.FirstSideName = dr["FirstSideName"].ToString();
+                if (dr["SecondSideName"] != DBNull.Value) item.SecondSideName = dr["SecondSideName"].ToString();
+                if (dr["Type"] != DBNull.Value) item.Type = (EnRequestType)dr["Type"];
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return item;
         }
     }
 }
