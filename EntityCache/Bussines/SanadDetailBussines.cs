@@ -17,8 +17,6 @@ namespace EntityCache.Bussines
     {
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; }
-        public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
-        public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public Guid MasterGuid { get; set; }
         public Guid MoeinGuid { get; set; }
         public string MoeinCode { get; set; }
@@ -47,10 +45,6 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.SanadDetail.SaveAsync(this, tr));
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebSanadDetail.SaveAsync(SanadDetailMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {
@@ -84,10 +78,6 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.SanadDetail.SaveRangeAsync(list, tr));
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebSanadDetail.SaveAsync(SanadDetailMapper.Instance.MapList(list)));
             }
             catch (Exception ex)
             {

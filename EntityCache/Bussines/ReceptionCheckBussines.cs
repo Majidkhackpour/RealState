@@ -16,8 +16,6 @@ namespace EntityCache.Bussines
     {
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
-        public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
-        public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public string BankName { get; set; }
         public DateTime DateM { get; set; }
         public string DateSh => Calendar.MiladiToShamsi(DateM);

@@ -18,8 +18,6 @@ namespace EntityCache.Bussines
     {
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
-        public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
-        public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public string Name { get; set; }
         public string Code { get; set; }
         public Guid KolGuid { get; set; }
@@ -45,10 +43,6 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.Moein.SaveRangeAsync(list, tr));
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebMoein.SaveAsync(MoeinMapper.Instance.MapList(list)));
             }
             catch (Exception ex)
             {

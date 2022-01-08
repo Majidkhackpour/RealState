@@ -28,8 +28,6 @@ namespace EntityCache.SqlServerPersistence
                 item.Price = (decimal)dr["Price"];
                 item.SandouqTafsilGuid = (Guid)dr["SandouqTafsilGuid"];
                 item.SandouqMoeinGuid = (Guid)dr["SandouqMoeinGuid"];
-                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
-                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {
@@ -111,8 +109,6 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@price", item.Price);
                 cmd.Parameters.AddWithValue("@sandouqTafsilGuid", item.SandouqTafsilGuid);
                 cmd.Parameters.AddWithValue("@sandouqMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10102);
-                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
-                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
                 await cmd.ExecuteNonQueryAsync();
             }

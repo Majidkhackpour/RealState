@@ -21,8 +21,6 @@ namespace EntityCache.Bussines
 
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; }
-        public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
-        public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public Guid TafsilGuid { get; set; }
         public string TafsilName { get; set; }
         public Guid MoeinGuid { get; set; }
@@ -345,9 +343,6 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Pardakht, Guid, desc, tr));
                     if (res.HasError) return res;
                 }
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebPardakht.SaveAsync(PardakhtMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {

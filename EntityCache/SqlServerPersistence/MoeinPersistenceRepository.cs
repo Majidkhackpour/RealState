@@ -84,8 +84,6 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@code", item.Code ?? "");
                 cmd.Parameters.AddWithValue("@account", item.Account);
                 cmd.Parameters.AddWithValue("@kolGuid", item.KolGuid);
-                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
-                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
                 await cmd.ExecuteNonQueryAsync();
             }
@@ -169,8 +167,6 @@ namespace EntityCache.SqlServerPersistence
                 item.Account = (decimal)dr["Account"];
                 item.KolGuid = (Guid)dr["KolGuid"];
                 item.DateM = (DateTime)dr["DateM"];
-                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
-                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {

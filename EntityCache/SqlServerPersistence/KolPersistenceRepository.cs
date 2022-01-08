@@ -42,8 +42,6 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@code", item.Code ?? "");
                 cmd.Parameters.AddWithValue("@account", item.Account);
                 cmd.Parameters.AddWithValue("@hGroup", (short)item.HesabGroup);
-                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
-                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
                 await cmd.ExecuteNonQueryAsync();
             }
@@ -117,8 +115,6 @@ namespace EntityCache.SqlServerPersistence
                 item.Code = dr["Code"].ToString();
                 item.Account = (decimal)dr["Account"];
                 item.HesabGroup = (EnHesabGroup)dr["HesabGroup"];
-                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
-                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {

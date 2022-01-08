@@ -79,7 +79,6 @@
     <Compile Include="Entities\BuildingRequestRegion.cs" />
     <Compile Include="Entities\BuildingType.cs" />
     <Compile Include="Entities\BuildingView.cs" />
-    <Compile Include="Entities\Calendar.cs" />
     <Compile Include="Entities\CheckPage.cs" />
     <Compile Include="Entities\Cities.cs" />
     <Compile Include="Entities\Contract.cs" />
@@ -118,7 +117,6 @@
     <Compile Include="Entities\SmsPanels.cs" />
     <Compile Include="Entities\States.cs" />
     <Compile Include="Entities\Tafsil.cs" />
-    <Compile Include="Entities\Temp.cs" />
     <Compile Include="Entities\UserLog.cs" />
     <Compile Include="Entities\Users.cs" />
     <Compile Include="Entities\WorkingRange.cs" />
@@ -566,6 +564,10 @@
     <Compile Include="Migrations\202112131539189__111.designer.cs">
       <DependentUpon>202112131539189__111.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201081559321__112.cs" />
+    <Compile Include="Migrations\202201081559321__112.designer.cs">
+      <DependentUpon>202201081559321__112.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ModelContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -913,6 +915,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202112131539189__111.resx">
       <DependentUpon>202112131539189__111.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201081559321__112.resx">
+      <DependentUpon>202201081559321__112.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

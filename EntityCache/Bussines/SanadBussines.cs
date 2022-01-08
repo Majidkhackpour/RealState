@@ -18,8 +18,6 @@ namespace EntityCache.Bussines
     {
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
-        public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
-        public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public DateTime DateM { get; set; } = DateTime.Now;
         public string DateSh => Calendar.MiladiToShamsi(DateM);
         public string Description { get; set; }
@@ -85,10 +83,6 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await SanadDetailBussines.SaveRangeAsync(Details, tr));
                 if (res.HasError) return res;
                 res.AddReturnedValue(await UpdateAccounts(Details, false, tr));
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebSanad.SaveAsync(SanadMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {

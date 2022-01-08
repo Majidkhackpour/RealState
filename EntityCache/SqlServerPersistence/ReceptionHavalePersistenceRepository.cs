@@ -30,8 +30,6 @@ namespace EntityCache.SqlServerPersistence
                 item.PeygiriNumber = dr["PeygiriNumber"].ToString();
                 item.BankTafsilGuid = (Guid)dr["BankTafsilGuid"];
                 item.BankMoeinGuid = (Guid)dr["BankMoeinGuid"];
-                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
-                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {
@@ -115,8 +113,6 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@peygiriNo", item.PeygiriNumber ?? "");
                 cmd.Parameters.AddWithValue("@bankTafsilGuid", item.BankTafsilGuid);
                 cmd.Parameters.AddWithValue("@bankMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein10101);
-                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
-                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
                 await cmd.ExecuteNonQueryAsync();
             }

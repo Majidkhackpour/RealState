@@ -54,8 +54,6 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@userGuid", ParentDefaults.TafsilCoding.CLSTafsil1030401);
                 cmd.Parameters.AddWithValue("@sarmayeMoeinGuid", ParentDefaults.MoeinCoding.CLSMoein50110);
                 cmd.Parameters.AddWithValue("@sarmayeTafsilGuid", ParentDefaults.TafsilCoding.CLSTafsil5011001);
-                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
-                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
                 await cmd.ExecuteNonQueryAsync();
             }
@@ -270,8 +268,6 @@ namespace EntityCache.SqlServerPersistence
                 item.isSystem = (bool)dr["isSystem"];
                 item.DateM = (DateTime)dr["DateM"];
                 item.AccountFirst = (decimal)dr["AccountFirst"];
-                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
-                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {

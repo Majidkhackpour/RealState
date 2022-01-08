@@ -36,7 +36,6 @@ using Payamak.PhoneBook;
 using Peoples;
 using RealState.Advance;
 using RealState.BackUpLog;
-using RealState.CalendarForms;
 using RealState.Note;
 using RealState.UserControls;
 using Services;
@@ -213,7 +212,6 @@ namespace RealState
                                 new frmAdvance().ShowDialog(this);
                             break;
                         }
-                    case EnForms.Taqvim: frm = new frmCalendar(); break;
                 }
             }
             catch (Exception ex)
@@ -779,7 +777,6 @@ namespace RealState
             }
         }
         private void lblAdvance_Click(object sender, EventArgs e) => DisplayFrm(EnForms.Advance);
-        private void lblTaqvim_Click(object sender, EventArgs e) => DisplayFrm(EnForms.Taqvim);
         private void lblUserManage_Click(object sender, EventArgs e) => DisplayFrm(EnForms.Users);
         private void lblAdvisor_Click(object sender, EventArgs e) => DisplayFrm(EnForms.Advisor);
         private void lblUserAccess_Click(object sender, EventArgs e) => DisplayFrm(EnForms.UserAccess);

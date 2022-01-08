@@ -45,7 +45,6 @@ namespace EntityCache.Assistence
         private static IAdvertiseRelatedRegionRepository _advertiseRelatedRegionRepository;
         private static IAdvTokensRepository _advTokenRepository;
         private static IBackUpLogRepository _bkLogRepository;
-        private static ITempRepository _tempRepository;
         private static IFileInfoRepository _fileInfoRepository;
         private static IKolRepository _kolRepository;
         private static IMoeinRepository _moeinRepository;
@@ -69,7 +68,6 @@ namespace EntityCache.Assistence
         private static IPardakhtCheckAvalDoreRepository _pardakhtCheckAvalDoreRepository;
         private static IAdvisorRepository _advisorRepository;
         private static IAdjectiveDescriptionRepository _adjectiveDescriptionRepository;
-        private static ICalendarRepository _calendarRepository;
         private static IWorkingRangeRepository _workingRangeRepository;
         private static IBuildingRelatedNumberRepository _buildingRelatedNumberRepository;
         private static IBuildingNoteRepository _buildingNoteRepository;
@@ -114,7 +112,6 @@ namespace EntityCache.Assistence
         public static IAdvertiseRelatedRegionRepository AdvertiseRelatedRegion => _advertiseRelatedRegionRepository ?? (_advertiseRelatedRegionRepository = new AdvertiseRelatedRegionPersistenceRepository());
         public static IAdvTokensRepository AdvTokens => _advTokenRepository ?? (_advTokenRepository = new AdvTokensPersistenceRepository());
         public static IBackUpLogRepository BackUpLog => _bkLogRepository ?? (_bkLogRepository = new BackUpLogPersistenceRepository());
-        public static ITempRepository Temp => _tempRepository ?? (_tempRepository = new TempPersistenceRepository());
         public static IFileInfoRepository FileInfo => _fileInfoRepository ?? (_fileInfoRepository = new FileInfoPersistenceRepository());
         public static IKolRepository Kol => _kolRepository ?? (_kolRepository = new KolPersistenceRepository());
         public static IMoeinRepository Moein => _moeinRepository ?? (_moeinRepository = new MoeinPersistenceRepository());
@@ -138,7 +135,6 @@ namespace EntityCache.Assistence
         public static IPardakhtCheckAvalDoreRepository PardakhtCheckAvalDore => _pardakhtCheckAvalDoreRepository ?? (_pardakhtCheckAvalDoreRepository = new PardakhtCheckAvalDorePersistenceRepository());
         public static IAdvisorRepository Advisor => _advisorRepository ?? (_advisorRepository = new AdvisorPersistenceRepository());
         public static IAdjectiveDescriptionRepository AdjectiveDescription => _adjectiveDescriptionRepository ?? (_adjectiveDescriptionRepository = new AdjectiveDescriptionPersistenceRepository());
-        public static ICalendarRepository Calendar => _calendarRepository ?? (_calendarRepository = new CalendarPersistenceRepository());
         public static IWorkingRangeRepository WorkingRange => _workingRangeRepository ?? (_workingRangeRepository = new WorkingRangePersistenceRepository());
         public static IBuildingRelatedNumberRepository BuildingRelatedNumber => _buildingRelatedNumberRepository ?? (_buildingRelatedNumberRepository = new BuildingRelatedNumberPersistenceRepository());
         public static IBuildingNoteRepository BuildingNotes => _buildingNoteRepository ?? (_buildingNoteRepository = new BuildingNotePersistenceRepository());

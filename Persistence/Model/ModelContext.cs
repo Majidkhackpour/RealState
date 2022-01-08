@@ -58,7 +58,6 @@ namespace Persistence.Model
         public virtual DbSet<AdvertiseRelatedRegion> AdvertiseRelatedRegion { get; set; }
         public virtual DbSet<AdvToken> AdvTokens { get; set; }
         public virtual DbSet<BackUpLog> BackUpLogs { get; set; }
-        public virtual DbSet<Temp> Temp { get; set; }
         public virtual DbSet<FileInfo> FileInfo { get; set; }
         public virtual DbSet<Kol> Kol { get; set; }
         public virtual DbSet<Moein> Moein { get; set; }
@@ -82,7 +81,6 @@ namespace Persistence.Model
         public virtual DbSet<ReceptionCheckAvalDore> ReceptionCheckAvalDore { get; set; }
         public virtual DbSet<Advisor> Advisor { get; set; }
         public virtual DbSet<AdjectiveDescription> AdvDescription { get; set; }
-        public virtual DbSet<Calendar> Calendar { get; set; }
         public virtual DbSet<WorkingRange> WorkingRange { get; set; }
         public virtual DbSet<BuildingRelatedNumber> BuildingRelatedNumber { get; set; }
         public virtual DbSet<BuildingNotes> BuildingNotes { get; set; }

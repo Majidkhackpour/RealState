@@ -82,8 +82,6 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@shobe", item.Shobe ?? "");
                 cmd.Parameters.AddWithValue("@codeShobe", item.CodeShobe ?? "");
                 cmd.Parameters.AddWithValue("@hesabNumber", item.HesabNumber ?? "");
-                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
-                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
                 await cmd.ExecuteNonQueryAsync();
             }
@@ -131,8 +129,6 @@ namespace EntityCache.SqlServerPersistence
                 item.HesabNumber = dr["HesabNumber"].ToString();
                 item.Description = dr["Description"].ToString();
                 item.DateM = (DateTime)dr["DateM"];
-                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
-                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
                 item.IsModified = true;
             }
             catch (Exception ex)

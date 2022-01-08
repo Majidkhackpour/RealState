@@ -127,7 +127,6 @@
     <Compile Include="Bussines\BuildingRequestRegionBussines.cs" />
     <Compile Include="Bussines\BuildingTypeBussines.cs" />
     <Compile Include="Bussines\BuildingViewBussines.cs" />
-    <Compile Include="Bussines\CalendarBussines.cs" />
     <Compile Include="Bussines\CheckPageBussines.cs" />
     <Compile Include="Bussines\CitiesBussines.cs" />
     <Compile Include="Bussines\ContractBussines.cs" />
@@ -168,7 +167,6 @@
     <Compile Include="Bussines\SmsPanelsBussines.cs" />
     <Compile Include="Bussines\StatesBussines.cs" />
     <Compile Include="Bussines\TafsilBussines.cs" />
-    <Compile Include="Bussines\TempBussines.cs" />
     <Compile Include="Bussines\UserBussines.cs" />
     <Compile Include="Bussines\UserLogBussines.cs" />
     <Compile Include="Bussines\WorkingRangeBussines.cs" />
@@ -193,7 +191,6 @@
     <Compile Include="Core\IBuildingRequestRepository.cs" />
     <Compile Include="Core\IBuildingTypeRepository.cs" />
     <Compile Include="Core\IBuildingViewRepository.cs" />
-    <Compile Include="Core\ICalendarRepository.cs" />
     <Compile Include="Core\ICheckPageRepository.cs" />
     <Compile Include="Core\ICitiesRepository.cs" />
     <Compile Include="Core\IContractRepository.cs" />
@@ -232,12 +229,9 @@
     <Compile Include="Core\ISmsPanelsRepository.cs" />
     <Compile Include="Core\IStatesRepository.cs" />
     <Compile Include="Core\ITafsilRepository.cs" />
-    <Compile Include="Core\ITempRepository.cs" />
     <Compile Include="Core\IUserLogRepository.cs" />
     <Compile Include="Core\IUsersRepository.cs" />
     <Compile Include="Core\IWorkingRangeRepository.cs" />
-    <Compile Include="Mppings\AdvisorMapper.cs" />
-    <Compile Include="Mppings\BankMapper.cs" />
     <Compile Include="Mppings\BuildingAccountTypeMapper.cs" />
     <Compile Include="Mppings\BuildingConditionMapper.cs" />
     <Compile Include="Mppings\BuildingMapper.cs" />
@@ -249,23 +243,15 @@
     <Compile Include="Mppings\BuildingTypeMapper.cs" />
     <Compile Include="Mppings\BuildingViewMapper.cs" />
     <Compile Include="Mppings\CityMapper.cs" />
-    <Compile Include="Mppings\ContractMapper.cs" />
     <Compile Include="Mppings\DocumentTypeMapper.cs" />
     <Compile Include="Mppings\FloorCoverMapper.cs" />
     <Compile Include="Mppings\KitchenServiceMapper.cs" />
-    <Compile Include="Mppings\KolMapper.cs" />
-    <Compile Include="Mppings\MoeinMapper.cs" />
-    <Compile Include="Mppings\PardakhtMapper.cs" />
     <Compile Include="Mppings\PeopleGroupMapper.cs" />
     <Compile Include="Mppings\PeopleMapper.cs" />
     <Compile Include="Mppings\PhoneBookMapper.cs" />
-    <Compile Include="Mppings\ReceptionMapper.cs" />
     <Compile Include="Mppings\RegionMapper.cs" />
     <Compile Include="Mppings\RentalAuthorityMapper.cs" />
-    <Compile Include="Mppings\SanadDetailMapper.cs" />
-    <Compile Include="Mppings\SanadMapper.cs" />
     <Compile Include="Mppings\StateMapper.cs" />
-    <Compile Include="Mppings\TafsilMapper.cs" />
     <Compile Include="Mppings\UserMapper.cs" />
     <Compile Include="SqlServerPersistence\AdjectiveDescriptionPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\AdvertiseLogPersistenceRepository.cs" />
@@ -288,7 +274,6 @@
     <Compile Include="SqlServerPersistence\BuildingRequestRegionPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\BuildingTypePersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\BuildingViewPersistenceRepository.cs" />
-    <Compile Include="SqlServerPersistence\CalendarPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\CheckPagePersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\CitiesPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\ContractPersistenceRepository.cs" />
@@ -328,7 +313,6 @@
     <Compile Include="SqlServerPersistence\SmsPanelsPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\StatesPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\TafsilPersistenceRepository.cs" />
-    <Compile Include="SqlServerPersistence\TempPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\UserLogPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\UsersPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\WorkingRangePersistenceRepository.cs" />

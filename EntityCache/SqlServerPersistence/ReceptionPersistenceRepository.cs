@@ -34,8 +34,6 @@ namespace EntityCache.SqlServerPersistence
                 item.SanadNumber = (long)dr["SanadNumber"];
                 item.TafsilName = dr["TafsilName"].ToString();
                 item.UserName = dr["UserName"].ToString();
-                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
-                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
                 item.IsModified = true;
                 item.CheckList = AsyncContext.Run(() => ReceptionCheckBussines.GetAllAsync(item.Guid));
                 item.HavaleList = AsyncContext.Run(() => ReceptionHavaleBussines.GetAllAsync(item.Guid));
@@ -158,8 +156,6 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@userGuid", item.UserGuid);
                 cmd.Parameters.AddWithValue("@moeinGuid", ParentDefaults.MoeinCoding.CLSMoein10304);
                 cmd.Parameters.AddWithValue("@sanadNumber", item.SanadNumber);
-                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
-                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
                 cmd.Parameters.AddWithValue("@sumCheck", item.SumCheck);
                 cmd.Parameters.AddWithValue("@sumHavale", item.SumHavale);
                 cmd.Parameters.AddWithValue("@sumNaqd", item.SumNaqd);

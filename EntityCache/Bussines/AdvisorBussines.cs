@@ -18,8 +18,6 @@ namespace EntityCache.Bussines
     {
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; }
-        public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
-        public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public bool Status { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
@@ -54,10 +52,6 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await SaveMobileAsync(tr));
                 if (res.HasError) return res;
                 res.AddReturnedValue(await UnitOfWork.Advisor.SaveAsync(this, tr));
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebAdvisor.SaveAsync(AdvisorMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {
@@ -179,10 +173,6 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await PhoneBookBussines.ChangeStatusAsync(Guid, status, tr));
                 if (res.HasError) return res;
                 res.AddReturnedValue(await UnitOfWork.Advisor.ChangeStatusAsync(this, status, tr));
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebAdvisor.SaveAsync(AdvisorMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {

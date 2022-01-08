@@ -26,8 +26,6 @@ namespace EntityCache.SqlServerPersistence
                 item.Description = dr["Description"].ToString();
                 item.CheckGuid = (Guid)dr["CheckGuid"];
                 item.Price = (decimal)dr["Price"];
-                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
-                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {
@@ -107,8 +105,6 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@desc", item.Description ?? "");
                 cmd.Parameters.AddWithValue("@masterGuid", item.MasterGuid);
                 cmd.Parameters.AddWithValue("@checkGuid", item.CheckGuid);
-                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
-                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
                 await cmd.ExecuteNonQueryAsync();
             }

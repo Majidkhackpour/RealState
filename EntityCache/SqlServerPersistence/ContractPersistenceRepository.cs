@@ -129,8 +129,6 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@sAvarez", item.SecondAvarez);
                 cmd.Parameters.AddWithValue("@fTotalPrice", item.FirstTotalPrice);
                 cmd.Parameters.AddWithValue("@sTotalPrice", item.SecondTotalPrice);
-                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
-                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
                 cmd.Parameters.AddWithValue("@codeInArchive", item.CodeInArchive);
                 cmd.Parameters.AddWithValue("@RealStateCode", item.RealStateCode);
                 cmd.Parameters.AddWithValue("@HologramCode", item.HologramCode);
@@ -436,8 +434,6 @@ namespace EntityCache.SqlServerPersistence
                 if (dr["FirstSideName"] != DBNull.Value) res.FirstSideName = dr["FirstSideName"].ToString();
                 if (dr["SecondSideName"] != DBNull.Value) res.SecondSideName = dr["SecondSideName"].ToString();
                 if (dr["UserName"] != DBNull.Value) res.UserName = dr["UserName"].ToString();
-                if (dr["ServerDeliveryDate"] != DBNull.Value) res.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
-                if (dr["ServerStatus"] != DBNull.Value) res.ServerStatus = (ServerStatus)dr["ServerStatus"];
                 res.IsModified = true;
                 if (dr["CodeInArchive"] != DBNull.Value) res.CodeInArchive = dr["CodeInArchive"].ToString();
                 if (dr["RealStateCode"] != DBNull.Value) res.RealStateCode = dr["RealStateCode"].ToString();

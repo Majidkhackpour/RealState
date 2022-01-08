@@ -125,7 +125,6 @@ namespace RealState
             this.groupPanel45 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.lblSetting = new System.Windows.Forms.Label();
             this.groupPanel46 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.lblTaqvim = new System.Windows.Forms.Label();
             this.groupPanel47 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.lblPhoneBook = new System.Windows.Forms.Label();
             this.groupPanel48 = new DevComponents.DotNetBar.Controls.GroupPanel();
@@ -2406,7 +2405,6 @@ namespace RealState
             this.groupPanel46.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel46.CanvasColor = System.Drawing.Color.Transparent;
-            this.groupPanel46.Controls.Add(this.lblTaqvim);
             this.groupPanel46.Cursor = System.Windows.Forms.Cursors.Hand;
             this.groupPanel46.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel46.Location = new System.Drawing.Point(3, 445);
@@ -2430,20 +2428,6 @@ namespace RealState
             // 
             this.groupPanel46.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel46.TabIndex = 55730;
-            // 
-            // lblTaqvim
-            // 
-            this.lblTaqvim.BackColor = System.Drawing.Color.Transparent;
-            this.lblTaqvim.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTaqvim.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblTaqvim.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblTaqvim.Location = new System.Drawing.Point(0, 0);
-            this.lblTaqvim.Name = "lblTaqvim";
-            this.lblTaqvim.Size = new System.Drawing.Size(169, 30);
-            this.lblTaqvim.TabIndex = 0;
-            this.lblTaqvim.Text = "روزشمار";
-            this.lblTaqvim.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblTaqvim.Click += new System.EventHandler(this.lblTaqvim_Click);
             // 
             // groupPanel47
             // 
@@ -4458,7 +4442,6 @@ namespace RealState
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel45;
         private System.Windows.Forms.Label lblSetting;
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel46;
-        private System.Windows.Forms.Label lblTaqvim;
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel47;
         private System.Windows.Forms.Label lblPhoneBook;
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel48;

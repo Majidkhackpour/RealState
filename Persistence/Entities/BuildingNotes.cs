@@ -6,7 +6,7 @@ using Services.Interfaces.Building;
 
 namespace Persistence.Entities
 {
-    public class BuildingNotes:IBuildingNote
+    public class BuildingNotes : IBuildingNote
     {
         [Key]
         public Guid Guid { get; set; }

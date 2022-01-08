@@ -21,8 +21,6 @@ namespace EntityCache.Bussines
 
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; }
-        public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
-        public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public long Number { get; set; }
         public DateTime DateM { get; set; } = DateTime.Now;
         public string DateSh => Calendar.MiladiToShamsi(DateM);
@@ -246,9 +244,6 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Reception, Guid, desc, tr));
                     if (res.HasError) return res;
                 }
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebReception.SaveAsync(ReceptionMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {

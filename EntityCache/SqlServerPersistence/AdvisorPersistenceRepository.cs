@@ -77,8 +77,6 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@st", item.Status);
                 cmd.Parameters.AddWithValue("@name", item.Name ?? "");
                 cmd.Parameters.AddWithValue("@address", item.Address ?? "");
-                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
-                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
                 await cmd.ExecuteNonQueryAsync();
             }
@@ -121,8 +119,6 @@ namespace EntityCache.SqlServerPersistence
                 item.Account = (decimal)dr["Account"];
                 item.AccountFirst = (decimal)dr["AccountFirst"];
                 item.Address = dr["Address"].ToString();
-                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
-                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
                 var tellList = PhoneBookBussines.GetAll(item.Guid, true);
                 if (tellList?.Count == 1) item.Mobile1 = tellList[0]?.Tell;
                 if (tellList?.Count > 1)

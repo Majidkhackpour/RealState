@@ -20,8 +20,6 @@ namespace EntityCache.Bussines
     {
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
-        public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
-        public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public string DateSh => Calendar.MiladiToShamsi(DateM);
         public bool Status { get; set; } = true;
         public DateTime DateM { get; set; } = DateTime.Now;
@@ -178,10 +176,6 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Contracts, Guid, desc, tr));
                 else
                     res.AddReturnedValue(await UserLogBussines.SaveAsync(EnLogAction.Contract, EnLogPart.Contracts, BuildingGuid, desc, tr));
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebContract.SaveAsync(ContractMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {

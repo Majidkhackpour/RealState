@@ -35,8 +35,6 @@ namespace EntityCache.SqlServerPersistence
                 item.DateSarResid = (DateTime)dr["DateSarResid"];
                 item.SandouqTafsilGuid = (Guid)dr["SandouqTafsilGuid"];
                 item.SandouqMoeinGuid = (Guid)dr["SandouqMoeinGuid"];
-                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
-                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {
@@ -202,8 +200,6 @@ namespace EntityCache.SqlServerPersistence
                     item.SandouqMoeinGuid = ParentDefaults.MoeinCoding.CLSMoein10104;
                 cmd.Parameters.AddWithValue("@sandouqMoeinGuid", item.SandouqMoeinGuid);
                 cmd.Parameters.AddWithValue("@isAvalDore", item.isAvalDore);
-                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
-                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
                 await cmd.ExecuteNonQueryAsync();
             }

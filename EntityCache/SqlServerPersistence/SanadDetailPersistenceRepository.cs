@@ -32,8 +32,6 @@ namespace EntityCache.SqlServerPersistence
                 item.MasterGuid = (Guid)dr["MasterGuid"];
                 item.Debit = (decimal)dr["Debit"];
                 item.Credit = (decimal)dr["Credit"];
-                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
-                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {
@@ -215,8 +213,6 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@debit", item.Debit);
                 cmd.Parameters.AddWithValue("@credit", item.Credit);
                 cmd.Parameters.AddWithValue("@masterGuid", item.MasterGuid);
-                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
-                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
                 await cmd.ExecuteNonQueryAsync();
             }

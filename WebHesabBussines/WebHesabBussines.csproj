@@ -72,9 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebAdvisor.cs" />
     <Compile Include="WebBackUp.cs" />
-    <Compile Include="WebBank.cs" />
     <Compile Include="WebBuilding.cs" />
     <Compile Include="WebBuildingAccountType.cs" />
     <Compile Include="WebBuildingCondition.cs" />
@@ -85,28 +83,19 @@
     <Compile Include="WebBuildingRequestRegion.cs" />
     <Compile Include="WebBuildingType.cs" />
     <Compile Include="WebBuildingView.cs" />
-    <Compile Include="WebCalendar.cs" />
     <Compile Include="WebCity.cs" />
-    <Compile Include="WebContract.cs" />
     <Compile Include="WebCustomer.cs" />
     <Compile Include="WebDocumentType.cs" />
     <Compile Include="WebFileInfo.cs" />
     <Compile Include="WebFloorCover.cs" />
     <Compile Include="WebKitchenService.cs" />
-    <Compile Include="WebKol.cs" />
-    <Compile Include="WebMoein.cs" />
-    <Compile Include="WebPardakht.cs" />
     <Compile Include="WebPeople.cs" />
     <Compile Include="WebPeopleGroup.cs" />
     <Compile Include="WebPhoneBook.cs" />
-    <Compile Include="WebReception.cs" />
     <Compile Include="WebRegion.cs" />
     <Compile Include="WebRental.cs" />
-    <Compile Include="WebSanad.cs" />
-    <Compile Include="WebSanadDetail.cs" />
     <Compile Include="WebScrapper.cs" />
     <Compile Include="WebStates.cs" />
-    <Compile Include="WebTafsil.cs" />
     <Compile Include="WebTelegramBuilding.cs" />
     <Compile Include="WebUser.cs" />
     <Compile Include="WebWhatsappBuilding.cs" />

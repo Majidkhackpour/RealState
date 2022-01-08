@@ -31,8 +31,6 @@ namespace EntityCache.SqlServerPersistence
                 item.DateSarResid = (DateTime)dr["DateSarResid"];
                 item.DateM = (DateTime)dr["DateM"];
                 item.CheckPageGuid = (Guid)dr["CheckPageGuid"];
-                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
-                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {
@@ -165,8 +163,6 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@price", item.Price);
                 cmd.Parameters.AddWithValue("@dateM", item.DateM);
                 cmd.Parameters.AddWithValue("@number", item.Number);
-                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
-                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
                 await cmd.ExecuteNonQueryAsync();
             }

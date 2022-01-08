@@ -29,8 +29,6 @@ namespace EntityCache.SqlServerPersistence
                 item.ToNumber = (long)dr["ToNumber"];
                 item.Description = dr["Description"].ToString();
                 item.BankName = dr["BankName"].ToString();
-                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
-                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
                 item.CheckPages = AsyncContext.Run(() => CheckPageBussines.GetAllAsync(item.Guid, token));
             }
             catch (Exception ex)
@@ -54,8 +52,6 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@desc", item.Description);
                 cmd.Parameters.AddWithValue("@fNumber", item.FromNumber);
                 cmd.Parameters.AddWithValue("@toNumber", item.ToNumber);
-                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
-                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
                 await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)

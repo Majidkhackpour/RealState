@@ -11,8 +11,6 @@ namespace Persistence.Entities
         [Column(Order = 1)]
         [Key]
         public Guid Guid { get; set; }
-        public ServerStatus ServerStatus { get; set; }
-        public DateTime ServerDeliveryDate { get; set; }
         [Index("IX_Sanad_Date", 2)]
         public DateTime Modified { get; set; }
         [Column(Order = 2)]

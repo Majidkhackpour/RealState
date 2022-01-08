@@ -17,8 +17,6 @@ namespace EntityCache.Bussines
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; }
         public bool Status { get; set; }
-        public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
-        public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public string SerialNumber { get; set; }
         public string Name => $"{BankName} سریال {SerialNumber} / {PageCount} برگی";
         public Guid BankGuid { get; set; }

@@ -7,9 +7,7 @@ Alter PROCEDURE sp_Kol_Save
 	@name nvarchar(200),
 	@code nvarchar(10),
 	@account decimal,
-	@hGroup smallint,
-	@serverSt smallint,
-	@serverDate datetime
+	@hGroup smallint
 AS
 BEGIN
 	UPDATE [dbo].[Kols]
@@ -18,8 +16,6 @@ BEGIN
       ,[Code] = @name
       ,[Account] = @account
       ,[HesabGroup] = @hGroup
-	  ,[ServerStatus] = @serverSt
-	  ,[ServerDeliveryDate] = @serverDate
 	WHERE [Guid] = @guid
 	
 	if @@ROWCOUNT=0
@@ -30,18 +26,14 @@ BEGIN
 			   ,[Name]
 			   ,[Code]
 			   ,[Account]
-			   ,[HesabGroup]
-			   ,[ServerStatus]
-		       ,[ServerDeliveryDate])
+			   ,[HesabGroup])
 		 VALUES
 			   (@guid
 			   ,@modif
 			   ,@name
 			   ,@code
 			   ,@account
-			   ,@hGroup
-			   ,@serverSt
-		       ,@serverDate)
+			   ,@hGroup)
 	end
 END
 GO
@@ -78,9 +70,7 @@ Alter PROCEDURE sp_Moein_Save
 	@name nvarchar(200),
 	@code nvarchar(10),
 	@account decimal,
-	@kolGuid uniqueidentifier,
-	@serverSt smallint,
-	@serverDate datetime
+	@kolGuid uniqueidentifier
 AS
 BEGIN
 	UPDATE [dbo].[Moeins]
@@ -89,8 +79,6 @@ BEGIN
 		  ,[Code] = @code
 		  ,[KolGuid] = @kolGuid
 		  ,[Account] = @account
-		  ,[ServerStatus] = @serverSt
-		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT=0
 	 begin
@@ -101,9 +89,7 @@ BEGIN
            ,[Code]
            ,[KolGuid]
            ,[DateM]
-           ,[Account]
-		   ,[ServerStatus]
-		   ,[ServerDeliveryDate])
+           ,[Account])
 		VALUES
            (@guid
            ,@modif
@@ -111,9 +97,7 @@ BEGIN
            ,@code
            ,@kolGuid
            ,GETDATE()
-           ,@account
-		   ,@serverSt
-		   ,@serverDate)
+           ,@account)
 	 end
 END
 GO
@@ -175,6 +159,309 @@ BEGIN
 END
 GO
 -- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Tafsil_Credit]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Tafsil_Credit]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Tafsil_Credit
+	@Guid uniqueidentifier,
+	@Price decimal(18,3)
+AS
+BEGIN
+	if @price=0 return
+	if @Guid ='00000000-0000-0000-0000-000000000000' return
+
+	update Tafsils
+	set Account=Account+@Price,
+		Modified=GETDATE()
+	where Guid=@Guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Tafsil_Debit]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Tafsil_Debit]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Tafsil_Debit 
+	@Guid uniqueidentifier,
+	@Price decimal(18,3)
+AS
+BEGIN
+	if @price=0 return
+	if @Guid='00000000-0000-0000-0000-000000000000' return
+
+	update Tafsils
+	set Account=Account-@Price,
+		Modified=GETDATE()
+	where Guid=@Guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Moein_Debit]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Moein_Debit]	As Begin print 11 end')  
+GO
+
+Alter PROCEDURE sp_Moein_Debit
+	@Guid uniqueidentifier,
+	@Price decimal(18,3)
+AS
+BEGIN
+	if @price=0 return
+	if @Guid='00000000-0000-0000-0000-000000000000' return
+	
+	update Moeins
+	set Account=Account-@Price,
+		Modified=GETDATE()
+	where Guid=@Guid
+
+	declare @kolGuid uniqueidentifier
+	set @kolGuid=(select KolGuid From Moeins where Guid=@Guid)
+
+	update Kols
+	set Account=Account-@Price,
+		Modified=GETDATE()
+	where Guid=@kolGuid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Moein_Credit]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Moein_Credit]	As Begin print 11 end')  
+GO
+
+Alter PROCEDURE sp_Moein_Credit
+	@Guid uniqueidentifier,
+	@Price decimal(18,3)
+AS
+BEGIN
+	if @price=0 return
+	if @Guid='00000000-0000-0000-0000-000000000000' return
+	
+	update Moeins
+	set Account=Account+@Price,
+		Modified=GETDATE()
+	where Guid=@Guid
+
+	declare @kolGuid uniqueidentifier
+	set @kolGuid=(select KolGuid From Moeins where Guid=@Guid)
+
+	update Kols
+	set Account=Account+@Price,
+		Modified=GETDATE()
+	where Guid=@kolGuid
+END
+GO
+-- ==========================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Sanad_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Sanad_Save]	As Begin print 11 end')
+GO
+Alter PROCEDURE sp_Sanad_Save
+	@guid uniqueidentifier,
+	@dateM datetime,
+	@modif datetime,
+	@desc nvarchar(max),
+	@number bigint,
+	@sanadst smallint,
+	@userGuid uniqueidentifier,
+	@sanadType smallint
+AS
+BEGIN
+	UPDATE [dbo].[Sanads]
+	   SET [Modified] = @modif
+		  ,[DateM] = @dateM
+		  ,[Description] = @desc
+		  ,[Number] = @number
+		  ,[SanadStatus] = @sanadst
+		  ,[SanadType] = @sanadType
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT = 0
+	 begin
+		INSERT INTO [dbo].[Sanads]
+           ([Guid]
+           ,[Modified]
+           ,[DateM]
+           ,[Description]
+           ,[Number]
+           ,[SanadStatus]
+           ,[UserGuid]
+           ,[SanadType])
+		 VALUES
+           (@guid
+           ,@modif
+           ,@dateM
+           ,@desc
+           ,@number
+           ,@sanadst
+           ,@userGuid
+           ,@sanadType)
+	 end
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Sanad_Update_Eftetahie]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Sanad_Update_Eftetahie]	As Begin print 11 end')  
+GO
+
+ALTER PROCEDURE [dbo].[sp_Sanad_Update_Eftetahie]
+	@userGuid uniqueidentifier,
+	@sarmayeTafsilGuid uniqueidentifier,
+	@sarmayeMoeinGuid uniqueidentifier,
+	@tafsilCreditMoeinGuid uniqueidentifier,
+	@bankCreditTafilGuid uniqueidentifier,
+	@sandouqCreditTafilGuid uniqueidentifier
+AS
+BEGIN
+	declare @materGuid uniqueidentifier
+	
+	set @materGuid=(select Guid from Sanads where Number=1)
+	if (@materGuid is null or @materGuid='00000000-0000-0000-0000-000000000000')
+	begin
+		set @materGuid=NEWID()
+		declare @date datetime
+		set @date=GETDATE()
+		exec sp_Sanad_Save @materGuid,@date,@date,N'سند افتتاحیه',1,1,@userGuid,1
+	end
+
+	Delete From SanadDetails
+	where MasterGuid=@materGuid
+
+	INSERT INTO [dbo].[SanadDetails]
+           ([Guid]
+           ,[Modified]
+           ,[MoeinGuid]
+           ,[TafsilGuid]
+           ,[Debit]
+           ,[Credit]
+           ,[Description]
+           ,[MasterGuid])
+		   --حسابهای دریافتنی ابتدای دوره - بستانکاران
+			select    NEWID() As Guid
+					, Tafsils.Modified
+					, @tafsilCreditMoeinGuid As MoeinGuid
+					, Tafsils.Guid As TafsilGuid
+					, 0 As Debit
+					, AccountFirst As Credit
+					, N'حسابهای دریافتنی ابتدای دوره ('+Tafsils.Name+')' As Description
+					, @materGuid As MasterGuid
+			from Tafsils where AccountFirst > 0 
+						 and Tafsils.Status='true'
+						 and (HesabType=2 or HesabType=6)
+	union all
+		--حسابهای دریافتنی ابتدای دوره - بدهکاران
+		select    NEWID() As Guid
+				, Tafsils.Modified
+				, @tafsilCreditMoeinGuid As MoeinGuid
+				, Tafsils.Guid As TafsilGuid
+				, ABS(AccountFirst) As Debit
+				, 0 As Credit
+				, N'حسابهای دریافتنی ابتدای دوره ('+Tafsils.Name+')' As Description
+				, @materGuid As MasterGuid
+		from Tafsils where AccountFirst < 0 
+						 and Tafsils.Status='true'
+						 and (HesabType=2 or HesabType=6)
+	union all
+		--موجودی ابتدای دوره بانک ها
+		select    NEWID() As Guid
+				, Tafsils.Modified
+				, @bankCreditTafilGuid As MoeinGuid
+				, Tafsils.Guid As TafsilGuid
+				, ABS(AccountFirst) As Debit
+				, 0 As Credit
+				, N' موجودی ابتدای دوره بانک('+Banks.Name+' '+Banks.Shobe+')' As Description
+				, @materGuid As MasterGuid
+		from Tafsils inner join Banks on
+			 Tafsils.Guid=Banks.Guid
+			 where AccountFirst < 0 and Tafsils.Status='true'
+	union all
+		--موجودی ابتدای دوره صندوق ها
+		select    NEWID() As Guid
+				, Tafsils.Modified
+				, @sandouqCreditTafilGuid As MoeinGuid
+				, Tafsils.Guid As TafsilGuid
+				, ABS(AccountFirst) As Debit
+				, 0 As Credit
+				, N' موجودی ابتدای دوره صندوق('+Name+')' As Description
+				, @materGuid As MasterGuid
+		from Tafsils where AccountFirst < 0
+					 and HesabType = 5
+					 and Tafsils.Status='true'
+	union all
+		--اسناد دریافتنی ابتدای دوره
+		select    NEWID() As Guid
+				, ReceptionCheckAvalDores.Modified
+				, CAST('215e08ec-253d-4a10-a217-2462d8600226' as uniqueidentifier) As MoeinGuid
+				, Tafsils.Guid As TafsilGuid
+				, ReceptionCheckAvalDores.Price As Debit
+				, 0 As Credit
+				, N'چکهای دریافتنی ابتدای دوره' As Description
+				, @materGuid As MasterGuid
+		from ReceptionCheckAvalDores inner join Tafsils on
+			 ReceptionCheckAvalDores.SandouqTafsilGuid=Tafsils.Guid
+	union all
+		--اسناد پرداختنی ابتدای دوره
+		select    NEWID() As Guid
+				, PardakhtCheckAvalDores.Modified
+				, CAST('814d8ac1-bae2-465c-9ed4-865838ec064b' As uniqueidentifier) As MoeinGuid
+				, Tafsils.Guid As TafsilGuid
+				, 0 As Debit
+				, CheckPages.Price As Credit
+				, N'اسناد پرداختنی ابتدای دوره' As Description
+				, @materGuid As MasterGuid
+		from PardakhtCheckAvalDores inner join CheckPages on
+			 PardakhtCheckAvalDores.CheckPageGuid=CheckPages.Guid inner join DasteChecks on
+			 CheckPages.CheckGuid=DasteChecks.Guid inner join Tafsils on
+			 DasteChecks.BankGuid=Tafsils.Guid
+
+	declare @Sum Decimal(18,3)
+	set @Sum=(select sum(Credit-Debit)
+				from [SanadDetails]
+				where MasterGuid=@materGuid)
+	set @Sum=ISNULL(@Sum,0)
+
+	if @Sum>0
+	begin
+		INSERT INTO [dbo].[SanadDetails]
+           ([Guid]
+           ,[Modified]
+           ,[MoeinGuid]
+           ,[TafsilGuid]
+           ,[Debit]
+           ,[Credit]
+           ,[Description]
+           ,[MasterGuid])
+			--سرمایه ابتدای دوره بستانکار
+			select    NEWID() As Guid
+					, Tafsils.Modified
+					, @sarmayeMoeinGuid As MoeinGuid
+					, Tafsils.Guid As TafsilGuid
+					, ABS(@Sum) As Debit
+					, 0 As Credit
+					, N'سرمایه ابتدای دوره' As Description
+					, @materGuid As MasterGuid
+			from Tafsils where Guid = @sarmayeTafsilGuid
+	end
+	else if @Sum<0
+	begin
+		INSERT INTO [dbo].[SanadDetails]
+			   ([Guid]
+			   ,[Modified]
+			   ,[MoeinGuid]
+			   ,[TafsilGuid]
+			   ,[Debit]
+			   ,[Credit]
+			   ,[Description]
+			   ,[MasterGuid])
+			--سرمایه ابتدای دوره بدهکار
+			select    NEWID() As Guid
+					, Tafsils.Modified
+					, @sarmayeMoeinGuid As MoeinGuid
+					, Tafsils.Guid As TafsilGuid
+					, 0 As Debit
+					, ABS(@Sum) As Credit
+					, N'سرمایه ابتدای دوره' As Description
+					, @materGuid As MasterGuid
+			from Tafsils where Guid = @sarmayeTafsilGuid
+	end
+END
+GO
+-- ==========================================================================================
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Tafsil_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Tafsil_Save]	As Begin print 11 end')
 GO
@@ -195,9 +482,7 @@ ALTER PROCEDURE [dbo].[sp_Tafsil_Save]
 	@TafsilCreditMoeinGuid uniqueidentifier,
 	@userGuid uniqueidentifier,
 	@sarmayeMoeinGuid uniqueidentifier,
-	@sarmayeTafsilGuid uniqueidentifier,
-	@serverSt smallint,
-	@serverDate datetime
+	@sarmayeTafsilGuid uniqueidentifier
 AS
 BEGIN
 	declare @AccountF_Before decimal
@@ -214,8 +499,6 @@ BEGIN
 		  ,[Account] = @account
 		  ,[AccountFirst] = @accFirst
 		  ,[isSystem] = @isSystem
-		  ,[ServerStatus] = @serverSt
-		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	if @@ROWCOUNT=0
 	begin
@@ -230,9 +513,7 @@ BEGIN
            ,[DateM]
            ,[Account]
 		   ,[AccountFirst]
-           ,[isSystem]
-		   ,[ServerStatus]
-		   ,[ServerDeliveryDate])
+           ,[isSystem])
 		VALUES
            (@guid
            ,@modif
@@ -244,9 +525,7 @@ BEGIN
            ,GETDATE()
            ,@account
 		   ,@accFirst
-           ,@isSystem
-		   ,@serverSt
-		   ,@serverDate)
+           ,@isSystem)
 	 end
 
 	if isnull(@accFirst,0) <> @AccountF_Before
@@ -470,9 +749,7 @@ Alter PROCEDURE sp_Banks_Save
 	@desc nvarchar(max),
 	@shobe nvarchar(200),
 	@codeShobe nvarchar(20),
-	@hesabNumber nvarchar(200),
-	@serverSt smallint,
-	@serverDate datetime
+	@hesabNumber nvarchar(200)
 AS
 BEGIN
 	UPDATE [dbo].[Banks]
@@ -484,8 +761,6 @@ BEGIN
 		  ,[CodeShobe] = @codeShobe
 		  ,[HesabNumber] = @hesabNumber
 		  ,[Description] = @desc
-		  ,[ServerStatus] = @serverSt
-		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT=0
 	 begin
@@ -499,9 +774,7 @@ BEGIN
            ,[CodeShobe]
            ,[HesabNumber]
            ,[Description]
-           ,[DateM]
-		   ,[ServerStatus]
-		   ,[ServerDeliveryDate])
+           ,[DateM])
 		VALUES
            (@guid
            ,@modif
@@ -512,9 +785,7 @@ BEGIN
            ,@codeShobe
            ,@hesabNumber
            ,@desc
-           ,GETDATE()
-		   ,@serverSt
-		   ,@serverDate)
+           ,GETDATE())
 	 end
 END
 GO
@@ -1080,8 +1351,6 @@ ALTER PROCEDURE [dbo].[sp_Contract_Save]
 	@sAvarez decimal=0,
 	@fTotalPrice decimal=0,
 	@sTotalPrice decimal=0,
-	@serverSt smallint=0,
-	@serverDate datetime,
 	@codeInArchive nvarchar(100)='',
 	@RealStateCode nvarchar(200)='',
 	@HologramCode nvarchar(200)='',
@@ -1165,8 +1434,6 @@ BEGIN
 		   ,[SecondAvarez] = @sAvarez
 		   ,[FirstTotalPrice] = @fTotalPrice
 		   ,[SecondTotalPrice] = @sTotalPrice
-		   ,[ServerStatus] = @serverSt
-		   ,[ServerDeliveryDate] = @serverDate
 		   ,[CodeInArchive] = @CodeInArchive
 		   ,[RealStateCode] = @RealStateCode
 		   ,[HologramCode] = @HologramCode
@@ -1251,8 +1518,6 @@ BEGIN
            ,[SecondAvarez]
            ,[FirstTotalPrice]
            ,[SecondTotalPrice]
-           ,[ServerStatus]
-           ,[ServerDeliveryDate]
            ,[CodeInArchive]
            ,[RealStateCode]
            ,[HologramCode]
@@ -1334,8 +1599,6 @@ BEGIN
            ,@SAvarez
            ,@fTotalPrice
            ,@STotalPrice
-           ,@serverSt
-           ,@serverDate
            ,@CodeInArchive
            ,@RealStateCode
            ,@HologramCode
@@ -1380,49 +1643,6 @@ BEGIN
 		   ,@V2Guid
 		   ,@v2Price)
 	 end
-END
-GO
--- ==========================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Temp_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Temp_GetAll]	As Begin print 11 end')
-GO
-Alter PROCEDURE sp_Temp_GetAll
-AS
-BEGIN
-	Select * from [dbo].[Temps]
-END
-GO
--- ==========================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Temp_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Temp_Save]	As Begin print 11 end')
-GO
-Alter PROCEDURE sp_Temp_Save
-	@guid uniqueidentifier,
-	@type smallint,
-	@objGuid uniqueidentifier
-AS
-BEGIN
-	insert into [dbo].[Temps](
-		 Guid
-		,ObjectGuid
-		,Type)
-		values(
-		 @guid
-		,@objGuid
-		,@type)
-END
-GO
--- ==========================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Temp_Remove]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Temp_Remove]	As Begin print 11 end')
-GO
-
-Alter PROCEDURE sp_Temp_Remove
-	@guid uniqueidentifier
-AS
-BEGIN
-	Delete from [dbo].[Temps]
-	where Guid=@guid
 END
 GO
 -- ==========================================================================================
@@ -2291,9 +2511,7 @@ Alter PROCEDURE sp_DasteCheck_Save
 	@bankGuid uniqueidentifier,
 	@fNumber bigint,
 	@toNumber bigint,
-	@desc nvarchar(Max),
-	@serverSt smallint,
-	@serverDate datetime
+	@desc nvarchar(Max)
 AS
 BEGIN
 	UPDATE [dbo].[DasteChecks]
@@ -2304,8 +2522,6 @@ BEGIN
 		  ,[FromNumber] = @fNumber
 		  ,[ToNumber] = @toNumber
 		  ,[Description] = @desc
-		  ,[ServerStatus] = @serverSt
-		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @Guid
 	 if @@ROWCOUNT=0
 	 begin
@@ -2317,9 +2533,7 @@ BEGIN
            ,[BankGuid]
            ,[FromNumber]
            ,[ToNumber]
-           ,[Description]
-		   ,[ServerStatus]
-		   ,[ServerDeliveryDate])
+           ,[Description])
 		 VALUES
            (@Guid
            ,@modif
@@ -2328,9 +2542,7 @@ BEGIN
            ,@bankGuid
            ,@fNumber
            ,@toNumber
-           ,@desc
-		   ,@serverSt
-		   ,@serverDate)
+           ,@desc)
 	 end
 END
 GO
@@ -2372,9 +2584,7 @@ ALTER PROCEDURE [dbo].[sp_CheckPage_Save]
 	@sarresid datetime=null,
 	@desc nvarchar(max),
 	@price decimal,
-	@st int,
-	@serverSt smallint,
-	@serverDate datetime
+	@st int
 AS
 BEGIN
 	UPDATE [dbo].[CheckPages]
@@ -2387,8 +2597,6 @@ BEGIN
 		  ,[Description] = @desc
 		  ,[Price] = @price
 		  ,[CheckStatus] = @st
-		  ,[ServerStatus] = @serverSt
-		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @Guid
 	 if @@ROWCOUNT=0
 	 begin
@@ -2402,9 +2610,7 @@ BEGIN
            ,[DateSarresid]
            ,[Description]
            ,[Price]
-           ,[CheckStatus]
-		   ,[ServerStatus]
-		   ,[ServerDeliveryDate])
+           ,[CheckStatus])
 		VALUES
            (@Guid
            ,@modif
@@ -2415,9 +2621,7 @@ BEGIN
            ,@sarresid
            ,@desc
            ,@price
-           ,@st
-		   ,@serverSt
-		   ,@serverDate)
+           ,@st)
 	 end
 END
 GO
@@ -2477,60 +2681,6 @@ BEGIN
 END
 GO
 -- ==========================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Sanad_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Sanad_Save]	As Begin print 11 end')
-GO
-Alter PROCEDURE sp_Sanad_Save
-	@guid uniqueidentifier,
-	@dateM datetime,
-	@modif datetime,
-	@desc nvarchar(max),
-	@number bigint,
-	@sanadst smallint,
-	@userGuid uniqueidentifier,
-	@sanadType smallint,
-	@serverSt smallint,
-	@serverDate datetime
-AS
-BEGIN
-	UPDATE [dbo].[Sanads]
-	   SET [Modified] = @modif
-		  ,[DateM] = @dateM
-		  ,[Description] = @desc
-		  ,[Number] = @number
-		  ,[SanadStatus] = @sanadst
-		  ,[SanadType] = @sanadType
-		  ,[ServerStatus] = @serverSt
-		  ,[ServerDeliveryDate] = @serverDate
-	 WHERE [Guid] = @guid
-	 if @@ROWCOUNT = 0
-	 begin
-		INSERT INTO [dbo].[Sanads]
-           ([Guid]
-           ,[Modified]
-           ,[DateM]
-           ,[Description]
-           ,[Number]
-           ,[SanadStatus]
-           ,[UserGuid]
-           ,[SanadType]
-		   ,[ServerStatus]
-		   ,[ServerDeliveryDate])
-		 VALUES
-           (@guid
-           ,@modif
-           ,@dateM
-           ,@desc
-           ,@number
-           ,@sanadst
-           ,@userGuid
-           ,@sanadType
-		   ,@serverSt
-		   ,@serverDate)
-	 end
-END
-GO
--- ==========================================================================================
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Sanad_Remove]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Sanad_Remove]	As Begin print 11 end')
 GO
@@ -2574,9 +2724,7 @@ Alter PROCEDURE sp_SanadDetail_Save
 	@debit decimal,
 	@credit decimal,
 	@desc nvarchar(Max),
-	@masterGuid uniqueidentifier,
-	@serverSt smallint,
-	@serverDate datetime
+	@masterGuid uniqueidentifier
 AS
 BEGIN
 	UPDATE [dbo].[SanadDetails]
@@ -2587,8 +2735,6 @@ BEGIN
 		  ,[Credit] = @credit
 		  ,[Description] = @desc
 		  ,[MasterGuid] = @masterGuid
-		  ,[ServerStatus] = @serverSt
-		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @Guid
 	 if @@ROWCOUNT = 0
 	 begin
@@ -2600,9 +2746,7 @@ BEGIN
            ,[Debit]
            ,[Credit]
            ,[Description]
-           ,[MasterGuid]
-		   ,[ServerStatus]
-		   ,[ServerDeliveryDate])
+           ,[MasterGuid])
 		VALUES
            (@Guid
            ,@modif
@@ -2611,9 +2755,7 @@ BEGIN
            ,@debit
            ,@credit
            ,@desc
-           ,@masterGuid
-		   ,@serverSt
-		   ,@serverDate)
+           ,@masterGuid)
 	 end
 END
 GO
@@ -2627,262 +2769,6 @@ AS
 BEGIN
 	delete from SanadDetails
 	where MasterGuid = @masterGuid
-END
-GO
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Tafsil_Credit]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Tafsil_Credit]	As Begin print 11 end')  
-GO
-Alter PROCEDURE sp_Tafsil_Credit
-	@Guid uniqueidentifier,
-	@Price decimal(18,3)
-AS
-BEGIN
-	if @price=0 return
-	if @Guid ='00000000-0000-0000-0000-000000000000' return
-
-	update Tafsils
-	set Account=Account+@Price,
-		Modified=GETDATE()
-	where Guid=@Guid
-END
-GO
---========================================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Tafsil_Debit]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Tafsil_Debit]	As Begin print 11 end')  
-GO
-Alter PROCEDURE sp_Tafsil_Debit 
-	@Guid uniqueidentifier,
-	@Price decimal(18,3)
-AS
-BEGIN
-	if @price=0 return
-	if @Guid='00000000-0000-0000-0000-000000000000' return
-
-	update Tafsils
-	set Account=Account-@Price,
-		Modified=GETDATE()
-	where Guid=@Guid
-END
-GO
---========================================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Moein_Credit]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Moein_Credit]	As Begin print 11 end')  
-GO
-
-Alter PROCEDURE sp_Moein_Credit
-	@Guid uniqueidentifier,
-	@Price decimal(18,3)
-AS
-BEGIN
-	if @price=0 return
-	if @Guid='00000000-0000-0000-0000-000000000000' return
-	
-	update Moeins
-	set Account=Account+@Price,
-		Modified=GETDATE()
-	where Guid=@Guid
-
-	declare @kolGuid uniqueidentifier
-	set @kolGuid=(select KolGuid From Moeins where Guid=@Guid)
-
-	update Kols
-	set Account=Account+@Price,
-		Modified=GETDATE()
-	where Guid=@kolGuid
-END
-GO
---========================================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Moein_Debit]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Moein_Debit]	As Begin print 11 end')  
-GO
-
-Alter PROCEDURE sp_Moein_Debit
-	@Guid uniqueidentifier,
-	@Price decimal(18,3)
-AS
-BEGIN
-	if @price=0 return
-	if @Guid='00000000-0000-0000-0000-000000000000' return
-	
-	update Moeins
-	set Account=Account-@Price,
-		Modified=GETDATE()
-	where Guid=@Guid
-
-	declare @kolGuid uniqueidentifier
-	set @kolGuid=(select KolGuid From Moeins where Guid=@Guid)
-
-	update Kols
-	set Account=Account-@Price,
-		Modified=GETDATE()
-	where Guid=@kolGuid
-END
-GO
---========================================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Sanad_Update_Eftetahie]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Sanad_Update_Eftetahie]	As Begin print 11 end')  
-GO
-
-ALTER PROCEDURE [dbo].[sp_Sanad_Update_Eftetahie]
-	@userGuid uniqueidentifier,
-	@sarmayeTafsilGuid uniqueidentifier,
-	@sarmayeMoeinGuid uniqueidentifier,
-	@tafsilCreditMoeinGuid uniqueidentifier,
-	@bankCreditTafilGuid uniqueidentifier,
-	@sandouqCreditTafilGuid uniqueidentifier
-AS
-BEGIN
-	declare @materGuid uniqueidentifier
-	
-	set @materGuid=(select Guid from Sanads where Number=1)
-	if (@materGuid is null or @materGuid='00000000-0000-0000-0000-000000000000')
-	begin
-		set @materGuid=NEWID()
-		declare @date datetime
-		set @date=GETDATE()
-		exec sp_Sanad_Save @materGuid,'true',@date,@date,N'سند افتتاحیه',1,1,@userGuid,1
-	end
-
-	Delete From SanadDetails
-	where MasterGuid=@materGuid
-
-	INSERT INTO [dbo].[SanadDetails]
-           ([Guid]
-           ,[Modified]
-           ,[MoeinGuid]
-           ,[TafsilGuid]
-           ,[Debit]
-           ,[Credit]
-           ,[Description]
-           ,[MasterGuid])
-		   --حسابهای دریافتنی ابتدای دوره - بستانکاران
-			select    NEWID() As Guid
-					, Tafsils.Modified
-					, @tafsilCreditMoeinGuid As MoeinGuid
-					, Tafsils.Guid As TafsilGuid
-					, 0 As Debit
-					, AccountFirst As Credit
-					, N'حسابهای دریافتنی ابتدای دوره ('+Tafsils.Name+')' As Description
-					, @materGuid As MasterGuid
-			from Tafsils where AccountFirst > 0 
-						 and Tafsils.Status='true'
-						 and (HesabType=2 or HesabType=6)
-	union all
-		--حسابهای دریافتنی ابتدای دوره - بدهکاران
-		select    NEWID() As Guid
-				, Tafsils.Modified
-				, @tafsilCreditMoeinGuid As MoeinGuid
-				, Tafsils.Guid As TafsilGuid
-				, ABS(AccountFirst) As Debit
-				, 0 As Credit
-				, N'حسابهای دریافتنی ابتدای دوره ('+Tafsils.Name+')' As Description
-				, @materGuid As MasterGuid
-		from Tafsils where AccountFirst < 0 
-						 and Tafsils.Status='true'
-						 and (HesabType=2 or HesabType=6)
-	union all
-		--موجودی ابتدای دوره بانک ها
-		select    NEWID() As Guid
-				, Tafsils.Modified
-				, @bankCreditTafilGuid As MoeinGuid
-				, Tafsils.Guid As TafsilGuid
-				, ABS(AccountFirst) As Debit
-				, 0 As Credit
-				, N' موجودی ابتدای دوره بانک('+Banks.Name+' '+Banks.Shobe+')' As Description
-				, @materGuid As MasterGuid
-		from Tafsils inner join Banks on
-			 Tafsils.Guid=Banks.Guid
-			 where AccountFirst < 0 and Tafsils.Status='true'
-	union all
-		--موجودی ابتدای دوره صندوق ها
-		select    NEWID() As Guid
-				, Tafsils.Modified
-				, @sandouqCreditTafilGuid As MoeinGuid
-				, Tafsils.Guid As TafsilGuid
-				, ABS(AccountFirst) As Debit
-				, 0 As Credit
-				, N' موجودی ابتدای دوره صندوق('+Name+')' As Description
-				, @materGuid As MasterGuid
-		from Tafsils where AccountFirst < 0
-					 and HesabType = 5
-					 and Tafsils.Status='true'
-	union all
-		--اسناد دریافتنی ابتدای دوره
-		select    NEWID() As Guid
-				, ReceptionCheckAvalDores.Modified
-				, CAST('215e08ec-253d-4a10-a217-2462d8600226' as uniqueidentifier) As MoeinGuid
-				, Tafsils.Guid As TafsilGuid
-				, ReceptionCheckAvalDores.Price As Debit
-				, 0 As Credit
-				, N'چکهای دریافتنی ابتدای دوره' As Description
-				, @materGuid As MasterGuid
-		from ReceptionCheckAvalDores inner join Tafsils on
-			 ReceptionCheckAvalDores.SandouqTafsilGuid=Tafsils.Guid
-	union all
-		--اسناد پرداختنی ابتدای دوره
-		select    NEWID() As Guid
-				, PardakhtCheckAvalDores.Modified
-				, CAST('814d8ac1-bae2-465c-9ed4-865838ec064b' As uniqueidentifier) As MoeinGuid
-				, Tafsils.Guid As TafsilGuid
-				, 0 As Debit
-				, CheckPages.Price As Credit
-				, N'اسناد پرداختنی ابتدای دوره' As Description
-				, @materGuid As MasterGuid
-		from PardakhtCheckAvalDores inner join CheckPages on
-			 PardakhtCheckAvalDores.CheckPageGuid=CheckPages.Guid inner join DasteChecks on
-			 CheckPages.CheckGuid=DasteChecks.Guid inner join Tafsils on
-			 DasteChecks.BankGuid=Tafsils.Guid
-
-	declare @Sum Decimal(18,3)
-	set @Sum=(select sum(Credit-Debit)
-				from [SanadDetails]
-				where MasterGuid=@materGuid)
-	set @Sum=ISNULL(@Sum,0)
-
-	if @Sum>0
-	begin
-		INSERT INTO [dbo].[SanadDetails]
-           ([Guid]
-           ,[Modified]
-           ,[MoeinGuid]
-           ,[TafsilGuid]
-           ,[Debit]
-           ,[Credit]
-           ,[Description]
-           ,[MasterGuid])
-			--سرمایه ابتدای دوره بستانکار
-			select    NEWID() As Guid
-					, Tafsils.Modified
-					, @sarmayeMoeinGuid As MoeinGuid
-					, Tafsils.Guid As TafsilGuid
-					, ABS(@Sum) As Debit
-					, 0 As Credit
-					, N'سرمایه ابتدای دوره' As Description
-					, @materGuid As MasterGuid
-			from Tafsils where Guid = @sarmayeTafsilGuid
-	end
-	else if @Sum<0
-	begin
-		INSERT INTO [dbo].[SanadDetails]
-			   ([Guid]
-			   ,[Modified]
-			   ,[MoeinGuid]
-			   ,[TafsilGuid]
-			   ,[Debit]
-			   ,[Credit]
-			   ,[Description]
-			   ,[MasterGuid])
-			--سرمایه ابتدای دوره بدهکار
-			select    NEWID() As Guid
-					, Tafsils.Modified
-					, @sarmayeMoeinGuid As MoeinGuid
-					, Tafsils.Guid As TafsilGuid
-					, 0 As Debit
-					, ABS(@Sum) As Credit
-					, N'سرمایه ابتدای دوره' As Description
-					, @materGuid As MasterGuid
-			from Tafsils where Guid = @sarmayeTafsilGuid
-	end
 END
 GO
 --========================================================================================================
@@ -2983,8 +2869,6 @@ ALTER PROCEDURE [dbo].[sp_Reception_Save]
 	@moeinGuid uniqueidentifier,
 	@userGuid uniqueidentifier,
 	@sanadNumber bigint,
-	@serverSt smallint,
-	@serverDate datetime,
 	@sumCheck decimal,
 	@sumHavale decimal,
 	@sumNaqd decimal,
@@ -2999,8 +2883,6 @@ BEGIN
 		  ,[TafsilGuid] = @tafsilGuid
 		  ,[MoeinGuid] = @moeinGuid
 		  ,[SanadNumber] = @sanadNumber
-		  ,[ServerStatus] = @serverSt
-		  ,[ServerDeliveryDate] = @serverDate
 		  ,[SumCheck] = @sumCheck
 		  ,[SumHavale] = @sumHavale
 		  ,[SumNaqd] = @sumNaqd
@@ -3018,8 +2900,6 @@ BEGIN
            ,[MoeinGuid]
            ,[UserGuid]
            ,[SanadNumber]
-		   ,[ServerStatus]
-		   ,[ServerDeliveryDate]
 		   ,[SumCheck]
 		   ,[SumHavale]
 		   ,[SumNaqd]
@@ -3034,8 +2914,6 @@ BEGIN
            ,@moeinGuid
            ,@userGuid
            ,@sanadNumber
-		   ,@serverSt
-		   ,@serverDate
 		   ,@sumCheck
 		   ,@sumHavale
 		   ,@sumNaqd
@@ -3109,9 +2987,7 @@ ALTER PROCEDURE [dbo].[sp_ReceptionCheck_Insert]
 	@sarResid datetime,
 	@sandouqTafsilGuid uniqueidentifier,
 	@sandouqMoeinGuid uniqueidentifier,
-	@isAvalDore bit,
-	@serverSt smallint,
-	@serverDate datetime
+	@isAvalDore bit
 AS
 BEGIN
 	UPDATE [dbo].[ReceptionChecks]
@@ -3127,8 +3003,6 @@ BEGIN
 		  ,[DateSarResid] = @sarResid
 		  ,[SandouqTafsilGuid] = @sandouqTafsilGuid
 		  ,[SandouqMoeinGuid] = @sandouqMoeinGuid
-		  ,[ServerStatus] = @serverSt
-		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT=0
 	 begin
@@ -3146,9 +3020,7 @@ BEGIN
 		  ,[DateSarResid]
 		  ,[SandouqTafsilGuid]
 		  ,[SandouqMoeinGuid]
-		  ,[isAvalDore]
-		  ,[ServerStatus]
-		  ,[ServerDeliveryDate])
+		  ,[isAvalDore])
 	VALUES
           (@guid
           ,@modif
@@ -3163,9 +3035,7 @@ BEGIN
 		  ,@sarResid
 		  ,@sandouqTafsilGuid
 		  ,@sandouqMoeinGuid
-		  ,@isAvalDore
-		  ,@serverSt
-		  ,@serverDate)
+		  ,@isAvalDore)
 	 end
 END
 GO
@@ -3205,9 +3075,7 @@ Alter PROCEDURE sp_ReceptionNaqd_Insert
 	@masterGuid uniqueidentifier,
 	@price decimal,
 	@sandouqTafsilGuid uniqueidentifier,
-	@sandouqMoeinGuid uniqueidentifier,
-	@serverSt smallint,
-	@serverDate datetime
+	@sandouqMoeinGuid uniqueidentifier
 AS
 BEGIN
 	INSERT INTO [dbo].[ReceptionNaqds]
@@ -3218,9 +3086,7 @@ BEGIN
            ,[Description]
            ,[Price]
            ,[SandouqTafsilGuid]
-           ,[SandouqMoeinGuid]
-		   ,[ServerStatus]
-		   ,[ServerDeliveryDate])
+           ,[SandouqMoeinGuid])
      VALUES
            (@guid
            ,@modif
@@ -3229,9 +3095,7 @@ BEGIN
            ,@desc
            ,@price
            ,@sandouqTafsilGuid
-           ,@sandouqMoeinGuid
-		   ,@serverSt
-		   ,@serverDate)
+           ,@sandouqMoeinGuid)
 END
 GO
 --========================================================================================================
@@ -3271,9 +3135,7 @@ Alter PROCEDURE sp_ReceptionHavale_Insert
 	@price decimal,
 	@peygiriNo nvarchar(200),
 	@bankTafsilGuid uniqueidentifier,
-	@bankMoeinGuid uniqueidentifier,
-	@serverSt smallint,
-	@serverDate datetime
+	@bankMoeinGuid uniqueidentifier
 AS
 BEGIN
 	INSERT INTO [dbo].[ReceptionHavales]
@@ -3285,9 +3147,7 @@ BEGIN
            ,[Price]
            ,[PeygiriNumber]
            ,[BankTafsilGuid]
-           ,[BankMoeinGuid]
-		   ,[ServerStatus]
-		   ,[ServerDeliveryDate])
+           ,[BankMoeinGuid])
      VALUES
            (@guid
            ,@modif
@@ -3297,9 +3157,7 @@ BEGIN
            ,@price
            ,@peygiriNo
            ,@bankTafsilGuid
-           ,@bankMoeinGuid
-		   ,@serverSt
-		   ,@serverDate)
+           ,@bankMoeinGuid)
 END
 GO
 --========================================================================================================
@@ -3426,8 +3284,6 @@ ALTER PROCEDURE [dbo].[sp_Pardakht_Save]
 	@userGuid uniqueidentifier,
 	@number bigint,
 	@sanadNumber bigint,
-	@serverSt smallint,
-	@serverDate datetime,
 	@sumCheckM decimal,
 	@sumCheckSh decimal,
 	@sumHavale decimal,
@@ -3444,8 +3300,6 @@ BEGIN
 		  ,[UserGuid] = @userGuid
 		  ,[Number] = @number
 		  ,[SanadNumber] = @sanadNumber
-		  ,[ServerStatus] = @serverSt
-		  ,[ServerDeliveryDate] = @serverDate
 		  ,[SumCheckMoshtari] = @sumCheckM
 		  ,[SumCheckShakhsi] = @sumCheckSh
 		  ,[SumHavale] = @sumHavale
@@ -3464,8 +3318,6 @@ BEGIN
            ,[UserGuid]
            ,[Number]
            ,[SanadNumber]
-		   ,[ServerStatus]
-		   ,[ServerDeliveryDate]
 		   ,[SumCheckMoshtari]
 		   ,[SumCheckShakhsi]
 		   ,[SumHavale]
@@ -3481,8 +3333,6 @@ BEGIN
            ,@userGuid
            ,@number
            ,@sanadNumber
-		   ,@serverSt
-		   ,@serverDate
 		   ,@sumCheckM
 		   ,@sumCheckSh
 		   ,@sumHavale
@@ -3526,9 +3376,7 @@ Alter PROCEDURE sp_PardakhtNaqd_Insert
 	@price decimal,
 	@sandouqTafsilGuid uniqueidentifier,
 	@sandouqMoeinGuid uniqueidentifier,
-	@masterGuid uniqueidentifier,
-	@serverSt smallint,
-	@serverDate datetime
+	@masterGuid uniqueidentifier
 AS
 BEGIN
 	INSERT INTO [dbo].[PardakhtNaqds]
@@ -3538,9 +3386,7 @@ BEGIN
            ,[Price]
            ,[SandouqTafsilGuid]
            ,[SandouqMoeinGuid]
-           ,[MasterGuid]
-		   ,[ServerStatus]
-		   ,[ServerDeliveryDate])
+           ,[MasterGuid])
 		VALUES
            (@guid
            ,@modif
@@ -3548,9 +3394,7 @@ BEGIN
            ,@price
            ,@sandouqTafsilGuid
            ,@sandouqMoeinGuid
-           ,@masterGuid
-		   ,@serverSt
-		   ,@serverDate)
+           ,@masterGuid)
 END
 GO
 --========================================================================================================
@@ -3589,9 +3433,7 @@ Alter PROCEDURE sp_PardakhtHavale_Insert
 	@bankTafsilGuid uniqueidentifier,
 	@bankMoeinGuid uniqueidentifier,
 	@masterGuid uniqueidentifier,
-	@peygiryNo nvarchar(200),
-	@serverSt smallint,
-	@serverDate datetime
+	@peygiryNo nvarchar(200)
 AS
 BEGIN
 	INSERT INTO [dbo].[PardakhtHavales]
@@ -3602,9 +3444,7 @@ BEGIN
            ,[Price]
            ,[BankTafsilGuid]
            ,[BankMoeinGuid]
-		   ,[Number]
-		   ,[ServerStatus]
-		   ,[ServerDeliveryDate])
+		   ,[Number])
 		 VALUES
            (@guid
            ,@modif
@@ -3613,9 +3453,7 @@ BEGIN
            ,@price
            ,@bankTafsilGuid
            ,@bankMoeinGuid
-		   ,@peygiryNo
-		   ,@serverSt
-		   ,@serverDate)
+		   ,@peygiryNo)
 END
 GO
 --========================================================================================================
@@ -3655,9 +3493,7 @@ ALTER PROCEDURE [dbo].[sp_PardakhtCheckSh_Insert]
 	@sarresid datetime,
 	@price decimal,
 	@dateM datetime,
-	@number nvarchar(200),
-	@serverSt smallint,
-	@serverDate datetime
+	@number nvarchar(200)
 AS
 BEGIN
 	UPDATE [dbo].[PardakhtCheckShakhsis]
@@ -3669,8 +3505,6 @@ BEGIN
 		  ,[DateM] = @dateM
 		  ,[CheckPageGuid] = @checkGuid
 		  ,[MasterGuid] = @masterGuid
-		  ,[ServerStatus] = @serverSt
-		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
@@ -3683,9 +3517,7 @@ BEGIN
 		   ,[DateSarResid]
 		   ,[Price]
 		   ,[DateM]
-		   ,[Number]
-		   ,[ServerStatus]
-		   ,[ServerDeliveryDate])
+		   ,[Number])
      VALUES
            (@guid
            ,@modif
@@ -3695,9 +3527,7 @@ BEGIN
 		   ,@sarresid
 		   ,@price
 		   ,@dateM
-		   ,@number
-		   ,@serverSt
-		   ,@serverDate)
+		   ,@number)
 	 end
 END
 GO
@@ -3736,9 +3566,7 @@ Alter PROCEDURE sp_PardakhtCheckM_Insert
 	@modif datetime,
 	@desc nvarchar(max),
 	@checkGuid uniqueidentifier,
-	@masterGuid uniqueidentifier,
-	@serverSt smallint,
-	@serverDate datetime
+	@masterGuid uniqueidentifier
 AS
 BEGIN
 	INSERT INTO [dbo].[PardakhtCheckMoshtaris]
@@ -3746,17 +3574,13 @@ BEGIN
            ,[Modified]
            ,[Description]
            ,[CheckGuid]
-           ,[MasterGuid]
-		   ,[ServerStatus]
-		   ,[ServerDeliveryDate])
+           ,[MasterGuid])
      VALUES
            (@guid
            ,@modif
            ,@desc
            ,@checkGuid
-           ,@masterGuid
-		   ,@serverSt
-		   ,@serverDate)
+           ,@masterGuid)
 END
 GO
 --========================================================================================================
@@ -3887,9 +3711,7 @@ ALTER PROCEDURE [dbo].[sp_ReceptionCheckAvalDore_Save]
 	@sarmayeMoeinGuid uniqueidentifier,
 	@tafsilCreditMoeinGuid uniqueidentifier,
 	@bankCreditMoeinGuid uniqueidentifier,
-	@sandouqCreditMoeinGuid uniqueidentifier,
-	@serverSt smallint,
-	@serverDate datetime
+	@sandouqCreditMoeinGuid uniqueidentifier
 AS
 BEGIN
 	UPDATE [dbo].[ReceptionCheckAvalDores]
@@ -3905,8 +3727,6 @@ BEGIN
 		  ,[SandouqTafsilGuid] = @sandouqTafsilGuid
 		  ,[SandouqMoeinGuid] = @sandouqMoeinGuid
 		  ,[TafsilGuid] = @tafsilGuid
-		  ,[ServerStatus] = @serverSt
-		  ,[ServerDeliveryDate] = @serverDate
 		WHERE [Guid] = @guid
 	if @@ROWCOUNT = 0
 	begin
@@ -3924,9 +3744,7 @@ BEGIN
            ,[SandouqTafsilGuid]
            ,[SandouqMoeinGuid]
            ,[TafsilGuid]
-           ,[UserGuid]
-		   ,[ServerStatus]
-		   ,[ServerDeliveryDate])
+           ,[UserGuid])
 		VALUES
            (@guid
            ,@modif
@@ -3941,13 +3759,11 @@ BEGIN
            ,@sandouqTafsilGuid
            ,@sandouqMoeinGuid
            ,@tafsilGuid
-           ,@userGuid
-		   ,@serverSt
-		   ,@serverDate)
+           ,@userGuid)
 	end
 
 	EXEC sp_Sanad_Update_Eftetahie @userGuid,@sarmayeTafsilGuid,@sarmayeMoeinGuid,@tafsilCreditMoeinGuid,@bankCreditMoeinGuid,@sandouqCreditMoeinGuid
-	EXEC sp_ReceptionCheck_Insert @guid,@modif,@bankName,@desc,@dateM,null,@number,@poshNomre,@price,@st,@sarresid,@sandouqTafsilGuid,@sandouqMoeinGuid,'true',@serverSt,@serverDate
+	EXEC sp_ReceptionCheck_Insert @guid,@modif,@bankName,@desc,@dateM,null,@number,@poshNomre,@price,@st,@sarresid,@sandouqTafsilGuid,@sandouqMoeinGuid,'true'
 END
 GO
 --========================================================================================================
@@ -4027,9 +3843,7 @@ ALTER PROCEDURE [dbo].[sp_PardakhtCheckAvalDore_Save]
 	@sarmayeMoeinGuid uniqueidentifier,
 	@tafsilCreditMoeinGuid uniqueidentifier,
 	@bankCreditMoeinGuid uniqueidentifier,
-	@sandouqCreditMoeinGuid uniqueidentifier,
-	@serverSt smallint,
-	@serverDate datetime
+	@sandouqCreditMoeinGuid uniqueidentifier
 AS
 BEGIN
 	UPDATE [dbo].[PardakhtCheckAvalDores]
@@ -4038,8 +3852,6 @@ BEGIN
 		  ,[TafsilGuid] = @tafsilGuid
 		  ,[UserGuid] = @userGuid
 		  ,[DasteCheckName] = @dasteCheckName
-		  ,[ServerStatus] = @serverSt
-		  ,[ServerDeliveryDate] = @serverDate
 		 WHERE [Guid] = @guid
 	if @@ROWCOUNT = 0
 	begin
@@ -4049,18 +3861,14 @@ BEGIN
            ,[CheckPageGuid]
            ,[TafsilGuid]
            ,[UserGuid]
-           ,[DasteCheckName]
-		   ,[ServerStatus]
-		   ,[ServerDeliveryDate])
+           ,[DasteCheckName])
 		 VALUES
            (@guid
            ,@modif
            ,@checkPageGuid
            ,@tafsilGuid
            ,@userGuid
-           ,@dasteCheckName
-		   ,@serverSt
-		   ,@serverDate)
+           ,@dasteCheckName)
 	end
 
 	EXEC sp_Sanad_Update_Eftetahie @userGuid,@sarmayeTafsilGuid,@sarmayeMoeinGuid,@tafsilCreditMoeinGuid,@bankCreditMoeinGuid,@sandouqCreditMoeinGuid
@@ -4250,9 +4058,7 @@ Alter PROCEDURE sp_Advisor_Save
 	@guid uniqueidentifier,
 	@st bit,
 	@name nvarchar(200),
-	@address nvarchar(max),
-	@serverSt smallint,
-	@serverDate datetime
+	@address nvarchar(max)
 AS
 BEGIN
 	UPDATE [dbo].[Advisors]
@@ -4260,8 +4066,6 @@ BEGIN
 		  ,[Status] = @st
 		  ,[Name] = @name
 		  ,[Address] = @address
-		  ,[ServerStatus] = @serverSt
-		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
@@ -4270,17 +4074,13 @@ BEGIN
            ,[Modified]
            ,[Status]
            ,[Name]
-           ,[Address]
-		   ,[ServerStatus]
-		   ,[ServerDeliveryDate])
+           ,[Address])
 		VALUES
            (@guid
            ,GETDATE()
            ,@st
            ,@name
-           ,@address
-		   ,@serverSt
-		   ,@serverDate)
+           ,@address)
 	 end
 END
 GO
@@ -6729,236 +6529,6 @@ BEGIN
 END
 GO
 --========================================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Temp_UpdateEntities]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Temp_UpdateEntities]	As Begin print 11 end')  
-GO
-ALTER PROCEDURE [dbo].[sp_Temp_UpdateEntities]
-	@type smallint,
-	@entityGuid uniqueidentifier,
-	@st smallint,
-	@deliveryDate datetime
-AS
-BEGIN
-	if @type = 1
-	begin
-		update States
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-	else if @type = 2
-	begin
-		update Cities
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-	else if @type = 3
-	begin
-		update Regions
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-	else if @type = 4
-	begin
-		update Users
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-	else if @type = 5
-	begin
-		update PeopleGroups
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-	else if @type = 6
-	begin
-		update Peoples
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-	else if @type = 8
-	begin
-		update BuildingAccountTypes
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-	else if @type = 9
-	begin
-		update BuildingConditions
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-	else if @type = 10
-	begin
-		update BuildingTypes
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-	else if @type = 11
-	begin
-		update BuildingViews
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-	else if @type = 12
-	begin
-		update DocumentTypes
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-	else if @type = 13
-	begin
-		update FloorCovers
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-	else if @type = 14
-	begin
-		update KitchenServices
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-	else if @type = 15
-	begin
-		update RentalAuthorities
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-	else if @type = 16
-	begin
-		update Buildings
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-	else if @type = 17
-	begin
-		update BuildingRequests
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-	else if @type = 18
-	begin
-		update Contracts
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-	else if @type = 19
-	begin
-		update Receptions
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-	else if @type = 20
-	begin
-		update Pardakhts
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-	else if @type = 22
-	begin
-		update Buildingoptions
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-	else if @type = 23
-	begin
-		update BuildingRelatedOptions
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-	else if @type = 24
-	begin
-		update BuildingRequestRegions
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-	else if @type = 25
-	begin
-		update PhoneBooks
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-	else if @type = 26
-	begin
-		update Advisors
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-	else if @type = 27
-	begin
-		update Banks
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-	else if @type = 28
-	begin
-		update Kols
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-	else if @type = 29
-	begin
-		update Moeins
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-	else if @type = 30
-	begin
-		update Tafsils
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-	else if @type = 31
-	begin
-		update Sanads
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-	else if @type = 32
-	begin
-		update SanadDetails
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-	else if @type = 33
-	begin
-		update BuildingNotes
-		set   ServerDeliveryDate = @deliveryDate
-			, ServerStatus = @st
-		where Guid = @entityGuid
-	end
-END
-GO
---========================================================================================================
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingRelatedOption_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_BuildingRelatedOption_Get]	As Begin print 11 end')  
 GO
@@ -7000,109 +6570,6 @@ BEGIN
 		 inner join Tafsils on
 		 SanadDetails.TafsilGuid = Tafsils.Guid
 	where SanadDetails.Guid=@guid
-END
-GO
---========================================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Temp_SaveOnModified]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Temp_SaveOnModified]	As Begin print 11 end')  
-GO
-ALTER PROCEDURE [dbo].[sp_Temp_SaveOnModified]
-	@date datetime
-AS
-BEGIN
-	insert into Temps(Guid,ObjectGuid,Type)
-	(select NEWID() As Guid,Guid As ObjectGuid,1 As Type
-		from States where Modified>@date)
-	union all
-	(select NEWID() As Guid,Guid As ObjectGuid,2 As Type
-		from Cities where Modified>@date)
-		union all
-	(select NEWID() As Guid,Guid As ObjectGuid,3 As Type
-		from Regions where Modified>@date)
-	union all
-	(select NEWID() As Guid,Guid As ObjectGuid,4 As Type
-		from Users where Modified>@date)
-		union all
-	(select NEWID() As Guid,Guid As ObjectGuid,5 As Type
-		from PeopleGroups where Modified>@date)
-	union all
-	(select NEWID() As Guid,Guid As ObjectGuid,6 As Type
-		from Peoples where Modified>@date)
-		union all
-	(select NEWID() As Guid,Guid As ObjectGuid,8 As Type
-		from BuildingAccountTypes where Modified>@date)
-	union all
-	(select NEWID() As Guid,Guid As ObjectGuid,9 As Type
-		from BuildingConditions where Modified>@date)
-	union all
-	(select NEWID() As Guid,Guid As ObjectGuid,10 As Type
-		from BuildingTypes where Modified>@date)
-	union all
-	(select NEWID() As Guid,Guid As ObjectGuid,11 As Type
-		from BuildingViews where Modified>@date)
-	union all
-	(select NEWID() As Guid,Guid As ObjectGuid,12 As Type
-		from DocumentTypes where Modified>@date)
-	union all
-	(select NEWID() As Guid,Guid As ObjectGuid,13 As Type
-		from FloorCovers where Modified>@date)
-	union all
-	(select NEWID() As Guid,Guid As ObjectGuid,14 As Type
-		from KitchenServices where Modified>@date)
-	union all
-	(select NEWID() As Guid,Guid As ObjectGuid,15 As Type
-		from RentalAuthorities where Modified>@date)
-	union all
-	(select NEWID() As Guid,Guid As ObjectGuid,16 As Type
-		from Buildings where Modified>@date)
-	union all
-	(select NEWID() As Guid,Guid As ObjectGuid,17 As Type
-		from BuildingRequests where Modified>@date)
-	union all
-	(select NEWID() As Guid,Guid As ObjectGuid,18 As Type
-		from Contracts where Modified>@date)
-	union all
-	(select NEWID() As Guid,Guid As ObjectGuid,19 As Type
-		from Receptions where Modified>@date)
-	union all
-	(select NEWID() As Guid,Guid As ObjectGuid,20 As Type
-		from Pardakhts where Modified>@date)
-	union all
-	(select NEWID() As Guid,Guid As ObjectGuid,22 As Type
-		from Buildingoptions where Modified>@date)
-	union all
-	(select NEWID() As Guid,Guid As ObjectGuid,23 As Type
-		from BuildingRelatedOptions where Modified>@date)
-	union all
-	(select NEWID() As Guid,Guid As ObjectGuid,24 As Type
-		from BuildingRequestRegions where Modified>@date)
-	union all
-	(select NEWID() As Guid,Guid As ObjectGuid,25 As Type
-		from PhoneBooks where Modified>@date)
-	union all
-	(select NEWID() As Guid,Guid As ObjectGuid,26 As Type
-		from Advisors where Modified>@date)
-	union all
-	(select NEWID() As Guid,Guid As ObjectGuid,27 As Type
-		from Banks where Modified>@date)
-	union all
-	(select NEWID() As Guid,Guid As ObjectGuid,28 As Type
-		from Kols where Modified>@date)
-	union all
-	(select NEWID() As Guid,Guid As ObjectGuid,29 As Type
-		from Moeins where Modified>@date)
-	union all
-	(select NEWID() As Guid,Guid As ObjectGuid,30 As Type
-		from Tafsils where Modified>@date)
-	union all
-	(select NEWID() As Guid,Guid As ObjectGuid,31 As Type
-		from Sanads where Modified>@date)
-	union all
-	(select NEWID() As Guid,Guid As ObjectGuid,32 As Type
-		from SanadDetails where Modified>@date)
-	union all
-	(select NEWID() As Guid,Guid As ObjectGuid,33 As Type
-		from BuildingNotes where Modified>@date)
 END
 GO
 --========================================================================================================
@@ -7439,89 +6906,6 @@ BEGIN
 	  (isnull(@Code1,0)=0 and isnull(@Code2,0)=0 or Tafsils.Code between @Code1 and @Code2)
 		 
 	order by tbl.Code
-END
-GO
---========================================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Calendar_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Calendar_GetAll]	As Begin print 11 end')  
-GO
-Alter PROCEDURE sp_Calendar_GetAll
-AS
-BEGIN
-	select * from Calendars
-END
-GO
---========================================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Calendar_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Calendar_Get]	As Begin print 11 end')  
-GO
-Alter PROCEDURE sp_Calendar_Get
-	@guid uniqueidentifier
-AS
-BEGIN
-	select * from Calendars
-	where Guid=@guid
-END
-GO
---========================================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Calendar_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Calendar_Save]	As Begin print 11 end')  
-GO
-Alter PROCEDURE sp_Calendar_Save
-	@guid uniqueidentifier,
-	@modif datetime,
-	@dateM datetime,
-	@monasebat nvarchar(500),
-	@desc nvarchar(max),
-	@isTatil bit
-AS
-BEGIN
-	UPDATE [dbo].[Calendars]
-	   SET [Modified] = @modif
-		  ,[DateM] = @dateM
-		  ,[Monasebat] = @monasebat
-		  ,[Description] = @desc
-		  ,[isTatil] = @isTatil
-	 WHERE [Guid] = @guid
-	 if @@ROWCOUNT = 0
-	 begin
-		INSERT INTO [dbo].[Calendars]
-           ([Guid]
-           ,[Modified]
-           ,[DateM]
-           ,[Monasebat]
-           ,[Description]
-           ,[isTatil])
-		VALUES
-           (@guid
-           ,@modif
-           ,@dateM
-           ,@monasebat
-           ,@desc
-           ,@isTatil)
-	 end
-END
-GO
---========================================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Calendar_Remove]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Calendar_Remove]	As Begin print 11 end')  
-GO
-Alter PROCEDURE sp_Calendar_Remove
-	@guid uniqueidentifier
-AS
-BEGIN
-	delete from [dbo].[Calendars]
-	WHERE [Guid] = @guid
-END
-GO
---========================================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Calendar_RemoveAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_Calendar_RemoveAll]	As Begin print 11 end')  
-GO
-Alter PROCEDURE sp_Calendar_RemoveAll
-AS
-BEGIN
-	delete from [dbo].[Calendars]
 END
 GO
 --========================================================================================================

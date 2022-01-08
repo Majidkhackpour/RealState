@@ -29,8 +29,6 @@ namespace EntityCache.SqlServerPersistence
                 item.UserGuid = (Guid)dr["UserGuid"];
                 item.SanadType = (EnSanadType)dr["SanadType"];
                 item.UserName = dr["UserName"].ToString();
-                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
-                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
                 item.Details = AsyncContext.Run(() => SanadDetailBussines.GetAllAsync(item.Guid));
             }
             catch (Exception ex)
@@ -150,8 +148,6 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@sanadst", (short)item.SanadStatus);
                 cmd.Parameters.AddWithValue("@userGuid", item.UserGuid);
                 cmd.Parameters.AddWithValue("@sanadType", item.SanadType);
-                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
-                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
                 await cmd.ExecuteNonQueryAsync();
             }
