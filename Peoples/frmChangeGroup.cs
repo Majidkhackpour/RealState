@@ -74,8 +74,7 @@ namespace Peoples
                 }
 
                 cls.GroupGuid = (Guid) cmbGroup.SelectedValue;
-
-
+                cls.ServerStatus = ServerStatus.None;
                 res.AddReturnedValue(await cls.SaveAsync());
             }
             catch (Exception ex)

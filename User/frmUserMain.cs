@@ -157,7 +157,7 @@ namespace User
                 cls.Mobile = txtMobile.Text.Trim();
                 cls.AnswerQuestion = txtAnswer.Text;
                 cls.SecurityQuestion = (EnSecurityQuestion)cmbQuestion.SelectedIndex;
-
+                cls.ServerStatus = ServerStatus.None;
                 res.AddReturnedValue(await cls.SaveAsync());
             }
             catch (Exception exception)

@@ -105,7 +105,7 @@ namespace User
                 var hashBytes = md5.ComputeHash(bytes);
                 cls.Password = System.Text.RegularExpressions.Regex.Replace(BitConverter.ToString(hashBytes), "-", "")
                     .ToLower();
-
+                cls.ServerStatus = ServerStatus.None;
                 res.AddReturnedValue(await cls.SaveAsync());
                 if (res.HasError)
                 {

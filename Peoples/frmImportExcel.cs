@@ -191,11 +191,12 @@ namespace Peoples
                     var group = PeopleGroupBussines.Get(grp);
                     if (group == null)
                     {
-                        var g = new PeopleGroupBussines()
+                        var g = new PeopleGroupBussines
                         {
                             Guid = Guid.NewGuid(),
                             Name = grp,
-                            ParentGuid = Guid.Empty
+                            ParentGuid = Guid.Empty,
+                            ServerStatus = ServerStatus.None
                         };
                         await g.SaveAsync();
                         pe.GroupGuid = g.Guid;
@@ -281,6 +282,7 @@ namespace Peoples
                     var x = await GetItemsAsync(i);
                     frm.Level = i;
                     if (x == null) continue;
+                    x.ServerStatus = ServerStatus.None;
                     await x.SaveAsync();
                 }
 

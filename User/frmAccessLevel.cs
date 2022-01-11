@@ -94,6 +94,7 @@ namespace User
                 var user = await UserBussines.GetAsync(userGuid);
                 if (user == null) return res;
                 user.UserAccess = _currentAccessLevel;
+                user.ServerStatus = ServerStatus.None;
                 res.AddReturnedValue(await user.SaveAsync());
             }
             catch (Exception exception)

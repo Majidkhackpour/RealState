@@ -109,7 +109,7 @@ namespace Cities.City
                 cls.Name = txtCity.Text;
                 cls.StateGuid = (Guid)cmbState.SelectedValue;
                 cls.Modified = DateTime.Now;
-
+                cls.ServerStatus = ServerStatus.None;
                 res.AddReturnedValue(await cls.SaveAsync());
             }
             catch (Exception ex)

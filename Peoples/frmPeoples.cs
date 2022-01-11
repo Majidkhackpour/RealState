@@ -452,7 +452,7 @@ namespace Peoples
                 var acc = txtAccount_.TextDecimal;
                 if (cmbAccount.SelectedIndex == 1) cls.AccountFirst = -acc;
                 else cls.AccountFirst = acc;
-
+                cls.ServerStatus = ServerStatus.None;
                 res.AddReturnedValue(await cls.SaveAsync());
             }
             catch (Exception exception)

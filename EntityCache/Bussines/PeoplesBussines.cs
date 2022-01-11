@@ -160,6 +160,7 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
                 res.AddReturnedValue(await PhoneBookBussines.ChangeStatusAsync(Guid, status, tr));
                 if (res.HasError) return res;
+                ServerStatus = ServerStatus.None;
                 res.AddReturnedValue(await UnitOfWork.Peoples.ChangeStatusAsync(this, status, tr));
                 if (res.HasError) return res;
 
@@ -358,5 +359,23 @@ namespace EntityCache.Bussines
         public static async Task<ReturnedSaveFuncInfo> SendToServerAsync(PeoplesBussines item)
             => await SendToServerAsync(new List<PeoplesBussines>() { item });
         public static async Task<ReturnedSaveFuncInfo> ResetAsync() => await UnitOfWork.Peoples.ResetAsync(Cache.ConnectionString);
+        public static async Task<ReturnedSaveFuncInfo> ResendNotSentAsync()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                var list = await GetAllNotSentAsync();
+                if (list == null || list.Count <= 0) return res;
+                foreach (var item in list)
+                    res.AddReturnedValue(await SendToServerAsync(item));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
     }
 }

@@ -9,7 +9,6 @@ namespace WebHesabBussines
     public class WebBuildingNote : IBuildingNote
     {
         private static string Url = Utilities.WebApi + "/api/BuildingNote/SaveAsync";
-        public static event Func<Guid, ServerStatus, DateTime, Task> OnSaveResult;
 
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; }
@@ -19,30 +18,13 @@ namespace WebHesabBussines
         public string Note { get; set; }
 
 
-        private static void RaiseEvent(Guid objGuid, ServerStatus st, DateTime dateM)
-        {
-            try
-            {
-                var handler = OnSaveResult;
-                if (handler != null)
-                    OnSaveResult?.Invoke(objGuid, st, dateM);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
         private async Task SaveAsync()
         {
             try
             {
                 var res = await Extentions.PostToApi<WebBuildingNote, WebBuildingNote>(this, Url, WebCustomer.Customer.Guid);
                 if (res.ResponseStatus != ResponseStatus.Success)
-                {
-                    RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);
                     return;
-                }
-                RaiseEvent(Guid, ServerStatus.Delivered, DateTime.Now);
             }
             catch (Exception ex)
             {

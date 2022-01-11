@@ -134,7 +134,7 @@ namespace Cities.Region
                 cls.Name = txtRegion.Text;
                 cls.CityGuid = (Guid)cmbCity.SelectedValue;
                 cls.Modified = DateTime.Now;
-
+                cls.ServerStatus = ServerStatus.None;
                 res.AddReturnedValue(await cls.SaveAsync());
             }
             catch (Exception ex)
