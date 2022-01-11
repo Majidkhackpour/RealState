@@ -184,6 +184,73 @@ namespace EntityCache.SqlServerPersistence
                 return false;
             }
         }
+        public async Task<List<PeopleGroupBussines>> GetAllNotSentAsync(string connectionString)
+        {
+            var list = new List<PeopleGroupBussines>();
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_PeopleGroup_GetAllNotSent", cn) { CommandType = CommandType.StoredProcedure };
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read()) list.Add(LoadData(dr));
+                    dr.Close();
+                    cn.Close();
+                }
+            }
+            catch (TaskCanceledException) { }
+            catch (OperationCanceledException) { }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public async Task<ReturnedSaveFuncInfo> SetSaveResultAsync(string connectionString, Guid guid, ServerStatus status)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_PeopleGroup_SetSaveResult", cn)
+                    { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@Guid", guid);
+                    cmd.Parameters.AddWithValue("@st", (short)status);
+
+                    await cmd.ExecuteNonQueryAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public async Task<ReturnedSaveFuncInfo> ResetAsync(string connectionString)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_PeopleGroup_Reset", cn)
+                    { CommandType = CommandType.StoredProcedure };
+                    await cmd.ExecuteNonQueryAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
         private PeopleGroupBussines LoadData(SqlDataReader dr)
         {
             var item = new PeopleGroupBussines();

@@ -231,6 +231,73 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
+        public async Task<List<RegionsBussines>> GetAllNotSentAsync(string connectionString)
+        {
+            var list = new List<RegionsBussines>();
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Region_GetAllNotSent", cn) { CommandType = CommandType.StoredProcedure };
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read()) list.Add(LoadDataBussines(dr));
+                    dr.Close();
+                    cn.Close();
+                }
+            }
+            catch (TaskCanceledException) { }
+            catch (OperationCanceledException) { }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public async Task<ReturnedSaveFuncInfo> SetSaveResultAsync(string connectionString, Guid guid, ServerStatus status)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Region_SetSaveResult", cn)
+                    { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@Guid", guid);
+                    cmd.Parameters.AddWithValue("@st", (short)status);
+
+                    await cmd.ExecuteNonQueryAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public async Task<ReturnedSaveFuncInfo> ResetAsync(string connectionString)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Region_Reset", cn)
+                    { CommandType = CommandType.StoredProcedure };
+                    await cmd.ExecuteNonQueryAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
         private RegionsBussines LoadData(SqlDataReader dr)
         {
             var item = new RegionsBussines();
@@ -247,6 +314,26 @@ namespace EntityCache.SqlServerPersistence
                 item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
                 item.ServerStatus = (ServerStatus)dr["ServerStatus"];
                 item.IsModified = true;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return item;
+        }
+        private RegionsBussines LoadDataBussines(SqlDataReader dr)
+        {
+            var item = new RegionsBussines();
+            try
+            {
+                item.Guid = (Guid)dr["Guid"];
+                item.Modified = (DateTime)dr["Modified"];
+                item.Status = (bool)dr["Status"];
+                item.Name = dr["Name"].ToString();
+                item.CityGuid = (Guid)dr["CityGuid"];
+                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
+                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {

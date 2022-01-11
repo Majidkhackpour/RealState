@@ -116,8 +116,6 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Peoples,Guid,desc, tr));
                 if (res.HasError) return res;
                 RaiseEvent();
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebPeople.SaveAsync(PeopleMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {
@@ -131,6 +129,9 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
                     res.AddReturnedValue(cn.CloseConnection());
                 }
+
+                if (!res.HasError && Cache.IsSendToServer)
+                    _ = Task.Run(() => SendToServerAsync(this));
             }
             return res;
         }
@@ -165,10 +166,6 @@ namespace EntityCache.Bussines
                 var action = status ? EnLogAction.Enable : EnLogAction.Delete;
                 var desc = $"عنوان:( {Name} ) ** کد شخص: ( {Code} )";
                 res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Peoples,Guid,desc, tr));
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebPeople.SaveAsync(PeopleMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {
@@ -182,6 +179,8 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
                     res.AddReturnedValue(cn.CloseConnection());
                 }
+                if (!res.HasError && Cache.IsSendToServer)
+                    _ = Task.Run(() => SendToServerAsync(this));
             }
             return res;
         }
@@ -334,5 +333,30 @@ namespace EntityCache.Bussines
             }
         }
         private static async Task<PeoplesBussines> GetDefaultPeopleAsync() => await GetAsync(ParentDefaults.TafsilCoding.DefualtCustomer, null);
+        public static async Task<List<PeoplesBussines>> GetAllNotSentAsync()
+            => await UnitOfWork.Peoples.GetAllNotSentAsync(Cache.ConnectionString);
+        public static async Task<ReturnedSaveFuncInfo> SetSaveResultAsync(Guid guid, ServerStatus status)
+            => await UnitOfWork.Peoples.SetSaveResultAsync(Cache.ConnectionString, guid, status);
+        public static async Task<ReturnedSaveFuncInfo> SendToServerAsync(List<PeoplesBussines> list)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                foreach (var item in list)
+                {
+                    var web = PeopleMapper.Instance.Map(item);
+                    res.AddReturnedValue(await WebPeople.SendAsync(web));
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            return res;
+        }
+        public static async Task<ReturnedSaveFuncInfo> SendToServerAsync(PeoplesBussines item)
+            => await SendToServerAsync(new List<PeoplesBussines>() { item });
+        public static async Task<ReturnedSaveFuncInfo> ResetAsync() => await UnitOfWork.Peoples.ResetAsync(Cache.ConnectionString);
     }
 }

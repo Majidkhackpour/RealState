@@ -17,5 +17,8 @@ namespace EntityCache.Core
         Task<ReturnedSaveFuncInfo> SaveAsync(RentalAuthorityBussines item, SqlTransaction tr);
         Task<ReturnedSaveFuncInfo> SaveRangeAsync(IEnumerable<RentalAuthorityBussines> items, SqlTransaction tr);
         Task<ReturnedSaveFuncInfo> ChangeStatusAsync(RentalAuthorityBussines item, bool status, SqlTransaction tr);
+        Task<List<RentalAuthorityBussines>> GetAllNotSentAsync(string connectionString);
+        Task<ReturnedSaveFuncInfo> SetSaveResultAsync(string connectionString, Guid guid, ServerStatus status);
+        Task<ReturnedSaveFuncInfo> ResetAsync(string connectionString);
     }
 }

@@ -42,10 +42,6 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.DocumentType.SaveRangeAsync(list, tr));
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebDocumentType.SaveAsync(DocumentTypeMapper.Instance.MapList(list)));
             }
             catch (Exception ex)
             {
@@ -59,6 +55,9 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
                     res.AddReturnedValue(cn.CloseConnection());
                 }
+
+                if (!res.HasError && Cache.IsSendToServer)
+                    _ = Task.Run(() => SendToServerAsync(list));
             }
             return res;
         }
@@ -85,10 +84,6 @@ namespace EntityCache.Bussines
 
                 var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
                 res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.DocumentType, Guid, "", tr));
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebDocumentType.SaveAsync(DocumentTypeMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {
@@ -102,6 +97,8 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
                     res.AddReturnedValue(cn.CloseConnection());
                 }
+                if (!res.HasError && Cache.IsSendToServer)
+                    _ = Task.Run(() => SendToServerAsync(this));
             }
             return res;
         }
@@ -124,10 +121,6 @@ namespace EntityCache.Bussines
 
                 var action = status ? EnLogAction.Enable : EnLogAction.Delete;
                 res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.DocumentType, Guid, "", tr));
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebDocumentType.SaveAsync(DocumentTypeMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {
@@ -141,6 +134,8 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
                     res.AddReturnedValue(cn.CloseConnection());
                 }
+                if (!res.HasError && Cache.IsSendToServer)
+                    _ = Task.Run(() => SendToServerAsync(this));
             }
             return res;
         }
@@ -193,5 +188,30 @@ namespace EntityCache.Bussines
 
             return res;
         }
+        public static async Task<List<DocumentTypeBussines>> GetAllNotSentAsync()
+            => await UnitOfWork.DocumentType.GetAllNotSentAsync(Cache.ConnectionString);
+        public static async Task<ReturnedSaveFuncInfo> SetSaveResultAsync(Guid guid, ServerStatus status)
+            => await UnitOfWork.DocumentType.SetSaveResultAsync(Cache.ConnectionString, guid, status);
+        public static async Task<ReturnedSaveFuncInfo> SendToServerAsync(List<DocumentTypeBussines> list)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                foreach (var item in list)
+                {
+                    var web = DocumentTypeMapper.Instance.Map(item);
+                    res.AddReturnedValue(await WebDocumentType.SendAsync(web));
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            return res;
+        }
+        public static async Task<ReturnedSaveFuncInfo> SendToServerAsync(DocumentTypeBussines item)
+            => await SendToServerAsync(new List<DocumentTypeBussines>() { item });
+        public static async Task<ReturnedSaveFuncInfo> ResetAsync() => await UnitOfWork.DocumentType.ResetAsync(Cache.ConnectionString);
     }
 }

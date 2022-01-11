@@ -33,7 +33,7 @@ namespace WebHesabBussines
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task SaveAsync()
+        private async Task SendAsync()
         {
             try
             {
@@ -50,12 +50,12 @@ namespace WebHesabBussines
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(WebBuildingView cls)
+        public static async Task<ReturnedSaveFuncInfo> SendAsync(WebBuildingView cls)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                await cls.SaveAsync();
+                await cls.SendAsync();
             }
             catch (Exception ex)
             {
@@ -65,13 +65,13 @@ namespace WebHesabBussines
 
             return res;
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<WebBuildingView> cls)
+        public static async Task<ReturnedSaveFuncInfo> SendAsync(List<WebBuildingView> cls)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
                 foreach (var item in cls)
-                    res.AddReturnedValue(await SaveAsync(item));
+                    res.AddReturnedValue(await SendAsync(item));
             }
             catch (Exception ex)
             {

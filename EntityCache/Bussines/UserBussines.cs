@@ -93,9 +93,6 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Users, Guid, desc, tr));
                     if (res.HasError) return res;
                 }
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebUser.SaveAsync(UserMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {
@@ -109,6 +106,9 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
                     res.AddReturnedValue(cn.CloseConnection());
                 }
+
+                if (!res.HasError && Cache.IsSendToServer)
+                    _ = Task.Run(() => SendToServerAsync(this));
             }
             return res;
         }
@@ -278,5 +278,30 @@ namespace EntityCache.Bussines
 
             return res;
         }
+        public static async Task<List<UserBussines>> GetAllNotSentAsync()
+            => await UnitOfWork.Users.GetAllNotSentAsync(Cache.ConnectionString);
+        public static async Task<ReturnedSaveFuncInfo> SetSaveResultAsync(Guid guid, ServerStatus status)
+            => await UnitOfWork.Users.SetSaveResultAsync(Cache.ConnectionString, guid, status);
+        public static async Task<ReturnedSaveFuncInfo> SendToServerAsync(List<UserBussines> list)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                foreach (var item in list)
+                {
+                    var web = UserMapper.Instance.Map(item);
+                    res.AddReturnedValue(await WebUser.SendAsync(web));
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            return res;
+        }
+        public static async Task<ReturnedSaveFuncInfo> SendToServerAsync(UserBussines item)
+            => await SendToServerAsync(new List<UserBussines>() { item });
+        public static async Task<ReturnedSaveFuncInfo> ResetAsync() => await UnitOfWork.Users.ResetAsync(Cache.ConnectionString);
     }
 }

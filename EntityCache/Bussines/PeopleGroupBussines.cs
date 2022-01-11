@@ -40,10 +40,6 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.PeopleGroup.SaveRangeAsync(list, tr));
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebPeopleGroup.SaveAsync(PeopleGroupMapper.Instance.MapList(list)));
             }
             catch (Exception ex)
             {
@@ -57,6 +53,9 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
                     res.AddReturnedValue(cn.CloseConnection());
                 }
+
+                if (!res.HasError && Cache.IsSendToServer)
+                    _ = Task.Run(() => SendToServerAsync(list));
             }
             return res;
         }
@@ -76,10 +75,6 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.PeopleGroup.SaveAsync(this, tr));
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebPeopleGroup.SaveAsync(PeopleGroupMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {
@@ -93,6 +88,8 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
                     res.AddReturnedValue(cn.CloseConnection());
                 }
+                if (!res.HasError && Cache.IsSendToServer)
+                    _ = Task.Run(() => SendToServerAsync(this));
             }
             return res;
         }
@@ -119,10 +116,6 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.PeopleGroup.ChangeStatusAsync(this, status, tr));
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebPeopleGroup.SaveAsync(PeopleGroupMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {
@@ -136,6 +129,8 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
                     res.AddReturnedValue(cn.CloseConnection());
                 }
+                if (!res.HasError && Cache.IsSendToServer)
+                    _ = Task.Run(() => SendToServerAsync(this));
             }
             return res;
         }
@@ -146,5 +141,30 @@ namespace EntityCache.Bussines
             await UnitOfWork.PeopleGroup.GetAsync(Cache.ConnectionString, name);
         public static PeopleGroupBussines Get(string name) => AsyncContext.Run(() => GetAsync(name));
         public static async Task<int> ChildCountAsync(Guid guid) => await UnitOfWork.PeopleGroup.ChildCountAsync(Cache.ConnectionString, guid);
+        public static async Task<List<PeopleGroupBussines>> GetAllNotSentAsync()
+            => await UnitOfWork.PeopleGroup.GetAllNotSentAsync(Cache.ConnectionString);
+        public static async Task<ReturnedSaveFuncInfo> SetSaveResultAsync(Guid guid, ServerStatus status)
+            => await UnitOfWork.PeopleGroup.SetSaveResultAsync(Cache.ConnectionString, guid, status);
+        public static async Task<ReturnedSaveFuncInfo> SendToServerAsync(List<PeopleGroupBussines> list)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                foreach (var item in list)
+                {
+                    var web = PeopleGroupMapper.Instance.Map(item);
+                    res.AddReturnedValue(await WebPeopleGroup.SendAsync(web));
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            return res;
+        }
+        public static async Task<ReturnedSaveFuncInfo> SendToServerAsync(PeopleGroupBussines item)
+            => await SendToServerAsync(new List<PeopleGroupBussines>() { item });
+        public static async Task<ReturnedSaveFuncInfo> ResetAsync() => await UnitOfWork.PeopleGroup.ResetAsync(Cache.ConnectionString);
     }
 }

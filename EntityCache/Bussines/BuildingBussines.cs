@@ -1,17 +1,15 @@
-﻿using System;
+﻿using EntityCache.Assistence;
+using EntityCache.Mppings;
+using Nito.AsyncEx;
+using Persistence;
+using Services;
+using Servicess.Interfaces.Building;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using EntityCache.Assistence;
-using EntityCache.Mppings;
-using EntityCache.ViewModels;
-using Nito.AsyncEx;
-using Persistence;
-using Services;
-using Services.FilterObjects;
-using Servicess.Interfaces.Building;
 using WebHesabBussines;
 
 namespace EntityCache.Bussines
@@ -204,8 +202,6 @@ namespace EntityCache.Bussines
                 }
 
                 if (isRaiseEvent) RaiseEvent();
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebBuilding.SaveAsync(BuildingMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {
@@ -219,6 +215,9 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
                     res.AddReturnedValue(cn.CloseConnection());
                 }
+
+                if (!res.HasError && Cache.IsSendToServer)
+                    _ = Task.Run(() => SendToServerAsync(this));
             }
             return res;
         }
@@ -243,10 +242,6 @@ namespace EntityCache.Bussines
                 var action = status ? EnLogAction.Enable : EnLogAction.Delete;
                 var desc = $"کدملک: ( {Code} ) ** محدوده:( {RegionName} )";
                 res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Building, Guid, desc, tr));
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebBuilding.SaveAsync(BuildingMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {
@@ -260,6 +255,8 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
                     res.AddReturnedValue(cn.CloseConnection());
                 }
+                if (!res.HasError && Cache.IsSendToServer)
+                    _ = Task.Run(() => SendToServerAsync(this));
             }
             return res;
         }
@@ -279,10 +276,6 @@ namespace EntityCache.Bussines
 
 
                 res.AddReturnedValue(await UnitOfWork.Building.ChangeParentAsync(Guid, parent, tr));
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebBuilding.SaveAsync(BuildingMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {
@@ -296,6 +289,8 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
                     res.AddReturnedValue(cn.CloseConnection());
                 }
+                if (!res.HasError && Cache.IsSendToServer)
+                    _ = Task.Run(() => SendToServerAsync(this));
             }
             return res;
         }
@@ -409,5 +404,30 @@ namespace EntityCache.Bussines
         }
         public static async Task<List<BuildingBussines>> GetAllWithoutParentAsync() => await UnitOfWork.Building.GetAllWithoutParentAsync(Cache.ConnectionString);
         public async Task<int> CheckAsync() => await UnitOfWork.Building.CheckAsync(Cache.ConnectionString, this);
+        public static async Task<List<BuildingBussines>> GetAllNotSentAsync()
+            => await UnitOfWork.Building.GetAllNotSentAsync(Cache.ConnectionString);
+        public static async Task<ReturnedSaveFuncInfo> SetSaveResultAsync(Guid guid, ServerStatus status)
+            => await UnitOfWork.Building.SetSaveResultAsync(Cache.ConnectionString, guid, status);
+        public static async Task<ReturnedSaveFuncInfo> SendToServerAsync(List<BuildingBussines> list)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                foreach (var item in list)
+                {
+                    var web = BuildingMapper.Instance.Map(item);
+                    res.AddReturnedValue(await WebBuilding.SendAsync(web));
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            return res;
+        }
+        public static async Task<ReturnedSaveFuncInfo> SendToServerAsync(BuildingBussines item)
+            => await SendToServerAsync(new List<BuildingBussines>() { item });
+        public static async Task<ReturnedSaveFuncInfo> ResetAsync() => await UnitOfWork.Building.ResetAsync(Cache.ConnectionString);
     }
 }

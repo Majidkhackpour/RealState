@@ -39,10 +39,6 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.States.SaveRangeAsync(list, tr));
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebStates.SaveAsync(StateMapper.Instance.MapList(list)));
             }
             catch (Exception ex)
             {
@@ -56,10 +52,38 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
                     res.AddReturnedValue(cn.CloseConnection());
                 }
+
+                if (!res.HasError && Cache.IsSendToServer)
+                    _ = Task.Run(() => SendToServerAsync(list));
             }
             return res;
         }
         public static async Task<StatesBussines> GetAsync(Guid guid) => await UnitOfWork.States.GetAsync(Cache.ConnectionString, guid);
         public static async Task<StatesBussines> GetAsync(string name) => await UnitOfWork.States.GetAsync(Cache.ConnectionString, name);
+        public static async Task<List<StatesBussines>> GetAllNotSentAsync()
+            => await UnitOfWork.States.GetAllNotSentAsync(Cache.ConnectionString);
+        public static async Task<ReturnedSaveFuncInfo> SetSaveResultAsync(Guid guid, ServerStatus status)
+            => await UnitOfWork.States.SetSaveResultAsync(Cache.ConnectionString, guid, status);
+        public static async Task<ReturnedSaveFuncInfo> SendToServerAsync(List<StatesBussines> list)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                foreach (var item in list)
+                {
+                    var web = StateMapper.Instance.Map(item);
+                    res.AddReturnedValue(await WebStates.SendAsync(web));
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            return res;
+        }
+        public static async Task<ReturnedSaveFuncInfo> SendToServerAsync(StatesBussines item)
+            => await SendToServerAsync(new List<StatesBussines>() { item });
+        public static async Task<ReturnedSaveFuncInfo> ResetAsync() => await UnitOfWork.States.ResetAsync(Cache.ConnectionString);
     }
 }

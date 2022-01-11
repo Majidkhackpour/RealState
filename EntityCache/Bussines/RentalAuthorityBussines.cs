@@ -42,10 +42,6 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.RentalAuthority.SaveRangeAsync(list, tr));
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebRental.SaveAsync(RentalAuthorityMapper.Instance.MapList(list)));
             }
             catch (Exception ex)
             {
@@ -59,6 +55,9 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
                     res.AddReturnedValue(cn.CloseConnection());
                 }
+
+                if (!res.HasError && Cache.IsSendToServer)
+                    _ = Task.Run(() => SendToServerAsync(list));
             }
             return res;
         }
@@ -86,10 +85,6 @@ namespace EntityCache.Bussines
 
                 var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
                 res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.RentalAuthority, Guid, "", tr));
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebRental.SaveAsync(RentalAuthorityMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {
@@ -103,6 +98,8 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
                     res.AddReturnedValue(cn.CloseConnection());
                 }
+                if (!res.HasError && Cache.IsSendToServer)
+                    _ = Task.Run(() => SendToServerAsync(this));
             }
             return res;
         }
@@ -159,10 +156,6 @@ namespace EntityCache.Bussines
 
                 var action = status ? EnLogAction.Enable : EnLogAction.Delete;
                 res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.RentalAuthority, Guid, "", tr));
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebRental.SaveAsync(RentalAuthorityMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {
@@ -176,6 +169,8 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
                     res.AddReturnedValue(cn.CloseConnection());
                 }
+                if (!res.HasError && Cache.IsSendToServer)
+                    _ = Task.Run(() => SendToServerAsync(this));
             }
             return res;
         }
@@ -195,5 +190,30 @@ namespace EntityCache.Bussines
 
             return res;
         }
+        public static async Task<List<RentalAuthorityBussines>> GetAllNotSentAsync()
+            => await UnitOfWork.RentalAuthority.GetAllNotSentAsync(Cache.ConnectionString);
+        public static async Task<ReturnedSaveFuncInfo> SetSaveResultAsync(Guid guid, ServerStatus status)
+            => await UnitOfWork.RentalAuthority.SetSaveResultAsync(Cache.ConnectionString, guid, status);
+        public static async Task<ReturnedSaveFuncInfo> SendToServerAsync(List<RentalAuthorityBussines> list)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                foreach (var item in list)
+                {
+                    var web = RentalAuthorityMapper.Instance.Map(item);
+                    res.AddReturnedValue(await WebRental.SendAsync(web));
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            return res;
+        }
+        public static async Task<ReturnedSaveFuncInfo> SendToServerAsync(RentalAuthorityBussines item)
+            => await SendToServerAsync(new List<RentalAuthorityBussines>() { item });
+        public static async Task<ReturnedSaveFuncInfo> ResetAsync() => await UnitOfWork.RentalAuthority.ResetAsync(Cache.ConnectionString);
     }
 }

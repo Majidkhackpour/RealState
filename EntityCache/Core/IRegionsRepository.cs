@@ -20,5 +20,8 @@ namespace EntityCache.Core
         Task<ReturnedSaveFuncInfo> ChangeStatusAsync(RegionsBussines item, bool status, SqlTransaction tr);
         Task<List<RegionReportViewModel>> GetAllBuildingReportAsync(string connectionString, CancellationToken token);
         Task<List<RegionReportViewModel>> GetAllRequestReportAsync(string connectionString, CancellationToken token);
+        Task<List<RegionsBussines>> GetAllNotSentAsync(string connectionString);
+        Task<ReturnedSaveFuncInfo> SetSaveResultAsync(string connectionString, Guid guid, ServerStatus status);
+        Task<ReturnedSaveFuncInfo> ResetAsync(string connectionString);
     }
 }

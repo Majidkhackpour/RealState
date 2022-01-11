@@ -9,6 +9,7 @@ using EntityCache.Mppings;
 using Nito.AsyncEx;
 using Persistence;
 using Services;
+using Services.Interfaces;
 using Servicess.Interfaces.Building;
 using WebHesabBussines;
 
@@ -52,9 +53,6 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.BuildingAccountType.SaveRangeAsync(list, tr));
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebBuildingAccountType.SaveAsync(BuildingAccountTypeMapper.Instance.MapList(list)));
             }
             catch (Exception ex)
             {
@@ -68,6 +66,9 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
                     res.AddReturnedValue(cn.CloseConnection());
                 }
+
+                if (!res.HasError && Cache.IsSendToServer)
+                    _ = Task.Run(() => SendToServerAsync(list));
             }
             return res;
         }
@@ -94,11 +95,7 @@ namespace EntityCache.Bussines
 
                 var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
                 var desc = $"عنوان کاربری ملک:( {Name} )";
-                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingAccountType,Guid, desc,tr));
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebBuildingAccountType.SaveAsync(BuildingAccountTypeMapper.Instance.Map(this)));
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingAccountType, Guid, desc, tr));
             }
             catch (Exception ex)
             {
@@ -112,6 +109,8 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
                     res.AddReturnedValue(cn.CloseConnection());
                 }
+                if (!res.HasError && Cache.IsSendToServer)
+                    _ = Task.Run(() => SendToServerAsync(this));
             }
             return res;
         }
@@ -134,11 +133,7 @@ namespace EntityCache.Bussines
 
                 var action = status ? EnLogAction.Enable : EnLogAction.Delete;
                 var desc = $"کاربری حذف شده:( {Name} )";
-                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingAccountType, Guid,desc,tr));
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebBuildingAccountType.SaveAsync(BuildingAccountTypeMapper.Instance.Map(this)));
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingAccountType, Guid, desc, tr));
             }
             catch (Exception ex)
             {
@@ -152,6 +147,9 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
                     res.AddReturnedValue(cn.CloseConnection());
                 }
+
+                if (!res.HasError && Cache.IsSendToServer)
+                    _ = Task.Run(() => SendToServerAsync(this));
             }
             return res;
         }
@@ -231,5 +229,30 @@ namespace EntityCache.Bussines
                 return Guid.Empty;
             }
         }
+        public static async Task<List<BuildingAccountTypeBussines>> GetAllNotSentAsync()
+            => await UnitOfWork.BuildingAccountType.GetAllNotSentAsync(Cache.ConnectionString);
+        public static async Task<ReturnedSaveFuncInfo> SetSaveResultAsync(Guid guid, ServerStatus status)
+            => await UnitOfWork.BuildingAccountType.SetSaveResultAsync(Cache.ConnectionString, guid, status);
+        public static async Task<ReturnedSaveFuncInfo> SendToServerAsync(List<BuildingAccountTypeBussines> list)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                foreach (var item in list)
+                {
+                    var web = BuildingAccountTypeMapper.Instance.Map(item);
+                    res.AddReturnedValue(await WebBuildingAccountType.SendAsync(web));
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            return res;
+        }
+        public static async Task<ReturnedSaveFuncInfo> SendToServerAsync(BuildingAccountTypeBussines item)
+            => await SendToServerAsync(new List<BuildingAccountTypeBussines>() { item });
+        public static async Task<ReturnedSaveFuncInfo> ResetAsync() => await UnitOfWork.BuildingAccountType.ResetAsync(Cache.ConnectionString);
     }
 }

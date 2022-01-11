@@ -19,5 +19,8 @@ namespace EntityCache.Core
         Task<List<UserBussines>> GetAllAsync(string _connectionString, CancellationToken token);
         Task<ReturnedSaveFuncInfo> SaveAsync(UserBussines item, SqlTransaction tr);
         Task<ReturnedSaveFuncInfo> ChangeStatusAsync(UserBussines item, bool status, SqlTransaction tr);
+        Task<List<UserBussines>> GetAllNotSentAsync(string connectionString);
+        Task<ReturnedSaveFuncInfo> SetSaveResultAsync(string connectionString, Guid guid, ServerStatus status);
+        Task<ReturnedSaveFuncInfo> ResetAsync(string connectionString);
     }
 }

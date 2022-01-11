@@ -47,10 +47,6 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.Regions.SaveRangeAsync(list, tr));
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebRegion.SaveAsync(RegionMapper.Instance.MapList(list)));
             }
             catch (Exception ex)
             {
@@ -64,6 +60,9 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
                     res.AddReturnedValue(cn.CloseConnection());
                 }
+
+                if (!res.HasError && Cache.IsSendToServer)
+                    _ = Task.Run(() => SendToServerAsync(list));
             }
             return res;
         }
@@ -127,10 +126,6 @@ namespace EntityCache.Bussines
 
                 var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
                 res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Regions, Guid, "", tr));
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebRegion.SaveAsync(RegionMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {
@@ -144,6 +139,8 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
                     res.AddReturnedValue(cn.CloseConnection());
                 }
+                if (!res.HasError && Cache.IsSendToServer)
+                    _ = Task.Run(() => SendToServerAsync(this));
             }
             return res;
         }
@@ -182,10 +179,6 @@ namespace EntityCache.Bussines
 
                 var action = status ? EnLogAction.Enable : EnLogAction.Delete;
                 res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Regions, Guid, "", tr));
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebRegion.SaveAsync(RegionMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {
@@ -199,6 +192,8 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
                     res.AddReturnedValue(cn.CloseConnection());
                 }
+                if (!res.HasError && Cache.IsSendToServer)
+                    _ = Task.Run(() => SendToServerAsync(this));
             }
             return res;
         }
@@ -234,5 +229,30 @@ namespace EntityCache.Bussines
                 return null;
             }
         }
+        public static async Task<List<RegionsBussines>> GetAllNotSentAsync()
+            => await UnitOfWork.Regions.GetAllNotSentAsync(Cache.ConnectionString);
+        public static async Task<ReturnedSaveFuncInfo> SetSaveResultAsync(Guid guid, ServerStatus status)
+            => await UnitOfWork.Regions.SetSaveResultAsync(Cache.ConnectionString, guid, status);
+        public static async Task<ReturnedSaveFuncInfo> SendToServerAsync(List<RegionsBussines> list)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                foreach (var item in list)
+                {
+                    var web = RegionMapper.Instance.Map(item);
+                    res.AddReturnedValue(await WebRegion.SendAsync(web));
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            return res;
+        }
+        public static async Task<ReturnedSaveFuncInfo> SendToServerAsync(RegionsBussines item)
+            => await SendToServerAsync(new List<RegionsBussines>() { item });
+        public static async Task<ReturnedSaveFuncInfo> ResetAsync() => await UnitOfWork.Regions.ResetAsync(Cache.ConnectionString);
     }
 }

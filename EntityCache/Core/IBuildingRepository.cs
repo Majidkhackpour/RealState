@@ -28,5 +28,8 @@ namespace EntityCache.Core
         Task<List<string>> GetAllHittingAsync(string connectionString);
         Task<List<BuildingReportBussines>> SearchAsync(string connectionString, BuildingFilter filter);
         Task<int> CheckAsync(string connectionString, BuildingBussines bu);
+        Task<List<BuildingBussines>> GetAllNotSentAsync(string connectionString);
+        Task<ReturnedSaveFuncInfo> SetSaveResultAsync(string connectionString, Guid guid, ServerStatus status);
+        Task<ReturnedSaveFuncInfo> ResetAsync(string connectionString);
     }
 }

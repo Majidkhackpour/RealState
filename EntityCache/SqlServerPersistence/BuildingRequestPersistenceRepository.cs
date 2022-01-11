@@ -170,6 +170,73 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
+        public async Task<List<BuildingRequestBussines>> GetAllNotSentAsync(string connectionString)
+        {
+            var list = new List<BuildingRequestBussines>();
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_BuildingRequest_GetAllNotSent", cn) { CommandType = CommandType.StoredProcedure };
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read()) list.Add(LoadDataBussines(dr));
+                    dr.Close();
+                    cn.Close();
+                }
+            }
+            catch (TaskCanceledException) { }
+            catch (OperationCanceledException) { }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public async Task<ReturnedSaveFuncInfo> SetSaveResultAsync(string connectionString, Guid guid, ServerStatus status)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_BuildingRequest_SetSaveResult", cn)
+                    { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@Guid", guid);
+                    cmd.Parameters.AddWithValue("@st", (short)status);
+
+                    await cmd.ExecuteNonQueryAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public async Task<ReturnedSaveFuncInfo> ResetAsync(string connectionString)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_BuildingRequest_Reset", cn)
+                    { CommandType = CommandType.StoredProcedure };
+                    await cmd.ExecuteNonQueryAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
         private BuildingRequestBussines LoadData(SqlDataReader dr, bool isLoadDet)
         {
             var res = new BuildingRequestBussines();
@@ -207,6 +274,46 @@ namespace EntityCache.SqlServerPersistence
                 res.IsModified = true;
                 if (isLoadDet)
                     res.RegionList = AsyncContext.Run(() => BuildingRequestRegionBussines.GetAllAsync(res.Guid));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return res;
+        }
+        private BuildingRequestBussines LoadDataBussines(SqlDataReader dr)
+        {
+            var res = new BuildingRequestBussines();
+            try
+            {
+                res.Guid = (Guid)dr["Guid"];
+                res.Modified = (DateTime)dr["Modified"];
+                res.Status = (bool)dr["Status"];
+                res.AskerGuid = (Guid)dr["AskerGuid"];
+                res.CreateDate = (DateTime)dr["CreateDate"];
+                res.UserGuid = (Guid)dr["UserGuid"];
+                res.SellPrice1 = (decimal)dr["SellPrice1"];
+                res.SellPrice2 = (decimal)dr["SellPrice2"];
+                res.HasVam = (bool?)dr["HasVam"];
+                res.RahnPrice1 = (decimal)dr["RahnPrice1"];
+                res.RahnPrice2 = (decimal)dr["RahnPrice2"];
+                res.EjarePrice1 = (decimal)dr["EjarePrice1"];
+                res.EjarePrice2 = (decimal)dr["EjarePrice2"];
+                res.PeopleCount = (short?)dr["PeopleCount"];
+                res.HasOwner = (bool?)dr["HasOwner"];
+                res.ShortDate = (bool?)dr["ShortDate"];
+                res.RentalAutorityGuid = (Guid?)dr["RentalAutorityGuid"];
+                res.CityGuid = (Guid)dr["CityGuid"];
+                res.BuildingTypeGuid = (Guid)dr["BuildingTypeGuid"];
+                res.Masahat1 = (int)dr["Masahat1"];
+                res.Masahat2 = (int)dr["Masahat2"];
+                res.RoomCount = (int)dr["RoomCount"];
+                res.BuildingAccountTypeGuid = (Guid)dr["BuildingAccountTypeGuid"];
+                res.BuildingConditionGuid = (Guid)dr["BuildingConditionGuid"];
+                res.ShortDesc = dr["ShortDesc"].ToString();
+                res.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
+                res.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {

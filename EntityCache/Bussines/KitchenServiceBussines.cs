@@ -52,10 +52,6 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.KitchenService.SaveRangeAsync(list, tr));
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebKitchenService.SaveAsync(KitchenServiceMapper.Instance.MapList(list)));
             }
             catch (Exception ex)
             {
@@ -69,6 +65,9 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
                     res.AddReturnedValue(cn.CloseConnection());
                 }
+
+                if (!res.HasError && Cache.IsSendToServer)
+                    _ = Task.Run(() => SendToServerAsync(list));
             }
             return res;
         }
@@ -95,10 +94,6 @@ namespace EntityCache.Bussines
 
                 var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
                 res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.KitchenService, Guid, "", tr));
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebKitchenService.SaveAsync(KitchenServiceMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {
@@ -112,6 +107,8 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
                     res.AddReturnedValue(cn.CloseConnection());
                 }
+                if (!res.HasError && Cache.IsSendToServer)
+                    _ = Task.Run(() => SendToServerAsync(this));
             }
             return res;
         }
@@ -134,10 +131,6 @@ namespace EntityCache.Bussines
 
                 var action = status ? EnLogAction.Enable : EnLogAction.Delete;
                 res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.KitchenService, Guid, "", tr));
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebKitchenService.SaveAsync(KitchenServiceMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {
@@ -151,6 +144,8 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
                     res.AddReturnedValue(cn.CloseConnection());
                 }
+                if (!res.HasError && Cache.IsSendToServer)
+                    _ = Task.Run(() => SendToServerAsync(this));
             }
             return res;
         }
@@ -230,5 +225,30 @@ namespace EntityCache.Bussines
                 return Guid.Empty;
             }
         }
+        public static async Task<List<KitchenServiceBussines>> GetAllNotSentAsync()
+            => await UnitOfWork.KitchenService.GetAllNotSentAsync(Cache.ConnectionString);
+        public static async Task<ReturnedSaveFuncInfo> SetSaveResultAsync(Guid guid, ServerStatus status)
+            => await UnitOfWork.KitchenService.SetSaveResultAsync(Cache.ConnectionString, guid, status);
+        public static async Task<ReturnedSaveFuncInfo> SendToServerAsync(List<KitchenServiceBussines> list)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                foreach (var item in list)
+                {
+                    var web = KitchenServiceMapper.Instance.Map(item);
+                    res.AddReturnedValue(await WebKitchenService.SendAsync(web));
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            return res;
+        }
+        public static async Task<ReturnedSaveFuncInfo> SendToServerAsync(KitchenServiceBussines item)
+            => await SendToServerAsync(new List<KitchenServiceBussines>() { item });
+        public static async Task<ReturnedSaveFuncInfo> ResetAsync() => await UnitOfWork.KitchenService.ResetAsync(Cache.ConnectionString);
     }
 }

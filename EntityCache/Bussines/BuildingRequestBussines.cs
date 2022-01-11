@@ -93,8 +93,6 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingRequest, Guid, desc, tr));
                 if (res.HasError) return res;
                 RaiseEvent();
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebBuildingRequest.SaveAsync(BuildingRequestMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {
@@ -108,6 +106,9 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
                     res.AddReturnedValue(cn.CloseConnection());
                 }
+
+                if (!res.HasError && Cache.IsSendToServer)
+                    _ = Task.Run(() => SendToServerAsync(this));
             }
 
             return res;
@@ -132,10 +133,6 @@ namespace EntityCache.Bussines
                 var action = status ? EnLogAction.Enable : EnLogAction.Delete;
                 var desc = $"خواهان:( {AskerName} )";
                 res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingRequest, Guid, desc, tr));
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebBuildingRequest.SaveAsync(BuildingRequestMapper.Instance.Map(this)));
             }
             catch (Exception ex)
             {
@@ -149,6 +146,8 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
                     res.AddReturnedValue(cn.CloseConnection());
                 }
+                if (!res.HasError && Cache.IsSendToServer)
+                    _ = Task.Run(() => SendToServerAsync(this));
             }
             return res;
         }
@@ -273,5 +272,30 @@ namespace EntityCache.Bussines
 
             return res;
         }
+        public static async Task<List<BuildingRequestBussines>> GetAllNotSentAsync()
+            => await UnitOfWork.BuildingRequest.GetAllNotSentAsync(Cache.ConnectionString);
+        public static async Task<ReturnedSaveFuncInfo> SetSaveResultAsync(Guid guid, ServerStatus status)
+            => await UnitOfWork.BuildingRequest.SetSaveResultAsync(Cache.ConnectionString, guid, status);
+        public static async Task<ReturnedSaveFuncInfo> SendToServerAsync(List<BuildingRequestBussines> list)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                foreach (var item in list)
+                {
+                    var web = BuildingRequestMapper.Instance.Map(item);
+                    res.AddReturnedValue(await WebBuildingRequest.SendAsync(web));
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            return res;
+        }
+        public static async Task<ReturnedSaveFuncInfo> SendToServerAsync(BuildingRequestBussines item)
+            => await SendToServerAsync(new List<BuildingRequestBussines>() { item });
+        public static async Task<ReturnedSaveFuncInfo> ResetAsync() => await UnitOfWork.BuildingRequest.ResetAsync(Cache.ConnectionString);
     }
 }

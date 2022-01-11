@@ -17,5 +17,8 @@ namespace EntityCache.Core
         Task<ReturnedSaveFuncInfo> SaveAsync(PeoplesBussines item, SqlTransaction tr);
         Task<ReturnedSaveFuncInfo> ChangeStatusAsync(PeoplesBussines item, bool status, SqlTransaction tr);
         Task<List<PeoplesBussines>> GetAllBirthDayAsync(string _connectionString, string dateSh);
+        Task<List<PeoplesBussines>> GetAllNotSentAsync(string connectionString);
+        Task<ReturnedSaveFuncInfo> SetSaveResultAsync(string connectionString, Guid guid, ServerStatus status);
+        Task<ReturnedSaveFuncInfo> ResetAsync(string connectionString);
     }
 }

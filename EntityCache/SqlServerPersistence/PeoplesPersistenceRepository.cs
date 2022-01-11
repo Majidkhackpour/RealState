@@ -194,6 +194,73 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
+        public async Task<List<PeoplesBussines>> GetAllNotSentAsync(string connectionString)
+        {
+            var list = new List<PeoplesBussines>();
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Peoples_GetAllNotSent", cn) { CommandType = CommandType.StoredProcedure };
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read()) list.Add(LoadDataBussines(dr));
+                    dr.Close();
+                    cn.Close();
+                }
+            }
+            catch (TaskCanceledException) { }
+            catch (OperationCanceledException) { }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public async Task<ReturnedSaveFuncInfo> SetSaveResultAsync(string connectionString, Guid guid, ServerStatus status)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Peoples_SetSaveResult", cn)
+                    { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@Guid", guid);
+                    cmd.Parameters.AddWithValue("@st", (short)status);
+
+                    await cmd.ExecuteNonQueryAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public async Task<ReturnedSaveFuncInfo> ResetAsync(string connectionString)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Peoples_Reset", cn)
+                    { CommandType = CommandType.StoredProcedure };
+                    await cmd.ExecuteNonQueryAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
         private PeoplesBussines LoadData(SqlDataReader dr, bool isLoadDet,bool isLoadRelatedNumber)
         {
             var item = new PeoplesBussines();
@@ -247,6 +314,37 @@ namespace EntityCache.SqlServerPersistence
                         });
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return item;
+        }
+        private PeoplesBussines LoadDataBussines(SqlDataReader dr)
+        {
+            var item = new PeoplesBussines();
+            try
+            {
+                item.Guid = (Guid)dr["Guid"];
+                item.Modified = (DateTime)dr["Modified"];
+                item.Status = (bool)dr["Status"];
+                item.Name = dr["Name"].ToString();
+                item.Code = dr["Code"].ToString();
+                item.Account = (decimal)dr["Account"];
+                item.AccountFirst = (decimal)dr["AccountFirst"];
+                item.NationalCode = dr["NationalCode"].ToString();
+                item.IdCode = dr["IdCode"].ToString();
+                item.FatherName = dr["FatherName"].ToString();
+                item.PlaceBirth = dr["PlaceBirth"].ToString();
+                item.DateBirth = dr["DateBirth"].ToString();
+                item.Address = dr["Address"].ToString();
+                item.IssuedFrom = dr["IssuedFrom"].ToString();
+                item.PostalCode = dr["PostalCode"].ToString();
+                item.GroupGuid = (Guid)dr["GroupGuid"];
+                item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
+                item.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {

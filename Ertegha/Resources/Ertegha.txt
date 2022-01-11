@@ -4395,13 +4395,14 @@ GO
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingAccountType_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_BuildingAccountType_ChangeStatus]	As Begin print 11 end')  
 GO
-Alter PROCEDURE sp_BuildingAccountType_ChangeStatus
+ALTER PROCEDURE [dbo].[sp_BuildingAccountType_ChangeStatus]
 	@guid uniqueidentifier,
 	@st bit
 AS
 BEGIN
 	update BuildingAccountTypes
-	set Status=@st
+	set Status=@st,
+		ServerStatus=0
 	where Guid=@guid
 END
 GO
@@ -7527,4 +7528,745 @@ BEGIN
 		  and Contracts.DateM<=@d2
 		  and (@type is null or Contracts.Type=@type)
 		  and (@tafsilGuid is null or Contracts.FirstSideGuid=@tafsilGuid or Contracts.SecondSideGuid=@tafsilGuid)
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingAccountType_GetAllNotSent]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingAccountType_GetAllNotSent]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingAccountType_GetAllNotSent]
+AS
+BEGIN
+	Select * from BuildingAccountTypes
+	where ServerStatus<>1 
+	and ServerStatus<>2
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingAccountType_SetSaveResult]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingAccountType_SetSaveResult]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingAccountType_SetSaveResult]
+	@guid uniqueidentifier,
+	@st smallint
+AS
+BEGIN
+	update BuildingAccountTypes
+	set ServerStatus=@st,
+		ServerDeliveryDate=GETDATE()
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingAccountType_Reset]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingAccountType_Reset]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingAccountType_Reset]
+AS
+BEGIN
+	update BuildingAccountTypes
+	set ServerStatus=0,
+		Modified=GETDATE()
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Buildings_GetAllNotSent]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Buildings_GetAllNotSent]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_Buildings_GetAllNotSent]
+AS
+BEGIN
+	Select * from Buildings
+	where ServerStatus<>1 
+	and ServerStatus<>2
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Buildings_SetSaveResult]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Buildings_SetSaveResult]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_Buildings_SetSaveResult]
+	@guid uniqueidentifier,
+	@st smallint
+AS
+BEGIN
+	update Buildings
+	set ServerStatus=@st,
+		ServerDeliveryDate=GETDATE()
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Buildings_Reset]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Buildings_Reset]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_Buildings_Reset]
+AS
+BEGIN
+	update Buildings
+	set ServerStatus=0,
+		Modified=GETDATE()
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingConditions_GetAllNotSent]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingConditions_GetAllNotSent]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingConditions_GetAllNotSent]
+AS
+BEGIN
+	Select * from BuildingConditions
+	where ServerStatus<>1 
+	and ServerStatus<>2
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingConditions_SetSaveResult]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingConditions_SetSaveResult]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingConditions_SetSaveResult]
+	@guid uniqueidentifier,
+	@st smallint
+AS
+BEGIN
+	update BuildingConditions
+	set ServerStatus=@st,
+		ServerDeliveryDate=GETDATE()
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingConditions_Reset]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingConditions_Reset]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingConditions_Reset]
+AS
+BEGIN
+	update BuildingConditions
+	set ServerStatus=0,
+		Modified=GETDATE()
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingNote_GetAllNotSent]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingNote_GetAllNotSent]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingNote_GetAllNotSent]
+AS
+BEGIN
+	Select * from BuildingNotes
+	where ServerStatus<>1 
+	and ServerStatus<>2
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingNote_SetSaveResult]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingNote_SetSaveResult]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingNote_SetSaveResult]
+	@guid uniqueidentifier,
+	@st smallint
+AS
+BEGIN
+	update BuildingNotes
+	set ServerStatus=@st,
+		ServerDeliveryDate=GETDATE()
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingNote_Reset]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingNote_Reset]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingNote_Reset]
+AS
+BEGIN
+	update BuildingNotes
+	set ServerStatus=0,
+		Modified=GETDATE()
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingOption_GetAllNotSent]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingOption_GetAllNotSent]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingOption_GetAllNotSent]
+AS
+BEGIN
+	Select * from BuildingOptions
+	where ServerStatus<>1 
+	and ServerStatus<>2
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingOption_SetSaveResult]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingOption_SetSaveResult]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingOption_SetSaveResult]
+	@guid uniqueidentifier,
+	@st smallint
+AS
+BEGIN
+	update BuildingOptions
+	set ServerStatus=@st,
+		ServerDeliveryDate=GETDATE()
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingOption_Reset]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingOption_Reset]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingOption_Reset]
+AS
+BEGIN
+	update BuildingOptions
+	set ServerStatus=0,
+		Modified=GETDATE()
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingRelatedOption_GetAllNotSent]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingRelatedOption_GetAllNotSent]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingRelatedOption_GetAllNotSent]
+AS
+BEGIN
+	Select * from BuildingRelatedOptions
+	where ServerStatus<>1 
+	and ServerStatus<>2
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingRelatedOption_SetSaveResult]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingRelatedOption_SetSaveResult]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingRelatedOption_SetSaveResult]
+	@guid uniqueidentifier,
+	@st smallint
+AS
+BEGIN
+	update BuildingRelatedOptions
+	set ServerStatus=@st,
+		ServerDeliveryDate=GETDATE()
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingRelatedOption_Reset]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingRelatedOption_Reset]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingRelatedOption_Reset]
+AS
+BEGIN
+	update BuildingRelatedOptions
+	set ServerStatus=0,
+		Modified=GETDATE()
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingRequest_GetAllNotSent]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingRequest_GetAllNotSent]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingRequest_GetAllNotSent]
+AS
+BEGIN
+	Select * from BuildingRequests
+	where ServerStatus<>1 
+	and ServerStatus<>2
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingRequest_SetSaveResult]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingRequest_SetSaveResult]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingRequest_SetSaveResult]
+	@guid uniqueidentifier,
+	@st smallint
+AS
+BEGIN
+	update BuildingRequests
+	set ServerStatus=@st,
+		ServerDeliveryDate=GETDATE()
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingRequest_Reset]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingRequest_Reset]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingRequest_Reset]
+AS
+BEGIN
+	update BuildingRequests
+	set ServerStatus=0,
+		Modified=GETDATE()
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingType_GetAllNotSent]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingType_GetAllNotSent]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingType_GetAllNotSent]
+AS
+BEGIN
+	Select * from BuildingTypes
+	where ServerStatus<>1 
+	and ServerStatus<>2
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingType_SetSaveResult]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingType_SetSaveResult]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingType_SetSaveResult]
+	@guid uniqueidentifier,
+	@st smallint
+AS
+BEGIN
+	update BuildingTypes
+	set ServerStatus=@st,
+		ServerDeliveryDate=GETDATE()
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingType_Reset]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingType_Reset]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingType_Reset]
+AS
+BEGIN
+	update BuildingTypes
+	set ServerStatus=0,
+		Modified=GETDATE()
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingView_GetAllNotSent]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingView_GetAllNotSent]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingView_GetAllNotSent]
+AS
+BEGIN
+	Select * from BuildingViews
+	where ServerStatus<>1 
+	and ServerStatus<>2
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingView_SetSaveResult]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingView_SetSaveResult]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingView_SetSaveResult]
+	@guid uniqueidentifier,
+	@st smallint
+AS
+BEGIN
+	update BuildingViews
+	set ServerStatus=@st,
+		ServerDeliveryDate=GETDATE()
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingView_Reset]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingView_Reset]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingView_Reset]
+AS
+BEGIN
+	update BuildingViews
+	set ServerStatus=0,
+		Modified=GETDATE()
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_City_GetAllNotSent]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_City_GetAllNotSent]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_City_GetAllNotSent]
+AS
+BEGIN
+	Select * from Cities
+	where ServerStatus<>1 
+	and ServerStatus<>2
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_City_SetSaveResult]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_City_SetSaveResult]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_City_SetSaveResult]
+	@guid uniqueidentifier,
+	@st smallint
+AS
+BEGIN
+	update Cities
+	set ServerStatus=@st,
+		ServerDeliveryDate=GETDATE()
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_City_Reset]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_City_Reset]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_City_Reset]
+AS
+BEGIN
+	update Cities
+	set ServerStatus=0,
+		Modified=GETDATE()
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_DocType_GetAllNotSent]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_DocType_GetAllNotSent]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_DocType_GetAllNotSent]
+AS
+BEGIN
+	Select * from DocumentTypes
+	where ServerStatus<>1 
+	and ServerStatus<>2
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_DocType_SetSaveResult]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_DocType_SetSaveResult]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_DocType_SetSaveResult]
+	@guid uniqueidentifier,
+	@st smallint
+AS
+BEGIN
+	update DocumentTypes
+	set ServerStatus=@st,
+		ServerDeliveryDate=GETDATE()
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_DocType_Reset]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_DocType_Reset]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_DocType_Reset]
+AS
+BEGIN
+	update DocumentTypes
+	set ServerStatus=0,
+		Modified=GETDATE()
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_FloorCovers_GetAllNotSent]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_FloorCovers_GetAllNotSent]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_FloorCovers_GetAllNotSent]
+AS
+BEGIN
+	Select * from FloorCovers
+	where ServerStatus<>1 
+	and ServerStatus<>2
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_FloorCovers_SetSaveResult]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_FloorCovers_SetSaveResult]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_FloorCovers_SetSaveResult]
+	@guid uniqueidentifier,
+	@st smallint
+AS
+BEGIN
+	update FloorCovers
+	set ServerStatus=@st,
+		ServerDeliveryDate=GETDATE()
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_FloorCovers_Reset]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_FloorCovers_Reset]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_FloorCovers_Reset]
+AS
+BEGIN
+	update FloorCovers
+	set ServerStatus=0,
+		Modified=GETDATE()
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_KitchenServices_GetAllNotSent]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_KitchenServices_GetAllNotSent]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_KitchenServices_GetAllNotSent]
+AS
+BEGIN
+	Select * from KitchenServices
+	where ServerStatus<>1 
+	and ServerStatus<>2
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_KitchenServices_SetSaveResult]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_KitchenServices_SetSaveResult]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_KitchenServices_SetSaveResult]
+	@guid uniqueidentifier,
+	@st smallint
+AS
+BEGIN
+	update KitchenServices
+	set ServerStatus=@st,
+		ServerDeliveryDate=GETDATE()
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_KitchenServices_Reset]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_KitchenServices_Reset]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_KitchenServices_Reset]
+AS
+BEGIN
+	update KitchenServices
+	set ServerStatus=0,
+		Modified=GETDATE()
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Peoples_GetAllNotSent]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Peoples_GetAllNotSent]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_Peoples_GetAllNotSent]
+AS
+BEGIN
+	Select * from Peoples
+	where ServerStatus<>1 
+	and ServerStatus<>2
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Peoples_SetSaveResult]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Peoples_SetSaveResult]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_Peoples_SetSaveResult]
+	@guid uniqueidentifier,
+	@st smallint
+AS
+BEGIN
+	update Peoples
+	set ServerStatus=@st,
+		ServerDeliveryDate=GETDATE()
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Peoples_Reset]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Peoples_Reset]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_Peoples_Reset]
+AS
+BEGIN
+	update Peoples
+	set ServerStatus=0,
+		Modified=GETDATE()
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PeopleGroup_GetAllNotSent]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PeopleGroup_GetAllNotSent]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_PeopleGroup_GetAllNotSent]
+AS
+BEGIN
+	Select * from PeopleGroups
+	where ServerStatus<>1 
+	and ServerStatus<>2
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PeopleGroup_SetSaveResult]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PeopleGroup_SetSaveResult]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_PeopleGroup_SetSaveResult]
+	@guid uniqueidentifier,
+	@st smallint
+AS
+BEGIN
+	update PeopleGroups
+	set ServerStatus=@st,
+		ServerDeliveryDate=GETDATE()
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_PeopleGroup_Reset]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_PeopleGroup_Reset]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_PeopleGroup_Reset]
+AS
+BEGIN
+	update PeopleGroups
+	set ServerStatus=0,
+		Modified=GETDATE()
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Region_GetAllNotSent]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Region_GetAllNotSent]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_Region_GetAllNotSent]
+AS
+BEGIN
+	Select * from Regions
+	where ServerStatus<>1 
+	and ServerStatus<>2
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Region_SetSaveResult]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Region_SetSaveResult]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_Region_SetSaveResult]
+	@guid uniqueidentifier,
+	@st smallint
+AS
+BEGIN
+	update Regions
+	set ServerStatus=@st,
+		ServerDeliveryDate=GETDATE()
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Region_Reset]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Region_Reset]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_Region_Reset]
+AS
+BEGIN
+	update Regions
+	set ServerStatus=0,
+		Modified=GETDATE()
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Rental_GetAllNotSent]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Rental_GetAllNotSent]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_Rental_GetAllNotSent]
+AS
+BEGIN
+	Select * from RentalAuthorities
+	where ServerStatus<>1 
+	and ServerStatus<>2
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Rental_SetSaveResult]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Rental_SetSaveResult]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_Rental_SetSaveResult]
+	@guid uniqueidentifier,
+	@st smallint
+AS
+BEGIN
+	update RentalAuthorities
+	set ServerStatus=@st,
+		ServerDeliveryDate=GETDATE()
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Rental_Reset]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Rental_Reset]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_Rental_Reset]
+AS
+BEGIN
+	update RentalAuthorities
+	set ServerStatus=0,
+		Modified=GETDATE()
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_State_GetAllNotSent]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_State_GetAllNotSent]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_State_GetAllNotSent]
+AS
+BEGIN
+	Select * from States
+	where ServerStatus<>1 
+	and ServerStatus<>2
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_State_SetSaveResult]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_State_SetSaveResult]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_State_SetSaveResult]
+	@guid uniqueidentifier,
+	@st smallint
+AS
+BEGIN
+	update States
+	set ServerStatus=@st,
+		ServerDeliveryDate=GETDATE()
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_State_Reset]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_State_Reset]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_State_Reset]
+AS
+BEGIN
+	update States
+	set ServerStatus=0,
+		Modified=GETDATE()
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_User_GetAllNotSent]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_User_GetAllNotSent]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_User_GetAllNotSent]
+AS
+BEGIN
+	Select * from Users
+	where ServerStatus<>1 
+	and ServerStatus<>2
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_User_SetSaveResult]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_User_SetSaveResult]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_User_SetSaveResult]
+	@guid uniqueidentifier,
+	@st smallint
+AS
+BEGIN
+	update Users
+	set ServerStatus=@st,
+		ServerDeliveryDate=GETDATE()
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_User_Reset]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_User_Reset]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_User_Reset]
+AS
+BEGIN
+	update Users
+	set ServerStatus=0,
+		Modified=GETDATE()
 END

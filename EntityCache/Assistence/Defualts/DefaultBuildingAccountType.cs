@@ -15,7 +15,7 @@ namespace EntityCache.Assistence.Defualts
                 var reg = new BuildingAccountTypeBussines()
                 {
                     Name = name,
-                    Guid = Guid.NewGuid(),
+                    Guid = Guid.NewGuid()
                 };
                 return reg;
             }
