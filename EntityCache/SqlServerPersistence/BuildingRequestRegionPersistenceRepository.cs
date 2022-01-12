@@ -64,8 +64,6 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@masterGuid", item.RequestGuid);
                 cmd.Parameters.AddWithValue("@modif", item.Modified);
                 cmd.Parameters.AddWithValue("@regionGuid", item.RegionGuid);
-                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
-                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
                 await cmd.ExecuteNonQueryAsync();
             }
@@ -126,8 +124,6 @@ namespace EntityCache.SqlServerPersistence
                 res.Modified = (DateTime)dr["Modified"];
                 res.RequestGuid = (Guid)dr["RequestGuid"];
                 res.RegionGuid = (Guid)dr["RegionGuid"];
-                res.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
-                res.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {

@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Threading.Tasks;
-using EntityCache.Assistence;
+﻿using EntityCache.Assistence;
 using EntityCache.Mppings;
-using Nito.AsyncEx;
 using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Threading.Tasks;
 using WebHesabBussines;
 
 namespace EntityCache.Bussines
@@ -16,8 +15,6 @@ namespace EntityCache.Bussines
     {
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; }
-        public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
-        public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public Guid RequestGuid { get; set; }
         public Guid RegionGuid { get; set; }
 

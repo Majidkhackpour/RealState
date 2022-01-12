@@ -29,8 +29,6 @@ namespace Building.UserControls
                             {
                                 Guid = Guid.NewGuid(),
                                 Modified = DateTime.Now,
-                                ServerStatus = ServerStatus.None,
-                                ServerDeliveryDate = DateTime.Now,
                                 Note = item.Note
                             });
                         }
@@ -93,8 +91,6 @@ namespace Building.UserControls
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    ServerStatus = ServerStatus.None,
-                    ServerDeliveryDate = DateTime.Now,
                     Note = frm.TelegramText
                 });
                 Notes = _list;
@@ -115,8 +111,6 @@ namespace Building.UserControls
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
-                    ServerStatus = ServerStatus.None,
-                    ServerDeliveryDate = DateTime.Now,
                     Note = frm.TelegramText
                 });
                 Notes = _list;

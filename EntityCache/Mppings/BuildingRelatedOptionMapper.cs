@@ -17,8 +17,6 @@ namespace EntityCache.Mppings
                 BuildingOptionGuid = cls.BuildingOptionGuid,
                 BuildinGuid = cls.BuildinGuid,
                 Modified = cls.Modified,
-                ServerStatus = cls.ServerStatus,
-                ServerDeliveryDate = cls.ServerDeliveryDate
             };
         }
         public List<WebBuildingRelatedOptions> MapList(List<BuildingRelatedOptionsBussines> cls)

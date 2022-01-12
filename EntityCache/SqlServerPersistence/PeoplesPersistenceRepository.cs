@@ -305,8 +305,6 @@ namespace EntityCache.SqlServerPersistence
                             Modified = DateTime.Now,
                             Name = item.Name,
                             Status = true,
-                            ServerStatus = ServerStatus.None,
-                            ServerDeliveryDate = DateTime.Now,
                             Tell = dr["Number"].ToString(),
                             ParentGuid = item.Guid,
                             Title = "دریافت شده",

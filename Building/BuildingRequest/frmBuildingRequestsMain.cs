@@ -498,7 +498,7 @@ namespace Building.BuildingRequest
                 cls.ShortDesc = txtDesc.Text;
 
                 await SetRegionsAsync(cls.Guid);
-
+                cls.ServerStatus = ServerStatus.None;
                 res.AddReturnedValue(await cls.SaveAsync());
 
                 if (res.HasError) return;

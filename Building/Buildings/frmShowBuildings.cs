@@ -1538,6 +1538,7 @@ namespace Building.Buildings
                 }
 
                 cls.IsArchive = true;
+                cls.ServerStatus = ServerStatus.None;
                 var desc = $"کد ملک:( {cls.Code} ) ** محدوده:( {cls.RegionName} ) ** آدرس:( {cls.Address} )";
                 await UserLogBussines.SaveBuildingLogAsync(EnLogAction.AddToArchive, cls.Guid, desc);
                 res.AddReturnedValue(await cls.SaveAsync(false));
@@ -1573,6 +1574,7 @@ namespace Building.Buildings
                 }
 
                 cls.IsArchive = false;
+                cls.ServerStatus = ServerStatus.None;
                 var desc = $"کد ملک:( {cls.Code} ) ** محدوده:( {cls.RegionName} ) ** آدرس:( {cls.Address} )";
                 await UserLogBussines.SaveBuildingLogAsync(EnLogAction.RemoveFromArchive, cls.Guid, desc);
                 res.AddReturnedValue(await cls.SaveAsync(false));
@@ -1856,6 +1858,7 @@ namespace Building.Buildings
                 }
 
                 cls.AdvertiseType = null;
+                cls.ServerStatus = ServerStatus.None;
                 var desc = $"کد ملک:( {cls.Code} ) ** محدوده:( {cls.RegionName} ) ** آدرس:( {cls.Address} )";
                 await UserLogBussines.SaveBuildingLogAsync(EnLogAction.AddToPersonalFiles, cls.Guid, desc);
                 var res = await cls.SaveAsync(false);

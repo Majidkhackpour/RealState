@@ -344,7 +344,7 @@ namespace Building.Buildings
                 cls.BuildingTypeGuid = ucType.BuildingTypeGuid;
                 cls.AdvertiseType = advType;
                 cls.NoteList = UcNotes.Notes;
-
+                cls.ServerStatus = ServerStatus.None;
                 res.AddReturnedValue(await clsBuildingValidator.CheckValidationAsync(cls));
                 if (res.HasError) return res;
 

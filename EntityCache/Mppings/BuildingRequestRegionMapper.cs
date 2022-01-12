@@ -17,8 +17,6 @@ namespace EntityCache.Mppings
                 Modified = cls.Modified,
                 RegionGuid = cls.RegionGuid,
                 RequestGuid = cls.RequestGuid,
-                ServerStatus = cls.ServerStatus,
-                ServerDeliveryDate = cls.ServerDeliveryDate
             };
         }
         public List<WebBuildingRequestRegion> MapList(List<BuildingRequestRegionBussines> cls)

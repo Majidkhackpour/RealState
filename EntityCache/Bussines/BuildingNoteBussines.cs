@@ -13,8 +13,6 @@ namespace EntityCache.Bussines
     {
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; }
-        public ServerStatus ServerStatus { get; set; }
-        public DateTime ServerDeliveryDate { get; set; }
         public Guid BuildingGuid { get; set; }
         public string Note { get; set; }
 
@@ -83,30 +81,5 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public static async Task<List<BuildingNoteBussines>> GetAllNotSentAsync()
-            => await UnitOfWork.BuildingNotes.GetAllNotSentAsync(Cache.ConnectionString);
-        public static async Task<ReturnedSaveFuncInfo> SetSaveResultAsync(Guid guid, ServerStatus status)
-            => await UnitOfWork.BuildingNotes.SetSaveResultAsync(Cache.ConnectionString, guid, status);
-        public static async Task<ReturnedSaveFuncInfo> SendToServerAsync(List<BuildingNoteBussines> list)
-        {
-            var res = new ReturnedSaveFuncInfo();
-            try
-            {
-                //foreach (var item in list)
-                //{
-                //    var web = BuildingAccountTypeMapper.Instance.Map(item);
-                //    res.AddReturnedValue(await WebBuildingAccountType.SendAsync(web));
-                //}
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-            return res;
-        }
-        public static async Task<ReturnedSaveFuncInfo> SendToServerAsync(BuildingNoteBussines item)
-            => await SendToServerAsync(new List<BuildingNoteBussines>() { item });
-        public static async Task<ReturnedSaveFuncInfo> ResetAsync() => await UnitOfWork.BuildingNotes.ResetAsync(Cache.ConnectionString);
     }
 }

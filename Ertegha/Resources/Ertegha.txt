@@ -1922,8 +1922,6 @@ ALTER PROCEDURE [dbo].[sp_PhoneBook_Save]
 	@tell nvarchar(50),
 	@group smallint,
 	@parentGuid uniqueidentifier,
-	@serverSt smallint,
-	@serverDate datetime,
 	@title nvarchar(200)
 AS
 BEGIN
@@ -1934,8 +1932,6 @@ BEGIN
 		  ,[Tell] = @tell
 		  ,[Group] = @group
 		  ,[ParentGuid] = @parentGuid
-		  ,[ServerStatus] = @serverSt
-		  ,[ServerDeliveryDate] = @serverDate
 		  ,[Title] = @title
 	 WHERE [Guid] = @Guid
 	 if @@ROWCOUNT=0
@@ -1948,8 +1944,6 @@ BEGIN
            ,[Tell]
            ,[Group]
            ,[ParentGuid]
-		   ,[ServerStatus]
-		   ,[ServerDeliveryDate]
 		   ,[Title])
 		 VALUES
            (@Guid
@@ -1959,8 +1953,6 @@ BEGIN
            ,@tell
            ,@group
            ,@parentGuid
-		   ,@serverSt
-		   ,@serverDate
 		   ,@title)
 	 end
 END
@@ -4503,17 +4495,13 @@ Alter PROCEDURE sp_BuildingGallery_Save
 	@guid uniqueidentifier,
 	@modif datetime,
 	@buGuid uniqueidentifier,
-	@imageName nvarchar(100),
-	@serverSt smallint,
-	@serverDate datetime
+	@imageName nvarchar(100)
 AS
 BEGIN
 	UPDATE [dbo].[BuildingGalleries]
 	   SET [Modified] = @modif
 		  ,[BuildingGuid] = @buGuid
 		  ,[ImageName] = @imageName
-		  ,[ServerStatus] = @serverSt
-		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
@@ -4521,16 +4509,12 @@ BEGIN
            ([Guid]
            ,[Modified]
            ,[BuildingGuid]
-           ,[ImageName]
-		   ,[ServerStatus]
-		   ,[ServerDeliveryDate])
+           ,[ImageName])
 		VALUES
            (@guid
            ,@modif
            ,@buGuid
-           ,@imageName
-		   ,@serverSt
-		   ,@serverDate)
+           ,@imageName)
 	 end
 END
 GO
@@ -5016,17 +5000,13 @@ Alter PROCEDURE sp_BuildingRelatedOptopn_Save
 	@guid uniqueidentifier,
 	@modif datetime,
 	@buGuid uniqueidentifier,
-	@buOptionGuid uniqueidentifier,
-	@serverSt smallint,
-	@serverDate datetime
+	@buOptionGuid uniqueidentifier
 AS
 BEGIN
 	UPDATE [dbo].[BuildingRelatedOptions]
 	   SET [Modified] = @modif
 		  ,[BuildinGuid] = @buGuid
 		  ,[BuildingOptionGuid] = @buOptionGuid
-		  ,[ServerStatus] = @serverSt
-		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
@@ -5034,16 +5014,12 @@ BEGIN
            ([Guid]
            ,[Modified]
            ,[BuildinGuid]
-           ,[BuildingOptionGuid]
-		   ,[ServerStatus]
-		   ,[ServerDeliveryDate])
+           ,[BuildingOptionGuid])
 		VALUES
            (@guid
            ,@modif
            ,@buGuid
-           ,@buOptionGuid
-		   ,@serverSt
-		   ,@serverDate)
+           ,@buOptionGuid)
 	 end
 END
 GO
@@ -5202,17 +5178,13 @@ Alter PROCEDURE sp_BuildingRequestRegion_Save
 	@masterGuid uniqueidentifier,
 	@guid uniqueidentifier,
 	@modif datetime,
-	@regionGuid uniqueidentifier,
-	@serverSt smallint,
-	@serverDate datetime
+	@regionGuid uniqueidentifier
 AS
 BEGIN
 	UPDATE [dbo].[BuildingRequestRegions]
 	   SET [Modified] = @modif
 		  ,[RequestGuid] = @masterGuid
 		  ,[RegionGuid] = @regionGuid
-		  ,[ServerStatus] = @serverSt
-		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
@@ -5220,16 +5192,12 @@ BEGIN
            ([Guid]
            ,[Modified]
            ,[RequestGuid]
-           ,[RegionGuid]
-		   ,[ServerStatus]
-		   ,[ServerDeliveryDate])
+           ,[RegionGuid])
 		VALUES
            (@guid
            ,@modif
            ,@masterGuid
-           ,@regionGuid
-		   ,@serverSt
-		   ,@serverDate)
+           ,@regionGuid)
 	 end
 END
 GO
@@ -7413,17 +7381,13 @@ ALTER PROCEDURE [dbo].[sp_BuildingNote_Save]
 	@guid uniqueidentifier,
 	@modif datetime,
 	@buGuid uniqueidentifier,
-	@note nvarchar(Max),
-	@serverSt smallint,
-	@serverDate datetime
+	@note nvarchar(Max)
 AS
 BEGIN
 	UPDATE [dbo].[BuildingNotes]
 	   SET [Modified] = @modif
 		  ,[BuildingGuid] = @buGuid
 		  ,[Note] = @note
-		  ,[ServerStatus] = @serverSt
-		  ,[ServerDeliveryDate] = @serverDate
 	 WHERE [Guid] = @guid
 	 if @@ROWCOUNT = 0
 	 begin
@@ -7431,16 +7395,12 @@ BEGIN
            ([Guid]
            ,[Modified]
            ,[BuildingGuid]
-           ,[Note]
-		   ,[ServerStatus]
-		   ,[ServerDeliveryDate])
+           ,[Note])
 		VALUES
            (@guid
            ,@modif
            ,@buGuid
-           ,@note
-		   ,@serverSt
-		   ,@serverDate)
+           ,@note)
 	 end
 END
 GO
@@ -7648,45 +7608,6 @@ BEGIN
 END
 GO
 --========================================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingNote_GetAllNotSent]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_BuildingNote_GetAllNotSent]	As Begin print 11 end')  
-GO
-ALTER PROCEDURE [dbo].[sp_BuildingNote_GetAllNotSent]
-AS
-BEGIN
-	Select * from BuildingNotes
-	where ServerStatus<>1 
-	and ServerStatus<>2
-END
-GO
---========================================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingNote_SetSaveResult]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_BuildingNote_SetSaveResult]	As Begin print 11 end')  
-GO
-ALTER PROCEDURE [dbo].[sp_BuildingNote_SetSaveResult]
-	@guid uniqueidentifier,
-	@st smallint
-AS
-BEGIN
-	update BuildingNotes
-	set ServerStatus=@st,
-		ServerDeliveryDate=GETDATE()
-	where Guid=@guid
-END
-GO
---========================================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingNote_Reset]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_BuildingNote_Reset]	As Begin print 11 end')  
-GO
-ALTER PROCEDURE [dbo].[sp_BuildingNote_Reset]
-AS
-BEGIN
-	update BuildingNotes
-	set ServerStatus=0,
-		Modified=GETDATE()
-END
-GO
---========================================================================================================
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingOption_GetAllNotSent]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_BuildingOption_GetAllNotSent]	As Begin print 11 end')  
 GO
@@ -7721,45 +7642,6 @@ ALTER PROCEDURE [dbo].[sp_BuildingOption_Reset]
 AS
 BEGIN
 	update BuildingOptions
-	set ServerStatus=0,
-		Modified=GETDATE()
-END
-GO
---========================================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingRelatedOption_GetAllNotSent]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_BuildingRelatedOption_GetAllNotSent]	As Begin print 11 end')  
-GO
-ALTER PROCEDURE [dbo].[sp_BuildingRelatedOption_GetAllNotSent]
-AS
-BEGIN
-	Select * from BuildingRelatedOptions
-	where ServerStatus<>1 
-	and ServerStatus<>2
-END
-GO
---========================================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingRelatedOption_SetSaveResult]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_BuildingRelatedOption_SetSaveResult]	As Begin print 11 end')  
-GO
-ALTER PROCEDURE [dbo].[sp_BuildingRelatedOption_SetSaveResult]
-	@guid uniqueidentifier,
-	@st smallint
-AS
-BEGIN
-	update BuildingRelatedOptions
-	set ServerStatus=@st,
-		ServerDeliveryDate=GETDATE()
-	where Guid=@guid
-END
-GO
---========================================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingRelatedOption_Reset]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_BuildingRelatedOption_Reset]	As Begin print 11 end')  
-GO
-ALTER PROCEDURE [dbo].[sp_BuildingRelatedOption_Reset]
-AS
-BEGIN
-	update BuildingRelatedOptions
 	set ServerStatus=0,
 		Modified=GETDATE()
 END

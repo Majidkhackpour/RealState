@@ -61,8 +61,6 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@imageName", item.ImageName ?? "");
                 cmd.Parameters.AddWithValue("@modif", item.Modified);
                 cmd.Parameters.AddWithValue("@buGuid", item.BuildingGuid);
-                cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
-                cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
                 await cmd.ExecuteNonQueryAsync();
             }
@@ -101,8 +99,6 @@ namespace EntityCache.SqlServerPersistence
                 res.Modified = (DateTime)dr["Modified"];
                 res.BuildingGuid = (Guid)dr["BuildingGuid"];
                 res.ImageName = dr["ImageName"].ToString();
-                res.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
-                res.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {

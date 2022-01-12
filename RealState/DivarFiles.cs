@@ -200,8 +200,6 @@ namespace RealState
                             {
                                 Guid = Guid.NewGuid(),
                                 Modified = DateTime.Now,
-                                ServerStatus = ServerStatus.None,
-                                ServerDeliveryDate = DateTime.Now,
                                 BuildingOptionGuid = BuildingOptionsBussines.EveletorGuid,
                                 BuildinGuid = bu.Guid
                             });
@@ -212,8 +210,6 @@ namespace RealState
                             {
                                 Guid = Guid.NewGuid(),
                                 Modified = DateTime.Now,
-                                ServerStatus = ServerStatus.None,
-                                ServerDeliveryDate = DateTime.Now,
                                 BuildingOptionGuid = BuildingOptionsBussines.BalconyGuid,
                                 BuildinGuid = bu.Guid
                             });
@@ -224,8 +220,6 @@ namespace RealState
                             {
                                 Guid = Guid.NewGuid(),
                                 Modified = DateTime.Now,
-                                ServerStatus = ServerStatus.None,
-                                ServerDeliveryDate = DateTime.Now,
                                 BuildingOptionGuid = BuildingOptionsBussines.ParkingGuid,
                                 BuildinGuid = bu.Guid
                             });
@@ -236,8 +230,6 @@ namespace RealState
                             {
                                 Guid = Guid.NewGuid(),
                                 Modified = DateTime.Now,
-                                ServerStatus = ServerStatus.None,
-                                ServerDeliveryDate = DateTime.Now,
                                 BuildingOptionGuid = BuildingOptionsBussines.StoreGuid,
                                 BuildinGuid = bu.Guid
                             });
@@ -271,8 +263,6 @@ namespace RealState
                             {
                                 Guid = Guid.NewGuid(),
                                 Modified = DateTime.Now,
-                                ServerStatus = ServerStatus.None,
-                                ServerDeliveryDate = DateTime.Now,
                                 BuildingGuid = bu.Guid,
                                 ImageName = newName
                             });

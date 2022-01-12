@@ -20,8 +20,6 @@ namespace EntityCache.Mppings
                 ParentGuid = cls.ParentGuid,
                 Tell = cls.Tell,
                 Group = cls.Group,
-                ServerStatus = cls.ServerStatus,
-                ServerDeliveryDate = cls.ServerDeliveryDate,
                 Title = cls.Title
             };
         }

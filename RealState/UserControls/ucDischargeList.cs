@@ -36,6 +36,7 @@ namespace RealState.UserControls
                     return;
                 bu.IsArchive = false;
                 bu.CreateDate = DateTime.Now;
+                bu.ServerStatus = ServerStatus.None;
                 var desc = $"کد ملک:( {bu.Code} ) ** محدوده:( {bu.RegionName} ) ** آدرس:( {bu.Address} )";
                 await UserLogBussines.SaveBuildingLogAsync(EnLogAction.RemoveFromArchive, bu.Guid, desc);
                 await bu.SaveAsync(false);

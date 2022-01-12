@@ -145,64 +145,26 @@ namespace EntityCache.WebService
                     if (res.HasError) continue;
                     res.AddReturnedValue(await PeoplesBussines.ResendNotSentAsync());
                     if (res.HasError) continue;
-                    //switch (item.Type)
-                    //{
-                    //    case EnTemp.BuildingAccountType:
-                    //        var acc = await BuildingAccountTypeBussines.GetAsync(item.ObjectGuid);
-                    //        if (acc != null)
-                    //            await WebBuildingAccountType.SaveAsync(BuildingAccountTypeMapper.Instance.Map(acc));
-                    //        break;
-                    //    case EnTemp.BuildingCondition:
-                    //        var co = await BuildingConditionBussines.GetAsync(item.ObjectGuid);
-                    //        if (co != null)
-                    //            await WebBuildingCondition.SaveAsync(BuildingConditionMapper.Instance.Map(co));
-                    //        break;
-                    //    case EnTemp.BuildingType:
-                    //        var type = await BuildingTypeBussines.GetAsync(item.ObjectGuid);
-                    //        if (type != null)
-                    //            await WebBuildingType.SaveAsync(BuildingTypeMapper.Instance.Map(type));
-                    //        break;
-                    //    case EnTemp.BuildingView:
-                    //        var view = await BuildingViewBussines.GetAsync(item.ObjectGuid);
-                    //        if (view != null)
-                    //            await WebBuildingView.SaveAsync(BuildingViewMapper.Instance.Map(view));
-                    //        break;
-                    //    case EnTemp.DocumentType:
-                    //        var doc = await DocumentTypeBussines.GetAsync(item.ObjectGuid);
-                    //        if (doc != null)
-                    //            await WebDocumentType.SaveAsync(DocumentTypeMapper.Instance.Map(doc));
-                    //        break;
-                    //    case EnTemp.FloorCover:
-                    //        var fc = await FloorCoverBussines.GetAsync(item.ObjectGuid);
-                    //        if (fc != null)
-                    //            await WebFloorCover.SaveAsync(FloorCoverMapper.Instance.Map(fc));
-                    //        break;
-                    //    case EnTemp.KitchenService:
-                    //        var ks = await KitchenServiceBussines.GetAsync(item.ObjectGuid);
-                    //        if (ks != null)
-                    //            await WebKitchenService.SaveAsync(KitchenServiceMapper.Instance.Map(ks));
-                    //        break;
-                    //    case EnTemp.RentalAuthority:
-                    //        var ra = await RentalAuthorityBussines.GetAsync(item.ObjectGuid);
-                    //        if (ra != null)
-                    //            await WebRental.SaveAsync(RentalAuthorityMapper.Instance.Map(ra));
-                    //        break;
-                    //    case EnTemp.BuildingOptions:
-                    //        var o = await BuildingOptionsBussines.GetAsync(item.ObjectGuid);
-                    //        if (o != null)
-                    //            await WebBuildingOptions.SaveAsync(BuildingOptionsMapper.Instance.Map(o));
-                    //        break;
-                    //    case EnTemp.Building:
-                    //        var bu = await BuildingBussines.GetAsync(item.ObjectGuid);
-                    //        if (bu != null)
-                    //            await WebBuilding.SaveAsync(BuildingMapper.Instance.Map(bu));
-                    //        break;
-                    //    case EnTemp.Requests:
-                    //        var req = await BuildingRequestBussines.GetAsync(item.ObjectGuid);
-                    //        if (req != null)
-                    //            await WebBuildingRequest.SaveAsync(BuildingRequestMapper.Instance.Map(req));
-                    //        break;
-                    //}
+                    res.AddReturnedValue(await BuildingAccountTypeBussines.ResendNotSentAsync());
+                    if (res.HasError) continue;
+                    res.AddReturnedValue(await BuildingConditionBussines.ResendNotSentAsync());
+                    if (res.HasError) continue;
+                    res.AddReturnedValue(await BuildingTypeBussines.ResendNotSentAsync());
+                    if (res.HasError) continue;
+                    res.AddReturnedValue(await BuildingViewBussines.ResendNotSentAsync());
+                    if (res.HasError) continue;
+                    res.AddReturnedValue(await DocumentTypeBussines.ResendNotSentAsync());
+                    if (res.HasError) continue;
+                    res.AddReturnedValue(await FloorCoverBussines.ResendNotSentAsync());
+                    if (res.HasError) continue;
+                    res.AddReturnedValue(await KitchenServiceBussines.ResendNotSentAsync());
+                    if (res.HasError) continue;
+                    res.AddReturnedValue(await RentalAuthorityBussines.ResendNotSentAsync());
+                    if (res.HasError) continue;
+                    res.AddReturnedValue(await BuildingOptionsBussines.ResendNotSentAsync());
+                    if (res.HasError) continue;
+                    res.AddReturnedValue(await BuildingBussines.ResendNotSentAsync());
+                    res.AddReturnedValue(await BuildingRequestBussines.ResendNotSentAsync());
 
                     await Task.Delay(2000);
                 }

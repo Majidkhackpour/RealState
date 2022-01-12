@@ -151,6 +151,7 @@ namespace EntityCache.Bussines
                     tr = cn.BeginTransaction();
                 }
 
+                ServerStatus = ServerStatus.None;
                 res.AddReturnedValue(await UnitOfWork.RentalAuthority.ChangeStatusAsync(this, status, tr));
                 if (res.HasError) return res;
 
@@ -215,5 +216,23 @@ namespace EntityCache.Bussines
         public static async Task<ReturnedSaveFuncInfo> SendToServerAsync(RentalAuthorityBussines item)
             => await SendToServerAsync(new List<RentalAuthorityBussines>() { item });
         public static async Task<ReturnedSaveFuncInfo> ResetAsync() => await UnitOfWork.RentalAuthority.ResetAsync(Cache.ConnectionString);
+        public static async Task<ReturnedSaveFuncInfo> ResendNotSentAsync()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                var list = await GetAllNotSentAsync();
+                if (list == null || list.Count <= 0) return res;
+                foreach (var item in list)
+                    res.AddReturnedValue(await SendToServerAsync(item));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
     }
 }

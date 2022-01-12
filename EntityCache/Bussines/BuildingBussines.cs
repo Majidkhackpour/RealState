@@ -235,7 +235,7 @@ namespace EntityCache.Bussines
                     tr = cn.BeginTransaction();
                 }
 
-
+                ServerStatus = ServerStatus.None;
                 res.AddReturnedValue(await UnitOfWork.Building.ChangeStatusAsync(this, status, tr));
                 if (res.HasError) return res;
 
@@ -274,7 +274,7 @@ namespace EntityCache.Bussines
                     tr = cn.BeginTransaction();
                 }
 
-
+                ServerStatus = ServerStatus.None;
                 res.AddReturnedValue(await UnitOfWork.Building.ChangeParentAsync(Guid, parent, tr));
             }
             catch (Exception ex)
@@ -384,6 +384,7 @@ namespace EntityCache.Bussines
                     Number = number,
                     BuildingGuid = bu.Guid
                 };
+                bu.ServerStatus = ServerStatus.None;
                 res.AddReturnedValue(await bu.SaveAsync(true, tr, false, true));
                 if (res.HasError) return res;
 
@@ -429,5 +430,23 @@ namespace EntityCache.Bussines
         public static async Task<ReturnedSaveFuncInfo> SendToServerAsync(BuildingBussines item)
             => await SendToServerAsync(new List<BuildingBussines>() { item });
         public static async Task<ReturnedSaveFuncInfo> ResetAsync() => await UnitOfWork.Building.ResetAsync(Cache.ConnectionString);
+        public static async Task<ReturnedSaveFuncInfo> ResendNotSentAsync()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                var list = await GetAllNotSentAsync();
+                if (list == null || list.Count <= 0) return res;
+                foreach (var item in list)
+                    res.AddReturnedValue(await SendToServerAsync(item));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
     }
 }

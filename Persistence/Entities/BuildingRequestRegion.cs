@@ -11,8 +11,6 @@ namespace Persistence.Entities
         [Key]
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; }
-        public ServerStatus ServerStatus { get; set; }
-        public DateTime ServerDeliveryDate { get; set; }
         [ForeignKey("Request")]
         public Guid RequestGuid { get; set; }
         [ForeignKey("Region")]
