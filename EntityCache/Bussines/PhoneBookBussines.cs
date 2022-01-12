@@ -186,10 +186,6 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.PhoneBook.SaveRangeAsync(list, tr));
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebPhoneBook.SaveAsync(PhoneBookMapper.Instance.MapList(list)));
             }
             catch (Exception ex)
             {

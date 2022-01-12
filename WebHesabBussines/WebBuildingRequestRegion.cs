@@ -17,25 +17,13 @@ namespace WebHesabBussines
         public Guid RegionGuid { get; set; }
 
 
-        private async Task SaveAsync()
+        private async Task<ReturnedSaveFuncInfoWithValue<ResponseStatus>> SaveAsync()
         {
+            var res = new ReturnedSaveFuncInfoWithValue<ResponseStatus>();
             try
             {
-                var res = await Extentions.PostToApi<WebBuildingRequestRegion, WebBuildingRequestRegion>(this, Url, WebCustomer.Customer.Guid);
-                if (res.ResponseStatus != ResponseStatus.Success)
-                    return;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(WebBuildingRequestRegion cls)
-        {
-            var res = new ReturnedSaveFuncInfo();
-            try
-            {
-                await cls.SaveAsync();
+                var ret = await Extentions.PostToApi<WebBuildingRequestRegion, WebBuildingRequestRegion>(this, Url, WebCustomer.Customer.Guid);
+                res.value = ret?.ResponseStatus??ResponseStatus.ErrorInServer;
             }
             catch (Exception ex)
             {
@@ -45,14 +33,14 @@ namespace WebHesabBussines
 
             return res;
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<WebBuildingRequestRegion> item)
+        public static async Task<ReturnedSaveFuncInfoWithValue<ResponseStatus>> SaveAsync(WebBuildingRequestRegion cls)
         {
-            var res = new ReturnedSaveFuncInfo();
+            var res = new ReturnedSaveFuncInfoWithValue<ResponseStatus>();
             try
             {
-                if (item == null) return res;
-                foreach (var cls in item)
-                    res.AddReturnedValue(await SaveAsync(cls));
+                var ret = await cls.SaveAsync();
+                res.AddReturnedValue(ret);
+                res.value = ret.value;
             }
             catch (Exception ex)
             {

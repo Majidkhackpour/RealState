@@ -60,13 +60,26 @@ namespace WebHesabBussines
             try
             {
                 var res = await Extentions.PostToApi<WebBuildingRequest, WebBuildingRequest>(this, Url, WebCustomer.Customer.Guid);
-                if (res?.ResponseStatus != ResponseStatus.Success)
+                if (res == null || res.ResponseStatus != ResponseStatus.Success)
                 {
                     RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);
                     return;
                 }
+
+                if (RegionList != null && RegionList.Count > 0)
+                {
+                    foreach (var item in RegionList)
+                    {
+                        var ret = await WebBuildingRequestRegion.SaveAsync(item);
+                        if (ret.HasError || ret.value == null || ret.value != ResponseStatus.Success)
+                        {
+                            RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);
+                            return;
+                        }
+                    }
+                }
+
                 RaiseEvent(Guid, ServerStatus.Delivered, DateTime.Now);
-                await WebBuildingRequestRegion.SaveAsync(RegionList);
             }
             catch (Exception ex)
             {

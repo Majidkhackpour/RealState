@@ -37,7 +37,7 @@ namespace WebHesabBussines
             try
             {
                 var res = await Extentions.PostToApi<WebFloorCover, WebFloorCover>(this, Url, WebCustomer.Customer.Guid);
-                if (res.ResponseStatus != ResponseStatus.Success)
+                if (res == null || res.ResponseStatus != ResponseStatus.Success)
                 {
 
                     RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);

@@ -21,9 +21,10 @@ namespace EntityCache.Mppings
         }
         public List<WebBuildingRequestRegion> MapList(List<BuildingRequestRegionBussines> cls)
         {
-            var list=new List<WebBuildingRequestRegion>();
+            var list = new List<WebBuildingRequestRegion>();
             try
             {
+                if (cls == null) return list;
                 foreach (var item in cls)
                     list.Add(Map(item));
             }

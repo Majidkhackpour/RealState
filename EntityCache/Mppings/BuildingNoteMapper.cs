@@ -24,6 +24,7 @@ namespace EntityCache.Mppings
             var list = new List<WebBuildingNote>();
             try
             {
+                if (cls == null) return list;
                 foreach (var item in cls)
                     list.Add(Map(item));
             }

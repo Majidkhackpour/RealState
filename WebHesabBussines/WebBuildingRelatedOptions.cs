@@ -17,42 +17,30 @@ namespace WebHesabBussines
 
 
 
-        private async Task SendAsync()
+        private async Task<ReturnedSaveFuncInfoWithValue<ResponseStatus>> SendAsync()
         {
+            var ret = new ReturnedSaveFuncInfoWithValue<ResponseStatus>();
             try
             {
                 var res = await Extentions.PostToApi<WebBuildingRelatedOptions, WebBuildingRelatedOptions>(this, Url, WebCustomer.Customer.Guid);
-                if (res != null && res.ResponseStatus != ResponseStatus.Success)
-                    return;
+                ret.value = res?.ResponseStatus??ResponseStatus.ErrorInServer;
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        public static async Task<ReturnedSaveFuncInfo> SendAsync(WebBuildingRelatedOptions cls)
-        {
-            var res = new ReturnedSaveFuncInfo();
-            try
-            {
-                await cls.SendAsync();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
+                ret.AddReturnedValue(ex);
             }
 
-            return res;
+            return ret;
         }
-        public static async Task<ReturnedSaveFuncInfo> SendAsync(List<WebBuildingRelatedOptions> item)
+        public static async Task<ReturnedSaveFuncInfoWithValue<ResponseStatus>> SendAsync(WebBuildingRelatedOptions cls)
         {
-            var res = new ReturnedSaveFuncInfo();
+            var res = new ReturnedSaveFuncInfoWithValue<ResponseStatus>();
             try
             {
-                if (item == null) return res;
-                foreach (var cls in item)
-                    res.AddReturnedValue(await SendAsync(cls));
+                var ret = await cls.SendAsync();
+                res.AddReturnedValue(ret);
+                res.value = ret.value;
             }
             catch (Exception ex)
             {

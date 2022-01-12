@@ -584,7 +584,7 @@ namespace EntityCache.SqlServerPersistence
                     var cmd = new SqlCommand("sp_Buildings_GetAllNotSent", cn) { CommandType = CommandType.StoredProcedure };
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read()) list.Add(LoadDataBuildingBussines(dr));
+                    while (dr.Read()) list.Add( await LoadDataBuildingBussinesAsync(dr));
                     dr.Close();
                     cn.Close();
                 }
@@ -609,8 +609,9 @@ namespace EntityCache.SqlServerPersistence
                     { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@Guid", guid);
                     cmd.Parameters.AddWithValue("@st", (short)status);
-
+                    await cn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
                 }
             }
             catch (Exception ex)
@@ -630,7 +631,9 @@ namespace EntityCache.SqlServerPersistence
                 {
                     var cmd = new SqlCommand("sp_Buildings_Reset", cn)
                     { CommandType = CommandType.StoredProcedure };
+                    await cn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
                 }
             }
             catch (Exception ex)
@@ -756,7 +759,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        private BuildingBussines LoadDataBuildingBussines(SqlDataReader dr)
+        private async Task<BuildingBussines> LoadDataBuildingBussinesAsync(SqlDataReader dr)
         {
             var res = new BuildingBussines();
             try
@@ -844,6 +847,9 @@ namespace EntityCache.SqlServerPersistence
                 if (dr["TreeCount"] != DBNull.Value) res.TreeCount = (int)dr["TreeCount"];
                 if (dr["ConstructionStage"] != DBNull.Value) res.ConstructionStage = (EnConstructionStage)dr["ConstructionStage"];
                 if (dr["Parent"] != DBNull.Value) res.Parent = (EnBuildingParent)dr["Parent"];
+                res.GalleryList = await BuildingGalleryBussines.GetAllAsync(res.Guid);
+                res.NoteList = await BuildingNoteBussines.GetAllAsync(res.Guid);
+                res.OptionList = await BuildingRelatedOptionsBussines.GetAllAsync(res.Guid);
             }
             catch (Exception ex)
             {

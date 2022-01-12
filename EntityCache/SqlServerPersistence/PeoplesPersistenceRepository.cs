@@ -204,7 +204,7 @@ namespace EntityCache.SqlServerPersistence
                     var cmd = new SqlCommand("sp_Peoples_GetAllNotSent", cn) { CommandType = CommandType.StoredProcedure };
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read()) list.Add(LoadDataBussines(dr));
+                    while (dr.Read()) list.Add( await LoadDataBussinesAsync(dr));
                     dr.Close();
                     cn.Close();
                 }
@@ -229,8 +229,9 @@ namespace EntityCache.SqlServerPersistence
                     { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@Guid", guid);
                     cmd.Parameters.AddWithValue("@st", (short)status);
-
+                    await cn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
                 }
             }
             catch (Exception ex)
@@ -250,7 +251,9 @@ namespace EntityCache.SqlServerPersistence
                 {
                     var cmd = new SqlCommand("sp_Peoples_Reset", cn)
                     { CommandType = CommandType.StoredProcedure };
+                    await cn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
                 }
             }
             catch (Exception ex)
@@ -320,7 +323,7 @@ namespace EntityCache.SqlServerPersistence
 
             return item;
         }
-        private PeoplesBussines LoadDataBussines(SqlDataReader dr)
+        private async Task<PeoplesBussines> LoadDataBussinesAsync(SqlDataReader dr)
         {
             var item = new PeoplesBussines();
             try
@@ -343,6 +346,7 @@ namespace EntityCache.SqlServerPersistence
                 item.GroupGuid = (Guid)dr["GroupGuid"];
                 item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
                 item.ServerStatus = (ServerStatus)dr["ServerStatus"];
+                item.TellList = await PhoneBookBussines.GetAllAsync(item.Guid, true);
             }
             catch (Exception ex)
             {

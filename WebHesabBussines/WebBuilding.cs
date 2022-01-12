@@ -94,6 +94,7 @@ namespace WebHesabBussines
         public EnConstructionStage? ConstructionStage { get; set; }
         public EnBuildingParent? Parent { get; set; }
         public List<WebBuildingRelatedOptions> OptionList { get; set; }
+        public List<WebBuildingNote> NoteList { get; set; }
 
 
         private static void RaiseEvent(Guid objGuid, ServerStatus st, DateTime dateM)
@@ -114,18 +115,46 @@ namespace WebHesabBussines
             try
             {
                 var res = await Extentions.PostToApi<WebBuilding, WebBuilding>(this, Url, WebCustomer.Customer.Guid);
-                if (res!=null&& res.ResponseStatus != ResponseStatus.Success)
+                if (res == null || res.ResponseStatus != ResponseStatus.Success)
                 {
                     RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);
                     return;
                 }
 
+                if (OptionList != null && OptionList.Count > 0)
+                {
+                    foreach (var item in OptionList)
+                    {
+                        var ret = await WebBuildingRelatedOptions.SendAsync(item);
+                        if (ret.HasError || ret.value == null || ret.value != ResponseStatus.Success)
+                        {
+                            RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);
+                            return;
+                        }
+                    }
+                }
+
+                if (NoteList != null && NoteList.Count > 0)
+                {
+                    foreach (var item in NoteList)
+                    {
+                        var ret = await WebBuildingNote.SendAsync(item);
+                        if (ret.HasError || ret.value == null || ret.value != ResponseStatus.Success)
+                        {
+                            RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);
+                            return;
+                        }
+                    }
+                }
+
                 var bu = res?.Data;
-                if (bu == null) return;
+                if (bu == null)
+                {
+                    RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);
+                    return;
+                }
 
                 RaiseEvent(Guid, ServerStatus.Delivered, DateTime.Now);
-
-                await WebBuildingRelatedOptions.SendAsync(OptionList);
             }
             catch (Exception ex)
             {

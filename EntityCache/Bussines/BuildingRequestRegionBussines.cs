@@ -38,11 +38,6 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.BuildingRequestRegion.SaveRangeAsync(list, tr));
-
-                if (res.HasError) return res;
-
-                if (Cache.IsSendToServer)
-                    _ = Task.Run(() => WebBuildingRequestRegion.SaveAsync(BuildingRequestRegionMapper.Instance.MapList(list)));
             }
             catch (Exception ex)
             {

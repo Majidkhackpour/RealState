@@ -50,13 +50,27 @@ namespace WebHesabBussines
             try
             {
                 var res = await Extentions.PostToApi<WebPeople, WebPeople>(this, Url, WebCustomer.Customer.Guid);
-                if (res.ResponseStatus != ResponseStatus.Success)
+                if (res == null || res.ResponseStatus != ResponseStatus.Success)
                 {
                     RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);
                     return;
                 }
+
+                if (TellList != null && TellList.Count > 0)
+                {
+                    foreach (var item in TellList)
+                    {
+                        var ret = await WebPhoneBook.SaveAsync(item);
+                        if (ret.HasError || ret.value == null || ret.value != ResponseStatus.Success)
+                        {
+                            RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);
+                            return;
+                        }
+                    }
+                }
+
                 RaiseEvent(Guid, ServerStatus.Delivered, DateTime.Now);
-                await WebPhoneBook.SaveAsync(TellList);
+                
             }
             catch (Exception ex)
             {

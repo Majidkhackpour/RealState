@@ -1,9 +1,10 @@
-﻿using System;
+﻿using EntityCache.Bussines;
+using Services;
+using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using EntityCache.Bussines;
-using EntityCache.Mppings;
-using Services;
+using Nito.AsyncEx;
 using WebHesabBussines;
 
 namespace EntityCache.WebService
@@ -60,11 +61,11 @@ namespace EntityCache.WebService
         private async Task WebStatesOnOnSaveResult(Guid objGuid, ServerStatus st, DateTime dateM)
             => await StatesBussines.SetSaveResultAsync(objGuid, st);
         private async Task WebRentalOnOnSaveResult(Guid objGuid, ServerStatus st, DateTime dateM)
-            => await RentalAuthorityBussines.SetSaveResultAsync(objGuid,st);
+            => await RentalAuthorityBussines.SetSaveResultAsync(objGuid, st);
         private async Task WebRegionOnOnSaveResult(Guid objGuid, ServerStatus st, DateTime dateM)
-            => await RegionsBussines.SetSaveResultAsync(objGuid,st);
+            => await RegionsBussines.SetSaveResultAsync(objGuid, st);
         private async Task WebPeopleGroupOnOnSaveResult(Guid objGuid, ServerStatus st, DateTime dateM)
-            => await PeopleGroupBussines.SetSaveResultAsync(objGuid,st);
+            => await PeopleGroupBussines.SetSaveResultAsync(objGuid, st);
         private async Task WebPeopleOnOnSaveResult(Guid objGuid, ServerStatus st, DateTime dateM)
             => await PeoplesBussines.SetSaveResultAsync(objGuid, st);
         private async Task WebKitchenServiceOnOnSaveResult(Guid objGuid, ServerStatus st, DateTime dateM)
@@ -145,23 +146,21 @@ namespace EntityCache.WebService
                     if (res.HasError) continue;
                     res.AddReturnedValue(await PeoplesBussines.ResendNotSentAsync());
                     if (res.HasError) continue;
-                    res.AddReturnedValue(await BuildingAccountTypeBussines.ResendNotSentAsync());
-                    if (res.HasError) continue;
-                    res.AddReturnedValue(await BuildingConditionBussines.ResendNotSentAsync());
-                    if (res.HasError) continue;
-                    res.AddReturnedValue(await BuildingTypeBussines.ResendNotSentAsync());
-                    if (res.HasError) continue;
-                    res.AddReturnedValue(await BuildingViewBussines.ResendNotSentAsync());
-                    if (res.HasError) continue;
-                    res.AddReturnedValue(await DocumentTypeBussines.ResendNotSentAsync());
-                    if (res.HasError) continue;
-                    res.AddReturnedValue(await FloorCoverBussines.ResendNotSentAsync());
-                    if (res.HasError) continue;
-                    res.AddReturnedValue(await KitchenServiceBussines.ResendNotSentAsync());
-                    if (res.HasError) continue;
-                    res.AddReturnedValue(await RentalAuthorityBussines.ResendNotSentAsync());
-                    if (res.HasError) continue;
-                    res.AddReturnedValue(await BuildingOptionsBussines.ResendNotSentAsync());
+
+                    var list = new List<Task<ReturnedSaveFuncInfo>>
+                    {
+                        Task.Run(BuildingAccountTypeBussines.ResendNotSentAsync),
+                        Task.Run(BuildingConditionBussines.ResendNotSentAsync),
+                        Task.Run(BuildingTypeBussines.ResendNotSentAsync),
+                        Task.Run(BuildingViewBussines.ResendNotSentAsync),
+                        Task.Run(DocumentTypeBussines.ResendNotSentAsync),
+                        Task.Run(FloorCoverBussines.ResendNotSentAsync),
+                        Task.Run(KitchenServiceBussines.ResendNotSentAsync),
+                        Task.Run(RentalAuthorityBussines.ResendNotSentAsync),
+                        Task.Run(BuildingOptionsBussines.ResendNotSentAsync)
+                    };
+                    var ret = await Task.WhenAll(list);
+                    res.AddReturnedValue(ret);
                     if (res.HasError) continue;
                     res.AddReturnedValue(await BuildingBussines.ResendNotSentAsync());
                     res.AddReturnedValue(await BuildingRequestBussines.ResendNotSentAsync());

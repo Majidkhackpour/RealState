@@ -21,42 +21,30 @@ namespace WebHesabBussines
         public Guid ParentGuid { get; set; }
 
 
-        private async Task SaveAsync()
+        private async Task<ReturnedSaveFuncInfoWithValue<ResponseStatus>> SaveAsync()
         {
+            var ret = new ReturnedSaveFuncInfoWithValue<ResponseStatus>();
             try
             {
                 var res = await Extentions.PostToApi<WebPhoneBook, WebPhoneBook>(this, Url, WebCustomer.Customer.Guid);
-                if (res.ResponseStatus != ResponseStatus.Success)
-                    return;
+                ret.value = res?.ResponseStatus??ResponseStatus.ErrorInServer;
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(WebPhoneBook cls)
-        {
-            var res = new ReturnedSaveFuncInfo();
-            try
-            {
-                await cls.SaveAsync();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
+                ret.AddReturnedValue(ex);
             }
 
-            return res;
+            return ret;
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<WebPhoneBook> cls)
+        public static async Task<ReturnedSaveFuncInfoWithValue<ResponseStatus>> SaveAsync(WebPhoneBook cls)
         {
-            var res = new ReturnedSaveFuncInfo();
+            var res = new ReturnedSaveFuncInfoWithValue<ResponseStatus>();
             try
             {
-                if (cls == null || cls.Count <= 0) return res;
-                foreach (var item in cls)
-                    res.AddReturnedValue(await SaveAsync(item));
+                var ret = await cls.SaveAsync();
+                res.AddReturnedValue(ret);
+                ret.value = res.value;
             }
             catch (Exception ex)
             {

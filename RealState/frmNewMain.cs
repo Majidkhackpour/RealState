@@ -210,6 +210,7 @@ namespace RealState
                             frm = new frmManagementPass();
                             if (frm.ShowDialog(this) == DialogResult.OK)
                                 new frmAdvance().ShowDialog(this);
+                            frm.Dispose();
                             break;
                         }
                 }

@@ -205,8 +205,9 @@ namespace EntityCache.SqlServerPersistence
                     { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@Guid", guid);
                     cmd.Parameters.AddWithValue("@st", (short)status);
-
+                    await cn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
                 }
             }
             catch (Exception ex)
@@ -226,7 +227,9 @@ namespace EntityCache.SqlServerPersistence
                 {
                     var cmd = new SqlCommand("sp_BuildingOption_Reset", cn)
                     { CommandType = CommandType.StoredProcedure };
+                    await cn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
                 }
             }
             catch (Exception ex)

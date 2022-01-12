@@ -16,41 +16,30 @@ namespace WebHesabBussines
         public string Note { get; set; }
 
 
-        private async Task SaveAsync()
+        private async Task<ReturnedSaveFuncInfoWithValue<ResponseStatus>> SendAsync()
         {
+            var ret = new ReturnedSaveFuncInfoWithValue<ResponseStatus>();
             try
             {
                 var res = await Extentions.PostToApi<WebBuildingNote, WebBuildingNote>(this, Url, WebCustomer.Customer.Guid);
-                if (res.ResponseStatus != ResponseStatus.Success)
-                    return;
+                ret.value = res?.ResponseStatus ?? ResponseStatus.ErrorInServer;
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(WebBuildingNote cls)
-        {
-            var res = new ReturnedSaveFuncInfo();
-            try
-            {
-                await cls.SaveAsync();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
+                ret.AddReturnedValue(ex);
             }
 
-            return res;
+            return ret;
         }
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(List<WebBuildingNote> cls)
+        public static async Task<ReturnedSaveFuncInfoWithValue<ResponseStatus>> SendAsync(WebBuildingNote cls)
         {
-            var res = new ReturnedSaveFuncInfo();
+            var res = new ReturnedSaveFuncInfoWithValue<ResponseStatus>();
             try
             {
-                foreach (var item in cls)
-                    res.AddReturnedValue(await SaveAsync(item));
+                var ret = await cls.SendAsync();
+                res.AddReturnedValue(ret);
+                res.value = ret.value;
             }
             catch (Exception ex)
             {

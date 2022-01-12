@@ -180,7 +180,7 @@ namespace EntityCache.SqlServerPersistence
                     var cmd = new SqlCommand("sp_BuildingRequest_GetAllNotSent", cn) { CommandType = CommandType.StoredProcedure };
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read()) list.Add(LoadDataBussines(dr));
+                    while (dr.Read()) list.Add(await LoadDataBussinesAsync(dr));
                     dr.Close();
                     cn.Close();
                 }
@@ -205,8 +205,9 @@ namespace EntityCache.SqlServerPersistence
                     { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@Guid", guid);
                     cmd.Parameters.AddWithValue("@st", (short)status);
-
+                    await cn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
                 }
             }
             catch (Exception ex)
@@ -226,7 +227,9 @@ namespace EntityCache.SqlServerPersistence
                 {
                     var cmd = new SqlCommand("sp_BuildingRequest_Reset", cn)
                     { CommandType = CommandType.StoredProcedure };
+                    await cn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
                 }
             }
             catch (Exception ex)
@@ -282,7 +285,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        private BuildingRequestBussines LoadDataBussines(SqlDataReader dr)
+        private async Task<BuildingRequestBussines> LoadDataBussinesAsync(SqlDataReader dr)
         {
             var res = new BuildingRequestBussines();
             try
@@ -314,6 +317,7 @@ namespace EntityCache.SqlServerPersistence
                 res.ShortDesc = dr["ShortDesc"].ToString();
                 res.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
                 res.ServerStatus = (ServerStatus)dr["ServerStatus"];
+                res.RegionList = await BuildingRequestRegionBussines.GetAllAsync(res.Guid);
             }
             catch (Exception ex)
             {

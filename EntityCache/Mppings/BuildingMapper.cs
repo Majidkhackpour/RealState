@@ -92,7 +92,8 @@ namespace EntityCache.Mppings
                 VillaType = cls.VillaType,
                 WallCovering = cls.WallCovering,
                 WidthOfPassage = cls.WidthOfPassage,
-                Parent = cls.Parent
+                Parent = cls.Parent,
+                NoteList = BuildingNoteMapper.Instance.MapList(cls.NoteList)
             };
         }
         public List<WebBuilding> MapList(List<BuildingBussines> cls)

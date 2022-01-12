@@ -160,10 +160,11 @@ namespace EntityCache.SqlServerPersistence
                 {
                     var cmd = new SqlCommand("sp_State_SetSaveResult", cn)
                     { CommandType = CommandType.StoredProcedure };
+                    await cn.OpenAsync();
                     cmd.Parameters.AddWithValue("@Guid", guid);
                     cmd.Parameters.AddWithValue("@st", (short)status);
-
                     await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
                 }
             }
             catch (Exception ex)
@@ -183,7 +184,9 @@ namespace EntityCache.SqlServerPersistence
                 {
                     var cmd = new SqlCommand("sp_State_Reset", cn)
                     { CommandType = CommandType.StoredProcedure };
+                    await cn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
                 }
             }
             catch (Exception ex)
