@@ -106,14 +106,16 @@ namespace Building.BuildingAccountType
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuView_Click(object sender, EventArgs e)
+        private async void mnuView_Click(object sender, EventArgs e)
         {
             try
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmBuildingAccountType(guid, true);
+                var obj = await BuildingAccountTypeBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmBuildingAccountType(obj, true);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -134,7 +136,9 @@ namespace Building.BuildingAccountType
                     return;
                 }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmBuildingAccountType(guid, false);
+                var obj = await BuildingAccountTypeBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmBuildingAccountType(obj, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(txtSearch.Text);
             }
@@ -147,7 +151,7 @@ namespace Building.BuildingAccountType
         {
             try
             {
-                var frm = new frmBuildingAccountType();
+                var frm = new frmBuildingAccountType(new BuildingAccountTypeBussines(), false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync();
             }

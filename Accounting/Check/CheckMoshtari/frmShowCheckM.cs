@@ -229,7 +229,7 @@ namespace Accounting.Check.CheckMoshtari
 
                 if (tafsil.HesabType == HesabType.Bank)
                 {
-                    var frm = new frmBankMain(guid, true);
+                    var frm = new frmBankMain(await BankBussines.GetAsync(guid), true);
                     frm.ShowDialog(this);
                     return;
                 }

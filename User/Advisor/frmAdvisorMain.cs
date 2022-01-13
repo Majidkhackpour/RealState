@@ -80,20 +80,24 @@ namespace User.Advisor
             }
         }
 
-        public frmAdvisorMain()
+        public frmAdvisorMain(AdvisorBussines obj, bool isShowMode)
         {
-            InitializeComponent();
-            cls = new AdvisorBussines();
-            ucHeader.Text = "افزودن مشاور جدید";
-        }
-        public frmAdvisorMain(Guid guid, bool isShowMode)
-        {
-            InitializeComponent();
-            cls = AdvisorBussines.Get(guid);
-            ucHeader.Text = !isShowMode ? $"ویرایش مشاور {cls.Name}" : $"مشاهده مشاور {cls.Name}";
-            ucHeader.IsModified = true;
-            grp.Enabled = !isShowMode;
-            btnFinish.Enabled = !isShowMode;
+            try
+            {
+                InitializeComponent();
+                cls = obj;
+                if (cls.Guid != Guid.Empty)
+                    ucHeader.Text = "افزودن مشاور جدید";
+                else
+                    ucHeader.Text = !isShowMode ? $"ویرایش مشاور {cls.Name}" : $"مشاهده مشاور {cls.Name}";
+                ucHeader.IsModified = true;
+                grp.Enabled = !isShowMode;
+                btnFinish.Enabled = !isShowMode;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private void frmAdvisorMain_Load(object sender, EventArgs e) => SetData();

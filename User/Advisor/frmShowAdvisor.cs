@@ -102,7 +102,7 @@ namespace User.Advisor
         {
             try
             {
-                var frm = new frmAdvisorMain();
+                var frm = new frmAdvisorMain(new AdvisorBussines(), false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync();
             }
@@ -131,7 +131,9 @@ namespace User.Advisor
                     return;
                 }
 
-                var frm = new frmAdvisorMain(guid, false);
+                var obj = await AdvisorBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmAdvisorMain(obj, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(txtSearch.Text);
             }
@@ -140,14 +142,16 @@ namespace User.Advisor
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuView_Click(object sender, EventArgs e)
+        private async void mnuView_Click(object sender, EventArgs e)
         {
             try
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmAdvisorMain(guid, true);
+                var obj = await AdvisorBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmAdvisorMain(obj, true);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)

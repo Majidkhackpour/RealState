@@ -1,4 +1,5 @@
 ﻿using EntityCache.Assistence;
+using Persistence;
 using Services;
 using Services.Interfaces.Building;
 using System;
@@ -7,11 +8,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using EntityCache.Mppings;
-using Nito.AsyncEx;
-using Persistence;
-using Services.DefaultCoding;
-using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
@@ -106,7 +102,6 @@ namespace EntityCache.Bussines
             }
         }
         public static async Task<BankBussines> GetAsync(Guid guid) => await UnitOfWork.Bank.GetAsync(Cache.ConnectionString, guid);
-        public static BankBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public async Task<bool> CheckCodeAsync(Guid guid, string code) => await UnitOfWork.Tafsil.CheckCodeAsync(Cache.ConnectionString, guid, code);
         private async Task<ReturnedSaveFuncInfo> CheckValidationAsync()
         {

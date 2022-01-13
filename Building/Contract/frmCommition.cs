@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
+using Building.UserControls.Contract.Public;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Services;
@@ -10,7 +12,7 @@ namespace Building.Contract
     public partial class frmCommition : MetroForm
     {
         private ContractBussines _con;
-        private void SetData()
+        private async Task SetDataAsync()
         {
             try
             {
@@ -32,8 +34,8 @@ namespace Building.Contract
                 }
                 else CalculateCommition();
 
-                UcV1.BazatyabGuid = _con.BazaryabGuid;
-                UcV2.BazatyabGuid = _con.Bazaryab2Guid;
+                await UcV1.SetBazaryabGuidAsync(_con.BazaryabGuid);
+                await UcV2.SetBazaryabGuidAsync(_con.Bazaryab2Guid);
                 UcV1.Price = _con.BazaryabPrice;
                 UcV2.Price = _con.Bazaryab2Price;
             }
@@ -75,6 +77,7 @@ namespace Building.Contract
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
         public frmCommition(ContractBussines contract, bool isShow)
         {
             try
@@ -108,7 +111,7 @@ namespace Building.Contract
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void frmCommition_Load(object sender, System.EventArgs e)
+        private async void frmCommition_Load(object sender, System.EventArgs e)
         {
             try
             {
@@ -118,7 +121,7 @@ namespace Building.Contract
                     return;
                 }
 
-                SetData();
+                await SetDataAsync();
             }
             catch (Exception ex)
             {

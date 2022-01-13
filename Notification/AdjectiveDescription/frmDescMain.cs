@@ -12,15 +12,10 @@ namespace Notification.AdjectiveDescription
 
         private void SetData() => txtDesc.Text = cls?.Description;
 
-        public frmDescMain()
+        public frmDescMain(AdjectiveDescriptionBussines obj)
         {
             InitializeComponent();
-            cls = new AdjectiveDescriptionBussines();
-        }
-        public frmDescMain(Guid guid)
-        {
-            InitializeComponent();
-            cls = AdjectiveDescriptionBussines.Get(guid);
+            cls = obj;
         }
 
         private void frmDescMain_Load(object sender, EventArgs e) => SetData();

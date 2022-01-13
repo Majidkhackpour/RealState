@@ -32,10 +32,10 @@ namespace Building.Contract
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCommition));
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
-            this.UcV1 = new Building.UserControls.Contract.Public.UcContractVisitor();
             this.ucTotalCommition1 = new Building.UserControls.Contract.Public.UcTotalCommition();
-            this.ucContractVisitor1 = new Building.UserControls.Contract.Public.UcContractVisitor();
+            this.UcV1 = new Building.UserControls.Contract.Public.UcContractVisitor();
             this.UcV2 = new Building.UserControls.Contract.Public.UcContractVisitor();
+            this.ucContractVisitor1 = new Building.UserControls.Contract.Public.UcContractVisitor();
             this.SuspendLayout();
             // 
             // btnFinish
@@ -80,7 +80,6 @@ namespace Building.Contract
             // UcV1
             // 
             this.UcV1.BackColor = System.Drawing.Color.Transparent;
-            this.UcV1.BazatyabGuid = new System.Guid("00000000-0000-0000-0000-000000000000");
             this.UcV1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.UcV1.Location = new System.Drawing.Point(461, 357);
             this.UcV1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -153,7 +152,6 @@ namespace Building.Contract
             // ucContractVisitor1
             // 
             this.ucContractVisitor1.BackColor = System.Drawing.Color.Transparent;
-            this.ucContractVisitor1.BazatyabGuid = new System.Guid("00000000-0000-0000-0000-000000000000");
             this.ucContractVisitor1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.ucContractVisitor1.Location = new System.Drawing.Point(461, 357);
             this.ucContractVisitor1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -175,7 +173,6 @@ namespace Building.Contract
             // UcV2
             // 
             this.UcV2.BackColor = System.Drawing.Color.Transparent;
-            this.UcV2.BazatyabGuid = new System.Guid("00000000-0000-0000-0000-000000000000");
             this.UcV2.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.UcV2.Location = new System.Drawing.Point(21, 357);
             this.UcV2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);

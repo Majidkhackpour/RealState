@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Building.Buildings;
 using EntityCache.Bussines;
@@ -24,24 +25,24 @@ namespace Building.UserControls.Contract.PishForoush
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void FillBuildingAccountType()
+        private async Task FillBuildingAccountTypeAsync()
         {
             try
             {
-                var list = BuildingAccountTypeBussines.GetAll("");
-                BuildingAccountTypeBindingSource.DataSource = list.Where(q => q.Status).ToList().OrderBy(q => q.Name);
+                var list = await BuildingAccountTypeBussines.GetAllAsync("", default);
+                BuildingAccountTypeBindingSource.DataSource = list?.Where(q => q.Status).ToList().OrderBy(q => q.Name);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void FillHitting_Colling()
+        private async Task FillHitting_CollingAsync()
         {
             try
             {
-                var hittingList = BuildingBussines.GetAllHitting();
-                var collingList = BuildingBussines.GetAllColling();
+                var hittingList = await BuildingBussines.GetAllHittingAsync();
+                var collingList = await BuildingBussines.GetAllCollingAsync();
                 cmbHitting.Items.Clear();
                 cmbColling.Items.Clear();
                 if (hittingList != null && hittingList.Count > 0)
@@ -54,12 +55,12 @@ namespace Building.UserControls.Contract.PishForoush
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void FillBuildingView()
+        private async Task FillBuildingViewAsync()
         {
             try
             {
-                var list = BuildingViewBussines.GetAll();
-                BuildingViewBindingSource.DataSource = list.Where(q => q.Status).ToList().OrderBy(q => q.Name);
+                var list = await BuildingViewBussines.GetAllAsync();
+                BuildingViewBindingSource.DataSource = list?.Where(q => q.Status)?.ToList()?.OrderBy(q => q.Name);
             }
             catch (Exception ex)
             {
@@ -93,29 +94,72 @@ namespace Building.UserControls.Contract.PishForoush
                 if (cmbAccountType.SelectedValue == null) return Guid.Empty;
                 return (Guid)cmbAccountType.SelectedValue;
             }
-            set => cmbAccountType.SelectedValue = value;
         }
-        public Guid? BuildingViewGuid
+        public async Task SetBuildingAccountTypeGuidAsync(Guid value)
         {
-            get => (Guid?)cmbBView.SelectedValue;
-            set
+            try
             {
+                if (BuildingAccountTypeBindingSource.Count <= 0)
+                    await FillBuildingAccountTypeAsync();
+                cmbAccountType.SelectedValue = value;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        public Guid? BuildingViewGuid => (Guid?)cmbBView.SelectedValue;
+        public async Task SetBuildingViewGuidAsync(Guid? value)
+        {
+            try
+            {
+                if (BuildingViewBindingSource.Count <= 0)
+                    await FillBuildingViewAsync();
                 if (value == null) return;
                 cmbBView.SelectedValue = value;
             }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
         public string Consumable { get => txtConsumble.Text; set => txtConsumble.Text = value; }
-        public string Hitting { get => cmbHitting.Text; set => cmbHitting.Text = value; }
-        public string Colling { get => cmbColling.Text; set => cmbColling.Text = value; }
+        public string Hitting => cmbHitting.Text;
+        public async Task SetHittingAsync(string value)
+        {
+            try
+            {
+                if (cmbHitting.Items?.Count <= 0 || cmbColling.Items?.Count >= 0)
+                    await FillHitting_CollingAsync();
+                cmbHitting.Text = value;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        public async Task SetCollingAsync(string value)
+        {
+            try
+            {
+                if (cmbHitting.Items?.Count <= 0 || cmbColling.Items?.Count >= 0)
+                    await FillHitting_CollingAsync();
+                cmbColling.Text = value;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        public string Colling => cmbColling.Text;
         public Guid OwnerGuid { get; set; }
+
         public UcContractPishForoush_3()
         {
             InitializeComponent();
-            FillBuildingAccountType();
             FillCmbSide();
-            FillHitting_Colling();
-            FillBuildingView();
         }
+
         private void RaiseBuildingSelect(Guid guid)
         {
             try
@@ -128,13 +172,13 @@ namespace Building.UserControls.Contract.PishForoush
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void btnChooseBuilding_Click(object sender, EventArgs e)
+        private async void btnChooseBuilding_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmShowBuildings(true, new BuildingFilter() { Status = true, OwnerGuid = OwnerGuid });
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
-                var bu = BuildingBussines.Get(frm.SelectedGuid);
+                var bu = await BuildingBussines.GetAsync(frm.SelectedGuid);
                 if (bu == null) return;
                 RaiseBuildingSelect(frm.SelectedGuid);
                 Dong = bu.Dang;
@@ -145,10 +189,10 @@ namespace Building.UserControls.Contract.PishForoush
                 TabaqeCount = bu.TedadTabaqe;
                 VahedCount = bu.VahedPerTabaqe;
                 Side = bu.Side;
-                BuildingAccountTypeGuid = bu.BuildingAccountTypeGuid;
-                BuildingViewGuid = bu.BuildingViewGuid;
-                Hitting = bu.Hiting;
-                Colling = bu.Colling;
+                await SetBuildingAccountTypeGuidAsync(bu.BuildingAccountTypeGuid);
+                await SetBuildingViewGuidAsync(bu.BuildingViewGuid);
+                await SetHittingAsync(bu.Hiting);
+                await SetCollingAsync(bu.Colling);
             }
             catch (Exception ex)
             {

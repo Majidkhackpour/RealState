@@ -1,7 +1,9 @@
 ﻿using EntityCache.Bussines;
 using Services;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Building.UserControls.Contract.Public
@@ -9,13 +11,19 @@ namespace Building.UserControls.Contract.Public
     public partial class UcContractVisitor : UserControl
     {
         private decimal _totalPrice = 0;
-        public Guid? BazatyabGuid
+        public Guid? BazatyabGuid => (Guid?)cmbBazaryab.SelectedValue;
+        public async Task SetBazaryabGuidAsync(Guid? value)
         {
-            get => (Guid?)cmbBazaryab.SelectedValue;
-            set
+            try
             {
+                if (bazaryabBindingSource.Count <= 0)
+                    await LoadBazaryabAsync();
                 if (value != null && value != Guid.Empty)
                     cmbBazaryab.SelectedValue = value;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
         public decimal Price { get => txtBazaryabPrice.TextDecimal; set => txtBazaryabPrice.TextDecimal = value; }
@@ -30,11 +38,11 @@ namespace Building.UserControls.Contract.Public
                 txtPercent.Text = txtPercent.Text.Replace(".", "/");
             }
         }
-        private void LoadBazaryab()
+        private async Task LoadBazaryabAsync()
         {
             try
             {
-                var list = AdvisorBussines.GetAll();
+                var list = await AdvisorBussines.GetAllAsync() ?? new List<AdvisorBussines>();
                 list.Add(new AdvisorBussines()
                 {
                     Guid = Guid.Empty,
@@ -48,11 +56,7 @@ namespace Building.UserControls.Contract.Public
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public UcContractVisitor()
-        {
-            InitializeComponent();
-            LoadBazaryab();
-        }
+        public UcContractVisitor() => InitializeComponent();
         private void txtBazaryabPrice_OnTextChanged()
         {
             try

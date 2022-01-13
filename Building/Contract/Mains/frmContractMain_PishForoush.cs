@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
+using Building.UserControls.Contract.PishForoush;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Services;
@@ -38,11 +39,11 @@ namespace Building.Contract
                 ucContractPishForoush_31.VahedNo = bu?.VahedNo ?? 0;
                 ucContractPishForoush_31.VahedCount = bu?.VahedPerTabaqe ?? 0;
                 ucContractPishForoush_31.Side = bu?.Side;
-                ucContractPishForoush_31.BuildingAccountTypeGuid = bu?.BuildingAccountTypeGuid ?? Guid.Empty;
-                ucContractPishForoush_31.BuildingViewGuid = bu?.BuildingViewGuid;
+                await ucContractPishForoush_31.SetBuildingAccountTypeGuidAsync(bu?.BuildingAccountTypeGuid ?? Guid.Empty);
+                await ucContractPishForoush_31.SetBuildingViewGuidAsync(bu?.BuildingViewGuid);
                 ucContractPishForoush_31.Consumable = cls.BuildingCosumable;
-                ucContractPishForoush_31.Hitting = bu?.Hiting;
-                ucContractPishForoush_31.Colling = bu?.Colling;
+                await ucContractPishForoush_31.SetHittingAsync(bu?.Hiting);
+                await ucContractPishForoush_31.SetCollingAsync(bu?.Colling);
 
                 ucContractPishForoush_41.TotalPrice = cls.TotalPrice;
                 ucContractPishForoush_41.NaqdPrice = cls.MinorPrice;
@@ -118,6 +119,7 @@ namespace Building.Contract
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
         public frmContractMain_PishForoush(ContractBussines _cls, bool isShowMode = false)
         {
             try

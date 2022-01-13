@@ -80,7 +80,7 @@ namespace Notification.AdjectiveDescription
         {
             try
             {
-                var frm = new frmDescMain();
+                var frm = new frmDescMain(new AdjectiveDescriptionBussines());
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync();
             }
@@ -102,7 +102,9 @@ namespace Notification.AdjectiveDescription
                     return;
                 }
 
-                var frm = new frmDescMain(guid);
+                var obj = await AdjectiveDescriptionBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmDescMain(obj);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(txtSearch.Text);
             }

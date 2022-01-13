@@ -152,7 +152,7 @@ namespace Accounting.Hesab
                 }
                 if (tafsil.HesabType == HesabType.Bank)
                 {
-                    var frm = new frmBankMain(guid, false);
+                    var frm = new frmBankMain(await BankBussines.GetAsync(guid), false);
                     if (frm.ShowDialog(this) == DialogResult.OK)
                         await LoadDataAsync(txtSearch.Text);
                     return;
@@ -254,14 +254,14 @@ namespace Accounting.Hesab
                 else await LoadDataAsync(txtSearch.Text);
             }
         }
-        private void mnuView_Click(object sender, EventArgs e)
+        private async void mnuView_Click(object sender, EventArgs e)
         {
             try
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var tafsil = TafsilBussines.Get(guid);
+                var tafsil = await TafsilBussines.GetAsync(guid);
                 if (tafsil == null)
                 {
                     frmNotification.PublicInfo.ShowMessage("حساب انتخاب شده معتبر نمی باشد");
@@ -275,7 +275,7 @@ namespace Accounting.Hesab
                 }
                 if (tafsil.HesabType == HesabType.Bank)
                 {
-                    var frm = new frmBankMain(guid, true);
+                    var frm = new frmBankMain(await BankBussines.GetAsync(guid), true);
                     frm.ShowDialog(this);
                     return;
                 }

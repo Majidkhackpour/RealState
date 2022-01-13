@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
 using Building.BuildingMatchesItem;
+using Building.UserControls;
 using Building.UserControls.Other;
 using Building.UserControls.Rahn;
 using Building.UserControls.Sell;
@@ -67,8 +68,8 @@ namespace Building.Buildings
 
                 if (cls.Guid == Guid.Empty) await SetType_AccTypeAsync();
 
-                ucType.BuildingAccountTypeGuid = cls.BuildingAccountTypeGuid;
-                ucType.BuildingTypeGuid = cls.BuildingTypeGuid;
+                await ucType.SetBuildingAccountTypeGuidAsync(cls.BuildingAccountTypeGuid);
+                await ucType.SetBuildingTypeGuidAsync(cls.BuildingTypeGuid);
 
                 UcNotes.Notes = cls.NoteList;
 
@@ -368,7 +369,7 @@ namespace Building.Buildings
                 {
                     var reg = await RegionsBussines.GetAsync(cls.RegionGuid);
                     var desc = $"کد ملک:( {cls.Code} ) ** محدوده:( {reg?.Name} ) ** آدرس:( {cls.Address} )";
-                    await UserLogBussines.SaveBuildingLogAsync(EnLogAction.AddToPersonalFiles, cls.Guid,desc);
+                    await UserLogBussines.SaveBuildingLogAsync(EnLogAction.AddToPersonalFiles, cls.Guid, desc);
                     res.AddReturnedValue(await cls.SaveAsync(false));
                 }
                 else
@@ -432,6 +433,7 @@ namespace Building.Buildings
             }
         }
 
+        
         public frmBuilding(BuildingBussines bu)
         {
             InitializeComponent();

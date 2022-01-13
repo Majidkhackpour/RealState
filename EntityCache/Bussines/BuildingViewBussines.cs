@@ -37,7 +37,7 @@ namespace EntityCache.Bussines
 
 
 
-        public static async Task<List<BuildingViewBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.BuildingView.GetAllAsync(Cache.ConnectionString, token);
+        public static async Task<List<BuildingViewBussines>> GetAllAsync(CancellationToken token=default) => await UnitOfWork.BuildingView.GetAllAsync(Cache.ConnectionString, token);
         public static List<BuildingViewBussines> GetAll(CancellationToken token = default) => AsyncContext.Run(() => GetAllAsync(token));
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<BuildingViewBussines> list, SqlTransaction tr = null)
         {

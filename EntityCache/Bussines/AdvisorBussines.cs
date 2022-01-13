@@ -1,16 +1,13 @@
-﻿using System;
+﻿using EntityCache.Assistence;
+using Persistence;
+using Services;
+using Services.Interfaces.Building;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using EntityCache.Assistence;
-using EntityCache.Mppings;
-using Nito.AsyncEx;
-using Persistence;
-using Services;
-using Services.Interfaces.Building;
-using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
@@ -28,9 +25,8 @@ namespace EntityCache.Bussines
         public decimal Account_ => Math.Abs(Account);
         public string Diagnosis => Account.AccountDiagnosis();
 
-        
-        public static async Task<List<AdvisorBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Advisor.GetAllAsync(Cache.ConnectionString, token);
-        public static List<AdvisorBussines> GetAll() => AsyncContext.Run(() => GetAllAsync(default));
+
+        public static async Task<List<AdvisorBussines>> GetAllAsync(CancellationToken token=default) => await UnitOfWork.Advisor.GetAllAsync(Cache.ConnectionString, token);
         public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -101,7 +97,6 @@ namespace EntityCache.Bussines
             }
         }
         public static async Task<AdvisorBussines> GetAsync(Guid guid) => await UnitOfWork.Advisor.GetAsync(Cache.ConnectionString, guid);
-        public static AdvisorBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         private ReturnedSaveFuncInfo CheckValidation()
         {
             var res = new ReturnedSaveFuncInfo();

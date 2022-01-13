@@ -39,7 +39,6 @@ namespace Building.Contract
             this.panel1 = new System.Windows.Forms.Panel();
             this.ucContractHeader1 = new Building.UserControls.Contract.Public.UcContractHeader();
             this.ucContractPishForoush_21 = new Building.UserControls.Contract.PishForoush.UcContractPishForoush_2();
-            this.ucContractPishForoush_31 = new Building.UserControls.Contract.PishForoush.UcContractPishForoush_3();
             this.ucContractPishForoush_41 = new Building.UserControls.Contract.PishForoush.UcContractPishForoush_4();
             this.ucContractPishForoush_51 = new Building.UserControls.Contract.PishForoush.UcContractPishForoush_5();
             this.ucContractPishForoush_61 = new Building.UserControls.Contract.PishForoush.UcContractPishForoush_6();
@@ -50,6 +49,7 @@ namespace Building.Contract
             this.ucContractPishForoush_111 = new Building.UserControls.Contract.PishForoush.UcContractPishForoush_11();
             this.ucContractPishForoush_Notice1 = new Building.UserControls.Contract.PishForoush.UcContractPishForoush_Notice();
             this.ucContractDescription1 = new Building.UserControls.Contract.Public.UcContractDescription();
+            this.ucContractPishForoush_31 = new Building.UserControls.Contract.PishForoush.UcContractPishForoush_3();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -116,7 +116,7 @@ namespace Building.Contract
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.Location = new System.Drawing.Point(4, 226);
             this.splitContainer1.Name = "splitContainer1";
@@ -181,8 +181,8 @@ namespace Building.Contract
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
             this.panel1.Controls.Add(this.ucContractDescription1);
@@ -206,7 +206,7 @@ namespace Building.Contract
             // 
             // ucContractHeader1
             // 
-            this.ucContractHeader1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ucContractHeader1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ucContractHeader1.BackColor = System.Drawing.Color.Transparent;
             this.ucContractHeader1.CodeInArchive = "";
@@ -225,7 +225,7 @@ namespace Building.Contract
             // 
             // ucContractPishForoush_21
             // 
-            this.ucContractPishForoush_21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ucContractPishForoush_21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ucContractPishForoush_21.BackColor = System.Drawing.Color.Transparent;
             this.ucContractPishForoush_21.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -238,16 +238,12 @@ namespace Building.Contract
             // 
             // ucContractPishForoush_31
             // 
-            this.ucContractPishForoush_31.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ucContractPishForoush_31.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ucContractPishForoush_31.BackColor = System.Drawing.Color.Transparent;
-            this.ucContractPishForoush_31.BuildingAccountTypeGuid = new System.Guid("3497ca54-5ef1-4449-be84-540838ee78c4");
-            this.ucContractPishForoush_31.BuildingViewGuid = null;
-            this.ucContractPishForoush_31.Colling = "";
             this.ucContractPishForoush_31.Consumable = "";
             this.ucContractPishForoush_31.Dong = 1F;
             this.ucContractPishForoush_31.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucContractPishForoush_31.Hitting = "";
             this.ucContractPishForoush_31.Location = new System.Drawing.Point(4, 566);
             this.ucContractPishForoush_31.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucContractPishForoush_31.Masahat = 0F;
@@ -265,7 +261,7 @@ namespace Building.Contract
             // 
             // ucContractPishForoush_41
             // 
-            this.ucContractPishForoush_41.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ucContractPishForoush_41.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ucContractPishForoush_41.BackColor = System.Drawing.Color.Transparent;
             this.ucContractPishForoush_41.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -288,7 +284,7 @@ namespace Building.Contract
             // 
             // ucContractPishForoush_51
             // 
-            this.ucContractPishForoush_51.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ucContractPishForoush_51.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ucContractPishForoush_51.BackColor = System.Drawing.Color.Transparent;
             this.ucContractPishForoush_51.DischargeDate = new System.DateTime(2022, 1, 5, 0, 0, 0, 0);
@@ -305,7 +301,7 @@ namespace Building.Contract
             // 
             // ucContractPishForoush_61
             // 
-            this.ucContractPishForoush_61.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ucContractPishForoush_61.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ucContractPishForoush_61.BackColor = System.Drawing.Color.Transparent;
             this.ucContractPishForoush_61.FirstDelay = new decimal(new int[] {
@@ -330,7 +326,7 @@ namespace Building.Contract
             // 
             // ucContractPishForoush_71
             // 
-            this.ucContractPishForoush_71.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ucContractPishForoush_71.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ucContractPishForoush_71.BackColor = System.Drawing.Color.Transparent;
             this.ucContractPishForoush_71.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -343,7 +339,7 @@ namespace Building.Contract
             // 
             // ucContractPishForoush_81
             // 
-            this.ucContractPishForoush_81.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ucContractPishForoush_81.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ucContractPishForoush_81.BackColor = System.Drawing.Color.Transparent;
             this.ucContractPishForoush_81.DocumentAdjustment = "";
@@ -357,7 +353,7 @@ namespace Building.Contract
             // 
             // ucContractPishForoush_91
             // 
-            this.ucContractPishForoush_91.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ucContractPishForoush_91.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ucContractPishForoush_91.BackColor = System.Drawing.Color.Transparent;
             this.ucContractPishForoush_91.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -370,7 +366,7 @@ namespace Building.Contract
             // 
             // ucContractPishForoush_101
             // 
-            this.ucContractPishForoush_101.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ucContractPishForoush_101.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ucContractPishForoush_101.BackColor = System.Drawing.Color.Transparent;
             this.ucContractPishForoush_101.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -383,7 +379,7 @@ namespace Building.Contract
             // 
             // ucContractPishForoush_111
             // 
-            this.ucContractPishForoush_111.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ucContractPishForoush_111.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ucContractPishForoush_111.BackColor = System.Drawing.Color.Transparent;
             this.ucContractPishForoush_111.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -396,7 +392,7 @@ namespace Building.Contract
             // 
             // ucContractPishForoush_Notice1
             // 
-            this.ucContractPishForoush_Notice1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ucContractPishForoush_Notice1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ucContractPishForoush_Notice1.BackColor = System.Drawing.Color.Transparent;
             this.ucContractPishForoush_Notice1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -409,7 +405,7 @@ namespace Building.Contract
             // 
             // ucContractDescription1
             // 
-            this.ucContractDescription1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ucContractDescription1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ucContractDescription1.BackColor = System.Drawing.Color.Transparent;
             this.ucContractDescription1.Description = "";

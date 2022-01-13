@@ -1,5 +1,4 @@
 ﻿using EntityCache.Assistence;
-using Nito.AsyncEx;
 using Persistence;
 using Services;
 using Services.Interfaces.Building;
@@ -82,7 +81,6 @@ namespace EntityCache.Bussines
             }
         }
         public static async Task<AdjectiveDescriptionBussines> GetAsync(Guid guid) => await UnitOfWork.AdjectiveDescription.GetAsync(Cache.ConnectionString, guid);
-        public static AdjectiveDescriptionBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public async Task<ReturnedSaveFuncInfo> RemoveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();

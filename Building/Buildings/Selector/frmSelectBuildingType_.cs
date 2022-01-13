@@ -176,7 +176,7 @@ namespace Building.Buildings.Selector
             Make_Buttons();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private async void timer1_Tick(object sender, EventArgs e)
         {
             try
             {

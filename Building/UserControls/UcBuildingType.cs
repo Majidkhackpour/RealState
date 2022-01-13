@@ -2,6 +2,7 @@
 using Services;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Building.UserControls
@@ -15,7 +16,19 @@ namespace Building.UserControls
                 if (cmbBView.SelectedValue == null) return Guid.Empty;
                 return (Guid)cmbBView.SelectedValue;
             }
-            set => cmbBView.SelectedValue = value;
+        }
+        public async Task SetBuildingAccountTypeGuidAsync(Guid value)
+        {
+            try
+            {
+                if (BuildingAccountTypeBindingSource.Count <= 0)
+                    await FillBuildingAccountTypeAsync();
+                cmbAccountType.SelectedValue = value;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
         public Guid BuildingAccountTypeGuid
         {
@@ -24,32 +37,39 @@ namespace Building.UserControls
                 if (cmbAccountType.SelectedValue == null) return Guid.Empty;
                 return (Guid)cmbAccountType.SelectedValue;
             }
-            set => cmbAccountType.SelectedValue = value;
         }
-        public UcBuildingType()
-        {
-            InitializeComponent();
-            FillBuildingAccountType();
-            FillBuildingType();
-        }
-        private void FillBuildingType()
+        public async Task SetBuildingTypeGuidAsync(Guid value)
         {
             try
             {
-                var list = BuildingTypeBussines.GetAll();
-                BuildingTypeBindingSource.DataSource = list.Where(q => q.Status).ToList().OrderBy(q => q.Name);
+                if (BuildingTypeBindingSource.Count <= 0)
+                    await FillBuildingTypeAsync();
+                cmbBView.SelectedValue = value;
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void FillBuildingAccountType()
+        public UcBuildingType() => InitializeComponent();
+        private async Task FillBuildingTypeAsync()
         {
             try
             {
-                var list = BuildingAccountTypeBussines.GetAll("");
-                BuildingAccountTypeBindingSource.DataSource = list.Where(q => q.Status).ToList().OrderBy(q => q.Name);
+                var list = await BuildingTypeBussines.GetAllAsync();
+                BuildingTypeBindingSource.DataSource = list?.Where(q => q.Status).ToList().OrderBy(q => q.Name);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task FillBuildingAccountTypeAsync()
+        {
+            try
+            {
+                var list = await BuildingAccountTypeBussines.GetAllAsync();
+                BuildingAccountTypeBindingSource.DataSource = list?.Where(q => q.Status).ToList().OrderBy(q => q.Name);
             }
             catch (Exception ex)
             {

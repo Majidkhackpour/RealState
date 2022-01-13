@@ -43,7 +43,6 @@ namespace Building.Buildings
             this.groupPanel2 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.txtShortDesc = new System.Windows.Forms.TextBox();
             this.UcOptions = new Building.UserControls.UcBuildingOptions();
-            this.ucType = new Building.UserControls.UcBuildingType();
             this.UcHitting_Colling = new Building.UserControls.UcBuildingHitting();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.pnlContent = new System.Windows.Forms.Panel();
@@ -53,6 +52,7 @@ namespace Building.Buildings
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.btnSavePersonal = new DevComponents.DotNetBar.ButtonX();
+            this.ucType=new UcBuildingType();
             this.panel1.SuspendLayout();
             this.groupPanel2.SuspendLayout();
             this.groupPanel1.SuspendLayout();
@@ -202,8 +202,6 @@ namespace Building.Buildings
             this.ucType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ucType.BackColor = System.Drawing.Color.Transparent;
-            this.ucType.BuildingAccountTypeGuid = new System.Guid("3497ca54-5ef1-4449-be84-540838ee78c4");
-            this.ucType.BuildingTypeGuid = new System.Guid("b9566d92-40bc-4789-a9e2-66ac3c0e022d");
             this.ucType.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.ucType.Location = new System.Drawing.Point(8, 692);
             this.ucType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);

@@ -16,21 +16,24 @@ namespace Building.BuildingAccountType
 
         private void SetData() => txtName.Text = cls?.Name;
 
-        public frmBuildingAccountType()
+        public frmBuildingAccountType(BuildingAccountTypeBussines obj, bool isShowMode)
         {
-            InitializeComponent();
-            cls = new BuildingAccountTypeBussines();
-            ucHeader.Text = "افزودن کاربری جدید";
-            ucHeader.IsModified = cls.IsModified;
-        }
-        public frmBuildingAccountType(Guid guid, bool isShowMode)
-        {
-            InitializeComponent();
-            cls = BuildingAccountTypeBussines.Get(guid);
-            ucHeader.Text = !isShowMode ? $"ویرایش کاربری {cls.Name}" : $"مشاهده کاربری {cls.Name}";
-            ucHeader.IsModified = cls.IsModified;
-            grp.Enabled = !isShowMode;
-            btnFinish.Enabled = !isShowMode;
+            try
+            {
+                InitializeComponent();
+                cls = obj;
+                if (!cls.IsModified)
+                    ucHeader.Text = "افزودن کاربری جدید";
+                else
+                    ucHeader.Text = !isShowMode ? $"ویرایش کاربری {cls.Name}" : $"مشاهده کاربری {cls.Name}";
+                ucHeader.IsModified = cls.IsModified;
+                grp.Enabled = !isShowMode;
+                btnFinish.Enabled = !isShowMode;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private void txtName_Enter(object sender, EventArgs e) => txtSetter.Focus(txtName);

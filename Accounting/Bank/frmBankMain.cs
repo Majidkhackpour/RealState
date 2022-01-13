@@ -84,21 +84,24 @@ namespace Accounting.Bank
             }
         }
 
-        public frmBankMain()
+        public frmBankMain(BankBussines obj, bool isShowMode)
         {
-            InitializeComponent();
-            cls = new BankBussines();
-            ucHeader.Text = "افزودن حساب بانکی جدید";
-            ucHeader.IsModified = cls.IsModified;
-        }
-        public frmBankMain(Guid guid, bool isShowMode)
-        {
-            InitializeComponent();
-            cls = BankBussines.Get(guid);
-            ucHeader.Text = !isShowMode ? $"ویرایش حساب بانکی {cls.Name}" : $"مشاهده حساب بانکی {cls.Name}";
-            ucHeader.IsModified = cls.IsModified;
-            grp.Enabled = !isShowMode;
-            btnFinish.Enabled = !isShowMode;
+            try
+            {
+                InitializeComponent();
+                cls = obj;
+                if (!cls.IsModified)
+                    ucHeader.Text = "افزودن حساب بانکی جدید";
+                else
+                    ucHeader.Text = !isShowMode ? $"ویرایش حساب بانکی {cls.Name}" : $"مشاهده حساب بانکی {cls.Name}";
+                ucHeader.IsModified = cls.IsModified;
+                grp.Enabled = !isShowMode;
+                btnFinish.Enabled = !isShowMode;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private void frmBankMain_Load(object sender, EventArgs e) => SetData();
