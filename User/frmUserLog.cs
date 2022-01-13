@@ -65,7 +65,7 @@ namespace User
         {
             DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
         }
-        private void DGrid_KeyDown(object sender, KeyEventArgs e)
+        private async void DGrid_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace User
                 var guid = (Guid?)DGrid[dgObjGuid.Index, DGrid.CurrentRow.Index].Value;
                 var part = (EnLogPart)DGrid[dgLogPart.Index, DGrid.CurrentRow.Index].Value;
 
-                Switcher.Switch(part, guid);
+                await Switcher.SwitchAsync(part, guid);
             }
             catch (Exception ex)
             {

@@ -47,7 +47,7 @@ namespace Building.Buildings
                 UcCity.RegionGuid = cls.RegionGuid;
                 UcCity.Address = cls.Address;
 
-                UcCode.Code = cls.Code;
+                await UcCode.SetCodeAsync(cls.Code);
                 UcCode.CreateDate = cls.CreateDate;
                 UcCode.Pirority = cls.Priority;
                 UcCode.UserGuid = cls.UserGuid;
@@ -56,15 +56,15 @@ namespace Building.Buildings
                 UcHitting_Colling.Water = cls.Water;
                 UcHitting_Colling.Gas = cls.Gas;
                 UcHitting_Colling.Tell = cls.Tell;
-                UcHitting_Colling.Hitting = cls.Hiting;
-                UcHitting_Colling.Colling = cls.Colling;
+                await UcHitting_Colling.SetHittingAsync(cls.Hiting);
+                await UcHitting_Colling.SetCollingAsync(cls.Colling);
 
-                UcOptions.OptionList = cls.OptionList;
+                await UcOptions.SetOptionListAsync(cls.OptionList);
                 txtShortDesc.Text = cls.ShortDesc;
                 ucBuildingHitting1.GalleryList = cls.GalleryList;
                 groupPanel3.MediaList = cls.MediaList;
 
-                GetContent();
+                await GetContentAsync();
 
                 if (cls.Guid == Guid.Empty) await SetType_AccTypeAsync();
 
@@ -81,89 +81,115 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void GetContent()
+        private async Task GetContentAsync()
         {
             try
             {
                 switch (cls.Parent)
                 {
                     case EnBuildingParent.SellAprtment:
-                        uc = new UcBuildingSell_Appartment() { Building = cls };
+                        uc = new UcBuildingSell_Appartment();
+                        await uc.SetBuildingAsync(cls);
                         break;
                     case EnBuildingParent.SellHome:
-                        uc = new UcBuildingSell_Home() { Building = cls };
+                        uc = new UcBuildingSell_Home();
+                        await uc.SetBuildingAsync(cls);
                         break;
                     case EnBuildingParent.SellLand:
-                        uc = new UcBuildingSell_Land() { Building = cls };
+                        uc = new UcBuildingSell_Land();
+                        await uc.SetBuildingAsync(cls);
                         break;
                     case EnBuildingParent.SellVilla:
-                        uc = new UcBuildingSell_Villa() { Building = cls };
+                        uc = new UcBuildingSell_Villa();
+                        await uc.SetBuildingAsync(cls);
                         break;
                     case EnBuildingParent.SellStore:
-                        uc = new UcBuildingSell_Store() { Building = cls };
+                        uc = new UcBuildingSell_Store();
+                        await uc.SetBuildingAsync(cls);
                         break;
                     case EnBuildingParent.SellOffice:
-                        uc = new UcBuildingSell_Office() { Building = cls };
+                        uc = new UcBuildingSell_Office();
+                        await uc.SetBuildingAsync(cls);
                         break;
                     case EnBuildingParent.SellGarden:
-                        uc = new UcBuildingSell_Garden() { Building = cls };
+                        uc = new UcBuildingSell_Garden();
+                        await uc.SetBuildingAsync(cls);
                         break;
                     case EnBuildingParent.SellOldHouse:
-                        uc = new UcBuildingSell_OldHouse() { Building = cls };
+                        uc = new UcBuildingSell_OldHouse();
+                        await uc.SetBuildingAsync(cls);
                         break;
                     case EnBuildingParent.RentAprtment:
-                        uc = new UcBuildingRahn_Appartment() { IsFullRahn = false, Building = cls };
+                        uc = new UcBuildingRahn_Appartment() { IsFullRahn = false };
+                        await uc.SetBuildingAsync(cls);
                         break;
                     case EnBuildingParent.RentHome:
-                        uc = new UcBuildingRahn_Home() { IsFullRahn = false, Building = cls };
+                        uc = new UcBuildingRahn_Home() { IsFullRahn = false };
+                        await uc.SetBuildingAsync(cls);
                         break;
                     case EnBuildingParent.RentStore:
-                        uc = new UcBuildingRahn_Store() { IsFullRahn = false, Building = cls };
+                        uc = new UcBuildingRahn_Store() { IsFullRahn = false };
+                        await uc.SetBuildingAsync(cls);
                         break;
                     case EnBuildingParent.RentOffice:
-                        uc = new UcBuildingRahn_Office() { IsFullRahn = false, Building = cls };
+                        uc = new UcBuildingRahn_Office() { IsFullRahn = false };
+                        await uc.SetBuildingAsync(cls);
                         break;
                     case EnBuildingParent.FullRentAprtment:
-                        uc = new UcBuildingRahn_Appartment() { IsFullRahn = true, Building = cls };
+                        uc = new UcBuildingRahn_Appartment() { IsFullRahn = true };
+                        await uc.SetBuildingAsync(cls);
                         break;
                     case EnBuildingParent.FullRentHome:
-                        uc = new UcBuildingRahn_Home() { IsFullRahn = true, Building = cls };
+                        uc = new UcBuildingRahn_Home() { IsFullRahn = true };
+                        await uc.SetBuildingAsync(cls);
                         break;
                     case EnBuildingParent.FullRentStore:
-                        uc = new UcBuildingRahn_Store() { IsFullRahn = true, Building = cls };
+                        uc = new UcBuildingRahn_Store() { IsFullRahn = true };
+                        await uc.SetBuildingAsync(cls);
                         break;
                     case EnBuildingParent.FullRentOffice:
-                        uc = new UcBuildingRahn_Office() { IsFullRahn = true, Building = cls };
+                        uc = new UcBuildingRahn_Office() { IsFullRahn = true };
+                        await uc.SetBuildingAsync(cls);
                         break;
                     case EnBuildingParent.PreSellAprtment:
-                        uc = new UcBuildingOther_Appartment() { IsPishForoush = true, Building = cls };
+                        uc = new UcBuildingOther_Appartment() { IsPishForoush = true };
+                        await uc.SetBuildingAsync(cls);
                         break;
                     case EnBuildingParent.PreSellHome:
-                        uc = new UcBuildingOther_Home() { IsPishForoush = true, Building = cls };
+                        uc = new UcBuildingOther_Home() { IsPishForoush = true };
+                        await uc.SetBuildingAsync(cls);
                         break;
                     case EnBuildingParent.PreSellStore:
-                        uc = new UcBuildingOther_Store() { IsPishForoush = true, Building = cls };
+                        uc = new UcBuildingOther_Store() { IsPishForoush = true };
+                        await uc.SetBuildingAsync(cls);
                         break;
                     case EnBuildingParent.PreSellOffice:
-                        uc = new UcBuildingOther_Office() { IsPishForoush = true, Building = cls };
+                        uc = new UcBuildingOther_Office() { IsPishForoush = true };
+                        await uc.SetBuildingAsync(cls);
                         break;
                     case EnBuildingParent.MoavezeAprtment:
-                        uc = new UcBuildingOther_Appartment() { IsPishForoush = false, Building = cls };
+                        uc = new UcBuildingOther_Appartment() { IsPishForoush = false };
+                        await uc.SetBuildingAsync(cls);
                         break;
                     case EnBuildingParent.MoavezeHome:
-                        uc = new UcBuildingOther_Home() { IsPishForoush = false, Building = cls };
+                        uc = new UcBuildingOther_Home() { IsPishForoush = false };
+                        await uc.SetBuildingAsync(cls);
                         break;
                     case EnBuildingParent.MoavezeStore:
-                        uc = new UcBuildingOther_Store() { IsPishForoush = false, Building = cls };
+                        uc = new UcBuildingOther_Store() { IsPishForoush = false };
+                        await uc.SetBuildingAsync(cls);
                         break;
                     case EnBuildingParent.MoavezeOffice:
-                        uc = new UcBuildingOther_Office() { IsPishForoush = true, Building = cls };
+                        uc = new UcBuildingOther_Office() { IsPishForoush = true };
+                        await uc.SetBuildingAsync(cls);
                         break;
                     case EnBuildingParent.MosharekatAprtment:
-                        uc = new UcBuildingOther_Appartment() { IsPishForoush = false, Building = cls };
+                        uc = new UcBuildingOther_Appartment() { IsPishForoush = false };
+                        await uc.SetBuildingAsync(cls);
                         break;
                     case EnBuildingParent.MosharekatHome:
-                        uc = new UcBuildingOther_Home() { IsPishForoush = false, Building = cls };
+                        uc = new UcBuildingOther_Home() { IsPishForoush = false };
+                        await uc.SetBuildingAsync(cls);
                         break;
                 }
 
@@ -336,7 +362,7 @@ namespace Building.Buildings
                 cls.Gas = UcHitting_Colling.Gas;
                 cls.Tell = UcHitting_Colling.Tell;
 
-                cls.OptionList = UcOptions.OptionList;
+                cls.OptionList = await UcOptions.GetOptionListAsync();
                 cls.ShortDesc = txtShortDesc.Text;
                 cls.GalleryList = ucBuildingHitting1.GalleryList;
                 cls.MediaList = groupPanel3.MediaList;
@@ -433,7 +459,7 @@ namespace Building.Buildings
             }
         }
 
-        
+
         public frmBuilding(BuildingBussines bu)
         {
             InitializeComponent();

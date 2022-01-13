@@ -1,6 +1,7 @@
 ﻿using EntityCache.Bussines;
 using Services;
 using System;
+using System.Threading.Tasks;
 
 namespace Building.UserControls.Sell
 {
@@ -31,38 +32,39 @@ namespace Building.UserControls.Sell
                 }
                 return _bu;
             }
-            set
+        }
+
+        public override async Task SetBuildingAsync(BuildingBussines value)
+        {
+            try
             {
-                try
+                if (value == null) return;
+                _bu = value;
+                ucZirBana1.Value = _bu.ZirBana;
+                ucDocumentType1.SanadTypeGuid = _bu.DocumentType;
+                UcDong.Value = _bu.Dang;
+                ucSaleSakht1.SaleSakht = _bu.SaleSakht;
+                ucMasahat.Value = _bu.Masahat;
+                UcWidth.Value = (int)_bu.Hashie;
+                ucTreeCount.Value = _bu.TreeCount;
+                ucTotalPrice.Price = _bu.SellPrice;
+                ucVam.Price = _bu.VamPrice;
+                ucQest.Price = _bu.QestPrice;
+                if (_bu.Dang <= 0) UcDong.DefaultValue = 6;
+                if (_bu.Masahat > 0)
                 {
-                    if (value == null) return;
-                    _bu = value;
-                    ucZirBana1.Value = _bu.ZirBana;
-                    ucDocumentType1.SanadTypeGuid = _bu.DocumentType;
-                    UcDong.Value = _bu.Dang;
-                    ucSaleSakht1.SaleSakht = _bu.SaleSakht;
-                    ucMasahat.Value = _bu.Masahat;
-                    UcWidth.Value = (int)_bu.Hashie;
-                    ucTreeCount.Value = _bu.TreeCount;
-                    ucTotalPrice.Price = _bu.SellPrice;
-                    ucVam.Price = _bu.VamPrice;
-                    ucQest.Price = _bu.QestPrice;
-                    if (_bu.Dang <= 0) UcDong.DefaultValue = 6;
-                    if (_bu.Masahat > 0)
-                    {
-                        var m = Math.Truncate(_bu.SellPrice / _bu.Masahat);
-                        ucPricePerMasahat.Price = m;
-                    }
-                    if (_bu.ZirBana > 0)
-                    {
-                        var m = Math.Truncate(_bu.SellPrice / _bu.ZirBana);
-                        ucPricePerZirBana.Price = m;
-                    }
+                    var m = Math.Truncate(_bu.SellPrice / _bu.Masahat);
+                    ucPricePerMasahat.Price = m;
                 }
-                catch (Exception ex)
+                if (_bu.ZirBana > 0)
                 {
-                    WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                    var m = Math.Truncate(_bu.SellPrice / _bu.ZirBana);
+                    ucPricePerZirBana.Price = m;
                 }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
 

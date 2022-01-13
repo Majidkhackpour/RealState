@@ -228,14 +228,14 @@ namespace Building.BuildingRequest
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuShowBuilding_Click(object sender, EventArgs e)
+        private async void mnuShowBuilding_Click(object sender, EventArgs e)
         {
             try
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var req = BuildingRequestBussines.Get(guid);
+                var req = await BuildingRequestBussines.GetAsync(guid);
                 if (req == null) return;
 
 
@@ -277,14 +277,17 @@ namespace Building.BuildingRequest
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuView_Click(object sender, EventArgs e)
+        private async void mnuView_Click(object sender, EventArgs e)
         {
             try
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmBuildingRequestsMain(guid, true);
+                var obj = await BuildingRequestBussines.GetAsync(guid);
+                if (obj == null) return;
+                var pe = await PeoplesBussines.GetAsync(obj.AskerGuid, null);
+                var frm = new frmBuildingRequestsMain(obj, pe, true);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -305,7 +308,10 @@ namespace Building.BuildingRequest
                     return;
                 }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmBuildingRequestsMain(guid, false);
+                var obj = await BuildingRequestBussines.GetAsync(guid);
+                if (obj == null) return;
+                var pe = await PeoplesBussines.GetAsync(obj.AskerGuid, null);
+                var frm = new frmBuildingRequestsMain(obj, pe, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(txtSearch.Text);
             }
@@ -318,7 +324,7 @@ namespace Building.BuildingRequest
         {
             try
             {
-                var frm = new frmBuildingRequestsMain();
+                var frm = new frmBuildingRequestsMain(new BuildingRequestBussines(), null, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync();
             }

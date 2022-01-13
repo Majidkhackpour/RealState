@@ -2,6 +2,7 @@
 using Services;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Building.UserControls
@@ -44,14 +45,39 @@ namespace Building.UserControls
                 cmbTell.SelectedIndex = (int)value;
             }
         }
-        public string Hitting { get => cmbHitting.Text; set => cmbHitting.Text = value; }
-        public string Colling { get => cmbColling.Text; set => cmbColling.Text = value; }
+        public string Hitting => cmbHitting.Text;
+        public async Task SetHittingAsync(string value)
+        {
+            try
+            {
+                if (cmbHitting.Items?.Count <= 0 || cmbColling.Items?.Count >= 0)
+                    await FillHitting_CollingAsync();
+                cmbHitting.Text = value;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        public async Task SetCollingAsync(string value)
+        {
+            try
+            {
+                if (cmbHitting.Items?.Count <= 0 || cmbColling.Items?.Count >= 0)
+                    await FillHitting_CollingAsync();
+                cmbColling.Text = value;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        public string Colling => cmbColling.Text;
 
         public UcBuildingHitting()
         {
             InitializeComponent();
             FillCmbKhadamt();
-            FillHitting_Colling();
         }
 
         private void FillCmbKhadamt()
@@ -72,12 +98,12 @@ namespace Building.UserControls
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void FillHitting_Colling()
+        private async Task FillHitting_CollingAsync()
         {
             try
             {
-                var hittingList = BuildingBussines.GetAllHitting();
-                var collingList = BuildingBussines.GetAllColling();
+                var hittingList =await BuildingBussines.GetAllHittingAsync();
+                var collingList =await BuildingBussines.GetAllCollingAsync();
                 cmbHitting.Items.Clear();
                 cmbColling.Items.Clear();
                 if (hittingList != null && hittingList.Count > 0)

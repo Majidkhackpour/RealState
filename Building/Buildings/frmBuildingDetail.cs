@@ -61,7 +61,7 @@ namespace Building.Buildings
 
                 lblTitle.Text = bu?.Parent?.GetDisplay();
 
-                GetContent();
+                await GetContentAsync();
                 BuildingOptionBindingSource.DataSource = bu?.OptionList;
                 var desc = $"کد ملک:( {bu.Code} ) ** محدوده:( {bu.RegionName} ) ** آدرس:( {bu.Address} )";
                 if (!_loadForCustomer && _isAddLog)
@@ -146,90 +146,116 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void GetContent()
+        private async Task GetContentAsync()
         {
             try
             {
-                UserControl uc = null;
+                clsBuildingColtrols uc = null;
                 switch (bu.Parent)
                 {
                     case EnBuildingParent.SellAprtment:
-                        uc = new UcBuildingSell_Appartment() { Building = bu };
+                        uc = new UcBuildingSell_Appartment();
+                        await uc.SetBuildingAsync(bu);
                         break;
                     case EnBuildingParent.SellHome:
-                        uc = new UcBuildingSell_Home() { Building = bu };
+                        uc = new UcBuildingSell_Home();
+                        await uc.SetBuildingAsync(bu);
                         break;
                     case EnBuildingParent.SellLand:
-                        uc = new UcBuildingSell_Land() { Building = bu };
+                        uc = new UcBuildingSell_Land();
+                        await uc.SetBuildingAsync(bu);
                         break;
                     case EnBuildingParent.SellVilla:
-                        uc = new UcBuildingSell_Villa() { Building = bu };
+                        uc = new UcBuildingSell_Villa();
+                        await uc.SetBuildingAsync(bu);
                         break;
                     case EnBuildingParent.SellStore:
-                        uc = new UcBuildingSell_Store() { Building = bu };
+                        uc = new UcBuildingSell_Store();
+                        await uc.SetBuildingAsync(bu);
                         break;
                     case EnBuildingParent.SellOffice:
-                        uc = new UcBuildingSell_Office() { Building = bu };
+                        uc = new UcBuildingSell_Office();
+                        await uc.SetBuildingAsync(bu);
                         break;
                     case EnBuildingParent.SellGarden:
-                        uc = new UcBuildingSell_Garden() { Building = bu };
+                        uc = new UcBuildingSell_Garden();
+                        await uc.SetBuildingAsync(bu);
                         break;
                     case EnBuildingParent.SellOldHouse:
-                        uc = new UcBuildingSell_OldHouse() { Building = bu };
+                        uc = new UcBuildingSell_OldHouse();
+                        await uc.SetBuildingAsync(bu);
                         break;
                     case EnBuildingParent.RentAprtment:
-                        uc = new UcBuildingRahn_Appartment() { IsFullRahn = false, Building = bu };
+                        uc = new UcBuildingRahn_Appartment() { IsFullRahn = false };
+                        await uc.SetBuildingAsync(bu);
                         break;
                     case EnBuildingParent.RentHome:
-                        uc = new UcBuildingRahn_Home() { IsFullRahn = false, Building = bu };
+                        uc = new UcBuildingRahn_Home() { IsFullRahn = false };
+                        await uc.SetBuildingAsync(bu);
                         break;
                     case EnBuildingParent.RentStore:
-                        uc = new UcBuildingRahn_Store() { IsFullRahn = false, Building = bu };
+                        uc = new UcBuildingRahn_Store() { IsFullRahn = false };
+                        await uc.SetBuildingAsync(bu);
                         break;
                     case EnBuildingParent.RentOffice:
-                        uc = new UcBuildingRahn_Office() { IsFullRahn = false, Building = bu };
+                        uc = new UcBuildingRahn_Office() { IsFullRahn = false };
+                        await uc.SetBuildingAsync(bu);
                         break;
                     case EnBuildingParent.FullRentAprtment:
-                        uc = new UcBuildingRahn_Appartment() { IsFullRahn = true, Building = bu };
+                        uc = new UcBuildingRahn_Appartment() { IsFullRahn = true };
+                        await uc.SetBuildingAsync(bu);
                         break;
                     case EnBuildingParent.FullRentHome:
-                        uc = new UcBuildingRahn_Home() { IsFullRahn = true, Building = bu };
+                        uc = new UcBuildingRahn_Home() { IsFullRahn = true };
+                        await uc.SetBuildingAsync(bu);
                         break;
                     case EnBuildingParent.FullRentStore:
-                        uc = new UcBuildingRahn_Store() { IsFullRahn = true, Building = bu };
+                        uc = new UcBuildingRahn_Store() { IsFullRahn = true };
+                        await uc.SetBuildingAsync(bu);
                         break;
                     case EnBuildingParent.FullRentOffice:
-                        uc = new UcBuildingRahn_Office() { IsFullRahn = true, Building = bu };
+                        uc = new UcBuildingRahn_Office() { IsFullRahn = true };
+                        await uc.SetBuildingAsync(bu);
                         break;
                     case EnBuildingParent.PreSellAprtment:
-                        uc = new UcBuildingOther_Appartment() { IsPishForoush = true, Building = bu };
+                        uc = new UcBuildingOther_Appartment() { IsPishForoush = true };
+                        await uc.SetBuildingAsync(bu);
                         break;
                     case EnBuildingParent.PreSellHome:
-                        uc = new UcBuildingOther_Home() { IsPishForoush = true, Building = bu };
+                        uc = new UcBuildingOther_Home() { IsPishForoush = true };
+                        await uc.SetBuildingAsync(bu);
                         break;
                     case EnBuildingParent.PreSellStore:
-                        uc = new UcBuildingOther_Store() { IsPishForoush = true, Building = bu };
+                        uc = new UcBuildingOther_Store() { IsPishForoush = true };
+                        await uc.SetBuildingAsync(bu);
                         break;
                     case EnBuildingParent.PreSellOffice:
-                        uc = new UcBuildingOther_Office() { IsPishForoush = true, Building = bu };
+                        uc = new UcBuildingOther_Office() { IsPishForoush = true };
+                        await uc.SetBuildingAsync(bu);
                         break;
                     case EnBuildingParent.MoavezeAprtment:
-                        uc = new UcBuildingOther_Appartment() { IsPishForoush = false, Building = bu };
+                        uc = new UcBuildingOther_Appartment() { IsPishForoush = false };
+                        await uc.SetBuildingAsync(bu);
                         break;
                     case EnBuildingParent.MoavezeHome:
-                        uc = new UcBuildingOther_Home() { IsPishForoush = false, Building = bu };
+                        uc = new UcBuildingOther_Home() { IsPishForoush = false };
+                        await uc.SetBuildingAsync(bu);
                         break;
                     case EnBuildingParent.MoavezeStore:
-                        uc = new UcBuildingOther_Store() { IsPishForoush = false, Building = bu };
+                        uc = new UcBuildingOther_Store() { IsPishForoush = false };
+                        await uc.SetBuildingAsync(bu);
                         break;
                     case EnBuildingParent.MoavezeOffice:
-                        uc = new UcBuildingOther_Office() { IsPishForoush = true, Building = bu };
+                        uc = new UcBuildingOther_Office() { IsPishForoush = true };
+                        await uc.SetBuildingAsync(bu);
                         break;
                     case EnBuildingParent.MosharekatAprtment:
-                        uc = new UcBuildingOther_Appartment() { IsPishForoush = false, Building = bu };
+                        uc = new UcBuildingOther_Appartment() { IsPishForoush = false };
+                        await uc.SetBuildingAsync(bu);
                         break;
                     case EnBuildingParent.MosharekatHome:
-                        uc = new UcBuildingOther_Home() { IsPishForoush = false, Building = bu };
+                        uc = new UcBuildingOther_Home() { IsPishForoush = false };
+                        await uc.SetBuildingAsync(bu);
                         break;
                 }
 

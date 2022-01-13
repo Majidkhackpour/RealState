@@ -314,29 +314,17 @@ namespace Building.BuildingRequest
             }
         }
 
-        public frmBuildingRequestsMain()
+        public frmBuildingRequestsMain(BuildingRequestBussines obj, PeoplesBussines _asker, bool isShowMode)
         {
             try
             {
                 InitializeComponent();
-                cls = new BuildingRequestBussines();
-                ucHeader.Text = "افزودن تقاضای جدید";
-                ucHeader.IsModified = cls.IsModified;
-                WindowState = FormWindowState.Maximized;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        public frmBuildingRequestsMain(Guid guid, bool isShowMode)
-        {
-            try
-            {
-                InitializeComponent();
-                cls = BuildingRequestBussines.Get(guid);
-                asker = PeoplesBussines.Get(cls.AskerGuid, null);
-                ucHeader.Text = !isShowMode ? $"ویرایش تقاضای {cls.AskerName}" : $"مشاهده تقاضای {cls.AskerName}";
+                cls = obj;
+                asker = _asker;
+                if (!cls.IsModified)
+                    ucHeader.Text = "افزودن تقاضای جدید";
+                else
+                    ucHeader.Text = !isShowMode ? $"ویرایش تقاضای {cls.AskerName}" : $"مشاهده تقاضای {cls.AskerName}";
                 ucHeader.IsModified = cls.IsModified;
                 btnFinish.Enabled = !isShowMode;
                 groupPanel1.Enabled = groupPanel2.Enabled = groupPanel3.Enabled = !isShowMode;

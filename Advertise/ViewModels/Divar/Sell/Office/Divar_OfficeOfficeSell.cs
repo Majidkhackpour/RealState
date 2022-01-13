@@ -37,10 +37,6 @@ namespace Advertise.ViewModels.Divar.Sell.Office
         public string SaleSakht => fixValue.SaleSakht().UpSideFixString();
         public string Tabaqe => fixValue.Tabaqe().UpSideFixString();
         public bool SanadEdari => fixValue.SanadEdari();
-        public string Asansor => fixValue.Asansor();
-        public string Parking => fixValue.Parking();
-        public string Anbari => fixValue.Anbari();
-
 
         public async Task<ReturnedSaveFuncInfo> SendAsync(long number)
         {
@@ -97,17 +93,17 @@ namespace Advertise.ViewModels.Divar.Sell.Office
                 await Utility.Wait();
                 cat.Parking(5)?.Click();
                 await Utility.Wait();
-                cat.SelectDropDown(Parking);
+                cat.SelectDropDown(await fixValue.GetParkingAsync());
 
                 await Utility.Wait();
                 cat.Asansor(6)?.Click();
                 await Utility.Wait();
-                cat.SelectDropDown(Asansor);
+                cat.SelectDropDown(await fixValue.GetAsansorAsync());
 
                 await Utility.Wait();
                 cat.Anbari(7)?.Click();
                 await Utility.Wait();
-                cat.SelectDropDown(Anbari);
+                cat.SelectDropDown(await fixValue.GetAnbariAsync());
 
                 cat.Title()?.SendKeys(title);
                 cat.SendContent(content);

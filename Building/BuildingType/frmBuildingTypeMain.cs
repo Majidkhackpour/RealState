@@ -17,22 +17,26 @@ namespace Building.BuildingType
 
         private void SetData() => txtName.Text = cls?.Name;
 
-        public frmBuildingTypeMain()
+        public frmBuildingTypeMain(BuildingTypeBussines obj, bool isShowMode)
         {
-            InitializeComponent();
-            cls = new BuildingTypeBussines();
-            ucHeader.Text = "افزودن نوع ملک جدید";
-            ucHeader.IsModified = cls.IsModified;
+            try
+            {
+                InitializeComponent();
+                cls = obj;
+                if (!cls.IsModified)
+                    ucHeader.Text = "افزودن نوع ملک جدید";
+                else
+                    ucHeader.Text = !isShowMode ? $"ویرایش نوع ملک {cls.Name}" : $"مشاهده نوع ملک {cls.Name}";
+                ucHeader.IsModified = cls.IsModified;
+                grp.Enabled = !isShowMode;
+                btnFinish.Enabled = !isShowMode;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
-        public frmBuildingTypeMain(Guid guid, bool isShowMode)
-        {
-            InitializeComponent();
-            cls = BuildingTypeBussines.Get(guid);
-            ucHeader.Text = !isShowMode ? $"ویرایش نوع ملک {cls.Name}" : $"مشاهده نوع ملک {cls.Name}";
-            ucHeader.IsModified = cls.IsModified;
-            grp.Enabled = !isShowMode;
-            btnFinish.Enabled = !isShowMode;
-        }
+
 
         private async void frmBuildingTypeMain_Load(object sender, EventArgs e)
         {

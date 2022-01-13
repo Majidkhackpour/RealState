@@ -1,6 +1,5 @@
 ﻿using EntityCache.Bussines;
 using EntityCache.Core;
-using Nito.AsyncEx;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -66,7 +65,7 @@ namespace EntityCache.SqlServerPersistence
                     while (dr.Read())
                     {
                         if (token.IsCancellationRequested) return null;
-                        list.Add(LoadData(dr, isLoadDets));
+                        list.Add(await LoadDataAsync(dr, isLoadDets));
                     }
                     dr.Close();
                     cn.Close();
@@ -91,7 +90,7 @@ namespace EntityCache.SqlServerPersistence
                     var cmd = new SqlCommand("sp_Building_GetAllWithoutParent", cn) { CommandType = CommandType.StoredProcedure };
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read()) list.Add(LoadData(dr, false));
+                    while (dr.Read()) list.Add( await LoadDataAsync(dr, false));
                     dr.Close();
                     cn.Close();
                 }
@@ -348,7 +347,7 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@guid", guid);
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) list = LoadData(dr, true);
+                    if (dr.Read()) list = await LoadDataAsync(dr, true);
                     dr.Close();
                     cn.Close();
                 }
@@ -396,7 +395,7 @@ namespace EntityCache.SqlServerPersistence
                     while (dr.Read())
                     {
                         if (token.IsCancellationRequested) return null;
-                        list.Add(LoadData(dr, true));
+                        list.Add(await LoadDataAsync(dr, true));
                     }
                     dr.Close();
                     cn.Close();
@@ -644,7 +643,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        private BuildingBussines LoadData(SqlDataReader dr, bool isLoadDets)
+        private async Task<BuildingBussines> LoadDataAsync(SqlDataReader dr, bool isLoadDets)
         {
             var res = new BuildingBussines();
             try
@@ -713,10 +712,10 @@ namespace EntityCache.SqlServerPersistence
                 if (dr["IsArchive"] != DBNull.Value) res.IsArchive = (bool)dr["IsArchive"];
                 if (isLoadDets)
                 {
-                    res.GalleryList = AsyncContext.Run(() => BuildingGalleryBussines.GetAllAsync(res.Guid));
-                    res.MediaList = AsyncContext.Run(() => BuildingMediaBussines.GetAllAsync(res.Guid));
-                    res.OptionList = BuildingRelatedOptionsBussines.GetAll(res.Guid);
-                    res.NoteList = AsyncContext.Run(() => BuildingNoteBussines.GetAllAsync(res.Guid));
+                    res.GalleryList = await BuildingGalleryBussines.GetAllAsync(res.Guid);
+                    res.MediaList = await BuildingMediaBussines.GetAllAsync(res.Guid);
+                    res.OptionList = await BuildingRelatedOptionsBussines.GetAllAsync(res.Guid);
+                    res.NoteList = await BuildingNoteBussines.GetAllAsync(res.Guid);
                 }
                 if (dr["ServerDeliveryDate"] != DBNull.Value) res.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
                 if (dr["ServerStatus"] != DBNull.Value) res.ServerStatus = (ServerStatus)dr["ServerStatus"];

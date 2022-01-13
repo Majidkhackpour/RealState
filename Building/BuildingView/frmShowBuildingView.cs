@@ -106,14 +106,16 @@ namespace Building.BuildingView
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuView_Click(object sender, EventArgs e)
+        private async void mnuView_Click(object sender, EventArgs e)
         {
             try
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmBuildingViewMain(guid, true);
+                var obj = await BuildingViewBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmBuildingViewMain(obj, true);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -134,7 +136,9 @@ namespace Building.BuildingView
                     return;
                 }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmBuildingViewMain(guid, false);
+                var obj = await BuildingViewBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmBuildingViewMain(obj, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(txtSearch.Text);
             }
@@ -147,7 +151,7 @@ namespace Building.BuildingView
         {
             try
             {
-                var frm = new frmBuildingViewMain();
+                var frm = new frmBuildingViewMain(new BuildingViewBussines(), false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync();
             }

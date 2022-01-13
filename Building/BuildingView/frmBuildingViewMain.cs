@@ -17,21 +17,24 @@ namespace Building.BuildingView
 
         private void SetData() => txtName.Text = cls?.Name;
 
-        public frmBuildingViewMain()
+        public frmBuildingViewMain(BuildingViewBussines obj, bool isShowMode)
         {
-            InitializeComponent();
-            cls = new BuildingViewBussines();
-            ucHeader.Text = "افزودن نمای جدید";
-            ucHeader.IsModified = cls.IsModified;
-        }
-        public frmBuildingViewMain(Guid guid, bool isShowMode)
-        {
-            InitializeComponent();
-            cls = BuildingViewBussines.Get(guid);
-            ucHeader.Text = !isShowMode ? $"ویرایش نمای {cls.Name}" : $"مشاهده نمای {cls.Name}";
-            ucHeader.IsModified = cls.IsModified;
-            grp.Enabled = !isShowMode;
-            btnFinish.Enabled = !isShowMode;
+            try
+            {
+                InitializeComponent();
+                cls = obj;
+                if (!cls.IsModified)
+                    ucHeader.Text = "افزودن نمای جدید";
+                else
+                    ucHeader.Text = !isShowMode ? $"ویرایش نمای {cls.Name}" : $"مشاهده نمای {cls.Name}";
+                ucHeader.IsModified = cls.IsModified;
+                grp.Enabled = !isShowMode;
+                btnFinish.Enabled = !isShowMode;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private async void frmBuildingViewMain_Load(object sender, EventArgs e)

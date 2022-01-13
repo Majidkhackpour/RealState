@@ -4,17 +4,22 @@ using Services;
 using Settings.Classes;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Building
 {
     public class clsTelegramManager
     {
-        public static string TelegramText(BuildingBussines bu, string template)
+        public static async Task<string> GetTelegramTextAsync(BuildingBussines bu, string template)
         {
             var res = "";
             try
             {
                 res = template;
+                var parkingGuid = await BuildingOptionsBussines.GetParkingGuidAsync();
+                var asGuid = await BuildingOptionsBussines.GetEvelatorGuidAsync();
+                var storeGuid = await BuildingOptionsBussines.GetStoreGuidAsync();
+                var balconyGuid = await BuildingOptionsBussines.GetBalconyGuidAsync();
                 var owner = PeoplesBussines.Get(bu.OwnerGuid, bu?.Guid);
                 var list = res.Split('\n').ToList();
 
@@ -418,7 +423,7 @@ namespace Building
                         if (bu.OptionList == null || bu.OptionList.Count <= 0) text = "❌";
                         else
                         {
-                            var ev = bu.OptionList.Any(q => q.OptionName.Contains("پارکینگ"));
+                            var ev = bu.OptionList.Select(q => q.BuildingOptionGuid).Contains(parkingGuid);
                             text = ev ? "✅" : "❌";
                         }
                         type = type.Replace(Replacor.TelegramBuilding.Parking, text);
@@ -436,7 +441,7 @@ namespace Building
                         if (bu.OptionList == null || bu.OptionList.Count <= 0) text = "❌";
                         else
                         {
-                            var ev = bu.OptionList.Any(q => q.OptionName.Contains("سانسور"));
+                            var ev = bu.OptionList.Select(q => q.BuildingOptionGuid).Contains(asGuid);
                             text = ev ? "✅" : "❌";
                         }
                         type = type.Replace(Replacor.TelegramBuilding.Elevator, text);
@@ -454,7 +459,7 @@ namespace Building
                         if (bu.OptionList == null || bu.OptionList.Count <= 0) text = "❌";
                         else
                         {
-                            var ev = bu.OptionList.Any(q => q.OptionName.Contains("انبار"));
+                            var ev = bu.OptionList.Select(q => q.BuildingOptionGuid).Contains(storeGuid);
                             text = ev ? "✅" : "❌";
                         }
                         type = type.Replace(Replacor.TelegramBuilding.Store, text);
@@ -472,7 +477,7 @@ namespace Building
                         if (bu.OptionList == null || bu.OptionList.Count <= 0) text = "❌";
                         else
                         {
-                            var ev = bu.OptionList.Any(q => q.OptionName.Contains("تراس") || q.OptionName.Contains("بالکن"));
+                            var ev = bu.OptionList.Select(q => q.BuildingOptionGuid).Contains(balconyGuid);
                             text = ev ? "✅" : "❌";
                         }
                         type = type.Replace(Replacor.TelegramBuilding.Balcony, text);
@@ -530,7 +535,7 @@ namespace Building
                         {
                             var str = "";
                             foreach (var item in bu.OptionList)
-                                str += item.OptionName + " 🔶 ";
+                                str += (await BuildingOptionsBussines.GetAsync(item.Guid))?.Name + " 🔶 ";
                             type = type.Replace("\r", "");
                             type = type.Replace(Replacor.TelegramBuilding.OtherOptions, str);
                             if (!string.IsNullOrEmpty(str))

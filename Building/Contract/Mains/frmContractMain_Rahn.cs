@@ -187,12 +187,12 @@ namespace Building.Contract
         private void UcContractRahn_31_OnTermChanged(int term) => ucContractRahn_41.Term = term;
         private void UcContractHeader1_OnDateChanged(string date) => ucContractRahn_31.ContractDateSh = date;
         private void UcFSide_OnChanged(Guid guid) => ucContractRahn_21.OwnerGuid = guid;
-        private void Uc2OnOnBuildingSelect(Guid buGuid)
+        private async Task Uc2OnOnBuildingSelect(Guid buGuid)
         {
             try
             {
                 cls.BuildingGuid = buGuid;
-                var bu = BuildingBussines.Get(buGuid);
+                var bu = await BuildingBussines.GetAsync(buGuid);
                 ucContractRahn_41.Rahn = bu?.RahnPrice1 ?? 0;
                 ucContractRahn_41.Ejare = bu?.EjarePrice1 ?? 0;
             }

@@ -185,12 +185,12 @@ namespace Building.Contract
             }
         }
 
-        private void Uc2OnOnBuildingSelect(Guid buGuid)
+        private async Task Uc2OnOnBuildingSelect(Guid buGuid)
         {
             try
             {
                 cls.BuildingGuid = buGuid;
-                var bu = BuildingBussines.Get(buGuid);
+                var bu = await BuildingBussines.GetAsync(buGuid);
                 ucContractSarqofli_31.Price = bu?.SellPrice ?? 0;
             }
             catch (Exception ex)

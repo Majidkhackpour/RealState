@@ -6,7 +6,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using EntityCache.Mppings;
-using Nito.AsyncEx;
 using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
@@ -30,45 +29,9 @@ namespace EntityCache.Bussines
         public bool IsFullOption { get; set; }
         public bool Checked { get; set; }
         public bool IsModified { get; set; } = false;
-        public static Guid EveletorGuid
-        {
-            get
-            {
-                if (_evelatorGuid == Guid.Empty)
-                    _evelatorGuid = AsyncContext.Run(GetEvelatorGuidAsync);
-                return _evelatorGuid;
-            }
-        }
-        public static Guid ParkingGuid
-        {
-            get
-            {
-                if (_parkingGuid == Guid.Empty)
-                    _parkingGuid = AsyncContext.Run(GetParkingGuidAsync);
-                return _parkingGuid;
-            }
-        }
-        public static Guid BalconyGuid
-        {
-            get
-            {
-                if (_balconyGuid == Guid.Empty)
-                    _balconyGuid = AsyncContext.Run(GetBalconyGuidAsync);
-                return _balconyGuid;
-            }
-        }
-        public static Guid StoreGuid
-        {
-            get
-            {
-                if (_storeGuid == Guid.Empty)
-                    _storeGuid = AsyncContext.Run(GetStoreGuidAsync);
-                return _storeGuid;
-            }
-        }
 
 
-        public static async Task<List<BuildingOptionsBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.BuildingOption.GetAllAsync(Cache.ConnectionString, token);
+        public static async Task<List<BuildingOptionsBussines>> GetAllAsync(CancellationToken token=default) => await UnitOfWork.BuildingOption.GetAllAsync(Cache.ConnectionString, token);
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<BuildingOptionsBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -165,7 +128,7 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 var action = status ? EnLogAction.Enable : EnLogAction.Delete;
-                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingOptions, Guid,"",tr));
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingOptions, Guid, "", tr));
             }
             catch (Exception ex)
             {
@@ -214,9 +177,6 @@ namespace EntityCache.Bussines
                 return new List<BuildingOptionsBussines>();
             }
         }
-        public static List<BuildingOptionsBussines> GetAll(string search, CancellationToken token = default) => AsyncContext.Run(() => GetAllAsync(search, token));
-        public static List<BuildingOptionsBussines> GetAll(CancellationToken token = default) => AsyncContext.Run(() => GetAllAsync(token));
-        public static BuildingOptionsBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public static async Task<bool> CheckNameAsync(string name, Guid guid) =>
             await UnitOfWork.BuildingOption.CheckNameAsync(Cache.ConnectionString, name, guid);
         private async Task<ReturnedSaveFuncInfo> CheckValidationAsync()
@@ -235,10 +195,11 @@ namespace EntityCache.Bussines
 
             return res;
         }
-        private static async Task<Guid> GetEvelatorGuidAsync()
+        public static async Task<Guid> GetEvelatorGuidAsync()
         {
             try
             {
+                if (_evelatorGuid != Guid.Empty) return _evelatorGuid;
                 var list = await GetAllAsync("سانسور", new CancellationToken());
                 var def = list?.FirstOrDefault();
                 if (def != null && def.Guid != Guid.Empty) return def.Guid;
@@ -261,11 +222,14 @@ namespace EntityCache.Bussines
                 return Guid.Empty;
             }
         }
-        private static async Task<Guid> GetBalconyGuidAsync()
+        public static async Task<Guid> GetBalconyGuidAsync()
         {
             try
             {
+                if (_balconyGuid != Guid.Empty) return _balconyGuid;
                 var list = await GetAllAsync("تراس", new CancellationToken());
+                if (list == null || list.Count <= 0)
+                    list = await GetAllAsync("بالکن", new CancellationToken());
                 var def = list?.FirstOrDefault();
                 if (def != null && def.Guid != Guid.Empty) return def.Guid;
                 def = new BuildingOptionsBussines()
@@ -287,10 +251,11 @@ namespace EntityCache.Bussines
                 return Guid.Empty;
             }
         }
-        private static async Task<Guid> GetStoreGuidAsync()
+        public static async Task<Guid> GetStoreGuidAsync()
         {
             try
             {
+                if (_storeGuid != Guid.Empty) return _storeGuid;
                 var list = await GetAllAsync("انبار", new CancellationToken());
                 var def = list?.FirstOrDefault();
                 if (def != null && def.Guid != Guid.Empty) return def.Guid;
@@ -313,10 +278,11 @@ namespace EntityCache.Bussines
                 return Guid.Empty;
             }
         }
-        private static async Task<Guid> GetParkingGuidAsync()
+        public static async Task<Guid> GetParkingGuidAsync()
         {
             try
             {
+                if (_parkingGuid != Guid.Empty) return _parkingGuid;
                 var list = await GetAllAsync("پارکینگ", new CancellationToken());
                 var def = list?.FirstOrDefault();
                 if (def != null && def.Guid != Guid.Empty) return def.Guid;

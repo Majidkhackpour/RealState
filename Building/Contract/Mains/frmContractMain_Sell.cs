@@ -187,12 +187,12 @@ namespace Building.Contract
         private void UcFSide_OnChanged(Guid guid) => uc2.OwnerGuid = guid;
         private void UcContractSell_41_OnDischargeChanged(string date) => ucContractSell_51.DischargeDateSh = date;
         private void UcContractHeader1_OnDateChanged(string date) => ucContractSell_41.ContractDateSh = date;
-        private void Uc2OnOnBuildingSelect(Guid buGuid)
+        private async Task Uc2OnOnBuildingSelect(Guid buGuid)
         {
             try
             {
                 cls.BuildingGuid = buGuid;
-                var bu = BuildingBussines.Get(buGuid);
+                var bu = await BuildingBussines.GetAsync(buGuid);
                 uc3.Price = bu?.SellPrice ?? 0;
             }
             catch (Exception ex)

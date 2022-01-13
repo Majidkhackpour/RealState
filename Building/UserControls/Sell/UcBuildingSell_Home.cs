@@ -1,5 +1,6 @@
 ﻿using Services;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 
@@ -39,48 +40,48 @@ namespace Building.UserControls.Sell
                 }
                 return _bu;
             }
-            set
-            {
-                try
-                {
-                    if (value == null) return;
-                    _bu = value;
-                    ucZirBana1.Value = _bu.ZirBana;
-                    UcTejari.Value = (int)_bu.MetrazhTejari;
-                    ucRoomCount1.RoomCount = _bu.RoomCount;
-                    ucDocumentType1.SanadTypeGuid = _bu.DocumentType;
-                    UcDong.Value = _bu.Dang;
-                    ucSaleSakht1.SaleSakht = _bu.SaleSakht;
-                    ucMasahat.Value = _bu.Masahat;
-                    ucTabaqeCount.Value = _bu.TedadTabaqe;
-                    UcWidth.Value = (int)_bu.Hashie;
-                    ucTarakom1.Tarakom = _bu.Tarakom;
-                    ucSide1.Side = _bu.Side;
-                    ucBuildingView1.BuildingViewGuid = _bu.BuildingViewGuid;
-                    ucFloorCover1.FloorCoverGuid = _bu.FloorCoverGuid;
-                    ucKitchenService1.KitchenServiceGuid = _bu.KitchenServiceGuid;
-                    ucTotalPrice.Price = _bu.SellPrice;
-                    ucVam.Price = _bu.VamPrice;
-                    ucQest.Price = _bu.QestPrice;
-                    if (_bu.Dang <= 0) UcDong.DefaultValue = 6;
-                    if (_bu.Masahat > 0)
-                    {
-                        var m = Math.Truncate(_bu.SellPrice / _bu.Masahat);
-                        ucPricePerMasahat.Price = m;
-                    }
-                    if (_bu.ZirBana > 0)
-                    {
-                        var m = Math.Truncate(_bu.SellPrice / _bu.ZirBana);
-                        ucPricePerZirBana.Price = m;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                }
-            }
         }
 
+        public override async Task SetBuildingAsync(BuildingBussines value)
+        {
+            try
+            {
+                if (value == null) return;
+                _bu = value;
+                ucZirBana1.Value = _bu.ZirBana;
+                UcTejari.Value = (int)_bu.MetrazhTejari;
+                ucRoomCount1.RoomCount = _bu.RoomCount;
+                ucDocumentType1.SanadTypeGuid = _bu.DocumentType;
+                UcDong.Value = _bu.Dang;
+                ucSaleSakht1.SaleSakht = _bu.SaleSakht;
+                ucMasahat.Value = _bu.Masahat;
+                ucTabaqeCount.Value = _bu.TedadTabaqe;
+                UcWidth.Value = (int)_bu.Hashie;
+                ucTarakom1.Tarakom = _bu.Tarakom;
+                ucSide1.Side = _bu.Side;
+                await ucBuildingView1.SetBuildingViewGuidAsync(_bu.BuildingViewGuid);
+                ucFloorCover1.FloorCoverGuid = _bu.FloorCoverGuid;
+                ucKitchenService1.KitchenServiceGuid = _bu.KitchenServiceGuid;
+                ucTotalPrice.Price = _bu.SellPrice;
+                ucVam.Price = _bu.VamPrice;
+                ucQest.Price = _bu.QestPrice;
+                if (_bu.Dang <= 0) UcDong.DefaultValue = 6;
+                if (_bu.Masahat > 0)
+                {
+                    var m = Math.Truncate(_bu.SellPrice / _bu.Masahat);
+                    ucPricePerMasahat.Price = m;
+                }
+                if (_bu.ZirBana > 0)
+                {
+                    var m = Math.Truncate(_bu.SellPrice / _bu.ZirBana);
+                    ucPricePerZirBana.Price = m;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public UcBuildingSell_Home() => InitializeComponent();
 
         private void ucTotalPrice_OnTextChanged()

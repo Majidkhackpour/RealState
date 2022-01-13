@@ -159,12 +159,12 @@ namespace Building.Contract
         }
 
         private void UcFSide_OnChanged(Guid guid) => ucContractPishForoush_31.OwnerGuid = guid;
-        private void Uc2OnOnBuildingSelect(Guid buGuid)
+        private async Task Uc2OnOnBuildingSelect(Guid buGuid)
         {
             try
             {
                 cls.BuildingGuid = buGuid;
-                var bu = BuildingBussines.Get(buGuid);
+                var bu = await BuildingBussines.GetAsync(buGuid);
                 ucContractPishForoush_41.TotalPrice = bu?.PishPrice ?? 0;
             }
             catch (Exception ex)

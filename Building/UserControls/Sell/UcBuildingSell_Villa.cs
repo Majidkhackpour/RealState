@@ -1,6 +1,7 @@
 ﻿using EntityCache.Bussines;
 using Services;
 using System;
+using System.Threading.Tasks;
 
 namespace Building.UserControls.Sell
 {
@@ -37,47 +38,46 @@ namespace Building.UserControls.Sell
                 }
                 return _bu;
             }
-            set
+        }
+        public override async Task SetBuildingAsync(BuildingBussines value)
+        {
+            try
             {
-                try
+                if (value == null) return;
+                _bu = value;
+                ucVillaType1.VillaType = _bu.VillaType;
+                ucZirBana1.Value = _bu.ZirBana;
+                ucRoomCount1.RoomCount = _bu.RoomCount;
+                ucDocumentType1.SanadTypeGuid = _bu.DocumentType;
+                UcDong.Value = _bu.Dang;
+                ucSaleSakht1.SaleSakht = _bu.SaleSakht;
+                ucMasahat.Value = _bu.Masahat;
+                ucTabaqeCount.Value = _bu.TedadTabaqe;
+                ucSide1.Side = _bu.Side;
+                await ucBuildingView1.SetBuildingViewGuidAsync(_bu.BuildingViewGuid);
+                ucFloorCover1.FloorCoverGuid = _bu.FloorCoverGuid;
+                ucKitchenService1.KitchenServiceGuid = _bu.KitchenServiceGuid;
+                await ucBuildingCondition1.SetBuildingConditionGuidAsync(_bu.BuildingConditionGuid);
+                ucTotalPrice.Price = _bu.SellPrice;
+                ucVam.Price = _bu.VamPrice;
+                ucQest.Price = _bu.QestPrice;
+                if (_bu.Dang <= 0) UcDong.DefaultValue = 6;
+                if (_bu.Masahat > 0)
                 {
-                    if (value == null) return;
-                    _bu = value;
-                    ucVillaType1.VillaType = _bu.VillaType;
-                    ucZirBana1.Value = _bu.ZirBana;
-                    ucRoomCount1.RoomCount = _bu.RoomCount;
-                    ucDocumentType1.SanadTypeGuid = _bu.DocumentType;
-                    UcDong.Value = _bu.Dang;
-                    ucSaleSakht1.SaleSakht = _bu.SaleSakht;
-                    ucMasahat.Value = _bu.Masahat;
-                    ucTabaqeCount.Value = _bu.TedadTabaqe;
-                    ucSide1.Side = _bu.Side;
-                    ucBuildingView1.BuildingViewGuid = _bu.BuildingViewGuid;
-                    ucFloorCover1.FloorCoverGuid = _bu.FloorCoverGuid;
-                    ucKitchenService1.KitchenServiceGuid = _bu.KitchenServiceGuid;
-                    ucBuildingCondition1.BuildingConditionGuid = _bu.BuildingConditionGuid;
-                    ucTotalPrice.Price = _bu.SellPrice;
-                    ucVam.Price = _bu.VamPrice;
-                    ucQest.Price = _bu.QestPrice;
-                    if (_bu.Dang <= 0) UcDong.DefaultValue = 6;
-                    if (_bu.Masahat > 0)
-                    {
-                        var m = Math.Truncate(_bu.SellPrice / _bu.Masahat);
-                        ucPricePerMasahat.Price = m;
-                    }
-                    if (_bu.ZirBana > 0)
-                    {
-                        var m = Math.Truncate(_bu.SellPrice / _bu.ZirBana);
-                        ucPricePerZirBana.Price = m;
-                    }
+                    var m = Math.Truncate(_bu.SellPrice / _bu.Masahat);
+                    ucPricePerMasahat.Price = m;
                 }
-                catch (Exception ex)
+                if (_bu.ZirBana > 0)
                 {
-                    WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                    var m = Math.Truncate(_bu.SellPrice / _bu.ZirBana);
+                    ucPricePerZirBana.Price = m;
                 }
             }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
-
         public UcBuildingSell_Villa() => InitializeComponent();
 
         private void ucTotalPrice_OnTextChanged()

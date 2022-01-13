@@ -17,21 +17,24 @@ namespace Building.BuildingOptions
 
         private void SetData() => txtName.Text = cls?.Name;
 
-        public frmBuildingOptions()
+        public frmBuildingOptions(BuildingOptionsBussines obj, bool isShowMode)
         {
-            InitializeComponent();
-            cls = new BuildingOptionsBussines();
-            ucHeader.Text = "افزودن امکانات جدید";
-            ucHeader.IsModified = cls.IsModified;
-        }
-        public frmBuildingOptions(Guid guid, bool isShowMode)
-        {
-            InitializeComponent();
-            cls = BuildingOptionsBussines.Get(guid);
-            ucHeader.Text = !isShowMode ? $"ویرایش امکانات {cls.Name}" : $"مشاهده امکانات {cls.Name}";
-            ucHeader.IsModified = cls.IsModified;
-            grp.Enabled = !isShowMode;
-            btnFinish.Enabled = !isShowMode;
+            try
+            {
+                InitializeComponent();
+                cls = obj;
+                if (!cls.IsModified)
+                    ucHeader.Text = "افزودن امکانات جدید";
+                else
+                    ucHeader.Text = !isShowMode ? $"ویرایش امکانات {cls.Name}" : $"مشاهده امکانات {cls.Name}";
+                ucHeader.IsModified = cls.IsModified;
+                grp.Enabled = !isShowMode;
+                btnFinish.Enabled = !isShowMode;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private void txtName_Enter(object sender, EventArgs e) => txtSetter.Focus(txtName);

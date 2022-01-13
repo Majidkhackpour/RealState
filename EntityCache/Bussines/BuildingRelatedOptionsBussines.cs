@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Threading.Tasks;
-using EntityCache.Assistence;
-using EntityCache.Mppings;
-using Nito.AsyncEx;
+﻿using EntityCache.Assistence;
 using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
-using WebHesabBussines;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace EntityCache.Bussines
 {
@@ -18,13 +15,11 @@ namespace EntityCache.Bussines
         public Guid BuildinGuid { get; set; }
         public DateTime Modified { get; set; }
         public Guid BuildingOptionGuid { get; set; }
-        public string OptionName => BuildingOptionsBussines.Get(BuildingOptionGuid).Name;
+        //public string OptionName => BuildingOptionsBussines.Get(BuildingOptionGuid).Name;
 
 
         public static async Task<List<BuildingRelatedOptionsBussines>> GetAllAsync(Guid parentGuid) =>
             await UnitOfWork.BuildingRelatedOptions.GetAllAsync(Cache.ConnectionString, parentGuid);
-        public static List<BuildingRelatedOptionsBussines> GetAll(Guid parentGuid) =>
-            AsyncContext.Run(() => GetAllAsync(parentGuid));
         public static async Task<BuildingRelatedOptionsBussines> GetAsync(Guid guid) =>
             await UnitOfWork.BuildingRelatedOptions.GetAsync(Cache.ConnectionString, guid);
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<BuildingRelatedOptionsBussines> list, SqlTransaction tr = null)

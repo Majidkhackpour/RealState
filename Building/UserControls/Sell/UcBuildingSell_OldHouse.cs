@@ -1,6 +1,7 @@
 ﻿using EntityCache.Bussines;
 using Services;
 using System;
+using System.Threading.Tasks;
 
 namespace Building.UserControls.Sell
 {
@@ -34,35 +35,36 @@ namespace Building.UserControls.Sell
                 }
                 return _bu;
             }
-            set
+        }
+
+        public override async Task SetBuildingAsync(BuildingBussines value)
+        {
+            try
             {
-                try
-                {
-                    if (value == null) return;
-                    _bu = value;
-                    ucDocumentType1.SanadTypeGuid = _bu.DocumentType;
-                    UcDong.Value = _bu.Dang;
-                    ucMasahat.Value = _bu.Masahat;
-                    UcWidth.Value = (int)_bu.Hashie;
-                    UcHeight.Value = (int)_bu.Lenght;
-                    UcReformArea.Value = (int)_bu.ReformArea;
-                    if (_bu.BuildingPermits != null)
-                        chbBuildingPermits.Checked = _bu.BuildingPermits.Value;
-                    ucTarakom1.Tarakom = _bu.Tarakom;
-                    UcWitdhOfPassage.Value = (int)_bu.WidthOfPassage;
-                    ucSide1.Side = _bu.Side;
-                    ucTotalPrice.Price = _bu.SellPrice;
-                    ucVam.Price = _bu.VamPrice;
-                    ucQest.Price = _bu.QestPrice;
-                    if (_bu.Dang <= 0) UcDong.DefaultValue = 6;
-                    if (_bu.Masahat <= 0) return;
-                    var m = Math.Truncate(_bu.SellPrice / _bu.Masahat);
-                    ucPricePerMasahat.Price = m;
-                }
-                catch (Exception ex)
-                {
-                    WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                }
+                if (value == null) return;
+                _bu = value;
+                ucDocumentType1.SanadTypeGuid = _bu.DocumentType;
+                UcDong.Value = _bu.Dang;
+                ucMasahat.Value = _bu.Masahat;
+                UcWidth.Value = (int)_bu.Hashie;
+                UcHeight.Value = (int)_bu.Lenght;
+                UcReformArea.Value = (int)_bu.ReformArea;
+                if (_bu.BuildingPermits != null)
+                    chbBuildingPermits.Checked = _bu.BuildingPermits.Value;
+                ucTarakom1.Tarakom = _bu.Tarakom;
+                UcWitdhOfPassage.Value = (int)_bu.WidthOfPassage;
+                ucSide1.Side = _bu.Side;
+                ucTotalPrice.Price = _bu.SellPrice;
+                ucVam.Price = _bu.VamPrice;
+                ucQest.Price = _bu.QestPrice;
+                if (_bu.Dang <= 0) UcDong.DefaultValue = 6;
+                if (_bu.Masahat <= 0) return;
+                var m = Math.Truncate(_bu.SellPrice / _bu.Masahat);
+                ucPricePerMasahat.Price = m;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
 

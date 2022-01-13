@@ -6,7 +6,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using EntityCache.Mppings;
-using Nito.AsyncEx;
 using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
@@ -171,9 +170,6 @@ namespace EntityCache.Bussines
                 return new List<BuildingTypeBussines>();
             }
         }
-        public static List<BuildingTypeBussines> GetAll(string search = "", CancellationToken token = default) => AsyncContext.Run(() => GetAllAsync(search, token));
-        public static BuildingTypeBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-        public static BuildingTypeBussines Get(string name) => AsyncContext.Run(() => GetAsync(name));
         public static async Task<bool> CheckNameAsync(string name, Guid guid) =>
             await UnitOfWork.BuildingType.CheckNameAsync(Cache.ConnectionString, name, guid);
         private async Task<ReturnedSaveFuncInfo> CheckValidationAsync()
@@ -196,7 +192,7 @@ namespace EntityCache.Bussines
         {
             try
             {
-                var def = Get(name);
+                var def = await GetAsync(name);
                 if (def != null && def.Guid != Guid.Empty) return def.Guid;
                 def = new BuildingTypeBussines()
                 {

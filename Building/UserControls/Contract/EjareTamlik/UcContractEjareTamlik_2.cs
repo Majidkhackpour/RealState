@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Building.Buildings;
 using EntityCache.Bussines;
@@ -10,7 +11,7 @@ namespace Building.UserControls.Contract.EjareTamlik
 {
     public partial class UcContractEjareTamlik_2 : UserControl
     {
-        public event Action<Guid> OnBuildingSelect;
+        public event Func<Guid, Task> OnBuildingSelect;
         public float Dong { get => (float)txtDong.Value; set => txtDong.Value = (decimal)value; }
         public string BuildingType { get => txtBuildingType.Text; set => txtBuildingType.Text = value; }
         public string RegistryNo { get => txtRegistryNo.Text; set => txtRegistryNo.Text = value; }
@@ -67,13 +68,13 @@ namespace Building.UserControls.Contract.EjareTamlik
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void btnChooseBuilding_Click(object sender, EventArgs e)
+        private async void btnChooseBuilding_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmShowBuildings(true, new BuildingFilter() { Status = true, OwnerGuid = OwnerGuid });
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
-                var bu = BuildingBussines.Get(frm.SelectedGuid);
+                var bu = await BuildingBussines.GetAsync(frm.SelectedGuid);
                 if (bu == null) return;
                 RaiseBuildingSelect(frm.SelectedGuid);
                 Dong = bu.Dang;

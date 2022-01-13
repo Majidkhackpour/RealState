@@ -34,13 +34,13 @@ namespace Building.Buildings
 
 
 
-        private void LoadData(string search = "")
+        private async Task LoadDataAsync(string search = "")
         {
             try
             {
                 if (!_isLoad) return;
                 if (filter == null) filter = new BuildingFilter() { Status = _st };
-                _list = BuildingReportBussines.GetAll(filter);
+                _list = await BuildingReportBussines.GetAllAsync(filter);
                 Search(search);
             }
             catch (Exception ex)
@@ -79,17 +79,18 @@ namespace Building.Buildings
 
                 if (!(lst?.Any() ?? false))
                 {
-                    this.ShowMessage("داده ای جهت نمایش وجود ندارد");
+                    BeginInvoke(new MethodInvoker(() => this.ShowMessage("داده ای جهت نمایش وجود ندارد")));
                     return;
                 }
 
-                BuildingBindingSource.DataSource = lst?.OrderBy(q => q.IsArchive)?.
-                                ThenByDescending(q => q.CreateDate)?.
-                                ThenByDescending(q => q.Code)?.
-                                ToSortableBindingList();
-                SetGridColor();
-                VisibleColumns();
-                lblCounter.Text = (lst?.Count() ?? 0).ToString();
+                BeginInvoke(new MethodInvoker(() =>
+                {
+                    BuildingBindingSource.DataSource = lst?.OrderBy(q => q.IsArchive)
+                        ?.ThenByDescending(q => q.CreateDate)?.ThenByDescending(q => q.Code)?.ToSortableBindingList();
+                    SetGridColor();
+                    VisibleColumns();
+                    lblCounter.Text = (lst?.Count() ?? 0).ToString();
+                }));
             }
             catch (Exception ex)
             {
@@ -334,7 +335,7 @@ namespace Building.Buildings
                     return;
                 }
 
-                var text = clsTelegramManager.TelegramText(bu, clsTelegram.Text);
+                var text = await clsTelegramManager.GetTelegramTextAsync(bu, clsTelegram.Text);
                 text = text.Trim();
                 var frm = new frmBuildingTelegramText(text);
                 if (frm.ShowDialog(this) == DialogResult.OK)
@@ -376,7 +377,7 @@ namespace Building.Buildings
                     return;
                 }
 
-                var text = clsTelegramManager.TelegramText(bu, clsTelegram.ManagetText);
+                var text = await clsTelegramManager.GetTelegramTextAsync(bu, clsTelegram.ManagetText);
                 text = text.Trim();
                 var frm = new frmBuildingTelegramText(text);
                 if (frm.ShowDialog(this) == DialogResult.OK)
@@ -421,7 +422,7 @@ namespace Building.Buildings
                 }
 
                 //Send2ManagerChannel
-                var text = clsTelegramManager.TelegramText(bu, clsTelegram.ManagetText);
+                var text = await clsTelegramManager.GetTelegramTextAsync(bu, clsTelegram.ManagetText);
                 text = text.Trim();
                 var telegram = new WebTelegramBuilding
                 {
@@ -433,7 +434,7 @@ namespace Building.Buildings
                 _ = Task.Run(() => telegram.SaveAsync());
 
                 //Send2CustomerChannel
-                var text_ = clsTelegramManager.TelegramText(bu, clsTelegram.Text);
+                var text_ = await clsTelegramManager.GetTelegramTextAsync(bu, clsTelegram.Text);
                 text_ = text_.Trim();
                 var telegram_ = new WebTelegramBuilding
                 {
@@ -471,7 +472,7 @@ namespace Building.Buildings
                     return;
                 }
 
-                var text = clsTelegramManager.TelegramText(bu, clsWhatsApp.CustomerMessage);
+                var text = await clsTelegramManager.GetTelegramTextAsync(bu, clsWhatsApp.CustomerMessage);
                 text = text.Trim();
                 var frm = new frmBuildingTelegramText(text);
                 if (frm.ShowDialog(this) == DialogResult.OK)
@@ -512,7 +513,7 @@ namespace Building.Buildings
                     return;
                 }
 
-                var text = clsTelegramManager.TelegramText(bu, clsWhatsApp.ManagerMessage);
+                var text = await clsTelegramManager.GetTelegramTextAsync(bu, clsWhatsApp.ManagerMessage);
                 text = text.Trim();
                 var frm = new frmBuildingTelegramText(text);
                 if (frm.ShowDialog(this) == DialogResult.OK)
@@ -554,7 +555,7 @@ namespace Building.Buildings
                 }
 
                 //Send2ManagerChannel
-                var text = clsTelegramManager.TelegramText(bu, clsWhatsApp.ManagerMessage);
+                var text = await clsTelegramManager.GetTelegramTextAsync(bu, clsWhatsApp.ManagerMessage);
                 text = text.Trim();
                 var telegram = new WebWhatsappBuilding()
                 {
@@ -565,7 +566,7 @@ namespace Building.Buildings
                 _ = Task.Run(() => telegram.SaveAsync());
                 await Task.Delay(5000);
                 //Send2CustomerChannel
-                var text_ = clsTelegramManager.TelegramText(bu, clsWhatsApp.CustomerMessage);
+                var text_ = await clsTelegramManager.GetTelegramTextAsync(bu, clsWhatsApp.CustomerMessage);
                 text_ = text_.Trim();
                 var telegram_ = new WebWhatsappBuilding()
                 {
@@ -665,7 +666,7 @@ namespace Building.Buildings
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var bu = BuildingBussines.Get(guid);
+                var bu = await BuildingBussines.GetAsync(guid);
                 if (bu == null) return;
 
                 if (bu.Parent == null || bu.Parent == EnBuildingParent.None)
@@ -706,7 +707,7 @@ namespace Building.Buildings
                 _isLoad = true;
                 var t = new ToolTip();
                 t.SetToolTip(picFilter, "فیلتر");
-                LoadData();
+                _ = Task.Run(() => LoadDataAsync());
             }
             catch (Exception ex)
             {
@@ -756,7 +757,7 @@ namespace Building.Buildings
                             DGrid.Focus();
                         break;
                     case Keys.F5:
-                        LoadData();
+                        _ = Task.Run(() => LoadDataAsync(txtSearch.Text));
                         break;
                 }
             }
@@ -893,7 +894,7 @@ namespace Building.Buildings
                     return;
                 }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var bu = BuildingBussines.Get(guid);
+                var bu = await BuildingBussines.GetAsync(guid);
                 if (bu == null) return;
 
                 if (bu.Parent == null || bu.Parent == EnBuildingParent.None)
@@ -903,13 +904,13 @@ namespace Building.Buildings
                 {
                     var frm = new frmBuilding(bu);
                     if (frm.ShowDialog(this) == DialogResult.OK)
-                        LoadData(txtSearch.Text);
+                        _ = Task.Run(() => LoadDataAsync(txtSearch.Text));
                 }
                 else
                 {
                     var frm = new frmSelectBuildingType(this, bu);
                     if (frm.ShowDialog(this) == DialogResult.OK)
-                        LoadData(txtSearch.Text);
+                        _ = Task.Run(() => LoadDataAsync(txtSearch.Text));
                 }
             }
             catch (Exception ex)
@@ -923,7 +924,7 @@ namespace Building.Buildings
             {
                 var frm = new frmSelectBuildingType(this, new BuildingBussines());
                 if (frm.ShowDialog(this) == DialogResult.OK)
-                    LoadData(txtSearch.Text);
+                    _ = Task.Run(() => LoadDataAsync(txtSearch.Text));
             }
             catch (Exception ex)
             {
@@ -968,7 +969,7 @@ namespace Building.Buildings
             {
                 if (res.HasError)
                     this.ShowError(res, "خطا در تغییر وضعیت ملک");
-                else LoadData(txtSearch.Text);
+                else _ = Task.Run(() => LoadDataAsync(txtSearch.Text));
             }
         }
         private void mnuCode_CheckedChanged(object sender, EventArgs e)
@@ -1554,7 +1555,7 @@ namespace Building.Buildings
                 else
                 {
                     this.ShowMessage("ملک مورد نظر به بایگانی اضافه شد");
-                    LoadData(txtSearch.Text);
+                    _ = Task.Run(() => LoadDataAsync(txtSearch.Text));
                 }
             }
         }
@@ -1589,7 +1590,7 @@ namespace Building.Buildings
                 else
                 {
                     this.ShowMessage("ملک مورد نظر از بایگانی خارج شد");
-                    LoadData(txtSearch.Text);
+                    _ = Task.Run(() => LoadDataAsync(txtSearch.Text));
                 }
             }
         }
@@ -1657,7 +1658,7 @@ namespace Building.Buildings
                     SideName = cls.SideName,
                     UserName = cls.UserName,
                     TellName = cls.TellName,
-                    Options = string.Join(", ", cls.OptionList?.Select(q => q.OptionName)),
+                    //Options = string.Join(", ", cls.OptionList?.Select(q => q.OptionName)),
                     DeliveryDateSh = Calendar.MiladiToShamsi(cls.DeliveryDate),
                     RegionName = RegionsBussines.Get(cls.RegionGuid)?.Name ?? ""
                 };
@@ -1835,7 +1836,7 @@ namespace Building.Buildings
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
                 filter = frm.Filter;
                 filter.Status = _st;
-                LoadData(txtSearch.Text);
+                _ = Task.Run(() => LoadDataAsync(txtSearch.Text));
             }
             catch (Exception ex)
             {
@@ -1866,7 +1867,7 @@ namespace Building.Buildings
                 else
                 {
                     this.ShowMessage("فایل موردنظر به فایل های شخصی اضافه شد");
-                    LoadData(txtSearch.Text);
+                    _ = Task.Run(() => LoadDataAsync(txtSearch.Text));
                 }
             }
             catch (Exception ex)
@@ -1934,7 +1935,7 @@ namespace Building.Buildings
                     SideName = cls.SideName,
                     UserName = cls.UserName,
                     TellName = cls.TellName,
-                    Options = string.Join(", ", cls.OptionList?.Select(q => q.OptionName)),
+                    //Options = string.Join(", ", cls.OptionList?.Select(q => q.OptionName)),
                     DeliveryDateSh = Calendar.MiladiToShamsi(cls.DeliveryDate),
                     RegionName = RegionsBussines.Get(cls.RegionGuid)?.Name ?? ""
                 };

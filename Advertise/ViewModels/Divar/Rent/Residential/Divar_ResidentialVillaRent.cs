@@ -38,10 +38,6 @@ namespace Advertise.ViewModels.Divar.Rent.Residential
         public string RentalAuthority => fixValue.RentalAuthority();
         public string RoomCount => fixValue.RoomCount();
         public string SaleSakht => fixValue.SaleSakht().UpSideFixString();
-        public string Parking => fixValue.Parking();
-        public string Anbari => fixValue.Anbari();
-        public string Balkon => fixValue.Balkon();
-
 
 
         public async Task<ReturnedSaveFuncInfo> SendAsync(long number)
@@ -100,17 +96,17 @@ namespace Advertise.ViewModels.Divar.Rent.Residential
                 await Utility.Wait();
                 cat.Parking(6)?.Click();
                 await Utility.Wait();
-                cat.SelectDropDown(Parking);
+                cat.SelectDropDown(await fixValue.GetParkingAsync());
 
                 await Utility.Wait();
                 cat.Anbari(7)?.Click();
                 await Utility.Wait();
-                cat.SelectDropDown(Anbari);
+                cat.SelectDropDown(await fixValue.GetAnbariAsync());
 
                 await Utility.Wait();
                 cat.Balkon(8)?.Click();
                 await Utility.Wait();
-                cat.SelectDropDown(Balkon);
+                cat.SelectDropDown(await fixValue.GetBalkonAsync());
 
                 await Utility.Wait();
                 if (!isGiveChat) cat.Chat()?.Click();

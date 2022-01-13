@@ -17,21 +17,24 @@ namespace Building.BuildingCondition
 
         private void SetData() => txtName.Text = cls?.Name;
 
-        public frmBuildingConditionMain()
+        public frmBuildingConditionMain(BuildingConditionBussines obj, bool isShowMode)
         {
-            InitializeComponent();
-            cls = new BuildingConditionBussines();
-            ucHeader.Text = "افزودن نوع بنای جدید";
-            ucHeader.IsModified = cls.IsModified;
-        }
-        public frmBuildingConditionMain(Guid guid, bool isShowMode)
-        {
-            InitializeComponent();
-            cls = BuildingConditionBussines.Get(guid);
-            ucHeader.Text = !isShowMode ? $"ویرایش نوع بنای {cls.Name}" : $"مشاهده نوع بنای {cls.Name}";
-            ucHeader.IsModified = cls.IsModified;
-            grp.Enabled = !isShowMode;
-            btnFinish.Enabled = !isShowMode;
+            try
+            {
+                InitializeComponent();
+                cls = obj;
+                if (!cls.IsModified)
+                    ucHeader.Text = "افزودن نوع بنای جدید";
+                else
+                    ucHeader.Text = !isShowMode ? $"ویرایش نوع بنای {cls.Name}" : $"مشاهده نوع بنای {cls.Name}";
+                ucHeader.IsModified = cls.IsModified;
+                grp.Enabled = !isShowMode;
+                btnFinish.Enabled = !isShowMode;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private async void frmBuildingConditionMain_Load(object sender, EventArgs e)

@@ -6,7 +6,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using EntityCache.Mppings;
-using Nito.AsyncEx;
 using Persistence;
 using Services;
 using Services.FilterObjects;
@@ -56,7 +55,6 @@ namespace EntityCache.Bussines
 
         public static async Task<List<BuildingRequestBussines>> GetAllAsync(bool status, CancellationToken token) => await UnitOfWork.BuildingRequest.GetAllAsync(Cache.ConnectionString, status, token);
         public static async Task<BuildingRequestBussines> GetAsync(Guid guid) => await UnitOfWork.BuildingRequest.GetAsync(Cache.ConnectionString, guid);
-        public static BuildingRequestBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();

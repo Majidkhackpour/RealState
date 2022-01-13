@@ -182,12 +182,12 @@ namespace Building.Contract
 
         private void UcContractHeader1_OnDateChanged(string date) => ucContractRahn_31.ContractDateSh = date;
         private void UcFSide_OnChanged(Guid guid) => ucContractEjareTamlik_21.OwnerGuid = guid;
-        private void Uc2OnOnBuildingSelect(Guid buGuid)
+        private async Task Uc2OnOnBuildingSelect(Guid buGuid)
         {
             try
             {
                 cls.BuildingGuid = buGuid;
-                var bu = BuildingBussines.Get(buGuid);
+                var bu = await BuildingBussines.GetAsync(buGuid);
                 ucContractEjareTamlik_41.TotalEjare = (bu?.EjarePrice1 ?? 0) * (cls?.Term ?? 1);
             }
             catch (Exception ex)

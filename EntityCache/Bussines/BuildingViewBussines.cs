@@ -6,7 +6,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using EntityCache.Mppings;
-using Nito.AsyncEx;
 using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
@@ -25,20 +24,8 @@ namespace EntityCache.Bussines
         public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public string Name { get; set; }
         public bool IsModified { get; set; } = false;
-        public static Guid DefualtGuid
-        {
-            get
-            {
-                if (_defaultGuid == Guid.Empty)
-                    _defaultGuid = AsyncContext.Run(() => GetDefultGuidAsync("تعیین نشده"));
-                return _defaultGuid;
-            }
-        }
-
-
-
+        
         public static async Task<List<BuildingViewBussines>> GetAllAsync(CancellationToken token=default) => await UnitOfWork.BuildingView.GetAllAsync(Cache.ConnectionString, token);
-        public static List<BuildingViewBussines> GetAll(CancellationToken token = default) => AsyncContext.Run(() => GetAllAsync(token));
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<BuildingViewBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -182,8 +169,6 @@ namespace EntityCache.Bussines
                 return new List<BuildingViewBussines>();
             }
         }
-        public static List<BuildingViewBussines> GetAll(string search) => AsyncContext.Run(() => GetAllAsync(search, new CancellationToken()));
-        public static BuildingViewBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public static async Task<bool> CheckNameAsync(string name, Guid guid) =>
             await UnitOfWork.BuildingView.CheckNameAsync(Cache.ConnectionString, name, guid);
         private async Task<ReturnedSaveFuncInfo> CheckValidationAsync()
@@ -202,7 +187,7 @@ namespace EntityCache.Bussines
 
             return res;
         }
-        private static async Task<Guid> GetDefultGuidAsync(string name)
+        public static async Task<Guid> GetDefultGuidAsync(string name= "تعیین نشده")
         {
             try
             {

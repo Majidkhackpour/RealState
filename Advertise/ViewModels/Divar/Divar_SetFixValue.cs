@@ -210,14 +210,14 @@ namespace Advertise.ViewModels.Divar
                 return "";
             }
         }
-        public string Asansor()
+        public async Task<string> GetAsansorAsync()
         {
             try
             {
                 var options = bu.OptionList;
                 if (options == null) return "";
-
-                var asansor = options.Any(q => q.OptionName.Contains("آسانسور") || q.OptionName.Contains("اسانسور"));
+                var asGuid = await BuildingOptionsBussines.GetEvelatorGuidAsync();
+                var asansor = options?.Select(q => q.BuildingOptionGuid)?.Contains(asGuid) ?? false;
                 return asansor ? "دارد" : "ندارد";
             }
             catch (Exception ex)
@@ -226,14 +226,15 @@ namespace Advertise.ViewModels.Divar
                 return "";
             }
         }
-        public string Parking()
+        public async Task<string> GetParkingAsync()
         {
             try
             {
                 var options = bu.OptionList;
                 if (options == null) return "";
 
-                var parking = options.Any(q => q.OptionName.Contains("پارکینگ"));
+                var asGuid = await BuildingOptionsBussines.GetParkingGuidAsync();
+                var parking = options?.Select(q => q.BuildingOptionGuid)?.Contains(asGuid) ?? false;
                 return parking ? "دارد" : "ندارد";
             }
             catch (Exception ex)
@@ -242,14 +243,15 @@ namespace Advertise.ViewModels.Divar
                 return "";
             }
         }
-        public string Anbari()
+        public async Task<string> GetAnbariAsync()
         {
             try
             {
                 var options = bu.OptionList;
                 if (options == null) return "";
 
-                var anbar = options.Any(q => q.OptionName.Contains("انبار"));
+                var asGuid = await BuildingOptionsBussines.GetStoreGuidAsync();
+                var anbar = options?.Select(q => q.BuildingOptionGuid)?.Contains(asGuid) ?? false;
                 return anbar ? "دارد" : "ندارد";
             }
             catch (Exception ex)
@@ -258,14 +260,15 @@ namespace Advertise.ViewModels.Divar
                 return "";
             }
         }
-        public string Balkon()
+        public async Task<string> GetBalkonAsync()
         {
             try
             {
                 var options = bu.OptionList;
                 if (options == null) return "";
 
-                var balkon = options.Any(q => q.OptionName.Contains("بالکن") || q.OptionName.Contains("تراس"));
+                var asGuid = await BuildingOptionsBussines.GetBalconyGuidAsync();
+                var balkon = options?.Select(q => q.BuildingOptionGuid)?.Contains(asGuid) ?? false;
                 return balkon ? "دارد" : "ندارد";
             }
             catch (Exception ex)

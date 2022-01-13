@@ -1,5 +1,4 @@
 ﻿using EntityCache.Assistence;
-using Nito.AsyncEx;
 using Persistence;
 using Services;
 using Services.FilterObjects;
@@ -44,6 +43,5 @@ namespace EntityCache.Bussines
 
 
         public static async Task<List<BuildingReportBussines>> GetAllAsync(BuildingFilter filters) => await UnitOfWork.Building.SearchAsync(Cache.ConnectionString, filters);
-        public static List<BuildingReportBussines> GetAll(BuildingFilter filters) => AsyncContext.Run(() => GetAllAsync(filters));
     }
 }

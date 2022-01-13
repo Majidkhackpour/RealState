@@ -115,7 +115,7 @@ namespace RealState
                             Masahat = item.Masahat,
                             SellPrice = item.SellPrice,
                             ServerStatus = ServerStatus.None,
-                            Code = BuildingBussines.NextCode(),
+                            Code = await BuildingBussines.NextCodeAsync(),
                             RahnPrice1 = item.RahnPrice,
                             ServerDeliveryDate = DateTime.Now,
                             EjarePrice1 = item.EjarePrice,
@@ -127,9 +127,9 @@ namespace RealState
                             Barq = EnKhadamati.Mostaqel,
                             BonBast = false,
                             BuildingAccountTypeGuid = await BuildingAccountTypeBussines.GetDefultGuidAsync(GetAccountType(item.BuildingType)),
-                            BuildingConditionGuid = BuildingConditionBussines.DefualtGuid,
+                            BuildingConditionGuid = await BuildingConditionBussines.GetDefultGuidAsync(),
                             BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync(item.BuildingType),
-                            BuildingViewGuid = BuildingViewBussines.DefualtGuid,
+                            BuildingViewGuid = await BuildingViewBussines.GetDefultGuidAsync(),
                             CityGuid = cityGuid,
                             CreateDate = item.DateM,
                             Dang = 6,
@@ -200,7 +200,7 @@ namespace RealState
                             {
                                 Guid = Guid.NewGuid(),
                                 Modified = DateTime.Now,
-                                BuildingOptionGuid = BuildingOptionsBussines.EveletorGuid,
+                                BuildingOptionGuid = await BuildingOptionsBussines.GetEvelatorGuidAsync(),
                                 BuildinGuid = bu.Guid
                             });
                         }
@@ -210,7 +210,7 @@ namespace RealState
                             {
                                 Guid = Guid.NewGuid(),
                                 Modified = DateTime.Now,
-                                BuildingOptionGuid = BuildingOptionsBussines.BalconyGuid,
+                                BuildingOptionGuid = await BuildingOptionsBussines.GetBalconyGuidAsync(),
                                 BuildinGuid = bu.Guid
                             });
                         }
@@ -220,7 +220,7 @@ namespace RealState
                             {
                                 Guid = Guid.NewGuid(),
                                 Modified = DateTime.Now,
-                                BuildingOptionGuid = BuildingOptionsBussines.ParkingGuid,
+                                BuildingOptionGuid = await BuildingOptionsBussines.GetParkingGuidAsync(),
                                 BuildinGuid = bu.Guid
                             });
                         }
@@ -230,7 +230,7 @@ namespace RealState
                             {
                                 Guid = Guid.NewGuid(),
                                 Modified = DateTime.Now,
-                                BuildingOptionGuid = BuildingOptionsBussines.StoreGuid,
+                                BuildingOptionGuid = await BuildingOptionsBussines.GetStoreGuidAsync(),
                                 BuildinGuid = bu.Guid
                             });
                         }

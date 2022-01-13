@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Building.UserControls
@@ -11,72 +12,67 @@ namespace Building.UserControls
     public partial class UcBuildingOptions : UserControl
     {
         private List<BuildingRelatedOptionsBussines> _opList;
-        public List<BuildingRelatedOptionsBussines> OptionList
+        public async Task<List<BuildingRelatedOptionsBussines>> GetOptionListAsync()
         {
-            get
+            var res = new List<BuildingRelatedOptionsBussines>();
+            try
             {
-                var res = new List<BuildingRelatedOptionsBussines>();
-                try
-                {
-                    var list = BuildingOptionsBussines.GetAll();
-                    if (list.Count <= 0) return null;
-                    foreach (var item in list)
-                        for (var i = 0; i < DGrid.RowCount; i++)
-                            if (item.Guid == ((Guid?)DGrid[dgOptionGuid.Index, i].Value ?? Guid.Empty))
+                var list = await BuildingOptionsBussines.GetAllAsync();
+                if (list.Count <= 0) return null;
+                foreach (var item in list)
+                    for (var i = 0; i < DGrid.RowCount; i++)
+                        if (item.Guid == ((Guid?)DGrid[dgOptionGuid.Index, i].Value ?? Guid.Empty))
+                        {
+                            if (!(bool)DGrid[dgChecked.Index, i].Value) continue;
+                            res.Add(new BuildingRelatedOptionsBussines()
                             {
-                                if (!(bool)DGrid[dgChecked.Index, i].Value) continue;
-                                res.Add(new BuildingRelatedOptionsBussines()
-                                {
-                                    Guid = Guid.NewGuid(),
-                                    BuildingOptionGuid = item.Guid,
-                                    Modified = DateTime.Now
-                                });
-                            }
-                }
-                catch (Exception ex)
-                {
-                    WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                }
-
-                return res;
+                                Guid = Guid.NewGuid(),
+                                BuildingOptionGuid = item.Guid,
+                                Modified = DateTime.Now
+                            });
+                        }
             }
-            set
+            catch (Exception ex)
             {
-                try
-                {
-                    if (value == null || value.Count <= 0) return;
-                    _opList = value;
-                    foreach (var item in value)
-                        for (var i = 0; i < DGrid.RowCount; i++)
-                            if (item.BuildingOptionGuid == ((Guid?)DGrid[dgOptionGuid.Index, i].Value ?? Guid.Empty))
-                                DGrid[dgChecked.Index, i].Value = true;
-
-                    HighLightGrid();
-                }
-                catch (Exception ex)
-                {
-                    WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                }
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+
+            return res;
         }
-        public UcBuildingOptions()
-        {
-            InitializeComponent();
-            FillOptions();
-        }
-        private void FillOptions(string search = "")
+        public async Task SetOptionListAsync(List<BuildingRelatedOptionsBussines> value)
         {
             try
             {
-                var list = BuildingOptionsBussines.GetAll(search);
-                BuildingOptionBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
+                if (BuildingOptionBindingSource.Count <= 0)
+                    await FillOptionsAsync();
+                if (value == null || value.Count <= 0) return;
+                _opList = value;
+                foreach (var item in value)
+                    for (var i = 0; i < DGrid.RowCount; i++)
+                        if (item.BuildingOptionGuid == ((Guid?)DGrid[dgOptionGuid.Index, i].Value ?? Guid.Empty))
+                            DGrid[dgChecked.Index, i].Value = true;
+
+                HighLightGrid();
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void txtSearch_TextChanged(object sender, EventArgs e) => FillOptions(txtSearch.Text);
+        public UcBuildingOptions() => InitializeComponent();
+        private async Task FillOptionsAsync(string search = "")
+        {
+            try
+            {
+                var list = await BuildingOptionsBussines.GetAllAsync(search, default);
+                BuildingOptionBindingSource.DataSource = list?.Where(q => q.Status)?.OrderBy(q => q.Name)?.ToList();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void txtSearch_TextChanged(object sender, EventArgs e) => await FillOptionsAsync(txtSearch.Text);
         private void LoadFullOption()
         {
             try
@@ -95,12 +91,12 @@ namespace Building.UserControls
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void chbFullOption_CheckedChanged(object sender, EventArgs e)
+        private async void chbFullOption_CheckedChanged(object sender, EventArgs e)
         {
             try
             {
                 if (chbFullOption.Checked) LoadFullOption();
-                else OptionList = _opList;
+                else await SetOptionListAsync(_opList);
             }
             catch (Exception ex)
             {

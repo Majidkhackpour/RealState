@@ -157,6 +157,7 @@ namespace Advertise.Forms
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Style = MetroFramework.MetroColorStyle.Teal;
+            this.Load += new System.EventHandler(this.frmTitle_Load);
             this.grp.ResumeLayout(false);
             this.grp.PerformLayout();
             this.ResumeLayout(false);

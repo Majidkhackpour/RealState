@@ -1,6 +1,7 @@
 ﻿using EntityCache.Bussines;
 using Services;
 using System;
+using System.Threading.Tasks;
 
 namespace Building.UserControls.Sell
 {
@@ -36,39 +37,39 @@ namespace Building.UserControls.Sell
                 }
                 return _bu;
             }
-            set
-            {
-                try
-                {
-                    if (value == null) return;
-                    _bu = value;
-                    ucZirBana1.Value = _bu.ZirBana;
-                    ucDocumentType1.SanadTypeGuid = _bu.DocumentType;
-                    UcDong.Value = _bu.Dang;
-                    ucSaleSakht1.SaleSakht = _bu.SaleSakht;
-                    ucCommericallLicense1.CommericallLicense = _bu.CommericallLicense;
-                    UcSuitableFor.Value = _bu.SuitableFor;
-                    UcWidth.Value = (int)_bu.Hashie;
-                    UcErtefa.Value = (int)_bu.ErtefaSaqf;
-                    UcWallCovering.Value = _bu.WallCovering;
-                    ucBuildingView1.BuildingViewGuid = _bu.BuildingViewGuid;
-                    ucFloorCover1.FloorCoverGuid = _bu.FloorCoverGuid;
-                    ucBuildingCondition1.BuildingConditionGuid = _bu.BuildingConditionGuid;
-                    ucTotalPrice.Price = _bu.SellPrice;
-                    ucVam.Price = _bu.VamPrice;
-                    ucQest.Price = _bu.QestPrice;
-                    if (_bu.Dang <= 0) UcDong.DefaultValue = 6;
-                    if (_bu.Masahat <= 0) return;
-                    var m = Math.Truncate(_bu.SellPrice / _bu.Masahat);
-                    ucPricePerMasahat.Price = m;
-                }
-                catch (Exception ex)
-                {
-                    WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                }
-            }
         }
 
+        public override async Task SetBuildingAsync(BuildingBussines value)
+        {
+            try
+            {
+                if (value == null) return;
+                _bu = value;
+                ucZirBana1.Value = _bu.ZirBana;
+                ucDocumentType1.SanadTypeGuid = _bu.DocumentType;
+                UcDong.Value = _bu.Dang;
+                ucSaleSakht1.SaleSakht = _bu.SaleSakht;
+                ucCommericallLicense1.CommericallLicense = _bu.CommericallLicense;
+                UcSuitableFor.Value = _bu.SuitableFor;
+                UcWidth.Value = (int)_bu.Hashie;
+                UcErtefa.Value = (int)_bu.ErtefaSaqf;
+                UcWallCovering.Value = _bu.WallCovering;
+                await ucBuildingView1.SetBuildingViewGuidAsync(_bu.BuildingViewGuid);
+                ucFloorCover1.FloorCoverGuid = _bu.FloorCoverGuid;
+                await ucBuildingCondition1.SetBuildingConditionGuidAsync(_bu.BuildingConditionGuid);
+                ucTotalPrice.Price = _bu.SellPrice;
+                ucVam.Price = _bu.VamPrice;
+                ucQest.Price = _bu.QestPrice;
+                if (_bu.Dang <= 0) UcDong.DefaultValue = 6;
+                if (_bu.Masahat <= 0) return;
+                var m = Math.Truncate(_bu.SellPrice / _bu.Masahat);
+                ucPricePerMasahat.Price = m;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public UcBuildingSell_Store() => InitializeComponent();
 
         private void ucPricePerMasahat_OnTextChanged()

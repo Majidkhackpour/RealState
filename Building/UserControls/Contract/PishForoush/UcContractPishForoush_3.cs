@@ -11,7 +11,7 @@ namespace Building.UserControls.Contract.PishForoush
 {
     public partial class UcContractPishForoush_3 : UserControl
     {
-        public event Action<Guid> OnBuildingSelect;
+        public event Func<Guid,Task> OnBuildingSelect;
         private void FillCmbSide()
         {
             try

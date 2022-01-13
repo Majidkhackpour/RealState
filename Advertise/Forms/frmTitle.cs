@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
@@ -12,12 +13,12 @@ namespace Advertise.Forms
         private BuildingBussines bu;
         public string AdvTitle => txtTitle.Text;
         public string AdvContent => txtContent.Text;
-        private void SetText()
+        private async Task SetTextAsync()
         {
             try
             {
                 txtTitle.Text = Title();
-                txtContent.Text = Content();
+                txtContent.Text = await GetContentAsync();
             }
             catch (Exception ex)
             {
@@ -40,7 +41,7 @@ namespace Advertise.Forms
                 return "";
             }
         }
-        private string Content()
+        private async Task<string> GetContentAsync()
         {
             try
             {
@@ -57,7 +58,10 @@ namespace Advertise.Forms
 
                 content.AppendLine("امکانات ملک: ");
                 foreach (var item in bu.OptionList)
-                    content.AppendLine(item.OptionName);
+                {
+                    var obj= await BuildingOptionsBussines.GetAsync(item.BuildingOptionGuid);
+                    content.AppendLine(obj?.Name);
+                }
 
                 return content.ToString();
             }
@@ -71,7 +75,6 @@ namespace Advertise.Forms
         {
             InitializeComponent();
             bu = _bu;
-            SetText();
         }
         private void btnFinish_Click(object sender, EventArgs e)
         {
@@ -83,5 +86,6 @@ namespace Advertise.Forms
             DialogResult = DialogResult.Cancel;
             Close();
         }
+        private async void frmTitle_Load(object sender, EventArgs e) => await SetTextAsync();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using Services;
@@ -8,10 +9,18 @@ namespace Building.UserControls
     public partial class UcBuildingCode : UserControl
     {
         private Guid _userGuid;
-        public string Code
+        public string Code => txtCode.Text;
+        public async Task SetCodeAsync(string value)
         {
-            get => txtCode.Text;
-            set => txtCode.Text = string.IsNullOrEmpty(value.RemoveNoNumbers()) ? BuildingBussines.NextCode() : value.RemoveNoNumbers();
+            try
+            {
+                var code = await BuildingBussines.NextCodeAsync();
+                txtCode.Text = string.IsNullOrEmpty(value.RemoveNoNumbers()) ? code : value.RemoveNoNumbers();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
         public EnBuildingPriority Pirority
         {
@@ -51,13 +60,13 @@ namespace Building.UserControls
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void txtCode_KeyDown(object sender, KeyEventArgs e)
+        private async void txtCode_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 if (!e.Shift) return;
                 if (e.KeyCode != Keys.N) return;
-                Code = BuildingBussines.NextCode();
+                await SetCodeAsync(await BuildingBussines.NextCodeAsync());
             }
             catch (Exception ex)
             {

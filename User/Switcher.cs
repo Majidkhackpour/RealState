@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Accounting.Pardakht;
 using Accounting.Reception;
@@ -24,7 +25,7 @@ namespace User
 {
     public class Switcher
     {
-        public static void Switch(EnLogPart part, Guid? objGuid)
+        public static async Task SwitchAsync(EnLogPart part, Guid? objGuid)
         {
             try
             {
@@ -50,7 +51,7 @@ namespace User
                     case EnLogPart.BuildingCondition: frm = new frmBuildingConditionMain(guid, true); break;
                     case EnLogPart.BuildingType: frm = new frmBuildingTypeMain(guid, true); break;
                     case EnLogPart.Building:
-                        var bu = BuildingBussines.Get(guid);
+                        var bu = await BuildingBussines.GetAsync(guid);
                         frm = new frmBuildingDetail(bu, false,false);
                         break;
                     case EnLogPart.BuildingRequest: frm = new frmBuildingRequestsMain(guid, true); break;

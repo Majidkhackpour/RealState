@@ -215,9 +215,7 @@ namespace Building.Buildings
             this.UcHitting_Colling.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.UcHitting_Colling.BackColor = System.Drawing.Color.Transparent;
-            this.UcHitting_Colling.Colling = "";
             this.UcHitting_Colling.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.UcHitting_Colling.Hitting = "";
             this.UcHitting_Colling.Location = new System.Drawing.Point(8, 638);
             this.UcHitting_Colling.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.UcHitting_Colling.Name = "UcHitting_Colling";
@@ -281,7 +279,6 @@ namespace Building.Buildings
             this.UcCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.UcCode.BackColor = System.Drawing.Color.Transparent;
-            this.UcCode.Code = "3648";
             this.UcCode.CreateDate = new System.DateTime(2021, 10, 6, 0, 0, 0, 0);
             this.UcCode.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.UcCode.Location = new System.Drawing.Point(8, 253);

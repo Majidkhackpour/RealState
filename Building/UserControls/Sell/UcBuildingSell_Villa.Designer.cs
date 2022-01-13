@@ -176,7 +176,6 @@ namespace Building.UserControls.Sell
             // 
             this.ucBuildingCondition1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ucBuildingCondition1.BackColor = System.Drawing.Color.Transparent;
-            this.ucBuildingCondition1.BuildingConditionGuid = new System.Guid("6680e057-a47d-439f-8070-ddd8c9a57de5");
             this.ucBuildingCondition1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.ucBuildingCondition1.Location = new System.Drawing.Point(56, 111);
             this.ucBuildingCondition1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -215,7 +214,6 @@ namespace Building.UserControls.Sell
             // 
             this.ucBuildingView1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ucBuildingView1.BackColor = System.Drawing.Color.Transparent;
-            this.ucBuildingView1.BuildingViewGuid = new System.Guid("23f29860-3d3d-4837-a463-8dcdee19993c");
             this.ucBuildingView1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.ucBuildingView1.Location = new System.Drawing.Point(558, 146);
             this.ucBuildingView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);

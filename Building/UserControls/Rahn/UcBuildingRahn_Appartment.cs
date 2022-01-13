@@ -1,6 +1,7 @@
 ﻿using EntityCache.Bussines;
 using Services;
 using System;
+using System.Threading.Tasks;
 
 namespace Building.UserControls.Rahn
 {
@@ -37,33 +38,34 @@ namespace Building.UserControls.Rahn
                 }
                 return _bu;
             }
-            set
+        }
+
+        public override async Task SetBuildingAsync(BuildingBussines value)
+        {
+            try
             {
-                try
-                {
-                    if (value == null) return;
-                    _bu = value;
-                    ucZirBana1.Value = _bu.ZirBana;
-                    ucRoomCount1.RoomCount = _bu.RoomCount;
-                    ucSaleSakht1.SaleSakht = _bu.SaleSakht;
-                    ucTabaqeCount.Value = _bu.TedadTabaqe;
-                    ucTabaqeNo1.TabaqeNo = _bu.TabaqeNo;
-                    ucVahedPertabaqe.Value = _bu.VahedPerTabaqe;
-                    ucSide1.Side = _bu.Side;
-                    ucBuildingView1.BuildingViewGuid = _bu.BuildingViewGuid;
-                    ucFloorCover1.FloorCoverGuid = _bu.FloorCoverGuid;
-                    ucKitchenService1.KitchenServiceGuid = _bu.KitchenServiceGuid;
-                    ucRahn.Price = _bu.RahnPrice1;
-                    if (!IsFullRahn) ucEjare.Price = _bu.EjarePrice1;
-                    if (_bu.Tabdil != null) chbTabdil.Checked = _bu.Tabdil.Value;
-                    if (_bu.IsOwnerHere != null) chbIsOwnerHere.Checked = _bu.IsOwnerHere.Value;
-                    if (_bu.IsShortTime != null) chbShortTime.Checked = _bu.IsShortTime.Value;
-                    ucRentalAuthority1.RentalAuthorityGuid = _bu.RentalAutorityGuid;
-                }
-                catch (Exception ex)
-                {
-                    WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                }
+                if (value == null) return;
+                _bu = value;
+                ucZirBana1.Value = _bu.ZirBana;
+                ucRoomCount1.RoomCount = _bu.RoomCount;
+                ucSaleSakht1.SaleSakht = _bu.SaleSakht;
+                ucTabaqeCount.Value = _bu.TedadTabaqe;
+                ucTabaqeNo1.TabaqeNo = _bu.TabaqeNo;
+                ucVahedPertabaqe.Value = _bu.VahedPerTabaqe;
+                ucSide1.Side = _bu.Side;
+                await ucBuildingView1.SetBuildingViewGuidAsync(_bu.BuildingViewGuid);
+                ucFloorCover1.FloorCoverGuid = _bu.FloorCoverGuid;
+                ucKitchenService1.KitchenServiceGuid = _bu.KitchenServiceGuid;
+                ucRahn.Price = _bu.RahnPrice1;
+                if (!IsFullRahn) ucEjare.Price = _bu.EjarePrice1;
+                if (_bu.Tabdil != null) chbTabdil.Checked = _bu.Tabdil.Value;
+                if (_bu.IsOwnerHere != null) chbIsOwnerHere.Checked = _bu.IsOwnerHere.Value;
+                if (_bu.IsShortTime != null) chbShortTime.Checked = _bu.IsShortTime.Value;
+                ucRentalAuthority1.RentalAuthorityGuid = _bu.RentalAutorityGuid;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
         public UcBuildingRahn_Appartment() => InitializeComponent();

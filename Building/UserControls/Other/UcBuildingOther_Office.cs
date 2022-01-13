@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using Services;
@@ -52,45 +53,45 @@ namespace Building.UserControls.Other
                 }
                 return _bu;
             }
-            set
-            {
-                try
-                {
-                    if (value == null) return;
-                    _bu = value;
-                    ucZirBana1.Value = _bu.ZirBana;
-                    ucRoomCount1.RoomCount = _bu.RoomCount;
-                    ucDocumentType1.SanadTypeGuid = _bu.DocumentType;
-                    UcDong.Value = _bu.Dang;
-                    ucTabaqeCount.Value = _bu.TedadTabaqe;
-                    ucTabaqeNo1.TabaqeNo = _bu.TabaqeNo;
-                    ucVahedPertabaqe.Value = _bu.VahedPerTabaqe;
-                    ucCommericallLicense1.CommericallLicense = _bu.CommericallLicense;
-                    UcSuitableFor.Value = _bu.SuitableFor;
-                    ucSide1.Side = _bu.Side;
-                    ucBuildingView1.BuildingViewGuid = _bu.BuildingViewGuid;
-                    ucFloorCover1.FloorCoverGuid = _bu.FloorCoverGuid;
-                    ucKitchenService1.KitchenServiceGuid = _bu.KitchenServiceGuid;
-                    ucTotalPrice.Price = _bu.SellPrice;
-                    ucVam.Price = _bu.VamPrice;
-                    ucQest.Price = _bu.QestPrice;
-                    if (_bu.Dang <= 0) UcDong.DefaultValue = 6;
-                    if (IsPishForoush)
-                    {
-                        ucConstructionStage1.Stage = _bu.ConstructionStage;
-                        txtDeliveryDate.Text = Calendar.MiladiToShamsi(_bu.DeliveryDate);
-                    }
-                    if (_bu.Masahat <= 0) return;
-                    var m = Math.Truncate(_bu.SellPrice / _bu.Masahat);
-                    ucPricePerMasahat.Price = m;
-                }
-                catch (Exception ex)
-                {
-                    WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                }
-            }
         }
 
+        public override async Task SetBuildingAsync(BuildingBussines value)
+        {
+            try
+            {
+                if (value == null) return;
+                _bu = value;
+                ucZirBana1.Value = _bu.ZirBana;
+                ucRoomCount1.RoomCount = _bu.RoomCount;
+                ucDocumentType1.SanadTypeGuid = _bu.DocumentType;
+                UcDong.Value = _bu.Dang;
+                ucTabaqeCount.Value = _bu.TedadTabaqe;
+                ucTabaqeNo1.TabaqeNo = _bu.TabaqeNo;
+                ucVahedPertabaqe.Value = _bu.VahedPerTabaqe;
+                ucCommericallLicense1.CommericallLicense = _bu.CommericallLicense;
+                UcSuitableFor.Value = _bu.SuitableFor;
+                ucSide1.Side = _bu.Side;
+                await ucBuildingView1.SetBuildingViewGuidAsync(_bu.BuildingViewGuid);
+                ucFloorCover1.FloorCoverGuid = _bu.FloorCoverGuid;
+                ucKitchenService1.KitchenServiceGuid = _bu.KitchenServiceGuid;
+                ucTotalPrice.Price = _bu.SellPrice;
+                ucVam.Price = _bu.VamPrice;
+                ucQest.Price = _bu.QestPrice;
+                if (_bu.Dang <= 0) UcDong.DefaultValue = 6;
+                if (IsPishForoush)
+                {
+                    ucConstructionStage1.Stage = _bu.ConstructionStage;
+                    txtDeliveryDate.Text = Calendar.MiladiToShamsi(_bu.DeliveryDate);
+                }
+                if (_bu.Masahat <= 0) return;
+                var m = Math.Truncate(_bu.SellPrice / _bu.Masahat);
+                ucPricePerMasahat.Price = m;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public UcBuildingOther_Office() => InitializeComponent();
 
         private void ucPricePerMasahat_OnTextChanged()

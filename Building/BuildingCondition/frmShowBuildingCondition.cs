@@ -106,14 +106,16 @@ namespace Building.BuildingCondition
             }
         }
         private async void frmShowBuildingCondition_Load(object sender, EventArgs e) => await LoadDataAsync();
-        private void mnuView_Click(object sender, EventArgs e)
+        private async void mnuView_Click(object sender, EventArgs e)
         {
             try
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmBuildingConditionMain(guid, true);
+                var obj = await BuildingConditionBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmBuildingConditionMain(obj, true);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -134,7 +136,9 @@ namespace Building.BuildingCondition
                     return;
                 }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmBuildingConditionMain(guid, false);
+                var obj = await BuildingConditionBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmBuildingConditionMain(obj, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(txtSearch.Text);
             }
@@ -147,7 +151,7 @@ namespace Building.BuildingCondition
         {
             try
             {
-                var frm = new frmBuildingConditionMain();
+                var frm = new frmBuildingConditionMain(new BuildingConditionBussines(), false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync();
             }
