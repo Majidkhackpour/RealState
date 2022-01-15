@@ -88,12 +88,12 @@ namespace Cities
             }
         }
         public string Address { get => txtAddress.Text.FixString(); set => txtAddress.Text = value; }
-        private void cmbState_SelectedIndexChanged(object sender, EventArgs e)
+        private async void cmbState_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
                 if (cmbState.SelectedValue == null) return;
-                var list = CitiesBussines.GetAll((Guid)cmbState.SelectedValue);
+                var list =await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue,default);
                 CityBindingSource.DataSource = list?.Where(q => q.Status).OrderBy(q => q.Name).ToList();
                 if (!string.IsNullOrEmpty(clsEconomyUnit.EconomyCity))
                     cmbCity.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyCity);

@@ -96,7 +96,6 @@ namespace Building.UserControls.Sell
             this.ucDocumentType1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucDocumentType1.Name = "ucDocumentType1";
             this.ucDocumentType1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucDocumentType1.SanadTypeGuid = new System.Guid("f2c7220f-d56a-46a3-92e4-03709400ac9e");
             this.ucDocumentType1.Size = new System.Drawing.Size(192, 36);
             this.ucDocumentType1.TabIndex = 4;
             // 
@@ -175,7 +174,6 @@ namespace Building.UserControls.Sell
             // 
             this.ucFloorCover1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ucFloorCover1.BackColor = System.Drawing.Color.Transparent;
-            this.ucFloorCover1.FloorCoverGuid = new System.Guid("0d9bd742-a1fd-4e31-b3a2-87d77f8e315e");
             this.ucFloorCover1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.ucFloorCover1.Location = new System.Drawing.Point(18, 80);
             this.ucFloorCover1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);

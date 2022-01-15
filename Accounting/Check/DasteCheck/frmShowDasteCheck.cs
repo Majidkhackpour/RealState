@@ -109,7 +109,7 @@ namespace Accounting.Check.DasteCheck
         {
             try
             {
-                var frm = new frmDasteCheckMain();
+                var frm = new frmDasteCheckMain(new DasteCheckBussines(), false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync();
             }
@@ -144,7 +144,8 @@ namespace Accounting.Check.DasteCheck
                     frmNotification.PublicInfo.ShowMessage("به علت کشیدن چک از این دسته چک، شما مجاز به ویرایش آن نمی باشید");
                     return;
                 }
-                var frm = new frmDasteCheckMain(guid, false);
+
+                var frm = new frmDasteCheckMain(dasteChek, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(txtSearch.Text);
             }
@@ -153,14 +154,16 @@ namespace Accounting.Check.DasteCheck
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuView_Click(object sender, EventArgs e)
+        private async void mnuView_Click(object sender, EventArgs e)
         {
             try
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmDasteCheckMain(guid, true);
+                var dasteChek = await DasteCheckBussines.GetAsync(guid);
+                if (dasteChek == null) return;
+                var frm = new frmDasteCheckMain(dasteChek, true);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)

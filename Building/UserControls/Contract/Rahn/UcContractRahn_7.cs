@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using Services;
@@ -7,18 +8,17 @@ namespace Building.UserControls.Contract.Rahn
 {
     public partial class UcContractRahn_7 : UserControl
     {
-        private void LoadCity()
+        private async Task LoadCityAsync()
         {
             try
             {
-                lblCity.Text = "";
                 var cityGuid = Settings.Classes.clsEconomyUnit.EconomyCity;
                 if (string.IsNullOrEmpty(cityGuid)) return;
                 var cGuid = Guid.Parse(cityGuid);
                 if (cGuid == Guid.Empty) return;
-                var city = CitiesBussines.Get(cGuid);
+                var city = await CitiesBussines.GetAsync(cGuid);
                 if (city == null) return;
-                lblCity.Text = city.Name;
+                BeginInvoke(new MethodInvoker(() => lblCity.Text = city.Name));
             }
             catch (Exception ex)
             {
@@ -28,7 +28,8 @@ namespace Building.UserControls.Contract.Rahn
         public UcContractRahn_7()
         {
             InitializeComponent();
-            LoadCity();
+            lblCity.Text = "";
+            _=Task.Run(LoadCityAsync);
         }
     }
 }

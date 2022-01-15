@@ -46,7 +46,7 @@ namespace Building.UserControls.Sell
                 if (value == null) return;
                 _bu = value;
                 ucZirBana1.Value = _bu.ZirBana;
-                ucDocumentType1.SanadTypeGuid = _bu.DocumentType;
+                await ucDocumentType1.SetSanadTypeGuidAsync(_bu.DocumentType);
                 UcDong.Value = _bu.Dang;
                 ucSaleSakht1.SaleSakht = _bu.SaleSakht;
                 ucCommericallLicense1.CommericallLicense = _bu.CommericallLicense;
@@ -55,7 +55,7 @@ namespace Building.UserControls.Sell
                 UcErtefa.Value = (int)_bu.ErtefaSaqf;
                 UcWallCovering.Value = _bu.WallCovering;
                 await ucBuildingView1.SetBuildingViewGuidAsync(_bu.BuildingViewGuid);
-                ucFloorCover1.FloorCoverGuid = _bu.FloorCoverGuid;
+                await ucFloorCover1.SetFloorCoverGuidAsync(_bu.FloorCoverGuid);
                 await ucBuildingCondition1.SetBuildingConditionGuidAsync(_bu.BuildingConditionGuid);
                 ucTotalPrice.Price = _bu.SellPrice;
                 ucVam.Price = _bu.VamPrice;

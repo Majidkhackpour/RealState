@@ -4,6 +4,7 @@ using MetroFramework.Forms;
 using Services;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
 using Notification.AdjectiveDescription;
@@ -111,14 +112,14 @@ namespace Accounting.Sanad
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void SetMoein()
+        private async Task SetMoeinAsync()
         {
             try
             {
                 var frm = new frmKolMoein(true);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                 {
-                    var moein = MoeinBussines.Get(frm.SelectedMoeinGuid);
+                    var moein = await MoeinBussines.GetAsync(frm.SelectedMoeinGuid);
                     if (moein != null)
                     {
                         txtMoeinName.Text = moein.Name;
@@ -146,12 +147,12 @@ namespace Accounting.Sanad
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private SanadDetailBussines GenerateDet()
+        private async Task<SanadDetailBussines> GenerateDetAsync()
         {
             try
             {
                 var tafsil = TafsilBussines.Get(_tafsilGuid);
-                var moein = MoeinBussines.Get(_moeinGuid);
+                var moein = await MoeinBussines.GetAsync(_moeinGuid);
                 var res = new SanadDetailBussines
                 {
                     Guid = Guid.NewGuid(),
@@ -237,13 +238,13 @@ namespace Accounting.Sanad
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
             => DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
         private void btnTafsilSearch_Click(object sender, EventArgs e) => SetTafsil();
-        private void btnSaveArticle_Click(object sender, EventArgs e)
+        private async void btnSaveArticle_Click(object sender, EventArgs e)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
                 mnuDelete.PerformClick();
-                res.AddReturnedValue(cls.AddToListSanad(GenerateDet()));
+                res.AddReturnedValue(cls.AddToListSanad(await GenerateDetAsync()));
             }
             catch (Exception ex)
             {
@@ -261,7 +262,7 @@ namespace Accounting.Sanad
                 }
             }
         }
-        private void btnMoeinSearch_Click(object sender, EventArgs e) => SetMoein();
+        private async void btnMoeinSearch_Click(object sender, EventArgs e) => await SetMoeinAsync();
         private async void btnFinish_Click(object sender, EventArgs e)
         {
             var res = new ReturnedSaveFuncInfo();

@@ -60,7 +60,7 @@ namespace Building.BuildingRequest
                 txtSellPrice1.TextDecimal = cls?.SellPrice1 ?? 0;
                 txtSellPrice2.TextDecimal = cls?.SellPrice2 ?? 0;
 
-                var city = CitiesBussines.Get(cls?.CityGuid ?? Guid.Empty);
+                var city = await CitiesBussines.GetAsync(cls?.CityGuid ?? Guid.Empty);
                 cmbState.SelectedValue = city?.StateGuid ?? Guid.Empty;
                 if (cmbState.SelectedValue != null && (Guid)cmbState.SelectedValue != Guid.Empty)
                     cmbState_SelectedIndexChanged(null, null);

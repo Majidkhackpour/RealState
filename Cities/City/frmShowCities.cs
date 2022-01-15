@@ -166,7 +166,9 @@ namespace Cities.City
                     return;
                 }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmCitiesMain(guid, false);
+                var obj = await CitiesBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmCitiesMain(obj, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(txtSearch.Text);
             }
@@ -175,14 +177,16 @@ namespace Cities.City
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuView_Click(object sender, EventArgs e)
+        private async void mnuView_Click(object sender, EventArgs e)
         {
             try
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmCitiesMain(guid, true);
+                var obj = await CitiesBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmCitiesMain(obj, true);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -234,7 +238,7 @@ namespace Cities.City
         {
             try
             {
-                var frm = new frmCitiesMain();
+                var frm = new frmCitiesMain(new CitiesBussines(), false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync();
             }

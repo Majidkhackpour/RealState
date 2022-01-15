@@ -35,21 +35,24 @@ namespace Cities.City
             }
         }
 
-        public frmCitiesMain()
+        public frmCitiesMain(CitiesBussines obj, bool isShowMode)
         {
-            InitializeComponent();
-            cls = new CitiesBussines();
-            ucHeader.Text = "افزودن شهر جدید";
-            ucHeader.IsModified = cls.IsModified;
-        }
-        public frmCitiesMain(Guid guid, bool isShowMode)
-        {
-            InitializeComponent();
-            cls = CitiesBussines.Get(guid);
-            ucHeader.Text = !isShowMode ? $"ویرایش شهر {cls.Name}" : $"مشاهده شهر {cls.Name}";
-            ucHeader.IsModified = cls.IsModified;
-            grp.Enabled = !isShowMode;
-            btnFinish.Enabled = !isShowMode;
+            try
+            {
+                InitializeComponent();
+                cls = obj;
+                if (!cls.IsModified)
+                    ucHeader.Text = "افزودن شهر جدید";
+                else
+                    ucHeader.Text = !isShowMode ? $"ویرایش شهر {cls.Name}" : $"مشاهده شهر {cls.Name}";
+                ucHeader.IsModified = cls.IsModified;
+                grp.Enabled = !isShowMode;
+                btnFinish.Enabled = !isShowMode;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private void txtCity_Enter(object sender, System.EventArgs e) => txtSetter.Focus(txtCity);

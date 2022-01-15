@@ -50,7 +50,7 @@ namespace Building.UserControls.Rahn
                 UcErtefa.Value = (int)_bu.ErtefaSaqf;
                 UcWallCovering.Value = _bu.WallCovering;
                 await ucBuildingView1.SetBuildingViewGuidAsync(_bu.BuildingViewGuid);
-                ucFloorCover1.FloorCoverGuid = _bu.FloorCoverGuid;
+                await ucFloorCover1.SetFloorCoverGuidAsync(_bu.FloorCoverGuid);
                 ucRahn.Price = _bu.RahnPrice1;
                 if (!IsFullRahn) ucEjare.Price = _bu.EjarePrice1;
                 if (_bu.Tabdil != null) chbTabdil.Checked = _bu.Tabdil.Value;

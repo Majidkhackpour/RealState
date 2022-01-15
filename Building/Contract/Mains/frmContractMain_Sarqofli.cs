@@ -18,7 +18,7 @@ namespace Building.Contract
             try
             {
                 ucContractHeader1.Title = "انتــــــقـــــــال ســــرقــــفـــــلــــی";
-                ucContractHeader1.ContractCode = cls.Code;
+                await ucContractHeader1.SetContractCode(cls.Code);
                 ucContractHeader1.CodeInArchive = cls.CodeInArchive;
                 ucContractHeader1.RealStateCode = cls.RealStateCode;
                 ucContractHeader1.HologramCode = cls.HologramCode;

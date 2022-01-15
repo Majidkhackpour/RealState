@@ -56,17 +56,19 @@ namespace RealState.Note
             }
         }
 
-        public frmNoteMain()
+        public frmNoteMain(NoteBussines obj, bool isShowMode)
         {
-            InitializeComponent();
-            cls = new NoteBussines();
-        }
-        public frmNoteMain(Guid guid, bool isShowMode)
-        {
-            InitializeComponent();
-            cls = NoteBussines.Get(guid);
-            grp.Enabled = !isShowMode;
-            btnFinish.Enabled = !isShowMode;
+            try
+            {
+                InitializeComponent();
+                cls = obj;
+                grp.Enabled = !isShowMode;
+                btnFinish.Enabled = !isShowMode;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private async void frmNoteMain_Load(object sender, EventArgs e)=>await SetDataAsync();

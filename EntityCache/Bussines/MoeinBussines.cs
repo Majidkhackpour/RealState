@@ -1,16 +1,13 @@
-﻿using System;
+﻿using EntityCache.Assistence;
+using Persistence;
+using Services;
+using Services.Interfaces.Building;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using EntityCache.Assistence;
-using EntityCache.Mppings;
-using Nito.AsyncEx;
-using Persistence;
-using Services;
-using Services.Interfaces.Building;
-using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
@@ -95,7 +92,6 @@ namespace EntityCache.Bussines
                 return new List<MoeinBussines>();
             }
         }
-        public static MoeinBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public async Task<ReturnedSaveFuncInfo> UpdateAccountAsync(decimal price, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -133,6 +129,5 @@ namespace EntityCache.Bussines
             return res;
         }
         public static async Task<MoeinBussines> GetAsync(string code) => await UnitOfWork.Moein.GetAsync(Cache.ConnectionString, code);
-        public static MoeinBussines Get(string code) => AsyncContext.Run(() => GetAsync(code));
     }
 }

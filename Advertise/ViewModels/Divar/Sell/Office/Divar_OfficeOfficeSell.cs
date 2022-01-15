@@ -36,7 +36,6 @@ namespace Advertise.ViewModels.Divar.Sell.Office
         public string RoomCount => fixValue.RoomCount();
         public string SaleSakht => fixValue.SaleSakht().UpSideFixString();
         public string Tabaqe => fixValue.Tabaqe().UpSideFixString();
-        public bool SanadEdari => fixValue.SanadEdari();
 
         public async Task<ReturnedSaveFuncInfo> SendAsync(long number)
         {
@@ -83,7 +82,7 @@ namespace Advertise.ViewModels.Divar.Sell.Office
                 await Utility.Wait();
                 cat.SelectDropDown(SaleSakht);
 
-                if (SanadEdari) cat.SanadEdari()?.Click();
+                if (await fixValue.GetSanadEdariAsync()) cat.SanadEdari()?.Click();
 
                 await Utility.Wait();
                 cat.Tabaqe(4)?.Click();

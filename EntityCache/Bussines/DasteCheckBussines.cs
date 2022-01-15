@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
-using Nito.AsyncEx;
 using Persistence;
 using Services;
 using Services.Interfaces.Building;
@@ -65,7 +64,6 @@ namespace EntityCache.Bussines
             }
         }
         public static async Task<DasteCheckBussines> GetAsync(Guid guid) => await UnitOfWork.DasteCheck.GetAsync(Cache.ConnectionString, guid);
-        public static DasteCheckBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();

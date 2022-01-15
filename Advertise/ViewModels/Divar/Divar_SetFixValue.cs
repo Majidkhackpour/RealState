@@ -293,11 +293,11 @@ namespace Advertise.ViewModels.Divar
                 return "";
             }
         }
-        public bool SanadEdari()
+        public async Task<bool> GetSanadEdariAsync()
         {
             try
             {
-                var doc = DocumentTypeBussines.Get(bu.DocumentType ?? Guid.Empty);
+                var doc = await DocumentTypeBussines.GetAsync(bu.DocumentType ?? Guid.Empty);
                 return doc != null && doc.Name.Contains("اداری");
             }
             catch (Exception ex)

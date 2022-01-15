@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using Services;
@@ -8,10 +9,18 @@ namespace Building.UserControls.Contract.Public
     public partial class UcSerial : UserControl
     {
         public event Action<string> OnDateChanged;
-        public long ContractCode
+        public long ContractCode => txtCode.Text.ParseToLong();
+        public async Task SetContractCodeAsync(long value)
         {
-            get => txtCode.Text.ParseToLong();
-            set => txtCode.Text = value <= 0 ? ContractBussines.NextCode() : value.ToString();
+            try
+            {
+                var code = await ContractBussines.NextCodeAsync();
+                txtCode.Text = value <= 0 ? code : value.ToString();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
         public string CodeInArchive { get => txtCodeInArchive.Text; set => txtCodeInArchive.Text = value; }
         public string RealStateCode { get => txtRealStateCode.Text; set => txtRealStateCode.Text = value; }

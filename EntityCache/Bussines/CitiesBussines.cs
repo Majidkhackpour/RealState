@@ -1,5 +1,4 @@
 ﻿using EntityCache.Assistence;
-using Nito.AsyncEx;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -99,7 +98,6 @@ namespace EntityCache.Bussines
         }
         public static async Task<CitiesBussines> GetAsync(Guid guid) => await UnitOfWork.Cities.GetAsync(Cache.ConnectionString, guid);
         public static async Task<CitiesBussines> GetAsync(string name) => await UnitOfWork.Cities.GetAsync(Cache.ConnectionString, name);
-        public static CitiesBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -199,7 +197,6 @@ namespace EntityCache.Bussines
         }
         public static async Task<List<CitiesBussines>> GetAllAsync(Guid stateGuid, CancellationToken token) =>
             await UnitOfWork.Cities.GetAllAsync(Cache.ConnectionString, stateGuid, token);
-        public static List<CitiesBussines> GetAll(Guid stateGuid, CancellationToken token = default) => AsyncContext.Run(() => GetAllAsync(stateGuid, token));
         public static async Task<CitiesBussines> GetDefualtAsync(string name, Guid stateGuid)
         {
             try

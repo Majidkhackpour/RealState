@@ -106,14 +106,16 @@ namespace Building.DocumentType
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuView_Click(object sender, EventArgs e)
+        private async void mnuView_Click(object sender, EventArgs e)
         {
             try
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmDocumentTypeMain(guid, true);
+                var obj = await DocumentTypeBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmDocumentTypeMain(obj, true);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -134,7 +136,9 @@ namespace Building.DocumentType
                     return;
                 }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmDocumentTypeMain(guid, false);
+                var obj = await DocumentTypeBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmDocumentTypeMain(obj, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(txtSearch.Text);
             }
@@ -147,7 +151,7 @@ namespace Building.DocumentType
         {
             try
             {
-                var frm = new frmDocumentTypeMain();
+                var frm = new frmDocumentTypeMain(new DocumentTypeBussines(), false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync();
             }

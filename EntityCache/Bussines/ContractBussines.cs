@@ -1,18 +1,15 @@
-﻿using System;
+﻿using EntityCache.Assistence;
+using EntityCache.ViewModels;
+using Persistence;
+using Services;
+using Services.DefaultCoding;
+using Servicess.Interfaces.Building;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using EntityCache.Assistence;
-using EntityCache.Mppings;
-using EntityCache.ViewModels;
-using Nito.AsyncEx;
-using Persistence;
-using Services;
-using Services.DefaultCoding;
-using Servicess.Interfaces.Building;
-using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
@@ -239,7 +236,6 @@ namespace EntityCache.Bussines
             return res;
         }
         public static async Task<string> NextCodeAsync() => await UnitOfWork.Contract.NextCodeAsync(Cache.ConnectionString);
-        public static string NextCode() => AsyncContext.Run(NextCodeAsync);
         public static async Task<bool> CheckCodeAsync(string code, Guid guid) =>
             await UnitOfWork.Contract.CheckCodeAsync(Cache.ConnectionString, code, guid);
         public static async Task<int> DbCount(Guid userGuid) => await UnitOfWork.Contract.DbCount(Cache.ConnectionString, userGuid);
@@ -276,8 +272,6 @@ namespace EntityCache.Bussines
         }
         public static async Task<decimal> GetTotalBazaryabAsync(DateTime d1, DateTime d2) =>
             await UnitOfWork.Contract.GetTotalBazaryab(Cache.ConnectionString, d1, d2);
-        public static decimal GetTotalBazaryab(DateTime d1, DateTime d2) =>
-            AsyncContext.Run(() => GetTotalBazaryabAsync(d1, d2));
         public async Task<SanadBussines> GenerateSanadAsync()
         {
             SanadBussines sanad = null;
@@ -527,10 +521,7 @@ namespace EntityCache.Bussines
         }
         public static async Task<decimal> GetTotalCommitionAsync(DateTime d1, DateTime d2) =>
             await UnitOfWork.Contract.GetTotalCommitionAsync(Cache.ConnectionString, d1, d2);
-        public static decimal GetTotalCommition(DateTime d1, DateTime d2) =>
-            AsyncContext.Run(() => GetTotalCommitionAsync(d1, d2));
         public static async Task<decimal> GetTotalTaxAsync(DateTime d1, DateTime d2) =>
             await UnitOfWork.Contract.GetTotalTaxAsync(Cache.ConnectionString, d1, d2);
-        public static decimal GetTotalTax(DateTime d1, DateTime d2) => AsyncContext.Run(() => GetTotalTaxAsync(d1, d2));
     }
 }

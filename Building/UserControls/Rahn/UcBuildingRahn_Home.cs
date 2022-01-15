@@ -54,8 +54,8 @@ namespace Building.UserControls.Rahn
                 ucTabaqeCount.Value = _bu.TedadTabaqe;
                 ucSide1.Side = _bu.Side;
                 await ucBuildingView1.SetBuildingViewGuidAsync(_bu.BuildingViewGuid);
-                ucFloorCover1.FloorCoverGuid = _bu.FloorCoverGuid;
-                ucKitchenService1.KitchenServiceGuid = _bu.KitchenServiceGuid;
+                await ucFloorCover1.SetFloorCoverGuidAsync(_bu.FloorCoverGuid);
+                await ucKitchenService1.SetKitchenServiceGuidAsync(_bu.KitchenServiceGuid);
                 ucRahn.Price = _bu.RahnPrice1;
                 if (!IsFullRahn) ucEjare.Price = _bu.EjarePrice1;
                 if (_bu.Tabdil != null) chbTabdil.Checked = _bu.Tabdil.Value;

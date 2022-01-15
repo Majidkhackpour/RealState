@@ -41,7 +41,7 @@ namespace Building.UserControls.Sell
                 if (value == null) return;
                 _bu = value;
                 ucZirBana1.Value = _bu.ZirBana;
-                ucDocumentType1.SanadTypeGuid = _bu.DocumentType;
+                await ucDocumentType1.SetSanadTypeGuidAsync(_bu.DocumentType);
                 UcDong.Value = _bu.Dang;
                 ucSaleSakht1.SaleSakht = _bu.SaleSakht;
                 ucMasahat.Value = _bu.Masahat;

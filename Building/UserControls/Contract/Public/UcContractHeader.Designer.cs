@@ -44,7 +44,6 @@ namespace Building.UserControls.Contract.Public
             // 
             this.ucSerial1.BackColor = System.Drawing.Color.Transparent;
             this.ucSerial1.CodeInArchive = "";
-            this.ucSerial1.ContractCode = ((long)(0));
             this.ucSerial1.ContractDate = new System.DateTime(2022, 3, 20, 0, 0, 0, 0);
             this.ucSerial1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.ucSerial1.HologramCode = "";

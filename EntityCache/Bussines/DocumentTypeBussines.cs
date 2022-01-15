@@ -6,7 +6,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using EntityCache.Mppings;
-using Nito.AsyncEx;
 using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
@@ -25,8 +24,7 @@ namespace EntityCache.Bussines
         public bool IsModified { get; set; } = false;
 
 
-        public static async Task<List<DocumentTypeBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.DocumentType.GetAllAsync(Cache.ConnectionString, token);
-        public static List<DocumentTypeBussines> GetAll(CancellationToken token = default) => AsyncContext.Run(() => GetAllAsync(token));
+        public static async Task<List<DocumentTypeBussines>> GetAllAsync(CancellationToken token=default) => await UnitOfWork.DocumentType.GetAllAsync(Cache.ConnectionString, token);
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<DocumentTypeBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -170,7 +168,6 @@ namespace EntityCache.Bussines
                 return new List<DocumentTypeBussines>();
             }
         }
-        public static DocumentTypeBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public static async Task<bool> CheckNameAsync(string name, Guid guid) =>
             await UnitOfWork.DocumentType.CheckNameAsync(Cache.ConnectionString, name, guid);
         private async Task<ReturnedSaveFuncInfo> CheckValidationAsync()

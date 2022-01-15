@@ -145,14 +145,16 @@ namespace Building.FloorCover
                 else await LoadDataAsync(txtSearch.Text);
             }
         }
-        private void mnuView_Click(object sender, EventArgs e)
+        private async void mnuView_Click(object sender, EventArgs e)
         {
             try
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmFloorCoverMain(guid, true);
+                var obj = await FloorCoverBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmFloorCoverMain(obj, true);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -173,7 +175,9 @@ namespace Building.FloorCover
                     return;
                 }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmFloorCoverMain(guid, false);
+                var obj = await FloorCoverBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmFloorCoverMain(obj, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(txtSearch.Text);
             }
@@ -186,7 +190,7 @@ namespace Building.FloorCover
         {
             try
             {
-                var frm = new frmFloorCoverMain();
+                var frm = new frmFloorCoverMain(new FloorCoverBussines(), false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync();
             }

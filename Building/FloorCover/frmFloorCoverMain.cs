@@ -17,21 +17,24 @@ namespace Building.FloorCover
 
         private void SetData() => txtName.Text = cls?.Name;
 
-        public frmFloorCoverMain()
+        public frmFloorCoverMain(FloorCoverBussines obj, bool isShowMode)
         {
-            InitializeComponent();
-            cls = new FloorCoverBussines();
-            ucHeader.Text = "افزودن کفپوش جدید";
-            ucHeader.IsModified = cls.IsModified;
-        }
-        public frmFloorCoverMain(Guid guid, bool isShowMode)
-        {
-            InitializeComponent();
-            cls = FloorCoverBussines.Get(guid);
-            ucHeader.Text = !isShowMode ? $"ویرایش کفپوش {cls.Name}" : $"مشاهده کفپوش {cls.Name}";
-            ucHeader.IsModified = cls.IsModified;
-            grp.Enabled = !isShowMode;
-            btnFinish.Enabled = !isShowMode;
+            try
+            {
+                InitializeComponent();
+                cls = obj;
+                if (!cls.IsModified)
+                    ucHeader.Text = "افزودن کفپوش جدید";
+                else
+                    ucHeader.Text = !isShowMode ? $"ویرایش کفپوش {cls.Name}" : $"مشاهده کفپوش {cls.Name}";
+                ucHeader.IsModified = cls.IsModified;
+                grp.Enabled = !isShowMode;
+                btnFinish.Enabled = !isShowMode;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private void txtName_Enter(object sender, EventArgs e) => txtSetter.Focus(txtName);

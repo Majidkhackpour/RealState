@@ -43,7 +43,7 @@ namespace Building.UserControls.Sell
             {
                 if (value == null) return;
                 _bu = value;
-                ucDocumentType1.SanadTypeGuid = _bu.DocumentType;
+                await ucDocumentType1.SetSanadTypeGuidAsync(_bu.DocumentType);
                 UcDong.Value = _bu.Dang;
                 ucMasahat.Value = _bu.Masahat;
                 UcWidth.Value = (int)_bu.Hashie;

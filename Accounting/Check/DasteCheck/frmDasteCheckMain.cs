@@ -58,21 +58,30 @@ namespace Accounting.Check.DasteCheck
             return list;
         }
 
-        public frmDasteCheckMain()
+        public frmDasteCheckMain(DasteCheckBussines obj, bool isShowMode)
         {
-            InitializeComponent();
-            cls = new DasteCheckBussines();
-            ucHeader.Text = "افزودن دسته چک جدید";
-        }
-        public frmDasteCheckMain(Guid guid, bool isShowMode)
-        {
-            InitializeComponent();
-            cls = DasteCheckBussines.Get(guid);
-            ucHeader.Text = !isShowMode ? $"ویرایش دسته چک سریال {cls.SerialNumber}" : $"مشاهده دسته چک سریال {cls.SerialNumber}";
-            ucHeader.IsModified = true;
-            _bankGuid = cls.BankGuid;
-            grp.Enabled = !isShowMode;
-            btnFinish.Enabled = !isShowMode;
+            try
+            {
+                InitializeComponent();
+                cls = obj;
+                if (cls.Guid != Guid.Empty)
+                {
+                    ucHeader.Text = !isShowMode ? $"ویرایش دسته چک سریال {cls.SerialNumber}" : $"مشاهده دسته چک سریال {cls.SerialNumber}";
+                    ucHeader.IsModified = true;
+                }
+                else
+                {
+                    ucHeader.Text = "افزودن دسته چک جدید";
+                    ucHeader.IsModified = false;
+                }
+                _bankGuid = cls.BankGuid;
+                grp.Enabled = !isShowMode;
+                btnFinish.Enabled = !isShowMode;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private void frmDasteCheckMain_Load(object sender, EventArgs e) => SetData();

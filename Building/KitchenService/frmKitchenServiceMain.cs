@@ -17,21 +17,24 @@ namespace Building.KitchenService
 
         private void SetData() => txtName.Text = cls?.Name;
 
-        public frmKitchenServiceMain()
+        public frmKitchenServiceMain(KitchenServiceBussines obj, bool isShowMode)
         {
-            InitializeComponent();
-            cls = new KitchenServiceBussines();
-            ucHeader.Text = "افزودن سرویس آشپزخانه جدید";
-            ucHeader.IsModified = cls.IsModified;
-        }
-        public frmKitchenServiceMain(Guid guid, bool isShowMode)
-        {
-            InitializeComponent();
-            cls = KitchenServiceBussines.Get(guid);
-            ucHeader.Text = !isShowMode ? $"ویرایش سرویس آشپزخانه {cls.Name}" : $"مشاهده سرویس آشپزخانه {cls.Name}";
-            ucHeader.IsModified = cls.IsModified;
-            grp.Enabled = !isShowMode;
-            btnFinish.Enabled = !isShowMode;
+            try
+            {
+                InitializeComponent();
+                cls = obj;
+                if (!cls.IsModified)
+                    ucHeader.Text = "افزودن سرویس آشپزخانه جدید";
+                else
+                    ucHeader.Text = !isShowMode ? $"ویرایش سرویس آشپزخانه {cls.Name}" : $"مشاهده سرویس آشپزخانه {cls.Name}";
+                ucHeader.IsModified = cls.IsModified;
+                grp.Enabled = !isShowMode;
+                btnFinish.Enabled = !isShowMode;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private void txtName_Enter(object sender, EventArgs e) => txtSetter.Focus(txtName);

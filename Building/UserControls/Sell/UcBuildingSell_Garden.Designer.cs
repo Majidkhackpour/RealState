@@ -95,7 +95,6 @@ namespace Building.UserControls.Sell
             this.ucDocumentType1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucDocumentType1.Name = "ucDocumentType1";
             this.ucDocumentType1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucDocumentType1.SanadTypeGuid = new System.Guid("f2c7220f-d56a-46a3-92e4-03709400ac9e");
             this.ucDocumentType1.Size = new System.Drawing.Size(200, 36);
             this.ucDocumentType1.TabIndex = 8;
             // 

@@ -104,14 +104,16 @@ namespace Building.KitchenService
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuView_Click(object sender, EventArgs e)
+        private async void mnuView_Click(object sender, EventArgs e)
         {
             try
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmKitchenServiceMain(guid, true);
+                var obj = await KitchenServiceBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmKitchenServiceMain(obj, true);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -132,7 +134,9 @@ namespace Building.KitchenService
                     return;
                 }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmKitchenServiceMain(guid, false);
+                var obj = await KitchenServiceBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmKitchenServiceMain(obj, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(txtSearch.Text);
             }
@@ -145,7 +149,7 @@ namespace Building.KitchenService
         {
             try
             {
-                var frm = new frmKitchenServiceMain();
+                var frm = new frmKitchenServiceMain(new KitchenServiceBussines(), false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync();
             }

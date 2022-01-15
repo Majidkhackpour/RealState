@@ -353,7 +353,6 @@ namespace Building.Contract
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ucContractHeader1.BackColor = System.Drawing.Color.Transparent;
             this.ucContractHeader1.CodeInArchive = "";
-            this.ucContractHeader1.ContractCode = ((long)(4));
             this.ucContractHeader1.ContractDate = new System.DateTime(2021, 11, 23, 0, 0, 0, 0);
             this.ucContractHeader1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.ucContractHeader1.HologramCode = "";

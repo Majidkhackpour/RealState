@@ -145,7 +145,7 @@ namespace RealState
                             IsShortTime = false,
                             DivarTitle = item.Title,
                             Image = "",
-                            KitchenServiceGuid = KitchenServiceBussines.DefualtGuid,
+                            KitchenServiceGuid = await KitchenServiceBussines.GetDefultGuidAsync(),
                             Lenght = 0,
                             MamarJoda = true,
                             MetrazhKouche = 0,
@@ -188,7 +188,7 @@ namespace RealState
                             bu.RentalAutorityGuid = null;
 
                         if (string.IsNullOrEmpty(item.FloorCover))
-                            bu.FloorCoverGuid = FloorCoverBussines.DefualtGuid;
+                            bu.FloorCoverGuid = await FloorCoverBussines.GetDefultGuidAsync();
                         else bu.FloorCoverGuid = await FloorCoverBussines.GetDefultGuidAsync(item.FloorCover);
 
                         bu.Hiting = item.Hitting;
