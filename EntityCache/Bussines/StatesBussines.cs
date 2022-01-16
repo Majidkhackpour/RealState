@@ -5,7 +5,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using EntityCache.Mppings;
-using Nito.AsyncEx;
 using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
@@ -22,8 +21,7 @@ namespace EntityCache.Bussines
         public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public string Name { get; set; }
 
-        public static async Task<List<StatesBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.States.GetAllAsync(Cache.ConnectionString, token);
-        public static List<StatesBussines> GetAll(CancellationToken token = default) => AsyncContext.Run(() => GetAllAsync(token));
+        public static async Task<List<StatesBussines>> GetAllAsync(CancellationToken token=default) => await UnitOfWork.States.GetAllAsync(Cache.ConnectionString, token);
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<StatesBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();

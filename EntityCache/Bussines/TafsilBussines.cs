@@ -1,5 +1,5 @@
 ﻿using EntityCache.Assistence;
-using Nito.AsyncEx;
+using Persistence;
 using Services;
 using Services.Interfaces.Building;
 using System;
@@ -8,9 +8,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using EntityCache.Mppings;
-using Persistence;
-using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
@@ -131,9 +128,7 @@ namespace EntityCache.Bussines
                 return new List<TafsilBussines>();
             }
         }
-        public static TafsilBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public static async Task<string> NextCodeAsync(HesabType hType) => await UnitOfWork.Tafsil.NextCodeAsync(Cache.ConnectionString, hType);
-        public static string NextCode(HesabType hType) => AsyncContext.Run(() => NextCodeAsync(hType));
         public async Task<bool> CheckCodeAsync(Guid guid, string code) => await UnitOfWork.Tafsil.CheckCodeAsync(Cache.ConnectionString, guid, code);
         public static async Task<bool> CheckNameAsync(string name) => await UnitOfWork.Tafsil.CheckNameAsync(Cache.ConnectionString, name);
         public async Task<ReturnedSaveFuncInfo> UpdateAccountAsync(decimal price, SqlTransaction tr = null)
@@ -218,6 +213,5 @@ namespace EntityCache.Bussines
             return res;
         }
         public static async Task<TafsilBussines> GetAsync(string code) => await UnitOfWork.Tafsil.GetAsync(Cache.ConnectionString, code);
-        public static TafsilBussines Get(string code) => AsyncContext.Run(() => GetAsync(code));
     }
 }

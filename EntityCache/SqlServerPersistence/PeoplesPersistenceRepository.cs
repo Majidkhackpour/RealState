@@ -1,6 +1,5 @@
 ﻿using EntityCache.Bussines;
 using EntityCache.Core;
-using Nito.AsyncEx;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -30,7 +29,7 @@ namespace EntityCache.SqlServerPersistence
                     while (dr.Read())
                     {
                         if (token.IsCancellationRequested) return null;
-                        list.Add(LoadData(dr, false,false));
+                        list.Add(await LoadDataAsync(dr, false, false));
                     }
                     cn.Close();
                 }
@@ -58,7 +57,7 @@ namespace EntityCache.SqlServerPersistence
                     while (dr.Read())
                     {
                         if (token.IsCancellationRequested) return null;
-                        list.Add(LoadData(dr, false,false));
+                        list.Add(await LoadDataAsync(dr, false, false));
                     }
                     cn.Close();
                 }
@@ -84,7 +83,7 @@ namespace EntityCache.SqlServerPersistence
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) res = LoadData(dr, true,false);
+                    if (dr.Read()) res = await LoadDataAsync(dr, true, false);
                     cn.Close();
                 }
             }
@@ -108,7 +107,7 @@ namespace EntityCache.SqlServerPersistence
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) res = LoadData(dr, true,true);
+                    if (dr.Read()) res = await LoadDataAsync(dr, true, true);
                     cn.Close();
                 }
             }
@@ -183,7 +182,7 @@ namespace EntityCache.SqlServerPersistence
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read()) list.Add(LoadData(dr, false,false));
+                    while (dr.Read()) list.Add(await LoadDataAsync(dr, false, false));
                     cn.Close();
                 }
             }
@@ -204,7 +203,7 @@ namespace EntityCache.SqlServerPersistence
                     var cmd = new SqlCommand("sp_Peoples_GetAllNotSent", cn) { CommandType = CommandType.StoredProcedure };
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read()) list.Add( await LoadDataBussinesAsync(dr));
+                    while (dr.Read()) list.Add(await LoadDataBussinesAsync(dr));
                     dr.Close();
                     cn.Close();
                 }
@@ -264,7 +263,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        private PeoplesBussines LoadData(SqlDataReader dr, bool isLoadDet,bool isLoadRelatedNumber)
+        private async Task<PeoplesBussines> LoadDataAsync(SqlDataReader dr, bool isLoadDet, bool isLoadRelatedNumber)
         {
             var item = new PeoplesBussines();
             try
@@ -292,8 +291,8 @@ namespace EntityCache.SqlServerPersistence
                 if (dr["CodeInArchive"] != DBNull.Value) item.CodeInArchive = dr["CodeInArchive"].ToString();
                 if (isLoadDet)
                 {
-                    item.BankList = AsyncContext.Run(() => PeoplesBankAccountBussines.GetAllAsync(item.Guid));
-                    item.TellList = PhoneBookBussines.GetAll(item.Guid, true);
+                    item.BankList = await PeoplesBankAccountBussines.GetAllAsync(item.Guid);
+                    item.TellList = await PhoneBookBussines.GetAllAsync(item.Guid, true);
                 }
 
                 if (isLoadRelatedNumber)

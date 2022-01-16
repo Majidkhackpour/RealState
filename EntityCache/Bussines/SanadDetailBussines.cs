@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Threading;
-using System.Threading.Tasks;
-using EntityCache.Assistence;
-using EntityCache.Mppings;
+﻿using EntityCache.Assistence;
 using EntityCache.ViewModels;
 using Persistence;
 using Services;
 using Services.Interfaces.Building;
-using WebHesabBussines;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace EntityCache.Bussines
 {

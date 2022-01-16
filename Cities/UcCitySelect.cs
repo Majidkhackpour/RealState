@@ -3,6 +3,7 @@ using Services;
 using Settings.Classes;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Cities
@@ -11,30 +12,29 @@ namespace Cities
     {
         private Guid _stateGuid, _cityGuid, _regionGuid;
 
-        public Guid StateGuid
+        public Guid StateGuid => _stateGuid;
+        public async Task SetStateGuidAsync(Guid value)
         {
-            get => _stateGuid;
-            set
+            try
             {
-                try
+                if (StateBindingSource.Count <= 0)
+                    await FillStateAsync();
+                if (value == Guid.Empty)
                 {
-                    if (value == Guid.Empty)
-                    {
-                        if (string.IsNullOrEmpty(clsEconomyUnit.EconomyState))
-                            cmbState.SelectedIndex = 0;
-                        else
-                            cmbState.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyState);
-                        _stateGuid = (Guid)cmbState.SelectedValue;
-                        return;
-                    }
+                    if (string.IsNullOrEmpty(clsEconomyUnit.EconomyState))
+                        cmbState.SelectedIndex = 0;
+                    else
+                        cmbState.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyState);
+                    _stateGuid = (Guid)cmbState.SelectedValue;
+                    return;
+                }
 
-                    _stateGuid = value;
-                    cmbState.SelectedValue = _stateGuid;
-                }
-                catch (Exception ex)
-                {
-                    WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                }
+                _stateGuid = value;
+                cmbState.SelectedValue = _stateGuid;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
         public Guid CityGuid
@@ -93,7 +93,7 @@ namespace Cities
             try
             {
                 if (cmbState.SelectedValue == null) return;
-                var list =await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue,default);
+                var list = await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue, default);
                 CityBindingSource.DataSource = list?.Where(q => q.Status).OrderBy(q => q.Name).ToList();
                 if (!string.IsNullOrEmpty(clsEconomyUnit.EconomyCity))
                     cmbCity.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyCity);
@@ -105,12 +105,12 @@ namespace Cities
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void cmbCity_SelectedIndexChanged(object sender, EventArgs e)
+        private async void cmbCity_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
                 if (cmbCity.SelectedValue == null) return;
-                var list = RegionsBussines.GetAll((Guid)cmbCity.SelectedValue);
+                var list = await RegionsBussines.GetAllAsync((Guid)cmbCity.SelectedValue);
                 RegionBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
                 if (!string.IsNullOrEmpty(clsEconomyUnit.ManagerRegion))
                     cmbRegion.SelectedValue = Guid.Parse(clsEconomyUnit.ManagerRegion);
@@ -134,11 +134,11 @@ namespace Cities
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void FillState()
+        private async Task FillStateAsync()
         {
             try
             {
-                var list = StatesBussines.GetAll();
+                var list = await StatesBussines.GetAllAsync();
                 StateBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name);
             }
             catch (Exception ex)
@@ -146,10 +146,6 @@ namespace Cities
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public UcCitySelect()
-        {
-            InitializeComponent();
-            FillState();
-        }
+        public UcCitySelect() => InitializeComponent();
     }
 }

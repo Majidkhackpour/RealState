@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using EntityCache.Mppings;
-using Nito.AsyncEx;
 using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
@@ -29,8 +28,6 @@ namespace EntityCache.Bussines
 
         public static async Task<List<PhoneBookBussines>> GetAllAsync(Guid parentGuid, bool status) =>
             await UnitOfWork.PhoneBook.GetAllAsync(Cache.ConnectionString, parentGuid, status);
-        public static List<PhoneBookBussines> GetAll(Guid parentGuid, bool status) =>
-            AsyncContext.Run(() => GetAllAsync(parentGuid, status));
         public static async Task<List<PhoneBookBussines>> GetAllAsync() => await UnitOfWork.PhoneBook.GetAllAsync(Cache.ConnectionString);
         public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, SqlTransaction tr = null)
         {
@@ -133,7 +130,6 @@ namespace EntityCache.Bussines
             }
         }
         public static async Task<PhoneBookBussines> GetAsync(Guid guid) => await UnitOfWork.PhoneBook.GetAsync(Cache.ConnectionString, guid);
-        public static PhoneBookBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();

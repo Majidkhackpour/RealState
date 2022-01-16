@@ -43,26 +43,33 @@ namespace Advertise.Forms.Simcard
             }
         }
 
-        public frmSimcardMain()
+        public frmSimcardMain(SimcardBussines obj, bool isShowMode)
         {
-            InitializeComponent();
-            cls = new SimcardBussines();
-            ucHeader.Text = "افزودن سیمکارت جدید";
-        }
-        public frmSimcardMain(Guid guid, bool isShowMode)
-        {
-            InitializeComponent();
-            cls = SimcardBussines.Get(guid);
-            ucHeader.Text = !isShowMode ? $"ویرایش سیمکارت {cls.Number}" : $"مشاهده سیمکارت {cls.Number}";
-            ucHeader.IsModified = true;
-            grp.Enabled = !isShowMode;
-            btnFinish.Enabled = !isShowMode;
+            try
+            {
+                InitializeComponent();
+                cls = obj;
+                if (cls.Guid == Guid.Empty)
+                    ucHeader.Text = "افزودن سیمکارت جدید";
+                else
+                {
+                    ucHeader.Text = !isShowMode ? $"ویرایش سیمکارت {cls.Number}" : $"مشاهده سیمکارت {cls.Number}";
+                    ucHeader.IsModified = true;
+                }
+
+                grp.Enabled = !isShowMode;
+                btnFinish.Enabled = !isShowMode;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
-        private void txtOwner_Enter(object sender, EventArgs e)=>txtSetter.Focus(txtOwner);
-        private void txtNumber_Enter(object sender, EventArgs e)=>txtSetter.Focus(txtNumber);
-        private void txtNumber_Leave(object sender, EventArgs e)=>txtSetter.Follow(txtNumber);
-        private void txtOwner_Leave(object sender, EventArgs e)=>txtSetter.Follow(txtOwner);
+        private void txtOwner_Enter(object sender, EventArgs e) => txtSetter.Focus(txtOwner);
+        private void txtNumber_Enter(object sender, EventArgs e) => txtSetter.Focus(txtNumber);
+        private void txtNumber_Leave(object sender, EventArgs e) => txtSetter.Follow(txtNumber);
+        private void txtOwner_Leave(object sender, EventArgs e) => txtSetter.Follow(txtOwner);
         private async void frmSimcardMain_Load(object sender, EventArgs e) => await SetDataAsync();
         private void btnCancel_Click(object sender, EventArgs e)
         {

@@ -279,9 +279,9 @@ namespace EntityCache.Assistence
                 var allSetting = await SettingsBussines.GetAllAsync();
                 if (allSetting == null || allSetting.Count <= 0)
                 {
-                    res.AddReturnedValue(SettingsBussines.Save("ArzeshAfzoude", "9"));
-                    res.AddReturnedValue(SettingsBussines.Save("Tabdil", "2"));
-                    res.AddReturnedValue(SettingsBussines.Save("DayCountForArchive", "60"));
+                    res.AddReturnedValue(await SettingsBussines.SaveAsync("ArzeshAfzoude", "9"));
+                    res.AddReturnedValue(await SettingsBussines.SaveAsync("Tabdil", "2"));
+                    res.AddReturnedValue(await SettingsBussines.SaveAsync("DayCountForArchive", "60"));
                     if (res.HasError) return;
                 }
                 #endregion

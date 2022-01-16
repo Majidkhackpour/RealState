@@ -172,8 +172,8 @@ namespace RealState
                             Priority = EnBuildingPriority.Low,
                             PishDesc = "",
                             OptionList = new List<BuildingRelatedOptionsBussines>(),
-                            RentalAutorityGuid = RentalAuthorityBussines.Get(item.RentalAuthority)?.Guid ?? null,
-                            OwnerGuid = PeoplesBussines.DefualtGuid
+                            RentalAutorityGuid = (await RentalAuthorityBussines.GetAsync(item.RentalAuthority))?.Guid ?? null,
+                            OwnerGuid = (await PeoplesBussines.GetDefaultPeopleAsync()).Guid
                         };
 
                         if (item.BuildingType == "پیش‌فروش" || item.BuildingType == "پیش‌ فروش")

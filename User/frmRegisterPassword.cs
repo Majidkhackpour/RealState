@@ -121,7 +121,7 @@ namespace User
                 if (string.IsNullOrEmpty(Settings.Classes.Payamak.DefaultPanelGuid))
                     return;
 
-                var panel = SmsPanelsBussines.Get(Guid.Parse(Settings.Classes.Payamak.DefaultPanelGuid));
+                var panel = await SmsPanelsBussines.GetAsync(Guid.Parse(Settings.Classes.Payamak.DefaultPanelGuid));
                 if (panel == null) return;
 
                 var sApi = new Sms.Api(panel.API.Trim());

@@ -115,7 +115,7 @@ namespace Accounting.Sanad
         {
             try
             {
-                var frm = new frmSanadMain();
+                var frm = new frmSanadMain(new SanadBussines(), false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync();
             }
@@ -142,8 +142,9 @@ namespace Accounting.Sanad
                     frmNotification.PublicInfo.ShowMessage("شما مجاز به ویرایش سند اتومات نمی باشید ");
                     return;
                 }
-
-                var frm = new frmSanadMain(guid, false);
+                var obj = await SanadBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmSanadMain(obj, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(txtSearch.Text);
             }
@@ -191,14 +192,16 @@ namespace Accounting.Sanad
                 else await LoadDataAsync(txtSearch.Text);
             }
         }
-        private void mnuView_Click(object sender, EventArgs e)
+        private async void mnuView_Click(object sender, EventArgs e)
         {
             try
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmSanadMain(guid, true);
+                var obj = await SanadBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmSanadMain(obj, true);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)

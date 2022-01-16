@@ -4,7 +4,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
-using Nito.AsyncEx;
 using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
@@ -21,22 +20,22 @@ namespace EntityCache.Bussines
         public bool Status { get; set; } = true;
         public DateTime NextUseSheypoor { get; set; } = DateTime.Now;
         public DateTime NextUseDivar { get; set; } = DateTime.Now;
-        public bool HasDivarToken
-        {
-            get
-            {
-                var divar = AsyncContext.Run(() => AdvTokenBussines.GetTokenAsync(Number, AdvertiseType.Divar));
-                return divar != null && !string.IsNullOrEmpty(divar?.Token);
-            }
-        }
-        public bool HasSheypoorToken
-        {
-            get
-            {
-                var sheypoor = AsyncContext.Run(() => AdvTokenBussines.GetTokenAsync(Number, AdvertiseType.Sheypoor));
-                return sheypoor != null && !string.IsNullOrEmpty(sheypoor?.Token);
-            }
-        }
+        //public bool HasDivarToken
+        //{
+        //    get
+        //    {
+        //        var divar = AsyncContext.Run(() => AdvTokenBussines.GetTokenAsync(Number, AdvertiseType.Divar));
+        //        return divar != null && !string.IsNullOrEmpty(divar?.Token);
+        //    }
+        //}
+        //public bool HasSheypoorToken
+        //{
+        //    get
+        //    {
+        //        var sheypoor = AsyncContext.Run(() => AdvTokenBussines.GetTokenAsync(Number, AdvertiseType.Sheypoor));
+        //        return sheypoor != null && !string.IsNullOrEmpty(sheypoor?.Token);
+        //    }
+        //}
 
 
         public static async Task<List<SimcardBussines>> GetAllAsync() => await UnitOfWork.Simcard.GetAllAsync(Cache.ConnectionString);
@@ -106,7 +105,6 @@ namespace EntityCache.Bussines
             }
         }
         public static async Task<SimcardBussines> GetAsync(Guid guid) => await UnitOfWork.Simcard.GetAsync(Cache.ConnectionString, guid);
-        public static SimcardBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();

@@ -17,7 +17,7 @@ namespace Accounting.Sanad
         private Guid _moeinGuid = Guid.Empty;
         private SanadBussines cls;
 
-        private void SetData()
+        private async Task SetDataAsync()
         {
             try
             {
@@ -31,7 +31,7 @@ namespace Accounting.Sanad
 
                 if (cls.Guid == Guid.Empty)
                 {
-                    txtNumber.Value = NextNumber();
+                    txtNumber.Value = await SanadBussines.NextNumberAsync();
                     cmbType.SelectedIndex = 0;
                 }
 
@@ -66,20 +66,6 @@ namespace Accounting.Sanad
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private long NextNumber()
-        {
-            long res = 0;
-            try
-            {
-                res = SanadBussines.NextNumber();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-
-            return res;
-        }
         private void SetLables()
         {
             try
@@ -92,14 +78,14 @@ namespace Accounting.Sanad
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void SetTafsil()
+        private async Task SetTafsilAsync()
         {
             try
             {
                 var frm = new frmSelectTafsil();
                 if (frm.ShowDialog(this) == DialogResult.OK)
                 {
-                    var tafsil = TafsilBussines.Get(frm.SelectedGuid);
+                    var tafsil = await TafsilBussines.GetAsync(frm.SelectedGuid);
                     if (tafsil != null)
                     {
                         txtTafsilName.Text = tafsil.Name;
@@ -151,7 +137,7 @@ namespace Accounting.Sanad
         {
             try
             {
-                var tafsil = TafsilBussines.Get(_tafsilGuid);
+                var tafsil = await TafsilBussines.GetAsync(_tafsilGuid);
                 var moein = await MoeinBussines.GetAsync(_moeinGuid);
                 var res = new SanadDetailBussines
                 {
@@ -176,22 +162,24 @@ namespace Accounting.Sanad
             }
         }
 
-        public frmSanadMain()
+        public frmSanadMain(SanadBussines obj, bool isShowMode)
         {
-            InitializeComponent();
-            cls = new SanadBussines();
-        }
-        public frmSanadMain(Guid guid, bool isShowMode)
-        {
-            InitializeComponent();
-            cls = SanadBussines.Get(guid);
-            grp.Enabled = !isShowMode;
-            panelEx1.Enabled = !isShowMode;
-            panelEx3.Enabled = !isShowMode;
-            btnFinish.Enabled = !isShowMode;
+            try
+            {
+                InitializeComponent();
+                cls = obj;
+                grp.Enabled = !isShowMode;
+                panelEx1.Enabled = !isShowMode;
+                panelEx3.Enabled = !isShowMode;
+                btnFinish.Enabled = !isShowMode;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
-        private void frmSanadMain_Load(object sender, EventArgs e) => SetData();
+        private async void frmSanadMain_Load(object sender, EventArgs e) => await SetDataAsync();
         private void frmSanadMain_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -237,7 +225,7 @@ namespace Accounting.Sanad
         }
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
             => DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
-        private void btnTafsilSearch_Click(object sender, EventArgs e) => SetTafsil();
+        private async void btnTafsilSearch_Click(object sender, EventArgs e) => await SetTafsilAsync();
         private async void btnSaveArticle_Click(object sender, EventArgs e)
         {
             var res = new ReturnedSaveFuncInfo();

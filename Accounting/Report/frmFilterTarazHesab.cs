@@ -35,14 +35,14 @@ namespace Accounting.Report
 
 
         private void rbtnToday_CheckedChanged(object sender, EventArgs e) => DrawUi();
-        private void btnSearchTafsil1_Click(object sender, EventArgs e)
+        private async void btnSearchTafsil1_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmSelectTafsil();
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
-                    var tafsil = TafsilBussines.Get(frm.SelectedGuid);
+                    var tafsil = await TafsilBussines.GetAsync(frm.SelectedGuid);
                     if (tafsil == null) return;
                     txtCode1.Value = tafsil.Code.ParseToDecimal();
                 }
@@ -52,14 +52,14 @@ namespace Accounting.Report
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void btnSearchTafsil2_Click(object sender, EventArgs e)
+        private async void btnSearchTafsil2_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmSelectTafsil();
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
-                    var tafsil = TafsilBussines.Get(frm.SelectedGuid);
+                    var tafsil = await TafsilBussines.GetAsync(frm.SelectedGuid);
                     if (tafsil == null) return;
                     txtCode2.Value = tafsil.Code.ParseToDecimal();
                 }

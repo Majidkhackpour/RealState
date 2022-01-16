@@ -6,7 +6,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using EntityCache.Mppings;
-using Nito.AsyncEx;
 using Persistence;
 using Services;
 using Services.Access;
@@ -186,7 +185,6 @@ namespace EntityCache.Bussines
                 return new List<UserBussines>();
             }
         }
-        public static UserBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public static async Task<bool> CheckUserNameAsync(Guid guid, string userName) => await UnitOfWork.Users.CheckUserNameAsync(Cache.ConnectionString, guid, userName);
         public static async Task<UserBussines> GetAsync(string userName) => await UnitOfWork.Users.GetAsync(Cache.ConnectionString, userName);
         public static async Task<UserBussines> GetByEmailAsync(string email) => await UnitOfWork.Users.GetByEmailAsync(Cache.ConnectionString, email);
@@ -263,7 +261,7 @@ namespace EntityCache.Bussines
                     isSystem = false
                 };
 
-                tf.Code = TafsilBussines.NextCode(HesabType.Tafsil);
+                tf.Code = await TafsilBussines.NextCodeAsync(HesabType.Tafsil);
                 tf.Name = Name;
                 tf.Description = "";
                 tf.AccountFirst = 0;

@@ -61,7 +61,7 @@ namespace Building.UserControls.Rahn
                 if (_bu.Tabdil != null) chbTabdil.Checked = _bu.Tabdil.Value;
                 if (_bu.IsOwnerHere != null) chbIsOwnerHere.Checked = _bu.IsOwnerHere.Value;
                 if (_bu.IsShortTime != null) chbShortTime.Checked = _bu.IsShortTime.Value;
-                ucRentalAuthority1.RentalAuthorityGuid = _bu.RentalAutorityGuid;
+                await ucRentalAuthority1.SetRentalAuthorityGuidAsync(_bu.RentalAutorityGuid);
             }
             catch (Exception ex)
             {

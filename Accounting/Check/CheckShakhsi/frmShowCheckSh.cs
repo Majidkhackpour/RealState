@@ -115,7 +115,7 @@ namespace Accounting.Check.CheckShakhsi
         {
             try
             {
-                var frm = new frmPardakhtCheckAvalDore();
+                var frm = new frmPardakhtCheckAvalDore(new PardakhtCheckAvalDoreBussines(), false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync();
             }
@@ -137,8 +137,9 @@ namespace Accounting.Check.CheckShakhsi
                 }
 
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-
-                var frm = new frmPardakhtCheckAvalDore(guid, false);
+                var obj = await PardakhtCheckAvalDoreBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmPardakhtCheckAvalDore(obj, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(txtSearch.Text);
             }
@@ -147,7 +148,7 @@ namespace Accounting.Check.CheckShakhsi
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuView_Click(object sender, EventArgs e)
+        private async void mnuView_Click(object sender, EventArgs e)
         {
             try
             {
@@ -156,12 +157,15 @@ namespace Accounting.Check.CheckShakhsi
                 var avalDore = (bool)DGrid[dgAvalDore.Index, DGrid.CurrentRow.Index].Value;
                 if (!avalDore)
                 {
-                    var frm_ = new frmPardakhtCheckSh(guid);
+                    var obj = await PardakhtCheckShakhsiBussines.GetAsync(guid);
+                    if (obj == null) return;
+                    var frm_ = new frmPardakhtCheckSh(obj,false);
                     frm_.ShowDialog(this);
                     return;
                 }
-
-                var frm = new frmPardakhtCheckAvalDore(guid, true);
+                var obj_ = await PardakhtCheckAvalDoreBussines.GetAsync(guid);
+                if (obj_ == null) return;
+                var frm = new frmPardakhtCheckAvalDore(obj_, true);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -181,12 +185,13 @@ namespace Accounting.Check.CheckShakhsi
                     var str = await PardakhtCheckShakhsiBussines.GetAsync(guid);
                     var rec = await PardakhtBussines.GetAsync(str.MasterGuid);
                     var sanad = await SanadBussines.GetAsync(rec.SanadNumber);
-                    var frm_ = new frmSanadMain(sanad.Guid, true);
+                    var frm_ = new frmSanadMain(sanad, true);
                     frm_.ShowDialog(this);
                     return;
                 }
-
-                var frm = new frmPardakhtCheckAvalDore(guid, true);
+                var obj = await PardakhtCheckAvalDoreBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmPardakhtCheckAvalDore(obj, true);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)

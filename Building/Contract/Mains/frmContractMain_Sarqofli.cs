@@ -24,9 +24,9 @@ namespace Building.Contract
                 ucContractHeader1.HologramCode = cls.HologramCode;
                 ucContractHeader1.ContractDate = cls.DateM;
 
-                ucFSide.Guid = cls.FirstSideGuid;
+                await ucFSide.SetGuidAsync(cls.FirstSideGuid);
                 ucFSide.Title = "مشخصات انتقال دهنده";
-                ucSecondSide.Guid = cls.SecondSideGuid;
+                await ucSecondSide.SetGuidAsync(cls.SecondSideGuid);
                 ucSecondSide.Title = "مشخصات انتقال گیرنده";
 
                 var bu = await BuildingBussines.GetAsync(cls.BuildingGuid);

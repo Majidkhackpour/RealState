@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
 using Accounting.Hesab;
@@ -13,7 +14,7 @@ namespace Accounting.Check.DasteCheck
     {
         private DasteCheckBussines cls;
         private Guid _bankGuid = Guid.Empty;
-        private void SetData()
+        private async Task SetDataAsync()
         {
             try
             {
@@ -21,7 +22,7 @@ namespace Accounting.Check.DasteCheck
                 txtDesc.Text = cls?.Description;
                 txtFromNumber.Value = cls?.FromNumber ?? 0;
                 txtToNumber.Value = cls?.ToNumber ?? 0;
-                txtBankName.Text = TafsilBussines.Get(cls.BankGuid)?.Name;
+                txtBankName.Text = (await TafsilBussines.GetAsync(cls.BankGuid))?.Name;
             }
             catch (Exception ex)
             {
@@ -84,7 +85,7 @@ namespace Accounting.Check.DasteCheck
             }
         }
 
-        private void frmDasteCheckMain_Load(object sender, EventArgs e) => SetData();
+        private async void frmDasteCheckMain_Load(object sender, EventArgs e) => await SetDataAsync();
         private void txtSerial_Enter(object sender, EventArgs e) => txtSetter.Focus(txtSerial);
         private void txtSerial_Leave(object sender, EventArgs e) => txtSetter.Follow(txtSerial);
         private void btnCancel_Click(object sender, EventArgs e)
@@ -148,14 +149,14 @@ namespace Accounting.Check.DasteCheck
                 }
             }
         }
-        private void btnRegion_Click(object sender, EventArgs e)
+        private async void btnRegion_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmSelectTafsil(HesabType.Bank);
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
                 _bankGuid = frm.SelectedGuid;
-                txtBankName.Text = TafsilBussines.Get(_bankGuid)?.Name;
+                txtBankName.Text = (await TafsilBussines.GetAsync(_bankGuid))?.Name;
             }
             catch (Exception ex)
             {

@@ -1,6 +1,7 @@
 ﻿using EntityCache.Bussines;
 using Services;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Peoples
@@ -8,18 +9,23 @@ namespace Peoples
     public partial class UcPeopleSelect : UserControl
     {
         private Guid _guid;
-        public event Action OnShowNumbers;
-        public event Action OnShowFiles;
-        public Guid Guid
+        public event Func<Guid, Task> OnShowNumbers;
+        public event Func<Guid, Task> OnShowFiles;
+        public Guid Guid => _guid;
+
+        public async Task SetGuidAsync(Guid value)
         {
-            get => _guid;
-            set
+            try
             {
                 if (value == Guid.Empty) return;
                 _guid = value;
-                var pe = PeoplesBussines.Get(_guid, null);
+                var pe = await PeoplesBussines.GetAsync(_guid, null);
                 if (pe == null) return;
                 LoadData(pe);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
         private void LoadData(PeoplesBussines owner)
@@ -37,24 +43,24 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void RaiseShowNumber()
+        private void RaiseShowNumber(Guid guid)
         {
             try
             {
                 var handler = OnShowNumbers;
-                if (handler != null) OnShowNumbers?.Invoke();
+                if (handler != null) OnShowNumbers?.Invoke(guid);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void RaiseShowFiles()
+        private void RaiseShowFiles(Guid guid)
         {
             try
             {
                 var handler = OnShowFiles;
-                if (handler != null) OnShowFiles?.Invoke();
+                if (handler != null) OnShowFiles?.Invoke(guid);
             }
             catch (Exception ex)
             {
@@ -62,33 +68,33 @@ namespace Peoples
             }
         }
         public UcPeopleSelect() => InitializeComponent();
-        private void btnCreateOwner_Click(object sender, EventArgs e)
+        private async void btnCreateOwner_Click(object sender, EventArgs e)
         {
             try
             {
-                var frm = new frmPeoples();
+                var frm = new frmPeoples(new PeoplesBussines(), false);
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
-                Guid = frm.SelectedGuid;
+                await SetGuidAsync(frm.SelectedGuid);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void btnSearchOwner_Click(object sender, EventArgs e)
+        private async void btnSearchOwner_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmShowPeoples(true);
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
-                Guid = frm.SelectedGuid;
+                await SetGuidAsync(frm.SelectedGuid);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuPhone_Click(object sender, EventArgs e) => RaiseShowNumber();
-        private void mnuFiles_Click(object sender, EventArgs e) => RaiseShowFiles();
+        private void mnuPhone_Click(object sender, EventArgs e) => RaiseShowNumber(Guid.Empty);
+        private void mnuFiles_Click(object sender, EventArgs e) => RaiseShowFiles(Guid.Empty);
     }
 }

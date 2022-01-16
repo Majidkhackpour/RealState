@@ -6,7 +6,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using EntityCache.Mppings;
-using Nito.AsyncEx;
 using Persistence;
 using Services;
 using Services.DefaultCoding;
@@ -47,16 +46,6 @@ namespace EntityCache.Bussines
         public List<PhoneBookBussines> TellList { get; set; }
         public List<PeoplesBankAccountBussines> BankList { get; set; }
         public bool IsModified { get; set; } = false;
-        public static Guid DefualtGuid
-        {
-            get
-            {
-                if (_defaultGuid != Guid.Empty) return _defaultGuid;
-                var def = AsyncContext.Run(GetDefaultPeopleAsync);
-                _defaultGuid = def?.Guid ?? Guid.Empty;
-                return _defaultGuid;
-            }
-        }
 
 
         public static async Task<List<PeoplesBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Peoples.GetAllAsync(Cache.ConnectionString, token);
@@ -185,7 +174,6 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public static PeoplesBussines Get(Guid guid, Guid? buildingGuid) => AsyncContext.Run(() => GetAsync(guid, buildingGuid));
         public static async Task<List<PeoplesBussines>> GetAllAsync(string search, Guid groupGuid, CancellationToken token)
         {
             try
@@ -333,7 +321,7 @@ namespace EntityCache.Bussines
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private static async Task<PeoplesBussines> GetDefaultPeopleAsync() => await GetAsync(ParentDefaults.TafsilCoding.DefualtCustomer, null);
+        public static async Task<PeoplesBussines> GetDefaultPeopleAsync() => await GetAsync(ParentDefaults.TafsilCoding.DefualtCustomer, null);
         public static async Task<List<PeoplesBussines>> GetAllNotSentAsync()
             => await UnitOfWork.Peoples.GetAllNotSentAsync(Cache.ConnectionString);
         public static async Task<ReturnedSaveFuncInfo> SetSaveResultAsync(Guid guid, ServerStatus status)

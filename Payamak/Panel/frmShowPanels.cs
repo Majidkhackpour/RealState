@@ -102,14 +102,14 @@ namespace Payamak.Panel
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuLog_Click(object sender, EventArgs e)
+        private async void mnuLog_Click(object sender, EventArgs e)
         {
             try
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var panel = SmsPanelsBussines.Get(guid);
+                var panel = await SmsPanelsBussines.GetAsync(guid);
                 if (panel == null) return;
 
                 var frm = new frmSmsLog(panel);
@@ -168,14 +168,16 @@ namespace Payamak.Panel
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuView_Click(object sender, EventArgs e)
+        private async void mnuView_Click(object sender, EventArgs e)
         {
             try
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmPanelMain(guid, true);
+                var obj = await SmsPanelsBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmPanelMain(obj, true);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -196,7 +198,9 @@ namespace Payamak.Panel
                     return;
                 }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmPanelMain(guid, false);
+                var obj = await SmsPanelsBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmPanelMain(obj, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(txtSearch.Text);
             }
@@ -209,7 +213,7 @@ namespace Payamak.Panel
         {
             try
             {
-                var frm = new frmPanelMain();
+                var frm = new frmPanelMain(new SmsPanelsBussines(), false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync();
             }

@@ -17,7 +17,7 @@ namespace Accounting.Hesab
         private HesabType hType = HesabType.Tafsil;
         private CancellationTokenSource _token = new CancellationTokenSource();
 
-        private void SetData()
+        private async Task SetDataAsync()
         {
             try
             {
@@ -29,7 +29,7 @@ namespace Accounting.Hesab
                 if (cls.Guid == Guid.Empty)
                 {
                     cmbType.SelectedIndex = ((int)hType) - 1;
-                    txtCode.Text = NextCode();
+                    txtCode.Text = await TafsilBussines.NextCodeAsync((HesabType)cmbType.SelectedIndex + 1);
                 }
                 else
                 {
@@ -54,20 +54,6 @@ namespace Accounting.Hesab
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
-        }
-        private string NextCode()
-        {
-            var res = "";
-            try
-            {
-                res = TafsilBussines.NextCode((HesabType)cmbType.SelectedIndex + 1);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-
-            return res;
         }
         private void FillCmbPrice()
         {
@@ -116,30 +102,38 @@ namespace Accounting.Hesab
             cls = new TafsilBussines();
             ucHeader.Text = "افزودن حساب تفصیلی جدید";
         }
-        public frmTafsilMain(HesabType hType)
+        public frmTafsilMain(TafsilBussines obj, bool isShowMode, HesabType? hType=null)
         {
-            InitializeComponent();
-            cls = new TafsilBussines();
-            ucHeader.Text = $"افزودن {hType.GetDisplay()} جدید";
-            cmbType.Enabled = false;
-            this.hType = hType;
-            if (hType == HesabType.Hazine || hType == HesabType.Bank)
-                cmbAccount.Enabled = txtAccount_.Enabled = false;
-        }
-        public frmTafsilMain(Guid guid, bool isShowMode, HesabType? htype = null)
-        {
-            InitializeComponent();
-            cls = TafsilBussines.Get(guid);
-            ucHeader.Text = !isShowMode ? $"ویرایش حساب تفصیلی {cls.Name}" : $"مشاهده حساب تفصیلی {cls.Name}";
-            ucHeader.IsModified = true;
-            grp.Enabled = !isShowMode;
-            btnFinish.Enabled = !isShowMode;
-            if (htype != null)
+            try
             {
+                InitializeComponent();
+                cls = obj;
+                if (cls.Guid == Guid.Empty)
+                {
+                    ucHeader.Text = $"افزودن {hType.GetDisplay()} جدید";
+                    ucHeader.IsModified = false;
+                }
+                else
+                {
+                    ucHeader.Text = !isShowMode ? $"ویرایش حساب تفصیلی {cls.Name}" : $"مشاهده حساب تفصیلی {cls.Name}";
+                    ucHeader.IsModified = true;
+                }
                 cmbType.Enabled = false;
-                this.hType = htype.Value;
+                grp.Enabled = !isShowMode;
+                btnFinish.Enabled = !isShowMode;
+                if (hType != null)
+                {
+                    cmbType.Enabled = false;
+                    this.hType = hType.Value;
+                    if (hType == HesabType.Hazine || hType == HesabType.Bank)
+                        cmbAccount.Enabled = txtAccount_.Enabled = false;
+                }
                 if (hType == HesabType.Hazine || hType == HesabType.Bank)
                     cmbAccount.Enabled = txtAccount_.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
 
@@ -147,7 +141,7 @@ namespace Accounting.Hesab
         {
             try
             {
-                SetData();
+                await SetDataAsync();
                 var myCollection = new AutoCompleteStringCollection();
                 var list = await TafsilBussines.GetAllAsync("", _token.Token,hType);
                 foreach (var item in list.ToList())
@@ -191,11 +185,11 @@ namespace Accounting.Hesab
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-        private void cmbType_SelectedIndexChanged(object sender, EventArgs e)
+        private async void cmbType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                txtCode.Text = NextCode();
+                txtCode.Text = await TafsilBussines.NextCodeAsync((HesabType) cmbType.SelectedIndex + 1);
                 var t = (HesabType)cmbType.SelectedIndex + 1;
                 if (t == HesabType.Hazine || t == HesabType.Bank)
                     cmbAccount.Enabled = txtAccount_.Enabled = false;

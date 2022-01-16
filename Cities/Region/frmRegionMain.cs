@@ -45,21 +45,24 @@ namespace Cities.Region
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public frmRegionMain()
+        public frmRegionMain(RegionsBussines obj, bool isShowMode)
         {
-            InitializeComponent();
-            cls = new RegionsBussines();
-            ucHeader.Text = "افزودن منطقه جدید";
-            ucHeader.IsModified = cls.IsModified;
-        }
-        public frmRegionMain(Guid guid, bool isShowMode)
-        {
-            InitializeComponent();
-            cls = RegionsBussines.Get(guid);
-            ucHeader.Text = !isShowMode ? $"ویرایش منطقه {cls.Name}" : $"مشاهده منطقه {cls.Name}";
-            ucHeader.IsModified = cls.IsModified;
-            grp.Enabled = !isShowMode;
-            btnFinish.Enabled = !isShowMode;
+            try
+            {
+                InitializeComponent();
+                cls = obj;
+                if (!cls.IsModified)
+                    ucHeader.Text = "افزودن منطقه جدید";
+                else
+                    ucHeader.Text = !isShowMode ? $"ویرایش منطقه {cls.Name}" : $"مشاهده منطقه {cls.Name}";
+                ucHeader.IsModified = cls.IsModified;
+                grp.Enabled = !isShowMode;
+                btnFinish.Enabled = !isShowMode;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private void txtRegion_Enter(object sender, EventArgs e) => txtSetter.Focus(txtRegion);

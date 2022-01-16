@@ -24,10 +24,10 @@ namespace Building.Contract
                 ucContractHeader1.HologramCode = cls.HologramCode;
                 ucContractHeader1.ContractDate = cls.DateM;
 
-                ucFSide.Guid = cls.FirstSideGuid;
                 ucFSide.Title = "مشخصات موجر";
-                ucSecondSide.Guid = cls.SecondSideGuid;
                 ucSecondSide.Title = "مشخصات مستاجر";
+                await ucFSide.SetGuidAsync(cls.FirstSideGuid);
+                await ucSecondSide.SetGuidAsync(cls.SecondSideGuid);
 
                 var bu = await BuildingBussines.GetAsync(cls.BuildingGuid);
                 ucContractRahn_21.Dong = bu?.Dang ?? 6;

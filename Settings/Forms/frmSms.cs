@@ -21,7 +21,7 @@ namespace Settings.Forms
 
                 if (!string.IsNullOrEmpty(Classes.Payamak.DefaultPanelGuid))
                 {
-                    var panel = SmsPanelsBussines.Get(Guid.Parse(Classes.Payamak.DefaultPanelGuid));
+                    var panel = await SmsPanelsBussines.GetAsync(Guid.Parse(Classes.Payamak.DefaultPanelGuid));
                     if (panel != null)
                         cmbPanel.Text = panel.Sender;
                 }

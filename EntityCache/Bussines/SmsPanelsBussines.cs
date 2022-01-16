@@ -4,7 +4,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
-using Nito.AsyncEx;
 using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
@@ -18,15 +17,11 @@ namespace EntityCache.Bussines
         public string Sender { get; set; }
         public string API { get; set; }
         public bool Status { get; set; }
-        public bool IsDefult
+        public async Task<bool> GetIsDefultAsync()
         {
-            get
-            {
-                var defPanel = SettingsBussines.Get("defPanel");
-                if (defPanel == null) return false;
-                if (Guid.Parse(defPanel.Value) != Guid) return false;
-                return true;
-            }
+            var defPanel = await SettingsBussines.GetAsync("defPanel");
+            if (defPanel == null) return false;
+            return Guid.Parse(defPanel.Value) == Guid;
         }
 
 
@@ -127,7 +122,6 @@ namespace EntityCache.Bussines
                 return new List<SmsPanelsBussines>();
             }
         }
-        public static SmsPanelsBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         private ReturnedSaveFuncInfo CheckValidation()
         {
             var res = new ReturnedSaveFuncInfo();

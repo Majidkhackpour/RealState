@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
 using EntityCache.Bussines;
@@ -11,7 +12,7 @@ namespace Accounting.Bank
     {
         private BankBussines cls;
 
-        private void SetData()
+        private async Task SetDataAsync()
         {
             try
             {
@@ -22,26 +23,12 @@ namespace Accounting.Bank
                 txtCodeShobe.Text = cls?.CodeShobe;
                 txtShobe.Text = cls?.Shobe;
                 txtHesabNumber.Text = cls?.HesabNumber;
-                txtCode.Text = cls.Guid == Guid.Empty ? NextCode() : cls?.Code;
+                txtCode.Text = cls.Guid == Guid.Empty ? await TafsilBussines.NextCodeAsync(HesabType.Bank) : cls?.Code;
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
-        }
-        private string NextCode()
-        {
-            var res = "";
-            try
-            {
-                res = TafsilBussines.NextCode(HesabType.Bank);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-
-            return res;
         }
         private void FillCmbPrice()
         {
@@ -104,7 +91,7 @@ namespace Accounting.Bank
             }
         }
 
-        private void frmBankMain_Load(object sender, EventArgs e) => SetData();
+        private async void frmBankMain_Load(object sender, EventArgs e) => await SetDataAsync();
         private void txtCode_Enter(object sender, EventArgs e) => txtSetter.Focus(txtCode);
         private void txtName_Enter(object sender, EventArgs e) => txtSetter.Focus(txtName);
         private void txtShobe_Enter(object sender, EventArgs e) => txtSetter.Focus(txtShobe);

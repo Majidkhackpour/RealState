@@ -277,12 +277,12 @@ namespace Advertise.ViewModels.Divar
                 return "";
             }
         }
-        public string RentalAuthority()
+        public async Task<string> GetRentalAuthorityAsync()
         {
             try
             {
 
-                var rentAuth = RentalAuthorityBussines.Get(bu.RentalAutorityGuid ?? Guid.Empty);
+                var rentAuth = await RentalAuthorityBussines.GetAsync(bu.RentalAutorityGuid ?? Guid.Empty);
                 if (rentAuth != null && rentAuth.Name.Contains("خانواده و مجرد"))
                     return "خانواده و مجرد";
                 return "خانواده";

@@ -17,7 +17,7 @@ namespace Payamak.FixSms
                 if (res.HasError) return res;
 
 
-                var text = Text(bu);
+                var text = await GetTextAsync(bu);
                 if (string.IsNullOrEmpty(text))
                 {
                     res.AddReturnedValue(ReturnedState.Error, "متن پیش فرض خالی می باشد");
@@ -30,7 +30,7 @@ namespace Payamak.FixSms
                     return res;
                 }
 
-                var panel = SmsPanelsBussines.Get(Guid.Parse(Settings.Classes.Payamak.DefaultPanelGuid));
+                var panel = await SmsPanelsBussines.GetAsync(Guid.Parse(Settings.Classes.Payamak.DefaultPanelGuid));
                 if (panel == null)
                 {
                     res.AddReturnedValue(ReturnedState.Error, "پنل پیش فرض معتبر نمی باشد");
@@ -76,7 +76,7 @@ namespace Payamak.FixSms
 
             return res;
         }
-        private static string Text(BuildingBussines bu)
+        private static async Task<string> GetTextAsync(BuildingBussines bu)
         {
             var res = "";
             try
@@ -87,17 +87,17 @@ namespace Payamak.FixSms
                 if (res.Contains(Replacor.Owner.DateSabt)) res = res.Replace(Replacor.Owner.DateSabt, bu.DateSh);
                 if (res.Contains(Replacor.Owner.OwnerName))
                 {
-                    var owner = PeoplesBussines.Get(bu.OwnerGuid,null);
+                    var owner = await PeoplesBussines.GetAsync(bu.OwnerGuid,null);
                     res = res.Replace(Replacor.Owner.OwnerName, owner?.Name);
                 }
                 if (res.Contains(Replacor.Owner.Region))
                 {
-                    var reg = RegionsBussines.Get(bu.RegionGuid);
+                    var reg = await RegionsBussines.GetAsync(bu.RegionGuid);
                     res = res.Replace(Replacor.Owner.Region, reg?.Name);
                 }
                 if (res.Contains(Replacor.Owner.UserName))
                 {
-                    var user = UserBussines.Get(bu.UserGuid);
+                    var user = await UserBussines.GetAsync(bu.UserGuid);
                     res = res.Replace(Replacor.Owner.UserName, user?.Name);
                 }
             }

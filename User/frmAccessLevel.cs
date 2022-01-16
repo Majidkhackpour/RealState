@@ -199,7 +199,7 @@ namespace User
                 if (UserBindingSource.Count > 0)
                 {
                     cmbUser.SelectedIndex = 0;
-                    _currentAccessLevel = UserBussines.Get((Guid)cmbUser.SelectedValue).UserAccess;
+                    _currentAccessLevel = (await UserBussines.GetAsync((Guid)cmbUser.SelectedValue)).UserAccess;
                 }
                 LoadGrid();
             }

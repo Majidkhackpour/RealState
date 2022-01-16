@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using EntityCache.Assistence;
 using EntityCache.Mppings;
 using EntityCache.ViewModels;
-using Nito.AsyncEx;
 using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
@@ -30,8 +29,7 @@ namespace EntityCache.Bussines
         public bool IsChecked { get; set; }
         public bool IsModified { get; set; } = false;
 
-        public static async Task<List<RegionsBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Regions.GetAllAsync(Cache.ConnectionString, token);
-        public static List<RegionsBussines> GetAll(Guid cityGuid, CancellationToken token = default) => AsyncContext.Run(() => GetAllAsync(cityGuid, token));
+        public static async Task<List<RegionsBussines>> GetAllAsync(CancellationToken token=default) => await UnitOfWork.Regions.GetAllAsync(Cache.ConnectionString, token);
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<RegionsBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -68,8 +66,6 @@ namespace EntityCache.Bussines
         }
         public static async Task<RegionsBussines> GetAsync(Guid guid) => await UnitOfWork.Regions.GetAsync(Cache.ConnectionString, guid);
         public static async Task<RegionsBussines> GetAsync(string name) => await UnitOfWork.Regions.GetAsync(Cache.ConnectionString, name);
-        public static RegionsBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-        public static RegionsBussines Get(string name) => AsyncContext.Run(() => GetAsync(name));
         public static async Task<List<RegionsBussines>> GetAllAsync(string search, Guid cityGuid, CancellationToken token)
         {
             try
@@ -198,7 +194,7 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public static async Task<List<RegionsBussines>> GetAllAsync(Guid cityGuid, CancellationToken token) =>
+        public static async Task<List<RegionsBussines>> GetAllAsync(Guid cityGuid, CancellationToken token=default) =>
             await UnitOfWork.Regions.GetAllAsync(Cache.ConnectionString, cityGuid, token);
         public static async Task<List<RegionReportViewModel>> GetAllBuildingReportAsync(CancellationToken token) => await UnitOfWork.Regions.GetAllBuildingReportAsync(Cache.ConnectionString, token);
         public static async Task<List<RegionReportViewModel>> GetAllRequestReportAsync(CancellationToken token) => await UnitOfWork.Regions.GetAllRequestReportAsync(Cache.ConnectionString, token);

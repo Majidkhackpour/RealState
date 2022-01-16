@@ -146,14 +146,16 @@ namespace Cities.Region
         }
         private async void rbtnAll_CheckedChanged(object sender, EventArgs e) => await LoadDataAsync(txtSearch.Text);
         private async void rbtnMyRegion_CheckedChanged(object sender, EventArgs e) => await LoadDataAsync(txtSearch.Text);
-        private void mnuView_Click(object sender, EventArgs e)
+        private async void mnuView_Click(object sender, EventArgs e)
         {
             try
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmRegionMain(guid, true);
+                var obj = await RegionsBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmRegionMain(obj, true);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -214,7 +216,9 @@ namespace Cities.Region
                     return;
                 }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmRegionMain(guid, false);
+                var obj = await RegionsBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmRegionMain(obj, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(txtSearch.Text);
             }
@@ -227,7 +231,7 @@ namespace Cities.Region
         {
             try
             {
-                var frm = new frmRegionMain();
+                var frm = new frmRegionMain(new RegionsBussines(), false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync();
             }

@@ -256,7 +256,7 @@ namespace EntityCache.Bussines
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var isDelete = SettingsBussines.Get("DeleteRequest")?.Value.ParseToBoolean() ?? false;
+                var isDelete = (await SettingsBussines.GetAsync("DeleteRequest"))?.Value.ParseToBoolean() ?? false;
                 if (!isDelete) return res;
                 var oldDate = DateTime.Now.AddDays(-60);
                 var date = new DateTime(oldDate.Year, oldDate.Month, oldDate.Day, 0, 0, 0);

@@ -22,11 +22,11 @@ namespace Peoples
             }
         }
         public Guid ParentGuid { get; set; }
-        public frmPeoplesBankAccount(Guid guid)
+        public frmPeoplesBankAccount(PeoplesBussines obj)
         {
             InitializeComponent();
-            ParentGuid = guid;
-            ucHeader.Text = $"نمایش لیست حساب های بانکی {TafsilBussines.Get(ParentGuid)?.Name ?? ""}";
+            ParentGuid = obj.Guid;
+            ucHeader.Text = $"نمایش لیست حساب های بانکی {obj?.Name ?? ""}";
         }
 
         private async void frmPeoplesBankAccount_Load(object sender, EventArgs e)

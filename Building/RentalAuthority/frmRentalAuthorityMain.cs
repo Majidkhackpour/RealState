@@ -17,21 +17,24 @@ namespace Building.RentalAuthority
 
         private void SetData() => txtName.Text = cls?.Name;
 
-        public frmRentalAuthorityMain()
+        public frmRentalAuthorityMain(RentalAuthorityBussines obj, bool isShowMode)
         {
-            InitializeComponent();
-            cls = new RentalAuthorityBussines();
-            ucHeader.Text = "افزودن ارجحیت اجاره جدید";
-            ucHeader.IsModified = cls.IsModified;
-        }
-        public frmRentalAuthorityMain(Guid guid, bool isShowMode)
-        {
-            InitializeComponent();
-            cls = RentalAuthorityBussines.Get(guid);
-            ucHeader.Text = !isShowMode ? $"ویرایش ارجحیت اجاره {cls.Name}" : $"مشاهده ارجحیت اجاره {cls.Name}";
-            ucHeader.IsModified = cls.IsModified;
-            grp.Enabled = !isShowMode;
-            btnFinish.Enabled = !isShowMode;
+            try
+            {
+                InitializeComponent();
+                cls = obj;
+                if (!cls.IsModified)
+                    ucHeader.Text = "افزودن ارجحیت اجاره جدید";
+                else
+                    ucHeader.Text = !isShowMode ? $"ویرایش ارجحیت اجاره {cls.Name}" : $"مشاهده ارجحیت اجاره {cls.Name}";
+                ucHeader.IsModified = cls.IsModified;
+                grp.Enabled = !isShowMode;
+                btnFinish.Enabled = !isShowMode;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private void txtName_Enter(object sender, EventArgs e) => txtSetter.Focus(txtName);

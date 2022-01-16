@@ -1,14 +1,12 @@
-﻿using System;
+﻿using EntityCache.Bussines;
+using EntityCache.Core;
+using Services;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
-using EntityCache.Bussines;
-using EntityCache.Core;
-using Persistence.Entities;
-using Persistence.Model;
-using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
@@ -28,7 +26,7 @@ namespace EntityCache.SqlServerPersistence
                     while (dr.Read())
                     {
                         if (token.IsCancellationRequested) return null;
-                        list.Add(LoadData(dr));
+                        list.Add(await LoadDataAsync(dr));
                     }
                     dr.Close();
                     cn.Close();
@@ -55,7 +53,7 @@ namespace EntityCache.SqlServerPersistence
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) res = LoadData(dr);
+                    if (dr.Read()) res = await LoadDataAsync(dr);
                     dr.Close();
                     cn.Close();
                 }
@@ -107,7 +105,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        private AdvisorBussines LoadData(SqlDataReader dr)
+        private async Task<AdvisorBussines> LoadDataAsync(SqlDataReader dr)
         {
             var item = new AdvisorBussines();
             try
@@ -119,7 +117,7 @@ namespace EntityCache.SqlServerPersistence
                 item.Account = (decimal)dr["Account"];
                 item.AccountFirst = (decimal)dr["AccountFirst"];
                 item.Address = dr["Address"].ToString();
-                var tellList = PhoneBookBussines.GetAll(item.Guid, true);
+                var tellList = await PhoneBookBussines.GetAllAsync(item.Guid, true);
                 if (tellList?.Count == 1) item.Mobile1 = tellList[0]?.Tell;
                 if (tellList?.Count > 1)
                 {

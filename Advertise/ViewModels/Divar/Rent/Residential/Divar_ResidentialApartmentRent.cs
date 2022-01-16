@@ -35,7 +35,6 @@ namespace Advertise.ViewModels.Divar.Rent.Residential
         public string Rahn => bu.RahnPrice1.ToString("0.##");
         public string Ejare => bu.EjarePrice1.ToString("0.##");
         public string Tabdil => fixValue.Tabdil();
-        public string RentalAuthority => fixValue.RentalAuthority();
         public string RoomCount => fixValue.RoomCount();
         public string SaleSakht => fixValue.SaleSakht().UpSideFixString();
         public string Tabaqe => fixValue.Tabaqe().UpSideFixString();
@@ -82,7 +81,7 @@ namespace Advertise.ViewModels.Divar.Rent.Residential
                 await Utility.Wait();
                 cat.Rental(3)?.Click();
                 await Utility.Wait();
-                cat.SelectDropDown(RentalAuthority);
+                cat.SelectDropDown(await fixValue. GetRentalAuthorityAsync());
 
                 await Utility.Wait();
                 cat.RoomCount(4)?.Click();

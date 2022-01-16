@@ -72,20 +72,29 @@ namespace Accounting.Check.CheckMoshtari
         }
 
 
-        public frmCheckM_AvalDore()
+        public frmCheckM_AvalDore(ReceptionCheckAvalDoreBussines obj, bool isShowMode)
         {
-            InitializeComponent();
-            cls = new ReceptionCheckAvalDoreBussines();
-            ucHeader.Text = "افزودن چک دریافتی اول دوره جدید";
-        }
-        public frmCheckM_AvalDore(Guid guid, bool isShowMode)
-        {
-            InitializeComponent();
-            cls = ReceptionCheckAvalDoreBussines.Get(guid);
-            ucHeader.Text = !isShowMode ? $"ویرایش چک دریافتی اول دوره" : $"مشاهده چک دریافتی اول دوره";
-            ucHeader.IsModified = true;
-            grp.Enabled = !isShowMode;
-            btnFinish.Enabled = !isShowMode;
+            try
+            {
+                InitializeComponent();
+                cls = obj;
+                if (cls.Guid == Guid.Empty)
+                {
+                    ucHeader.Text = "افزودن چک دریافتی اول دوره جدید";
+                    ucHeader.IsModified = false;
+                }
+                else
+                {
+                    ucHeader.Text = !isShowMode ? $"ویرایش چک دریافتی اول دوره" : $"مشاهده چک دریافتی اول دوره";
+                    ucHeader.IsModified = true;
+                }
+                grp.Enabled = !isShowMode;
+                btnFinish.Enabled = !isShowMode;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
 

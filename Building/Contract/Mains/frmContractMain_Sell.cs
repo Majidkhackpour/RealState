@@ -24,8 +24,8 @@ namespace Building.Contract
                 ucContractHeader1.HologramCode = cls.HologramCode;
                 ucContractHeader1.ContractDate = cls.DateM;
 
-                ucFSide.Guid = cls.FirstSideGuid;
-                ucSecondSide.Guid = cls.SecondSideGuid;
+                await ucFSide.SetGuidAsync(cls.FirstSideGuid);
+                await ucSecondSide.SetGuidAsync(cls.SecondSideGuid);
 
                 var bu = await BuildingBussines.GetAsync(cls.BuildingGuid);
                 uc2.Dong = bu?.Dang ?? 6;

@@ -26,7 +26,7 @@ namespace Accounting.Check.CheckMoshtari
             {
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
-                var list = await TafsilBussines.GetAllAsync("", _token.Token,hType);
+                var list = await TafsilBussines.GetAllAsync("", _token.Token, hType);
                 tafsilBundingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name);
             }
             catch (Exception ex)
@@ -35,18 +35,18 @@ namespace Accounting.Check.CheckMoshtari
             }
         }
 
-        public frmCheckM_Vagozar(ReceptionCheckBussines cls, HesabType hType)
+        public frmCheckM_Vagozar(ReceptionCheckBussines cls, HesabType hType, TafsilBussines oldTafsil)
         {
             InitializeComponent();
-            _oldTafsil = TafsilBussines.Get(cls.SandouqTafsilGuid);
+            _oldTafsil = oldTafsil;
             _isAvalDore = false;
             _newHesabType = hType;
             rec = cls;
         }
-        public frmCheckM_Vagozar(ReceptionCheckAvalDoreBussines cls, HesabType hType)
+        public frmCheckM_Vagozar(ReceptionCheckAvalDoreBussines cls, HesabType hType, TafsilBussines oldTafsil)
         {
             InitializeComponent();
-            _oldTafsil = TafsilBussines.Get(cls.SandouqTafsilGuid);
+            _oldTafsil = oldTafsil;
             _isAvalDore = true;
             _newHesabType = hType;
             recAvalDore = cls;
@@ -97,7 +97,7 @@ namespace Accounting.Check.CheckMoshtari
                     return;
                 }
 
-                _newTafsil = await TafsilBussines.GetAsync((Guid) cmbGroup.SelectedValue);
+                _newTafsil = await TafsilBussines.GetAsync((Guid)cmbGroup.SelectedValue);
                 if (_newTafsil == null)
                 {
                     res.AddError("محل واگذاری جدید چک معتبر نمی باشد");

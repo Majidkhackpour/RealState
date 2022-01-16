@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using Services;
@@ -9,17 +10,22 @@ namespace Peoples
     {
         private Guid _guid;
         public event Action<Guid> OnChanged;
-        public Guid Guid
+        public Guid Guid => _guid;
+
+        public async Task SetGuidAsync(Guid value)
         {
-            get => _guid;
-            set
+            try
             {
                 if (value == Guid.Empty) return;
                 _guid = value;
-                var pe = PeoplesBussines.Get(_guid, null);
+                var pe =await PeoplesBussines.GetAsync(_guid, null);
                 if (pe == null) return;
                 RaiseChange(_guid);
                 LoadData(pe);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
         public string Title { get => grpPanel.Text; set => grpPanel.Text = value; }
@@ -39,26 +45,26 @@ namespace Peoples
             }
         }
         public UcPeopleContract() => InitializeComponent();
-        private void btnCreateOwner_Click(object sender, EventArgs e)
+        private async void btnCreateOwner_Click(object sender, EventArgs e)
         {
             try
             {
-                var frm = new frmPeoples();
+                var frm = new frmPeoples(new PeoplesBussines(), false);
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
-                Guid = frm.SelectedGuid;
+                await SetGuidAsync(frm.SelectedGuid);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void btnSearchOwner_Click(object sender, EventArgs e)
+        private async void btnSearchOwner_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmShowPeoples(true);
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
-                Guid = frm.SelectedGuid;
+                await SetGuidAsync(frm.SelectedGuid);
             }
             catch (Exception ex)
             {

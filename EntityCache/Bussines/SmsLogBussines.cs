@@ -4,7 +4,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
-using Nito.AsyncEx;
 using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
@@ -95,7 +94,6 @@ namespace EntityCache.Bussines
                 return new List<SmsLogBussines>();
             }
         }
-        public static SmsLogBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public static async Task<SmsLogBussines> GetAsync(long messageId) => await UnitOfWork.SmsLog.GetAsync(Cache.ConnectionString, messageId);
     }
 }

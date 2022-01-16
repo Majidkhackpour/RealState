@@ -18,6 +18,7 @@ namespace Building.UserControls.Contract.EjareTamlik
                 if (cGuid == Guid.Empty) return;
                 var city = await CitiesBussines.GetAsync(cGuid);
                 if (city == null) return;
+                while (!IsHandleCreated) { await Task.Delay(100); }
                 BeginInvoke(new MethodInvoker(() => lblCity.Text = city.Name));
             }
             catch (Exception ex)

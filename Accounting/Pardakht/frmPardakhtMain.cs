@@ -40,19 +40,19 @@ namespace Accounting.Pardakht
                 {
                     if (cls.NaqdList != null)
                         foreach (var item in cls.NaqdList)
-                            AddToGrid(item);
+                            await AddToGridAsync(item);
 
                     if (cls.HavaleList != null)
                         foreach (var item in cls.HavaleList)
-                            AddToGrid(item);
+                            await AddToGridAsync(item);
 
                     if (cls.CheckMoshtariList != null)
                         foreach (var item in cls.CheckMoshtariList)
-                            AddToGrid(item);
+                            await AddToGridAsync(item);
 
                     if (cls.CheckShakhsiList != null)
                         foreach (var item in cls.CheckShakhsiList)
-                            AddToGrid(item);
+                            await AddToGridAsync(item);
                 }
 
                 SetLables();
@@ -78,61 +78,61 @@ namespace Accounting.Pardakht
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void AddToGrid(object temp)
+        private async Task AddToGridAsync(object temp)
         {
             try
             {
-                if ((temp) is PardakhtNaqdBussines)
+                if (temp is PardakhtNaqdBussines bussines)
                 {
                     DGrid.Rows.Add(1);
                     DGrid[DGType.Index, DGrid.RowCount - 1].Value = "نقد";
-                    DGrid[DGPrice.Index, DGrid.RowCount - 1].Value = ((PardakhtNaqdBussines)temp).Price;
-                    DGrid[DgGuid.Index, DGrid.RowCount - 1].Value = ((PardakhtNaqdBussines)temp).Guid;
-                    DGrid[DGTafsilGuid.Index, DGrid.RowCount - 1].Value = ((PardakhtNaqdBussines)temp).SandouqTafsilGuid;
+                    DGrid[DGPrice.Index, DGrid.RowCount - 1].Value = bussines.Price;
+                    DGrid[DgGuid.Index, DGrid.RowCount - 1].Value = bussines.Guid;
+                    DGrid[DGTafsilGuid.Index, DGrid.RowCount - 1].Value = bussines.SandouqTafsilGuid;
                     DGrid[DGDescription.Index, DGrid.RowCount - 1].Value =
-                        TafsilBussines.Get(((PardakhtNaqdBussines)temp).SandouqTafsilGuid).Name + " " +
-                        ((PardakhtNaqdBussines)temp).Description;
-                    DGrid[DG_TempDescription.Index, DGrid.RowCount - 1].Value = ((PardakhtNaqdBussines)temp).Description;
-                    DGrid[DGNumber.Index, DGrid.RowCount - 1].Value = ((PardakhtNaqdBussines)temp).Description;
+                        (await TafsilBussines.GetAsync(bussines.SandouqTafsilGuid)).Name + " " +
+                        bussines.Description;
+                    DGrid[DG_TempDescription.Index, DGrid.RowCount - 1].Value = bussines.Description;
+                    DGrid[DGNumber.Index, DGrid.RowCount - 1].Value = bussines.Description;
                 }
-                else if ((temp) is PardakhtHavaleBussines)
+                else if (temp is PardakhtHavaleBussines havaleBussines)
                 {
                     DGrid.Rows.Add(1);
                     DGrid[DGType.Index, DGrid.RowCount - 1].Value = "حواله";
-                    DGrid[DGTafsilGuid.Index, DGrid.RowCount - 1].Value = ((PardakhtHavaleBussines)temp).BankTafsilGuid;
-                    DGrid[DGNumber.Index, DGrid.RowCount - 1].Value = ((PardakhtHavaleBussines)temp).Number;
-                    DGrid[DGPrice.Index, DGrid.RowCount - 1].Value = ((PardakhtHavaleBussines)temp).Price;
+                    DGrid[DGTafsilGuid.Index, DGrid.RowCount - 1].Value = havaleBussines.BankTafsilGuid;
+                    DGrid[DGNumber.Index, DGrid.RowCount - 1].Value = havaleBussines.Number;
+                    DGrid[DGPrice.Index, DGrid.RowCount - 1].Value = havaleBussines.Price;
                     DGrid[DGDescription.Index, DGrid.RowCount - 1].Value =
-                        "پرداخت از بانک:" + TafsilBussines.Get(((PardakhtHavaleBussines)temp).BankTafsilGuid).Name +
+                        "پرداخت از بانک:" + (await TafsilBussines.GetAsync(havaleBussines.BankTafsilGuid)).Name +
                         " * " +
                         " درتاریخ:" + Calendar.MiladiToShamsi(DateTime.Now) + " * " +
-                        " شماره : " + ((PardakhtHavaleBussines)temp).Number;
-                    DGrid[DG_TempDescription.Index, DGrid.RowCount - 1].Value = ((PardakhtHavaleBussines)temp).Description;
-                    DGrid[DgGuid.Index, DGrid.RowCount - 1].Value = ((PardakhtHavaleBussines)temp).Guid;
+                        " شماره : " + havaleBussines.Number;
+                    DGrid[DG_TempDescription.Index, DGrid.RowCount - 1].Value = havaleBussines.Description;
+                    DGrid[DgGuid.Index, DGrid.RowCount - 1].Value = havaleBussines.Guid;
                 }
-                else if ((temp) is PardakhtCheckMoshtariBussines)
+                else if (temp is PardakhtCheckMoshtariBussines moshtariBussines)
                 {
                     DGrid.Rows.Add(1);
                     DGrid[DGType.Index, DGrid.RowCount - 1].Value = "چک دریافتی";
-                    DGrid[DGPrice.Index, DGrid.RowCount - 1].Value = ((PardakhtCheckMoshtariBussines)temp).Price;
-                    DGrid[DG_TempDescription.Index, DGrid.RowCount - 1].Value = ((PardakhtCheckMoshtariBussines)temp).Description;
+                    DGrid[DGPrice.Index, DGrid.RowCount - 1].Value = moshtariBussines.Price;
+                    DGrid[DG_TempDescription.Index, DGrid.RowCount - 1].Value = moshtariBussines.Description;
                     DGrid[DGDescription.Index, DGrid.RowCount - 1].Value =
-                        $"خرج چک دریافتی از مشتری * شرح: {((PardakhtCheckMoshtariBussines)temp).Description}";
-                    DGrid[DgGuid.Index, DGrid.RowCount - 1].Value = ((PardakhtCheckMoshtariBussines)temp).Guid;
-                    DGrid[dgCheckGuid.Index, DGrid.RowCount - 1].Value = ((PardakhtCheckMoshtariBussines)temp).CheckGuid;
+                        $"خرج چک دریافتی از مشتری * شرح: {moshtariBussines.Description}";
+                    DGrid[DgGuid.Index, DGrid.RowCount - 1].Value = moshtariBussines.Guid;
+                    DGrid[dgCheckGuid.Index, DGrid.RowCount - 1].Value = moshtariBussines.CheckGuid;
                 }
-                else if ((temp) is PardakhtCheckShakhsiBussines)
+                else if (temp is PardakhtCheckShakhsiBussines shakhsiBussines)
                 {
                     DGrid.Rows.Add(1);
                     DGrid[DGType.Index, DGrid.RowCount - 1].Value = "چک شخصی";
-                    DGrid[DGPrice.Index, DGrid.RowCount - 1].Value = ((PardakhtCheckShakhsiBussines)temp).Price;
-                    DGrid[DG_TempDescription.Index, DGrid.RowCount - 1].Value = ((PardakhtCheckShakhsiBussines)temp).Description;
+                    DGrid[DGPrice.Index, DGrid.RowCount - 1].Value = shakhsiBussines.Price;
+                    DGrid[DG_TempDescription.Index, DGrid.RowCount - 1].Value = shakhsiBussines.Description;
                     DGrid[DGDescription.Index, DGrid.RowCount - 1].Value =
-                        $"پرداخت چک شخصی * شرح: {((PardakhtCheckShakhsiBussines)temp).Description}";
-                    DGrid[DgGuid.Index, DGrid.RowCount - 1].Value = ((PardakhtCheckShakhsiBussines)temp).Guid;
-                    DGrid[dgCheckGuid.Index, DGrid.RowCount - 1].Value = ((PardakhtCheckShakhsiBussines)temp).CheckPageGuid;
-                    DGrid[DGNumber.Index, DGrid.RowCount - 1].Value = ((PardakhtCheckShakhsiBussines)temp).Number;
-                    DGrid[DGDateSarresid.Index, DGrid.RowCount - 1].Value = ((PardakhtCheckShakhsiBussines)temp).DateSarResid;
+                        $"پرداخت چک شخصی * شرح: {shakhsiBussines.Description}";
+                    DGrid[DgGuid.Index, DGrid.RowCount - 1].Value = shakhsiBussines.Guid;
+                    DGrid[dgCheckGuid.Index, DGrid.RowCount - 1].Value = shakhsiBussines.CheckPageGuid;
+                    DGrid[DGNumber.Index, DGrid.RowCount - 1].Value = shakhsiBussines.Number;
+                    DGrid[DGDateSarresid.Index, DGrid.RowCount - 1].Value = shakhsiBussines.DateSarResid;
                 }
                 SetLables();
             }
@@ -270,11 +270,21 @@ namespace Accounting.Pardakht
             cls = new PardakhtBussines();
             SetAccess();
         }
-        public frmPardakhtMain(PardakhtBussines temp)
+        public frmPardakhtMain(PardakhtBussines temp, bool isShowMode)
         {
-            InitializeComponent();
-            cls = temp;
-            SetAccess();
+            try
+            {
+                InitializeComponent();
+                cls = temp;
+                grp.Enabled = !isShowMode;
+                btnFinish.Enabled = !isShowMode;
+                contextMenu.Enabled = !isShowMode;
+                SetAccess();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
         public frmPardakhtMain(EnOperation op)
         {
@@ -296,15 +306,6 @@ namespace Accounting.Pardakht
                     mnuAddNaqd.PerformClick();
                     break;
             }
-            SetAccess();
-        }
-        public frmPardakhtMain(Guid guid, bool isShowMode)
-        {
-            InitializeComponent();
-            cls = PardakhtBussines.Get(guid);
-            grp.Enabled = !isShowMode;
-            btnFinish.Enabled = !isShowMode;
-            contextMenu.Enabled = !isShowMode;
             SetAccess();
         }
 
@@ -371,13 +372,13 @@ namespace Accounting.Pardakht
             DialogResult = DialogResult.Cancel;
             Close();
         }
-        private void mnuAddNaqd_Click(object sender, EventArgs e)
+        private async void mnuAddNaqd_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmPardakhtNaqd(null);
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
-                AddToGrid(frm.cls);
+                await AddToGridAsync(frm.cls);
                 FetchData();
                 SetLables();
             }
@@ -386,13 +387,13 @@ namespace Accounting.Pardakht
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuAddHavale_Click(object sender, EventArgs e)
+        private async void mnuAddHavale_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmPardakhtHavale(null);
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
-                AddToGrid(frm.cls);
+                await AddToGridAsync(frm.cls);
                 FetchData();
                 SetLables();
             }
@@ -401,13 +402,13 @@ namespace Accounting.Pardakht
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuAddCheckSh_Click(object sender, EventArgs e)
+        private async void mnuAddCheckSh_Click(object sender, EventArgs e)
         {
             try
             {
-                var frm = new frmPardakhtCheckSh(null);
+                var frm = new frmPardakhtCheckSh(new PardakhtCheckShakhsiBussines(), false);
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
-                AddToGrid(frm.cls);
+                await AddToGridAsync(frm.cls);
                 FetchData();
                 SetLables();
             }
@@ -416,13 +417,13 @@ namespace Accounting.Pardakht
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuAddCheckM_Click(object sender, EventArgs e)
+        private async void mnuAddCheckM_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmPardakhtCheckM(null);
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
-                AddToGrid(frm.cls);
+                await AddToGridAsync(frm.cls);
                 FetchData();
                 SetLables();
             }
@@ -431,7 +432,7 @@ namespace Accounting.Pardakht
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuEdit_Click(object sender, EventArgs e)
+        private async void mnuEdit_Click(object sender, EventArgs e)
         {
             try
             {
@@ -443,7 +444,7 @@ namespace Accounting.Pardakht
                     var frm = new frmPardakhtNaqd(str);
                     if (frm.ShowDialog(this) != DialogResult.OK) return;
                     DGrid.Rows.RemoveAt(DGrid.CurrentRow.Index);
-                    AddToGrid(frm.cls);
+                    await AddToGridAsync(frm.cls);
                 }
                 else if (DGrid[DGType.Index, DGrid.CurrentRow.Index].Value.ToString() == "چک دریافتی")
                 {
@@ -451,7 +452,7 @@ namespace Accounting.Pardakht
                     var frm = new frmPardakhtCheckM(str);
                     if (frm.ShowDialog(this) != DialogResult.OK) return;
                     DGrid.Rows.RemoveAt(DGrid.CurrentRow.Index);
-                    AddToGrid(frm.cls);
+                    await AddToGridAsync(frm.cls);
                 }
                 else if (DGrid[DGType.Index, DGrid.CurrentRow.Index].Value.ToString() == "حواله")
                 {
@@ -459,15 +460,15 @@ namespace Accounting.Pardakht
                     var frm = new frmPardakhtHavale(str);
                     if (frm.ShowDialog(this) != DialogResult.OK) return;
                     DGrid.Rows.RemoveAt(DGrid.CurrentRow.Index);
-                    AddToGrid(frm.cls);
+                    await AddToGridAsync(frm.cls);
                 }
                 else if (DGrid[DGType.Index, DGrid.CurrentRow.Index].Value.ToString() == "چک شخصی")
                 {
                     var str = (PardakhtCheckShakhsiBussines)GetRowInfo(DGrid.CurrentRow.Index);
-                    var frm = new frmPardakhtCheckSh(str);
+                    var frm = new frmPardakhtCheckSh(str,false);
                     if (frm.ShowDialog(this) != DialogResult.OK) return;
                     DGrid.Rows.RemoveAt(DGrid.CurrentRow.Index);
-                    AddToGrid(frm.cls);
+                    await AddToGridAsync(frm.cls);
                 }
                 FetchData();
                 SetLables();

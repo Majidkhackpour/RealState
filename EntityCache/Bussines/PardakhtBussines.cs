@@ -1,17 +1,14 @@
-﻿using System;
+﻿using EntityCache.Assistence;
+using Persistence;
+using Services;
+using Services.DefaultCoding;
+using Services.Interfaces.Building;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using EntityCache.Assistence;
-using EntityCache.Mppings;
-using Nito.AsyncEx;
-using Persistence;
-using Services;
-using Services.DefaultCoding;
-using Services.Interfaces.Building;
-using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
@@ -224,7 +221,6 @@ namespace EntityCache.Bussines
             }
         }
         public static async Task<PardakhtBussines> GetAsync(Guid guid) => await UnitOfWork.Pardakht.GetAsync(Cache.ConnectionString, guid);
-        public static PardakhtBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();

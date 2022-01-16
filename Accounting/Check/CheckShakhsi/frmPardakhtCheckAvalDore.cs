@@ -81,20 +81,29 @@ namespace Accounting.Check.CheckShakhsi
             }
         }
 
-        public frmPardakhtCheckAvalDore()
+        public frmPardakhtCheckAvalDore(PardakhtCheckAvalDoreBussines obj,bool isShowMode)
         {
-            InitializeComponent();
-            cls = new PardakhtCheckAvalDoreBussines();
-            ucHeader.Text = "افزودن چک پرداختی اول دوره جدید";
-        }
-        public frmPardakhtCheckAvalDore(Guid guid, bool isShowMode)
-        {
-            InitializeComponent();
-            cls = PardakhtCheckAvalDoreBussines.Get(guid);
-            ucHeader.Text = !isShowMode ? $"ویرایش چک پرداختی اول دوره" : $"مشاهده چک پرداختی اول دوره";
-            ucHeader.IsModified = true;
-            grp.Enabled = !isShowMode;
-            btnFinish.Enabled = !isShowMode;
+            try
+            {
+                InitializeComponent();
+                cls = obj;
+                if (cls.Guid == Guid.Empty)
+                {
+                    ucHeader.Text = "افزودن چک پرداختی اول دوره جدید";
+                    ucHeader.IsModified = false;
+                }
+                else
+                {
+                    ucHeader.Text = !isShowMode ? $"ویرایش چک پرداختی اول دوره" : $"مشاهده چک پرداختی اول دوره";
+                    ucHeader.IsModified = true;
+                }
+                grp.Enabled = !isShowMode;
+                btnFinish.Enabled = !isShowMode;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private async void btnTafsilSearch_Click(object sender, EventArgs e)

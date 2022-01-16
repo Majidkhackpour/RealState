@@ -1660,11 +1660,11 @@ namespace Building.Buildings
                     TellName = cls.TellName,
                     //Options = string.Join(", ", cls.OptionList?.Select(q => q.OptionName)),
                     DeliveryDateSh = Calendar.MiladiToShamsi(cls.DeliveryDate),
-                    RegionName = RegionsBussines.Get(cls.RegionGuid)?.Name ?? ""
+                    RegionName = (await RegionsBussines.GetAsync(cls.RegionGuid))?.Name ?? ""
                 };
                 if (cls.SellPrice > 0 && cls.Masahat > 0)
                     rpt.SellPricePerMetr = cls.SellPrice / cls.Masahat;
-                var people = PeoplesBussines.Get(cls.OwnerGuid, cls.Guid);
+                var people = await PeoplesBussines.GetAsync(cls.OwnerGuid, cls.Guid);
                 if (people.TellList != null && people.TellList.Count > 0)
                 {
                     if (people.TellList.Count >= 2)
@@ -1937,7 +1937,7 @@ namespace Building.Buildings
                     TellName = cls.TellName,
                     //Options = string.Join(", ", cls.OptionList?.Select(q => q.OptionName)),
                     DeliveryDateSh = Calendar.MiladiToShamsi(cls.DeliveryDate),
-                    RegionName = RegionsBussines.Get(cls.RegionGuid)?.Name ?? ""
+                    RegionName = (await RegionsBussines.GetAsync(cls.RegionGuid))?.Name ?? ""
                 };
                 if (cls.SellPrice > 0 && cls.Masahat > 0)
                     rpt.SellPricePerMetr = cls.SellPrice / cls.Masahat;

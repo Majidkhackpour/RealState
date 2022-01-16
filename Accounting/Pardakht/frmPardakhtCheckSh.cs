@@ -61,19 +61,20 @@ namespace Accounting.Pardakht
             }
         }
 
-        public frmPardakhtCheckSh(PardakhtCheckShakhsiBussines temp)
+        public frmPardakhtCheckSh(PardakhtCheckShakhsiBussines temp,bool isShowMode)
         {
-            InitializeComponent();
-            cls = temp ?? new PardakhtCheckShakhsiBussines();
-            ucHeader.Text = "پرداخت چک شخصی";
-        }
-        public frmPardakhtCheckSh(Guid guid)
-        {
-            InitializeComponent();
-            cls = PardakhtCheckShakhsiBussines.Get(guid);
-            ucHeader.Text = "پرداخت چک شخصی";
-            grp.Enabled = false;
-            btnFinish.Enabled = false;
+            try
+            {
+                InitializeComponent();
+                cls = temp ?? new PardakhtCheckShakhsiBussines();
+                ucHeader.Text = "پرداخت چک شخصی";
+                grp.Enabled = !isShowMode;
+                btnFinish.Enabled = !isShowMode;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private async void frmPardakhtCheckSh_Load(object sender, EventArgs e) => await SetDataAsync();

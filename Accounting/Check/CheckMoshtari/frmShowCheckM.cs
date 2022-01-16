@@ -138,7 +138,7 @@ namespace Accounting.Check.CheckMoshtari
         {
             try
             {
-                var frm = new frmCheckM_AvalDore();
+                var frm = new frmCheckM_AvalDore(new ReceptionCheckAvalDoreBussines(), false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync();
             }
@@ -160,8 +160,9 @@ namespace Accounting.Check.CheckMoshtari
                 }
 
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-
-                var frm = new frmCheckM_AvalDore(guid, false);
+                var obj = await ReceptionCheckAvalDoreBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmCheckM_AvalDore(obj, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(txtSearch.Text);
             }
@@ -170,7 +171,7 @@ namespace Accounting.Check.CheckMoshtari
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuView_Click(object sender, EventArgs e)
+        private async void mnuView_Click(object sender, EventArgs e)
         {
             try
             {
@@ -179,12 +180,15 @@ namespace Accounting.Check.CheckMoshtari
                 var avalDore = (bool)DGrid[dgAvalDore.Index, DGrid.CurrentRow.Index].Value;
                 if (!avalDore)
                 {
-                    var frm_ = new frmReceptionCheck(guid);
+                    var obj = await ReceptionCheckBussines.GetAsync(guid);
+                    if (obj == null) return;
+                    var frm_ = new frmReceptionCheck(obj, true);
                     frm_.ShowDialog(this);
                     return;
                 }
-
-                var frm = new frmCheckM_AvalDore(guid, true);
+                var obj_ = await ReceptionCheckAvalDoreBussines.GetAsync(guid);
+                if (obj_ == null) return;
+                var frm = new frmCheckM_AvalDore(obj_, true);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -204,12 +208,13 @@ namespace Accounting.Check.CheckMoshtari
                     var str = await ReceptionCheckBussines.GetAsync(guid);
                     var rec = await ReceptionBussines.GetAsync(str.MasterGuid.Value);
                     var sanad = await SanadBussines.GetAsync(rec.SanadNumber);
-                    var frm_ = new frmSanadMain(sanad.Guid, true);
+                    var frm_ = new frmSanadMain(sanad, true);
                     frm_.ShowDialog(this);
                     return;
                 }
-
-                var frm = new frmCheckM_AvalDore(guid, true);
+                var obj = await ReceptionCheckAvalDoreBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmCheckM_AvalDore(obj, true);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -240,8 +245,9 @@ namespace Accounting.Check.CheckMoshtari
                     frm.ShowDialog(this);
                     return;
                 }
-
-                var _frm = new frmTafsilMain(guid, true);
+                var obj = await TafsilBussines.GetAsync(guid);
+                if (obj == null) return;
+                var _frm = new frmTafsilMain(obj, true);
                 _frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -277,7 +283,9 @@ namespace Accounting.Check.CheckMoshtari
                     MasterGuid = cls.Guid
                 };
                 cls.AddToDetList(pardakhtcheck);
-                var frm = new frmPardakhtMain(cls);
+                var obj = await PardakhtBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmPardakhtMain(obj, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync();
             }
@@ -389,13 +397,13 @@ namespace Accounting.Check.CheckMoshtari
                 if (!avalDore)
                 {
                     var str = await ReceptionCheckBussines.GetAsync(guid);
-                    var frm = new frmCheckM_Vagozar(str, HesabType.Sandouq);
+                    var frm = new frmCheckM_Vagozar(str, HesabType.Sandouq, await TafsilBussines.GetAsync(str.SandouqTafsilGuid));
                     if (frm.ShowDialog(this) == DialogResult.OK) await LoadDataAsync(txtSearch.Text);
                     return;
                 }
 
                 var cls = await ReceptionCheckAvalDoreBussines.GetAsync(guid);
-                var frm_ = new frmCheckM_Vagozar(cls, HesabType.Sandouq);
+                var frm_ = new frmCheckM_Vagozar(cls, HesabType.Sandouq, await TafsilBussines.GetAsync(cls.SandouqTafsilGuid));
                 if (frm_.ShowDialog(this) == DialogResult.OK) await LoadDataAsync(txtSearch.Text);
             }
             catch (Exception ex)
@@ -424,13 +432,13 @@ namespace Accounting.Check.CheckMoshtari
                 if (!avalDore)
                 {
                     var str = await ReceptionCheckBussines.GetAsync(guid);
-                    var frm = new frmCheckM_Vagozar(str, HesabType.Bank);
+                    var frm = new frmCheckM_Vagozar(str, HesabType.Bank, await TafsilBussines.GetAsync(str.SandouqTafsilGuid));
                     if (frm.ShowDialog(this) == DialogResult.OK) await LoadDataAsync(txtSearch.Text);
                     return;
                 }
 
                 var cls = await ReceptionCheckAvalDoreBussines.GetAsync(guid);
-                var frm_ = new frmCheckM_Vagozar(cls, HesabType.Bank);
+                var frm_ = new frmCheckM_Vagozar(cls, HesabType.Bank, await TafsilBussines.GetAsync(cls.SandouqTafsilGuid));
                 if (frm_.ShowDialog(this) == DialogResult.OK) await LoadDataAsync(txtSearch.Text);
             }
             catch (Exception ex)

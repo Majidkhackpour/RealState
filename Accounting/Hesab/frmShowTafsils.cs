@@ -157,8 +157,9 @@ namespace Accounting.Hesab
                         await LoadDataAsync(txtSearch.Text);
                     return;
                 }
-
-                var _frm = new frmTafsilMain(guid, false);
+                var obj = await TafsilBussines.GetAsync(guid);
+                if (obj == null) return;
+                var _frm = new frmTafsilMain(obj, false);
                 if (_frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(txtSearch.Text);
             }
@@ -279,8 +280,9 @@ namespace Accounting.Hesab
                     frm.ShowDialog(this);
                     return;
                 }
-
-                var _frm = new frmTafsilMain(guid, true);
+                var obj = await TafsilBussines.GetAsync(guid);
+                if (obj == null) return;
+                var _frm = new frmTafsilMain(obj, true);
                 _frm.ShowDialog(this);
             }
             catch (Exception ex)

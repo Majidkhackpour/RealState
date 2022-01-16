@@ -114,7 +114,7 @@ namespace Payamak
             }
         }
 
-        private void DGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        private async void DGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -122,7 +122,7 @@ namespace Payamak
                 if (DGrid.CurrentRow == null) return;
 
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var log = SmsLogBussines.Get(guid);
+                var log = await SmsLogBussines.GetAsync(guid);
                 if (log == null) return;
 
                 txtMessage.Text = log.Message;
@@ -155,7 +155,7 @@ namespace Payamak
             }
         }
 
-        private void mnuUpSingle_Click(object sender, EventArgs e)
+        private async void mnuUpSingle_Click(object sender, EventArgs e)
         {
             try
             {
@@ -163,7 +163,7 @@ namespace Payamak
                 if (DGrid.CurrentRow == null) return;
 
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var log = SmsLogBussines.Get(guid);
+                var log = await SmsLogBussines.GetAsync(guid);
                 if (log == null) return;
 
                 var list = new List<string> { log.MessageId.ToString() };

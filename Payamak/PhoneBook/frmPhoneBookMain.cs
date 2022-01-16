@@ -42,20 +42,30 @@ namespace Payamak.PhoneBook
             }
         }
 
-        public frmPhoneBookMain()
+        public frmPhoneBookMain(PhoneBookBussines obj, bool isShowMode)
         {
-            InitializeComponent();
-            cls = new PhoneBookBussines();
-            ucHeader.Text = "افزودن مخاطب جدید";
-        }
-        public frmPhoneBookMain(Guid guid, bool isShowMode)
-        {
-            InitializeComponent();
-            cls = PhoneBookBussines.Get(guid);
-            ucHeader.Text = !isShowMode ? $"ویرایش {cls.Name}" : $"مشاهده {cls.Name}";
-            ucHeader.IsModified = true;
-            grp.Enabled = !isShowMode;
-            btnFinish.Enabled = !isShowMode;
+            try
+            {
+                InitializeComponent();
+                cls = obj;
+                if (cls.Guid == Guid.Empty)
+                {
+                    ucHeader.Text = "افزودن مخاطب جدید";
+                    ucHeader.IsModified = false;
+                }
+                else
+                {
+                    ucHeader.Text = !isShowMode ? $"ویرایش {cls.Name}" : $"مشاهده {cls.Name}";
+                    ucHeader.IsModified = true;
+                }
+
+                grp.Enabled = !isShowMode;
+                btnFinish.Enabled = !isShowMode;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private void txtName_Enter(object sender, EventArgs e) => txtSetter.Focus(txtName);

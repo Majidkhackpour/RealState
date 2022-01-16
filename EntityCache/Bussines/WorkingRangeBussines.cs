@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
-using EntityCache.Assistence;
-using Nito.AsyncEx;
+﻿using EntityCache.Assistence;
 using Persistence;
 using Services;
 using Services.Interfaces.Building;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace EntityCache.Bussines
 {
@@ -19,7 +17,6 @@ namespace EntityCache.Bussines
 
         public static async Task<List<WorkingRangeBussines>> GetAllAsync() => await UnitOfWork.WorkingRange.GetAllAsync(Cache.ConnectionString);
         public static async Task<WorkingRangeBussines> GetAsync(Guid guid) => await UnitOfWork.WorkingRange.GetAsync(Cache.ConnectionString, guid);
-        public static WorkingRangeBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<WorkingRangeBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();

@@ -12,11 +12,11 @@ namespace Advertise.Forms
 {
     public partial class frmRobotSetting : MetroForm
     {
-        private void SettData()
+        private async Task SettDataAsync()
         {
             try
             {
-                SetCategory();
+                await SetCategoryAsync();
 
                 chbSilent.Checked = clsAdvertise.IsSilent;
                 chbChat.Checked = clsAdvertise.IsGiveChat;
@@ -44,11 +44,11 @@ namespace Advertise.Forms
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void SetCategory()
+        private async Task SetCategoryAsync()
         {
             try
             {
-                var list = SerializedDataBussines.GetDivarCategory();
+                var list = await SerializedDataBussines.GetDivarCategoryAsync();
                 if (list == null || list.Count <= 0) return;
                 foreach (var item in list)
                 {
@@ -145,9 +145,9 @@ namespace Advertise.Forms
             DialogResult = DialogResult.Cancel;
             Close();
         }
-        private void frmRobotSetting_Load(object sender, EventArgs e)
+        private async void frmRobotSetting_Load(object sender, EventArgs e)
         {
-            SettData();
+            await SettDataAsync();
         }
         private async void btnFinish_Click(object sender, EventArgs e)
         {

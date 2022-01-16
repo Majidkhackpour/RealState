@@ -1,16 +1,13 @@
-﻿using System;
+﻿using EntityCache.Assistence;
+using Persistence;
+using Services;
+using Services.Interfaces.Building;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using EntityCache.Assistence;
-using EntityCache.Mppings;
-using Nito.AsyncEx;
-using Persistence;
-using Services;
-using Services.Interfaces.Building;
-using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
@@ -49,7 +46,6 @@ namespace EntityCache.Bussines
 
         public static async Task<List<SanadBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Sanad.GetAllAsync(Cache.ConnectionString, token);
         public static async Task<SanadBussines> GetAsync(Guid guid) => await UnitOfWork.Sanad.GetAsync(Cache.ConnectionString, guid);
-        public static SanadBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public static async Task<SanadBussines> GetAsync(long number) => await UnitOfWork.Sanad.GetAsync(Cache.ConnectionString, number);
         public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
@@ -275,7 +271,6 @@ namespace EntityCache.Bussines
             }
         }
         public static async Task<long> NextNumberAsync() => await UnitOfWork.Sanad.NextNumberAsync(Cache.ConnectionString);
-        public static long NextNumber() => AsyncContext.Run(NextNumberAsync);
         public async Task<bool> CheckCodeAsync(Guid guid, long code) => await UnitOfWork.Sanad.CheckCodeAsync(Cache.ConnectionString, guid, code);
         private async Task<ReturnedSaveFuncInfo> CheckvalidationAsync()
         {

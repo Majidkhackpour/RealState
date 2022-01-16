@@ -323,7 +323,7 @@ namespace Peoples
         {
             try
             {
-                var frm = new frmPeoples();
+                var frm = new frmPeoples(new PeoplesBussines(), false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadPeoplesAsync(txtSearch.Text);
             }
@@ -383,14 +383,16 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuBank_Click(object sender, EventArgs e)
+        private async void mnuBank_Click(object sender, EventArgs e)
         {
             try
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmPeoplesBankAccount(guid);
+                var obj = await PeoplesBussines.GetAsync(guid, null);
+                if (obj == null) return;
+                var frm = new frmPeoplesBankAccount(obj);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -461,7 +463,9 @@ namespace Peoples
             {
                 if (trvGroup.SelectedNode == null) return;
                 if (trvGroup.SelectedNode.Text == "همه گروه ها") return;
-                var frm = new frmPropleGroup(GroupGuid);
+                var obj = await PeopleGroupBussines.GetAsync(GroupGuid);
+                if (obj == null) return;
+                var frm = new frmPropleGroup(obj);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadGroupsAsync();
             }
@@ -474,7 +478,7 @@ namespace Peoples
         {
             try
             {
-                var frm = new frmPropleGroup();
+                var frm = new frmPropleGroup(new PeopleGroupBussines());
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadGroupsAsync();
             }
@@ -493,7 +497,7 @@ namespace Peoples
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 if (_st)
                 {
-                    var p = await PeoplesBussines.GetAsync(guid,null);
+                    var p = await PeoplesBussines.GetAsync(guid, null);
                     if (p == null) return;
                     if (p.Account != 0)
                     {
@@ -505,7 +509,7 @@ namespace Peoples
                             $@"آیا از حذف {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
-                    var prd = await PeoplesBussines.GetAsync(guid,null);
+                    var prd = await PeoplesBussines.GetAsync(guid, null);
                     res.AddReturnedValue(await prd.ChangeStatusAsync(false));
                 }
                 else
@@ -515,7 +519,7 @@ namespace Peoples
                             "حذف",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
-                    var prd = await PeoplesBussines.GetAsync(guid,null);
+                    var prd = await PeoplesBussines.GetAsync(guid, null);
 
                     if (prd.GroupGuid == Guid.Empty)
                     {
@@ -537,14 +541,16 @@ namespace Peoples
                 else await LoadPeoplesAsync(txtSearch.Text);
             }
         }
-        private void mnuView_Click(object sender, EventArgs e)
+        private async void mnuView_Click(object sender, EventArgs e)
         {
             try
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmPeoples(guid, true);
+                var obj = await PeoplesBussines.GetAsync(guid, null);
+                if (obj == null) return;
+                var frm = new frmPeoples(obj, true);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -565,7 +571,9 @@ namespace Peoples
                     return;
                 }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmPeoples(guid, false);
+                var obj = await PeoplesBussines.GetAsync(guid, null);
+                if (obj == null) return;
+                var frm = new frmPeoples(obj, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadPeoplesAsync(txtSearch.Text);
             }

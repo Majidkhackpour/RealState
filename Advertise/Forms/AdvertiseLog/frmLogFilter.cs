@@ -42,13 +42,13 @@ namespace Advertise.Forms.AdvertiseLog
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void btnSearchNumber_Click(object sender, EventArgs e)
+        private async void btnSearchNumber_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmShowSimcard(true);
                 if (frm.ShowDialog(this) == DialogResult.OK)
-                    txtNumber.Text = frm.Number;
+                    txtNumber.Text = await frm.GetNumberAsync();
                 frm.Dispose();
             }
             catch (Exception ex)

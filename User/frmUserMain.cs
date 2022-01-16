@@ -51,20 +51,24 @@ namespace User
             }
         }
 
-        public frmUserMain()
+        public frmUserMain(UserBussines obj, bool isShowMode)
         {
-            InitializeComponent();
-            cls = new UserBussines();
-            ucHeader.Text = "افزودن کاربر جدید";
-        }
-        public frmUserMain(Guid guid, bool isShowMode)
-        {
-            InitializeComponent();
-            cls = UserBussines.Get(guid);
-            ucHeader.Text = !isShowMode ? $"ویرایش کاربر {cls.Name}" : $"مشاهده کاربر {cls.Name}";
-            ucHeader.IsModified = true;
-            grp.Enabled = !isShowMode;
-            btnFinish.Enabled = !isShowMode;
+            try
+            {
+                InitializeComponent();
+                cls = obj;
+                if (!cls.IsModified)
+                    ucHeader.Text = "افزودن کاربر جدید";
+                else
+                    ucHeader.Text = !isShowMode ? $"ویرایش کاربر {cls.Name}" : $"مشاهده کاربر {cls.Name}";
+                ucHeader.IsModified = cls.IsModified;
+                grp.Enabled = !isShowMode;
+                btnFinish.Enabled = !isShowMode;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private void txtName_Enter(object sender, System.EventArgs e) => txtSetter.Focus(txtName);
@@ -130,7 +134,7 @@ namespace User
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                if (cls.Guid == Guid.Empty)  cls.Guid = Guid.NewGuid();
+                if (cls.Guid == Guid.Empty) cls.Guid = Guid.NewGuid();
 
                 if (string.IsNullOrWhiteSpace(txtPass2.Text))
                 {

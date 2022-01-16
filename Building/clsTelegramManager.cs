@@ -20,7 +20,7 @@ namespace Building
                 var asGuid = await BuildingOptionsBussines.GetEvelatorGuidAsync();
                 var storeGuid = await BuildingOptionsBussines.GetStoreGuidAsync();
                 var balconyGuid = await BuildingOptionsBussines.GetBalconyGuidAsync();
-                var owner = PeoplesBussines.Get(bu.OwnerGuid, bu?.Guid);
+                var owner = await PeoplesBussines.GetAsync(bu.OwnerGuid, bu?.Guid);
                 var list = res.Split('\n').ToList();
 
                 if (res.Contains(Replacor.TelegramBuilding.Code))

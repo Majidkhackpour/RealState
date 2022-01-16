@@ -19,6 +19,7 @@ namespace User
         {
             try
             {
+                ucHeader.Text = $"گزارش عملکرد {(await UserBussines.GetAsync(userGuid))?.Name ?? ""}";
                 list = await UserLogBussines.GetAllAsync(userGuid, d1, d2);
                 logBindingSource.DataSource = list.OrderByDescending(q => q.Date).ToSortableBindingList();
             }
@@ -85,7 +86,6 @@ namespace User
         {
             InitializeComponent();
             userGuid = _userGuid;
-            ucHeader.Text = $"گزارش عملکرد {UserBussines.Get(userGuid)?.Name ?? ""}";
             d1 = _d1;
             d2 = _d2;
         }

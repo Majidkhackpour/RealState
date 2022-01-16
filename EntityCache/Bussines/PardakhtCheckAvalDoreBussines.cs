@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
-using Nito.AsyncEx;
 using Persistence;
 using Services;
 using Services.DefaultCoding;
@@ -32,7 +31,6 @@ namespace EntityCache.Bussines
             await UnitOfWork.PardakhtCheckAvalDore.GetAllAsync(Cache.ConnectionString);
         public static async Task<PardakhtCheckAvalDoreBussines> GetAsync(Guid guid) =>
             await UnitOfWork.PardakhtCheckAvalDore.GetAsync(Cache.ConnectionString, guid);
-        public static PardakhtCheckAvalDoreBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public async Task<ReturnedSaveFuncInfo> SaveAsync(bool isUpdateAccount, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();

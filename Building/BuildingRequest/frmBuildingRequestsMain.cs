@@ -374,13 +374,13 @@ namespace Building.BuildingRequest
             }
         }
         private async void frmBuildingRequestsMain_Load(object sender, EventArgs e) => await SetDataAsync();
-        private void btnSearchOwner_Click(object sender, EventArgs e)
+        private async void btnSearchOwner_Click(object sender, EventArgs e)
         {
             try
             {
                 var frm = new frmShowPeoples(true);
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
-                asker = PeoplesBussines.Get(frm.SelectedGuid, null);
+                asker =await PeoplesBussines.GetAsync(frm.SelectedGuid, null);
                 LoadAsker();
             }
             catch (Exception ex)
@@ -388,13 +388,13 @@ namespace Building.BuildingRequest
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void btnCreateOwner_Click(object sender, EventArgs e)
+        private async void btnCreateOwner_Click(object sender, EventArgs e)
         {
             try
             {
-                var frm = new frmPeoples();
+                var frm = new frmPeoples(new PeoplesBussines(), false);
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
-                asker = PeoplesBussines.Get(frm.SelectedGuid, null);
+                asker = await PeoplesBussines.GetAsync(frm.SelectedGuid, null);
                 LoadAsker();
             }
             catch (Exception ex)

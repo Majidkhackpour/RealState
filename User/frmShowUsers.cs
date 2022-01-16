@@ -146,14 +146,16 @@ namespace User
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuView_Click(object sender, EventArgs e)
+        private async void mnuView_Click(object sender, EventArgs e)
         {
             try
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmUserMain(guid, true);
+                var obj = await UserBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmUserMain(obj, true);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -214,7 +216,9 @@ namespace User
                     return;
                 }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmUserMain(guid, false);
+                var obj = await UserBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmUserMain(obj, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(txtSearch.Text);
             }
@@ -227,7 +231,7 @@ namespace User
         {
             try
             {
-                var frm = new frmUserMain();
+                var frm = new frmUserMain(new UserBussines(), false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync();
             }

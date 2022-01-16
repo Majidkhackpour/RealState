@@ -6,7 +6,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using EntityCache.Mppings;
-using Nito.AsyncEx;
 using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
@@ -25,8 +24,7 @@ namespace EntityCache.Bussines
         public bool IsModified { get; set; } = false;
 
 
-        public static async Task<List<RentalAuthorityBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.RentalAuthority.GetAllAsync(Cache.ConnectionString, token);
-        public static List<RentalAuthorityBussines> GetAll(CancellationToken token = default) => AsyncContext.Run(() => GetAllAsync(token));
+        public static async Task<List<RentalAuthorityBussines>> GetAllAsync(CancellationToken token=default) => await UnitOfWork.RentalAuthority.GetAllAsync(Cache.ConnectionString, token);
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<RentalAuthorityBussines> list, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -133,8 +131,6 @@ namespace EntityCache.Bussines
                 return new List<RentalAuthorityBussines>();
             }
         }
-        public static RentalAuthorityBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
-        public static RentalAuthorityBussines Get(string name) => AsyncContext.Run(() => GetAsync(name));
         public static async Task<bool> CheckNameAsync(string name, Guid guid) =>
             await UnitOfWork.RentalAuthority.CheckNameAsync(Cache.ConnectionString, name, guid);
         public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, SqlTransaction tr = null)

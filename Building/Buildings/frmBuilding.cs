@@ -38,11 +38,11 @@ namespace Building.Buildings
                     lblTitle.Text = val.GetDisplay();
                 }
 
-                UcPeople.Guid = cls.OwnerGuid;
+                await UcPeople.SetGuidAsync(cls.OwnerGuid);
 
                 var city = await CitiesBussines.GetAsync(cls.CityGuid);
                 if (city != null)
-                    UcCity.StateGuid = city.StateGuid;
+                    await UcCity.SetStateGuidAsync(city.StateGuid);
                 UcCity.CityGuid = cls.CityGuid;
                 UcCity.RegionGuid = cls.RegionGuid;
                 UcCity.Address = cls.Address;
@@ -50,7 +50,7 @@ namespace Building.Buildings
                 await UcCode.SetCodeAsync(cls.Code);
                 UcCode.CreateDate = cls.CreateDate;
                 UcCode.Pirority = cls.Priority;
-                UcCode.UserGuid = cls.UserGuid;
+                await UcCode.SetUserGuidAsync(cls.UserGuid);
 
                 UcHitting_Colling.Barq = cls.Barq;
                 UcHitting_Colling.Water = cls.Water;
@@ -375,7 +375,7 @@ namespace Building.Buildings
                 res.AddReturnedValue(await clsBuildingValidator.CheckValidationAsync(cls));
                 if (res.HasError) return res;
 
-                if (cls.OwnerGuid != PeoplesBussines.DefualtGuid)
+                if (cls.OwnerGuid != (await PeoplesBussines.GetDefaultPeopleAsync())?.Guid)
                 {
                     var count = await cls.CheckAsync();
                     if (count > 0)
@@ -464,6 +464,8 @@ namespace Building.Buildings
         {
             InitializeComponent();
             cls = bu;
+            UcPeople.OnShowNumbers += UcPeople_OnShowNumbers;
+            UcPeople.OnShowFiles += UcPeople_OnShowFiles;
         }
 
         private async void frmBuilding_Load(object sender, EventArgs e) => await SetDataAsync();
@@ -510,11 +512,11 @@ namespace Building.Buildings
             }
         }
         private async void btnFinish_Click(object sender, EventArgs e) => await SaveAsync_(cls.AdvertiseType);
-        private void UcPeople_OnShowNumbers()
+        private async Task UcPeople_OnShowNumbers(Guid guid)
         {
             try
             {
-                var owner = PeoplesBussines.Get(UcPeople.Guid, cls?.Guid);
+                var owner = await PeoplesBussines.GetAsync(UcPeople.Guid, cls?.Guid);
                 if (owner?.TellList == null || owner.TellList.Count <= 0)
                 {
                     this.ShowWarning($"برای {owner?.Name} شماره ای ثبت نشده است");
@@ -530,11 +532,11 @@ namespace Building.Buildings
             }
         }
         private async void btnSavePersonal_Click(object sender, EventArgs e) => await SaveAsync_(null);
-        private void UcPeople_OnShowFiles()
+        private async Task UcPeople_OnShowFiles(Guid guid)
         {
             try
             {
-                var owner = PeoplesBussines.Get(UcPeople.Guid, cls?.Guid);
+                var owner = await PeoplesBussines.GetAsync(UcPeople.Guid, cls?.Guid);
                 if (owner == null)
                 {
                     this.ShowWarning("برایمالک مورد نظر شناسایی نشد");

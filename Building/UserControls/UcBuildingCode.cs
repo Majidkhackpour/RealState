@@ -32,13 +32,18 @@ namespace Building.UserControls
             }
         }
         public DateTime CreateDate { get => Calendar.ShamsiToMiladi(lblDateNow.Text); set => lblDateNow.Text = Calendar.MiladiToShamsi(value); }
-        public Guid UserGuid
+        public Guid UserGuid => _userGuid;
+
+        public async Task SetUserGuidAsync(Guid value)
         {
-            get => _userGuid;
-            set
+            try
             {
                 _userGuid = value == Guid.Empty ? UserBussines.CurrentUser.Guid : value;
-                lblUserName.Text = UserBussines.Get(_userGuid)?.Name ?? "";
+                lblUserName.Text = (await UserBussines.GetAsync(_userGuid))?.Name ?? "";
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
         public UcBuildingCode()

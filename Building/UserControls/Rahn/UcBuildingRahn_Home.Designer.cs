@@ -256,7 +256,6 @@ namespace Building.UserControls.Rahn
             this.ucRentalAuthority1.Location = new System.Drawing.Point(62, 81);
             this.ucRentalAuthority1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucRentalAuthority1.Name = "ucRentalAuthority1";
-            this.ucRentalAuthority1.RentalAuthorityGuid = new System.Guid("a5fb9f2f-69ba-47e7-9615-a21b8f2fdd7d");
             this.ucRentalAuthority1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucRentalAuthority1.Size = new System.Drawing.Size(214, 36);
             this.ucRentalAuthority1.TabIndex = 28;

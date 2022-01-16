@@ -38,18 +38,24 @@ namespace Peoples
             }
         }
 
-        public frmPropleGroup()
+        public frmPropleGroup(PeopleGroupBussines obj)
         {
-            InitializeComponent();
-            cls = new PeopleGroupBussines();
-            ucHeader.Text = "افزودن گروه اشخاص جدید";
-        }
-        public frmPropleGroup(Guid guid)
-        {
-            InitializeComponent();
-            cls = PeopleGroupBussines.Get(guid);
-            ucHeader.Text = $"ویرایش گروه {cls.Name}";
-            ucHeader.IsModified = true;
+            try
+            {
+                InitializeComponent();
+                cls = obj;
+                if (cls.Guid == Guid.Empty)
+                    ucHeader.Text = "افزودن گروه اشخاص جدید";
+                else
+                {
+                    ucHeader.Text = $"ویرایش گروه {cls.Name}";
+                    ucHeader.IsModified = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private async void frmPropleGroup_Load(object sender, EventArgs e)
@@ -68,8 +74,8 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void txtCity_Enter(object sender, EventArgs e)=>txtSetter.Focus(txtName);
-        private void txtCity_Leave(object sender, EventArgs e)=>txtSetter.Follow(txtName);
+        private void txtCity_Enter(object sender, EventArgs e) => txtSetter.Focus(txtName);
+        private void txtCity_Leave(object sender, EventArgs e) => txtSetter.Follow(txtName);
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;

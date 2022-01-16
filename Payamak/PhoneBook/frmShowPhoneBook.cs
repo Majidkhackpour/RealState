@@ -152,14 +152,16 @@ namespace Payamak.PhoneBook
             }
         }
         private async void cmbGroup_SelectedIndexChanged(object sender, EventArgs e) => await LoadDataAsync(txtSearch.Text);
-        private void mnuView_Click(object sender, EventArgs e)
+        private async void mnuView_Click(object sender, EventArgs e)
         {
             try
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmPhoneBookMain(guid, true);
+                var obj = await PhoneBookBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmPhoneBookMain(obj, true);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -180,7 +182,9 @@ namespace Payamak.PhoneBook
                     return;
                 }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmPhoneBookMain(guid, false);
+                var obj = await PhoneBookBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmPhoneBookMain(obj, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(txtSearch.Text);
             }
@@ -193,7 +197,7 @@ namespace Payamak.PhoneBook
         {
             try
             {
-                var frm = new frmPhoneBookMain();
+                var frm = new frmPhoneBookMain(new PhoneBookBussines(), false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync();
             }

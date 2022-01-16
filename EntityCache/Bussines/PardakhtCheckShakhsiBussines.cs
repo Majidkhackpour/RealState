@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using EntityCache.ViewModels;
-using Nito.AsyncEx;
 using Persistence;
 using Services;
 using Services.Interfaces.Building;
@@ -156,6 +155,5 @@ namespace EntityCache.Bussines
             return res;
         }
         public static async Task<PardakhtCheckShakhsiBussines> GetAsync(Guid guid) => await UnitOfWork.PardakhtCheckShakhsi.GetAsync(Cache.ConnectionString, guid);
-        public static PardakhtCheckShakhsiBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
     }
 }

@@ -16,13 +16,18 @@ namespace Advertise.Forms.Simcard
     {
         private bool _st = true;
         public Guid SelectedGuid { get; set; }
-        public string Number
+        public async Task<string> GetNumberAsync()
         {
-            get
+            try
             {
                 if (SelectedGuid == Guid.Empty) return "";
-                var sim = SimcardBussines.Get(SelectedGuid);
+                var sim = await SimcardBussines.GetAsync(SelectedGuid);
                 return sim == null ? "" : sim.Number.ToString();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                return "";
             }
         }
         private bool isShowMode = false;
@@ -374,14 +379,16 @@ namespace Advertise.Forms.Simcard
                     this.ShowError(res, "خطا در لاگین دیوار");
             }
         }
-        private void mnuView_Click(object sender, EventArgs e)
+        private async void mnuView_Click(object sender, EventArgs e)
         {
             try
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmSimcardMain(guid, true);
+                var obj = await SimcardBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmSimcardMain(obj, true);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -403,7 +410,9 @@ namespace Advertise.Forms.Simcard
                     return;
                 }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmSimcardMain(guid, false);
+                var obj = await SimcardBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmSimcardMain(obj, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(ST, txtSearch.Text);
             }
@@ -416,7 +425,7 @@ namespace Advertise.Forms.Simcard
         {
             try
             {
-                var frm = new frmSimcardMain();
+                var frm = new frmSimcardMain(new SimcardBussines(), false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(ST);
             }

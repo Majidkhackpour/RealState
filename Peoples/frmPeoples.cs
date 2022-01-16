@@ -212,27 +212,28 @@ namespace Peoples
             }
         }
 
-        public frmPeoples()
+        public frmPeoples(PeoplesBussines obj, bool isShowMode)
         {
-            InitializeComponent();
-            cls = new PeoplesBussines();
-            ucHeader.Text = "افزودن شخص جدید";
-            ucHeader.IsModified = cls.IsModified;
-            superTabControl1.SelectedTab = superTabItem1;
-            WindowState = FormWindowState.Maximized;
-        }
-        public frmPeoples(Guid guid, bool isShowMode)
-        {
-            InitializeComponent();
-            cls = PeoplesBussines.Get(guid,null);
-            ucHeader.Text = !isShowMode ? $"ویرایش {cls.Name}" : $"مشاهده {cls.Name}";
-            ucHeader.IsModified = cls.IsModified;
-            superTabControlPanel1.Enabled = !isShowMode;
-            superTabControlPanel2.Enabled = !isShowMode;
-            superTabControlPanel3.Enabled = !isShowMode;
-            btnFinish.Enabled = !isShowMode;
-            superTabControl1.SelectedTab = superTabItem1;
-            WindowState = FormWindowState.Maximized;
+            try
+            {
+                InitializeComponent();
+                cls = obj;
+                if (!cls.IsModified)
+                    ucHeader.Text = "افزودن شخص جدید";
+                else
+                    ucHeader.Text = !isShowMode ? $"ویرایش {cls.Name}" : $"مشاهده {cls.Name}";
+                ucHeader.IsModified = cls.IsModified;
+                superTabControlPanel1.Enabled = !isShowMode;
+                superTabControlPanel2.Enabled = !isShowMode;
+                superTabControlPanel3.Enabled = !isShowMode;
+                btnFinish.Enabled = !isShowMode;
+                superTabControl1.SelectedTab = superTabItem1;
+                WindowState = FormWindowState.Maximized;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private async void frmPeoples_Load(object sender, EventArgs e)

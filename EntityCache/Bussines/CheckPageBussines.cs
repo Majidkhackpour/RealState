@@ -19,7 +19,7 @@ namespace EntityCache.Bussines
         public string DatePardakhtSh => Calendar.MiladiToShamsi(DatePardakht);
         public long Number { get; set; }
         public Guid? ReceptorGuid { get; set; }
-        public string ReceptorName => TafsilBussines.Get(ReceptorGuid ?? Guid.Empty)?.Name;
+        //public string ReceptorName => TafsilBussines.Get(ReceptorGuid ?? Guid.Empty)?.Name;
         public DateTime? DateSarresid { get; set; }
         public string DateSarresidSh => Calendar.MiladiToShamsi(DateSarresid);
         public string Description { get; set; }

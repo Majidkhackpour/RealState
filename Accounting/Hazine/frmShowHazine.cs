@@ -114,7 +114,7 @@ namespace Accounting.Hazine
         {
             try
             {
-                var frm = new frmTafsilMain(HesabType.Hazine);
+                var frm = new frmTafsilMain(new TafsilBussines(),false, HesabType.Hazine);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync();
             }
@@ -143,7 +143,9 @@ namespace Accounting.Hazine
                     return;
                 }
 
-                var frm = new frmTafsilMain(guid, false, HesabType.Hazine);
+                var obj = await TafsilBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmTafsilMain(obj, false, HesabType.Hazine);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(txtSearch.Text);
             }
@@ -199,14 +201,16 @@ namespace Accounting.Hazine
                 else await LoadDataAsync(txtSearch.Text);
             }
         }
-        private void mnuView_Click(object sender, EventArgs e)
+        private async void mnuView_Click(object sender, EventArgs e)
         {
             try
             {
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var frm = new frmTafsilMain(guid, true);
+                var obj = await TafsilBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmTafsilMain(obj, true);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)

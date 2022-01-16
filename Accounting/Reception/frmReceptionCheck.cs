@@ -53,19 +53,20 @@ namespace Accounting.Reception
             }
         }
 
-        public frmReceptionCheck(ReceptionCheckBussines temp)
+        public frmReceptionCheck(ReceptionCheckBussines temp,bool isShowMode)
         {
-            InitializeComponent();
-            cls = temp ?? new ReceptionCheckBussines();
-            ucHeader.Text = "دریافت چک";
-        }
-        public frmReceptionCheck(Guid guid)
-        {
-            InitializeComponent();
-            cls = ReceptionCheckBussines.Get(guid);
-            ucHeader.Text = "دریافت چک";
-            grp.Enabled = false;
-            btnFinish.Enabled = false;
+            try
+            {
+                InitializeComponent();
+                cls = temp ?? new ReceptionCheckBussines();
+                ucHeader.Text = "دریافت چک";
+                grp.Enabled = !isShowMode;
+                btnFinish.Enabled = !isShowMode;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private async void frmReceptionCheck_Load(object sender, EventArgs e)

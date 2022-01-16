@@ -5,7 +5,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
 using EntityCache.Mppings;
-using Nito.AsyncEx;
 using Persistence;
 using Services;
 using Servicess.Interfaces.Building;
@@ -135,12 +134,10 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public static PeopleGroupBussines Get(Guid guid) => AsyncContext.Run(() => GetAsync(guid));
         public static async Task<bool> CheckNameAsync(string name, Guid guid) =>
             await UnitOfWork.PeopleGroup.CheckNameAsync(Cache.ConnectionString, name, guid);
         public static async Task<PeopleGroupBussines> GetAsync(string name) =>
             await UnitOfWork.PeopleGroup.GetAsync(Cache.ConnectionString, name);
-        public static PeopleGroupBussines Get(string name) => AsyncContext.Run(() => GetAsync(name));
         public static async Task<int> ChildCountAsync(Guid guid) => await UnitOfWork.PeopleGroup.ChildCountAsync(Cache.ConnectionString, guid);
         public static async Task<List<PeopleGroupBussines>> GetAllNotSentAsync()
             => await UnitOfWork.PeopleGroup.GetAllNotSentAsync(Cache.ConnectionString);

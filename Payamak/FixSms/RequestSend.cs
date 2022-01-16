@@ -17,7 +17,7 @@ namespace Payamak.FixSms
                 if (res.HasError) return res;
 
 
-                var text = Text(bu);
+                var text = await GetTextAsync(bu);
                 if (string.IsNullOrEmpty(text))
                 {
                     res.AddReturnedValue(ReturnedState.Error, "متن پیش فرض خالی می باشد");
@@ -30,7 +30,7 @@ namespace Payamak.FixSms
                     return res;
                 }
 
-                var panel = SmsPanelsBussines.Get(Guid.Parse(Settings.Classes.Payamak.DefaultPanelGuid));
+                var panel = await SmsPanelsBussines.GetAsync(Guid.Parse(Settings.Classes.Payamak.DefaultPanelGuid));
                 if (panel == null)
                 {
                     res.AddReturnedValue(ReturnedState.Error, "پنل پیش فرض معتبر نمی باشد");
@@ -77,7 +77,7 @@ namespace Payamak.FixSms
             return res;
         }
 
-        private static string Text(BuildingRequestBussines bu)
+        private static async Task<string> GetTextAsync(BuildingRequestBussines bu)
         {
             var res = "";
             try
@@ -87,12 +87,12 @@ namespace Payamak.FixSms
                 if (res.Contains(Replacor.Request.DateSabt)) res = res.Replace(Replacor.Request.DateSabt, bu.DateSh);
                 if (res.Contains(Replacor.Request.Name))
                 {
-                    var owner = PeoplesBussines.Get(bu.AskerGuid,null);
+                    var owner = await PeoplesBussines.GetAsync(bu.AskerGuid,null);
                     res = res.Replace(Replacor.Request.Name, owner?.Name);
                 }
                 if (res.Contains(Replacor.Request.UserName))
                 {
-                    var user = UserBussines.Get(bu.UserGuid);
+                    var user = await UserBussines.GetAsync(bu.UserGuid);
                     res = res.Replace(Replacor.Request.UserName, user?.Name);
                 }
             }

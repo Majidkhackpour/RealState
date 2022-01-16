@@ -1,4 +1,5 @@
 ﻿
+using System;
 using Building.UserControls;
 using Cities;
 using Peoples;
@@ -64,15 +65,12 @@ namespace Building.Buildings
             | System.Windows.Forms.AnchorStyles.Right)));
             this.UcPeople.BackColor = System.Drawing.Color.Transparent;
             this.UcPeople.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.UcPeople.Guid = new System.Guid("00000000-0000-0000-0000-000000000000");
             this.UcPeople.Location = new System.Drawing.Point(12, 7);
             this.UcPeople.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.UcPeople.Name = "UcPeople";
             this.UcPeople.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.UcPeople.Size = new System.Drawing.Size(758, 138);
             this.UcPeople.TabIndex = 0;
-            this.UcPeople.OnShowNumbers += new System.Action(this.UcPeople_OnShowNumbers);
-            this.UcPeople.OnShowFiles += new System.Action(this.UcPeople_OnShowFiles);
             // 
             // panel1
             // 
@@ -287,7 +285,6 @@ namespace Building.Buildings
             this.UcCode.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.UcCode.Size = new System.Drawing.Size(758, 61);
             this.UcCode.TabIndex = 1;
-            this.UcCode.UserGuid = new System.Guid("00000000-0000-0000-0000-000000000000");
             // 
             // UcCity
             // 
@@ -303,7 +300,6 @@ namespace Building.Buildings
             this.UcCity.RegionGuid = new System.Guid("e223ead0-b5cb-4763-a192-4a11bf087c86");
             this.UcCity.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.UcCity.Size = new System.Drawing.Size(758, 103);
-            this.UcCity.StateGuid = new System.Guid("c22580f8-619c-4eca-a4f2-09b662caf6bb");
             this.UcCity.TabIndex = 1;
             // 
             // lblTitle

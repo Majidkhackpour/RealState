@@ -34,7 +34,10 @@ namespace User
                 var guid = objGuid.Value;
                 switch (part)
                 {
-                    case EnLogPart.Users: frm = new frmUserMain(guid, true); break;
+                    case EnLogPart.Users:
+                        var user = await UserBussines.GetAsync(guid);
+                        frm = new frmUserMain(user, true); 
+                        break;
                     case EnLogPart.Peoples: frm = new frmPeoples(guid, true); break;
                     case EnLogPart.Login:
                     case EnLogPart.Logout:
@@ -56,8 +59,14 @@ namespace User
                         break;
                     case EnLogPart.BuildingRequest: frm = new frmBuildingRequestsMain(guid, true); break;
                     case EnLogPart.Contracts: frm = new frmContractMain(guid, true); break;
-                    case EnLogPart.Reception: frm = new frmReceptionMain(guid, true); break;
-                    case EnLogPart.Pardakht: frm = new frmPardakhtMain(guid, true); break;
+                    case EnLogPart.Reception:
+                        var rec = await ReceptionBussines.GetAsync(guid);
+                        frm = new frmReceptionMain(rec, true);
+                        break;
+                    case EnLogPart.Pardakht:
+                        var par = await PardakhtBussines.GetAsync(guid);
+                        frm = new frmPardakhtMain(par, true); 
+                        break;
                 }
 
                 frm?.ShowDialog();

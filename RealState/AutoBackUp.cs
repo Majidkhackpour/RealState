@@ -120,7 +120,7 @@ namespace RealState
                                $"باتشکر \r\n" +
                                $"گروه مهندسی آراد";
 
-                    var panel = SmsPanelsBussines.Get(Guid.Parse(Settings.Classes.Payamak.DefaultPanelGuid));
+                    var panel = await SmsPanelsBussines.GetAsync(Guid.Parse(Settings.Classes.Payamak.DefaultPanelGuid));
                     if (panel == null)
                         return;
 

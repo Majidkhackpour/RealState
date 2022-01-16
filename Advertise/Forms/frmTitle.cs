@@ -17,7 +17,7 @@ namespace Advertise.Forms
         {
             try
             {
-                txtTitle.Text = Title();
+                txtTitle.Text = await GetTitleAsync();
                 txtContent.Text = await GetContentAsync();
             }
             catch (Exception ex)
@@ -25,14 +25,15 @@ namespace Advertise.Forms
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private string Title()
+        private async Task<string> GetTitleAsync()
         {
             try
             {
                 var regionName = "";
                 var m = bu.Masahat;
                 if (m <= 0) m = bu.ZirBana;
-                if (bu.RegionGuid != Guid.Empty) regionName = RegionsBussines.Get(bu.RegionGuid)?.Name ?? "";
+                if (bu.RegionGuid != Guid.Empty) 
+                    regionName = (await RegionsBussines.GetAsync(bu.RegionGuid))?.Name ?? "";
                 return $"{regionName} ** {m} متری {bu.RoomCount} خواب";
             }
             catch (Exception ex)

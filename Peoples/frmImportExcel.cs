@@ -188,7 +188,7 @@ namespace Peoples
                     pe.GroupGuid = (Guid)cmbWithoutGroup.SelectedValue;
                 else
                 {
-                    var group = PeopleGroupBussines.Get(grp);
+                    var group = await PeopleGroupBussines.GetAsync(grp);
                     if (group == null)
                     {
                         var g = new PeopleGroupBussines

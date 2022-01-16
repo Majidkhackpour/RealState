@@ -135,7 +135,6 @@ namespace Building.Contract
             this.ucFSide.BackColor = System.Drawing.Color.Transparent;
             this.ucFSide.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucFSide.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucFSide.Guid = new System.Guid("00000000-0000-0000-0000-000000000000");
             this.ucFSide.Location = new System.Drawing.Point(0, 0);
             this.ucFSide.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucFSide.Name = "ucFSide";
@@ -149,7 +148,6 @@ namespace Building.Contract
             this.ucSecondSide.BackColor = System.Drawing.Color.Transparent;
             this.ucSecondSide.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucSecondSide.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucSecondSide.Guid = new System.Guid("00000000-0000-0000-0000-000000000000");
             this.ucSecondSide.Location = new System.Drawing.Point(0, 0);
             this.ucSecondSide.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucSecondSide.Name = "ucSecondSide";

@@ -26,20 +26,27 @@ namespace Payamak.Panel
             }
         }
 
-        public frmPanelMain()
+        public frmPanelMain(SmsPanelsBussines obj, bool isShowMode)
         {
-            InitializeComponent();
-            cls = new SmsPanelsBussines();
-            ucHeader.Text = "افزودن پنل پیامکی جدید";
-        }
-        public frmPanelMain(Guid guid, bool isShowMode)
-        {
-            InitializeComponent();
-            cls = SmsPanelsBussines.Get(guid);
-            ucHeader.Text = !isShowMode ? $"ویرایش پنل پیامکی {cls.Name}" : $"مشاهده پنل پیامکی {cls.Name}";
-            ucHeader.IsModified = true;
-            grp.Enabled = !isShowMode;
-            btnFinish.Enabled = !isShowMode;
+            try
+            {
+                InitializeComponent();
+                cls = obj;
+                if (cls.Guid == Guid.Empty)
+                    ucHeader.Text = "افزودن پنل پیامکی جدید";
+                else
+                {
+                    ucHeader.Text = !isShowMode ? $"ویرایش پنل پیامکی {cls.Name}" : $"مشاهده پنل پیامکی {cls.Name}";
+                    ucHeader.IsModified = true;
+                }
+
+                grp.Enabled = !isShowMode;
+                btnFinish.Enabled = !isShowMode;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private void frmPanelMain_Load(object sender, EventArgs e) => SetData();

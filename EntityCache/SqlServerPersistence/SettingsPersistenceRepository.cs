@@ -33,9 +33,32 @@ namespace EntityCache.SqlServerPersistence
                 if (list == null)
                     WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
-
             return list;
         }
+
+        public SettingsBussines Get(string _connectionString, string memberName)
+        {
+            var list = new SettingsBussines();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Setting_Get", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@name", memberName);
+                    cn.Open();
+                    var dr = cmd.ExecuteReader();
+                    if (dr.Read())
+                        list = LoadData(dr);
+                    cn.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+            return list;
+        }
+
         public async Task<ReturnedSaveFuncInfo> SaveAsync(SettingsBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -56,6 +79,28 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
+
+        public ReturnedSaveFuncInfo Save(SettingsBussines item, SqlTransaction tr)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                var cmd = new SqlCommand("sp_Setting_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@guid", item.Guid);
+                cmd.Parameters.AddWithValue("@name", item.Name ?? "");
+                cmd.Parameters.AddWithValue("@val", item.Value ?? "");
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+
         public async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();

@@ -15,26 +15,29 @@ namespace Building.UserControls.Objects
 {
     public partial class UcRentalAuthority : UserControl
     {
-        public Guid? RentalAuthorityGuid
-        {
-            get => (Guid?)cmbRentalAuthority.SelectedValue;
-            set
-            {
-                if (value == null) return;
-                cmbRentalAuthority.SelectedValue = value;
-            }
-        }
-        public UcRentalAuthority()
-        {
-            InitializeComponent();
-            FillRentalAuthority();
-        }
-        private void FillRentalAuthority()
+        public Guid? RentalAuthorityGuid => (Guid?)cmbRentalAuthority.SelectedValue;
+
+        public async Task SetRentalAuthorityGuidAsync(Guid? value)
         {
             try
             {
-                var list = RentalAuthorityBussines.GetAll();
-                rentalBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
+                if (rentalBindingSource.Count <= 0)
+                    await FillRentalAuthorityAsync();
+                if (value == null) return;
+                cmbRentalAuthority.SelectedValue = value;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        public UcRentalAuthority() => InitializeComponent();
+        private async Task FillRentalAuthorityAsync()
+        {
+            try
+            {
+                var list = await RentalAuthorityBussines.GetAllAsync();
+                rentalBindingSource.DataSource = list?.Where(q => q.Status)?.OrderBy(q => q.Name)?.ToList();
             }
             catch (Exception ex)
             {

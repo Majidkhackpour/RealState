@@ -86,17 +86,38 @@ namespace Payamak
             InitializeComponent();
             ucHeader.Text = "ارسال پیامک";
             txtMessage.Text = text;
-            var lstNumbers = new List<string>();
-            foreach (var guid in lstGuid)
-            {
-                var numbers = PhoneBookBussines.GetAll(guid, true);
-                if (numbers.Count <= 0) continue;
-                lstNumbers = numbers.Where(q => q.Tell.StartsWith("09") && q.Tell.Length > 10).Select(q => q.Tell)
-                    .ToList();
-            }
-            AddItems(lstNumbers);
+            Task.Run(()=>FillListAsync(lstGuid));
         }
 
+        private async Task FillListAsync(List<Guid> lstGuid)
+        {
+            try
+            {
+                while (!IsHandleCreated)
+                {
+                    await Task.Delay(100);
+                }
+
+                Invoke(new MethodInvoker(async () =>
+                {
+                    var lstNumbers = new List<string>();
+                    foreach (var guid in lstGuid)
+                    {
+                        var numbers = await PhoneBookBussines.GetAllAsync(guid, true);
+                        if (numbers.Count <= 0) continue;
+                        lstNumbers = numbers.Where(q => q.Tell.StartsWith("09") && q.Tell.Length > 10)
+                            .Select(q => q.Tell)
+                            .ToList();
+                    }
+
+                    AddItems(lstNumbers);
+                }));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private async void frmSendSms_Load(object sender, EventArgs e)
         {
             await LoadPanelsAsync();
@@ -211,7 +232,7 @@ namespace Payamak
                 foreach (var item in lbxNumbers.Items)
                     list.Add(item.ToString());
 
-                var panel = SmsPanelsBussines.Get((Guid)cmbPanel.SelectedValue);
+                var panel = await SmsPanelsBussines.GetAsync((Guid)cmbPanel.SelectedValue);
                 if (panel == null) return;
                 var sApi = new Sms.Api(panel.API.Trim());
 
