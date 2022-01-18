@@ -119,7 +119,7 @@ namespace Cities.Region
                 _token = new CancellationTokenSource();
                 var list = await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue, _token.Token);
                 CitiesBindingSource.DataSource = list?.OrderBy(q => q.Name).ToList();
-                if (!string.IsNullOrEmpty(clsEconomyUnit.EconomyCity) && cls.Guid == Guid.Empty)
+                if (!string.IsNullOrEmpty(clsEconomyUnit.EconomyCity))
                     cmbCity.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyCity);
             }
             catch (Exception ex)
