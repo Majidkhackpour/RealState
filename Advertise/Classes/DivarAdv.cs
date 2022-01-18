@@ -220,7 +220,7 @@ namespace Advertise.Classes
                     {
                         TelegramSender.GetChatLog_bot()
                             .Send(
-                                $"#نداشتن_توکن \r\n سیستم مرجع: {await Utilities.GetNetworkIpAddress()} \r\n شماره: {simCardNumber} \r\n مالک: {sim.Owner} \r\n وضعیت توکن دیوار: حذف شده \r\nلطفا مجددا توکن گیری شود");
+                                $"#نداشتن_توکن \r\n سیستم مرجع: {Utilities.GetNetworkIpAddress()} \r\n شماره: {simCardNumber} \r\n مالک: {sim.Owner} \r\n وضعیت توکن دیوار: حذف شده \r\nلطفا مجددا توکن گیری شود");
                         return false;
                     }
 
@@ -478,7 +478,7 @@ namespace Advertise.Classes
                     {
                         TelegramSender.GetChatLog_bot()
                             .Send(
-                                $"#نداشتن_توکن \r\n سیستم مرجع: {await Utilities.GetNetworkIpAddress()} \r\n شماره: {simCardNumber} \r\n مالک: {sim.Owner} \r\n وضعیت توکن چت دیوار: حذف شده \r\n لطفا مجددا توکن گیری شود");
+                                $"#نداشتن_توکن \r\n سیستم مرجع: {Utilities.GetNetworkIpAddress()} \r\n شماره: {simCardNumber} \r\n مالک: {sim.Owner} \r\n وضعیت توکن چت دیوار: حذف شده \r\n لطفا مجددا توکن گیری شود");
                         return false;
                     }
 
@@ -559,7 +559,7 @@ namespace Advertise.Classes
                     }
 
                     TelegramSender.GetChatLog_bot().Send(
-                        $"#نداشتن_توکن \r\n سیستم مرجع: {await Utilities.GetNetworkIpAddress()} \r\n شماره {simCardNumber} به مالکیت {sim.Owner} توکن چت دیوار داشته، اما منقضی شده و موفق به لاگین چت نشد " +
+                        $"#نداشتن_توکن \r\n سیستم مرجع: {Utilities.GetNetworkIpAddress()} \r\n شماره {simCardNumber} به مالکیت {sim.Owner} توکن چت دیوار داشته، اما منقضی شده و موفق به لاگین چت نشد " +
                         $"\r\n به همین سبب توکن چت دیوار این شماره از دیتابیس حذف خواهد شد " +
                         $"\r\n لطفا نسبت به دریافت مجدد توکن اقدام گردد.");
 
@@ -1301,7 +1301,7 @@ namespace Advertise.Classes
                     var adv = post.FindElements(By.ClassName("my-post__title")).FirstOrDefault()?.Text;
                     var url = post.GetAttribute("href");
                     TelegramSender.GetChatLog_bot().Send(
-                        $"#نیاز_به_اصلاح \r\n سیستم مرجع: {await Utilities.GetNetworkIpAddress()} \r\n عنوان آگهی: {adv} \r\n شماره: {number} \r\n مالک: {sim.Owner} \r\n وضعیت آگهی: {editNeeded?.Text} \r\n لینک مدیریتی: {url}");
+                        $"#نیاز_به_اصلاح \r\n سیستم مرجع: {Utilities.GetNetworkIpAddress()} \r\n عنوان آگهی: {adv} \r\n شماره: {number} \r\n مالک: {sim.Owner} \r\n وضعیت آگهی: {editNeeded?.Text} \r\n لینک مدیریتی: {url}");
                 }
             }
             catch (WebDriverException)

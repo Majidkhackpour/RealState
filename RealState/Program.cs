@@ -1,24 +1,16 @@
-﻿using EntityCache.Assistence;
-using Ertegha;
-using Nito.AsyncEx;
+﻿using EntityCache.Bussines;
+using EntityCache.WebService;
 using Notification;
 using Persistence;
+using RealState.LoginPanel;
 using Services;
 using Settings;
-using Settings.Classes;
-using Settings.WorkingYear;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
-using System.Reflection;
 using System.Security.Principal;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using EntityCache.Bussines;
-using EntityCache.WebService;
-using RealState.LoginPanel;
-using User;
 using WebHesabBussines;
 
 namespace RealState

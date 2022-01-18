@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Persistence;
+using Services;
+using System;
 using System.Data.Entity.Migrations;
 using System.Data.SqlClient;
-using AutoMapper;
-using EntityCache.WebService;
-using Nito.AsyncEx;
-using Persistence;
-using Services;
+using System.Threading.Tasks;
 
 namespace EntityCache.Assistence
 {
@@ -53,11 +51,11 @@ namespace EntityCache.Assistence
                 return false;
             }
         }
-        public static void InserDefults()
+        public static async Task InserDefultsAsync()
         {
             try
             {
-                AsyncContext.Run(AddDefaults.InsertDefaultDataAsync);
+                await AddDefaults.InsertDefaultDataAsync();
             }
             catch (Exception ex)
             {

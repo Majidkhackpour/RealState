@@ -94,7 +94,7 @@ namespace RealState.LoginPanel.FormsInPanel
                 if (dbVersion <= 0 || currentVersion > dbVersion)
                 {
                     res.AddReturnedValue(await clsErtegha.StartErteghaAsync(AppSettings.DefaultConnectionString, this, false, !Cache.IsClient));
-                    ClsCache.InserDefults();
+                    await ClsCache.InserDefultsAsync();
                 }
             }
             catch (Exception ex)
@@ -188,7 +188,7 @@ namespace RealState.LoginPanel.FormsInPanel
                         continue;
                     }
 
-                    AccGlobalSettings.IsAuthorize = SendRequest(clsGlobalSetting.HardDriveSerial);
+                    AccGlobalSettings.IsAuthorize = await SendRequestAsync(clsGlobalSetting.HardDriveSerial);
                     if (AccGlobalSettings.IsAuthorize) continue;
                     Application.Exit();
                     return;
@@ -199,11 +199,11 @@ namespace RealState.LoginPanel.FormsInPanel
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private bool SendRequest(string hSerial)
+        private async Task<bool> SendRequestAsync(string hSerial)
         {
             try
             {
-                var customer = WebHesabBussines.WebCustomer.GetByHardSerial(hSerial);
+                var customer = await WebHesabBussines.WebCustomer.GetByHardSerialAsync(hSerial);
                 if (customer == null || customer.isBlock) return false;
                 WebHesabBussines.WebCustomer.Customer = customer;
                 return true;

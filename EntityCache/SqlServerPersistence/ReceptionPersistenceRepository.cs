@@ -1,23 +1,19 @@
-﻿using System;
+﻿using EntityCache.Bussines;
+using EntityCache.Core;
+using Services;
+using Services.DefaultCoding;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Security;
 using System.Threading;
 using System.Threading.Tasks;
-using EntityCache.Bussines;
-using EntityCache.Core;
-using Nito.AsyncEx;
-using Persistence.Entities;
-using Persistence.Model;
-using Services;
-using Services.DefaultCoding;
 
 namespace EntityCache.SqlServerPersistence
 {
     public class ReceptionPersistenceRepository : IReceptionRepository
     {
-        private ReceptionBussines LoadData(SqlDataReader dr)
+        private async Task<ReceptionBussines> LoadDataAsync(SqlDataReader dr)
         {
             var item = new ReceptionBussines();
 
@@ -35,9 +31,9 @@ namespace EntityCache.SqlServerPersistence
                 item.TafsilName = dr["TafsilName"].ToString();
                 item.UserName = dr["UserName"].ToString();
                 item.IsModified = true;
-                item.CheckList = AsyncContext.Run(() => ReceptionCheckBussines.GetAllAsync(item.Guid));
-                item.HavaleList = AsyncContext.Run(() => ReceptionHavaleBussines.GetAllAsync(item.Guid));
-                item.NaqdList = AsyncContext.Run(() => ReceptionNaqdBussines.GetAllAsync(item.Guid));
+                item.CheckList = await ReceptionCheckBussines.GetAllAsync(item.Guid);
+                item.HavaleList = await ReceptionHavaleBussines.GetAllAsync(item.Guid);
+                item.NaqdList = await ReceptionNaqdBussines.GetAllAsync(item.Guid);
             }
             catch (Exception ex)
             {
@@ -46,7 +42,7 @@ namespace EntityCache.SqlServerPersistence
 
             return item;
         }
-        public async Task<List<ReceptionBussines>> GetAllAsync(string _connectionString,CancellationToken token)
+        public async Task<List<ReceptionBussines>> GetAllAsync(string _connectionString, CancellationToken token)
         {
             var list = new List<ReceptionBussines>();
             try
@@ -60,7 +56,7 @@ namespace EntityCache.SqlServerPersistence
                     while (dr.Read())
                     {
                         if (token.IsCancellationRequested) return null;
-                        list.Add(LoadData(dr));
+                        list.Add(await LoadDataAsync(dr));
                     }
                     cn.Close();
                 }
@@ -86,7 +82,7 @@ namespace EntityCache.SqlServerPersistence
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) res = LoadData(dr);
+                    if (dr.Read()) res = await LoadDataAsync(dr);
                     cn.Close();
                 }
             }

@@ -1,6 +1,5 @@
 ﻿using EntityCache.Bussines;
 using MetroFramework.Forms;
-using Nito.AsyncEx;
 using Services;
 using System;
 using System.Linq;
@@ -67,13 +66,13 @@ namespace Cities.Region
 
         private void txtRegion_Enter(object sender, EventArgs e) => txtSetter.Focus(txtRegion);
         private void txtRegion_Leave(object sender, EventArgs e) => txtSetter.Follow(txtRegion);
-        private void frmRegionMain_Load(object sender, EventArgs e)
+        private async void frmRegionMain_Load(object sender, EventArgs e)
         {
             try
             {
-                AsyncContext.Run(SetDataAsync);
+                await SetDataAsync();
                 var myCollection = new AutoCompleteStringCollection();
-                var list = AsyncContext.Run(() => RegionsBussines.GetAllAsync(new CancellationToken()));
+                var list = await RegionsBussines.GetAllAsync();
                 foreach (var item in list.ToList())
                     myCollection.Add(item.Name);
                 txtRegion.AutoCompleteCustomSource = myCollection;

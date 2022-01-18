@@ -18,7 +18,6 @@ using Advertise.ViewModels.Divar.Rent.Residential;
 using Advertise.ViewModels.Divar.Sell.Office;
 using Advertise.ViewModels.Divar.Sell.Residential;
 using EntityCache.Bussines;
-using Nito.AsyncEx;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Services;
@@ -39,9 +38,6 @@ namespace Advertise.Classes
         const int WtsCurrentSession = -1;
         static readonly IntPtr WtsCurrentServerHandle = IntPtr.Zero;
         public static async Task Wait(double second = 0.1) => await Task.Delay((int)(second * 1000));
-        public static void Wait_(double second = 0.1) =>
-            AsyncContext.Run(() => Wait(second));
-
         public static List<string> GetFiles(string path, string filePattern = "*.*") =>
             Directory.Exists(path) ? Directory.GetFiles(path, filePattern).ToList() : null;
         public static void CloseAllChromeWindows()
@@ -649,7 +645,7 @@ namespace Advertise.Classes
                     Category = fCat,
                     SubCategory1 = sCat,
                     AdvType = type,
-                    IP = Utilities.GetIp(),
+                    IP = Utilities.GetNetworkIpAddress(),
                     LastUpdate = DateTime.Now,
                     StatusCode = StatusCode.InPublishQueue,
                     URL = url,

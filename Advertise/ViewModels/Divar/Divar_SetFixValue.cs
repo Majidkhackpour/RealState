@@ -1,15 +1,13 @@
-﻿using System;
+﻿using Advertise.Classes;
+using EntityCache.Bussines;
+using Services;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Advertise.Classes;
-using EntityCache.Bussines;
-using Nito.AsyncEx;
-using Services;
 
 namespace Advertise.ViewModels.Divar
 {
@@ -23,7 +21,7 @@ namespace Advertise.ViewModels.Divar
             imageCount = imgCount;
         }
 
-        private async Task<string> SetDivarStateAsync(BuildingBussines bu)
+        public async Task<string> SetDivarStateAsync()
         {
             var state = "";
             try
@@ -40,7 +38,7 @@ namespace Advertise.ViewModels.Divar
 
             return state;
         }
-        private async Task<string> SetDivarCityAsync(BuildingBussines bu)
+        public async Task<string> SetDivarCityAsync()
         {
             var city = "";
             try
@@ -55,7 +53,7 @@ namespace Advertise.ViewModels.Divar
 
             return city;
         }
-        private async Task<string> SetDivarRegionAsync(BuildingBussines bu)
+        public async Task<string> SetDivarRegionAsync()
         {
             var region = "";
             try
@@ -80,9 +78,6 @@ namespace Advertise.ViewModels.Divar
             return region;
         }
         public string Metrazh => bu.Masahat > 0 ? bu.Masahat.ToString() : bu.ZirBana.ToString();
-        public string City() => AsyncContext.Run(() => SetDivarCityAsync(bu));
-        public string Region() => AsyncContext.Run(() => SetDivarRegionAsync(bu));
-        public string State() => AsyncContext.Run(() => SetDivarStateAsync(bu));
         public string Tabdil()
         {
             try
@@ -184,7 +179,7 @@ namespace Advertise.ViewModels.Divar
         {
             try
             {
-                var imagesPathList = AsyncContext.Run(() => GetNextImages(bu, imageCount));
+                var imagesPathList = GetNextImages(bu, imageCount);
                 return imagesPathList != null && imagesPathList.Count > 0
                     ? string.Join("\r\n", imagesPathList)
                     : "---";

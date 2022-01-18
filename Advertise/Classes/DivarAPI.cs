@@ -1,21 +1,14 @@
-﻿using System;
+﻿using Advertise.Properties;
+using EntityCache.Bussines;
+using EntityCache.ViewModels;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Services;
+using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using System.Windows.Forms;
-using Advertise.Properties;
-using AutoMapper.Configuration.Conventions;
-using EntityCache.Bussines;
-using EntityCache.ViewModels;
-using HtmlAgilityPack;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Nito.AsyncEx;
-using Services;
-using Services.DefaultCoding;
-using HtmlDocument = HtmlAgilityPack.HtmlDocument;
 
 namespace Advertise.Classes
 {

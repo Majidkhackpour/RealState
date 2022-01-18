@@ -27,9 +27,6 @@ namespace Advertise.ViewModels.Divar.Rent.Residential
         public string FisrtCat => "املاک";
         public string SecondCat => "اجاره مسکونی";
         public string ThirdCat => "خانه و ویلا";
-        public string State => fixValue.State();
-        public string City => fixValue.City();
-        public string Region => fixValue.Region();
         public string ImageList => fixValue.ImageList();
         public string Metrazh => fixValue.Metrazh;
         public string Rahn => bu.RahnPrice1.ToString("0.##");
@@ -60,9 +57,9 @@ namespace Advertise.ViewModels.Divar.Rent.Residential
                     cat.ImageContainer()?.SendKeys(ImageList);
                 cat.CitySearcher()?.Click();
                 await Utility.Wait();
-                cat.City()?.SendKeys(City + "\n");
+                cat.City()?.SendKeys(await fixValue.SetDivarCityAsync() + "\n");
                 await Utility.Wait(2);
-                await cat.SetRegionAsync(Region);
+                await cat.SetRegionAsync(await fixValue.SetDivarRegionAsync());
 
                 cat.Masahat()?.SendKeys(Metrazh);
 
@@ -111,15 +108,15 @@ namespace Advertise.ViewModels.Divar.Rent.Residential
                 if (!isGiveChat) cat.Chat()?.Click();
 
                 cat.Title()?.SendKeys(title);
-                cat.SendContent(content);
+                await cat.SendContentAsync(content);
 
                 await Utility.Wait();
 
-                cat.SendAdv();
+                await cat.SendAdvAsync();
                 await Utility.Wait(5);
-                res.AddReturnedValue(await Utility.SaveAdv(AdvertiseType.Divar, FisrtCat, SecondCat, ThirdCat, State,
-                    City,
-                    Region, title, content, number, bu.RahnPrice1, bu.EjarePrice1, cat.Url));
+                res.AddReturnedValue(await Utility.SaveAdv(AdvertiseType.Divar, FisrtCat, SecondCat, ThirdCat, await fixValue.SetDivarStateAsync(),
+                    await fixValue.SetDivarCityAsync(),
+                    await fixValue.SetDivarRegionAsync(), title, content, number, bu.RahnPrice1, bu.EjarePrice1, cat.Url));
             }
             catch (Exception ex)
             {

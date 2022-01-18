@@ -1,6 +1,5 @@
 ﻿using EntityCache.Bussines;
 using EntityCache.Core;
-using Nito.AsyncEx;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -28,7 +27,7 @@ namespace EntityCache.SqlServerPersistence
                     while (dr.Read())
                     {
                         if (token.IsCancellationRequested) return null;
-                        list.Add(LoadData(dr, false));
+                        list.Add(await LoadDataAsync(dr, false));
                     }
                     cn.Close();
                 }
@@ -74,7 +73,7 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@guid", guid);
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) list = LoadData(dr, true);
+                    if (dr.Read()) list = await LoadDataAsync(dr, true);
                     cn.Close();
                 }
             }
@@ -240,7 +239,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        private BuildingRequestBussines LoadData(SqlDataReader dr, bool isLoadDet)
+        private async Task<BuildingRequestBussines> LoadDataAsync(SqlDataReader dr, bool isLoadDet)
         {
             var res = new BuildingRequestBussines();
             try
@@ -276,7 +275,7 @@ namespace EntityCache.SqlServerPersistence
                 res.ServerStatus = (ServerStatus)dr["ServerStatus"];
                 res.IsModified = true;
                 if (isLoadDet)
-                    res.RegionList = AsyncContext.Run(() => BuildingRequestRegionBussines.GetAllAsync(res.Guid));
+                    res.RegionList = await BuildingRequestRegionBussines.GetAllAsync(res.Guid);
             }
             catch (Exception ex)
             {

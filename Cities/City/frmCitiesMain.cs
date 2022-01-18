@@ -1,14 +1,12 @@
-﻿using System;
+﻿using EntityCache.Bussines;
+using MetroFramework.Forms;
+using Services;
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
-using EntityCache.Bussines;
-using MetroFramework.Forms;
-using Nito.AsyncEx;
-using Notification;
-using Services;
 
 namespace Cities.City
 {
@@ -57,15 +55,15 @@ namespace Cities.City
 
         private void txtCity_Enter(object sender, System.EventArgs e) => txtSetter.Focus(txtCity);
         private void txtCity_Leave(object sender, System.EventArgs e) => txtSetter.Follow(txtCity);
-        private void frmCitiesMain_Load(object sender, EventArgs e)
+        private async void frmCitiesMain_Load(object sender, EventArgs e)
         {
             try
             {
-                AsyncContext.Run(SetDataAsync);
+                await SetDataAsync();
                 var myCollection = new AutoCompleteStringCollection();
                 token?.Cancel();
                 token = new CancellationTokenSource();
-                var list = AsyncContext.Run(() => CitiesBussines.GetAllAsync(token.Token));
+                var list = await CitiesBussines.GetAllAsync(token.Token);
                 foreach (var item in list.ToList())
                     myCollection.Add(item.Name);
                 txtCity.AutoCompleteCustomSource = myCollection;

@@ -1,21 +1,18 @@
-﻿using System;
+﻿using EntityCache.Bussines;
+using EntityCache.Core;
+using Services;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
-using EntityCache.Bussines;
-using EntityCache.Core;
-using Nito.AsyncEx;
-using Persistence.Entities;
-using Persistence.Model;
-using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
     public class SanadPersistenceRepository : IsanadRepository
     {
-        private SanadBussines LoadData(SqlDataReader dr)
+        private async Task<SanadBussines> LoadDataAsync(SqlDataReader dr)
         {
             var item = new SanadBussines();
             try
@@ -29,7 +26,7 @@ namespace EntityCache.SqlServerPersistence
                 item.UserGuid = (Guid)dr["UserGuid"];
                 item.SanadType = (EnSanadType)dr["SanadType"];
                 item.UserName = dr["UserName"].ToString();
-                item.Details = AsyncContext.Run(() => SanadDetailBussines.GetAllAsync(item.Guid));
+                item.Details = await SanadDetailBussines.GetAllAsync(item.Guid);
             }
             catch (Exception ex)
             {
@@ -52,7 +49,7 @@ namespace EntityCache.SqlServerPersistence
                     while (dr.Read())
                     {
                         if (token.IsCancellationRequested) return null;
-                        list.Add(LoadData(dr));
+                        list.Add(await LoadDataAsync(dr));
                     }
                     cn.Close();
                 }
@@ -78,7 +75,7 @@ namespace EntityCache.SqlServerPersistence
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) res = LoadData(dr);
+                    if (dr.Read()) res = await LoadDataAsync(dr);
                     cn.Close();
                 }
             }
@@ -123,7 +120,7 @@ namespace EntityCache.SqlServerPersistence
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) res = LoadData(dr);
+                    if (dr.Read()) res = await LoadDataAsync(dr);
                     cn.Close();
                 }
             }

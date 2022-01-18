@@ -27,9 +27,6 @@ namespace Advertise.ViewModels.Divar.Sell.Office
         public string FisrtCat => "املاک";
         public string SecondCat => "فروش اداری و تجاری";
         public string ThirdCat => "صنعتی، کشاورزی و تجاری";
-        public string State => fixValue.State();
-        public string City => fixValue.City();
-        public string Region => fixValue.Region();
         public string ImageList => fixValue.ImageList();
         public string Metrazh => fixValue.Metrazh;
         public string Price => bu.SellPrice.ToString("0.##");
@@ -58,9 +55,9 @@ namespace Advertise.ViewModels.Divar.Sell.Office
                     cat.ImageContainer()?.SendKeys(ImageList);
                 cat.CitySearcher()?.Click();
                 await Utility.Wait();
-                cat.City()?.SendKeys(City + "\n");
+                cat.City()?.SendKeys(await fixValue.SetDivarCityAsync() + "\n");
                 await Utility.Wait(2);
-                await cat.SetRegionAsync(Region);
+                await cat.SetRegionAsync(await fixValue.SetDivarRegionAsync());
 
                 cat.Masahat()?.SendKeys(Metrazh);
 
@@ -85,15 +82,15 @@ namespace Advertise.ViewModels.Divar.Sell.Office
                 if (await fixValue.GetSanadEdariAsync()) cat.SanadEdari()?.Click();
 
                 cat.Title()?.SendKeys(title);
-                cat.SendContent(content);
+                await cat.SendContentAsync(content);
 
                 await Utility.Wait();
 
-                cat.SendAdv();
+                await cat.SendAdvAsync();
                 await Utility.Wait(5);
-                res.AddReturnedValue(await Utility.SaveAdv(AdvertiseType.Divar, FisrtCat, SecondCat, ThirdCat, State,
-                    City,
-                    Region, title, content, number, bu.SellPrice, 0, cat.Url));
+                res.AddReturnedValue(await Utility.SaveAdv(AdvertiseType.Divar, FisrtCat, SecondCat, ThirdCat, await fixValue.SetDivarStateAsync(),
+                    await fixValue.SetDivarCityAsync(),
+                    await fixValue.SetDivarRegionAsync(), title, content, number, bu.SellPrice, 0, cat.Url));
             }
             catch (Exception ex)
             {

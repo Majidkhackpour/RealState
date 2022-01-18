@@ -1,21 +1,18 @@
-﻿using System;
+﻿using EntityCache.Bussines;
+using EntityCache.Core;
+using Services;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
-using EntityCache.Bussines;
-using EntityCache.Core;
-using Nito.AsyncEx;
-using Persistence.Entities;
-using Persistence.Model;
-using Services;
 
 namespace EntityCache.SqlServerPersistence
 {
     public class DasteCheckPersistenceRepository : IDasteCheckRepository
     {
-        private DasteCheckBussines LoadData(SqlDataReader dr, CancellationToken token)
+        private async Task<DasteCheckBussines> LoadDataAsync(SqlDataReader dr, CancellationToken token)
         {
             var item = new DasteCheckBussines();
             try
@@ -29,7 +26,7 @@ namespace EntityCache.SqlServerPersistence
                 item.ToNumber = (long)dr["ToNumber"];
                 item.Description = dr["Description"].ToString();
                 item.BankName = dr["BankName"].ToString();
-                item.CheckPages = AsyncContext.Run(() => CheckPageBussines.GetAllAsync(item.Guid, token));
+                item.CheckPages = await CheckPageBussines.GetAllAsync(item.Guid, token);
             }
             catch (Exception ex)
             {
@@ -76,7 +73,7 @@ namespace EntityCache.SqlServerPersistence
                     while (dr.Read())
                     {
                         if (token.IsCancellationRequested) return null;
-                        list.Add(LoadData(dr, token));
+                        list.Add(await LoadDataAsync(dr, token));
                     }
                     cn.Close();
                 }
@@ -102,7 +99,7 @@ namespace EntityCache.SqlServerPersistence
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) res = LoadData(dr, new CancellationToken());
+                    if (dr.Read()) res = await LoadDataAsync(dr, new CancellationToken());
                     cn.Close();
                 }
             }

@@ -7,7 +7,6 @@ using System.Windows.Forms;
 using Cities.Region;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
-using Nito.AsyncEx;
 using Services;
 using Services.FilterObjects;
 
@@ -61,7 +60,7 @@ namespace Building.Buildings
                     _filter.RahnPrice2 = txtRahn2.TextDecimal;
                     _filter.EjarePrice1 = txtEjare1.TextDecimal;
                     _filter.EjarePrice2 = txtEjare2.TextDecimal;
-                    _filter.MaxTabaqeNo = (int) txtTabaqeNo.Value;
+                    _filter.MaxTabaqeNo = (int)txtTabaqeNo.Value;
                 }
                 catch (Exception ex)
                 {
@@ -138,42 +137,42 @@ namespace Building.Buildings
                     Guid = Guid.Empty,
                     Name = "[همه]"
                 });
-                btBindingSource.DataSource = list.OrderBy(q => q.Name).ToList();
 
-                _token?.Cancel();
-                _token = new CancellationTokenSource();
                 var list2 = await UserBussines.GetAllAsync(_token.Token);
                 list2.Add(new UserBussines()
                 {
                     Guid = Guid.Empty,
                     Name = "[همه]"
                 });
-                userBindingSource.DataSource = list2?.Where(q => q.Status)?.OrderBy(q => q.Name).ToList();
 
-                _token?.Cancel();
-                _token = new CancellationTokenSource();
                 var list3 = await DocumentTypeBussines.GetAllAsync(_token.Token);
                 list3.Add(new DocumentTypeBussines()
                 {
                     Guid = Guid.Empty,
                     Name = "[همه]"
                 });
-                docTypeBindingSource.DataSource = list3.OrderBy(q => q.Name).ToList();
 
-                _token?.Cancel();
-                _token = new CancellationTokenSource();
                 var list4 = await BuildingAccountTypeBussines.GetAllAsync(_token.Token);
                 list4.Add(new BuildingAccountTypeBussines()
                 {
                     Guid = Guid.Empty,
                     Name = "[همه]"
                 });
-                AccTypeBindingSource.DataSource = list4.OrderBy(q => q.Name).ToList();
 
-                cmbBuildingType.SelectedIndex = 0;
-                cmbUser.SelectedValue = UserBussines.CurrentUser.Guid;
-                cmbDocType.SelectedIndex = 0;
-                cmbAccType.SelectedIndex = 0;
+                while (!IsHandleCreated)
+                    await Task.Delay(100);
+
+                BeginInvoke(new MethodInvoker(() =>
+                {
+                    btBindingSource.DataSource = list.OrderBy(q => q.Name).ToList();
+                    userBindingSource.DataSource = list2?.Where(q => q.Status)?.OrderBy(q => q.Name).ToList();
+                    docTypeBindingSource.DataSource = list3.OrderBy(q => q.Name).ToList();
+                    AccTypeBindingSource.DataSource = list4.OrderBy(q => q.Name).ToList();
+                    cmbBuildingType.SelectedIndex = 0;
+                    cmbUser.SelectedValue = UserBussines.CurrentUser.Guid;
+                    cmbDocType.SelectedIndex = 0;
+                    cmbAccType.SelectedIndex = 0;
+                }));
             }
             catch (Exception ex)
             {
@@ -185,10 +184,10 @@ namespace Building.Buildings
         {
             InitializeComponent();
             ucHeader.Text = "فیلتر املاک";
-            AsyncContext.Run(FillCmbAsync);
+            Task.Run(FillCmbAsync);
         }
 
-        private void chbRegion_CheckedChanged(object sender, System.EventArgs e)
+        private async void chbRegion_CheckedChanged(object sender, System.EventArgs e)
         {
             try
             {
@@ -201,7 +200,7 @@ namespace Building.Buildings
                 }
                 var frm = new frmSelectRegion();
                 if (_regList != null && _regList.Count > 0)
-                    frm.Guids = _regList;
+                    await frm.SetGuidAsync(_regList);
                 if (frm.ShowDialog(this) != DialogResult.OK)
                 {
                     chbRegion.Checked = false;

@@ -106,7 +106,7 @@ namespace Advertise.Classes
                 var sim = await SimcardBussines.GetAsync(number);
                 TelegramSender.GetChatLog_bot()
                     .Send(
-                        $"#چت_شیپور \r\nسیستم مرجع: {await Utilities.GetNetworkIpAddress()} \r\n شماره: {number} \r\n مالک: {sim.Owner} \r\n تعداد چت شیپور: {newChat.FixString()}");
+                        $"#چت_شیپور \r\nسیستم مرجع: {Utilities.GetNetworkIpAddress()} \r\n شماره: {number} \r\n مالک: {sim.Owner} \r\n تعداد چت شیپور: {newChat.FixString()}");
             }
             catch (Exception ex)
             {

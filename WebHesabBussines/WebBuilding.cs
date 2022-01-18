@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Nito.AsyncEx;
 using Services.AndroidViewModels;
 
 namespace WebHesabBussines
@@ -210,6 +209,6 @@ namespace WebHesabBussines
                 return null;
             }
         }
-        public static List<BuildingListViewModel> GetList(EnRequestType _type) => AsyncContext.Run(() => GetListAsync(_type));
+        //public static List<BuildingListViewModel> GetList(EnRequestType _type) => AsyncContext.Run(() => GetListAsync(_type));
     }
 }

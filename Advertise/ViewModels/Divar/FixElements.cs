@@ -74,7 +74,7 @@ namespace Advertise.ViewModels.Divar
         public List<IWebElement> ImageProgress => _drivers.FindElements(By.ClassName("image-item__progress")).ToList();
         public string Url => _drivers.Url;
         public void SelectDropDown(string text) => _drivers.FindElements(By.ClassName("kt-dropdown-item"))?.FirstOrDefault(q => q.Text == text)?.Click();
-        public void SendContent(string content)
+        public async Task SendContentAsync(string content)
         {
             try
             {
@@ -84,7 +84,7 @@ namespace Advertise.ViewModels.Divar
 
                 var t = _drivers.FindElement(By.TagName("textarea"));
                 t.Click();
-                Utility.Wait_(1);
+                await Utility.Wait(1);
                 t.SendKeys(OpenQA.Selenium.Keys.Control + "v");
                 var thread1 = new Thread(Clipboard.Clear);
                 thread1.SetApartmentState(ApartmentState.STA);
@@ -96,12 +96,12 @@ namespace Advertise.ViewModels.Divar
             }
         }
         private IWebElement SelectDropDown(int index) => _drivers.FindElements(By.ClassName("kt-select"))?[index];
-        public void SendAdv()
+        public async Task SendAdvAsync()
         {
             try
             {
                 while (ImageProgress.Count > 0)
-                    Utility.Wait_(2);
+                    await Utility.Wait(2);
 
                 _drivers.FindElements(By.TagName("button")).FirstOrDefault(q => q.Text.Contains("ارسال آگهی"))
                     ?.Click();

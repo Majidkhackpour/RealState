@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
-using Nito.AsyncEx;
 using Services;
 using Settings.Classes;
 
@@ -17,16 +16,19 @@ namespace Cities.Region
     {
         private List<Guid> _lst = new List<Guid>();
 
-        public List<Guid> Guids
+        public List<Guid> Guids => _lst;
+        public async Task SetGuidAsync(List<Guid>value)
         {
-            get => _lst;
-            set
+            try
             {
                 _lst = value;
-                SetGrid();
+                await SetGridAsync();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private List<RegionsBussines> list;
         private CancellationTokenSource _token = new CancellationTokenSource();
 
@@ -42,18 +44,18 @@ namespace Cities.Region
                 Invoke(new MethodInvoker(() => RegionBindingSource.DataSource =
                     list.Where(q => q.Status).OrderBy(q => q.Name).ToSortableBindingList()));
 
-                SetGrid();
+                await SetGridAsync();
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void SetGrid()
+        private async Task SetGridAsync()
         {
             try
             {
-                var _list = AsyncContext.Run(WorkingRangeBussines.GetAllAsync);
+                var _list = await WorkingRangeBussines.GetAllAsync();
                 if (_list != null && _list.Count > 0) 
                     _lst.AddRange(_list.Select(q => q.RegionGuid));
                 if (Guids.Count <= 0) return;
