@@ -12,6 +12,11 @@ namespace EntityCache.SqlServerPersistence
 {
     public class BuildingRequestPersistenceRepository : IBuildingRequestRepository
     {
+        private BuildingRequestRegionPersistenceRepository _regions = null;
+        public BuildingRequestPersistenceRepository()
+        {
+            _regions = new BuildingRequestRegionPersistenceRepository();
+        }
         public async Task<List<BuildingRequestBussines>> GetAllAsync(string _connectionString, bool status, CancellationToken token)
         {
             var list = new List<BuildingRequestBussines>();
@@ -27,7 +32,7 @@ namespace EntityCache.SqlServerPersistence
                     while (dr.Read())
                     {
                         if (token.IsCancellationRequested) return null;
-                        list.Add(await LoadDataAsync(dr, false));
+                        list.Add(await LoadDataAsync(dr, false, _connectionString));
                     }
                     cn.Close();
                 }
@@ -73,7 +78,7 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@guid", guid);
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) list = await LoadDataAsync(dr, true);
+                    if (dr.Read()) list = await LoadDataAsync(dr, true, _connectionString);
                     cn.Close();
                 }
             }
@@ -104,6 +109,32 @@ namespace EntityCache.SqlServerPersistence
             return res;
         }
         public async Task<ReturnedSaveFuncInfo> SaveAsync(BuildingRequestBussines item, SqlTransaction tr)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                res.AddReturnedValue(await SaveAsync_(item, tr));
+
+                res.AddReturnedValue(await _regions.RemoveRangeAsync(item.Guid, tr));
+                if (res.HasError) return res;
+
+                if (item.RegionList.Count > 0)
+                {
+                    foreach (var op in item.RegionList)
+                        op.RequestGuid = item.Guid;
+                    res.AddReturnedValue(await _regions.SaveRangeAsync(item.RegionList, tr));
+                    if (res.HasError) return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        private async Task<ReturnedSaveFuncInfo> SaveAsync_(BuildingRequestBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
@@ -179,7 +210,7 @@ namespace EntityCache.SqlServerPersistence
                     var cmd = new SqlCommand("sp_BuildingRequest_GetAllNotSent", cn) { CommandType = CommandType.StoredProcedure };
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read()) list.Add(await LoadDataBussinesAsync(dr));
+                    while (dr.Read()) list.Add(await LoadDataBussinesAsync(dr, connectionString));
                     dr.Close();
                     cn.Close();
                 }
@@ -239,7 +270,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        private async Task<BuildingRequestBussines> LoadDataAsync(SqlDataReader dr, bool isLoadDet)
+        private async Task<BuildingRequestBussines> LoadDataAsync(SqlDataReader dr, bool isLoadDet, string connectionString)
         {
             var res = new BuildingRequestBussines();
             try
@@ -275,7 +306,7 @@ namespace EntityCache.SqlServerPersistence
                 res.ServerStatus = (ServerStatus)dr["ServerStatus"];
                 res.IsModified = true;
                 if (isLoadDet)
-                    res.RegionList = await BuildingRequestRegionBussines.GetAllAsync(res.Guid);
+                    res.RegionList = await _regions.GetAllAsync(connectionString, res.Guid);
             }
             catch (Exception ex)
             {
@@ -284,7 +315,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        private async Task<BuildingRequestBussines> LoadDataBussinesAsync(SqlDataReader dr)
+        private async Task<BuildingRequestBussines> LoadDataBussinesAsync(SqlDataReader dr, string connectionString)
         {
             var res = new BuildingRequestBussines();
             try
@@ -316,7 +347,7 @@ namespace EntityCache.SqlServerPersistence
                 res.ShortDesc = dr["ShortDesc"].ToString();
                 res.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
                 res.ServerStatus = (ServerStatus)dr["ServerStatus"];
-                res.RegionList = await BuildingRequestRegionBussines.GetAllAsync(res.Guid);
+                res.RegionList = await _regions.GetAllAsync(connectionString, res.Guid);
             }
             catch (Exception ex)
             {

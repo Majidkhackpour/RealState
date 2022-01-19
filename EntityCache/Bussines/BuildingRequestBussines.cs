@@ -75,17 +75,6 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await UnitOfWork.BuildingRequest.SaveAsync(this, tr));
                 if (res.HasError) return res;
 
-                if (RegionList.Count > 0)
-                {
-                    res.AddReturnedValue(await BuildingRequestRegionBussines.RemoveRangeAsync(Guid, tr));
-                    if (res.HasError) return res;
-
-                    foreach (var item in RegionList)
-                        item.RequestGuid = Guid;
-                    res.AddReturnedValue(await BuildingRequestRegionBussines.SaveRangeAsync(RegionList, tr));
-                    if (res.HasError) return res;
-                }
-
                 var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
                 var desc = $"خواهان:( {AskerName} ) ** ";
                 res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingRequest, Guid, desc, tr));

@@ -68,7 +68,7 @@ namespace Building.BuildingRequest
                 if (cmbCity.SelectedValue != null && (Guid)cmbCity.SelectedValue != Guid.Empty)
                     cmbCity_SelectedIndexChanged(null, null);
 
-                await SetRelatedRegionsAsync(cls?.Guid ?? Guid.Empty);
+                SetRelatedRegions();
 
                 if (cls?.Guid == Guid.Empty)
                 {
@@ -277,13 +277,12 @@ namespace Building.BuildingRequest
                 WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
-        private async Task SetRelatedRegionsAsync(Guid requestGuid)
+        private void SetRelatedRegions()
         {
             try
             {
-                if (requestGuid == Guid.Empty) return;
-                var op = await BuildingRequestRegionBussines.GetAllAsync(requestGuid);
-                foreach (var item in op)
+                if (cls == null || cls.RegionList == null || cls.RegionList.Count <= 0) return;
+                foreach (var item in cls.RegionList)
                     for (var i = 0; i < DGrid.RowCount; i++)
                         if (item.RegionGuid == ((Guid?)DGrid[dgGuid.Index, i].Value ?? Guid.Empty))
                             DGrid[dgChecked.Index, i].Value = true;
@@ -350,7 +349,7 @@ namespace Building.BuildingRequest
                 else if (SettingsBussines.Setting.CompanyInfo.EconomyCity!=Guid.Empty)
                     cmbCity.SelectedValue = SettingsBussines.Setting.CompanyInfo.EconomyCity;
 
-                await SetRelatedRegionsAsync(cls?.Guid ?? Guid.Empty);
+                SetRelatedRegions();
             }
             catch (Exception ex)
             {
