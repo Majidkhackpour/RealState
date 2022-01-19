@@ -88,5 +88,31 @@ namespace Settings.Forms
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void btnSearchImagePath_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var ff = new FolderBrowserDialog();
+                if (ff.ShowDialog(this) == DialogResult.OK)
+                    txtImagePath.Text = ff.SelectedPath;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void btnSearchMedia_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var ff = new FolderBrowserDialog();
+                if (ff.ShowDialog(this) == DialogResult.OK)
+                    txtMediaPath.Text = ff.SelectedPath;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
     }
 }

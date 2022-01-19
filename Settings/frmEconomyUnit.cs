@@ -186,6 +186,8 @@ namespace Settings
                 token = new CancellationTokenSource();
                 var list = await RegionsBussines.GetAllAsync((Guid)cmbCity.SelectedValue, token.Token);
                 RegionBindingSource.DataSource = list.OrderBy(q => q.Name).ToList();
+                if (SettingsBussines.Setting.CompanyInfo.ManagerRegion != Guid.Empty)
+                    cmbRegion.SelectedValue = SettingsBussines.Setting.CompanyInfo.ManagerRegion;
             }
             catch (Exception ex)
             {
@@ -202,6 +204,8 @@ namespace Settings
                 token = new CancellationTokenSource();
                 var list = await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue, token.Token);
                 CityBindingSource.DataSource = list.OrderBy(q => q.Name).ToList();
+                if (SettingsBussines.Setting.CompanyInfo.EconomyCity != Guid.Empty)
+                    cmbCity.SelectedValue = SettingsBussines.Setting.CompanyInfo.EconomyCity;
             }
             catch (Exception ex)
             {

@@ -101,6 +101,7 @@ namespace Settings.Forms
             this.btnSearchMedia.TabIndex = 9;
             this.btnSearchMedia.Text = "...";
             this.btnSearchMedia.TextColor = System.Drawing.Color.White;
+            this.btnSearchMedia.Click += new System.EventHandler(this.btnSearchMedia_Click);
             // 
             // btnSearchImagePath
             // 
@@ -117,6 +118,7 @@ namespace Settings.Forms
             this.btnSearchImagePath.TabIndex = 7;
             this.btnSearchImagePath.Text = "...";
             this.btnSearchImagePath.TextColor = System.Drawing.Color.White;
+            this.btnSearchImagePath.Click += new System.EventHandler(this.btnSearchImagePath_Click);
             // 
             // txtMediaPath
             // 

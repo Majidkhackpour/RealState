@@ -173,8 +173,6 @@ namespace RealState.LoginPanel.FormsInPanel
                 UserBussines.CurrentUser = user;
                 UserBussines.DateVorrod = DateTime.Now;
 
-                await clsGlobalSetting.SetLastUserAsync(user.UserName);
-
                 await UserLogBussines.SaveAsync(EnLogAction.Login, EnLogPart.Login,null,"", null);
             }
             catch (Exception ex)
