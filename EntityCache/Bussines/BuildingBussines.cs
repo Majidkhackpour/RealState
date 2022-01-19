@@ -150,46 +150,7 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await UnitOfWork.Building.SaveAsync(this, tr));
                 if (res.HasError) return res;
 
-                res.AddReturnedValue(await BuildingRelatedOptionsBussines.RemoveRangeAsync(Guid, tr));
-                if (res.HasError) return res;
-                res.AddReturnedValue(await BuildingGalleryBussines.RemoveRangeAsync(Guid, tr));
-                if (res.HasError) return res;
-                res.AddReturnedValue(await BuildingMediaBussines.RemoveRangeAsync(Guid, tr));
-                if (res.HasError) return res;
-                res.AddReturnedValue(await BuildingNoteBussines.RemoveRangeAsync(Guid, tr));
-                if (res.HasError) return res;
-
-                if (OptionList?.Count > 0)
-                {
-                    foreach (var item in OptionList)
-                        item.BuildinGuid = Guid;
-                    res.AddReturnedValue(await BuildingRelatedOptionsBussines.SaveRangeAsync(OptionList, tr));
-                    if (res.HasError) return res;
-                }
-                if (GalleryList?.Count > 0)
-                {
-                    foreach (var item in GalleryList)
-                        item.BuildingGuid = Guid;
-
-                    res.AddReturnedValue(await BuildingGalleryBussines.SaveRangeAsync(GalleryList, tr));
-                    if (res.HasError) return res;
-                }
-                if (MediaList?.Count > 0)
-                {
-                    foreach (var item in MediaList)
-                        item.BuildingGuid = Guid;
-
-                    res.AddReturnedValue(await BuildingMediaBussines.SaveRangeAsync(MediaList, tr));
-                    if (res.HasError) return res;
-                }
-                if (NoteList?.Count > 0)
-                {
-                    foreach (var item in NoteList)
-                        item.BuildingGuid = Guid;
-
-                    res.AddReturnedValue(await BuildingNoteBussines.SaveRangeAsync(NoteList, tr));
-                    if (res.HasError) return res;
-                }
+                
 
                 if (isAddLog)
                 {

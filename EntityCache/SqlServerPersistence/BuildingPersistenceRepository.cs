@@ -51,6 +51,27 @@ namespace EntityCache.SqlServerPersistence
             EnBuildingParent.MoavezeOffice,
             EnBuildingParent.MoavezeStore
         };
+
+        private BuildingGalleryPersistenceRepository _gallery = null;
+        private BuildingRelatedOptionsPersistenceRepository _options = null;
+        private BuildingMediaPersistenceRepository _media = null;
+        private BuildingNotePersistenceRepository _notes = null;
+
+        public BuildingPersistenceRepository()
+        {
+            try
+            {
+                _gallery = new BuildingGalleryPersistenceRepository();
+                _options = new BuildingRelatedOptionsPersistenceRepository();
+                _media = new BuildingMediaPersistenceRepository();
+                _notes = new BuildingNotePersistenceRepository();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
         public async Task<List<BuildingBussines>> GetAllAsync(string _connectionString, CancellationToken token, bool isLoadDets)
         {
             var list = new List<BuildingBussines>();
@@ -65,7 +86,7 @@ namespace EntityCache.SqlServerPersistence
                     while (dr.Read())
                     {
                         if (token.IsCancellationRequested) return null;
-                        list.Add(await LoadDataAsync(dr, isLoadDets));
+                        list.Add(await LoadDataAsync(dr, isLoadDets, _connectionString));
                     }
                     dr.Close();
                     cn.Close();
@@ -90,7 +111,7 @@ namespace EntityCache.SqlServerPersistence
                     var cmd = new SqlCommand("sp_Building_GetAllWithoutParent", cn) { CommandType = CommandType.StoredProcedure };
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read()) list.Add( await LoadDataAsync(dr, false));
+                    while (dr.Read()) list.Add(await LoadDataAsync(dr, false, connectionString));
                     dr.Close();
                     cn.Close();
                 }
@@ -105,6 +126,62 @@ namespace EntityCache.SqlServerPersistence
             return list;
         }
         public async Task<ReturnedSaveFuncInfo> SaveAsync(BuildingBussines item, SqlTransaction tr)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                res.AddReturnedValue(await SaveAsync_(item, tr));
+                if (res.HasError) return res;
+                res.AddReturnedValue(await _options.RemoveRangeAsync(item.Guid, tr));
+                if (res.HasError) return res;
+                res.AddReturnedValue(await _gallery.RemoveRangeAsync(item.Guid, tr));
+                if (res.HasError) return res;
+                res.AddReturnedValue(await _media.RemoveRangeAsync(item.Guid, tr));
+                if (res.HasError) return res;
+                res.AddReturnedValue(await _notes.RemoveRangeAsync(item.Guid, tr));
+                if (res.HasError) return res;
+
+                if (item.OptionList?.Count > 0)
+                {
+                    foreach (var op in item.OptionList)
+                        op.BuildinGuid = item.Guid;
+                    res.AddReturnedValue(await _options.SaveRangeAsync(item.OptionList, tr));
+                    if (res.HasError) return res;
+                }
+                if (item.GalleryList?.Count > 0)
+                {
+                    foreach (var op in item.GalleryList)
+                        op.BuildingGuid = item.Guid;
+
+                    res.AddReturnedValue(await _gallery.SaveRangeAsync(item.GalleryList, tr));
+                    if (res.HasError) return res;
+                }
+                if (item.MediaList?.Count > 0)
+                {
+                    foreach (var op in item.MediaList)
+                        op.BuildingGuid = item.Guid;
+
+                    res.AddReturnedValue(await _media.SaveRangeAsync(item.MediaList, tr));
+                    if (res.HasError) return res;
+                }
+                if (item.NoteList?.Count > 0)
+                {
+                    foreach (var op in item.NoteList)
+                        op.BuildingGuid = item.Guid;
+
+                    res.AddReturnedValue(await _notes.SaveRangeAsync(item.NoteList, tr));
+                    if (res.HasError) return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        private async Task<ReturnedSaveFuncInfo> SaveAsync_(BuildingBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
@@ -347,7 +424,7 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@guid", guid);
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) list = await LoadDataAsync(dr, true);
+                    if (dr.Read()) list = await LoadDataAsync(dr, true, _connectionString);
                     dr.Close();
                     cn.Close();
                 }
@@ -395,7 +472,7 @@ namespace EntityCache.SqlServerPersistence
                     while (dr.Read())
                     {
                         if (token.IsCancellationRequested) return null;
-                        list.Add(await LoadDataAsync(dr, true));
+                        list.Add(await LoadDataAsync(dr, true, _connectionString));
                     }
                     dr.Close();
                     cn.Close();
@@ -583,7 +660,7 @@ namespace EntityCache.SqlServerPersistence
                     var cmd = new SqlCommand("sp_Buildings_GetAllNotSent", cn) { CommandType = CommandType.StoredProcedure };
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read()) list.Add( await LoadDataBuildingBussinesAsync(dr));
+                    while (dr.Read()) list.Add(await LoadDataBuildingBussinesAsync(dr, connectionString));
                     dr.Close();
                     cn.Close();
                 }
@@ -643,7 +720,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        private async Task<BuildingBussines> LoadDataAsync(SqlDataReader dr, bool isLoadDets)
+        private async Task<BuildingBussines> LoadDataAsync(SqlDataReader dr, bool isLoadDets, string connectionString)
         {
             var res = new BuildingBussines();
             try
@@ -712,10 +789,10 @@ namespace EntityCache.SqlServerPersistence
                 if (dr["IsArchive"] != DBNull.Value) res.IsArchive = (bool)dr["IsArchive"];
                 if (isLoadDets)
                 {
-                    res.GalleryList = await BuildingGalleryBussines.GetAllAsync(res.Guid);
-                    res.MediaList = await BuildingMediaBussines.GetAllAsync(res.Guid);
-                    res.OptionList = await BuildingRelatedOptionsBussines.GetAllAsync(res.Guid);
-                    res.NoteList = await BuildingNoteBussines.GetAllAsync(res.Guid);
+                    res.GalleryList = await _gallery.GetAllAsync(connectionString, res.Guid);
+                    res.MediaList = await _media.GetAllAsync(connectionString, res.Guid);
+                    res.OptionList = await _options.GetAllAsync(connectionString, res.Guid);
+                    res.NoteList = await _notes.GetAllAsync(connectionString, res.Guid);
                 }
                 if (dr["ServerDeliveryDate"] != DBNull.Value) res.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
                 if (dr["ServerStatus"] != DBNull.Value) res.ServerStatus = (ServerStatus)dr["ServerStatus"];
@@ -758,7 +835,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        private async Task<BuildingBussines> LoadDataBuildingBussinesAsync(SqlDataReader dr)
+        private async Task<BuildingBussines> LoadDataBuildingBussinesAsync(SqlDataReader dr, string connectionString)
         {
             var res = new BuildingBussines();
             try
@@ -846,9 +923,9 @@ namespace EntityCache.SqlServerPersistence
                 if (dr["TreeCount"] != DBNull.Value) res.TreeCount = (int)dr["TreeCount"];
                 if (dr["ConstructionStage"] != DBNull.Value) res.ConstructionStage = (EnConstructionStage)dr["ConstructionStage"];
                 if (dr["Parent"] != DBNull.Value) res.Parent = (EnBuildingParent)dr["Parent"];
-                res.GalleryList = await BuildingGalleryBussines.GetAllAsync(res.Guid);
-                res.NoteList = await BuildingNoteBussines.GetAllAsync(res.Guid);
-                res.OptionList = await BuildingRelatedOptionsBussines.GetAllAsync(res.Guid);
+                res.GalleryList = await _gallery.GetAllAsync(connectionString, res.Guid);
+                res.NoteList = await _notes.GetAllAsync(connectionString, res.Guid);
+                res.OptionList = await _options.GetAllAsync(connectionString, res.Guid);
             }
             catch (Exception ex)
             {
