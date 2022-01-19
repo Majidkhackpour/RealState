@@ -32,7 +32,7 @@ namespace RealState
                 await Task.Delay(5000);
 
                 if (!VersionAccess.Advertise) return;
-                if (!clsAdvertise.IsGiveFile) return;
+                if (!SettingsBussines.AdvertiseSetting.IsGiveFile) return;
                 if (!WebCustomer.CheckCustomer() ||
                     WebCustomer.Customer.isBlock ||
                     WebCustomer.Customer.isWebServiceBlock)
@@ -42,7 +42,7 @@ namespace RealState
                 {
                     try
                     {
-                        var getDate = clsAdvertise.GetFileDate ?? DateTime.Now.AddDays(-7);
+                        var getDate = SettingsBussines.AdvertiseSetting.GetFileDate ?? DateTime.Now.AddDays(-7);
                         var newDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
                         if (getDate != null && getDate > newDate)
                         {
@@ -77,7 +77,7 @@ namespace RealState
 
                         _isInited = false;
                         BuildingBussines.RaiseStaticEvent();
-                        clsAdvertise.GetFileDate = DateTime.Now;
+                        SettingsBussines.AdvertiseSetting.GetFileDate = DateTime.Now;
                     }
                     catch (Exception ex)
                     {
@@ -90,7 +90,7 @@ namespace RealState
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                clsAdvertise.GetFileDate = DateTime.Now.AddDays(-1);
+                SettingsBussines.AdvertiseSetting.GetFileDate = DateTime.Now.AddDays(-1);
             }
         }
         private static async Task GetFilesFromDivarAsync_(List<WebScrapper> list, Guid cityGuid)
@@ -255,7 +255,7 @@ namespace RealState
                             //ایجاد تصویر با بنر
                             CreateNewImage(path, bannerPath, pathsave);
                             //ایجاد تصویر نهایی
-                            WriteTextOnImage(clsEconomyUnit.EconomyName, clsEconomyUnit.ManagerMobile, pathsave, finnalPath);
+                            WriteTextOnImage(SettingsBussines.Setting.CompanyInfo.EconomyName, SettingsBussines.Setting.CompanyInfo.ManagerMobile, pathsave, finnalPath);
                             lstImagesForRemove.Add(path);
                             lstImagesForRemove.Add(pathsave);
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using EntityCache.Assistence;
 using EntityCache.Bussines;
 using EntityCache.ViewModels;
 using MetroFramework.Forms;
@@ -18,24 +19,24 @@ namespace Advertise.Forms
             {
                 await SetCategoryAsync();
 
-                chbSilent.Checked = clsAdvertise.IsSilent;
-                chbChat.Checked = clsAdvertise.IsGiveChat;
-                chbGetFile.Checked = clsAdvertise.IsGiveFile;
+                chbSilent.Checked = SettingsBussines.AdvertiseSetting.IsSilent;
+                chbChat.Checked = SettingsBussines.AdvertiseSetting.IsGiveChat;
+                chbGetFile.Checked = SettingsBussines.AdvertiseSetting.IsGiveFile;
 
-                txtD_DayCount.Value = clsAdvertise.Divar_AdvCountInDay;
-                txtD_MountCount.Value = clsAdvertise.Divar_AdvCountInMounth;
-                txtD_PicCount.Value = clsAdvertise.Divar_PicCountInPerAdv;
-                txtD_Update.Value = clsAdvertise.Divar_DayCountForUpdateState;
+                txtD_DayCount.Value = SettingsBussines.AdvertiseSetting.Divar_AdvCountInDay;
+                txtD_MountCount.Value = SettingsBussines.AdvertiseSetting.Divar_AdvCountInMounth;
+                txtD_PicCount.Value = SettingsBussines.AdvertiseSetting.Divar_PicCountInPerAdv;
+                txtD_Update.Value = SettingsBussines.AdvertiseSetting.Divar_DayCountForUpdateState;
 
-                txtSh_DayCount.Value = clsAdvertise.Sheypoor_AdvCountInDay;
-                txtSh_MounthCount.Value = clsAdvertise.Sheypoor_AdvCountInMounth;
-                txtSh_PicCount.Value = clsAdvertise.Sheypoor_PicCountInPerAdv;
-                txtSh_Update.Value = clsAdvertise.Sheypoor_DayCountForUpdateState;
+                txtSh_DayCount.Value = SettingsBussines.AdvertiseSetting.Sheypoor_AdvCountInDay;
+                txtSh_MounthCount.Value = SettingsBussines.AdvertiseSetting.Sheypoor_AdvCountInMounth;
+                txtSh_PicCount.Value = SettingsBussines.AdvertiseSetting.Sheypoor_PicCountInPerAdv;
+                txtSh_Update.Value = SettingsBussines.AdvertiseSetting.Sheypoor_DayCountForUpdateState;
 
-                if (string.IsNullOrEmpty(clsAdvertise.Sender)) rbtnRealState.Checked = true;
+                if (string.IsNullOrEmpty(SettingsBussines.AdvertiseSetting.Sender)) rbtnRealState.Checked = true;
                 else
                 {
-                    if (clsAdvertise.Sender == "املاک") rbtnRealState.Checked = true;
+                    if (SettingsBussines.AdvertiseSetting.Sender == "املاک") rbtnRealState.Checked = true;
                     else rbtnShakhsi.Checked = true;
                 }
             }
@@ -153,22 +154,22 @@ namespace Advertise.Forms
         {
             try
             {
-                clsAdvertise.IsSilent = chbSilent.Checked;
-                clsAdvertise.IsGiveChat = chbChat.Checked;
-                clsAdvertise.IsGiveFile = chbGetFile.Checked;
+                SettingsBussines.AdvertiseSetting.IsSilent = chbSilent.Checked;
+                SettingsBussines.AdvertiseSetting.IsGiveChat = chbChat.Checked;
+                SettingsBussines.AdvertiseSetting.IsGiveFile = chbGetFile.Checked;
 
-                clsAdvertise.Divar_AdvCountInDay = (int)txtD_DayCount.Value;
-                clsAdvertise.Divar_AdvCountInMounth = (int)txtD_MountCount.Value;
-                clsAdvertise.Divar_PicCountInPerAdv = (int)txtD_PicCount.Value;
-                clsAdvertise.Divar_DayCountForUpdateState = (int)txtD_Update.Value;
+                SettingsBussines.AdvertiseSetting.Divar_AdvCountInDay = (int)txtD_DayCount.Value;
+                SettingsBussines.AdvertiseSetting.Divar_AdvCountInMounth = (int)txtD_MountCount.Value;
+                SettingsBussines.AdvertiseSetting.Divar_PicCountInPerAdv = (int)txtD_PicCount.Value;
+                SettingsBussines.AdvertiseSetting.Divar_DayCountForUpdateState = (int)txtD_Update.Value;
 
-                clsAdvertise.Sheypoor_AdvCountInDay = (int)txtSh_DayCount.Value;
-                clsAdvertise.Sheypoor_AdvCountInMounth = (int)txtSh_MounthCount.Value;
-                clsAdvertise.Sheypoor_PicCountInPerAdv = (int)txtSh_PicCount.Value;
-                clsAdvertise.Sheypoor_DayCountForUpdateState = (int)txtSh_Update.Value;
+                SettingsBussines.AdvertiseSetting.Sheypoor_AdvCountInDay = (int)txtSh_DayCount.Value;
+                SettingsBussines.AdvertiseSetting.Sheypoor_AdvCountInMounth = (int)txtSh_MounthCount.Value;
+                SettingsBussines.AdvertiseSetting.Sheypoor_PicCountInPerAdv = (int)txtSh_PicCount.Value;
+                SettingsBussines.AdvertiseSetting.Sheypoor_DayCountForUpdateState = (int)txtSh_Update.Value;
 
-                clsAdvertise.Sender = rbtnRealState.Checked ? "املاک" : "شخصی";
-
+                SettingsBussines.AdvertiseSetting.Sender = rbtnRealState.Checked ? "املاک" : "شخصی";
+                await SettingsBussines.AdvertiseSetting.SaveAsync();
                 await SaveCategoryAsync();
 
                 DialogResult = DialogResult.OK;

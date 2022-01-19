@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using EntityCache.Bussines;
 using Services;
 using Settings.Classes;
 using Stimulsoft.Report;
@@ -9,15 +10,14 @@ namespace Print
 {
     public class _clsPrint
     {
-        public ReturnedSaveFuncInfo Print2PrinterNew(StiReport st, DataSet ds, int sanadId, int sanadType,
-            List<object> lst)
+        public ReturnedSaveFuncInfo Print2PrinterNew(StiReport st, DataSet ds, int sanadId, int sanadType, List<object> lst)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
                 PutExtras(st, ds, sanadId, sanadType, lst);
-                if (clsPrint.ShowDesign) st.Design();
-                else if (clsPrint.ShowPreview) st.Show();
+                if (SettingsBussines.Setting.Print.ShowDesign) st.Design();
+                else if (SettingsBussines.Setting.Print.ShowPreview) st.Show();
                 else st.Print(false, 1);
             }
             catch (Exception ex)
@@ -36,7 +36,7 @@ namespace Print
             try
             {
                 PutExtras(st, ds, sanadId, sanadType, lst);
-                if (clsPrint.ShowDesign) st.Design();
+                if (SettingsBussines.Setting.Print.ShowDesign) st.Design();
                 else st.Show(true);
             }
             catch (Exception ex)
@@ -90,9 +90,9 @@ namespace Print
                 st.Dictionary.Variables.Add("SanadID", sanadId);
                 st.Dictionary.Variables.Add("SanadType", sanadType);
                 st.Dictionary.Variables.Add("LST_String", lst_string);
-                st.Dictionary.Variables.Add("CompanyTitle", clsEconomyUnit.EconomyName);
-                st.Dictionary.Variables.Add("CompanyAddress", clsEconomyUnit.ManagerAddress);
-                st.Dictionary.Variables.Add("CompanyTell", clsEconomyUnit.ManagerTell);
+                st.Dictionary.Variables.Add("CompanyTitle", SettingsBussines.Setting.CompanyInfo.EconomyName);
+                st.Dictionary.Variables.Add("CompanyAddress", SettingsBussines.Setting.CompanyInfo.ManagerAddress);
+                st.Dictionary.Variables.Add("CompanyTell", SettingsBussines.Setting.CompanyInfo.ManagerTell);
 
                 if (lst != null & lst.Count > 0)
                     st.RegBusinessObject("لیست داده ها", lst);

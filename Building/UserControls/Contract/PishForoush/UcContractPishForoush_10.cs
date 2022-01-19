@@ -12,11 +12,9 @@ namespace Building.UserControls.Contract.PishForoush
         {
             try
             {
-                var cityGuid = Settings.Classes.clsEconomyUnit.EconomyCity;
-                if (string.IsNullOrEmpty(cityGuid)) return;
-                var cGuid = Guid.Parse(cityGuid);
-                if (cGuid == Guid.Empty) return;
-                var city = await CitiesBussines.GetAsync(cGuid);
+                var cityGuid = SettingsBussines.Setting.CompanyInfo.EconomyCity;
+                if (cityGuid==Guid.Empty) return;
+                var city = await CitiesBussines.GetAsync(cityGuid);
                 if (city == null) return;
                 while (!IsHandleCreated) { await Task.Delay(100); }
                 BeginInvoke(new MethodInvoker(() => lblCity.Text = city.Name));

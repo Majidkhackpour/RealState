@@ -1,10 +1,12 @@
-﻿using System;
-using System.Windows.Forms;
-using DevComponents.DotNetBar;
+﻿using DevComponents.DotNetBar;
+using EntityCache.Assistence;
+using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
 using Services;
-using Settings.Classes;
+using System;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Settings.Forms
 {
@@ -14,22 +16,26 @@ namespace Settings.Forms
         {
             try
             {
-                txtToken.Text = clsTelegram.Token;
-                txtChannel.Text = clsTelegram.Channel;
-                txtText.Text = clsTelegram.Text;
+                var sett = SettingsBussines.Setting;
+
+                txtToken.Text = sett.Telegram.Token;
+                txtChannel.Text = sett.Telegram.Channel;
+                txtText.Text = sett.Telegram.Text;
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void SaveTelegram()
+        private async Task SaveTelegramAsync()
         {
             try
             {
-                clsTelegram.Token = txtToken.Text;
-                clsTelegram.Channel = txtChannel.Text;
-                clsTelegram.Text = txtText.Text;
+                SettingsBussines.Setting.Telegram.Token = txtToken.Text;
+                SettingsBussines.Setting.Telegram.Channel = txtChannel.Text;
+                SettingsBussines.Setting.Telegram.Text = txtText.Text;
+
+                await SettingsBussines.Setting.SaveAsync();
             }
             catch (Exception ex)
             {
@@ -53,12 +59,12 @@ namespace Settings.Forms
         }
         public frmTelegram() => InitializeComponent();
         private void frmTelegram_Load(object sender, System.EventArgs e) => LoadTelegram();
-        private void btnFinish_Click(object sender, System.EventArgs e)
+        private async void btnFinish_Click(object sender, System.EventArgs e)
         {
             btnFinish.Enabled = false;
             try
             {
-                SaveTelegram();
+                await SaveTelegramAsync();
                 frmNotification.PublicInfo.ShowMessage("تنظیمات با موفقیت ثبت شد");
                 DialogResult = DialogResult.OK;
                 Close();

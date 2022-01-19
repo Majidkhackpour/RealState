@@ -1,12 +1,12 @@
-﻿using System;
+﻿using EntityCache.Assistence;
+using EntityCache.Bussines;
+using MetroFramework.Forms;
+using Services;
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using EntityCache.Bussines;
-using MetroFramework.Forms;
-using Services;
-using Settings.Classes;
 
 namespace Settings
 {
@@ -101,25 +101,25 @@ namespace Settings
             try
             {
                 await FillCmbAsync();
-
-                txtName.Text = clsEconomyUnit.EconomyName;
-                txtMobile.Text = clsEconomyUnit.ManagerMobile;
-                txtTell.Text = clsEconomyUnit.ManagerTell;
-                txtFax.Text = clsEconomyUnit.ManagerFax;
-                txtManagerName.Text = clsEconomyUnit.ManagerName;
-                txtEmail.Text = clsEconomyUnit.ManagerEmail;
-                txtAddress.Text = clsEconomyUnit.ManagerAddress;
-                if (string.IsNullOrEmpty(clsEconomyUnit.EconomyType)) cmbType.SelectedIndex = 0;
+                var sett = SettingsBussines.Setting;
+                txtName.Text = sett.CompanyInfo.EconomyName;
+                txtMobile.Text = sett.CompanyInfo.ManagerMobile;
+                txtTell.Text = sett.CompanyInfo.ManagerTell;
+                txtFax.Text = sett.CompanyInfo.ManagerFax;
+                txtManagerName.Text = sett.CompanyInfo.ManagerName;
+                txtEmail.Text = sett.CompanyInfo.ManagerEmail;
+                txtAddress.Text = sett.CompanyInfo.ManagerAddress;
+                if (string.IsNullOrEmpty(sett.CompanyInfo.EconomyType)) cmbType.SelectedIndex = 0;
                 else
-                    cmbType.Text = clsEconomyUnit.EconomyType;
-                if (string.IsNullOrEmpty(clsEconomyUnit.EconomyState))
+                    cmbType.Text = sett.CompanyInfo.EconomyType;
+                if (sett.CompanyInfo.EconomyState == Guid.Empty)
                     cmbState.SelectedIndex = 0;
                 else
-                    cmbState.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyState);
-                if (!string.IsNullOrEmpty(clsEconomyUnit.EconomyCity))
-                    cmbCity.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyCity);
-                if (!string.IsNullOrEmpty(clsEconomyUnit.ManagerRegion))
-                    cmbRegion.SelectedValue = Guid.Parse(clsEconomyUnit.ManagerRegion);
+                    cmbState.SelectedValue = sett.CompanyInfo.EconomyState;
+                if (sett.CompanyInfo.EconomyCity != Guid.Empty)
+                    cmbCity.SelectedValue = sett.CompanyInfo.EconomyCity;
+                if (sett.CompanyInfo.ManagerRegion != Guid.Empty)
+                    cmbRegion.SelectedValue = sett.CompanyInfo.ManagerRegion;
             }
             catch (Exception ex)
             {
@@ -148,23 +148,26 @@ namespace Settings
 
         private async void frmEconomyUnit_Load(object sender, EventArgs e) => await SettDataAsync();
 
-        private void btnFinish_Click(object sender, EventArgs e)
+        private async void btnFinish_Click(object sender, EventArgs e)
         {
             try
             {
-                clsEconomyUnit.EconomyName = txtName.Text;
-                clsEconomyUnit.ManagerMobile = txtMobile.Text;
-                clsEconomyUnit.ManagerTell = txtTell.Text;
-                clsEconomyUnit.ManagerFax = txtFax.Text;
-                clsEconomyUnit.ManagerName = txtManagerName.Text;
-                clsEconomyUnit.ManagerEmail = txtEmail.Text;
-                clsEconomyUnit.ManagerRegion = cmbRegion.SelectedValue?.ToString();
-                clsEconomyUnit.ManagerAddress = txtAddress.Text;
-                clsEconomyUnit.EconomyType = cmbType.Text;
-                clsEconomyUnit.EconomyState = cmbState.SelectedValue.ToString();
-                clsEconomyUnit.EconomyCity = cmbCity.SelectedValue.ToString();
+                SettingsBussines.Setting.CompanyInfo.EconomyName = txtName.Text;
+                SettingsBussines.Setting.CompanyInfo.ManagerMobile = txtMobile.Text;
+                SettingsBussines.Setting.CompanyInfo.ManagerTell = txtTell.Text;
+                SettingsBussines.Setting.CompanyInfo.ManagerFax = txtFax.Text;
+                SettingsBussines.Setting.CompanyInfo.ManagerName = txtManagerName.Text;
+                SettingsBussines.Setting.CompanyInfo.ManagerEmail = txtEmail.Text;
+                if (cmbRegion.SelectedValue != null)
+                    SettingsBussines.Setting.CompanyInfo.ManagerRegion = (Guid)cmbRegion.SelectedValue;
+                SettingsBussines.Setting.CompanyInfo.ManagerAddress = txtAddress.Text;
+                SettingsBussines.Setting.CompanyInfo.EconomyType = cmbType.Text;
+                if (cmbState.SelectedValue != null)
+                    SettingsBussines.Setting.CompanyInfo.EconomyState = (Guid)cmbState.SelectedValue;
+                if (cmbCity.SelectedValue != null)
+                    SettingsBussines.Setting.CompanyInfo.EconomyCity = (Guid)cmbCity.SelectedValue;
 
-
+                await SettingsBussines.Setting.SaveAsync();
                 DialogResult = DialogResult.OK;
                 Close();
             }
@@ -181,7 +184,7 @@ namespace Settings
                 if (cmbCity.SelectedValue == null) return;
                 token?.Cancel();
                 token = new CancellationTokenSource();
-                var list = await RegionsBussines.GetAllAsync((Guid) cmbCity.SelectedValue, token.Token);
+                var list = await RegionsBussines.GetAllAsync((Guid)cmbCity.SelectedValue, token.Token);
                 RegionBindingSource.DataSource = list.OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)
@@ -197,7 +200,7 @@ namespace Settings
                 if (cmbState.SelectedValue == null) return;
                 token?.Cancel();
                 token = new CancellationTokenSource();
-                var list = await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue,token.Token);
+                var list = await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue, token.Token);
                 CityBindingSource.DataSource = list.OrderBy(q => q.Name).ToList();
             }
             catch (Exception ex)

@@ -106,30 +106,6 @@
             this.mnuPrintInherit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPrint = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
-            this.مدیریتستونهاToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuCode = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDate = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuOwner = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuType = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuRoom = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuMasahat = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuZirBana = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuRahn = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuEjare = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuSell = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuRegion = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuAddress = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuUserName = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuVam = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuQest = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuSaleSakht = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDocType = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuRental = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuAccountType = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuCondition = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuBView = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuFloor = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuKitchen = new System.Windows.Forms.ToolStripMenuItem();
             this.BuildingBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -544,11 +520,10 @@
             this.toolStripMenuItem6,
             this.mnuPrintOne,
             this.mnuPrint,
-            this.toolStripMenuItem4,
-            this.مدیریتستونهاToolStripMenuItem});
+            this.toolStripMenuItem4});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(246, 470);
+            this.contextMenu.Size = new System.Drawing.Size(246, 446);
             // 
             // mnuAdd
             // 
@@ -814,221 +789,6 @@
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
             this.toolStripMenuItem4.Size = new System.Drawing.Size(242, 6);
-            // 
-            // مدیریتستونهاToolStripMenuItem
-            // 
-            this.مدیریتستونهاToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuCode,
-            this.mnuDate,
-            this.mnuOwner,
-            this.mnuType,
-            this.mnuRoom,
-            this.mnuMasahat,
-            this.mnuZirBana,
-            this.mnuRahn,
-            this.mnuEjare,
-            this.mnuSell,
-            this.mnuRegion,
-            this.mnuAddress,
-            this.mnuUserName,
-            this.mnuVam,
-            this.mnuQest,
-            this.mnuSaleSakht,
-            this.mnuDocType,
-            this.mnuRental,
-            this.mnuAccountType,
-            this.mnuCondition,
-            this.mnuBView,
-            this.mnuFloor,
-            this.mnuKitchen});
-            this.مدیریتستونهاToolStripMenuItem.Image = global::Building.Properties.Resources.technology_1;
-            this.مدیریتستونهاToolStripMenuItem.Name = "مدیریتستونهاToolStripMenuItem";
-            this.مدیریتستونهاToolStripMenuItem.Size = new System.Drawing.Size(245, 24);
-            this.مدیریتستونهاToolStripMenuItem.Text = "مدیریت ستون ها";
-            // 
-            // mnuCode
-            // 
-            this.mnuCode.CheckOnClick = true;
-            this.mnuCode.Name = "mnuCode";
-            this.mnuCode.Size = new System.Drawing.Size(166, 24);
-            this.mnuCode.Text = "کد ملک";
-            this.mnuCode.CheckedChanged += new System.EventHandler(this.mnuCode_CheckedChanged);
-            // 
-            // mnuDate
-            // 
-            this.mnuDate.CheckOnClick = true;
-            this.mnuDate.Name = "mnuDate";
-            this.mnuDate.Size = new System.Drawing.Size(166, 24);
-            this.mnuDate.Text = "تاریخ ثبت";
-            this.mnuDate.CheckedChanged += new System.EventHandler(this.mnuDate_CheckedChanged);
-            // 
-            // mnuOwner
-            // 
-            this.mnuOwner.CheckOnClick = true;
-            this.mnuOwner.Name = "mnuOwner";
-            this.mnuOwner.Size = new System.Drawing.Size(166, 24);
-            this.mnuOwner.Text = "نام مالک";
-            this.mnuOwner.CheckedChanged += new System.EventHandler(this.mnuOwner_CheckedChanged);
-            // 
-            // mnuType
-            // 
-            this.mnuType.CheckOnClick = true;
-            this.mnuType.Name = "mnuType";
-            this.mnuType.Size = new System.Drawing.Size(166, 24);
-            this.mnuType.Text = "نوع ملک";
-            this.mnuType.CheckedChanged += new System.EventHandler(this.mnuType_CheckedChanged);
-            // 
-            // mnuRoom
-            // 
-            this.mnuRoom.CheckOnClick = true;
-            this.mnuRoom.Name = "mnuRoom";
-            this.mnuRoom.Size = new System.Drawing.Size(166, 24);
-            this.mnuRoom.Text = "تعداد اتاق";
-            this.mnuRoom.CheckedChanged += new System.EventHandler(this.mnuRoom_CheckedChanged);
-            // 
-            // mnuMasahat
-            // 
-            this.mnuMasahat.CheckOnClick = true;
-            this.mnuMasahat.Name = "mnuMasahat";
-            this.mnuMasahat.Size = new System.Drawing.Size(166, 24);
-            this.mnuMasahat.Text = "مساحت";
-            this.mnuMasahat.CheckedChanged += new System.EventHandler(this.mnuMasahat_CheckedChanged);
-            // 
-            // mnuZirBana
-            // 
-            this.mnuZirBana.CheckOnClick = true;
-            this.mnuZirBana.Name = "mnuZirBana";
-            this.mnuZirBana.Size = new System.Drawing.Size(166, 24);
-            this.mnuZirBana.Text = "زیربنا";
-            this.mnuZirBana.CheckedChanged += new System.EventHandler(this.mnuZirBana_CheckedChanged);
-            // 
-            // mnuRahn
-            // 
-            this.mnuRahn.CheckOnClick = true;
-            this.mnuRahn.Name = "mnuRahn";
-            this.mnuRahn.Size = new System.Drawing.Size(166, 24);
-            this.mnuRahn.Text = "قیمت رهن";
-            this.mnuRahn.CheckedChanged += new System.EventHandler(this.mnuRahn_CheckedChanged);
-            // 
-            // mnuEjare
-            // 
-            this.mnuEjare.CheckOnClick = true;
-            this.mnuEjare.Name = "mnuEjare";
-            this.mnuEjare.Size = new System.Drawing.Size(166, 24);
-            this.mnuEjare.Text = "قیمت اجاره";
-            this.mnuEjare.CheckedChanged += new System.EventHandler(this.mnuEjare_CheckedChanged);
-            // 
-            // mnuSell
-            // 
-            this.mnuSell.CheckOnClick = true;
-            this.mnuSell.Name = "mnuSell";
-            this.mnuSell.Size = new System.Drawing.Size(166, 24);
-            this.mnuSell.Text = "قیمت فروش";
-            this.mnuSell.CheckedChanged += new System.EventHandler(this.mnuSell_CheckedChanged);
-            // 
-            // mnuRegion
-            // 
-            this.mnuRegion.CheckOnClick = true;
-            this.mnuRegion.Name = "mnuRegion";
-            this.mnuRegion.Size = new System.Drawing.Size(166, 24);
-            this.mnuRegion.Text = "محدوده";
-            this.mnuRegion.CheckedChanged += new System.EventHandler(this.mnuRegion_CheckedChanged);
-            // 
-            // mnuAddress
-            // 
-            this.mnuAddress.CheckOnClick = true;
-            this.mnuAddress.Name = "mnuAddress";
-            this.mnuAddress.Size = new System.Drawing.Size(166, 24);
-            this.mnuAddress.Text = "آدرس";
-            this.mnuAddress.CheckedChanged += new System.EventHandler(this.mnuAddress_CheckedChanged);
-            // 
-            // mnuUserName
-            // 
-            this.mnuUserName.CheckOnClick = true;
-            this.mnuUserName.Name = "mnuUserName";
-            this.mnuUserName.Size = new System.Drawing.Size(166, 24);
-            this.mnuUserName.Text = "مشاور";
-            this.mnuUserName.CheckedChanged += new System.EventHandler(this.mnuUserName_CheckedChanged);
-            // 
-            // mnuVam
-            // 
-            this.mnuVam.CheckOnClick = true;
-            this.mnuVam.Name = "mnuVam";
-            this.mnuVam.Size = new System.Drawing.Size(166, 24);
-            this.mnuVam.Text = "مبلغ وام";
-            this.mnuVam.CheckedChanged += new System.EventHandler(this.mnuVam_CheckedChanged);
-            // 
-            // mnuQest
-            // 
-            this.mnuQest.CheckOnClick = true;
-            this.mnuQest.Name = "mnuQest";
-            this.mnuQest.Size = new System.Drawing.Size(166, 24);
-            this.mnuQest.Text = "مبلغ قسط";
-            this.mnuQest.CheckedChanged += new System.EventHandler(this.mnuQest_CheckedChanged);
-            // 
-            // mnuSaleSakht
-            // 
-            this.mnuSaleSakht.CheckOnClick = true;
-            this.mnuSaleSakht.Name = "mnuSaleSakht";
-            this.mnuSaleSakht.Size = new System.Drawing.Size(166, 24);
-            this.mnuSaleSakht.Text = "سال ساخت";
-            this.mnuSaleSakht.CheckedChanged += new System.EventHandler(this.mnuSaleSakht_CheckedChanged);
-            // 
-            // mnuDocType
-            // 
-            this.mnuDocType.CheckOnClick = true;
-            this.mnuDocType.Name = "mnuDocType";
-            this.mnuDocType.Size = new System.Drawing.Size(166, 24);
-            this.mnuDocType.Text = "نوع سند";
-            this.mnuDocType.CheckedChanged += new System.EventHandler(this.mnuDocType_CheckedChanged);
-            // 
-            // mnuRental
-            // 
-            this.mnuRental.CheckOnClick = true;
-            this.mnuRental.Name = "mnuRental";
-            this.mnuRental.Size = new System.Drawing.Size(166, 24);
-            this.mnuRental.Text = "ارجحیت اجاره";
-            this.mnuRental.CheckedChanged += new System.EventHandler(this.mnuRental_CheckedChanged);
-            // 
-            // mnuAccountType
-            // 
-            this.mnuAccountType.CheckOnClick = true;
-            this.mnuAccountType.Name = "mnuAccountType";
-            this.mnuAccountType.Size = new System.Drawing.Size(166, 24);
-            this.mnuAccountType.Text = "نوع کاربری";
-            this.mnuAccountType.CheckedChanged += new System.EventHandler(this.mnuAccountType_CheckedChanged);
-            // 
-            // mnuCondition
-            // 
-            this.mnuCondition.CheckOnClick = true;
-            this.mnuCondition.Name = "mnuCondition";
-            this.mnuCondition.Size = new System.Drawing.Size(166, 24);
-            this.mnuCondition.Text = "وضعیت ملک";
-            this.mnuCondition.CheckedChanged += new System.EventHandler(this.mnuCondition_CheckedChanged);
-            // 
-            // mnuBView
-            // 
-            this.mnuBView.CheckOnClick = true;
-            this.mnuBView.Name = "mnuBView";
-            this.mnuBView.Size = new System.Drawing.Size(166, 24);
-            this.mnuBView.Text = "نما";
-            this.mnuBView.CheckedChanged += new System.EventHandler(this.mnuBView_CheckedChanged);
-            // 
-            // mnuFloor
-            // 
-            this.mnuFloor.CheckOnClick = true;
-            this.mnuFloor.Name = "mnuFloor";
-            this.mnuFloor.Size = new System.Drawing.Size(166, 24);
-            this.mnuFloor.Text = "کفپوش";
-            this.mnuFloor.CheckedChanged += new System.EventHandler(this.mnuFloor_CheckedChanged);
-            // 
-            // mnuKitchen
-            // 
-            this.mnuKitchen.CheckOnClick = true;
-            this.mnuKitchen.Name = "mnuKitchen";
-            this.mnuKitchen.Size = new System.Drawing.Size(166, 24);
-            this.mnuKitchen.Text = "سرویس آشپزخانه";
-            this.mnuKitchen.CheckedChanged += new System.EventHandler(this.mnuKitchen_CheckedChanged);
             // 
             // BuildingBindingSource
             // 
@@ -1332,17 +1092,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem mnuPrint;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
-        private System.Windows.Forms.ToolStripMenuItem مدیریتستونهاToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mnuCode;
-        private System.Windows.Forms.ToolStripMenuItem mnuDate;
-        private System.Windows.Forms.ToolStripMenuItem mnuOwner;
-        private System.Windows.Forms.ToolStripMenuItem mnuType;
-        private System.Windows.Forms.ToolStripMenuItem mnuRoom;
-        private System.Windows.Forms.ToolStripMenuItem mnuMasahat;
-        private System.Windows.Forms.ToolStripMenuItem mnuZirBana;
-        private System.Windows.Forms.ToolStripMenuItem mnuRahn;
-        private System.Windows.Forms.ToolStripMenuItem mnuEjare;
-        private System.Windows.Forms.ToolStripMenuItem mnuSell;
         private System.Windows.Forms.ToolStripMenuItem mnuSendSms;
         private System.Windows.Forms.ToolStripMenuItem mnuSendToDivar;
         private System.Windows.Forms.ToolStripMenuItem mnuSendToSheypoor;
@@ -1350,19 +1099,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem mnuMatchRequest;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
-        private System.Windows.Forms.ToolStripMenuItem mnuRegion;
-        private System.Windows.Forms.ToolStripMenuItem mnuAddress;
-        private System.Windows.Forms.ToolStripMenuItem mnuUserName;
-        private System.Windows.Forms.ToolStripMenuItem mnuVam;
-        private System.Windows.Forms.ToolStripMenuItem mnuQest;
-        private System.Windows.Forms.ToolStripMenuItem mnuSaleSakht;
-        private System.Windows.Forms.ToolStripMenuItem mnuDocType;
-        private System.Windows.Forms.ToolStripMenuItem mnuRental;
-        private System.Windows.Forms.ToolStripMenuItem mnuAccountType;
-        private System.Windows.Forms.ToolStripMenuItem mnuCondition;
-        private System.Windows.Forms.ToolStripMenuItem mnuBView;
-        private System.Windows.Forms.ToolStripMenuItem mnuFloor;
-        private System.Windows.Forms.ToolStripMenuItem mnuKitchen;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;

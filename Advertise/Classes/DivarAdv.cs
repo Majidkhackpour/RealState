@@ -92,7 +92,7 @@ namespace Advertise.Classes
                 if (isFromSimForm)
                 {
                     var sim = await SimcardBussines.GetAsync(simCardNumber);
-                    _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
+                    _driver = Utility.RefreshDriver(SettingsBussines.AdvertiseSetting.IsSilent);
                     if (!_driver.Url.Contains("divar.ir"))
                         _driver.Navigate().GoToUrl("https://divar.ir");
 
@@ -210,7 +210,7 @@ namespace Advertise.Classes
                 }
                 else
                 {
-                    _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
+                    _driver = Utility.RefreshDriver(SettingsBussines.AdvertiseSetting.IsSilent);
                     if (!_driver.Url.Contains("divar.ir"))
                         _driver.Navigate().GoToUrl("https://divar.ir");
 
@@ -338,7 +338,7 @@ namespace Advertise.Classes
             {
                 if (isFromSimcard)
                 {
-                    _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
+                    _driver = Utility.RefreshDriver(SettingsBussines.AdvertiseSetting.IsSilent);
                     if (!_driver.Url.Contains("https://chat.divar.ir/"))
                         _driver.Navigate().GoToUrl("https://chat.divar.ir/");
 
@@ -468,7 +468,7 @@ namespace Advertise.Classes
                 }
                 else
                 {
-                    _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
+                    _driver = Utility.RefreshDriver(SettingsBussines.AdvertiseSetting.IsSilent);
                     if (!_driver.Url.Contains("https://chat.divar.ir/"))
                         _driver.Navigate().GoToUrl("https://chat.divar.ir/");
 
@@ -585,7 +585,7 @@ namespace Advertise.Classes
         {
             try
             {
-                _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
+                _driver = Utility.RefreshDriver(SettingsBussines.AdvertiseSetting.IsSilent);
                 if (!_driver.Url.Contains("divar.ir"))
                     _driver.Navigate().GoToUrl("https://divar.ir");
 
@@ -691,7 +691,7 @@ namespace Advertise.Classes
             //{
             //    adv.AdvType = AdvertiseType.Divar;
             //    line = 2;
-            //    _driver = Utility.RefreshDriver(_driver, clsAdvertise.IsSilent);
+            //    _driver = Utility.RefreshDriver(_driver, SettingsBussines.AdvertiseSetting.IsSilent);
             //    line = 3;
             //    _driver.Navigate().GoToUrl("https://divar.ir/new");
             //    line = 4;
@@ -700,7 +700,7 @@ namespace Advertise.Classes
             //    if (string.IsNullOrEmpty(adv.Category))
             //    {
             //        line = 5;
-            //        adv.Category = clsAdvertise.DivarSetting?.Category1 ?? "";
+            //        adv.Category = SettingsBussines.AdvertiseSetting.DivarSetting?.Category1 ?? "";
             //    }
 
             //    line = 6;
@@ -712,7 +712,7 @@ namespace Advertise.Classes
             //    if (string.IsNullOrEmpty(adv.SubCategory1))
             //    {
             //        line = 8;
-            //        adv.SubCategory1 = clsAdvertise.DivarSetting?.Category2 ?? "";
+            //        adv.SubCategory1 = SettingsBussines.AdvertiseSetting.DivarSetting?.Category2 ?? "";
             //    }
 
             //    line = 9;
@@ -724,7 +724,7 @@ namespace Advertise.Classes
             //    if (string.IsNullOrEmpty(adv.SubCategory2))
             //    {
             //        line = 11;
-            //        adv.SubCategory2 = clsAdvertise.DivarSetting?.Category3 ?? "";
+            //        adv.SubCategory2 = SettingsBussines.AdvertiseSetting.DivarSetting?.Category3 ?? "";
             //    }
 
             //    line = 12;
@@ -910,7 +910,7 @@ namespace Advertise.Classes
         public async Task<List<DivarRegion>> GetAllRegionFromDivar(List<DivarCities> City)
         {
             var region = new List<DivarRegion>();
-            _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
+            _driver = Utility.RefreshDriver(SettingsBussines.AdvertiseSetting.IsSilent);
             _driver.Navigate().GoToUrl("https://divar.ir/new");
             //کلیک کردن روی کتگوری اصلی
             _driver.FindElements(By.ClassName("expanded-category-selector__item"))
@@ -979,7 +979,7 @@ namespace Advertise.Classes
         //        try
         //        {
         //            List<AdvertiseLogBussines> allAdvertiseLog = null;
-        //            _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
+        //            _driver = Utility.RefreshDriver(SettingsBussines.AdvertiseSetting.IsSilent);
         //            if (DateTime.Now.DayOfWeek == DayOfWeek.Friday)
         //            {
         //                dayCount = 7;
@@ -992,7 +992,7 @@ namespace Advertise.Classes
         //            else
         //            {
         //                if (dayCount == 0)
-        //                    dayCount = clsAdvertise.Divar_DayCountForUpdateState;
+        //                    dayCount = SettingsBussines.AdvertiseSetting.Divar_DayCountForUpdateState;
         //                var lastWeek = DateTime.Now.AddDays(-dayCount);
         //                if (number == 0)
         //                {
@@ -1128,7 +1128,7 @@ namespace Advertise.Classes
         {
             try
             {
-                _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
+                _driver = Utility.RefreshDriver(SettingsBussines.AdvertiseSetting.IsSilent);
                 if (!adv.URL.Contains("manage")) return false;
                 if (_driver.Url != adv.URL)
                     _driver.Navigate().GoToUrl(adv.URL);
@@ -1169,7 +1169,7 @@ namespace Advertise.Classes
             {
                 var log = await Login(number, false);
                 if (!log) return false;
-                _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
+                _driver = Utility.RefreshDriver(SettingsBussines.AdvertiseSetting.IsSilent);
                 _driver.Navigate().GoToUrl("https://divar.ir/my-divar/my-posts");
                 await Utility.Wait(2);
                 var allPost = _driver.FindElements(By.ClassName("my-post")).Where(q => q.Text.Contains("منتشر شده"))
@@ -1200,7 +1200,7 @@ namespace Advertise.Classes
         public List<DivarCities> GetAllCityFromDivar()
         {
             var cities = new List<DivarCities>();
-            _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
+            _driver = Utility.RefreshDriver(SettingsBussines.AdvertiseSetting.IsSilent);
             if (_driver.Url != "https://divar.ir/")
                 _driver.Navigate().GoToUrl("https://divar.ir/");
             try
@@ -1240,7 +1240,7 @@ namespace Advertise.Classes
             try
             {
                 if (!url.Contains("manage")) return false;
-                _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
+                _driver = Utility.RefreshDriver(SettingsBussines.AdvertiseSetting.IsSilent);
                 if (_driver.Url != url) _driver.Navigate().GoToUrl(url);
                 await Utility.Wait();
                 //کلیک روی دکمه حذف
@@ -1289,7 +1289,7 @@ namespace Advertise.Classes
         {
             try
             {
-                _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
+                _driver = Utility.RefreshDriver(SettingsBussines.AdvertiseSetting.IsSilent);
                 _driver.Navigate().GoToUrl("https://divar.ir/my-divar/my-posts");
                 var sim = await SimcardBussines.GetAsync(number);
                 if (sim == null) return;
@@ -1315,7 +1315,7 @@ namespace Advertise.Classes
         {
             try
             {
-                _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
+                _driver = Utility.RefreshDriver(SettingsBussines.AdvertiseSetting.IsSilent);
                 _driver.Navigate().GoToUrl("https://divar.ir/my-divar/my-posts");
                 var allPost = _driver.FindElements(By.ClassName("my-post"));
                 var manageLinks = new List<string>();
@@ -1800,7 +1800,7 @@ namespace Advertise.Classes
         //{
         //    try
         //    {
-        //        _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
+        //        _driver = Utility.RefreshDriver(SettingsBussines.AdvertiseSetting.IsSilent);
         //        _driver.Navigate().GoToUrl("https://divar.ir/my-divar/my-posts");
 
         //        var allPost = _driver.FindElements(By.ClassName("my-post")).Where(q => q.Text.Contains("منتظر پرداخت"))

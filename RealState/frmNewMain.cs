@@ -56,6 +56,7 @@ using WindowsSerivces;
 using Building.Buildings.Selector;
 using Persistence;
 using Services.FilterObjects;
+using Services.Settings;
 using Settings.Forms;
 using WebHesabBussines;
 
@@ -226,7 +227,7 @@ namespace RealState
         {
             try
             {
-                lblEconomyName.Text = clsEconomyUnit.EconomyName;
+                lblEconomyName.Text = SettingsBussines.Setting.CompanyInfo.EconomyName;
                 var cn = new SqlConnection(AppSettings.DefaultConnectionString);
                 lblDbName.Text = cn?.Database ?? "";
                 lblVersion.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
@@ -655,10 +656,15 @@ namespace RealState
         private void lblUsers_Click(object sender, EventArgs e) => grpUsers.Height = grpUsers.Height == 48 ? 156 : 48;
         private void lblAccounting_Click(object sender, EventArgs e) => grpAccounting.Height = grpAccounting.Height == 48 ? 481 : 48;
         private void lblOptions_Click(object sender, EventArgs e) => grpOptions.Height = grpOptions.Height == 48 ? 481 : 48;
-        private void frmNewMain_Load(object sender, EventArgs e)
+        private async void frmNewMain_Load(object sender, EventArgs e)
         {
             try
             {
+                if (SettingsBussines.Setting == null)
+                    SettingsBussines.Setting = new GlobalSetting();
+                if (SettingsBussines.AdvertiseSetting == null)
+                    SettingsBussines.AdvertiseSetting = new AdvertiseSetting();
+
                 SetAccess();
                 FileFormatter.Init();
                 if (!Cache.IsClient)
@@ -674,9 +680,9 @@ namespace RealState
                     myCollection.Add(item);
                 txtSearch.AutoCompleteCustomSource = myCollection;
                 lblDate.Text = Calendar.GetFullCalendar();
-                lblSerial.Text = $@"شناسه فنی: {clsGlobalSetting.HardDriveSerial}";
+                lblSerial.Text = $@"شناسه فنی: {await clsGlobalSetting.GetHardDriveSerialAsync()}";
                 SetClock();
-                _showDialog = clsGlobal.ShowDialog;
+                _showDialog = SettingsBussines.Setting.Global.ShowDialog;
                 _ = Task.Run(() => AutoBackUp.BackUpAsync(@"C:\", false, EnBackUpType.Auto));
                 LoadDashboard();
                 SetButtomLables();

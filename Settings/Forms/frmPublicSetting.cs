@@ -1,9 +1,11 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using EntityCache.Assistence;
+using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
 using Services;
-using Settings.Classes;
+using System;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Settings.Forms
 {
@@ -13,32 +15,35 @@ namespace Settings.Forms
         {
             try
             {
-                txtBirthDayText.Text = clsGlobal.BirthDayText;
-                txtSetArchive.Value = clsGlobal.SetArchive;
-                chbPrintDesign.Checked = clsPrint.ShowDesign;
-                chbPrintPreView.Checked = clsPrint.ShowPreview;
-                txtImagePath.Text = clsGlobal.ImagePath;
-                txtMediaPath.Text = clsGlobal.MediaPath;
-                chbShowDialog.Checked = clsGlobal.ShowDialog;
-                chbDeleteRequest.Checked = clsGlobal.DeleteRequest;
+                var sett = SettingsBussines.Setting;
+                txtBirthDayText.Text = sett.Global.BirthDayText;
+                txtSetArchive.Value = sett.Global.SetArchive;
+                chbPrintDesign.Checked = sett.Print.ShowDesign;
+                chbPrintPreView.Checked = sett.Print.ShowPreview;
+                txtImagePath.Text = sett.Global.ImagePath;
+                txtMediaPath.Text = sett.Global.MediaPath;
+                chbShowDialog.Checked = sett.Global.ShowDialog;
+                chbDeleteRequest.Checked = sett.Global.DeleteRequest;
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void SaveGlobal()
+        private async Task SaveGlobalAsync()
         {
             try
             {
-                clsGlobal.BirthDayText = txtBirthDayText.Text;
-                clsGlobal.SetArchive = (int)txtSetArchive.Value;
-                clsPrint.ShowDesign = chbPrintDesign.Checked;
-                clsPrint.ShowPreview = chbPrintPreView.Checked;
-                clsGlobal.ImagePath = txtImagePath.Text;
-                clsGlobal.MediaPath = txtMediaPath.Text;
-                clsGlobal.ShowDialog = chbShowDialog.Checked;
-                clsGlobal.DeleteRequest = chbDeleteRequest.Checked;
+                SettingsBussines.Setting.Global.BirthDayText = txtBirthDayText.Text;
+                SettingsBussines.Setting.Global.SetArchive = (int)txtSetArchive.Value;
+                SettingsBussines.Setting.Print.ShowDesign = chbPrintDesign.Checked;
+                SettingsBussines.Setting.Print.ShowPreview = chbPrintPreView.Checked;
+                SettingsBussines.Setting.Global.ImagePath = txtImagePath.Text;
+                SettingsBussines.Setting.Global.MediaPath = txtMediaPath.Text;
+                SettingsBussines.Setting.Global.ShowDialog = chbShowDialog.Checked;
+                SettingsBussines.Setting.Global.DeleteRequest = chbDeleteRequest.Checked;
+
+                await SettingsBussines.Setting.SaveAsync();
             }
             catch (Exception ex)
             {
@@ -52,12 +57,12 @@ namespace Settings.Forms
             DialogResult = DialogResult.Cancel;
             Close();
         }
-        private void btnFinish_Click(object sender, EventArgs e)
+        private async void btnFinish_Click(object sender, EventArgs e)
         {
             btnFinish.Enabled = false;
             try
             {
-                SaveGlobal();
+                await SaveGlobalAsync();
                 frmNotification.PublicInfo.ShowMessage("تنظیمات با موفقیت ثبت شد");
                 DialogResult = DialogResult.OK;
                 Close();

@@ -1,9 +1,11 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using EntityCache.Assistence;
+using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
 using Services;
-using Settings.Classes;
+using System;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Settings.Forms
 {
@@ -14,13 +16,13 @@ namespace Settings.Forms
             try
             {
                 FillCmbSandouq();
-
-                txtSCode.Text = clsSandouq.NationalCode;
-                txtSNatCode.Text = clsSandouq.NationalCode;
-                txtSIdCode.Text = clsSandouq.IdCode;
-                txtSArzesh.Text = clsSandouq.ArzeshAfzoude;
-                txtSTabdil.Text = clsSandouq.Tabdil;
-                cmbSType.Text = clsSandouq.EconomyCodeStatus;
+                var sett = SettingsBussines.Setting;
+                txtSCode.Text = sett.SafeBox.NationalCode;
+                txtSNatCode.Text = sett.SafeBox.NationalCode;
+                txtSIdCode.Text = sett.SafeBox.IdCode;
+                txtSArzesh.Text = sett.SafeBox.ArzeshAfzoude.ToString();
+                txtSTabdil.Text = sett.SafeBox.Tabdil.ToString();
+                cmbSType.Text = sett.SafeBox.EconomyCodeStatus;
             }
             catch (Exception ex)
             {
@@ -42,16 +44,18 @@ namespace Settings.Forms
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void SaveSandouq()
+        private async Task SaveSandouqAsync()
         {
             try
             {
-                clsSandouq.NationalCode = txtSCode.Text;
-                clsSandouq.NationalCode = txtSNatCode.Text;
-                clsSandouq.IdCode = txtSIdCode.Text;
-                clsSandouq.ArzeshAfzoude = txtSArzesh.Text;
-                clsSandouq.Tabdil = txtSTabdil.Text;
-                clsSandouq.EconomyCodeStatus = cmbSType.Text;
+                SettingsBussines.Setting.SafeBox.NationalCode = txtSCode.Text;
+                SettingsBussines.Setting.SafeBox.NationalCode = txtSNatCode.Text;
+                SettingsBussines.Setting.SafeBox.IdCode = txtSIdCode.Text;
+                SettingsBussines.Setting.SafeBox.ArzeshAfzoude = txtSArzesh.Text.ParseToDouble();
+                SettingsBussines.Setting.SafeBox.Tabdil = txtSTabdil.Text.ParseToDouble();
+                SettingsBussines.Setting.SafeBox.EconomyCodeStatus = cmbSType.Text;
+
+                await SettingsBussines.Setting.SaveAsync();
             }
             catch (Exception ex)
             {
@@ -60,12 +64,12 @@ namespace Settings.Forms
         }
         public frmSandouq() => InitializeComponent();
         private void frmSandouq_Load(object sender, System.EventArgs e) => LoadSandouqAsync();
-        private void btnFinish_Click(object sender, System.EventArgs e)
+        private async void btnFinish_Click(object sender, System.EventArgs e)
         {
             btnFinish.Enabled = false;
             try
             {
-                SaveSandouq();
+                await SaveSandouqAsync();
                 frmNotification.PublicInfo.ShowMessage("تنظیمات با موفقیت ثبت شد");
                 DialogResult = DialogResult.OK;
                 Close();

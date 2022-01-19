@@ -44,13 +44,13 @@ namespace Advertise.Classes
 
             return list;
         }
-        public static async Task<List<DivarRegion>> GetAllRegionsAsync(string cityGuid)
+        public static async Task<List<DivarRegion>> GetAllRegionsAsync(Guid cityGuid)
         {
             var list = new List<DivarRegion>();
             try
             {
                 var cities = await SerializedDataBussines.GetDivarCityAsync();
-                var cityLocal = await CitiesBussines.GetAsync(Guid.Parse(cityGuid));
+                var cityLocal = await CitiesBussines.GetAsync(cityGuid);
                 var cityName = cities.FirstOrDefault(q => q.Name == cityLocal.Name)?.Guid ?? Guid.Empty;
                 var text = "";
                 switch (cityLocal.Name)

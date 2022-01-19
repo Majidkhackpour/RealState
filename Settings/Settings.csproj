@@ -141,21 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppSettings.cs" />
-    <Compile Include="Classes\clsAdvertise.cs" />
-    <Compile Include="Classes\clsBackUp.cs" />
-    <Compile Include="Classes\clsBuilding.cs" />
-    <Compile Include="Classes\clsBuildingRequest.cs" />
-    <Compile Include="Classes\clsEconomyUnit.cs" />
-    <Compile Include="Classes\clsGlobal.cs" />
     <Compile Include="Classes\clsGlobalSetting.cs" />
-    <Compile Include="Classes\clsPeoples.cs" />
-    <Compile Include="Classes\clsPrint.cs" />
-    <Compile Include="Classes\clsSandouq.cs" />
-    <Compile Include="Classes\clsSheypoorSetting.cs" />
-    <Compile Include="Classes\clsTelegram.cs" />
-    <Compile Include="Classes\clsDivarSetting.cs" />
-    <Compile Include="Classes\clsWhatsApp.cs" />
-    <Compile Include="Classes\Payamak.cs" />
     <Compile Include="clsRegistery.cs" />
     <Compile Include="Forms\frmBackUp.cs">
       <SubType>Form</SubType>

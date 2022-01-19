@@ -30,7 +30,7 @@ namespace Payamak
 
 
 
-                var def = Guid.Parse(Settings.Classes.Payamak.DefaultPanelGuid);
+                var def = SettingsBussines.Setting.Sms.DefaultPanelGuid;
                 if (def != Guid.Empty) cmbPanel.SelectedValue = def;
             }
             catch (Exception ex)

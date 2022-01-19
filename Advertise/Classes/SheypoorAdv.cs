@@ -91,7 +91,7 @@ namespace Advertise.Classes
         {
             try
             {
-                _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
+                _driver = Utility.RefreshDriver(SettingsBussines.AdvertiseSetting.IsSilent);
                 await Utility.Wait();
                 var link = _driver.FindElements(By.TagName("span")).Any(q => q.Text == "حساب من");
                 if (!link) return;
@@ -120,7 +120,7 @@ namespace Advertise.Classes
             //{
             //    var counter = 0;
             //    adv.AdvType = AdvertiseType.Sheypoor;
-            //    _driver = Utility.RefreshDriver(_driver, clsAdvertise.IsSilent);
+            //    _driver = Utility.RefreshDriver(_driver, SettingsBussines.AdvertiseSetting.IsSilent);
             //    _driver.Navigate().GoToUrl("https://www.sheypoor.com/listing/new");
             //    await Utility.Wait();
 
@@ -130,10 +130,10 @@ namespace Advertise.Classes
 
             //    //کلیک روی ساب کتگوری 1
             //    if (string.IsNullOrEmpty(adv.SubCategory1))
-            //        adv.SubCategory1 = clsAdvertise.SheypoorSetting?.Category1 ?? "";
+            //        adv.SubCategory1 = SettingsBussines.AdvertiseSetting.SheypoorSetting?.Category1 ?? "";
 
             //    if (string.IsNullOrEmpty(adv.SubCategory1))
-            //        adv.SubCategory1 = clsAdvertise.SheypoorSetting?.Category1;
+            //        adv.SubCategory1 = SettingsBussines.AdvertiseSetting.SheypoorSetting?.Category1;
 
             //    _driver.FindElements(By.ClassName("link")).FirstOrDefault(q => q.Text == adv.SubCategory1)?.Click();
 
@@ -141,10 +141,10 @@ namespace Advertise.Classes
 
             //    //کلیک روی ساب کتگوری2
             //    if (string.IsNullOrEmpty(adv.SubCategory2))
-            //        adv.SubCategory2 = clsAdvertise.SheypoorSetting?.Category2 ?? "";
+            //        adv.SubCategory2 = SettingsBussines.AdvertiseSetting.SheypoorSetting?.Category2 ?? "";
 
             //    if (string.IsNullOrEmpty(adv.SubCategory2))
-            //        adv.SubCategory2 = clsAdvertise.SheypoorSetting?.Category2;
+            //        adv.SubCategory2 = SettingsBussines.AdvertiseSetting.SheypoorSetting?.Category2;
 
             //    _driver.FindElements(By.ClassName("link")).FirstOrDefault(q => q.Text == adv.SubCategory2)?.Click();
 
@@ -293,7 +293,7 @@ namespace Advertise.Classes
                 var sim = await SimcardBussines.GetAsync(simCardNumber);
                 if (isFromSimcard)
                 {
-                    _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
+                    _driver = Utility.RefreshDriver(SettingsBussines.AdvertiseSetting.IsSilent);
                     var simBusiness = await Utility.CheckToken(simCardNumber, AdvertiseType.Sheypoor);
                     //   در صورتیکه توکن قبلا ثبت شده باشد لاگین می کند
                     if (!simBusiness.HasError)
@@ -408,7 +408,7 @@ namespace Advertise.Classes
                 }
                 else
                 {
-                    _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
+                    _driver = Utility.RefreshDriver(SettingsBussines.AdvertiseSetting.IsSilent);
                     var simBusiness = await Utility.CheckToken(simCardNumber, AdvertiseType.Sheypoor);
                     //   در صورتیکه توکن قبلا ثبت شده باشد لاگین می کند
                     if (!simBusiness.HasError)
@@ -522,7 +522,7 @@ namespace Advertise.Classes
         public async Task<List<string>> GetAllRegionFromSheypoor(string state, string city)
         {
             var region = new List<string>();
-            _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
+            _driver = Utility.RefreshDriver(SettingsBussines.AdvertiseSetting.IsSilent);
             string Name = "";
             _driver.Navigate().GoToUrl("https://Sheypoor.com/listing/new");
             try
@@ -561,7 +561,7 @@ namespace Advertise.Classes
         //{
         //    try
         //    {
-        //        _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
+        //        _driver = Utility.RefreshDriver(SettingsBussines.AdvertiseSetting.IsSilent);
         //        List<AdvertiseLogBussines> allAdvertiseLog = null;
         //        if (DateTime.Now.DayOfWeek == DayOfWeek.Friday)
         //        {
@@ -575,7 +575,7 @@ namespace Advertise.Classes
         //        else
         //        {
         //            if (dayCount == 0)
-        //                dayCount = clsAdvertise.Sheypoor_DayCountForUpdateState;
+        //                dayCount = SettingsBussines.AdvertiseSetting.Sheypoor_DayCountForUpdateState;
         //            var lastWeek = DateTime.Now.AddDays(-dayCount);
         //            var lst = await AdvertiseLogBussines.GetAllSpecialAsync(p =>
         //                p.DateM > lastWeek && p.AdvType == AdvertiseType.Sheypoor);
@@ -713,7 +713,7 @@ namespace Advertise.Classes
             token?.Cancel();
             token = new CancellationTokenSource();
             var states = await StatesBussines.GetAllAsync(token.Token);
-            _driver = Utility.RefreshDriver(clsAdvertise.IsSilent);
+            _driver = Utility.RefreshDriver(SettingsBussines.AdvertiseSetting.IsSilent);
             _driver.Navigate().GoToUrl("https://www.sheypoor.com");
             try
             {

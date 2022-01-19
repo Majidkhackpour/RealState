@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using EntityCache.Bussines;
 using Services;
 using Settings.Classes;
 
@@ -27,7 +28,7 @@ namespace RealState
         {
             try
             {
-                if (string.IsNullOrEmpty(clsGlobal.ImagePath)) return;
+                if (string.IsNullOrEmpty(SettingsBussines.Setting.Global.ImagePath)) return;
 
                 var localDir = Path.Combine(Application.StartupPath, "Images");
                 if (!Directory.Exists(localDir))
@@ -36,9 +37,9 @@ namespace RealState
                     return;
                 }
                 var localFiles = new DirectoryInfo(localDir).GetFiles()?.Select(o => o.Name)?.ToList();
-                if (!Directory.Exists(clsGlobal.ImagePath))
-                    Directory.CreateDirectory(clsGlobal.ImagePath);
-                var serverFiles = new DirectoryInfo(clsGlobal.ImagePath).GetFiles()?.Select(o => o.Name)?.ToList();
+                if (!Directory.Exists(SettingsBussines.Setting.Global.ImagePath))
+                    Directory.CreateDirectory(SettingsBussines.Setting.Global.ImagePath);
+                var serverFiles = new DirectoryInfo(SettingsBussines.Setting.Global.ImagePath).GetFiles()?.Select(o => o.Name)?.ToList();
 
                 if (localFiles.Count <= 0 && serverFiles.Count <= 0) return;
 
@@ -66,7 +67,7 @@ namespace RealState
         {
             try
             {
-                if (string.IsNullOrEmpty(clsGlobal.MediaPath)) return;
+                if (string.IsNullOrEmpty(SettingsBussines.Setting.Global.MediaPath)) return;
 
                 var localDir = Path.Combine(Application.StartupPath, "Media");
                 if (!Directory.Exists(localDir))
@@ -75,9 +76,9 @@ namespace RealState
                     return;
                 }
                 var localFiles = new DirectoryInfo(localDir).GetFiles()?.Select(o => o.Name)?.ToList();
-                if (!Directory.Exists(clsGlobal.MediaPath))
-                    Directory.CreateDirectory(clsGlobal.MediaPath);
-                var serverFiles = new DirectoryInfo(clsGlobal.MediaPath).GetFiles()?.Select(o => o.Name)?.ToList();
+                if (!Directory.Exists(SettingsBussines.Setting.Global.MediaPath))
+                    Directory.CreateDirectory(SettingsBussines.Setting.Global.MediaPath);
+                var serverFiles = new DirectoryInfo(SettingsBussines.Setting.Global.MediaPath).GetFiles()?.Select(o => o.Name)?.ToList();
 
                 if (localFiles.Count <= 0 && serverFiles.Count <= 0) return;
 
@@ -106,16 +107,16 @@ namespace RealState
             try
             {
                 if (list == null || list.Count <= 0) return;
-                if (!Directory.Exists(clsGlobal.ImagePath))
-                    Directory.CreateDirectory(clsGlobal.ImagePath);
+                if (!Directory.Exists(SettingsBussines.Setting.Global.ImagePath))
+                    Directory.CreateDirectory(SettingsBussines.Setting.Global.ImagePath);
                 var dir = Path.Combine(Application.StartupPath, "Images");
 
                 foreach (var item in list)
                 {
                     var fileName = "";
                     fileName = !item.EndsWith(".jpg")
-                        ? Path.Combine(clsGlobal.ImagePath, item + ".jpg")
-                        : Path.Combine(clsGlobal.ImagePath, item);
+                        ? Path.Combine(SettingsBussines.Setting.Global.ImagePath, item + ".jpg")
+                        : Path.Combine(SettingsBussines.Setting.Global.ImagePath, item);
                     try
                     {
                         var path_ = "";
@@ -149,8 +150,8 @@ namespace RealState
                     {
                         var path_ = "";
                         path_ = item.EndsWith(".jpg")
-                            ? Path.Combine(clsGlobal.ImagePath, item)
-                            : Path.Combine(clsGlobal.ImagePath, item + ".jpg");
+                            ? Path.Combine(SettingsBussines.Setting.Global.ImagePath, item)
+                            : Path.Combine(SettingsBussines.Setting.Global.ImagePath, item + ".jpg");
                         File.Copy(path_, fileName);
                     }
                     catch { }
@@ -166,14 +167,14 @@ namespace RealState
             try
             {
                 if (list == null || list.Count <= 0) return;
-                if (!Directory.Exists(clsGlobal.MediaPath))
-                    Directory.CreateDirectory(clsGlobal.MediaPath);
+                if (!Directory.Exists(SettingsBussines.Setting.Global.MediaPath))
+                    Directory.CreateDirectory(SettingsBussines.Setting.Global.MediaPath);
                 var dir = Path.Combine(Application.StartupPath, "Media");
 
                 foreach (var item in list)
                 {
                     var fileName = "";
-                    fileName = Path.Combine(clsGlobal.MediaPath, item);
+                    fileName = Path.Combine(SettingsBussines.Setting.Global.MediaPath, item);
                     try
                     {
                         var path_ = "";
@@ -204,7 +205,7 @@ namespace RealState
                     try
                     {
                         var path_ = "";
-                        path_ = Path.Combine(clsGlobal.MediaPath, item);
+                        path_ = Path.Combine(SettingsBussines.Setting.Global.MediaPath, item);
                         File.Copy(path_, fileName);
                     }
                     catch { }

@@ -37,7 +37,7 @@ namespace Advertise.Forms.MatchRegions
                 cityBindingSource.DataSource = dc?.ToList();
                 if (cityBindingSource.Count > 0)
                 {
-                    var cityLocal = await CitiesBussines.GetAsync(Guid.Parse(Settings.Classes.clsEconomyUnit.EconomyCity));
+                    var cityLocal = await CitiesBussines.GetAsync(SettingsBussines.Setting.CompanyInfo.EconomyCity);
                     if (cityLocal != null) cmbState.Text = cityLocal.Name;
                 }
             }

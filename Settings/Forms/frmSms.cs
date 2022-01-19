@@ -1,13 +1,14 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using DevComponents.DotNetBar;
+﻿using DevComponents.DotNetBar;
+using EntityCache.Assistence;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
 using Payamak.Panel;
 using Services;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Settings.Forms
 {
@@ -18,21 +19,21 @@ namespace Settings.Forms
             try
             {
                 await FillCmbSmsAsync();
-
-                if (!string.IsNullOrEmpty(Classes.Payamak.DefaultPanelGuid))
+                var sett = SettingsBussines.Setting;
+                if (sett.Sms.DefaultPanelGuid != Guid.Empty)
                 {
-                    var panel = await SmsPanelsBussines.GetAsync(Guid.Parse(Classes.Payamak.DefaultPanelGuid));
+                    var panel = await SmsPanelsBussines.GetAsync(sett.Sms.DefaultPanelGuid);
                     if (panel != null)
                         cmbPanel.Text = panel.Sender;
                 }
 
-                chbSendOwner.Checked = Classes.Payamak.IsSendToOwner.ParseToBoolean();
-                txtOwnerText.Text = Classes.Payamak.OwnerText;
-                chbSendSayer.Checked = Classes.Payamak.IsSendToSayer.ParseToBoolean();
-                txtSayerText.Text = Classes.Payamak.SayerText;
-                chbSendAfterMatch.Checked = Classes.Payamak.IsSendAfterMatch.ParseToBoolean();
-                txtMatchTextRahn.Text = Classes.Payamak.SendMatchTextRahn;
-                txtMatchTextKharid.Text = Classes.Payamak.SendMatchTextKharid;
+                chbSendOwner.Checked = sett.Sms.IsSendToOwner;
+                txtOwnerText.Text = sett.Sms.OwnerText;
+                chbSendSayer.Checked = sett.Sms.IsSendToSayer;
+                txtSayerText.Text = sett.Sms.SayerText;
+                chbSendAfterMatch.Checked = sett.Sms.IsSendAfterMatch;
+                txtMatchTextRahn.Text = sett.Sms.SendMatchTextRahn;
+                txtMatchTextKharid.Text = sett.Sms.SendMatchTextKharid;
             }
             catch (Exception ex)
             {
@@ -51,18 +52,21 @@ namespace Settings.Forms
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void SaveSms()
+        private async Task SaveSmsAsync()
         {
             try
             {
-                Classes.Payamak.DefaultPanelGuid = cmbPanel.SelectedValue?.ToString();
-                Classes.Payamak.IsSendToOwner = chbSendOwner.Checked.ToString();
-                Classes.Payamak.OwnerText = txtOwnerText.Text;
-                Classes.Payamak.IsSendToSayer = chbSendSayer.Checked.ToString();
-                Classes.Payamak.SayerText = txtSayerText.Text;
-                Classes.Payamak.IsSendAfterMatch = chbSendAfterMatch.Checked.ToString();
-                Classes.Payamak.SendMatchTextRahn = txtMatchTextRahn.Text;
-                Classes.Payamak.SendMatchTextKharid = txtMatchTextKharid.Text;
+                if (cmbPanel.SelectedValue != null)
+                    SettingsBussines.Setting.Sms.DefaultPanelGuid = (Guid)cmbPanel.SelectedValue;
+                SettingsBussines.Setting.Sms.IsSendToOwner = chbSendOwner.Checked;
+                SettingsBussines.Setting.Sms.OwnerText = txtOwnerText.Text;
+                SettingsBussines.Setting.Sms.IsSendToSayer = chbSendSayer.Checked;
+                SettingsBussines.Setting.Sms.SayerText = txtSayerText.Text;
+                SettingsBussines.Setting.Sms.IsSendAfterMatch = chbSendAfterMatch.Checked;
+                SettingsBussines.Setting.Sms.SendMatchTextRahn = txtMatchTextRahn.Text;
+                SettingsBussines.Setting.Sms.SendMatchTextKharid = txtMatchTextKharid.Text;
+
+                await SettingsBussines.Setting.SaveAsync();
             }
             catch (Exception ex)
             {
@@ -85,12 +89,12 @@ namespace Settings.Forms
             }
         }
         public frmSms() => InitializeComponent();
-        private void btnFinish_Click(object sender, System.EventArgs e)
+        private async void btnFinish_Click(object sender, System.EventArgs e)
         {
             btnFinish.Enabled = false;
             try
             {
-                SaveSms();
+                await SaveSmsAsync();
                 frmNotification.PublicInfo.ShowMessage("تنظیمات با موفقیت ثبت شد");
                 DialogResult = DialogResult.OK;
                 Close();

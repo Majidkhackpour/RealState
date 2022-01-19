@@ -124,151 +124,6 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void SetColumns()
-        {
-            try
-            {
-                _columnList = clsBuilding.ColumnsList;
-                if (_columnList == null || _columnList.Count <= 0)
-                {
-                    _columnList = new List<string> { "کد", "تاریخ ثبت", "مالک", "اتاق", "آدرس", "محدوده" };
-
-                    SaveColumns(_columnList);
-
-                    DGrid.Columns[dgCode.Index].Visible = true;
-                    DGrid.Columns[dgDateSh.Index].Visible = true;
-                    DGrid.Columns[dgOwnerName.Index].Visible = true;
-                    DGrid.Columns[dgRoomCount.Index].Visible = true;
-                    DGrid.Columns[dgAddress.Index].Visible = true;
-                    DGrid.Columns[dgRegionName.Index].Visible = true;
-
-                    mnuCode.Checked = true;
-                    mnuDate.Checked = true;
-                    mnuOwner.Checked = true;
-                    mnuRoom.Checked = true;
-                    mnuAddress.Checked = true;
-                    mnuRegion.Checked = true;
-                }
-                else
-                {
-                    foreach (var item in _columnList.ToList())
-                    {
-                        switch (item)
-                        {
-                            case "کد":
-                                DGrid.Columns[dgCode.Index].Visible = true;
-                                mnuCode.Checked = true;
-                                break;
-                            case "تاریخ":
-                                DGrid.Columns[dgDateSh.Index].Visible = true;
-                                mnuDate.Checked = true;
-                                break;
-                            case "مالک":
-                                DGrid.Columns[dgOwnerName.Index].Visible = true;
-                                mnuOwner.Checked = true;
-                                break;
-                            case "نوع ملک":
-                                DGrid.Columns[dgType.Index].Visible = true;
-                                mnuType.Checked = true;
-                                break;
-                            case "اتاق":
-                                DGrid.Columns[dgRoomCount.Index].Visible = true;
-                                mnuRoom.Checked = true;
-                                break;
-                            case "مساحت":
-                                DGrid.Columns[dgMasahat.Index].Visible = true;
-                                mnuMasahat.Checked = true;
-                                break;
-                            case "زیربنا":
-                                DGrid.Columns[dgZirBana.Index].Visible = true;
-                                mnuZirBana.Checked = true;
-                                break;
-                            case "رهن":
-                                DGrid.Columns[dgRahn.Index].Visible = true;
-                                mnuRahn.Checked = true;
-                                break;
-                            case "اجاره":
-                                DGrid.Columns[dgEjare.Index].Visible = true;
-                                mnuEjare.Checked = true;
-                                break;
-                            case "فروش":
-                                DGrid.Columns[dgSellPrice.Index].Visible = true;
-                                mnuSell.Checked = true;
-                                break;
-                            case "محدوده":
-                                DGrid.Columns[dgRegionName.Index].Visible = true;
-                                mnuRegion.Checked = true;
-                                break;
-                            case "آدرس":
-                                DGrid.Columns[dgAddress.Index].Visible = true;
-                                mnuAddress.Checked = true;
-                                break;
-                            case "مشاور":
-                                DGrid.Columns[dgUserName.Index].Visible = true;
-                                mnuUserName.Checked = true;
-                                break;
-                            case "وام":
-                                DGrid.Columns[dgVam.Index].Visible = true;
-                                mnuVam.Checked = true;
-                                break;
-                            case "قسط":
-                                DGrid.Columns[dgQest.Index].Visible = true;
-                                mnuQest.Checked = true;
-                                break;
-                            case "سال":
-                                DGrid.Columns[dgSaleSakht.Index].Visible = true;
-                                mnuSaleSakht.Checked = true;
-                                break;
-                            case "سند":
-                                DGrid.Columns[dgDocType.Index].Visible = true;
-                                mnuDocType.Checked = true;
-                                break;
-                            case "ارجحیت":
-                                DGrid.Columns[dgRentalAuthorityName.Index].Visible = true;
-                                mnuRental.Checked = true;
-                                break;
-                            case "کاربری":
-                                DGrid.Columns[dgAccountType.Index].Visible = true;
-                                mnuAccountType.Checked = true;
-                                break;
-                            case "وضعیت ملک":
-                                DGrid.Columns[dgCondition.Index].Visible = true;
-                                mnuCondition.Checked = true;
-                                break;
-                            case "نما":
-                                DGrid.Columns[dgView.Index].Visible = true;
-                                mnuBView.Checked = true;
-                                break;
-                            case "کفپوش":
-                                DGrid.Columns[dgFloorCover.Index].Visible = true;
-                                mnuFloor.Checked = true;
-                                break;
-                            case "آشپزخانه":
-                                DGrid.Columns[dgKitchenService.Index].Visible = true;
-                                mnuKitchen.Checked = true;
-                                break;
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void SaveColumns(List<string> listcl)
-        {
-            try
-            {
-                listcl = listcl.GroupBy(x => x)
-                    .Select(x => x.First()).ToList();
-                Settings.Classes.clsBuilding.ColumnsList = listcl;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
         private void Select()
         {
             try
@@ -328,14 +183,14 @@ namespace Building.Buildings
         {
             try
             {
-                if (string.IsNullOrEmpty(clsTelegram.Token) ||
-                    string.IsNullOrEmpty(clsTelegram.Channel))
+                if (string.IsNullOrEmpty(SettingsBussines.Setting.Telegram.Token) ||
+                    string.IsNullOrEmpty(SettingsBussines.Setting.Telegram.Channel))
                 {
                     frmNotification.PublicInfo.ShowMessage("لطفا ابتدا به تنظیمات برنامه، سربرگ تلگرام رفته و موارد خواسته شده را وارد نمایید");
                     return;
                 }
 
-                var text = await clsTelegramManager.GetTelegramTextAsync(bu, clsTelegram.Text);
+                var text = await clsTelegramManager.GetTelegramTextAsync(bu, SettingsBussines.Setting.Telegram.Text);
                 text = text.Trim();
                 var frm = new frmBuildingTelegramText(text);
                 if (frm.ShowDialog(this) == DialogResult.OK)
@@ -344,9 +199,9 @@ namespace Building.Buildings
                     var telegram = new WebTelegramBuilding
                     {
                         Content = text,
-                        BotApi = clsTelegram.Token,
+                        BotApi = SettingsBussines.Setting.Telegram.Token,
                         BuildingGuid = bu.Guid,
-                        Channel = clsTelegram.Channel
+                        Channel = SettingsBussines.Setting.Telegram.Channel
                     };
                     await telegram.SaveAsync();
                     bu.TelegramCount += 1;
@@ -370,14 +225,14 @@ namespace Building.Buildings
         {
             try
             {
-                if (string.IsNullOrEmpty(clsTelegram.Token) ||
-                    string.IsNullOrEmpty(clsTelegram.ManagerChannel))
+                if (string.IsNullOrEmpty(SettingsBussines.Setting.Telegram.Token) ||
+                    string.IsNullOrEmpty(SettingsBussines.Setting.Telegram.ManagerChannel))
                 {
                     frmNotification.PublicInfo.ShowMessage("لطفا ابتدا به تنظیمات برنامه، سربرگ تلگرام رفته و موارد خواسته شده را وارد نمایید");
                     return;
                 }
 
-                var text = await clsTelegramManager.GetTelegramTextAsync(bu, clsTelegram.ManagetText);
+                var text = await clsTelegramManager.GetTelegramTextAsync(bu, SettingsBussines.Setting.Telegram.ManagetText);
                 text = text.Trim();
                 var frm = new frmBuildingTelegramText(text);
                 if (frm.ShowDialog(this) == DialogResult.OK)
@@ -386,9 +241,9 @@ namespace Building.Buildings
                     var telegram = new WebTelegramBuilding
                     {
                         Content = text,
-                        BotApi = clsTelegram.Token,
+                        BotApi = SettingsBussines.Setting.Telegram.Token,
                         BuildingGuid = bu.Guid,
-                        Channel = clsTelegram.ManagerChannel
+                        Channel = SettingsBussines.Setting.Telegram.ManagerChannel
                     };
                     await telegram.SaveAsync();
                     bu.TelegramCount += 1;
@@ -413,35 +268,35 @@ namespace Building.Buildings
         {
             try
             {
-                if (string.IsNullOrEmpty(clsTelegram.Token) ||
-                    string.IsNullOrEmpty(clsTelegram.ManagerChannel) ||
-                    string.IsNullOrEmpty(clsTelegram.Channel))
+                if (string.IsNullOrEmpty(SettingsBussines.Setting.Telegram.Token) ||
+                    string.IsNullOrEmpty(SettingsBussines.Setting.Telegram.ManagerChannel) ||
+                    string.IsNullOrEmpty(SettingsBussines.Setting.Telegram.Channel))
                 {
                     frmNotification.PublicInfo.ShowMessage("لطفا ابتدا به تنظیمات برنامه، سربرگ تلگرام رفته و موارد خواسته شده را وارد نمایید");
                     return;
                 }
 
                 //Send2ManagerChannel
-                var text = await clsTelegramManager.GetTelegramTextAsync(bu, clsTelegram.ManagetText);
+                var text = await clsTelegramManager.GetTelegramTextAsync(bu, SettingsBussines.Setting.Telegram.ManagetText);
                 text = text.Trim();
                 var telegram = new WebTelegramBuilding
                 {
                     Content = text,
-                    BotApi = clsTelegram.Token,
+                    BotApi = SettingsBussines.Setting.Telegram.Token,
                     BuildingGuid = bu.Guid,
-                    Channel = clsTelegram.ManagerChannel
+                    Channel = SettingsBussines.Setting.Telegram.ManagerChannel
                 };
                 _ = Task.Run(() => telegram.SaveAsync());
 
                 //Send2CustomerChannel
-                var text_ = await clsTelegramManager.GetTelegramTextAsync(bu, clsTelegram.Text);
+                var text_ = await clsTelegramManager.GetTelegramTextAsync(bu, SettingsBussines.Setting.Telegram.Text);
                 text_ = text_.Trim();
                 var telegram_ = new WebTelegramBuilding
                 {
                     Content = text_,
-                    BotApi = clsTelegram.Token,
+                    BotApi = SettingsBussines.Setting.Telegram.Token,
                     BuildingGuid = bu.Guid,
-                    Channel = clsTelegram.Channel
+                    Channel = SettingsBussines.Setting.Telegram.Channel
                 };
                 _ = Task.Run(() => telegram_.SaveAsync());
 
@@ -465,14 +320,14 @@ namespace Building.Buildings
         {
             try
             {
-                if (string.IsNullOrEmpty(clsWhatsApp.ApiCode) ||
-                    string.IsNullOrEmpty(clsWhatsApp.Number))
+                if (string.IsNullOrEmpty(SettingsBussines.Setting.Whatsapp.ApiCode) ||
+                    string.IsNullOrEmpty(SettingsBussines.Setting.Whatsapp.Number))
                 {
                     frmNotification.PublicInfo.ShowMessage("لطفا ابتدا به تنظیمات برنامه، سربرگ واتساپ رفته و موارد خواسته شده را وارد نمایید");
                     return;
                 }
 
-                var text = await clsTelegramManager.GetTelegramTextAsync(bu, clsWhatsApp.CustomerMessage);
+                var text = await clsTelegramManager.GetTelegramTextAsync(bu, SettingsBussines.Setting.Whatsapp.CustomerMessage);
                 text = text.Trim();
                 var frm = new frmBuildingTelegramText(text);
                 if (frm.ShowDialog(this) == DialogResult.OK)
@@ -481,8 +336,8 @@ namespace Building.Buildings
                     var telegram = new WebWhatsappBuilding()
                     {
                         Message = text,
-                        ApiCode = clsWhatsApp.ApiCode,
-                        Number = clsWhatsApp.Number
+                        ApiCode = SettingsBussines.Setting.Whatsapp.ApiCode,
+                        Number = SettingsBussines.Setting.Whatsapp.Number
                     };
                     await telegram.SaveAsync();
                     bu.WhatsAppCount += 1;
@@ -506,14 +361,14 @@ namespace Building.Buildings
         {
             try
             {
-                if (string.IsNullOrEmpty(clsWhatsApp.ApiCode) ||
-                    string.IsNullOrEmpty(clsWhatsApp.Number))
+                if (string.IsNullOrEmpty(SettingsBussines.Setting.Whatsapp.ApiCode) ||
+                    string.IsNullOrEmpty(SettingsBussines.Setting.Whatsapp.Number))
                 {
                     frmNotification.PublicInfo.ShowMessage("لطفا ابتدا به تنظیمات برنامه، سربرگ واتساپ رفته و موارد خواسته شده را وارد نمایید");
                     return;
                 }
 
-                var text = await clsTelegramManager.GetTelegramTextAsync(bu, clsWhatsApp.ManagerMessage);
+                var text = await clsTelegramManager.GetTelegramTextAsync(bu, SettingsBussines.Setting.Whatsapp.ManagerMessage);
                 text = text.Trim();
                 var frm = new frmBuildingTelegramText(text);
                 if (frm.ShowDialog(this) == DialogResult.OK)
@@ -522,8 +377,8 @@ namespace Building.Buildings
                     var telegram = new WebWhatsappBuilding()
                     {
                         Message = text,
-                        ApiCode = clsWhatsApp.ApiCode,
-                        Number = clsWhatsApp.Number
+                        ApiCode = SettingsBussines.Setting.Whatsapp.ApiCode,
+                        Number = SettingsBussines.Setting.Whatsapp.Number
                     };
                     await telegram.SaveAsync();
                     bu.WhatsAppCount += 1;
@@ -547,32 +402,32 @@ namespace Building.Buildings
         {
             try
             {
-                if (string.IsNullOrEmpty(clsWhatsApp.ApiCode) ||
-                    string.IsNullOrEmpty(clsWhatsApp.Number))
+                if (string.IsNullOrEmpty(SettingsBussines.Setting.Whatsapp.ApiCode) ||
+                    string.IsNullOrEmpty(SettingsBussines.Setting.Whatsapp.Number))
                 {
                     frmNotification.PublicInfo.ShowMessage("لطفا ابتدا به تنظیمات برنامه، سربرگ واتساپ رفته و موارد خواسته شده را وارد نمایید");
                     return;
                 }
 
                 //Send2ManagerChannel
-                var text = await clsTelegramManager.GetTelegramTextAsync(bu, clsWhatsApp.ManagerMessage);
+                var text = await clsTelegramManager.GetTelegramTextAsync(bu, SettingsBussines.Setting.Whatsapp.ManagerMessage);
                 text = text.Trim();
                 var telegram = new WebWhatsappBuilding()
                 {
                     Message = text,
-                    ApiCode = clsWhatsApp.ApiCode,
-                    Number = clsWhatsApp.Number
+                    ApiCode = SettingsBussines.Setting.Whatsapp.ApiCode,
+                    Number = SettingsBussines.Setting.Whatsapp.Number
                 };
                 _ = Task.Run(() => telegram.SaveAsync());
                 await Task.Delay(5000);
                 //Send2CustomerChannel
-                var text_ = await clsTelegramManager.GetTelegramTextAsync(bu, clsWhatsApp.CustomerMessage);
+                var text_ = await clsTelegramManager.GetTelegramTextAsync(bu, SettingsBussines.Setting.Whatsapp.CustomerMessage);
                 text_ = text_.Trim();
                 var telegram_ = new WebWhatsappBuilding()
                 {
                     Message = text_,
-                    ApiCode = clsWhatsApp.ApiCode,
-                    Number = clsWhatsApp.Number
+                    ApiCode = SettingsBussines.Setting.Whatsapp.ApiCode,
+                    Number = SettingsBussines.Setting.Whatsapp.Number
                 };
                 _ = Task.Run(() => telegram_.SaveAsync());
 
@@ -598,17 +453,11 @@ namespace Building.Buildings
                 switch (type)
                 {
                     case EnRequestType.Rahn:
-                        DGrid.Columns[dgRahn.Index].Visible = mnuRahn.Checked;
-                        DGrid.Columns[dgEjare.Index].Visible = mnuEjare.Checked;
-                        DGrid.Columns[dgRentalAuthorityName.Index].Visible = mnuRental.Checked;
                         DGrid.Columns[dgSellPrice.Index].Visible = false;
                         DGrid.Columns[dgVam.Index].Visible = false;
                         DGrid.Columns[dgQest.Index].Visible = false;
                         break;
                     case EnRequestType.Forush:
-                        DGrid.Columns[dgSellPrice.Index].Visible = mnuSell.Checked;
-                        DGrid.Columns[dgVam.Index].Visible = mnuVam.Checked;
-                        DGrid.Columns[dgQest.Index].Visible = mnuQest.Checked;
                         DGrid.Columns[dgRahn.Index].Visible = false;
                         DGrid.Columns[dgEjare.Index].Visible = false;
                         DGrid.Columns[dgRentalAuthorityName.Index].Visible = false;
@@ -628,14 +477,6 @@ namespace Building.Buildings
                         DGrid.Columns[dgRahn.Index].Visible = false;
                         DGrid.Columns[dgEjare.Index].Visible = false;
                         DGrid.Columns[dgRentalAuthorityName.Index].Visible = false;
-                        break;
-                    default:
-                        DGrid.Columns[dgRahn.Index].Visible = mnuRahn.Checked;
-                        DGrid.Columns[dgEjare.Index].Visible = mnuEjare.Checked;
-                        DGrid.Columns[dgRentalAuthorityName.Index].Visible = mnuRental.Checked;
-                        DGrid.Columns[dgSellPrice.Index].Visible = mnuSell.Checked;
-                        DGrid.Columns[dgVam.Index].Visible = mnuVam.Checked;
-                        DGrid.Columns[dgQest.Index].Visible = mnuQest.Checked;
                         break;
                 }
             }
@@ -691,7 +532,6 @@ namespace Building.Buildings
                 _st = filter.Status;
                 isShowMode = _isShowMode;
                 SetAccess();
-                SetColumns();
                 if (_isShowMode || (filter.IsArchive != null && filter.IsArchive.Value)) contextMenu.Enabled = false;
             }
             catch (Exception ex)
@@ -839,7 +679,7 @@ namespace Building.Buildings
                 content = tc.AdvContent;
 
                 res.AddReturnedValue(await Utility.ManageAdvSend(bu, sim, AdvertiseType.Divar,
-                    clsAdvertise.IsGiveChat, clsAdvertise.Sender, clsAdvertise.Divar_PicCountInPerAdv, title, content));
+                    SettingsBussines.AdvertiseSetting.IsGiveChat, SettingsBussines.AdvertiseSetting.Sender, SettingsBussines.AdvertiseSetting.Divar_PicCountInPerAdv, title, content));
 
                 if (res.HasError) return;
                 await UserLogBussines.SaveBuildingLogAsync(EnLogAction.SendToDivar, bu.Guid, content);
@@ -970,535 +810,6 @@ namespace Building.Buildings
                 if (res.HasError)
                     this.ShowError(res, "خطا در تغییر وضعیت ملک");
                 else _ = Task.Run(() => LoadDataAsync(txtSearch.Text));
-            }
-        }
-        private void mnuCode_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuCode.Checked)
-                {
-                    _columnList.Add("کد");
-                    DGrid.Columns[dgCode.Index].Visible = true;
-                    SaveColumns(_columnList);
-                }
-                else
-                {
-                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    _columnList.Remove("کد");
-                    DGrid.Columns[dgCode.Index].Visible = false;
-                    SaveColumns(_columnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuDate_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuDate.Checked)
-                {
-                    _columnList.Add("تاریخ");
-                    DGrid.Columns[dgDateSh.Index].Visible = true;
-                    SaveColumns(_columnList);
-                }
-                else
-                {
-                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    _columnList.Remove("تاریخ");
-                    DGrid.Columns[dgDateSh.Index].Visible = false;
-                    SaveColumns(_columnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuOwner_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuOwner.Checked)
-                {
-                    _columnList.Add("مالک");
-                    DGrid.Columns[dgOwnerName.Index].Visible = true;
-                    SaveColumns(_columnList);
-                }
-                else
-                {
-                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    _columnList.Remove("مالک");
-                    DGrid.Columns[dgOwnerName.Index].Visible = false;
-                    SaveColumns(_columnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuType_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuType.Checked)
-                {
-                    _columnList.Add("نوع ملک");
-                    DGrid.Columns[dgType.Index].Visible = true;
-                    SaveColumns(_columnList);
-                }
-                else
-                {
-                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    _columnList.Remove("نوع ملک");
-                    DGrid.Columns[dgType.Index].Visible = false;
-                    SaveColumns(_columnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuRoom_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuRoom.Checked)
-                {
-                    _columnList.Add("اتاق");
-                    DGrid.Columns[dgRoomCount.Index].Visible = true;
-                    SaveColumns(_columnList);
-                }
-                else
-                {
-                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    _columnList.Remove("اتاق");
-                    DGrid.Columns[dgRoomCount.Index].Visible = false;
-                    SaveColumns(_columnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuMasahat_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuMasahat.Checked)
-                {
-                    _columnList.Add("مساحت");
-                    DGrid.Columns[dgMasahat.Index].Visible = true;
-                    SaveColumns(_columnList);
-                }
-                else
-                {
-                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    _columnList.Remove("مساحت");
-                    DGrid.Columns[dgMasahat.Index].Visible = false;
-                    SaveColumns(_columnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuZirBana_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuZirBana.Checked)
-                {
-                    _columnList.Add("زیربنا");
-                    DGrid.Columns[dgZirBana.Index].Visible = true;
-                    SaveColumns(_columnList);
-                }
-                else
-                {
-                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    _columnList.Remove("زیربنا");
-                    DGrid.Columns[dgZirBana.Index].Visible = false;
-                    SaveColumns(_columnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuRahn_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuRahn.Checked)
-                {
-                    _columnList.Add("رهن");
-                    DGrid.Columns[dgRahn.Index].Visible = true;
-                    SaveColumns(_columnList);
-                }
-                else
-                {
-                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    _columnList.Remove("رهن");
-                    DGrid.Columns[dgRahn.Index].Visible = false;
-                    SaveColumns(_columnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuEjare_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuEjare.Checked)
-                {
-                    _columnList.Add("اجاره");
-                    DGrid.Columns[dgEjare.Index].Visible = true;
-                    SaveColumns(_columnList);
-                }
-                else
-                {
-                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    _columnList.Remove("اجاره");
-                    DGrid.Columns[dgEjare.Index].Visible = false;
-                    SaveColumns(_columnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuSell_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuSell.Checked)
-                {
-                    _columnList.Add("فروش");
-                    DGrid.Columns[dgSellPrice.Index].Visible = true;
-                    SaveColumns(_columnList);
-                }
-                else
-                {
-                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    _columnList.Remove("فروش");
-                    DGrid.Columns[dgSellPrice.Index].Visible = false;
-                    SaveColumns(_columnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuRegion_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuRegion.Checked)
-                {
-                    _columnList.Add("محدوده");
-                    DGrid.Columns[dgRegionName.Index].Visible = true;
-                    SaveColumns(_columnList);
-                }
-                else
-                {
-                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    _columnList.Remove("محدوده");
-                    DGrid.Columns[dgRegionName.Index].Visible = false;
-                    SaveColumns(_columnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuAddress_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuAddress.Checked)
-                {
-                    _columnList.Add("آدرس");
-                    DGrid.Columns[dgAddress.Index].Visible = true;
-                    SaveColumns(_columnList);
-                }
-                else
-                {
-                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    _columnList.Remove("آدرس");
-                    DGrid.Columns[dgAddress.Index].Visible = false;
-                    SaveColumns(_columnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuUserName_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuUserName.Checked)
-                {
-                    _columnList.Add("مشاور");
-                    DGrid.Columns[dgUserName.Index].Visible = true;
-                    SaveColumns(_columnList);
-                }
-                else
-                {
-                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    _columnList.Remove("مشاور");
-                    DGrid.Columns[dgUserName.Index].Visible = false;
-                    SaveColumns(_columnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuVam_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuVam.Checked)
-                {
-                    _columnList.Add("وام");
-                    DGrid.Columns[dgVam.Index].Visible = true;
-                    SaveColumns(_columnList);
-                }
-                else
-                {
-                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    _columnList.Remove("وام");
-                    DGrid.Columns[dgVam.Index].Visible = false;
-                    SaveColumns(_columnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuQest_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuQest.Checked)
-                {
-                    _columnList.Add("قسط");
-                    DGrid.Columns[dgQest.Index].Visible = true;
-                    SaveColumns(_columnList);
-                }
-                else
-                {
-                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    _columnList.Remove("قسط");
-                    DGrid.Columns[dgQest.Index].Visible = false;
-                    SaveColumns(_columnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuSaleSakht_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuSaleSakht.Checked)
-                {
-                    _columnList.Add("سال");
-                    DGrid.Columns[dgSaleSakht.Index].Visible = true;
-                    SaveColumns(_columnList);
-                }
-                else
-                {
-                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    _columnList.Remove("سال");
-                    DGrid.Columns[dgSaleSakht.Index].Visible = false;
-                    SaveColumns(_columnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuDocType_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuDocType.Checked)
-                {
-                    _columnList.Add("سند");
-                    DGrid.Columns[dgDocType.Index].Visible = true;
-                    SaveColumns(_columnList);
-                }
-                else
-                {
-                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    _columnList.Remove("سند");
-                    DGrid.Columns[dgDocType.Index].Visible = false;
-                    SaveColumns(_columnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuRental_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuRental.Checked)
-                {
-                    _columnList.Add("ارجحیت");
-                    DGrid.Columns[dgRentalAuthorityName.Index].Visible = true;
-                    SaveColumns(_columnList);
-                }
-                else
-                {
-                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    _columnList.Remove("ارجحیت");
-                    DGrid.Columns[dgRentalAuthorityName.Index].Visible = false;
-                    SaveColumns(_columnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuAccountType_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuAccountType.Checked)
-                {
-                    _columnList.Add("کاربری");
-                    DGrid.Columns[dgAccountType.Index].Visible = true;
-                    SaveColumns(_columnList);
-                }
-                else
-                {
-                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    _columnList.Remove("کاربری");
-                    DGrid.Columns[dgAccountType.Index].Visible = false;
-                    SaveColumns(_columnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuCondition_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuCondition.Checked)
-                {
-                    _columnList.Add("وضعیت ملک");
-                    DGrid.Columns[dgCondition.Index].Visible = true;
-                    SaveColumns(_columnList);
-                }
-                else
-                {
-                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    _columnList.Remove("وضعیت ملک");
-                    DGrid.Columns[dgCondition.Index].Visible = false;
-                    SaveColumns(_columnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuBView_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuBView.Checked)
-                {
-                    _columnList.Add("نما");
-                    DGrid.Columns[dgView.Index].Visible = true;
-                    SaveColumns(_columnList);
-                }
-                else
-                {
-                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    _columnList.Remove("نما");
-                    DGrid.Columns[dgView.Index].Visible = false;
-                    SaveColumns(_columnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuFloor_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuFloor.Checked)
-                {
-                    _columnList.Add("کفپوش");
-                    DGrid.Columns[dgFloorCover.Index].Visible = true;
-                    SaveColumns(_columnList);
-                }
-                else
-                {
-                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    _columnList.Remove("کفپوش");
-                    DGrid.Columns[dgFloorCover.Index].Visible = false;
-                    SaveColumns(_columnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuKitchen_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuKitchen.Checked)
-                {
-                    _columnList.Add("آشپزخانه");
-                    DGrid.Columns[dgKitchenService.Index].Visible = true;
-                    SaveColumns(_columnList);
-                }
-                else
-                {
-                    _columnList = _columnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    _columnList.Remove("آشپزخانه");
-                    DGrid.Columns[dgKitchenService.Index].Visible = false;
-                    SaveColumns(_columnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
         private async void mnuSlideShow_Click(object sender, EventArgs e)

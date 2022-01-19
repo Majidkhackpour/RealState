@@ -21,10 +21,10 @@ namespace Cities
                     await FillStateAsync();
                 if (value == Guid.Empty)
                 {
-                    if (string.IsNullOrEmpty(clsEconomyUnit.EconomyState))
+                    if (SettingsBussines.Setting.CompanyInfo.EconomyState == Guid.Empty)
                         cmbState.SelectedIndex = 0;
                     else
-                        cmbState.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyState);
+                        cmbState.SelectedValue = SettingsBussines.Setting.CompanyInfo.EconomyState;
                     _stateGuid = (Guid)cmbState.SelectedValue;
                     return;
                 }
@@ -47,8 +47,8 @@ namespace Cities
                     if (CityBindingSource.Count <= 0) return;
                     if (value == Guid.Empty)
                     {
-                        if (!string.IsNullOrEmpty(clsEconomyUnit.EconomyCity))
-                            cmbCity.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyCity);
+                        if (SettingsBussines.Setting.CompanyInfo.EconomyCity != Guid.Empty)
+                            cmbCity.SelectedValue = SettingsBussines.Setting.CompanyInfo.EconomyCity;
                         _cityGuid = (Guid)cmbCity.SelectedValue;
                         return;
                     }
@@ -72,8 +72,8 @@ namespace Cities
                     if (RegionBindingSource.Count <= 0) return;
                     if (value == Guid.Empty)
                     {
-                        if (!string.IsNullOrEmpty(clsEconomyUnit.ManagerRegion))
-                            cmbRegion.SelectedValue = Guid.Parse(clsEconomyUnit.ManagerRegion);
+                        if (SettingsBussines.Setting.CompanyInfo.ManagerRegion != Guid.Empty)
+                            cmbRegion.SelectedValue = SettingsBussines.Setting.CompanyInfo.ManagerRegion;
                         _regionGuid = (Guid)cmbRegion.SelectedValue;
                         return;
                     }
@@ -95,8 +95,8 @@ namespace Cities
                 if (cmbState.SelectedValue == null) return;
                 var list = await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue, default);
                 CityBindingSource.DataSource = list?.Where(q => q.Status).OrderBy(q => q.Name).ToList();
-                if (!string.IsNullOrEmpty(clsEconomyUnit.EconomyCity))
-                    cmbCity.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyCity);
+                if (SettingsBussines.Setting.CompanyInfo.EconomyCity != Guid.Empty)
+                    cmbCity.SelectedValue = SettingsBussines.Setting.CompanyInfo.EconomyCity;
 
                 _stateGuid = (Guid)cmbState.SelectedValue;
             }
@@ -112,8 +112,8 @@ namespace Cities
                 if (cmbCity.SelectedValue == null) return;
                 var list = await RegionsBussines.GetAllAsync((Guid)cmbCity.SelectedValue);
                 RegionBindingSource.DataSource = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
-                if (!string.IsNullOrEmpty(clsEconomyUnit.ManagerRegion))
-                    cmbRegion.SelectedValue = Guid.Parse(clsEconomyUnit.ManagerRegion);
+                if (SettingsBussines.Setting.CompanyInfo.ManagerRegion != Guid.Empty)
+                    cmbRegion.SelectedValue = SettingsBussines.Setting.CompanyInfo.ManagerRegion;
 
                 _cityGuid = (Guid)cmbCity.SelectedValue;
             }

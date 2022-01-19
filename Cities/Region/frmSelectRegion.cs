@@ -37,7 +37,7 @@ namespace Cities.Region
             try
             {
                 while (!IsHandleCreated) await Task.Delay(100);
-                var cityGuid = Guid.Parse(clsEconomyUnit.EconomyCity);
+                var cityGuid = SettingsBussines.Setting.CompanyInfo.EconomyCity;
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
                 list = await RegionsBussines.GetAllAsync(search, cityGuid, _token.Token);

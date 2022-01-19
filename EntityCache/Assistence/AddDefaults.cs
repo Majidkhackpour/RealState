@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Persistence;
+using Services.Settings;
 
 namespace EntityCache.Assistence
 {
@@ -276,13 +277,14 @@ namespace EntityCache.Assistence
                 #endregion
 
                 #region Setting
-                var allSetting = await SettingsBussines.GetAllAsync();
-                if (allSetting == null || allSetting.Count <= 0)
+                var allSetting = SettingsBussines.Setting;
+                if (allSetting == null)
                 {
-                    res.AddReturnedValue(await SettingsBussines.SaveAsync("ArzeshAfzoude", "9"));
-                    res.AddReturnedValue(await SettingsBussines.SaveAsync("Tabdil", "2"));
-                    res.AddReturnedValue(await SettingsBussines.SaveAsync("DayCountForArchive", "60"));
-                    if (res.HasError) return;
+                    allSetting = new GlobalSetting
+                    {
+                        SafeBox = {ArzeshAfzoude = 9, Tabdil = 2}, Global = {SetArchive = 60}
+                    };
+                    res.AddReturnedValue(await allSetting.SaveAsync());
                 }
                 #endregion
             }

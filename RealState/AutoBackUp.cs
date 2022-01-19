@@ -28,15 +28,14 @@ namespace RealState
             try
             {
                 await Task.Delay(2000);
-                if (string.IsNullOrEmpty(clsBackUp.IsAutoBackUp) || !clsBackUp.IsAutoBackUp.ParseToBoolean() ||
-                    clsBackUp.BackUpDuration.ParseToInt() <= 0) return;
-                var duration = clsBackUp.BackUpDuration.ParseToInt();
+                if (!SettingsBussines.Setting.BackUp.IsAutoBackUp || SettingsBussines.Setting.BackUp.BackUpDuration<= 0) return;
+                var duration = SettingsBussines.Setting.BackUp.BackUpDuration;
                 while (true)
                 {
                     var list = await BackUpLogBussines.GetAllAsync();
                     var lastAutoBackUp = list.Where(q => q.Type == EnBackUpType.Auto).OrderBy(q => q.InsertedDate)
                         ?.FirstOrDefault();
-                    var path = clsBackUp.BackUpPath;
+                    var path = SettingsBussines.Setting.BackUp.BackUpPath;
                     if (lastAutoBackUp == null)
                     {
                         await BackUpAsync(path, true, EnBackUpType.Auto);
@@ -66,7 +65,7 @@ namespace RealState
                 if (!isAuto)
                 {
                     line = 1;
-                    if (string.IsNullOrEmpty(clsBackUp.BackUpOpen) || !clsBackUp.BackUpOpen.ParseToBoolean()) return;
+                    if (!SettingsBussines.Setting.BackUp.BackUpOpen) return;
                     line = 2;
                     path = Path.Combine(path, "AradBackUp");
                 }
@@ -107,27 +106,26 @@ namespace RealState
         {
             try
             {
-                if (!string.IsNullOrEmpty(clsBackUp.BackUpSms) && clsBackUp.BackUpSms.ParseToBoolean() &&
-                    VersionAccess.Sms)
+                if (SettingsBussines.Setting.BackUp.BackUpSms && VersionAccess.Sms)
                 {
-                    if (string.IsNullOrEmpty(Settings.Classes.Payamak.DefaultPanelGuid))
+                    if (SettingsBussines.Setting.Sms.DefaultPanelGuid==Guid.Empty)
                         return;
-                    var text = $"مدیریت محترم مجموعه {clsEconomyUnit.EconomyName ?? ""} \r\n" +
-                               $"{clsEconomyUnit.ManagerName ?? ""} عزیز \r\n" +
+                    var text = $"مدیریت محترم مجموعه {SettingsBussines.Setting.CompanyInfo.EconomyName ?? ""} \r\n" +
+                               $"{SettingsBussines.Setting.CompanyInfo.ManagerName ?? ""} عزیز \r\n" +
                                $"در تاریخ {Calendar.MiladiToShamsi(DateTime.Now)} \r\n" +
                                $"و در ساعت {DateTime.Now.ToShortTimeString()} \r\n" +
                                $"پشتیبان گیری خودکار از داده ها انجام شد \r\n" +
                                $"باتشکر \r\n" +
                                $"گروه مهندسی آراد";
 
-                    var panel = await SmsPanelsBussines.GetAsync(Guid.Parse(Settings.Classes.Payamak.DefaultPanelGuid));
+                    var panel = await SmsPanelsBussines.GetAsync(SettingsBussines.Setting.Sms.DefaultPanelGuid);
                     if (panel == null)
                         return;
 
                     var sApi = new Sms.Api(panel.API.Trim());
 
 
-                    var result = sApi.Send(panel.Sender, clsEconomyUnit.ManagerMobile ?? "", text);
+                    var result = sApi.Send(panel.Sender, SettingsBussines.Setting.CompanyInfo.ManagerMobile ?? "", text);
 
                     var smsLog = new SmsLogBussines()
                     {

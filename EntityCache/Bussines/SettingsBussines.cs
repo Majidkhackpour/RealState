@@ -5,20 +5,23 @@ using System.Threading.Tasks;
 using EntityCache.Assistence;
 using Persistence;
 using Services;
+using Services.Settings;
 using Servicess.Interfaces.Building;
 
 namespace EntityCache.Bussines
 {
     public class SettingsBussines : ISettings
     {
+        private static AdvertiseSetting _advSetting = null;
+        private static GlobalSetting _settings = null;
+
         public Guid Guid { get; set; }
         public string Name { get; set; }
         public string Value { get; set; }
 
-
         public static async Task<SettingsBussines> GetAsync(string memberName) => await UnitOfWork.Settings.GetAsync(Cache.ConnectionString, memberName);
-        public static SettingsBussines Get(string memberName) => UnitOfWork.Settings.Get(Cache.ConnectionString, memberName);
-        public static async Task<ReturnedSaveFuncInfo> SaveAsync(string key, string value, SqlTransaction tr = null)
+        private static SettingsBussines Get(string memberName) => UnitOfWork.Settings.Get(Cache.ConnectionString, memberName);
+        public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = tr == null;
@@ -32,68 +35,14 @@ namespace EntityCache.Bussines
                     tr = cn.BeginTransaction();
                 }
 
-                var sett = await GetAsync(key);
+                var sett = await GetAsync(Name);
                 if (sett != null)
                 {
                     res.AddReturnedValue(await RemoveAsync(sett.Guid, tr));
                     if (res.HasError) return res;
                 }
 
-                var set = new SettingsBussines()
-                {
-                    Guid = Guid.NewGuid(),
-                    Name = key,
-                    Value = value,
-                };
-
-                res.AddReturnedValue(await UnitOfWork.Settings.SaveAsync(set, tr));
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-            finally
-            {
-                if (autoTran)
-                {
-                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
-                    res.AddReturnedValue(cn.CloseConnection());
-                }
-            }
-            return res;
-        }
-        public static ReturnedSaveFuncInfo Save(string key, string value, SqlTransaction tr = null)
-        {
-            var res = new ReturnedSaveFuncInfo();
-            var autoTran = tr == null;
-            SqlConnection cn = null;
-            try
-            {
-                if (autoTran)
-                {
-                    cn = new SqlConnection(Cache.ConnectionString);
-                    cn.Open();
-                    tr = cn.BeginTransaction();
-                }
-
-                var sett = Get(key);
-                if (sett != null)
-                {
-                    sett.Value = value;
-                    if (res.HasError) return res;
-                }
-                else
-                {
-                    sett = new SettingsBussines()
-                    {
-                        Guid = Guid.NewGuid(),
-                        Name = key,
-                        Value = value,
-                    };
-                }
-
-                res.AddReturnedValue(UnitOfWork.Settings.Save(sett, tr));
+                res.AddReturnedValue(await UnitOfWork.Settings.SaveAsync(this, tr));
             }
             catch (Exception ex)
             {
@@ -141,6 +90,51 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public static async Task<List<SettingsBussines>> GetAllAsync() => await UnitOfWork.Settings.GetAllAsync(Cache.ConnectionString);
+        public static AdvertiseSetting AdvertiseSetting
+        {
+            get
+            {
+                try
+                {
+                    if (_advSetting == null)
+                    {
+                        var sett = Get(AdvertiseSetting.Key);
+                        if (sett == null || string.IsNullOrEmpty(sett.Value))
+                            return null;
+                        _advSetting = sett.Value.FromJson<AdvertiseSetting>();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                }
+
+                return _advSetting;
+            }
+            set => _advSetting = value;
+        }
+        public static GlobalSetting Setting
+        {
+            get
+            {
+                try
+                {
+                    if (_settings == null)
+                    {
+                        var sett = Get(GlobalSetting.Key);
+                        if (sett == null || string.IsNullOrEmpty(sett.Value))
+                            return null;
+                        _settings = sett.Value.FromJson<GlobalSetting>();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                }
+
+                return _settings;
+            }
+            set => _settings = value;
+        }
     }
 }

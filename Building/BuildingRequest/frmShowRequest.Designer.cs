@@ -82,18 +82,6 @@
             this.mnuShowBuilding = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuPrint = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
-            this.مدیریتستونهاToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuName = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuUserName = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuSell = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuVam = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuRahn = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuEjare = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuMasahat = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuPeopleCount = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuRoomCount = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDesc = new System.Windows.Forms.ToolStripMenuItem();
             this.reqBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ucHeader = new WindowsSerivces.UC_Header();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
@@ -478,12 +466,10 @@
             this.mnuSendSms,
             this.mnuShowBuilding,
             this.toolStripMenuItem3,
-            this.mnuPrint,
-            this.toolStripMenuItem4,
-            this.مدیریتستونهاToolStripMenuItem});
+            this.mnuPrint});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(225, 242);
+            this.contextMenu.Size = new System.Drawing.Size(225, 212);
             // 
             // mnuAdd
             // 
@@ -555,109 +541,6 @@
             this.mnuPrint.Text = "چاپ لیست تقاضاها";
             this.mnuPrint.Click += new System.EventHandler(this.mnuPrint_Click);
             // 
-            // toolStripMenuItem4
-            // 
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(221, 6);
-            // 
-            // مدیریتستونهاToolStripMenuItem
-            // 
-            this.مدیریتستونهاToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuName,
-            this.mnuUserName,
-            this.mnuSell,
-            this.mnuVam,
-            this.mnuRahn,
-            this.mnuEjare,
-            this.mnuMasahat,
-            this.mnuPeopleCount,
-            this.mnuRoomCount,
-            this.mnuDesc});
-            this.مدیریتستونهاToolStripMenuItem.Image = global::Building.Properties.Resources.technology_1;
-            this.مدیریتستونهاToolStripMenuItem.Name = "مدیریتستونهاToolStripMenuItem";
-            this.مدیریتستونهاToolStripMenuItem.Size = new System.Drawing.Size(224, 24);
-            this.مدیریتستونهاToolStripMenuItem.Text = "مدیریت ستون ها";
-            // 
-            // mnuName
-            // 
-            this.mnuName.CheckOnClick = true;
-            this.mnuName.Name = "mnuName";
-            this.mnuName.Size = new System.Drawing.Size(174, 24);
-            this.mnuName.Text = "نام متقاضی";
-            this.mnuName.CheckedChanged += new System.EventHandler(this.mnuName_CheckedChanged);
-            // 
-            // mnuUserName
-            // 
-            this.mnuUserName.CheckOnClick = true;
-            this.mnuUserName.Name = "mnuUserName";
-            this.mnuUserName.Size = new System.Drawing.Size(174, 24);
-            this.mnuUserName.Text = "نام مشاور";
-            this.mnuUserName.CheckedChanged += new System.EventHandler(this.mnuUserName_CheckedChanged);
-            // 
-            // mnuSell
-            // 
-            this.mnuSell.CheckOnClick = true;
-            this.mnuSell.Name = "mnuSell";
-            this.mnuSell.Size = new System.Drawing.Size(174, 24);
-            this.mnuSell.Text = "قیمت خرید از (الی)";
-            this.mnuSell.CheckedChanged += new System.EventHandler(this.mnuSell_CheckedChanged);
-            // 
-            // mnuVam
-            // 
-            this.mnuVam.CheckOnClick = true;
-            this.mnuVam.Name = "mnuVam";
-            this.mnuVam.Size = new System.Drawing.Size(174, 24);
-            this.mnuVam.Text = "وام";
-            this.mnuVam.CheckedChanged += new System.EventHandler(this.mnuVam_CheckedChanged);
-            // 
-            // mnuRahn
-            // 
-            this.mnuRahn.CheckOnClick = true;
-            this.mnuRahn.Name = "mnuRahn";
-            this.mnuRahn.Size = new System.Drawing.Size(174, 24);
-            this.mnuRahn.Text = "قیمت رهن از (الی)";
-            this.mnuRahn.CheckedChanged += new System.EventHandler(this.mnuRahn_CheckedChanged);
-            // 
-            // mnuEjare
-            // 
-            this.mnuEjare.CheckOnClick = true;
-            this.mnuEjare.Name = "mnuEjare";
-            this.mnuEjare.Size = new System.Drawing.Size(174, 24);
-            this.mnuEjare.Text = "اجاره از (الی)";
-            this.mnuEjare.CheckedChanged += new System.EventHandler(this.mnuEjare_CheckedChanged);
-            // 
-            // mnuMasahat
-            // 
-            this.mnuMasahat.CheckOnClick = true;
-            this.mnuMasahat.Name = "mnuMasahat";
-            this.mnuMasahat.Size = new System.Drawing.Size(174, 24);
-            this.mnuMasahat.Text = "مساحت از (الی)";
-            this.mnuMasahat.CheckedChanged += new System.EventHandler(this.mnuMasahat_CheckedChanged);
-            // 
-            // mnuPeopleCount
-            // 
-            this.mnuPeopleCount.CheckOnClick = true;
-            this.mnuPeopleCount.Name = "mnuPeopleCount";
-            this.mnuPeopleCount.Size = new System.Drawing.Size(174, 24);
-            this.mnuPeopleCount.Text = "تعداد افراد";
-            this.mnuPeopleCount.CheckedChanged += new System.EventHandler(this.mnuPeopleCount_CheckedChanged);
-            // 
-            // mnuRoomCount
-            // 
-            this.mnuRoomCount.CheckOnClick = true;
-            this.mnuRoomCount.Name = "mnuRoomCount";
-            this.mnuRoomCount.Size = new System.Drawing.Size(174, 24);
-            this.mnuRoomCount.Text = "تعداد اتاق";
-            this.mnuRoomCount.CheckedChanged += new System.EventHandler(this.mnuRoomCount_CheckedChanged);
-            // 
-            // mnuDesc
-            // 
-            this.mnuDesc.CheckOnClick = true;
-            this.mnuDesc.Name = "mnuDesc";
-            this.mnuDesc.Size = new System.Drawing.Size(174, 24);
-            this.mnuDesc.Text = "توضیحات";
-            this.mnuDesc.CheckedChanged += new System.EventHandler(this.mnuDesc_CheckedChanged);
-            // 
             // reqBindingSource
             // 
             this.reqBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingRequestBussines);
@@ -722,18 +605,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuShowBuilding;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem mnuPrint;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
-        private System.Windows.Forms.ToolStripMenuItem مدیریتستونهاToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mnuName;
-        private System.Windows.Forms.ToolStripMenuItem mnuUserName;
-        private System.Windows.Forms.ToolStripMenuItem mnuSell;
-        private System.Windows.Forms.ToolStripMenuItem mnuVam;
-        private System.Windows.Forms.ToolStripMenuItem mnuRahn;
-        private System.Windows.Forms.ToolStripMenuItem mnuEjare;
-        private System.Windows.Forms.ToolStripMenuItem mnuMasahat;
-        private System.Windows.Forms.ToolStripMenuItem mnuPeopleCount;
-        private System.Windows.Forms.ToolStripMenuItem mnuRoomCount;
-        private System.Windows.Forms.ToolStripMenuItem mnuDesc;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgUserName;

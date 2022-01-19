@@ -24,13 +24,13 @@ namespace Payamak.FixSms
                     return res;
                 }
 
-                if (string.IsNullOrEmpty(Settings.Classes.Payamak.DefaultPanelGuid))
+                if (SettingsBussines.Setting.Sms.DefaultPanelGuid == Guid.Empty)
                 {
                     res.AddReturnedValue(ReturnedState.Error, "پنل پبش فرض تعریف نشده است");
                     return res;
                 }
 
-                var panel = await SmsPanelsBussines.GetAsync(Guid.Parse(Settings.Classes.Payamak.DefaultPanelGuid));
+                var panel = await SmsPanelsBussines.GetAsync(SettingsBussines.Setting.Sms.DefaultPanelGuid);
                 if (panel == null)
                 {
                     res.AddReturnedValue(ReturnedState.Error, "پنل پیش فرض معتبر نمی باشد");
@@ -82,12 +82,12 @@ namespace Payamak.FixSms
             var res = "";
             try
             {
-                res = Settings.Classes.Payamak.SayerText;
+                res = SettingsBussines.Setting.Sms.SayerText;
 
                 if (res.Contains(Replacor.Request.DateSabt)) res = res.Replace(Replacor.Request.DateSabt, bu.DateSh);
                 if (res.Contains(Replacor.Request.Name))
                 {
-                    var owner = await PeoplesBussines.GetAsync(bu.AskerGuid,null);
+                    var owner = await PeoplesBussines.GetAsync(bu.AskerGuid, null);
                     res = res.Replace(Replacor.Request.Name, owner?.Name);
                 }
                 if (res.Contains(Replacor.Request.UserName))

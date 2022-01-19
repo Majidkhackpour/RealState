@@ -1,10 +1,12 @@
-﻿using System;
-using System.Windows.Forms;
-using DevComponents.DotNetBar;
+﻿using DevComponents.DotNetBar;
+using EntityCache.Assistence;
+using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
 using Services;
-using Settings.Classes;
+using System;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Settings
 {
@@ -29,20 +31,24 @@ namespace Settings
         {
             try
             {
-                txtText.Text = !string.IsNullOrEmpty(clsWhatsApp.ManagerMessage)
-                    ? clsWhatsApp.ManagerMessage
-                    : clsTelegram.ManagetText;
+                var sett = SettingsBussines.Setting;
+
+                txtText.Text = !string.IsNullOrEmpty(sett.Whatsapp.ManagerMessage)
+                    ? sett.Whatsapp.ManagerMessage
+                    : sett.Telegram.ManagetText;
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void SaveWhatsApp()
+        private async Task SaveWhatsAppAsync()
         {
             try
             {
-                clsWhatsApp.ManagerMessage = txtText.Text;
+                SettingsBussines.Setting.Whatsapp.ManagerMessage = txtText.Text;
+
+                await SettingsBussines.Setting.SaveAsync();
             }
             catch (Exception ex)
             {
@@ -87,11 +93,11 @@ namespace Settings
         private void btnOwnerTell_Click(object sender, System.EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
         private void btnOwnerAddress_Click(object sender, System.EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
         private void btnOtherOptions_Click(object sender, System.EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
-        private void btnFinish_Click(object sender, EventArgs e)
+        private async void btnFinish_Click(object sender, EventArgs e)
         {
             try
             {
-                SaveWhatsApp();
+                await SaveWhatsAppAsync();
                 frmNotification.PublicInfo.ShowMessage("تنظیمات با موفقیت ثبت شد");
                 DialogResult = DialogResult.OK;
                 Close();

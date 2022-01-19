@@ -202,7 +202,7 @@ namespace Building.Contract
                 var buildingAccountType = await BuildingAccountTypeBussines.GetAsync(building.BuildingAccountTypeGuid);
                 var fSide = await PeoplesBussines.GetAsync(contract.FirstSideGuid, building.Guid);
                 var sSide = await PeoplesBussines.GetAsync(contract.SecondSideGuid, building.Guid);
-                var unitCity = await CitiesBussines.GetAsync(Guid.Parse(Settings.Classes.clsEconomyUnit.EconomyCity));
+                var unitCity = await CitiesBussines.GetAsync(SettingsBussines.Setting.CompanyInfo.EconomyCity);
                 if (contract.Type == EnRequestType.Rahn)
                 {
                     var view = new RahnViewModel
@@ -229,7 +229,7 @@ namespace Building.Contract
                         ContractTerm = contract?.Term ?? 0,
                         ContractfDate = Calendar.MiladiToShamsi(contract?.FromDate),
                         ContractsDate = Calendar.MiladiToShamsi((contract?.FromDate ?? DateTime.Now).AddMonths((int)contract?.Term)),
-                        UnitAddress = Settings.Classes.clsEconomyUnit.ManagerAddress,
+                        UnitAddress = SettingsBussines.Setting.CompanyInfo.ManagerAddress,
                         TotalEjare = (contract?.MinorPrice * contract?.Term) ?? 0,
                         MinorEjare = contract?.MinorPrice ?? 0,
                         Rahn = contract?.TotalPrice ?? 0,
@@ -237,7 +237,7 @@ namespace Building.Contract
                         BankName = contract?.BankName,
                         Shobe = contract?.Shobe,
                         //Sarresid = contract?.SarResid,
-                        UnitName = Settings.Classes.clsEconomyUnit.EconomyName,
+                        UnitName = SettingsBussines.Setting.CompanyInfo.EconomyName,
                         DischargeDate = Calendar.MiladiToShamsi(contract?.DischargeDate),
                         BuildingAccountType = buildingAccountType?.Name,
                         Sarqofli = contract?.SarQofli ?? 0,
@@ -273,7 +273,7 @@ namespace Building.Contract
                         DongCount = building?.Dang ?? 0,
                         BuildingAddress = building?.Address,
                         Masahat = building?.Masahat ?? 0,
-                        UnitAddress = Settings.Classes.clsEconomyUnit.ManagerAddress,
+                        UnitAddress = SettingsBussines.Setting.CompanyInfo.ManagerAddress,
                         TotalPrice = contract?.TotalPrice ?? 0,
                         MinorPrice = (contract?.TotalPrice - contract?.MinorPrice) ?? 0,
                         Beyane = contract?.MinorPrice ?? 0,
@@ -281,7 +281,7 @@ namespace Building.Contract
                         BankName = contract?.BankName,
                         Shobe = contract?.Shobe,
                         //Sarresid = contract?.SarResid,
-                        UnitName = Settings.Classes.clsEconomyUnit.EconomyName,
+                        UnitName = SettingsBussines.Setting.CompanyInfo.EconomyName,
                         DischargeDate = Calendar.MiladiToShamsi(contract?.DischargeDate),
                         BuildingAccountType = buildingAccountType?.Name,
                         UnitCity = unitCity?.Name,
@@ -497,15 +497,15 @@ namespace Building.Contract
                     Tax = con.FirstTax,
                     SumAfterDiscount = con.FirstTotalPrice - con.FirstDiscount,
                     ServiceName = $"کمیسیون عقد قرارداد {con.Type.GetDisplay()}",
-                    SellerAddress = Settings.Classes.clsEconomyUnit.ManagerAddress,
-                    SellerName = Settings.Classes.clsEconomyUnit.ManagerName,
-                    SellerNationalCode = Settings.Classes.clsSandouq.NationalCode,
-                    SellerTell = Settings.Classes.clsEconomyUnit.ManagerTell
+                    SellerAddress = SettingsBussines.Setting.CompanyInfo.ManagerAddress,
+                    SellerName = SettingsBussines.Setting.CompanyInfo.ManagerName,
+                    SellerNationalCode = SettingsBussines.Setting.SafeBox.NationalCode,
+                    SellerTell = SettingsBussines.Setting.CompanyInfo.ManagerTell
                 };
-                if (!string.IsNullOrEmpty(Settings.Classes.clsSandouq.EconomyCode))
-                    view.SellerNationalCode += $" / {Settings.Classes.clsSandouq.EconomyCode}";
-                if (!string.IsNullOrEmpty(Settings.Classes.clsEconomyUnit.ManagerFax))
-                    view.SellerTell += $" / {Settings.Classes.clsEconomyUnit.ManagerFax}";
+                if (!string.IsNullOrEmpty(SettingsBussines.Setting.SafeBox.EconomyCode))
+                    view.SellerNationalCode += $" / {SettingsBussines.Setting.SafeBox.EconomyCode}";
+                if (!string.IsNullOrEmpty(SettingsBussines.Setting.CompanyInfo.ManagerFax))
+                    view.SellerTell += $" / {SettingsBussines.Setting.CompanyInfo.ManagerFax}";
 
                 var lst = new List<object>() { view };
                 var cls = new ReportGenerator(StiType.Contract_Rasmi_One, EnPrintType.Pdf_A4) { Lst = lst };
@@ -544,15 +544,15 @@ namespace Building.Contract
                     Tax = con.SecondTax,
                     SumAfterDiscount = con.SecondTotalPrice - con.SecondDiscount,
                     ServiceName = $"کمیسیون عقد قرارداد {con.Type.GetDisplay()}",
-                    SellerAddress = Settings.Classes.clsEconomyUnit.ManagerAddress,
-                    SellerName = Settings.Classes.clsEconomyUnit.ManagerName,
-                    SellerNationalCode = Settings.Classes.clsSandouq.NationalCode,
-                    SellerTell = Settings.Classes.clsEconomyUnit.ManagerTell
+                    SellerAddress = SettingsBussines.Setting.CompanyInfo.ManagerAddress,
+                    SellerName = SettingsBussines.Setting.CompanyInfo.ManagerName,
+                    SellerNationalCode = SettingsBussines.Setting.SafeBox.NationalCode,
+                    SellerTell = SettingsBussines.Setting.CompanyInfo.ManagerTell
                 };
-                if (!string.IsNullOrEmpty(Settings.Classes.clsSandouq.EconomyCode))
-                    view.SellerNationalCode += $" / {Settings.Classes.clsSandouq.EconomyCode}";
-                if (!string.IsNullOrEmpty(Settings.Classes.clsEconomyUnit.ManagerFax))
-                    view.SellerTell += $" / {Settings.Classes.clsEconomyUnit.ManagerFax}";
+                if (!string.IsNullOrEmpty(SettingsBussines.Setting.SafeBox.EconomyCode))
+                    view.SellerNationalCode += $" / {SettingsBussines.Setting.SafeBox.EconomyCode}";
+                if (!string.IsNullOrEmpty(SettingsBussines.Setting.CompanyInfo.ManagerFax))
+                    view.SellerTell += $" / {SettingsBussines.Setting.CompanyInfo.ManagerFax}";
                 var lst = new List<object>() { view };
                 var cls = new ReportGenerator(StiType.Contract_Rasmi_One, EnPrintType.Pdf_A4) { Lst = lst };
                 cls.PrintNew();

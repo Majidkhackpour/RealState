@@ -564,7 +564,7 @@ namespace Advertise.Classes
 
                 if (!Directory.Exists(rootPath)) Directory.CreateDirectory(rootPath);
                 await Wait(3);
-                _driver = RefreshDriver(clsAdvertise.IsSilent);
+                _driver = RefreshDriver(SettingsBussines.AdvertiseSetting.IsSilent);
                 ((ITakesScreenshot)_driver).GetScreenshot().SaveAsFile(savePath, ScreenshotImageFormat.Jpeg);
 
                 return savePath;

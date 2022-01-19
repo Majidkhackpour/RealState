@@ -20,7 +20,7 @@ namespace Accounting.Sood_Zian
 
         public string DateSh1 => Calendar.MiladiToShamsi(_date1);
         public string DateSh2 => Calendar.MiladiToShamsi(_date2);
-        public string CompanyName => Settings.Classes.clsEconomyUnit.EconomyName;
+        public string CompanyName => SettingsBussines.Setting.CompanyInfo.EconomyName;
         public decimal TotalCommition =>0 /*ContractBussines.GetTotalCommition(_date1, _date2)*/;
         public decimal TotalBazarYab =>0/* ContractBussines.GetTotalBazaryab(_date1, _date2)*/;
         public decimal Sood_Nakhales => TotalCommition - TotalBazarYab;

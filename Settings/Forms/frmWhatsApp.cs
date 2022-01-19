@@ -1,9 +1,11 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using EntityCache.Assistence;
+using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
 using Services;
-using Settings.Classes;
+using System;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Settings.Forms
 {
@@ -13,24 +15,28 @@ namespace Settings.Forms
         {
             try
             {
-                txtWhatsAppCustomerText.Text = clsWhatsApp.CustomerMessage;
-                txtWhatsAppManagerText.Text = clsWhatsApp.ManagerMessage;
-                txtWhatsAppNumber.Text = clsWhatsApp.Number;
-                txtWhatsAppToken.Text = clsWhatsApp.ApiCode;
+                var sett = SettingsBussines.Setting;
+
+                txtWhatsAppCustomerText.Text = sett.Whatsapp.CustomerMessage;
+                txtWhatsAppManagerText.Text = sett.Whatsapp.ManagerMessage;
+                txtWhatsAppNumber.Text = sett.Whatsapp.Number;
+                txtWhatsAppToken.Text = sett.Whatsapp.ApiCode;
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void SaveWhatsApp()
+        private async Task SaveWhatsAppAsync()
         {
             try
             {
-                clsWhatsApp.CustomerMessage = txtWhatsAppCustomerText.Text;
-                clsWhatsApp.ManagerMessage = txtWhatsAppManagerText.Text;
-                clsWhatsApp.Number = txtWhatsAppNumber.Text;
-                clsWhatsApp.ApiCode = txtWhatsAppToken.Text;
+                SettingsBussines.Setting.Whatsapp.CustomerMessage = txtWhatsAppCustomerText.Text;
+                SettingsBussines.Setting.Whatsapp.ManagerMessage = txtWhatsAppManagerText.Text;
+                SettingsBussines.Setting.Whatsapp.Number = txtWhatsAppNumber.Text;
+                SettingsBussines.Setting.Whatsapp.ApiCode = txtWhatsAppToken.Text;
+
+                await SettingsBussines.Setting.SaveAsync();
             }
             catch (Exception ex)
             {
@@ -44,7 +50,7 @@ namespace Settings.Forms
             {
                 var frm = new frmWhatsAppCutomerText();
                 if (frm.ShowDialog(this) == DialogResult.OK)
-                    txtWhatsAppCustomerText.Text = clsWhatsApp.CustomerMessage;
+                    txtWhatsAppCustomerText.Text = SettingsBussines.Setting.Whatsapp.CustomerMessage;
             }
             catch (Exception ex)
             {
@@ -57,7 +63,7 @@ namespace Settings.Forms
             {
                 var frm = new frmWhatsAppManagerText();
                 if (frm.ShowDialog(this) == DialogResult.OK)
-                    txtWhatsAppManagerText.Text = clsWhatsApp.ManagerMessage;
+                    txtWhatsAppManagerText.Text = SettingsBussines.Setting.Whatsapp.ManagerMessage;
             }
             catch (Exception ex)
             {
@@ -65,12 +71,12 @@ namespace Settings.Forms
             }
         }
         private void frmWhatsApp_Load(object sender, EventArgs e) => LoadWhatsApp();
-        private void btnFinish_Click(object sender, EventArgs e)
+        private async void btnFinish_Click(object sender, EventArgs e)
         {
             btnFinish.Enabled = false;
             try
             {
-                SaveWhatsApp();
+                await SaveWhatsAppAsync();
                 frmNotification.PublicInfo.ShowMessage("تنظیمات با موفقیت ثبت شد");
                 DialogResult = DialogResult.OK;
                 Close();

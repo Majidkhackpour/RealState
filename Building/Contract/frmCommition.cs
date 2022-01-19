@@ -51,8 +51,8 @@ namespace Building.Contract
                 decimal commition = 0;
                 if (_con.Type == EnRequestType.Rahn)
                 {
-                    var tabdilPercent = Settings.Classes.clsSandouq.Tabdil.ParseToInt();
-                    commition = Contract.CalculateCommition.CalculateEjare(_con.TotalPrice, _con.MinorPrice, tabdilPercent);
+                    var tabdilPercent = SettingsBussines.Setting.SafeBox.Tabdil;
+                    commition = Contract.CalculateCommition.CalculateEjare(_con.TotalPrice, _con.MinorPrice, (int) tabdilPercent);
                     ucTotalCommition1.FirstBabat = EnContractBabat.Ejare;
                     ucTotalCommition1.SecondBabat = EnContractBabat.Ejare;
                 }
@@ -66,8 +66,8 @@ namespace Building.Contract
                 ucTotalCommition1.FirstTotalPrice = commition;
                 ucTotalCommition1.SecondTotalPrice = commition;
 
-                var arzehPercent = Settings.Classes.clsSandouq.ArzeshAfzoude.ParseToInt();
-                var arzesh = (commition * arzehPercent) / 100;
+                var arzehPercent = SettingsBussines.Setting.SafeBox.ArzeshAfzoude;
+                var arzesh = (commition * (decimal) arzehPercent) / 100;
 
                 ucTotalCommition1.FirstTax = arzesh;
                 ucTotalCommition1.SecondTax = arzesh;

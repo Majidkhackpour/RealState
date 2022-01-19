@@ -41,7 +41,7 @@ namespace RealState
                         list.Add((Guid)DGrid[dgGuid.Index, i].Value);
                 }
 
-                var frm = new frmSendSms(list, Settings.Classes.clsGlobal.BirthDayText);
+                var frm = new frmSendSms(list, SettingsBussines.Setting.Global.BirthDayText);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)

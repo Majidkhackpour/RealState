@@ -8,6 +8,7 @@ using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
 using Services;
+using Services.Settings;
 
 namespace User
 {
@@ -118,10 +119,12 @@ namespace User
                            $"\r\n گروه مهندسی آراد";
 
                 if (_type != 0) return;
-                if (string.IsNullOrEmpty(Settings.Classes.Payamak.DefaultPanelGuid))
+                if (SettingsBussines.Setting == null)
+                    SettingsBussines.Setting = new GlobalSetting();
+                if (SettingsBussines.Setting.Sms.DefaultPanelGuid==Guid.Empty)
                     return;
 
-                var panel = await SmsPanelsBussines.GetAsync(Guid.Parse(Settings.Classes.Payamak.DefaultPanelGuid));
+                var panel = await SmsPanelsBussines.GetAsync(SettingsBussines.Setting.Sms.DefaultPanelGuid);
                 if (panel == null) return;
 
                 var sApi = new Sms.Api(panel.API.Trim());

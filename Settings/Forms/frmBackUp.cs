@@ -1,9 +1,12 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using EntityCache.Assistence;
+using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
 using Services;
-using Settings.Classes;
+using Services.Settings;
+using System;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Settings.Forms
 {
@@ -13,26 +16,30 @@ namespace Settings.Forms
         {
             try
             {
-                txtPath.Text = clsBackUp.BackUpPath;
-                chbAuto.Checked = clsBackUp.IsAutoBackUp.ParseToBoolean();
-                txtTime.Text = clsBackUp.BackUpDuration;
-                chbBackUpSms.Checked = clsBackUp.BackUpSms.ParseToBoolean();
-                chbOpen.Checked = clsBackUp.BackUpOpen.ParseToBoolean();
+                var sett = SettingsBussines.Setting;
+                
+                txtPath.Text = sett.BackUp.BackUpPath;
+                chbAuto.Checked = sett.BackUp.IsAutoBackUp;
+                txtTime.Value = sett.BackUp.BackUpDuration;
+                chbBackUpSms.Checked = sett.BackUp.BackUpSms;
+                chbOpen.Checked = sett.BackUp.BackUpOpen;
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void SaveBackUp()
+        private async Task SaveBackUpAsync()
         {
             try
             {
-                clsBackUp.BackUpPath = txtPath.Text;
-                clsBackUp.BackUpDuration = txtTime.Text;
-                clsBackUp.IsAutoBackUp = chbAuto.Checked.ToString();
-                clsBackUp.BackUpSms = chbBackUpSms.Checked.ToString();
-                clsBackUp.BackUpOpen = chbOpen.Checked.ToString();
+                SettingsBussines.Setting.BackUp.BackUpPath = txtPath.Text;
+                SettingsBussines.Setting.BackUp.BackUpDuration = (int) txtTime.Value;
+                SettingsBussines.Setting.BackUp.IsAutoBackUp = chbAuto.Checked;
+                SettingsBussines.Setting.BackUp.BackUpSms = chbBackUpSms.Checked;
+                SettingsBussines.Setting.BackUp.BackUpOpen = chbOpen.Checked;
+
+                await SettingsBussines.Setting.SaveAsync();
             }
             catch (Exception ex)
             {
@@ -46,12 +53,12 @@ namespace Settings.Forms
             DialogResult = DialogResult.Cancel;
             Close();
         }
-        private void btnFinish_Click(object sender, EventArgs e)
+        private async void btnFinish_Click(object sender, EventArgs e)
         {
             btnFinish.Enabled = false;
             try
             {
-                SaveBackUp();
+                await SaveBackUpAsync();
                 frmNotification.PublicInfo.ShowMessage("تنظیمات با موفقیت ثبت شد");
                 DialogResult = DialogResult.OK;
                 Close();

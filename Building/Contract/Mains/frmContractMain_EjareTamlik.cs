@@ -69,7 +69,7 @@ namespace Building.Contract
                 ucContractEjareTamlik_51.SetDocNo = cls.SetDocNo;
                 ucContractEjareTamlik_51.SetDocPlace = cls.SetDocPlace;
 
-                ucContractEjareTamlik_71.TaxPercent = Settings.Classes.clsSandouq.ArzeshAfzoude.ParseTofloat();
+                ucContractEjareTamlik_71.TaxPercent = SettingsBussines.Setting.SafeBox.ArzeshAfzoude;
 
                 ucContractDescription1.Description = cls.Description;
                 ucContractDescription1.Witness1 = cls.Witness1;

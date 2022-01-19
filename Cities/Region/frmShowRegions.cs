@@ -30,7 +30,7 @@ namespace Cities.Region
                 _token = new CancellationTokenSource();
                 if (rbtnMyRegion.Checked)
                 {
-                    var cityGuid = Guid.Parse(clsEconomyUnit.EconomyCity);
+                    var cityGuid = SettingsBussines.Setting.CompanyInfo.EconomyCity;
                     list = await RegionsBussines.GetAllAsync(search, cityGuid, _token.Token);
                 }
                 else if (rbtnAll.Checked)

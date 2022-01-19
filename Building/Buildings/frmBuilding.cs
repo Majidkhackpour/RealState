@@ -419,7 +419,7 @@ namespace Building.Buildings
                 res.AddReturnedValue(await SaveAsync(advType));
                 if (res.HasError || res.HasWarning) return;
 
-                if (Settings.Classes.Payamak.IsSendToOwner.ParseToBoolean() && isSendSms)
+                if (SettingsBussines.Setting.Sms.IsSendToOwner && isSendSms)
                 {
                     var tr = await Payamak.FixSms.OwnerSend.SendAsync(cls);
                     frmNotification.PublicInfo.ShowMessage(tr.HasError

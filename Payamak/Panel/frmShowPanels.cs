@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
+using EntityCache.Assistence;
 using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
@@ -157,8 +158,8 @@ namespace Payamak.Panel
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
 
-                Settings.Classes.Payamak.DefaultPanelGuid = guid.ToString();
-
+                SettingsBussines.Setting.Sms.DefaultPanelGuid = guid;
+                await SettingsBussines.Setting.SaveAsync();
                 frmNotification.PublicInfo.ShowMessage("پنل پیش فرض با موفقیت تغییر کرد");
 
                 await LoadDataAsync();

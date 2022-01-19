@@ -55,7 +55,7 @@ namespace Advertise.Forms
                 await SerializedDataBussines.SaveAsync("DivarCities", serializedData.Data);
 
 
-                var regList = await DivarAPI.GetAllRegionsAsync(Settings.Classes.clsEconomyUnit.EconomyCity);
+                var regList = await DivarAPI.GetAllRegionsAsync(SettingsBussines.Setting.CompanyInfo.EconomyCity);
                 var serializedData_ = new SerializedDataBussines()
                 {
                     Guid = Guid.NewGuid(),

@@ -260,8 +260,8 @@ namespace Building
                     {
                         var index = list.IndexOf(type);
                         type = type.Replace("\r", "");
-                        type = type.Replace(Replacor.TelegramBuilding.Channel, clsTelegram.Channel);
-                        if (!string.IsNullOrEmpty(clsTelegram.Channel))
+                        type = type.Replace(Replacor.TelegramBuilding.Channel, SettingsBussines.Setting.Telegram.Channel);
+                        if (!string.IsNullOrEmpty(SettingsBussines.Setting.Telegram.Channel))
                             list[index] = type;
                         else list[index] = "";
                     }
@@ -273,8 +273,8 @@ namespace Building
                     {
                         var index = list.IndexOf(type);
                         type = type.Replace("\r", "");
-                        type = type.Replace(Replacor.TelegramBuilding.Address, clsEconomyUnit.ManagerAddress);
-                        if (!string.IsNullOrEmpty(clsEconomyUnit.ManagerAddress))
+                        type = type.Replace(Replacor.TelegramBuilding.Address, SettingsBussines.Setting.CompanyInfo.ManagerAddress);
+                        if (!string.IsNullOrEmpty(SettingsBussines.Setting.CompanyInfo.ManagerAddress))
                             list[index] = type;
                         else list[index] = "";
                     }
@@ -286,8 +286,8 @@ namespace Building
                     {
                         var index = list.IndexOf(type);
                         type = type.Replace("\r", "");
-                        type = type.Replace(Replacor.TelegramBuilding.Tell, clsEconomyUnit.ManagerTell);
-                        if (!string.IsNullOrEmpty(clsEconomyUnit.ManagerTell))
+                        type = type.Replace(Replacor.TelegramBuilding.Tell, SettingsBussines.Setting.CompanyInfo.ManagerTell);
+                        if (!string.IsNullOrEmpty(SettingsBussines.Setting.CompanyInfo.ManagerTell))
                             list[index] = type;
                         else list[index] = "";
                     }
@@ -299,8 +299,8 @@ namespace Building
                     {
                         var index = list.IndexOf(type);
                         type = type.Replace("\r", "");
-                        type = type.Replace(Replacor.TelegramBuilding.Mobile, clsEconomyUnit.ManagerMobile);
-                        if (!string.IsNullOrEmpty(clsEconomyUnit.ManagerMobile))
+                        type = type.Replace(Replacor.TelegramBuilding.Mobile, SettingsBussines.Setting.CompanyInfo.ManagerMobile);
+                        if (!string.IsNullOrEmpty(SettingsBussines.Setting.CompanyInfo.ManagerMobile))
                             list[index] = type;
                         else list[index] = "";
                     }

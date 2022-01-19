@@ -69,7 +69,7 @@ namespace Building.Contract
                 ucContractSarqofli_61.AmountOfRent = cls?.AmountOfRent ?? 0;
                 ucContractSarqofli_61.GulidType = cls?.GulidType;
 
-                ucContractSarqofli_111.TaxPercent = Settings.Classes.clsSandouq.ArzeshAfzoude.ParseTofloat();
+                ucContractSarqofli_111.TaxPercent = SettingsBussines.Setting.SafeBox.ArzeshAfzoude;
 
                 ucContractDescription1.Description = cls.Description;
                 ucContractDescription1.Witness1 = cls.Witness1;

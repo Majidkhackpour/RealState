@@ -28,10 +28,10 @@ namespace Cities.Region
                 txtRegion.Text = cls?.Name;
                 if (cls?.Guid == Guid.Empty)
                 {
-                    if (string.IsNullOrEmpty(clsEconomyUnit.EconomyState))
+                    if (SettingsBussines.Setting.CompanyInfo.EconomyState == Guid.Empty)
                         cmbState.SelectedIndex = 0;
                     else
-                        cmbState.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyState);
+                        cmbState.SelectedValue = SettingsBussines.Setting.CompanyInfo.EconomyState;
                 }
                 else
                 {
@@ -119,8 +119,8 @@ namespace Cities.Region
                 _token = new CancellationTokenSource();
                 var list = await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue, _token.Token);
                 CitiesBindingSource.DataSource = list?.OrderBy(q => q.Name).ToList();
-                if (!string.IsNullOrEmpty(clsEconomyUnit.EconomyCity))
-                    cmbCity.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyCity);
+                if (SettingsBussines.Setting.CompanyInfo.EconomyCity!=Guid.Empty)
+                    cmbCity.SelectedValue = SettingsBussines.Setting.CompanyInfo.EconomyCity;
             }
             catch (Exception ex)
             {

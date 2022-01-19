@@ -24,7 +24,7 @@ namespace Advertise.Forms.MatchRegions
             {
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
-                var list = await RegionsBussines.GetAllAsync((Guid.Parse(Settings.Classes.clsEconomyUnit.EconomyCity)), _token.Token);
+                var list = await RegionsBussines.GetAllAsync(SettingsBussines.Setting.CompanyInfo.EconomyCity, _token.Token);
                 regBingingSource.DataSource = list?.OrderBy(q => q.Name)?.ToSortableBindingList();
 
                 await SetRelatedRegionsAsync(Region.Name.Trim());

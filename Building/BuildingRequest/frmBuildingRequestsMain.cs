@@ -77,10 +77,10 @@ namespace Building.BuildingRequest
                     cmbBuildingType.SelectedIndex = 0;
                     cmbBuildingCondition.SelectedIndex = 0;
                     cmbBuildingAccountType.SelectedIndex = 0;
-                    if (string.IsNullOrEmpty(clsEconomyUnit.EconomyState))
+                    if (SettingsBussines.Setting.CompanyInfo.EconomyState==Guid.Empty)
                         cmbState.SelectedIndex = 0;
                     else
-                        cmbState.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyState);
+                        cmbState.SelectedValue = SettingsBussines.Setting.CompanyInfo.EconomyState;
                 }
             }
             catch (Exception ex)
@@ -347,8 +347,8 @@ namespace Building.BuildingRequest
                 var list = await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue, _token.Token);
                 CityBindingSource.DataSource = list?.Where(q => q.Status).OrderBy(q => q.Name).ToList();
                 if (cls.Guid != Guid.Empty) cmbCity.SelectedValue = cls.CityGuid;
-                else if (!string.IsNullOrEmpty(clsEconomyUnit.EconomyCity))
-                    cmbCity.SelectedValue = Guid.Parse(clsEconomyUnit.EconomyCity);
+                else if (SettingsBussines.Setting.CompanyInfo.EconomyCity!=Guid.Empty)
+                    cmbCity.SelectedValue = SettingsBussines.Setting.CompanyInfo.EconomyCity;
 
                 await SetRelatedRegionsAsync(cls?.Guid ?? Guid.Empty);
             }
@@ -491,7 +491,7 @@ namespace Building.BuildingRequest
 
                 if (res.HasError) return;
 
-                if (Settings.Classes.Payamak.IsSendToSayer.ParseToBoolean() && isSendSms)
+                if (SettingsBussines.Setting.Sms.IsSendToSayer && isSendSms)
                     _ = Task.Run(() => Payamak.FixSms.RequestSend.SendAsync(cls));
 
                 if (MessageBox.Show("آیا مایلید املاک مطابق با این تقاضا را مشاهده نمایید؟", "تطبیق املاک با تقاضا",

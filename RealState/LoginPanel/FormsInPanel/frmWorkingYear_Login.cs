@@ -90,7 +90,7 @@ namespace RealState.LoginPanel.FormsInPanel
             try
             {
                 var currentVersion = AccGlobalSettings.AppVersion.ParseToInt();
-                var dbVersion = clsGlobalSetting.ApplicationVersion.ParseToInt();
+                var dbVersion = (await clsGlobalSetting.GetApplicationVersionAsync()).ParseToInt();
                 if (dbVersion <= 0 || currentVersion > dbVersion)
                 {
                     res.AddReturnedValue(await clsErtegha.StartErteghaAsync(AppSettings.DefaultConnectionString, this, false, !Cache.IsClient));
@@ -105,7 +105,7 @@ namespace RealState.LoginPanel.FormsInPanel
 
             return res;
         }
-        private ReturnedSaveFuncInfo CheckHardSerial()
+        private async Task<ReturnedSaveFuncInfo> CheckHardSerialAsync()
         {
             var res = new ReturnedSaveFuncInfo();
             try
@@ -119,16 +119,16 @@ namespace RealState.LoginPanel.FormsInPanel
                     var client = clsRegistery.GetRegistery("X1001MR");
                     if (!string.IsNullOrEmpty(client) && client.ParseToBoolean())
                     {
-                        clsGlobalSetting.HardDriveSerial = clsRegistery.GetRegistery("X1001MA");
-                        lblCpuSerial.Text = clsGlobalSetting.HardDriveSerial;
+                        await clsGlobalSetting.SetHardDriveSerialAsync(clsRegistery.GetRegistery("X1001MA"));
+                        lblCpuSerial.Text = await clsGlobalSetting.GetHardDriveSerialAsync();
                         return res;
                     }
                     var codeDb = SoftwareLock.GenerateActivationCodeClient.ActivationCode();
-                    if (string.IsNullOrEmpty(clsGlobalSetting.HardDriveSerial))
+                    if (string.IsNullOrEmpty(await clsGlobalSetting.GetHardDriveSerialAsync()))
                     {
-                        clsGlobalSetting.HardDriveSerial = codeDb;
-                        lblCpuSerial.Text = clsGlobalSetting.HardDriveSerial;
-                        codeHdd = clsGlobalSetting.HardDriveSerial;
+                        await clsGlobalSetting.SetHardDriveSerialAsync(codeDb);
+                        lblCpuSerial.Text = await clsGlobalSetting.GetHardDriveSerialAsync();
+                        codeHdd = await clsGlobalSetting.GetHardDriveSerialAsync();
                     }
                     if (codeDb != codeHdd)
                     {
@@ -188,7 +188,7 @@ namespace RealState.LoginPanel.FormsInPanel
                         continue;
                     }
 
-                    AccGlobalSettings.IsAuthorize = await SendRequestAsync(clsGlobalSetting.HardDriveSerial);
+                    AccGlobalSettings.IsAuthorize = await SendRequestAsync(await clsGlobalSetting.GetHardDriveSerialAsync());
                     if (AccGlobalSettings.IsAuthorize) continue;
                     Application.Exit();
                     return;
@@ -214,18 +214,18 @@ namespace RealState.LoginPanel.FormsInPanel
                 return false;
             }
         }
-        private ReturnedSaveFuncInfo CheckVersion()
+        private async Task<ReturnedSaveFuncInfo> CheckVersionAsync()
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
                 var currentVersion = AccGlobalSettings.AppVersion.ParseToInt();
-                var dbVersion = clsGlobalSetting.ApplicationVersion.ParseToInt();
+                var dbVersion = (await clsGlobalSetting.GetApplicationVersionAsync()).ParseToInt();
 
                 if (dbVersion <= 0)
                 {
                     dbVersion = currentVersion;
-                    clsGlobalSetting.ApplicationVersion = dbVersion.ToString();
+                    await clsGlobalSetting.SetApplicationVersionAsync(dbVersion.ToString());
                 }
 
                 if (currentVersion < dbVersion)
@@ -236,12 +236,13 @@ namespace RealState.LoginPanel.FormsInPanel
                 }
 
                 if (currentVersion > dbVersion)
-                    clsGlobalSetting.ApplicationVersion = currentVersion.ToString();
+                    await clsGlobalSetting.SetApplicationVersionAsync(currentVersion.ToString());
 
-                if (string.IsNullOrEmpty(clsEconomyUnit.EconomyName))
+                if (string.IsNullOrEmpty(SettingsBussines.Setting.CompanyInfo.EconomyName))
                 {
                     var frm = new frmEconomyUnit { TopMost = true };
-                    if (frm.ShowDialog() == DialogResult.Cancel) Application.Exit();
+                    if (frm.ShowDialog() == DialogResult.Cancel) 
+                        Application.Exit();
                 }
             }
             catch (Exception ex)
@@ -293,13 +294,13 @@ namespace RealState.LoginPanel.FormsInPanel
 
                 Invoke(new MethodInvoker(() => prgBar.Value = 45));
 
-                result.AddReturnedValue(CheckHardSerial());
+                result.AddReturnedValue(await CheckHardSerialAsync());
                 Invoke(new MethodInvoker(() => prgBar.Value = 65));
                 if (result.HasError) return;
 
                 _ = Task.Run(CheckHardSerialWithServerAsync);
 
-                result.AddReturnedValue(CheckVersion());
+                result.AddReturnedValue(await CheckVersionAsync());
                 Invoke(new MethodInvoker(() => prgBar.Value = 90));
                 if (result.HasError) return;
 
@@ -387,7 +388,7 @@ namespace RealState.LoginPanel.FormsInPanel
                 UserBussines.CurrentUser = user;
                 UserBussines.DateVorrod = DateTime.Now;
 
-                clsGlobalSetting.LastUser = user.UserName;
+                await clsGlobalSetting.SetLastUserAsync(user.UserName);
 
                 await UserLogBussines.SaveAsync(EnLogAction.Login, EnLogPart.Login,null,"", null);
             }

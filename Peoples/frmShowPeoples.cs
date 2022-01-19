@@ -97,7 +97,6 @@ namespace Peoples
                 mnuTell.Enabled = access?.Peoples.People_Show_Tell ?? false;
                 mnuPrint.Enabled = access?.Peoples.People_Print ?? false;
                 mnuIpmortFromExcel.Visible = VersionAccess.Excel;
-                mnuAccount.Visible = VersionAccess.Accounting;
             }
             catch (Exception ex)
             {
@@ -110,76 +109,6 @@ namespace Peoples
             {
                 await LoadGroupsAsync();
                 await LoadPeoplesAsync(txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void SetColumns()
-        {
-            try
-            {
-                ColumnList = Settings.Classes.clsPeoples.ColumnsList;
-                if (ColumnList == null || ColumnList.Count <= 0)
-                {
-                    ColumnList = new List<string> { "کد", "عنوان" };
-
-                    SaveColumns(ColumnList);
-
-                    DGrid.Columns[dgName.Index].Visible = true;
-                    DGrid.Columns[dgCode.Index].Visible = true;
-
-                    mnuName.Checked = true;
-                    mnuCode.Checked = true;
-                }
-                else
-                {
-                    foreach (var item in ColumnList.ToList())
-                    {
-                        switch (item)
-                        {
-                            case "کد":
-                                DGrid.Columns[dgCode.Index].Visible = true;
-                                mnuCode.Checked = true;
-                                break;
-                            case "عنوان":
-                                DGrid.Columns[dgName.Index].Visible = true;
-                                mnuName.Checked = true;
-                                break;
-                            case "کدملی":
-                                DGrid.Columns[dgNatCode.Index].Visible = true;
-                                mnuNatName.Checked = true;
-                                break;
-                            case "نام پدر":
-                                DGrid.Columns[dgFatherName.Index].Visible = true;
-                                mnuFatherName.Checked = true;
-                                break;
-                            case "آدرس":
-                                DGrid.Columns[dgAddress.Index].Visible = true;
-                                mnuAddress.Checked = true;
-                                break;
-                            case "حساب":
-                                DGrid.Columns[dgAccount.Index].Visible = true;
-                                DGrid.Columns[dgAccountType.Index].Visible = true;
-                                mnuAccount.Checked = true;
-                                break;
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void SaveColumns(List<string> listcl)
-        {
-            try
-            {
-                listcl = listcl.GroupBy(x => x)
-                    .Select(x => x.First()).ToList();
-                Settings.Classes.clsPeoples.ColumnsList = listcl;
             }
             catch (Exception ex)
             {
@@ -219,7 +148,6 @@ namespace Peoples
                 contextMenuGroup.Enabled = true;
             }
             ucPagger.OnBindDataReady += UcPagger_OnBindDataReady;
-            SetColumns();
             SetAccess();
         }
 
@@ -576,152 +504,6 @@ namespace Peoples
                 var frm = new frmPeoples(obj, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadPeoplesAsync(txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuCode_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuCode.Checked)
-                {
-                    ColumnList.Add("کد");
-                    DGrid.Columns[dgCode.Index].Visible = true;
-                    SaveColumns(ColumnList);
-                }
-                else
-                {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("کد");
-                    DGrid.Columns[dgCode.Index].Visible = false;
-                    SaveColumns(ColumnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuName_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuName.Checked)
-                {
-                    ColumnList.Add("عنوان");
-                    DGrid.Columns[dgName.Index].Visible = true;
-                    SaveColumns(ColumnList);
-                }
-                else
-                {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("عنوان");
-                    DGrid.Columns[dgName.Index].Visible = false;
-                    SaveColumns(ColumnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuNatName_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuNatName.Checked)
-                {
-                    ColumnList.Add("کدملی");
-                    DGrid.Columns[dgNatCode.Index].Visible = true;
-                    SaveColumns(ColumnList);
-                }
-                else
-                {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("کدملی");
-                    DGrid.Columns[dgNatCode.Index].Visible = false;
-                    SaveColumns(ColumnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuFatherName_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuFatherName.Checked)
-                {
-                    ColumnList.Add("نام پدر");
-                    DGrid.Columns[dgFatherName.Index].Visible = true;
-                    SaveColumns(ColumnList);
-                }
-                else
-                {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("نام پدر");
-                    DGrid.Columns[dgFatherName.Index].Visible = false;
-                    SaveColumns(ColumnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuAccount_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (!VersionAccess.Accounting)
-                {
-                    DGrid.Columns[dgAccount.Index].Visible = false;
-                    DGrid.Columns[dgAccountType.Index].Visible = false;
-                    return;
-                }
-                if (mnuAccount.Checked)
-                {
-                    ColumnList.Add("حساب");
-                    DGrid.Columns[dgAccount.Index].Visible = true;
-                    DGrid.Columns[dgAccountType.Index].Visible = true;
-                    SaveColumns(ColumnList);
-                }
-                else
-                {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("حساب");
-                    DGrid.Columns[dgAccount.Index].Visible = false;
-                    DGrid.Columns[dgAccountType.Index].Visible = false;
-                    SaveColumns(ColumnList);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void mnuAddress_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (mnuAddress.Checked)
-                {
-                    ColumnList.Add("آدرس");
-                    DGrid.Columns[dgAddress.Index].Visible = true;
-                    SaveColumns(ColumnList);
-                }
-                else
-                {
-                    ColumnList = ColumnList.GroupBy(x => x).Select(x => x.First()).ToList();
-                    ColumnList.Remove("آدرس");
-                    DGrid.Columns[dgAddress.Index].Visible = false;
-                    SaveColumns(ColumnList);
-                }
             }
             catch (Exception ex)
             {

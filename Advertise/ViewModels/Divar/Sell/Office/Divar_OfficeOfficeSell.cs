@@ -43,7 +43,7 @@ namespace Advertise.ViewModels.Divar.Sell.Office
                 if (res.HasError) return res;
                 await Utility.Wait(2);
 
-                var cat = new FixElements(Utility.RefreshDriver(clsAdvertise.IsSilent));
+                var cat = new FixElements(Utility.RefreshDriver(SettingsBussines.AdvertiseSetting.IsSilent));
                 cat.FirsCategory(FisrtCat)?.Click();
                 await Utility.Wait();
                 cat.SecondCategory(SecondCat)?.Click();

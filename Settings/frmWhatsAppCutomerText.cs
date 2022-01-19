@@ -1,10 +1,12 @@
-﻿using System;
-using System.Windows.Forms;
-using DevComponents.DotNetBar;
+﻿using DevComponents.DotNetBar;
+using EntityCache.Assistence;
+using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Notification;
 using Services;
-using Settings.Classes;
+using System;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Settings
 {
@@ -29,20 +31,23 @@ namespace Settings
         {
             try
             {
-                txtText.Text = !string.IsNullOrEmpty(clsWhatsApp.CustomerMessage)
-                    ? clsWhatsApp.CustomerMessage
-                    : clsTelegram.Text;
+                var sett = SettingsBussines.Setting;
+
+                txtText.Text = !string.IsNullOrEmpty(sett.Whatsapp.CustomerMessage)
+                    ? sett.Whatsapp.CustomerMessage
+                    : sett.Telegram.Text;
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void SaveWhatsApp()
+        private async Task SaveWhatsAppAsync()
         {
             try
             {
-                clsWhatsApp.CustomerMessage = txtText.Text;
+                SettingsBussines.Setting.Whatsapp.CustomerMessage = txtText.Text;
+                await SettingsBussines.Setting.SaveAsync();
             }
             catch (Exception ex)
             {
@@ -86,11 +91,11 @@ namespace Settings
         private void btnBalcony_Click(object sender, System.EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
         private void btnOtherOptions_Click(object sender, System.EventArgs e) => SetDataInTxt((ButtonX)sender, txtText);
         private void frmWhatsAppCutomerText_Load(object sender, EventArgs e) => LoadWhatsApp();
-        private void btnFinish_Click(object sender, EventArgs e)
+        private async void btnFinish_Click(object sender, EventArgs e)
         {
             try
             {
-                SaveWhatsApp();
+                await SaveWhatsAppAsync();
                 frmNotification.PublicInfo.ShowMessage("تنظیمات با موفقیت ثبت شد");
                 DialogResult = DialogResult.OK;
                 Close();
