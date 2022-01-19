@@ -10,12 +10,13 @@ using Accounting.Report;
 using Accounting.Sanad;
 using Accounting.Sandouq;
 using Advertise.Forms;
-using Building.Buildings;
 using Building.BuildingAccountType;
 using Building.BuildingCondition;
 using Building.BuildingMatchesItem;
 using Building.BuildingOptions;
 using Building.BuildingRequest;
+using Building.Buildings;
+using Building.Buildings.Selector;
 using Building.BuildingType;
 using Building.BuildingView;
 using Building.Contract;
@@ -34,13 +35,16 @@ using Payamak;
 using Payamak.Panel;
 using Payamak.PhoneBook;
 using Peoples;
+using Persistence;
 using RealState.Advance;
 using RealState.BackUpLog;
 using RealState.Note;
 using RealState.UserControls;
 using Services;
+using Services.FilterObjects;
 using Settings;
 using Settings.Classes;
+using Settings.Forms;
 using System;
 using System.Collections.Concurrent;
 using System.Data.SqlClient;
@@ -52,13 +56,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using User;
 using User.Advisor;
-using WindowsSerivces;
-using Building.Buildings.Selector;
-using Persistence;
-using Services.FilterObjects;
-using Services.Settings;
-using Settings.Forms;
 using WebHesabBussines;
+using WindowsSerivces;
 
 namespace RealState
 {
@@ -660,20 +659,7 @@ namespace RealState
         {
             try
             {
-                if (SettingsBussines.Setting == null)
-                    SettingsBussines.Setting = new GlobalSetting();
-                if (SettingsBussines.AdvertiseSetting == null)
-                    SettingsBussines.AdvertiseSetting = new AdvertiseSetting();
-
                 SetAccess();
-                FileFormatter.Init();
-                if (!Cache.IsClient)
-                {
-                    DivarFiles.Init();
-                    AutoBackUp.Init(this);
-                    if (WebCustomer.CheckCustomer() && WebCustomer.Customer.HardSerial != "265155255")
-                        _ = Task.Run(() => WebTelegramReporter.SendBuildingReport(WebCustomer.Customer.Guid, "ورود به نرم افزار"));
-                }
                 var myCollection = new AutoCompleteStringCollection();
                 var list = _dic.Keys;
                 foreach (var item in list.ToList())
@@ -828,7 +814,7 @@ namespace RealState
         {
             try
             {
-                await UserLogBussines.SaveAsync(EnLogAction.Logout, EnLogPart.Logout,null,"", null);
+                await UserLogBussines.SaveAsync(EnLogAction.Logout, EnLogPart.Logout, null, "", null);
                 Application.Exit();
             }
             catch (Exception ex)

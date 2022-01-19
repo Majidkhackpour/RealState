@@ -23,8 +23,7 @@ namespace RealState.LoginPanel.FormsInPanel
 {
     public partial class frmWorkingYear_Login : Form
     {
-        private ReturnedSaveFuncInfo result = new ReturnedSaveFuncInfo();
-        public Color Color => Color.FromArgb(65, 81, 219);
+        private Color Color => Color.FromArgb(65, 81, 219);
 
         private void SetDesign()
         {
@@ -32,6 +31,8 @@ namespace RealState.LoginPanel.FormsInPanel
             {
                 lblSoftwareSerial.Text = clsRegistery.GetRegistery("U1001ML");
                 lblCpuSerial.Text = clsRegistery.GetRegistery("X1001MA");
+
+                LoadWorkingYearData();
             }
             catch (Exception ex)
             {
@@ -69,190 +70,6 @@ namespace RealState.LoginPanel.FormsInPanel
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void InitConfigs()
-        {
-            try
-            {
-                ErrorHandler.AddHandler(Assembly.GetExecutingAssembly().GetName().Version.ToString(), ENSource.Building,
-                    Application.StartupPath, clsRegistery.GetRegistery("X1001MA"));
-                ClsCache.Init(AppSettings.DefaultConnectionString, clsRegistery.GetRegistery("X1001MA"));
-                Logger.init(Application.StartupPath, "BuidlingEventLog.txt", true);
-                ErrorManager.Init(ENSource.Building, null);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async Task<ReturnedSaveFuncInfo> SetDefultsAsync()
-        {
-            var res = new ReturnedSaveFuncInfo();
-            try
-            {
-                var currentVersion = AccGlobalSettings.AppVersion.ParseToInt();
-                var dbVersion = (await clsGlobalSetting.GetApplicationVersionAsync()).ParseToInt();
-                if (dbVersion <= 0 || currentVersion > dbVersion)
-                {
-                    res.AddReturnedValue(await clsErtegha.StartErteghaAsync(AppSettings.DefaultConnectionString, this, false, !Cache.IsClient));
-                    await ClsCache.InserDefultsAsync();
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-
-            return res;
-        }
-        private async Task<ReturnedSaveFuncInfo> CheckHardSerialAsync()
-        {
-            var res = new ReturnedSaveFuncInfo();
-            try
-            {
-                var free = clsRegistery.GetRegistery("U1008FD");
-                if (string.IsNullOrEmpty(free))
-                {
-                    //Register
-                    var serialNumber = clsRegistery.GetRegistery("U1001ML");
-                    var codeHdd = lblCpuSerial.Text;
-                    var client = clsRegistery.GetRegistery("X1001MR");
-                    if (!string.IsNullOrEmpty(client) && client.ParseToBoolean())
-                    {
-                        await clsGlobalSetting.SetHardDriveSerialAsync(clsRegistery.GetRegistery("X1001MA"));
-                        lblCpuSerial.Text = await clsGlobalSetting.GetHardDriveSerialAsync();
-                        return res;
-                    }
-                    var codeDb = SoftwareLock.GenerateActivationCodeClient.ActivationCode();
-                    if (string.IsNullOrEmpty(await clsGlobalSetting.GetHardDriveSerialAsync()))
-                    {
-                        await clsGlobalSetting.SetHardDriveSerialAsync(codeDb);
-                        lblCpuSerial.Text = await clsGlobalSetting.GetHardDriveSerialAsync();
-                        codeHdd = await clsGlobalSetting.GetHardDriveSerialAsync();
-                    }
-                    if (codeDb != codeHdd)
-                    {
-                        var frm = new SoftwareLock.frmClient(serialNumber, true);
-                        if (frm.ShowDialog() != DialogResult.OK)
-                        {
-                            res.AddError("خطا در تایید شناسه فنی ");
-                            return res;
-                        }
-                        serialNumber = clsRegistery.GetRegistery("U1001ML");
-                    }
-                    if (string.IsNullOrEmpty(serialNumber))
-                    {
-                        var frm = new SoftwareLock.frmClient(serialNumber, true);
-                        if (frm.ShowDialog() != DialogResult.OK)
-                        {
-                            res.AddError("خطا در تایید شناسه فنی ");
-                            return res;
-                        }
-                    }
-                }
-                else
-                {
-                    //10 Days Free
-                    var fDate = free.ParseToDate();
-                    if (fDate < DateTime.Now)
-                    {
-                        //Expire Free Time
-                        MessageBox.Show("مهلت استفاده 10 روزه رایگان شما از نرم افزار به اتمام رسیده است");
-                        var frm = new SoftwareLock.frmClient("", false);
-                        if (frm.ShowDialog() != DialogResult.OK)
-                        {
-                            res.AddError("خطا در تایید شناسه فنی ");
-                            return res;
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-
-            return res;
-        }
-        private async Task CheckHardSerialWithServerAsync()
-        {
-            try
-            {
-                while (!AccGlobalSettings.IsAuthorize)
-                {
-                    var res = await Utilities.PingHostAsync();
-                    if (res.HasError)
-                    {
-                        await Task.Delay(12000000);
-                        continue;
-                    }
-
-                    AccGlobalSettings.IsAuthorize = await SendRequestAsync(await clsGlobalSetting.GetHardDriveSerialAsync());
-                    if (AccGlobalSettings.IsAuthorize) continue;
-                    Application.Exit();
-                    return;
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async Task<bool> SendRequestAsync(string hSerial)
-        {
-            try
-            {
-                var customer = await WebHesabBussines.WebCustomer.GetByHardSerialAsync(hSerial);
-                if (customer == null || customer.isBlock) return false;
-                WebHesabBussines.WebCustomer.Customer = customer;
-                return true;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                return false;
-            }
-        }
-        private async Task<ReturnedSaveFuncInfo> CheckVersionAsync()
-        {
-            var res = new ReturnedSaveFuncInfo();
-            try
-            {
-                var currentVersion = AccGlobalSettings.AppVersion.ParseToInt();
-                var dbVersion = (await clsGlobalSetting.GetApplicationVersionAsync()).ParseToInt();
-
-                if (dbVersion <= 0)
-                {
-                    dbVersion = currentVersion;
-                    await clsGlobalSetting.SetApplicationVersionAsync(dbVersion.ToString());
-                }
-
-                if (currentVersion < dbVersion)
-                {
-                    res.AddError($"نسخه فایل اجرایی {currentVersion} و نسخه بانک اطلاعاتی {dbVersion} می باشد. \r\n" +
-                                    $"لطفا جهت بروزرسانی نسخه اجرایی خود، با تیم پشتیبانی تماس حاصل فرمایید");
-                    return res;
-                }
-
-                if (currentVersion > dbVersion)
-                    await clsGlobalSetting.SetApplicationVersionAsync(currentVersion.ToString());
-
-                if (string.IsNullOrEmpty(SettingsBussines.Setting.CompanyInfo.EconomyName))
-                {
-                    var frm = new frmEconomyUnit { TopMost = true };
-                    if (frm.ShowDialog() == DialogResult.Cancel) 
-                        Application.Exit();
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-
-            return res;
-        }
 
         public frmWorkingYear_Login() => InitializeComponent();
 
@@ -266,51 +83,15 @@ namespace RealState.LoginPanel.FormsInPanel
         private void lblCreate_MouseLeave(object sender, System.EventArgs e) => lblCreate.ForeColor = Color;
         private async void frmWorkingYear_Login_Load(object sender, EventArgs e)
         {
+            var res = new ReturnedSaveFuncInfo();
+            lblOk.Enabled = false;
             try
             {
                 SetDesign();
+                res.AddReturnedValue(await Initializer.InitializeAsync(lblCpuSerial.Text, this));
+                lblCpuSerial.Text = await clsGlobalSetting.GetHardDriveSerialAsync();
 
-                var conString = clsRegistery.GetConnectionRegistery("BuildingCn");
-                if (!conString.HasError && !string.IsNullOrEmpty(conString.value))
-                {
-                    AppSettings.DefaultConnectionString = conString.value;
-                    Cache.ConnectionString = conString.value;
-                }
-
-                InitConfigs();
-
-                LoadWorkingYearData();
-                Invoke(new MethodInvoker(() => prgBar.Value = 1));
-                if (workingYearBindingSource.Count <= 0)
-                {
-                    prgBar.Value = 0;
-                    this.ShowWarning("متاسفانه هیچ واحد اقتصادی فعال یافت نشد. لطفا ابتدا واحد اقتصادی خود را ایجاد نمایید");
-                    return;
-                }
-
-                result.AddReturnedValue(await SetDefultsAsync());
-                Invoke(new MethodInvoker(() => prgBar.Value = 35));
-                if (result.HasError) return;
-
-                Invoke(new MethodInvoker(() => prgBar.Value = 45));
-
-                result.AddReturnedValue(await CheckHardSerialAsync());
-                Invoke(new MethodInvoker(() => prgBar.Value = 65));
-                if (result.HasError) return;
-
-                _ = Task.Run(CheckHardSerialWithServerAsync);
-
-                result.AddReturnedValue(await CheckVersionAsync());
-                Invoke(new MethodInvoker(() => prgBar.Value = 90));
-                if (result.HasError) return;
-
-                await Task.Delay(1000);
-                Invoke(new MethodInvoker(() => prgBar.Value = 100));
-                await Task.Delay(1000);
-                prgBar.Value = 0;
-
-
-                if (result.HasError) return;
+                if (res.HasError || res.HasWarning) return;
 
                 cmbUserName.Enabled = txtPassword.Enabled = true;
                 await LoadUsersAsync();
@@ -318,7 +99,16 @@ namespace RealState.LoginPanel.FormsInPanel
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                result.AddReturnedValue(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError || res.HasWarning)
+                {
+                    this.ShowError(res);
+                    lblOk.Enabled = false;
+                }
+                else lblOk.Enabled = true;
             }
         }
         private async void cmbWorkingYear_SelectedIndexChanged(object sender, EventArgs e)
@@ -336,10 +126,6 @@ namespace RealState.LoginPanel.FormsInPanel
                 AppSettings.DefaultConnectionString = cn.ConnectionString;
                 Cache.ConnectionString = cn.ConnectionString;
 
-                await SetDefultsAsync();
-
-                if (result.HasError) this.ShowError(result, "خطای سیستم");
-
                 cmbUserName.Enabled = txtPassword.Enabled = true;
                 await LoadUsersAsync();
             }
@@ -353,7 +139,6 @@ namespace RealState.LoginPanel.FormsInPanel
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                if (result.HasError) return;
                 if (userBindingSource.Count <= 0)
                 {
                     res.AddError("نام کاربری نمی تواند خالی باشد");
@@ -395,11 +180,10 @@ namespace RealState.LoginPanel.FormsInPanel
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                result.AddReturnedValue(ex);
+                res.AddReturnedValue(ex);
             }
             finally
             {
-                if (result.HasError) this.ShowError(result, "خطای سیستم");
                 if (res.HasError) this.ShowError(res, "خطای سیستم");
                 else
                 {

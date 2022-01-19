@@ -1,14 +1,9 @@
-﻿using EntityCache.Bussines;
-using EntityCache.WebService;
-using Notification;
+﻿using Notification;
 using Persistence;
 using RealState.LoginPanel;
 using Services;
 using Settings;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Principal;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WebHesabBussines;
@@ -20,7 +15,7 @@ namespace RealState
         [STAThread]
         static void Main()
         {
-            if (!IsAdmin())
+            if (!Initializer.IsAdmin())
             {
                 new frmRunAsAdmin().ShowDialog();
                 return;
@@ -42,96 +37,13 @@ namespace RealState
                 return;
             }
 
-
-            Cache.Path = Application.StartupPath;
-
-            SetVersionAccess();
-
-            if (!VersionAccess.Building)
-            {
-                var ret = new ReturnedSaveFuncInfo();
-                ret.AddInformation("سریال نرم افزار شما، مجوز استفاده از نرم افزار را ندارد. لطفا جهت ارتقای نسخه نرم افزار خود اقدام نمایید");
-                new FrmShowErrorMessage(ret, "پیغام سیستم")?.ShowDialog();
-                return;
-            }
-
-            WebServiceHandlers.Instance.Init(Cache.Path);
             new frmNewPlash().ShowDialog();
-            _ = Task.Run(BuildingBussines.SetArchiveAsync);
-            _ = Task.Run(BuildingRequestBussines.DeleteAfter60DaysAsync);
+
+            if (WebCustomer.CheckCustomer() && WebCustomer.Customer.HardSerial != "265155255")
+                _ = Task.Run(() => WebTelegramReporter.SendBuildingReport(WebCustomer.Customer.Guid, "ورود به نرم افزار"));
+
             var frmMain = new frmNewMain();
             frmMain.ShowDialog();
-        }
-        private static void SetVersionAccess()
-        {
-            try
-            {
-                var serial = "";
-                if (WebCustomer.CheckCustomer() && !string.IsNullOrEmpty(WebCustomer.Customer.AppSerial))
-                    serial = WebCustomer.Customer.AppSerial;
-                else serial = clsRegistery.GetRegistery("U1001ML");
-
-                if (string.IsNullOrEmpty(serial)) return;
-                var serialList = new List<string>();
-                var code = "";
-                foreach (var item in serial.ToList())
-                {
-                    if (code.Length < 2)
-                    {
-                        code += item;
-                        if (code.Length == 2)
-                        {
-                            serialList.Add(code);
-                            code = "";
-                        }
-                    }
-                    else
-                    {
-                        serialList.Add(code);
-                        code = "";
-                    }
-                }
-
-
-                foreach (var item in serialList)
-                {
-                    switch ((EnAppSerial)item.ParseToInt())
-                    {
-                        case EnAppSerial.Building: VersionAccess.Building = true; break;
-                        case EnAppSerial.Sms: VersionAccess.Sms = true; break;
-                        case EnAppSerial.Advertise: VersionAccess.Advertise = true; break;
-                        case EnAppSerial.Telegram: VersionAccess.Telegram = true; break;
-                        case EnAppSerial.WhatsApp: VersionAccess.WhatsApp = true; break;
-                        case EnAppSerial.Excel: VersionAccess.Excel = true; break;
-                        case EnAppSerial.AutoBackUp: VersionAccess.AutoBackUp = true; break;
-                        case EnAppSerial.Accounting: VersionAccess.Accounting = true; break;
-                        case EnAppSerial.WebSite: break;
-                        case EnAppSerial.MobileApp: break;
-                        case EnAppSerial.WebService:
-                            VersionAccess.WebService = true;
-                            Cache.IsSendToServer = true;
-                            break;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private static bool IsAdmin()
-        {
-            try
-            {
-                var identity = WindowsIdentity.GetCurrent();
-                var principal = new WindowsPrincipal(identity);
-                return principal.IsInRole(WindowsBuiltInRole.Administrator);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                return false;
-            }
         }
     }
 }

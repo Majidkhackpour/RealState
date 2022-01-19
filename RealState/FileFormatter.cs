@@ -1,12 +1,11 @@
-﻿using System;
+﻿using EntityCache.Bussines;
+using Services;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using EntityCache.Bussines;
-using Services;
-using Settings.Classes;
 
 namespace RealState
 {

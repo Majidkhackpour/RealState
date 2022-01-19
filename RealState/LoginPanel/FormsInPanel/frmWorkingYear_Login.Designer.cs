@@ -53,7 +53,6 @@ namespace RealState.LoginPanel.FormsInPanel
             this.lblCpuSerial = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblSoftwareSerial = new System.Windows.Forms.Label();
-            this.prgBar = new System.Windows.Forms.ProgressBar();
             this.lblRecoveryPassword = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.workingYearBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
@@ -364,16 +363,6 @@ namespace RealState.LoginPanel.FormsInPanel
             this.lblSoftwareSerial.TabIndex = 55715;
             this.lblSoftwareSerial.Text = "----";
             // 
-            // prgBar
-            // 
-            this.prgBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.prgBar.Location = new System.Drawing.Point(39, 26);
-            this.prgBar.Name = "prgBar";
-            this.prgBar.Size = new System.Drawing.Size(306, 23);
-            this.prgBar.Step = 1;
-            this.prgBar.TabIndex = 55719;
-            // 
             // lblRecoveryPassword
             // 
             this.lblRecoveryPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -416,7 +405,6 @@ namespace RealState.LoginPanel.FormsInPanel
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.cmbUserName);
             this.Controls.Add(this.cmbWorkingYear);
-            this.Controls.Add(this.prgBar);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -459,7 +447,6 @@ namespace RealState.LoginPanel.FormsInPanel
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblSoftwareSerial;
         private System.Windows.Forms.BindingSource workingYearBindingSource;
-        private System.Windows.Forms.ProgressBar prgBar;
         private System.Windows.Forms.BindingSource userBindingSource;
         private System.Windows.Forms.Label lblRecoveryPassword;
     }

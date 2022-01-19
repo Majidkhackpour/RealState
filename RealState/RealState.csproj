@@ -317,6 +317,7 @@
     <Compile Include="frmShowBirthDay.Designer.cs">
       <DependentUpon>frmShowBirthDay.cs</DependentUpon>
     </Compile>
+    <Compile Include="Initializer.cs" />
     <Compile Include="LoginPanel\FormsInPanel\frmCreateWorkingYear.cs">
       <SubType>Form</SubType>
     </Compile>
