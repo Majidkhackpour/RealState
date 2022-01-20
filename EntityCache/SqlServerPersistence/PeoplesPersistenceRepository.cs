@@ -12,6 +12,14 @@ namespace EntityCache.SqlServerPersistence
 {
     public class PeoplesPersistenceRepository : IPeoplesRepository
     {
+        private PeopleBankAccountPersistenceRepository _bank = null;
+        private PhoneBookPersistenceRepository _tell = null;
+
+        public PeoplesPersistenceRepository()
+        {
+            _bank = new PeopleBankAccountPersistenceRepository();
+            _tell = new PhoneBookPersistenceRepository();
+        }
         public async Task<List<PeoplesBussines>> GetAllAsync(string _connectionString, Guid parentGuid, bool status, CancellationToken token)
         {
             var list = new List<PeoplesBussines>();
@@ -29,7 +37,7 @@ namespace EntityCache.SqlServerPersistence
                     while (dr.Read())
                     {
                         if (token.IsCancellationRequested) return null;
-                        list.Add(await LoadDataAsync(dr, false, false));
+                        list.Add(await LoadDataAsync(dr, false, false, _connectionString));
                     }
                     cn.Close();
                 }
@@ -57,7 +65,7 @@ namespace EntityCache.SqlServerPersistence
                     while (dr.Read())
                     {
                         if (token.IsCancellationRequested) return null;
-                        list.Add(await LoadDataAsync(dr, false, false));
+                        list.Add(await LoadDataAsync(dr, false, false, _connectionString));
                     }
                     cn.Close();
                 }
@@ -83,7 +91,7 @@ namespace EntityCache.SqlServerPersistence
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) res = await LoadDataAsync(dr, true, false);
+                    if (dr.Read()) res = await LoadDataAsync(dr, true, false, _connectionString);
                     cn.Close();
                 }
             }
@@ -107,7 +115,7 @@ namespace EntityCache.SqlServerPersistence
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) res = await LoadDataAsync(dr, true, true);
+                    if (dr.Read()) res = await LoadDataAsync(dr, true, true, _connectionString);
                     cn.Close();
                 }
             }
@@ -119,6 +127,35 @@ namespace EntityCache.SqlServerPersistence
             return res;
         }
         public async Task<ReturnedSaveFuncInfo> SaveAsync(PeoplesBussines item, SqlTransaction tr)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                res.AddReturnedValue(await SaveTafsilAsync(item,tr));
+                if (res.HasError) return res;
+
+                if (item.TellList?.Count > 0)
+                {
+                    res.AddReturnedValue(await SaveMobileAsync(item, tr));
+                    if (res.HasError) return res;
+                }
+                if (item.BankList?.Count > 0)
+                {
+                    res.AddReturnedValue(await SaveBankAccountAsync(item, tr));
+                    if (res.HasError) return res;
+                }
+
+                res.AddReturnedValue(await SaveAsync_(item, tr));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        private async Task<ReturnedSaveFuncInfo> SaveAsync_(PeoplesBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
@@ -142,6 +179,85 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
                 await cmd.ExecuteNonQueryAsync();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        private async Task<ReturnedSaveFuncInfo> SaveBankAccountAsync(PeoplesBussines item, SqlTransaction tr)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                res.AddReturnedValue(await _bank.RemoveAsync(item.Guid, tr));
+                if (res.HasError) return res;
+
+                foreach (var b in item.BankList)
+                {
+                    b.ParentGuid = item.Guid;
+                    res.AddReturnedValue(await BankSegestBussines.CheckBankAsync(b.BankName, tr));
+                    if (res.HasError) return res;
+                }
+                res.AddReturnedValue(await _bank.SaveRangeAsync(item.BankList, tr));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        private async Task<ReturnedSaveFuncInfo> SaveTafsilAsync(PeoplesBussines item, SqlTransaction tr)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                var tf = await TafsilBussines.GetAsync(item.Guid) ?? new TafsilBussines
+                {
+                    Guid = item.Guid,
+                    DateM = DateTime.Now,
+                    Account = 0,
+                    HesabType = HesabType.Customer,
+                    Modified = item.Modified,
+                    Status = true,
+                    isSystem = false
+                };
+
+                tf.Code = item.Code;
+                tf.Name = item.Name;
+                tf.Description = "";
+                tf.AccountFirst = item.AccountFirst;
+
+                res.AddReturnedValue(await tf.SaveAsync(tr));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        private async Task<ReturnedSaveFuncInfo> SaveMobileAsync(PeoplesBussines item, SqlTransaction tr)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                res.AddReturnedValue(await _tell.RemoveAsync(item.Guid, tr));
+                if (res.HasError) return res;
+
+                foreach (var t in item.TellList)
+                {
+                    t.ParentGuid = item.Guid;
+                    t.Name = item.Name;
+                }
+
+                res.AddReturnedValue(await _tell.SaveRangeAsync(item.TellList, tr));
             }
             catch (Exception ex)
             {
@@ -182,7 +298,7 @@ namespace EntityCache.SqlServerPersistence
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read()) list.Add(await LoadDataAsync(dr, false, false));
+                    while (dr.Read()) list.Add(await LoadDataAsync(dr, false, false, _connectionString));
                     cn.Close();
                 }
             }
@@ -203,7 +319,7 @@ namespace EntityCache.SqlServerPersistence
                     var cmd = new SqlCommand("sp_Peoples_GetAllNotSent", cn) { CommandType = CommandType.StoredProcedure };
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read()) list.Add(await LoadDataBussinesAsync(dr));
+                    while (dr.Read()) list.Add(await LoadDataBussinesAsync(dr, connectionString));
                     dr.Close();
                     cn.Close();
                 }
@@ -263,7 +379,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        private async Task<PeoplesBussines> LoadDataAsync(SqlDataReader dr, bool isLoadDet, bool isLoadRelatedNumber)
+        private async Task<PeoplesBussines> LoadDataAsync(SqlDataReader dr, bool isLoadDet, bool isLoadRelatedNumber, string connectionString)
         {
             var item = new PeoplesBussines();
             try
@@ -291,8 +407,8 @@ namespace EntityCache.SqlServerPersistence
                 if (dr["CodeInArchive"] != DBNull.Value) item.CodeInArchive = dr["CodeInArchive"].ToString();
                 if (isLoadDet)
                 {
-                    item.BankList = await PeoplesBankAccountBussines.GetAllAsync(item.Guid);
-                    item.TellList = await PhoneBookBussines.GetAllAsync(item.Guid, true);
+                    item.BankList = await _bank.GetAllAsync(connectionString, item.Guid);
+                    item.TellList = await _tell.GetAllAsync(connectionString, item.Guid, true);
                 }
 
                 if (isLoadRelatedNumber)
@@ -322,7 +438,7 @@ namespace EntityCache.SqlServerPersistence
 
             return item;
         }
-        private async Task<PeoplesBussines> LoadDataBussinesAsync(SqlDataReader dr)
+        private async Task<PeoplesBussines> LoadDataBussinesAsync(SqlDataReader dr, string connectionString)
         {
             var item = new PeoplesBussines();
             try
@@ -345,7 +461,7 @@ namespace EntityCache.SqlServerPersistence
                 item.GroupGuid = (Guid)dr["GroupGuid"];
                 item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
                 item.ServerStatus = (ServerStatus)dr["ServerStatus"];
-                item.TellList = await PhoneBookBussines.GetAllAsync(item.Guid, true);
+                item.TellList = await _tell.GetAllAsync(connectionString, item.Guid, true);
             }
             catch (Exception ex)
             {

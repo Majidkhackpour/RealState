@@ -235,98 +235,11 @@ namespace EntityCache.Bussines
                     tr = cn.BeginTransaction();
                 }
 
-                var oldPardakht = await GetAsync(Guid);
-                if (oldPardakht != null)
-                {
-                    var checkSh = await PardakhtCheckShakhsiBussines.GetAllAsync(Guid);
-                    if (checkSh != null && checkSh.Count > 0)
-                    {
-                        foreach (var item in checkSh)
-                        {
-                            var check = await CheckPageBussines.GetAsync(item.CheckPageGuid);
-                            if (check == null) continue;
-                            check.CheckStatus = EnCheckSh.Mojoud;
-                            check.DatePardakht = null;
-                            check.DateSarresid = null;
-                            check.Description = "";
-                            check.Modified = DateTime.Now;
-                            check.Price = 0;
-                            check.ReceptorGuid = null;
-                            res.AddReturnedValue(await check.SaveAsync(tr));
-                            if (res.HasError) return res;
-                        }
-                    }
-
-                    var checkM = await PardakhtCheckMoshtariBussines.GetAllAsync(Guid);
-                    if (checkM != null && checkM.Count > 0)
-                    {
-                        foreach (var item in checkM)
-                        {
-                            var check = await ReceptionCheckBussines.GetAsync(item.CheckGuid);
-                            if (check == null) continue;
-                            check.CheckStatus = EnCheckM.Mojoud;
-                            check.Modified = DateTime.Now;
-                            if (check.isAvalDore) check.MasterGuid = null;
-                            res.AddReturnedValue(await check.SaveAsync(tr));
-                            if (res.HasError) return res;
-                        }
-                    }
-                }
-
                 res.AddReturnedValue(CheckValidation());
                 if (res.HasError) return res;
 
                 res.AddReturnedValue(await UnitOfWork.Pardakht.SaveAsync(this, tr));
                 if (res.HasError) return res;
-
-                res.AddReturnedValue(await PardakhtNaqdBussines.RemoveRangeAsync(Guid, tr));
-                if (res.HasError) return res;
-                res.AddReturnedValue(await PardakhtNaqdBussines.SaveRangeAsync(NaqdList, tr));
-                if (res.HasError) return res;
-
-                res.AddReturnedValue(await PardakhtHavaleBussines.RemoveRangeAsync(Guid, tr));
-                if (res.HasError) return res;
-                res.AddReturnedValue(await PardakhtHavaleBussines.SaveRangeAsync(HavaleList, tr));
-                if (res.HasError) return res;
-
-                res.AddReturnedValue(await PardakhtCheckShakhsiBussines.RemoveRangeAsync(Guid, tr));
-                if (res.HasError) return res;
-                res.AddReturnedValue(await PardakhtCheckShakhsiBussines.SaveRangeAsync(CheckShakhsiList, tr));
-                if (res.HasError) return res;
-
-                if (CheckShakhsiList?.Count > 0)
-                {
-                    foreach (var item in CheckShakhsiList)
-                    {
-                        var checkPage = await CheckPageBussines.GetAsync(item.CheckPageGuid);
-                        checkPage.CheckStatus = EnCheckSh.KharjShode;
-                        checkPage.DatePardakht = DateTime.Now;
-                        checkPage.DateSarresid = item.DateSarResid;
-                        checkPage.Description = item.Description;
-                        checkPage.Modified = DateTime.Now;
-                        checkPage.Price = item.Price;
-                        checkPage.ReceptorGuid = TafsilGuid;
-                        res.AddReturnedValue(await checkPage.SaveAsync(tr));
-                        if (res.HasError) return res;
-                    }
-                }
-
-                res.AddReturnedValue(await PardakhtCheckMoshtariBussines.RemoveRangeAsync(Guid, tr));
-                if (res.HasError) return res;
-                res.AddReturnedValue(await PardakhtCheckMoshtariBussines.SaveRangeAsync(CheckMoshtariList, tr));
-                if (res.HasError) return res;
-
-                if (CheckMoshtariList?.Count > 0)
-                {
-                    foreach (var item in CheckMoshtariList)
-                    {
-                        var rec = await ReceptionCheckBussines.GetAsync(item.CheckGuid);
-                        rec.CheckStatus = EnCheckM.Kharj;
-                        rec.Modified = DateTime.Now;
-                        res.AddReturnedValue(await rec.SaveAsync(tr));
-                        if (res.HasError) return res;
-                    }
-                }
 
                 var sanad = await GenerateSanadAsync();
                 res.AddReturnedValue(await sanad.SaveAsync(tr));
@@ -369,56 +282,6 @@ namespace EntityCache.Bussines
                     tr = cn.BeginTransaction();
                 }
 
-                var oldPardakht = await GetAsync(Guid);
-                if (oldPardakht != null)
-                {
-                    var checkSh = await PardakhtCheckShakhsiBussines.GetAllAsync(Guid);
-                    if (checkSh != null && checkSh.Count > 0)
-                    {
-                        foreach (var item in checkSh)
-                        {
-                            var check = await CheckPageBussines.GetAsync(item.CheckPageGuid);
-                            if (check == null) continue;
-                            check.CheckStatus = EnCheckSh.Mojoud;
-                            check.DatePardakht = null;
-                            check.DateSarresid = null;
-                            check.Description = "";
-                            check.Modified = DateTime.Now;
-                            check.Price = 0;
-                            check.ReceptorGuid = null;
-                            res.AddReturnedValue(await check.SaveAsync(tr));
-                            if (res.HasError) return res;
-                        }
-                    }
-
-                    var checkM = await PardakhtCheckMoshtariBussines.GetAllAsync(Guid);
-                    if (checkM != null && checkM.Count > 0)
-                    {
-                        foreach (var item in checkM)
-                        {
-                            var check = await ReceptionCheckBussines.GetAsync(item.CheckGuid);
-                            if (check == null) continue;
-                            check.CheckStatus = EnCheckM.Mojoud;
-                            check.Modified = DateTime.Now;
-                            if (check.isAvalDore) check.MasterGuid = null;
-                            res.AddReturnedValue(await check.SaveAsync(tr));
-                            if (res.HasError) return res;
-                        }
-                    }
-                }
-
-                res.AddReturnedValue(await PardakhtNaqdBussines.RemoveRangeAsync(Guid, tr));
-                if (res.HasError) return res;
-
-                res.AddReturnedValue(await PardakhtHavaleBussines.RemoveRangeAsync(Guid, tr));
-                if (res.HasError) return res;
-
-                res.AddReturnedValue(await PardakhtCheckMoshtariBussines.RemoveRangeAsync(Guid, tr));
-                if (res.HasError) return res;
-
-                res.AddReturnedValue(await PardakhtCheckShakhsiBussines.RemoveRangeAsync(Guid, tr));
-                if (res.HasError) return res;
-
                 res.AddReturnedValue(await UnitOfWork.Pardakht.RemoveAsync(Guid, tr));
                 if (res.HasError) return res;
 
@@ -435,9 +298,6 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(await UserLogBussines.SaveAsync(EnLogAction.Delete, EnLogPart.Pardakht, Guid, desc, tr));
                     if (res.HasError) return res;
                 }
-
-                //if (Cache.IsSendToServer)
-                //    _ = Task.Run(() => WebRental.SaveAsync(list));
             }
             catch (Exception ex)
             {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
@@ -9,50 +10,44 @@ namespace Peoples
 {
     public partial class frmPeoplesBankAccount : MetroForm
     {
-        private async Task LoadDataAsync(Guid parentGuid, string search = "")
+        private PeoplesBussines pe = null;
+        private void LoadData(string search = "")
         {
             try
             {
-                var list = await PeoplesBankAccountBussines.GetAllAsync(parentGuid, search);
-                peoplesAccountBindingSourcr.DataSource = list.ToSortableBindingList();
+                if (string.IsNullOrEmpty(search))
+                    search = "";
+                var res = pe?.BankList;
+                var searchItems = search.SplitString();
+                if (searchItems?.Count > 0)
+                    foreach (var item in searchItems)
+                    {
+                        if (!string.IsNullOrEmpty(item) && item.Trim() != "")
+                        {
+                            res = res?.Where(x => x.BankName.ToLower().Contains(item.ToLower()) ||
+                                                 x.Shobe.ToLower().Contains(item.ToLower()) ||
+                                                 x.AccountNumber.ToLower().Contains(item.ToLower()))
+                                ?.ToList();
+                        }
+                    }
+
+                res = res?.OrderBy(o => o.BankName)?.ToList();
+                peoplesAccountBindingSourcr.DataSource = res;
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public Guid ParentGuid { get; set; }
         public frmPeoplesBankAccount(PeoplesBussines obj)
         {
             InitializeComponent();
-            ParentGuid = obj.Guid;
+            pe = obj;
             ucHeader.Text = $"نمایش لیست حساب های بانکی {obj?.Name ?? ""}";
         }
 
-        private async void frmPeoplesBankAccount_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                await LoadDataAsync(ParentGuid);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
-        private async void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                await LoadDataAsync(ParentGuid, txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-
+        private void frmPeoplesBankAccount_Load(object sender, EventArgs e) => LoadData();
+        private void txtSearch_TextChanged(object sender, EventArgs e) => LoadData(txtSearch.Text);
         private void frmPeoplesBankAccount_KeyDown(object sender, KeyEventArgs e)
         {
             try

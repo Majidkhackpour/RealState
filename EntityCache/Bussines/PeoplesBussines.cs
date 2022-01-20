@@ -83,20 +83,7 @@ namespace EntityCache.Bussines
 
                 res.AddReturnedValue(await CheckValidationAsync());
                 if (res.HasError) return res;
-                res.AddReturnedValue(await SaveTafsilAsync(tr));
-                if (res.HasError) return res;
-
-                if (TellList?.Count > 0)
-                {
-                    res.AddReturnedValue(await SaveMobileAsync(tr));
-                    if (res.HasError) return res;
-                }
-                if (BankList?.Count > 0)
-                {
-                    res.AddReturnedValue(await SaveBankAccountAsync(tr));
-                    if (res.HasError) return res;
-                }
-
+               
                 res.AddReturnedValue(await UnitOfWork.Peoples.SaveAsync(this, tr));
                 if (res.HasError) return res;
 
@@ -226,85 +213,6 @@ namespace EntityCache.Bussines
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-
-            return res;
-        }
-        private async Task<ReturnedSaveFuncInfo> SaveTafsilAsync(SqlTransaction tr)
-        {
-            var res = new ReturnedSaveFuncInfo();
-            try
-            {
-                var tf = await TafsilBussines.GetAsync(Guid) ?? new TafsilBussines
-                {
-                    Guid = Guid,
-                    DateM = DateTime.Now,
-                    Account = 0,
-                    HesabType = HesabType.Customer,
-                    Modified = Modified,
-                    Status = true,
-                    isSystem = false
-                };
-
-                tf.Code = Code;
-                tf.Name = Name;
-                tf.Description = "";
-                tf.AccountFirst = AccountFirst;
-
-                res.AddReturnedValue(await tf.SaveAsync(tr));
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-
-            return res;
-        }
-        private async Task<ReturnedSaveFuncInfo> SaveMobileAsync(SqlTransaction tr)
-        {
-            var res = new ReturnedSaveFuncInfo();
-            try
-            {
-                res.AddReturnedValue(await PhoneBookBussines.RemoveAsync(Guid, tr));
-                if (res.HasError) return res;
-
-                foreach (var item in TellList)
-                {
-                    item.ParentGuid = Guid;
-                    item.Name = Name;
-                }
-
-                res.AddReturnedValue(await PhoneBookBussines.SaveRangeAsync(TellList, tr));
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-
-            return res;
-        }
-        private async Task<ReturnedSaveFuncInfo> SaveBankAccountAsync(SqlTransaction tr)
-        {
-            var res = new ReturnedSaveFuncInfo();
-            try
-            {
-                res.AddReturnedValue(await PeoplesBankAccountBussines.RemoveAsync(Guid, tr));
-                if (res.HasError) return res;
-
-                foreach (var item in BankList)
-                {
-                    item.ParentGuid = Guid;
-                    res.AddReturnedValue(await BankSegestBussines.CheckBankAsync(item.BankName, tr));
-                    if (res.HasError) return res;
-                }
-                res.AddReturnedValue(await PeoplesBankAccountBussines.SaveRangeAsync(BankList, tr));
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
             }
 
             return res;

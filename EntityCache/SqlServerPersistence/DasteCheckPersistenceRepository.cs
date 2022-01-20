@@ -12,7 +12,13 @@ namespace EntityCache.SqlServerPersistence
 {
     public class DasteCheckPersistenceRepository : IDasteCheckRepository
     {
-        private async Task<DasteCheckBussines> LoadDataAsync(SqlDataReader dr, CancellationToken token)
+        private CheckPagePersistenceRepository _pages = null;
+
+        public DasteCheckPersistenceRepository()
+        {
+            _pages = new CheckPagePersistenceRepository();
+        }
+        private async Task<DasteCheckBussines> LoadDataAsync(SqlDataReader dr, CancellationToken token, string connectionString)
         {
             var item = new DasteCheckBussines();
             try
@@ -26,7 +32,7 @@ namespace EntityCache.SqlServerPersistence
                 item.ToNumber = (long)dr["ToNumber"];
                 item.Description = dr["Description"].ToString();
                 item.BankName = dr["BankName"].ToString();
-                item.CheckPages = await CheckPageBussines.GetAllAsync(item.Guid, token);
+                item.CheckPages = await _pages.GetAllAsync(connectionString, item.Guid, token);
             }
             catch (Exception ex)
             {
@@ -36,6 +42,25 @@ namespace EntityCache.SqlServerPersistence
             return item;
         }
         public async Task<ReturnedSaveFuncInfo> SaveAsync(DasteCheckBussines item, SqlTransaction tr)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                res.AddReturnedValue(await SaveAsync_(item, tr));
+                if (res.HasError) return res;
+                res.AddReturnedValue(await _pages.RemoveAllAsync(item.Guid, tr));
+                if (res.HasError) return res;
+                res.AddReturnedValue(await _pages.SaveRangeAsync(item.CheckPages, tr));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        private async Task<ReturnedSaveFuncInfo> SaveAsync_(DasteCheckBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
@@ -73,7 +98,7 @@ namespace EntityCache.SqlServerPersistence
                     while (dr.Read())
                     {
                         if (token.IsCancellationRequested) return null;
-                        list.Add(await LoadDataAsync(dr, token));
+                        list.Add(await LoadDataAsync(dr, token, _connectionString));
                     }
                     cn.Close();
                 }
@@ -99,7 +124,7 @@ namespace EntityCache.SqlServerPersistence
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) res = await LoadDataAsync(dr, new CancellationToken());
+                    if (dr.Read()) res = await LoadDataAsync(dr, new CancellationToken(), _connectionString);
                     cn.Close();
                 }
             }

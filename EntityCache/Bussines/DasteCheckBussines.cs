@@ -80,11 +80,7 @@ namespace EntityCache.Bussines
 
                 res.AddReturnedValue(CheckValidation());
                 if (res.HasError) return res;
-                res.AddReturnedValue(await CheckPageBussines.RemoveAllAsync(Guid, tr));
-                if (res.HasError) return res;
                 res.AddReturnedValue(await UnitOfWork.DasteCheck.SaveAsync(this, tr));
-                if (res.HasError) return res;
-                res.AddReturnedValue(await CheckPageBussines.SaveRangeAsync(CheckPages, tr));
             }
             catch (Exception ex)
             {
