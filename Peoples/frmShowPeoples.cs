@@ -251,7 +251,7 @@ namespace Peoples
         {
             try
             {
-                var frm = new frmPeoples(new PeoplesBussines(), false);
+                var frm = new frmPeopleMain(new PeoplesBussines(), false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadPeoplesAsync(txtSearch.Text);
             }

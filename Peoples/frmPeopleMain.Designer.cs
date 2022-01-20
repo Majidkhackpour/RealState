@@ -31,7 +31,9 @@ namespace Peoples
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPeopleMain));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ucPeople_PublicInfo1 = new Peoples.UcPeople_PublicInfo();
+            this.ucBank = new Peoples.UcPeople_BankHesab();
+            this.ucTell = new Peoples.UcPeople_PhoneBook();
+            this.ucPablic = new Peoples.UcPeople_PublicInfo();
             this.ucAccept = new WindowsSerivces.UcActionButton();
             this.ucHeader = new WindowsSerivces.UC_Header();
             this.ucCancel = new WindowsSerivces.UcActionButton();
@@ -44,39 +46,67 @@ namespace Peoples
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
-            this.panel1.Controls.Add(this.ucPeople_PublicInfo1);
+            this.panel1.Controls.Add(this.ucBank);
+            this.panel1.Controls.Add(this.ucTell);
+            this.panel1.Controls.Add(this.ucPablic);
             this.panel1.Location = new System.Drawing.Point(3, 65);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(794, 493);
             this.panel1.TabIndex = 55750;
             // 
-            // ucPeople_PublicInfo1
+            // ucBank
             // 
-            this.ucPeople_PublicInfo1.AccountFirst = new decimal(new int[] {
+            this.ucBank.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucBank.BackColor = System.Drawing.Color.Transparent;
+            this.ucBank.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucBank.Location = new System.Drawing.Point(11, 656);
+            this.ucBank.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucBank.Name = "ucBank";
+            this.ucBank.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucBank.Size = new System.Drawing.Size(762, 342);
+            this.ucBank.TabIndex = 2;
+            // 
+            // ucTell
+            // 
+            this.ucTell.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucTell.BackColor = System.Drawing.Color.Transparent;
+            this.ucTell.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucTell.Location = new System.Drawing.Point(11, 307);
+            this.ucTell.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucTell.Name = "ucTell";
+            this.ucTell.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucTell.Size = new System.Drawing.Size(762, 342);
+            this.ucTell.TabIndex = 1;
+            // 
+            // ucPablic
+            // 
+            this.ucPablic.AccountFirst = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.ucPeople_PublicInfo1.Address = "";
-            this.ucPeople_PublicInfo1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ucPablic.Address = "";
+            this.ucPablic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ucPeople_PublicInfo1.BackColor = System.Drawing.Color.Transparent;
-            this.ucPeople_PublicInfo1.BirthDate = "";
-            this.ucPeople_PublicInfo1.BirthPlace = "";
-            this.ucPeople_PublicInfo1.Code = "";
-            this.ucPeople_PublicInfo1.FatherName = "";
-            this.ucPeople_PublicInfo1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucPeople_PublicInfo1.IdCode = "";
-            this.ucPeople_PublicInfo1.IssuedFrom = "";
-            this.ucPeople_PublicInfo1.Location = new System.Drawing.Point(127, 5);
-            this.ucPeople_PublicInfo1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ucPeople_PublicInfo1.Name = "ucPeople_PublicInfo1";
-            this.ucPeople_PublicInfo1.NationalCode = "";
-            this.ucPeople_PublicInfo1.ObjectName = "";
-            this.ucPeople_PublicInfo1.PostalCode = "";
-            this.ucPeople_PublicInfo1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucPeople_PublicInfo1.Size = new System.Drawing.Size(667, 295);
-            this.ucPeople_PublicInfo1.TabIndex = 0;
+            this.ucPablic.BackColor = System.Drawing.Color.Transparent;
+            this.ucPablic.BirthDate = "";
+            this.ucPablic.BirthPlace = "";
+            this.ucPablic.Code = "";
+            this.ucPablic.FatherName = "";
+            this.ucPablic.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucPablic.IdCode = "";
+            this.ucPablic.IssuedFrom = "";
+            this.ucPablic.Location = new System.Drawing.Point(11, 5);
+            this.ucPablic.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucPablic.Name = "ucPablic";
+            this.ucPablic.NationalCode = "";
+            this.ucPablic.ObjectName = "";
+            this.ucPablic.PostalCode = "";
+            this.ucPablic.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucPablic.Size = new System.Drawing.Size(762, 295);
+            this.ucPablic.TabIndex = 0;
             // 
             // ucAccept
             // 
@@ -145,6 +175,7 @@ namespace Peoples
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Style = MetroFramework.MetroColorStyle.Teal;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmPeopleMain_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -156,6 +187,8 @@ namespace Peoples
         private System.Windows.Forms.Panel panel1;
         private WindowsSerivces.UcActionButton ucAccept;
         private WindowsSerivces.UcActionButton ucCancel;
-        private UcPeople_PublicInfo ucPeople_PublicInfo1;
+        private UcPeople_PublicInfo ucPablic;
+        private UcPeople_PhoneBook ucTell;
+        private UcPeople_BankHesab ucBank;
     }
 }

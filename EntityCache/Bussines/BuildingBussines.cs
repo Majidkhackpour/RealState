@@ -306,7 +306,7 @@ namespace EntityCache.Bussines
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var dayCount = (await SettingsBussines.GetAsync("DayCountForArchive"))?.Value.ParseToInt() ?? 0;
+                var dayCount = SettingsBussines.Setting.Global.SetArchive;
                 if (dayCount <= 0) dayCount = 60;
                 var oldDate = DateTime.Now.AddDays(-dayCount);
                 var date = new DateTime(oldDate.Year, oldDate.Month, oldDate.Day, 0, 0, 0);
