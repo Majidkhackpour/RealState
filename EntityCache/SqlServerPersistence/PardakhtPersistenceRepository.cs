@@ -19,6 +19,7 @@ namespace EntityCache.SqlServerPersistence
         private PardakhtNaqdPersistenceRepository _naghd = null;
         private PardakhtHavalePersistenceRepository _havale = null;
         private CheckPagePersistenceRepository _page = null;
+        private ReceptionCheckPersistenceRepository _recCheck = null;
         public PardakhtPersistenceRepository()
         {
             _checkM = new PardakhtCheckMoshtariPersistenceRepository();
@@ -26,6 +27,7 @@ namespace EntityCache.SqlServerPersistence
             _naghd = new PardakhtNaqdPersistenceRepository();
             _havale = new PardakhtHavalePersistenceRepository();
             _page = new CheckPagePersistenceRepository();
+            _recCheck = new ReceptionCheckPersistenceRepository();
         }
         private async Task<PardakhtBussines> LoadDataAsync(SqlDataReader dr, string connectionString)
         {
@@ -183,12 +185,12 @@ namespace EntityCache.SqlServerPersistence
                     {
                         foreach (var m in checkM)
                         {
-                            var check = await ReceptionCheckBussines.GetAsync(m.CheckGuid);
+                            var check = await _recCheck.GetAsync(cn, m.CheckGuid);
                             if (check == null) continue;
                             check.CheckStatus = EnCheckM.Mojoud;
                             check.Modified = DateTime.Now;
                             if (check.isAvalDore) check.MasterGuid = null;
-                            res.AddReturnedValue(await check.SaveAsync(tr));
+                            res.AddReturnedValue(await _recCheck.SaveAsync(check, tr));
                             if (res.HasError) return res;
                         }
                     }
@@ -211,18 +213,16 @@ namespace EntityCache.SqlServerPersistence
                     res.AddReturnedValue(await _naghd.SaveRangeAsync(item.NaqdList, tr));
                     if (res.HasError) return res;
                 }
-                if (item.NaqdList != null && item.NaqdList.Count > 0)
+                if (item.HavaleList != null && item.HavaleList.Count > 0)
                 {
                     res.AddReturnedValue(await _havale.SaveRangeAsync(item.HavaleList, tr));
                     if (res.HasError) return res;
                 }
-                if (item.NaqdList != null && item.NaqdList.Count > 0)
+                if (item.CheckShakhsiList?.Count > 0)
                 {
                     res.AddReturnedValue(await _checkSh.SaveRangeAsync(item.CheckShakhsiList, tr));
                     if (res.HasError) return res;
-                }
-                if (item.CheckShakhsiList?.Count > 0)
-                {
+
                     foreach (var m in item.CheckShakhsiList)
                     {
                         var checkPage = await CheckPageBussines.GetAsync(m.CheckPageGuid);
@@ -236,20 +236,19 @@ namespace EntityCache.SqlServerPersistence
                         res.AddReturnedValue(await checkPage.SaveAsync(tr));
                         if (res.HasError) return res;
                     }
-
-                    res.AddReturnedValue(await _checkM.SaveRangeAsync(item.CheckMoshtariList, tr));
-                    if (res.HasError) return res;
                 }
                 if (item.CheckMoshtariList?.Count > 0)
                 {
                     foreach (var sh in item.CheckMoshtariList)
                     {
-                        var rec = await ReceptionCheckBussines.GetAsync(sh.CheckGuid);
+                        var rec = await _recCheck.GetAsync(cn, sh.CheckGuid);
                         rec.CheckStatus = EnCheckM.Kharj;
                         rec.Modified = DateTime.Now;
-                        res.AddReturnedValue(await rec.SaveAsync(tr));
+                        res.AddReturnedValue(await _recCheck.SaveAsync(rec, tr));
                         if (res.HasError) return res;
                     }
+                    res.AddReturnedValue(await _checkM.SaveRangeAsync(item.CheckMoshtariList, tr));
+                    if (res.HasError) return res;
                 }
             }
             catch (Exception ex)
@@ -324,12 +323,12 @@ namespace EntityCache.SqlServerPersistence
                     {
                         foreach (var item in checkM)
                         {
-                            var check = await ReceptionCheckBussines.GetAsync(item.CheckGuid);
+                            var check = await _recCheck.GetAsync(cn, item.CheckGuid);
                             if (check == null) continue;
                             check.CheckStatus = EnCheckM.Mojoud;
                             check.Modified = DateTime.Now;
                             if (check.isAvalDore) check.MasterGuid = null;
-                            res.AddReturnedValue(await check.SaveAsync(tr));
+                            res.AddReturnedValue(await _recCheck.SaveAsync(check, tr));
                             if (res.HasError) return res;
                         }
                     }

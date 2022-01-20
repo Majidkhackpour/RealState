@@ -13,7 +13,17 @@ namespace EntityCache.SqlServerPersistence
 {
     public class ReceptionPersistenceRepository : IReceptionRepository
     {
-        private async Task<ReceptionBussines> LoadDataAsync(SqlDataReader dr)
+        private ReceptionNaqdPersistenceRepository _naghd = null;
+        private ReceptionHavalePersistenceRepository _havale = null;
+        private ReceptionCheckPersistenceRepository _check = null;
+
+        public ReceptionPersistenceRepository()
+        {
+            _naghd = new ReceptionNaqdPersistenceRepository();
+            _havale = new ReceptionHavalePersistenceRepository();
+            _check = new ReceptionCheckPersistenceRepository();
+        }
+        private async Task<ReceptionBussines> LoadDataAsync(SqlDataReader dr, string connectionString)
         {
             var item = new ReceptionBussines();
 
@@ -31,9 +41,9 @@ namespace EntityCache.SqlServerPersistence
                 item.TafsilName = dr["TafsilName"].ToString();
                 item.UserName = dr["UserName"].ToString();
                 item.IsModified = true;
-                item.CheckList = await ReceptionCheckBussines.GetAllAsync(item.Guid);
-                item.HavaleList = await ReceptionHavaleBussines.GetAllAsync(item.Guid);
-                item.NaqdList = await ReceptionNaqdBussines.GetAllAsync(item.Guid);
+                item.CheckList = await _check.GetAllAsync(connectionString, item.Guid);
+                item.HavaleList = await _havale.GetAllAsync(connectionString, item.Guid);
+                item.NaqdList = await _naghd.GetAllAsync(connectionString, item.Guid);
             }
             catch (Exception ex)
             {
@@ -56,7 +66,7 @@ namespace EntityCache.SqlServerPersistence
                     while (dr.Read())
                     {
                         if (token.IsCancellationRequested) return null;
-                        list.Add(await LoadDataAsync(dr));
+                        list.Add(await LoadDataAsync(dr, _connectionString));
                     }
                     cn.Close();
                 }
@@ -82,7 +92,7 @@ namespace EntityCache.SqlServerPersistence
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) res = await LoadDataAsync(dr);
+                    if (dr.Read()) res = await LoadDataAsync(dr, _connectionString);
                     cn.Close();
                 }
             }
@@ -142,6 +152,44 @@ namespace EntityCache.SqlServerPersistence
             var res = new ReturnedSaveFuncInfo();
             try
             {
+                res.AddReturnedValue(await SaveAsync_(item, tr));
+
+                res.AddReturnedValue(await _naghd.RemoveRangeAsync(item.Guid, tr));
+                if (res.HasError) return res;
+                res.AddReturnedValue(await _check.RemoveRangeAsync(item.Guid, tr));
+                if (res.HasError) return res;
+                res.AddReturnedValue(await _havale.RemoveRangeAsync(item.Guid, tr));
+                if (res.HasError) return res;
+
+                if (item.NaqdList != null && item.NaqdList.Count > 0)
+                {
+                    res.AddReturnedValue(await _naghd.SaveRangeAsync(item.NaqdList, tr));
+                    if (res.HasError) return res;
+                }
+                if (item.HavaleList != null && item.HavaleList.Count > 0)
+                {
+                    res.AddReturnedValue(await _havale.SaveRangeAsync(item.HavaleList, tr));
+                    if (res.HasError) return res;
+                }
+                if (item.CheckList != null && item.CheckList.Count > 0)
+                {
+                    res.AddReturnedValue(await _check.SaveRangeAsync(item.CheckList, tr));
+                    if (res.HasError) return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        private async Task<ReturnedSaveFuncInfo> SaveAsync_(ReceptionBussines item, SqlTransaction tr)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
                 var cmd = new SqlCommand("sp_Reception_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
                 cmd.Parameters.AddWithValue("@guid", item.Guid);
                 cmd.Parameters.AddWithValue("@modif", item.Modified);
@@ -168,6 +216,29 @@ namespace EntityCache.SqlServerPersistence
             return res;
         }
         public async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, SqlTransaction tr)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                res.AddReturnedValue(await _naghd.RemoveRangeAsync(guid, tr));
+                if (res.HasError) return res;
+
+                res.AddReturnedValue(await _havale.RemoveRangeAsync(guid, tr));
+                if (res.HasError) return res;
+
+                res.AddReturnedValue(await _check.RemoveRangeAsync(guid, tr));
+                if (res.HasError) return res;
+                res.AddReturnedValue(await RemoveAsync_(guid, tr));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        private async Task<ReturnedSaveFuncInfo> RemoveAsync_(Guid guid, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try

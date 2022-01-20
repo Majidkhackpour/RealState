@@ -21,69 +21,69 @@ namespace EntityCache.Bussines
         public Guid SandouqMoeinGuid { get; set; }
 
 
-        public static async Task<List<ReceptionNaqdBussines>> GetAllAsync(Guid masterGuid) => await UnitOfWork.ReceptionNaqd.GetAllAsync(Cache.ConnectionString, masterGuid);
-        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<ReceptionNaqdBussines> list, SqlTransaction tr = null)
-        {
-            var res = new ReturnedSaveFuncInfo();
-            var autoTran = tr == null;
-            SqlConnection cn = null;
-            try
-            {
-                if (autoTran)
-                {
-                    cn = new SqlConnection(Cache.ConnectionString);
-                    await cn.OpenAsync();
-                    tr = cn.BeginTransaction();
-                }
+        //public static async Task<List<ReceptionNaqdBussines>> GetAllAsync(Guid masterGuid) => await UnitOfWork.ReceptionNaqd.GetAllAsync(Cache.ConnectionString, masterGuid);
+        //public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<ReceptionNaqdBussines> list, SqlTransaction tr = null)
+        //{
+        //    var res = new ReturnedSaveFuncInfo();
+        //    var autoTran = tr == null;
+        //    SqlConnection cn = null;
+        //    try
+        //    {
+        //        if (autoTran)
+        //        {
+        //            cn = new SqlConnection(Cache.ConnectionString);
+        //            await cn.OpenAsync();
+        //            tr = cn.BeginTransaction();
+        //        }
 
-                res.AddReturnedValue(await UnitOfWork.ReceptionNaqd.SaveRangeAsync(list, tr));
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-            finally
-            {
-                if (autoTran)
-                {
-                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
-                    res.AddReturnedValue(cn.CloseConnection());
-                }
-            }
-            return res;
-        }
-        public static async Task<ReturnedSaveFuncInfo> RemoveRangeAsync(Guid masterGuid, SqlTransaction tr = null)
-        {
-            var res = new ReturnedSaveFuncInfo();
-            var autoTran = tr == null;
-            SqlConnection cn = null;
-            try
-            {
-                if (autoTran)
-                {
-                    cn = new SqlConnection(Cache.ConnectionString);
-                    await cn.OpenAsync();
-                    tr = cn.BeginTransaction();
-                }
+        //        res.AddReturnedValue(await UnitOfWork.ReceptionNaqd.SaveRangeAsync(list, tr));
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        WebErrorLog.ErrorInstence.StartErrorLog(ex);
+        //        res.AddReturnedValue(ex);
+        //    }
+        //    finally
+        //    {
+        //        if (autoTran)
+        //        {
+        //            res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+        //            res.AddReturnedValue(cn.CloseConnection());
+        //        }
+        //    }
+        //    return res;
+        //}
+        //public static async Task<ReturnedSaveFuncInfo> RemoveRangeAsync(Guid masterGuid, SqlTransaction tr = null)
+        //{
+        //    var res = new ReturnedSaveFuncInfo();
+        //    var autoTran = tr == null;
+        //    SqlConnection cn = null;
+        //    try
+        //    {
+        //        if (autoTran)
+        //        {
+        //            cn = new SqlConnection(Cache.ConnectionString);
+        //            await cn.OpenAsync();
+        //            tr = cn.BeginTransaction();
+        //        }
 
-                res.AddReturnedValue(await UnitOfWork.ReceptionNaqd.RemoveRangeAsync(masterGuid, tr));
-                if (res.HasError) return res;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-            finally
-            {
-                if (autoTran)
-                {
-                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
-                    res.AddReturnedValue(cn.CloseConnection());
-                }
-            }
-            return res;
-        }
+        //        res.AddReturnedValue(await UnitOfWork.ReceptionNaqd.RemoveRangeAsync(masterGuid, tr));
+        //        if (res.HasError) return res;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        WebErrorLog.ErrorInstence.StartErrorLog(ex);
+        //        res.AddReturnedValue(ex);
+        //    }
+        //    finally
+        //    {
+        //        if (autoTran)
+        //        {
+        //            res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
+        //            res.AddReturnedValue(cn.CloseConnection());
+        //        }
+        //    }
+        //    return res;
+        //}
     }
 }

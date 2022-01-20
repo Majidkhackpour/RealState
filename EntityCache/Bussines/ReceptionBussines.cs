@@ -214,21 +214,6 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await UnitOfWork.Reception.SaveAsync(this, tr));
                 if (res.HasError) return res;
 
-                res.AddReturnedValue(await ReceptionNaqdBussines.RemoveRangeAsync(Guid, tr));
-                if (res.HasError) return res;
-                res.AddReturnedValue(await ReceptionNaqdBussines.SaveRangeAsync(NaqdList, tr));
-                if (res.HasError) return res;
-
-                res.AddReturnedValue(await ReceptionHavaleBussines.RemoveRangeAsync(Guid, tr));
-                if (res.HasError) return res;
-                res.AddReturnedValue(await ReceptionHavaleBussines.SaveRangeAsync(HavaleList, tr));
-                if (res.HasError) return res;
-
-                res.AddReturnedValue(await ReceptionCheckBussines.RemoveRangeAsync(Guid, tr));
-                if (res.HasError) return res;
-                res.AddReturnedValue(await ReceptionCheckBussines.SaveRangeAsync(CheckList, tr));
-                if (res.HasError) return res;
-
                 var sanad = await GenerateSanadAsync();
                 res.AddReturnedValue(await sanad.SaveAsync(tr));
                 if (res.HasError) return res;
@@ -269,15 +254,6 @@ namespace EntityCache.Bussines
                     await cn.OpenAsync();
                     tr = cn.BeginTransaction();
                 }
-
-                res.AddReturnedValue(await ReceptionNaqdBussines.RemoveRangeAsync(Guid, tr));
-                if (res.HasError) return res;
-
-                res.AddReturnedValue(await ReceptionHavaleBussines.RemoveRangeAsync(Guid, tr));
-                if (res.HasError) return res;
-
-                res.AddReturnedValue(await ReceptionCheckBussines.RemoveRangeAsync(Guid, tr));
-                if (res.HasError) return res;
 
                 res.AddReturnedValue(await UnitOfWork.Reception.RemoveAsync(Guid, tr));
                 if (res.HasError) return res;

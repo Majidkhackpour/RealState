@@ -1,13 +1,13 @@
-﻿using System;
+﻿using EntityCache.Assistence;
+using Persistence;
+using Services;
+using Services.Interfaces.Building;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
-using EntityCache.Assistence;
 using EntityCache.ViewModels;
-using Persistence;
-using Services;
-using Services.Interfaces.Building;
 
 namespace EntityCache.Bussines
 {
@@ -31,39 +31,7 @@ namespace EntityCache.Bussines
         public Guid SandouqTafsilGuid { get; set; }
         public Guid SandouqMoeinGuid { get; set; }
 
-
-        public static async Task<List<ReceptionCheckBussines>> GetAllAsync(Guid masterGuid) => await UnitOfWork.ReceptionCheck.GetAllAsync(Cache.ConnectionString, masterGuid);
-        public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<ReceptionCheckBussines> list, SqlTransaction tr = null)
-        {
-            var res = new ReturnedSaveFuncInfo();
-            var autoTran = tr == null;
-            SqlConnection cn = null;
-            try
-            {
-                if (autoTran)
-                {
-                    cn = new SqlConnection(Cache.ConnectionString);
-                    await cn.OpenAsync();
-                    tr = cn.BeginTransaction();
-                }
-
-                res.AddReturnedValue(await UnitOfWork.ReceptionCheck.SaveRangeAsync(list, tr));
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-            finally
-            {
-                if (autoTran)
-                {
-                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
-                    res.AddReturnedValue(cn.CloseConnection());
-                }
-            }
-            return res;
-        }
+        public static async Task<ReceptionCheckBussines> GetAsync(Guid guid) => await UnitOfWork.ReceptionCheck.GetAsync(Cache.ConnectionString, guid);
         public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -79,37 +47,6 @@ namespace EntityCache.Bussines
                 }
 
                 res.AddReturnedValue(await UnitOfWork.ReceptionCheck.SaveAsync(this, tr));
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-            finally
-            {
-                if (autoTran)
-                {
-                    res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
-                    res.AddReturnedValue(cn.CloseConnection());
-                }
-            }
-            return res;
-        }
-        public static async Task<ReturnedSaveFuncInfo> RemoveRangeAsync(Guid masterGuid, SqlTransaction tr = null)
-        {
-            var res = new ReturnedSaveFuncInfo();
-            var autoTran = tr == null;
-            SqlConnection cn = null;
-            try
-            {
-                if (autoTran)
-                {
-                    cn = new SqlConnection(Cache.ConnectionString);
-                    await cn.OpenAsync();
-                    tr = cn.BeginTransaction();
-                }
-
-                res.AddReturnedValue(await UnitOfWork.ReceptionCheck.RemoveRangeAsync(masterGuid, tr));
             }
             catch (Exception ex)
             {
@@ -160,6 +97,5 @@ namespace EntityCache.Bussines
                 return new List<ReceptionCheckViewModel>();
             }
         }
-        public static async Task<ReceptionCheckBussines> GetAsync(Guid guid) => await UnitOfWork.ReceptionCheck.GetAsync(Cache.ConnectionString, guid);
     }
 }
