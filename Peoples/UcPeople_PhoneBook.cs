@@ -10,13 +10,18 @@ namespace Peoples
     public partial class UcPeople_PhoneBook : UserControl
     {
         private List<PhoneBookBussines> _master;
-        public List<PhoneBookBussines> PhoneBookList
+        public List<PhoneBookBussines> GetPhoneBookList()=> _master ?? new List<PhoneBookBussines>();
+        public void SetPhoneBookList(List<PhoneBookBussines> value)
         {
-            get => _master ?? new List<PhoneBookBussines>();
-            set
+            try
             {
+                if (value == null) return;
                 _master = value;
                 LoadTells();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
         private void LoadTells()
@@ -25,7 +30,7 @@ namespace Peoples
             {
                 txtTell.Text = "";
                 cmbTitles.Text = "";
-                phoneBookBindingSource.DataSource = PhoneBookList?.ToSortableBindingList();
+                phoneBookBindingSource.DataSource = GetPhoneBookList()?.ToSortableBindingList();
             }
             catch (Exception ex)
             {
@@ -52,11 +57,11 @@ namespace Peoples
             try
             {
                 if (string.IsNullOrEmpty(txtTell.Text)) return;
-                if (PhoneBookList.Count <= 0) return;
-                foreach (var item in PhoneBookList)
+                if (GetPhoneBookList().Count <= 0) return;
+                foreach (var item in GetPhoneBookList())
                     if (txtTell.Text.Trim() == item.Tell)
                         return;
-                PhoneBookList.Add(new PhoneBookBussines()
+                GetPhoneBookList().Add(new PhoneBookBussines()
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
@@ -79,8 +84,8 @@ namespace Peoples
                 if (DGridTell.RowCount <= 0) return;
                 if (DGridTell.CurrentRow == null) return;
                 var tagGuid = (Guid)DGridTell[dgTellGuid.Index, DGridTell.CurrentRow.Index].Value;
-                var index = PhoneBookList.FindIndex(q => q.Guid == tagGuid);
-                PhoneBookList.RemoveAt(index);
+                var index = GetPhoneBookList().FindIndex(q => q.Guid == tagGuid);
+                GetPhoneBookList().RemoveAt(index);
                 LoadTells();
             }
             catch (Exception ex)

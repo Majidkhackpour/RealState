@@ -11,13 +11,18 @@ namespace Peoples
     public partial class UcPeople_BankHesab : UserControl
     {
         private List<PeoplesBankAccountBussines> _master;
-        public List<PeoplesBankAccountBussines> BankList
+        public List<PeoplesBankAccountBussines> GetBankList()=>_master ?? new List<PeoplesBankAccountBussines>();
+        public void SetBankList(List<PeoplesBankAccountBussines> value)
         {
-            get => _master ?? new List<PeoplesBankAccountBussines>();
-            set
+            try
             {
+                if (value == null) return;
                 _master = value;
                 LoadBanks();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
         public UcPeople_BankHesab() => InitializeComponent();
@@ -26,7 +31,7 @@ namespace Peoples
             try
             {
                 txtAccountNumber.Text = txtBank.Text = txtShobe.Text = "";
-                bankAccountBindingSource.DataSource = BankList?.ToSortableBindingList();
+                bankAccountBindingSource.DataSource = GetBankList()?.ToSortableBindingList();
             }
             catch (Exception ex)
             {
@@ -40,8 +45,8 @@ namespace Peoples
                 if (string.IsNullOrEmpty(txtBank.Text) ||
                     string.IsNullOrEmpty(txtAccountNumber.Text) ||
                     string.IsNullOrEmpty(txtShobe.Text)) return;
-                if (BankList.Count <= 0) return;
-                BankList.Add(new PeoplesBankAccountBussines()
+                if (GetBankList().Count <= 0) return;
+                GetBankList().Add(new PeoplesBankAccountBussines()
                 {
                     Guid = Guid.NewGuid(),
                     AccountNumber = txtAccountNumber.Text.Trim().FixString(),
@@ -62,8 +67,8 @@ namespace Peoples
                 if (dgBankAccount.RowCount <= 0) return;
                 if (dgBankAccount.CurrentRow == null) return;
                 var tagGuid = (Guid)dgBankAccount[dgBankGuid.Index, dgBankAccount.CurrentRow.Index].Value;
-                var index = BankList.FindIndex(q => q.Guid == tagGuid);
-                BankList.RemoveAt(index);
+                var index = GetBankList().FindIndex(q => q.Guid == tagGuid);
+                GetBankList().RemoveAt(index);
                 LoadBanks();
             }
             catch (Exception ex)
