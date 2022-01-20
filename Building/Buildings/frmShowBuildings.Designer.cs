@@ -792,7 +792,7 @@
             // 
             // BuildingBindingSource
             // 
-            this.BuildingBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingReportBussines);
+            this.BuildingBindingSource.DataSource = typeof(EntityCache.Bussines.ReportBussines.BuildingReportBussines);
             // 
             // dataGridViewTextBoxColumn1
             // 

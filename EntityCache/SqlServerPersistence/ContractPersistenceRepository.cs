@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
+using EntityCache.Bussines.ReportBussines;
 using EntityCache.Core;
 using EntityCache.ViewModels;
 using Persistence.Entities;

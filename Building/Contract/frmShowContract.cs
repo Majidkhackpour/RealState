@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using WindowsSerivces;
-using EntityCache.Bussines;
+﻿using EntityCache.Bussines;
+using EntityCache.Bussines.ReportBussines;
 using EntityCache.ViewModels;
 using MetroFramework.Forms;
 using Notification;
 using Print;
 using Services;
 using Services.FilterObjects;
-using User;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using WindowsSerivces;
 
 namespace Building.Contract
 {

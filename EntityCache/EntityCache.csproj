@@ -123,7 +123,7 @@
     <Compile Include="Bussines\BuildingOptionsBussines.cs" />
     <Compile Include="Bussines\BuildingRelatedNumberBussines.cs" />
     <Compile Include="Bussines\BuildingRelatedOptionsBussines.cs" />
-    <Compile Include="Bussines\BuildingReportBussines.cs" />
+    <Compile Include="Bussines\ReportBussines\BuildingReportBussines.cs" />
     <Compile Include="Bussines\BuildingRequestBussines.cs" />
     <Compile Include="Bussines\BuildingRequestRegionBussines.cs" />
     <Compile Include="Bussines\BuildingTypeBussines.cs" />
@@ -131,7 +131,7 @@
     <Compile Include="Bussines\CheckPageBussines.cs" />
     <Compile Include="Bussines\CitiesBussines.cs" />
     <Compile Include="Bussines\ContractBussines.cs" />
-    <Compile Include="Bussines\ContractReportBusiness.cs" />
+    <Compile Include="Bussines\ReportBussines\ContractReportBusiness.cs" />
     <Compile Include="Bussines\DasteCheckBussines.cs" />
     <Compile Include="Bussines\DocumentTypeBussines.cs" />
     <Compile Include="Bussines\FileInfoBussines.cs" />

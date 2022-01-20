@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace EntityCache.Bussines
+namespace EntityCache.Bussines.ReportBussines
 {
     public class BuildingReportBussines
     {

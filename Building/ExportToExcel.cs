@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using EntityCache.Bussines;
+using EntityCache.Bussines.ReportBussines;
 using Microsoft.Office.Interop.Excel;
 using Notification;
 using Services;

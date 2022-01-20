@@ -272,7 +272,7 @@
             // 
             // conBindingSource
             // 
-            this.conBindingSource.DataSource = typeof(EntityCache.Bussines.ContractReportBusiness);
+            this.conBindingSource.DataSource = typeof(EntityCache.Bussines.ReportBussines.ContractReportBusiness);
             // 
             // ucHeader
             // 

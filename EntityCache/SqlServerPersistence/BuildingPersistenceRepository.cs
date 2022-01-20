@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using EntityCache.Bussines.ReportBussines;
 using Services.FilterObjects;
 
 namespace EntityCache.SqlServerPersistence

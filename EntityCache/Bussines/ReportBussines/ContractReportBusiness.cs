@@ -6,7 +6,7 @@ using Persistence;
 using Services;
 using Services.FilterObjects;
 
-namespace EntityCache.Bussines
+namespace EntityCache.Bussines.ReportBussines
 {
     public class ContractReportBusiness
     {

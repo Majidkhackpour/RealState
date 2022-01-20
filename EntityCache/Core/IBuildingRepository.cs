@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
+using EntityCache.Bussines.ReportBussines;
 using Services;
 using Services.FilterObjects;
 
