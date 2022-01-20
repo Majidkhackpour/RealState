@@ -128,5 +128,21 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void txtCode_Enter(object sender, EventArgs e) => txtSetter.Focus(txtCode);
+        private void txtNationalCode_Enter(object sender, EventArgs e) => txtSetter.Focus(txtNationalCode);
+        private void txtName_Enter(object sender, EventArgs e) => txtSetter.Focus(txtName);
+        private void txtIdCode_Enter(object sender, EventArgs e) => txtSetter.Focus(txtIdCode);
+        private void txtFatherName_Enter(object sender, EventArgs e) => txtSetter.Focus(txtFatherName);
+        private void txtPlaceBirth_Enter(object sender, EventArgs e) => txtSetter.Focus(txtPlaceBirth);
+        private void txtIssuesFrom_Enter(object sender, EventArgs e) => txtSetter.Focus(txtIssuesFrom);
+        private void txtPostalCode_Enter(object sender, EventArgs e) => txtSetter.Focus(txtPostalCode);
+        private void txtPostalCode_Leave(object sender, EventArgs e) => txtSetter.Follow(txtPostalCode);
+        private void txtIssuesFrom_Leave(object sender, EventArgs e) => txtSetter.Follow(txtIssuesFrom);
+        private void txtPlaceBirth_Leave(object sender, EventArgs e) => txtSetter.Follow(txtPlaceBirth);
+        private void txtFatherName_Leave(object sender, EventArgs e) => txtSetter.Follow(txtFatherName);
+        private void txtIdCode_Leave(object sender, EventArgs e) => txtSetter.Follow(txtIdCode);
+        private void txtCode_Leave(object sender, EventArgs e) => txtSetter.Follow(txtCode);
+        private void txtNationalCode_Leave(object sender, EventArgs e) => txtSetter.Follow(txtNationalCode);
+        private void txtName_Leave(object sender, EventArgs e) => txtSetter.Follow(txtName);
     }
 }

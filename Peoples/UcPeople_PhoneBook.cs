@@ -88,5 +88,11 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void DGridTell_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            DGridTell.Rows[e.RowIndex].Cells["tRadif"].Value = e.RowIndex + 1;
+        }
+        private void txtTell_Enter(object sender, EventArgs e) => txtSetter.Focus(txtTell);
+        private void txtTell_Leave(object sender, EventArgs e) => txtSetter.Follow(txtTell);
     }
 }

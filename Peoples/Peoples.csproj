@@ -195,6 +195,12 @@
     <Compile Include="UcPeopleSelect.Designer.cs">
       <DependentUpon>UcPeopleSelect.cs</DependentUpon>
     </Compile>
+    <Compile Include="UcPeople_BankHesab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcPeople_BankHesab.Designer.cs">
+      <DependentUpon>UcPeople_BankHesab.cs</DependentUpon>
+    </Compile>
     <Compile Include="UcPeople_PhoneBook.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -243,6 +249,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UcPeopleSelect.resx">
       <DependentUpon>UcPeopleSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcPeople_BankHesab.resx">
+      <DependentUpon>UcPeople_BankHesab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UcPeople_PhoneBook.resx">
       <DependentUpon>UcPeople_PhoneBook.cs</DependentUpon>
