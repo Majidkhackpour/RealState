@@ -12,7 +12,13 @@ namespace EntityCache.SqlServerPersistence
 {
     public class SanadPersistenceRepository : IsanadRepository
     {
-        private async Task<SanadBussines> LoadDataAsync(SqlDataReader dr)
+        private SanadDetailPersistenceRepository _det = null;
+
+        public SanadPersistenceRepository()
+        {
+            _det = new SanadDetailPersistenceRepository();
+        }
+        private async Task<SanadBussines> LoadDataAsync(SqlDataReader dr, string connectionString)
         {
             var item = new SanadBussines();
             try
@@ -26,7 +32,7 @@ namespace EntityCache.SqlServerPersistence
                 item.UserGuid = (Guid)dr["UserGuid"];
                 item.SanadType = (EnSanadType)dr["SanadType"];
                 item.UserName = dr["UserName"].ToString();
-                item.Details = await SanadDetailBussines.GetAllAsync(item.Guid);
+                item.Details = await _det.GetAllAsync(connectionString, item.Guid);
             }
             catch (Exception ex)
             {
@@ -49,7 +55,7 @@ namespace EntityCache.SqlServerPersistence
                     while (dr.Read())
                     {
                         if (token.IsCancellationRequested) return null;
-                        list.Add(await LoadDataAsync(dr));
+                        list.Add(await LoadDataAsync(dr, _connectionString));
                     }
                     cn.Close();
                 }
@@ -75,7 +81,7 @@ namespace EntityCache.SqlServerPersistence
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) res = await LoadDataAsync(dr);
+                    if (dr.Read()) res = await LoadDataAsync(dr, _connectionString);
                     cn.Close();
                 }
             }
@@ -120,7 +126,7 @@ namespace EntityCache.SqlServerPersistence
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) res = await LoadDataAsync(dr);
+                    if (dr.Read()) res = await LoadDataAsync(dr, _connectionString);
                     cn.Close();
                 }
             }
@@ -132,6 +138,29 @@ namespace EntityCache.SqlServerPersistence
             return res;
         }
         public async Task<ReturnedSaveFuncInfo> SaveAsync(SanadBussines item, SqlTransaction tr)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                res.AddReturnedValue(await SaveAsync_(item, tr));
+                foreach (var det in item.Details) det.MasterGuid = item.Guid;
+                res.AddReturnedValue(await _det.RemoveRangeAsync(item.Guid, tr));
+                if (res.HasError) return res;
+                if (item.Details != null && item.Details.Count > 0)
+                {
+                    res.AddReturnedValue(await _det.SaveRangeAsync(item.Details, tr));
+                    if (res.HasError) return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        private async Task<ReturnedSaveFuncInfo> SaveAsync_(SanadBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
@@ -157,6 +186,23 @@ namespace EntityCache.SqlServerPersistence
             return res;
         }
         public async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, SqlTransaction tr)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                res.AddReturnedValue(await _det.RemoveRangeAsync(guid, tr));
+                if (res.HasError) return res;
+                res.AddReturnedValue(await RemoveAsync_(guid, tr));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        private async Task<ReturnedSaveFuncInfo> RemoveAsync_(Guid guid, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try

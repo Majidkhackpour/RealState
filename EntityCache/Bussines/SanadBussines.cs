@@ -73,11 +73,6 @@ namespace EntityCache.Bussines
 
                 res.AddReturnedValue(await UnitOfWork.Sanad.SaveAsync(this, tr));
                 if (res.HasError) return res;
-                foreach (var item in Details) item.MasterGuid = Guid;
-                res.AddReturnedValue(await SanadDetailBussines.RemoveRangeAsync(Guid, tr));
-                if (res.HasError) return res;
-                res.AddReturnedValue(await SanadDetailBussines.SaveRangeAsync(Details, tr));
-                if (res.HasError) return res;
                 res.AddReturnedValue(await UpdateAccounts(Details, false, tr));
             }
             catch (Exception ex)
@@ -111,13 +106,9 @@ namespace EntityCache.Bussines
 
                 res.AddReturnedValue(await UpdateAccounts(Details, true, tr));
                 if (res.HasError) return res;
-                res.AddReturnedValue(await SanadDetailBussines.RemoveRangeAsync(Guid, tr));
-                if (res.HasError) return res;
+                
                 res.AddReturnedValue(await UnitOfWork.Sanad.RemoveAsync(Guid, tr));
                 if (res.HasError) return res;
-
-                //if (Cache.IsSendToServer)
-                //    _ = Task.Run(() => WebRental.SaveAsync(list));
             }
             catch (Exception ex)
             {
