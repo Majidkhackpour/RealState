@@ -118,7 +118,7 @@ namespace Settings.Forms
         {
             try
             {
-                var frm = new frmPanelMain();
+                var frm = new frmPanelMain(new SmsPanelsBussines(), false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadSmsAsync();
             }

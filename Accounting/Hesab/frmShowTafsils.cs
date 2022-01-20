@@ -145,7 +145,8 @@ namespace Accounting.Hesab
 
                 if (tafsil.HesabType == HesabType.Customer)
                 {
-                    var frm = new frmPeoples(guid, false);
+                    var pe = await PeoplesBussines.GetAsync(guid, null);
+                    var frm = new frmPeoples(pe, false);
                     if (frm.ShowDialog(this) == DialogResult.OK)
                         await LoadDataAsync(txtSearch.Text);
                     return;
@@ -270,7 +271,8 @@ namespace Accounting.Hesab
                 }
                 if (tafsil.HesabType == HesabType.Customer)
                 {
-                    var frm = new frmPeoples(guid, true);
+                    var pe = await PeoplesBussines.GetAsync(guid, null);
+                    var frm = new frmPeoples(pe, true);
                     frm.ShowDialog(this);
                     return;
                 }

@@ -75,7 +75,7 @@ namespace User
                 var guid = (Guid?)DGrid[dgObjGuid.Index, DGrid.CurrentRow.Index].Value;
                 var part = (EnLogPart)DGrid[dgLogPart.Index, DGrid.CurrentRow.Index].Value;
 
-                await Switcher.SwitchAsync(part, guid);
+                await Switcher.SwitchAsync(part, guid, this);
             }
             catch (Exception ex)
             {

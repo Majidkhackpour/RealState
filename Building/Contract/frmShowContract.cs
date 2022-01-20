@@ -380,27 +380,7 @@ namespace Building.Contract
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var con = await ContractBussines.GetAsync(guid);
                 if (con == null) return;
-                Form frm_ = null;
-                switch (con.Type)
-                {
-                    case EnRequestType.Forush:
-                        frm_ = new frmContractMain_Sell(con, true);
-                        break;
-                    case EnRequestType.Rahn:
-                        frm_ = new frmContractMain_Rahn(con, true);
-                        break;
-                    case EnRequestType.EjareTamlik:
-                        frm_ = new frmContractMain_EjareTamlik(con, true);
-                        break;
-                    case EnRequestType.Sarqofli:
-                        frm_ = new frmContractMain_Sarqofli(con, true);
-                        break;
-                    case EnRequestType.PishForush:
-                        frm_ = new frmContractMain_PishForoush(con, true);
-                        break;
-                }
-
-                frm_?.ShowDialog(this);
+                ContractFormHandler.FormHandler(con, true, this);
             }
             catch (Exception ex)
             {
@@ -418,50 +398,12 @@ namespace Building.Contract
                 if (!con.IsTemp)
                 {
                     this.ShowWarning("قراداد جاری نهایی و بسته شده. در این حالت شما فقط مجاز به مشاهده آن می باشید");
-                    Form frm_ = null;
-                    switch (con.Type)
-                    {
-                        case EnRequestType.Forush:
-                            frm_ = new frmContractMain_Sell(con, true);
-                            break;
-                        case EnRequestType.Rahn:
-                            frm_ = new frmContractMain_Rahn(con, true);
-                            break;
-                        case EnRequestType.EjareTamlik:
-                            frm_ = new frmContractMain_EjareTamlik(con, true);
-                            break;
-                        case EnRequestType.Sarqofli:
-                            frm_ = new frmContractMain_Sarqofli(con, true);
-                            break;
-                        case EnRequestType.PishForush:
-                            frm_ = new frmContractMain_PishForoush(con, true);
-                            break;
-                    }
-
-                    frm_?.ShowDialog(this);
+                    ContractFormHandler.FormHandler(con, true, this);
                     return;
                 }
 
-                Form frm = null;
-                switch (con.Type)
-                {
-                    case EnRequestType.Forush:
-                        frm = new frmContractMain_Sell(con);
-                        break;
-                    case EnRequestType.Rahn:
-                        frm = new frmContractMain_Rahn(con);
-                        break;
-                    case EnRequestType.EjareTamlik:
-                        frm = new frmContractMain_EjareTamlik(con);
-                        break;
-                    case EnRequestType.Sarqofli:
-                        frm = new frmContractMain_Sarqofli(con);
-                        break;
-                    case EnRequestType.PishForush:
-                        frm = new frmContractMain_PishForoush(con);
-                        break;
-                }
-                if (frm?.ShowDialog(this) == DialogResult.OK)
+                var res = ContractFormHandler.FormHandler(con, false, this);
+                if (res == DialogResult.OK)
                     await LoadDataAsync(txtSearch.Text);
             }
             catch (Exception ex)

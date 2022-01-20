@@ -12,7 +12,7 @@ using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
-    public class PhoneBookBussines : IPhoneBook
+    public class PhoneBookBussines : Serializable<PhoneBookBussines>, IPhoneBook
     {
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
@@ -112,7 +112,7 @@ namespace EntityCache.Bussines
                             res = res.Where(x => x.Name.ToLower().Contains(item.ToLower()) ||
                                                  (!string.IsNullOrEmpty(x.Tell) &&
                                                   x.Tell.ToLower().Contains(item.ToLower())) ||
-                                                 x.GroupName.ToLower().Contains(item.ToLower())||
+                                                 x.GroupName.ToLower().Contains(item.ToLower()) ||
                                                  x.Title.ToLower().Contains(item.ToLower()))
                                 ?.ToList();
                         }

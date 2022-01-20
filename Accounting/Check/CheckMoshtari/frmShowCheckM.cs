@@ -241,7 +241,8 @@ namespace Accounting.Check.CheckMoshtari
 
                 if (tafsil.HesabType == HesabType.Customer)
                 {
-                    var frm = new frmPeoples(guid, true);
+                    var pe = await PeoplesBussines.GetAsync(guid, null);
+                    var frm = new frmPeoples(pe, true);
                     frm.ShowDialog(this);
                     return;
                 }
