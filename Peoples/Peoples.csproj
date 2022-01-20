@@ -147,6 +147,12 @@
     <Compile Include="frmImportExcel.Designer.cs">
       <DependentUpon>frmImportExcel.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPeopleMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPeopleMain.Designer.cs">
+      <DependentUpon>frmPeopleMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPeoples.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -189,6 +195,18 @@
     <Compile Include="UcPeopleSelect.Designer.cs">
       <DependentUpon>UcPeopleSelect.cs</DependentUpon>
     </Compile>
+    <Compile Include="UcPeople_PhoneBook.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcPeople_PhoneBook.Designer.cs">
+      <DependentUpon>UcPeople_PhoneBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcPeople_PublicInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcPeople_PublicInfo.Designer.cs">
+      <DependentUpon>UcPeople_PublicInfo.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -200,6 +218,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmImportExcel.resx">
       <DependentUpon>frmImportExcel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPeopleMain.resx">
+      <DependentUpon>frmPeopleMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPeoples.resx">
       <DependentUpon>frmPeoples.cs</DependentUpon>
@@ -222,6 +243,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UcPeopleSelect.resx">
       <DependentUpon>UcPeopleSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcPeople_PhoneBook.resx">
+      <DependentUpon>UcPeople_PhoneBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcPeople_PublicInfo.resx">
+      <DependentUpon>UcPeople_PublicInfo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
