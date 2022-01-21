@@ -144,12 +144,12 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public async Task<string> NextCodeAsync(string _connectionString, HesabType type)
+        public async Task<string> NextCodeAsync(string connectionString, HesabType type)
         {
             var res = "0";
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
+                using (var cn = new SqlConnection(connectionString))
                 {
                     var cmd = new SqlCommand("sp_Tafsil_NextCode", cn) { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@hType", (short)type);

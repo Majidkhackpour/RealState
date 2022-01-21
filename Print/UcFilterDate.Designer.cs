@@ -128,6 +128,7 @@ namespace Print
             // 
             this.rbtnAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rbtnAll.AutoSize = true;
+            this.rbtnAll.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rbtnAll.Location = new System.Drawing.Point(79, 4);
             this.rbtnAll.Name = "rbtnAll";
             this.rbtnAll.Size = new System.Drawing.Size(47, 24);
@@ -141,6 +142,7 @@ namespace Print
             // 
             this.rbtnBetweenDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rbtnBetweenDate.AutoSize = true;
+            this.rbtnBetweenDate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rbtnBetweenDate.Location = new System.Drawing.Point(254, 83);
             this.rbtnBetweenDate.Name = "rbtnBetweenDate";
             this.rbtnBetweenDate.Size = new System.Drawing.Size(87, 24);
@@ -154,6 +156,7 @@ namespace Print
             // 
             this.rbtnSpecialDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rbtnSpecialDate.AutoSize = true;
+            this.rbtnSpecialDate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rbtnSpecialDate.Location = new System.Drawing.Point(263, 41);
             this.rbtnSpecialDate.Name = "rbtnSpecialDate";
             this.rbtnSpecialDate.Size = new System.Drawing.Size(78, 24);
@@ -167,6 +170,7 @@ namespace Print
             // 
             this.rbtnToday.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rbtnToday.AutoSize = true;
+            this.rbtnToday.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rbtnToday.Location = new System.Drawing.Point(287, 4);
             this.rbtnToday.Name = "rbtnToday";
             this.rbtnToday.Size = new System.Drawing.Size(54, 24);

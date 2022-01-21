@@ -131,18 +131,31 @@ namespace EntityCache.SqlServerPersistence
             var res = new ReturnedSaveFuncInfo();
             try
             {
+                res.AddReturnedValue(await _tell.RemoveByParentAsync(item.Guid, tr));
+                if (res.HasError) return res;
+                res.AddReturnedValue(await _bank.RemoveAsync(item.Guid, tr));
+                if (res.HasError) return res;
                 res.AddReturnedValue(await SaveTafsilAsync(item,tr));
                 if (res.HasError) return res;
 
                 if (item.TellList?.Count > 0)
                 {
-                    res.AddReturnedValue(await SaveMobileAsync(item, tr));
-                    if (res.HasError) return res;
+                    foreach (var t in item.TellList)
+                    {
+                        t.ParentGuid = item.Guid;
+                        t.Name = item.Name;
+                    }
+                    res.AddReturnedValue(await _tell.SaveRangeAsync(item.TellList, tr));
                 }
                 if (item.BankList?.Count > 0)
                 {
-                    res.AddReturnedValue(await SaveBankAccountAsync(item, tr));
-                    if (res.HasError) return res;
+                    foreach (var b in item.BankList)
+                    {
+                        b.ParentGuid = item.Guid;
+                        res.AddReturnedValue(await BankSegestBussines.CheckBankAsync(b.BankName, tr));
+                        if (res.HasError) return res;
+                    }
+                    res.AddReturnedValue(await _bank.SaveRangeAsync(item.BankList, tr));
                 }
 
                 res.AddReturnedValue(await SaveAsync_(item, tr));
@@ -188,30 +201,6 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        private async Task<ReturnedSaveFuncInfo> SaveBankAccountAsync(PeoplesBussines item, SqlTransaction tr)
-        {
-            var res = new ReturnedSaveFuncInfo();
-            try
-            {
-                res.AddReturnedValue(await _bank.RemoveAsync(item.Guid, tr));
-                if (res.HasError) return res;
-
-                foreach (var b in item.BankList)
-                {
-                    b.ParentGuid = item.Guid;
-                    res.AddReturnedValue(await BankSegestBussines.CheckBankAsync(b.BankName, tr));
-                    if (res.HasError) return res;
-                }
-                res.AddReturnedValue(await _bank.SaveRangeAsync(item.BankList, tr));
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-
-            return res;
-        }
         private async Task<ReturnedSaveFuncInfo> SaveTafsilAsync(PeoplesBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -234,30 +223,6 @@ namespace EntityCache.SqlServerPersistence
                 tf.AccountFirst = item.AccountFirst;
 
                 res.AddReturnedValue(await tf.SaveAsync(tr));
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
-
-            return res;
-        }
-        private async Task<ReturnedSaveFuncInfo> SaveMobileAsync(PeoplesBussines item, SqlTransaction tr)
-        {
-            var res = new ReturnedSaveFuncInfo();
-            try
-            {
-                res.AddReturnedValue(await _tell.RemoveAsync(item.Guid, tr));
-                if (res.HasError) return res;
-
-                foreach (var t in item.TellList)
-                {
-                    t.ParentGuid = item.Guid;
-                    t.Name = item.Name;
-                }
-
-                res.AddReturnedValue(await _tell.SaveRangeAsync(item.TellList, tr));
             }
             catch (Exception ex)
             {

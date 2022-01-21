@@ -643,12 +643,12 @@ GO
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Tafsil_NextCode]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_Tafsil_NextCode]	As Begin print 11 end')
 GO
-Alter PROCEDURE sp_Tafsil_NextCode
+ALTER PROCEDURE [dbo].[sp_Tafsil_NextCode]
 	@hType smallint
 AS
 BEGIN
-	declare @nextCode nvarchar(10)
-	select @nextCode = MAX(Code) From Tafsils
+	declare @nextCode nvarchar(100)
+	select @nextCode = MAX(CAST(Code AS bigint)) from Tafsils
 	where HesabType = @hType
 	set @nextCode = (isnull(@nextCode , 0))
 	set @nextCode = CAST(@nextCode AS bigint) + 1

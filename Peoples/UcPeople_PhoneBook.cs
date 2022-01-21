@@ -2,6 +2,7 @@
 using Services;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -30,7 +31,7 @@ namespace Peoples
             {
                 txtTell.Text = "";
                 cmbTitles.Text = "";
-                phoneBookBindingSource.DataSource = GetPhoneBookList()?.ToSortableBindingList();
+                phoneBookBindingSource.DataSource = _master?.ToSortableBindingList();
             }
             catch (Exception ex)
             {
@@ -52,16 +53,26 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        public async Task InitAsync()
+        {
+            try
+            {
+                await FillPhoneBookTitleAsync();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private async void btnInsTell_Click(object sender, EventArgs e)
         {
             try
             {
                 if (string.IsNullOrEmpty(txtTell.Text)) return;
-                if (GetPhoneBookList().Count <= 0) return;
                 foreach (var item in GetPhoneBookList())
                     if (txtTell.Text.Trim() == item.Tell)
                         return;
-                GetPhoneBookList().Add(new PhoneBookBussines()
+                _master.Add(new PhoneBookBussines()
                 {
                     Guid = Guid.NewGuid(),
                     Modified = DateTime.Now,
@@ -84,8 +95,8 @@ namespace Peoples
                 if (DGridTell.RowCount <= 0) return;
                 if (DGridTell.CurrentRow == null) return;
                 var tagGuid = (Guid)DGridTell[dgTellGuid.Index, DGridTell.CurrentRow.Index].Value;
-                var index = GetPhoneBookList().FindIndex(q => q.Guid == tagGuid);
-                GetPhoneBookList().RemoveAt(index);
+                var index = _master.FindIndex(q => q.Guid == tagGuid);
+                _master.RemoveAt(index);
                 LoadTells();
             }
             catch (Exception ex)

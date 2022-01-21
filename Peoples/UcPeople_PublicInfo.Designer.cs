@@ -244,8 +244,8 @@ namespace Peoples
             this.txtNationalCode.Name = "txtNationalCode";
             this.txtNationalCode.Size = new System.Drawing.Size(119, 27);
             this.txtNationalCode.TabIndex = 0;
-            this.txtNationalCode.Enter += new System.EventHandler(this.txtNationalCode_Enter);
-            this.txtNationalCode.Leave += new System.EventHandler(this.txtNationalCode_Leave);
+            this.txtNationalCode.Enter += new System.EventHandler(this.txtCode_Enter);
+            this.txtNationalCode.Leave += new System.EventHandler(this.txtCode_Leave);
             // 
             // cmbGroup
             // 
@@ -274,8 +274,8 @@ namespace Peoples
             this.txtPostalCode.Name = "txtPostalCode";
             this.txtPostalCode.Size = new System.Drawing.Size(247, 27);
             this.txtPostalCode.TabIndex = 3;
-            this.txtPostalCode.Enter += new System.EventHandler(this.txtPostalCode_Enter);
-            this.txtPostalCode.Leave += new System.EventHandler(this.txtPostalCode_Leave);
+            this.txtPostalCode.Enter += new System.EventHandler(this.txtCode_Enter);
+            this.txtPostalCode.Leave += new System.EventHandler(this.txtCode_Leave);
             // 
             // label8
             // 
@@ -329,8 +329,8 @@ namespace Peoples
             this.txtIdCode.Name = "txtIdCode";
             this.txtIdCode.Size = new System.Drawing.Size(57, 27);
             this.txtIdCode.TabIndex = 0;
-            this.txtIdCode.Enter += new System.EventHandler(this.txtIdCode_Enter);
-            this.txtIdCode.Leave += new System.EventHandler(this.txtIdCode_Leave);
+            this.txtIdCode.Enter += new System.EventHandler(this.txtCode_Enter);
+            this.txtIdCode.Leave += new System.EventHandler(this.txtCode_Leave);
             // 
             // label4
             // 
@@ -353,8 +353,8 @@ namespace Peoples
             this.txtFatherName.Name = "txtFatherName";
             this.txtFatherName.Size = new System.Drawing.Size(119, 27);
             this.txtFatherName.TabIndex = 0;
-            this.txtFatherName.Enter += new System.EventHandler(this.txtFatherName_Enter);
-            this.txtFatherName.Leave += new System.EventHandler(this.txtFatherName_Leave);
+            this.txtFatherName.Enter += new System.EventHandler(this.txtCode_Enter);
+            this.txtFatherName.Leave += new System.EventHandler(this.txtCode_Leave);
             // 
             // label5
             // 
@@ -431,8 +431,8 @@ namespace Peoples
             this.txtPlaceBirth.Name = "txtPlaceBirth";
             this.txtPlaceBirth.Size = new System.Drawing.Size(30, 27);
             this.txtPlaceBirth.TabIndex = 0;
-            this.txtPlaceBirth.Enter += new System.EventHandler(this.txtPlaceBirth_Enter);
-            this.txtPlaceBirth.Leave += new System.EventHandler(this.txtPlaceBirth_Leave);
+            this.txtPlaceBirth.Enter += new System.EventHandler(this.txtCode_Enter);
+            this.txtPlaceBirth.Leave += new System.EventHandler(this.txtCode_Leave);
             // 
             // label6
             // 
@@ -480,8 +480,8 @@ namespace Peoples
             this.txtIssuesFrom.Name = "txtIssuesFrom";
             this.txtIssuesFrom.Size = new System.Drawing.Size(223, 27);
             this.txtIssuesFrom.TabIndex = 2;
-            this.txtIssuesFrom.Enter += new System.EventHandler(this.txtIssuesFrom_Enter);
-            this.txtIssuesFrom.Leave += new System.EventHandler(this.txtIssuesFrom_Leave);
+            this.txtIssuesFrom.Enter += new System.EventHandler(this.txtCode_Enter);
+            this.txtIssuesFrom.Leave += new System.EventHandler(this.txtCode_Leave);
             // 
             // txtName
             // 
@@ -493,8 +493,8 @@ namespace Peoples
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(223, 27);
             this.txtName.TabIndex = 0;
-            this.txtName.Enter += new System.EventHandler(this.txtName_Enter);
-            this.txtName.Leave += new System.EventHandler(this.txtName_Leave);
+            this.txtName.Enter += new System.EventHandler(this.txtCode_Enter);
+            this.txtName.Leave += new System.EventHandler(this.txtCode_Leave);
             // 
             // label16
             // 

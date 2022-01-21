@@ -11,7 +11,7 @@ namespace Peoples
     public partial class UcPeople_BankHesab : UserControl
     {
         private List<PeoplesBankAccountBussines> _master;
-        public List<PeoplesBankAccountBussines> GetBankList()=>_master ?? new List<PeoplesBankAccountBussines>();
+        public List<PeoplesBankAccountBussines> GetBankList() => _master ?? new List<PeoplesBankAccountBussines>();
         public void SetBankList(List<PeoplesBankAccountBussines> value)
         {
             try
@@ -31,7 +31,7 @@ namespace Peoples
             try
             {
                 txtAccountNumber.Text = txtBank.Text = txtShobe.Text = "";
-                bankAccountBindingSource.DataSource = GetBankList()?.ToSortableBindingList();
+                bankAccountBindingSource.DataSource = _master?.ToSortableBindingList();
             }
             catch (Exception ex)
             {
@@ -45,8 +45,7 @@ namespace Peoples
                 if (string.IsNullOrEmpty(txtBank.Text) ||
                     string.IsNullOrEmpty(txtAccountNumber.Text) ||
                     string.IsNullOrEmpty(txtShobe.Text)) return;
-                if (GetBankList().Count <= 0) return;
-                GetBankList().Add(new PeoplesBankAccountBussines()
+                _master.Add(new PeoplesBankAccountBussines()
                 {
                     Guid = Guid.NewGuid(),
                     AccountNumber = txtAccountNumber.Text.Trim().FixString(),
@@ -67,8 +66,8 @@ namespace Peoples
                 if (dgBankAccount.RowCount <= 0) return;
                 if (dgBankAccount.CurrentRow == null) return;
                 var tagGuid = (Guid)dgBankAccount[dgBankGuid.Index, dgBankAccount.CurrentRow.Index].Value;
-                var index = GetBankList().FindIndex(q => q.Guid == tagGuid);
-                GetBankList().RemoveAt(index);
+                var index = _master.FindIndex(q => q.Guid == tagGuid);
+                _master.RemoveAt(index);
                 LoadBanks();
             }
             catch (Exception ex)

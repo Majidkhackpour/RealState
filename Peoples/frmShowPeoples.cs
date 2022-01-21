@@ -478,7 +478,7 @@ namespace Peoples
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var obj = await PeoplesBussines.GetAsync(guid, null);
                 if (obj == null) return;
-                var frm = new frmPeoples(obj, true);
+                var frm = new frmPeopleMain(obj, true);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -501,7 +501,7 @@ namespace Peoples
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var obj = await PeoplesBussines.GetAsync(guid, null);
                 if (obj == null) return;
-                var frm = new frmPeoples(obj, false);
+                var frm = new frmPeopleMain(obj, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadPeoplesAsync(txtSearch.Text);
             }

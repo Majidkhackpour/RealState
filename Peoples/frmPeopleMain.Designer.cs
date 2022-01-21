@@ -93,7 +93,6 @@ namespace Peoples
             this.ucPablic.BackColor = System.Drawing.Color.Transparent;
             this.ucPablic.BirthDate = "";
             this.ucPablic.BirthPlace = "";
-            this.ucPablic.Code = "";
             this.ucPablic.FatherName = "";
             this.ucPablic.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.ucPablic.IdCode = "";
@@ -176,6 +175,7 @@ namespace Peoples
             this.Style = MetroFramework.MetroColorStyle.Teal;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmPeopleMain_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmPeopleMain_KeyDown);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

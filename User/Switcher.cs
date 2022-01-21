@@ -40,7 +40,7 @@ namespace User
                         break;
                     case EnLogPart.Peoples:
                         var pe = await PeoplesBussines.GetAsync(guid, null);
-                        frm = new frmPeoples(pe, true);
+                        frm = new frmPeopleMain(pe, true);
                         break;
                     case EnLogPart.Login:
                     case EnLogPart.Logout:

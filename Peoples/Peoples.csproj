@@ -153,12 +153,6 @@
     <Compile Include="frmPeopleMain.Designer.cs">
       <DependentUpon>frmPeopleMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPeoples.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmPeoples.Designer.cs">
-      <DependentUpon>frmPeoples.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmPeoplesBankAccount.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -227,9 +221,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPeopleMain.resx">
       <DependentUpon>frmPeopleMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmPeoples.resx">
-      <DependentUpon>frmPeoples.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPeoplesBankAccount.resx">
       <DependentUpon>frmPeoplesBankAccount.cs</DependentUpon>
