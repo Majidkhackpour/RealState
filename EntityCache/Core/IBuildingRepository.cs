@@ -32,5 +32,6 @@ namespace EntityCache.Core
         Task<List<BuildingBussines>> GetAllNotSentAsync(string connectionString);
         Task<ReturnedSaveFuncInfo> SetSaveResultAsync(string connectionString, Guid guid, ServerStatus status);
         Task<ReturnedSaveFuncInfo> ResetAsync(string connectionString);
+        Task<BuildingReportBussines> GetFromReportAsync(string connectionString, Guid guid);
     }
 }

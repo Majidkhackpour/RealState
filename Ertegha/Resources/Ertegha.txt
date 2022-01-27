@@ -7305,7 +7305,12 @@ ALTER PROCEDURE [dbo].[sp_Buildings_Search]
 	@ejare2 decimal=0,
 	@st bit='true',
 	@isArchive bit=null,
-	@maxTabaqeNo int=0
+	@maxTabaqeNo int=0,
+	@isRahn bit='false',
+	@isFullRahn bit='false',
+	@isSell bit='false',
+	@isPishForoush bit='false',
+	@isMosharekat bit='false'
 AS
 BEGIN
 select [dbo].[Buildings].*,[dbo].[Peoples].Name As OwnerName,
@@ -7345,7 +7350,12 @@ From [dbo].[Buildings]
 		   ((ISNULL(@ejare1,0)=0 and ISNULL(@ejare2,0)=0) or Buildings.EjarePrice1 between @ejare1 and @ejare2) and
 		   (ISNULL(@maxTabaqeNo,0)=0 or Buildings.TabaqeNo<=@maxTabaqeNo) and
 		   Buildings.Status=@st and
-		   (@isArchive is null or Buildings.IsArchive=@isArchive)
+		   (@isArchive is null or Buildings.IsArchive=@isArchive) and
+		   (@isRahn='false' or Buildings.Parent in (109,110,111,112))and
+		   (@isFullRahn='false' or Buildings.Parent in (113,114,115,116))and
+		   (@isSell='false' or Buildings.Parent in (101,102,103,104,105,106,107,108))and
+		   (@isMosharekat='false' or Buildings.Parent in (125,126))and
+		   (@isPishForoush='false' or Buildings.Parent in (117,118,119,120))
 	 Order By [dbo].[Buildings].CreateDate desc
 End
 GO
@@ -8152,3 +8162,37 @@ BEGIN
 	set ServerStatus=0,
 		Modified=GETDATE()
 END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Buildings_GetFromReport]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Buildings_GetFromReport]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_Buildings_GetFromReport] 
+	@Guid uniqueidentifier
+AS
+BEGIN
+select [dbo].[Buildings].*,[dbo].[Peoples].Name As OwnerName,
+       [dbo].[BuildingTypes].Name As BuildingTypeName,
+	   [dbo].[Users].Name As UserName,
+	   [dbo].[Regions].Name As RegionName,
+	   [dbo].[RentalAuthorities].Name As RentalAuthorityName,
+	   [dbo].[DocumentTypes].Name As DocumentTypeName,
+	   [dbo].[BuildingConditions].Name As BuildingConditionName,
+	   [dbo].[BuildingViews].Name As BuildingViewName,
+	   [dbo].[FloorCovers].Name As FloorCoverName,
+	   [dbo].[KitchenServices].Name As KitchenServiceName,
+	   [dbo].[BuildingAccountTypes].Name As BuildingAccountTypeName
+From [dbo].[Buildings] 
+     inner join [dbo].[Peoples] on [dbo].[Buildings].OwnerGuid=[dbo].[Peoples].Guid
+	 left outer join [dbo].[BuildingTypes] on [dbo].[Buildings].BuildingTypeGuid=[dbo].[BuildingTypes].Guid
+	 inner join [dbo].[Users] on [dbo].[Buildings].UserGuid=[dbo].[Users].Guid
+	 inner join [dbo].[Regions] on [dbo].[Buildings].RegionGuid=[dbo].[Regions].Guid
+	 left outer join [dbo].[RentalAuthorities] on [dbo].[Buildings].RentalAutorityGuid=[dbo].[RentalAuthorities].Guid
+	 left outer join [dbo].[DocumentTypes] on [dbo].[Buildings].DocumentType=[dbo].[DocumentTypes].Guid
+	 left outer join [dbo].[BuildingConditions] on [dbo].[Buildings].BuildingConditionGuid=[dbo].[BuildingConditions].Guid
+	 left outer join [dbo].[BuildingViews] on [dbo].[Buildings].BuildingViewGuid=[dbo].[BuildingViews].Guid
+	 left outer join [dbo].[FloorCovers] on [dbo].[Buildings].FloorCoverGuid=[dbo].[FloorCovers].Guid
+	 left outer join [dbo].[KitchenServices] on [dbo].[Buildings].KitchenServiceGuid=[dbo].[KitchenServices].Guid
+	 left outer join [dbo].[BuildingAccountTypes] on [dbo].[Buildings].BuildingAccountTypeGuid=[dbo].[BuildingAccountTypes].Guid
+	 where Buildings.Guid=@Guid
+End

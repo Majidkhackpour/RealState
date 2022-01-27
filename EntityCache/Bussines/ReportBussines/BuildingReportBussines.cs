@@ -38,10 +38,17 @@ namespace EntityCache.Bussines.ReportBussines
         public bool IsArchive { get; set; }
         public AdvertiseType? AdvertiseType { get; set; }
         public string RentalAuthorityName { get; set; }
-        public EnBuildingParent Parent { get; set; }
+        public EnBuildingParent Parent { get; set; } = EnBuildingParent.None;
+        public string ParentName => Parent.GetDisplay();
         public Guid RegionGuid { get; set; }
+        public string WindowName { get; set; }
+        public double TabaqeCount { get; set; }
+        public double TabaqeNo { get; set; }
+        public EnBuildingSide Side { get; set; } = EnBuildingSide.None;
+        public string SideName => Side.GetDisplay();
 
 
         public static async Task<List<BuildingReportBussines>> GetAllAsync(BuildingFilter filters) => await UnitOfWork.Building.SearchAsync(Cache.ConnectionString, filters);
+        public static async Task<BuildingReportBussines> GetAsync(Guid guid) => await UnitOfWork.Building.GetFromReportAsync(Cache.ConnectionString, guid);
     }
 }

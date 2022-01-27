@@ -15,44 +15,6 @@ namespace EntityCache.SqlServerPersistence
 {
     public class BuildingPersistenceRepository : IBuildingRepository
     {
-        private List<EnBuildingParent> SellParentList = new List<EnBuildingParent>()
-        {
-            EnBuildingParent.SellAprtment,
-            EnBuildingParent.SellHome,
-            EnBuildingParent.SellOffice,
-            EnBuildingParent.SellStore,
-            EnBuildingParent.SellGarden,
-            EnBuildingParent.SellVilla,
-            EnBuildingParent.SellOldHouse,
-            EnBuildingParent.SellLand
-        };
-        private List<EnBuildingParent> RentParentList = new List<EnBuildingParent>()
-        {
-            EnBuildingParent.RentAprtment,
-            EnBuildingParent.RentHome,
-            EnBuildingParent.RentOffice,
-            EnBuildingParent.RentStore
-        };
-        private List<EnBuildingParent> FullRentParentList = new List<EnBuildingParent>()
-        {
-            EnBuildingParent.FullRentAprtment,
-            EnBuildingParent.FullRentHome,
-            EnBuildingParent.FullRentOffice,
-            EnBuildingParent.FullRentStore
-        };
-        private List<EnBuildingParent> MosharekatParentList = new List<EnBuildingParent>()
-        {
-            EnBuildingParent.MosharekatAprtment,
-            EnBuildingParent.MosharekatHome
-        };
-        private List<EnBuildingParent> MoavezeParentList = new List<EnBuildingParent>()
-        {
-            EnBuildingParent.MoavezeAprtment,
-            EnBuildingParent.MoavezeHome,
-            EnBuildingParent.MoavezeOffice,
-            EnBuildingParent.MoavezeStore
-        };
-
         private BuildingGalleryPersistenceRepository _gallery = null;
         private BuildingRelatedOptionsPersistenceRepository _options = null;
         private BuildingMediaPersistenceRepository _media = null;
@@ -437,6 +399,29 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
+        public async Task<BuildingReportBussines> GetFromReportAsync(string connectionString, Guid guid)
+        {
+            var list = new BuildingReportBussines();
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Buildings_GetFromReport", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@guid", guid);
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    if (dr.Read()) list = LoadDataReport(dr);
+                    dr.Close();
+                    cn.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+
+            return list;
+        }
         public async Task<ReturnedSaveFuncInfo> SetArchiveAsync(string _connectionString, DateTime date)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -591,6 +576,12 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@st", filter.Status);
                     cmd.Parameters.AddWithValue("@isArchive", filter.IsArchive);
                     cmd.Parameters.AddWithValue("@maxTabaqeNo", filter.MaxTabaqeNo);
+                    cmd.Parameters.AddWithValue("@isRahn", filter.IsRahn);
+                    cmd.Parameters.AddWithValue("@isFullRahn", filter.IsFullRahn);
+                    cmd.Parameters.AddWithValue("@isSell", filter.IsSell);
+                    cmd.Parameters.AddWithValue("@isPishForoush", filter.IsPishForoush);
+                    cmd.Parameters.AddWithValue("@isMosharekat", filter.IsMosharekat);
+
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
                     while (dr.Read()) list.Add(LoadDataReport(dr));
@@ -600,11 +591,6 @@ namespace EntityCache.SqlServerPersistence
                 if (!list.Any()) return list?.ToList();
                 if (filter.AdvertiseType != null && filter.AdvertiseType == AdvertiseType.None)
                     list = list?.Where(q => q.AdvertiseType == null)?.ToList();
-                if (filter.IsRahn) list = list?.Where(q => RentParentList.Contains(q.Parent))?.ToList();
-                if (filter.IsFullRahn) list = list?.Where(q => FullRentParentList.Contains(q.Parent))?.ToList();
-                if (filter.IsSell) list = list?.Where(q => SellParentList.Contains(q.Parent))?.ToList();
-                if (filter.IsMosharekat) list = list?.Where(q => MosharekatParentList.Contains(q.Parent))?.ToList();
-                if (filter.IsPishForoush) list = list?.Where(q => MoavezeParentList.Contains(q.Parent))?.ToList();
 
                 if (filter.RegionList != null && filter.RegionList.Count > 0)
                     list = list?.Where(q => filter.RegionList.Contains(q.RegionGuid))?.ToList();
@@ -969,6 +955,9 @@ namespace EntityCache.SqlServerPersistence
                 if (dr["BuildingAccountTypeName"] != DBNull.Value) res.BuildingAccountTypeName = dr["BuildingAccountTypeName"].ToString();
                 if (dr["AdvertiseType"] != DBNull.Value) res.AdvertiseType = (AdvertiseType)dr["AdvertiseType"];
                 if (dr["Parent"] != DBNull.Value) res.Parent = (EnBuildingParent)dr["Parent"];
+                if (dr["TedadTabaqe"] != DBNull.Value) res.TabaqeCount = dr["TedadTabaqe"].ToString().ParseToDouble();
+                if (dr["TabaqeNo"] != DBNull.Value) res.TabaqeNo = dr["TabaqeNo"].ToString().ParseToDouble();
+                if (dr["Side"] != DBNull.Value) res.Side = (EnBuildingSide)dr["Side"];
             }
             catch (Exception ex)
             {

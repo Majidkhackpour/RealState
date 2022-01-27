@@ -100,7 +100,6 @@ namespace Building.Buildings
                     BuildingBindingSource.DataSource = lst?.OrderBy(q => q.IsArchive)
                         ?.ThenByDescending(q => q.CreateDate)?.ThenByDescending(q => q.Code)?.ToSortableBindingList();
                     SetGridColor();
-                    VisibleColumns();
                     lblCounter.Text = (lst?.Count() ?? 0).ToString();
                 }));
             }
@@ -452,60 +451,6 @@ namespace Building.Buildings
                     var msg = $"ارسال ملک به واتساپ \r\n {text}";
                     _ = Task.Run(() => WebTelegramReporter.SendBuildingReport(WebCustomer.Customer.Guid, msg));
                 }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void VisibleColumns(EnRequestType type)
-        {
-            try
-            {
-                switch (type)
-                {
-                    case EnRequestType.Rahn:
-                        DGrid.Columns[dgSellPrice.Index].Visible = false;
-                        DGrid.Columns[dgVam.Index].Visible = false;
-                        DGrid.Columns[dgQest.Index].Visible = false;
-                        break;
-                    case EnRequestType.Forush:
-                        DGrid.Columns[dgRahn.Index].Visible = false;
-                        DGrid.Columns[dgEjare.Index].Visible = false;
-                        DGrid.Columns[dgRentalAuthorityName.Index].Visible = false;
-                        break;
-                    case EnRequestType.PishForush:
-                        DGrid.Columns[dgSellPrice.Index].Visible = false;
-                        DGrid.Columns[dgVam.Index].Visible = false;
-                        DGrid.Columns[dgQest.Index].Visible = false;
-                        DGrid.Columns[dgRahn.Index].Visible = false;
-                        DGrid.Columns[dgEjare.Index].Visible = false;
-                        DGrid.Columns[dgRentalAuthorityName.Index].Visible = false;
-                        break;
-                    case EnRequestType.Mosharekat:
-                        DGrid.Columns[dgSellPrice.Index].Visible = false;
-                        DGrid.Columns[dgVam.Index].Visible = false;
-                        DGrid.Columns[dgQest.Index].Visible = false;
-                        DGrid.Columns[dgRahn.Index].Visible = false;
-                        DGrid.Columns[dgEjare.Index].Visible = false;
-                        DGrid.Columns[dgRentalAuthorityName.Index].Visible = false;
-                        break;
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void VisibleColumns()
-        {
-            try
-            {
-                if (filter.IsRahn) VisibleColumns(EnRequestType.Rahn);
-                else if (filter.IsSell) VisibleColumns(EnRequestType.Forush);
-                else if (filter.IsPishForoush) VisibleColumns(EnRequestType.PishForush);
-                else if (filter.IsMosharekat) VisibleColumns(EnRequestType.Mosharekat);
-                else VisibleColumns(EnRequestType.None);
             }
             catch (Exception ex)
             {
