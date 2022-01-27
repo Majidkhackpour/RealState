@@ -20,6 +20,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WebHesabBussines;
 using WindowsSerivces;
+using WindowsSerivces.Waiter;
 
 namespace Building.Buildings
 {
@@ -40,7 +41,9 @@ namespace Building.Buildings
             {
                 if (!_isLoad) return;
                 if (filter == null) filter = new BuildingFilter() { Status = _st };
-                _list = await BuildingReportBussines.GetAllAsync(filter);
+                var task = Task.Run(() => BuildingReportBussines.GetAllAsync(filter));
+                _ = new Waiter("درحال خواندن اطلاعات ...", this, task, true);
+                _list = await task;
                 Search(search);
             }
             catch (Exception ex)
@@ -48,7 +51,8 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void Search(string srach = "")
+        private void Search(string search = "") => _ = new Waiter("درحال جستجو ...", this, Task.Run(() => SearchAsync(search)));
+        private async Task SearchAsync(string srach = "")
         {
             try
             {
@@ -540,14 +544,14 @@ namespace Building.Buildings
             }
         }
 
-        private void frmShowBuildings_Load(object sender, EventArgs e)
+        private async void frmShowBuildings_Load(object sender, EventArgs e)
         {
             try
             {
                 _isLoad = true;
                 var t = new ToolTip();
                 t.SetToolTip(picFilter, "فیلتر");
-                _ = Task.Run(() => LoadDataAsync());
+                await LoadDataAsync();
             }
             catch (Exception ex)
             {

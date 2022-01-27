@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
+using WindowsSerivces.Waiter;
 using EntityCache.Assistence;
 using EntityCache.Bussines;
 using Ertegha;
@@ -88,7 +89,9 @@ namespace RealState.LoginPanel.FormsInPanel
             try
             {
                 SetDesign();
-                res.AddReturnedValue(await Initializer.InitializeAsync(lblCpuSerial.Text, this));
+                var task = Task.Run(() => Initializer.InitializeAsync(lblCpuSerial.Text, this));
+                _ = new Waiter("درحال پردازش ...", this, task, true);
+                res.AddReturnedValue(await task);
                 lblCpuSerial.Text = await clsGlobalSetting.GetHardDriveSerialAsync();
 
                 if (res.HasError || res.HasWarning) return;
@@ -173,7 +176,7 @@ namespace RealState.LoginPanel.FormsInPanel
                 UserBussines.CurrentUser = user;
                 UserBussines.DateVorrod = DateTime.Now;
 
-                await UserLogBussines.SaveAsync(EnLogAction.Login, EnLogPart.Login,null,"", null);
+                await UserLogBussines.SaveAsync(EnLogAction.Login, EnLogPart.Login, null, "", null);
             }
             catch (Exception ex)
             {
