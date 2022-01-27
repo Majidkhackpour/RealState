@@ -34,17 +34,25 @@ namespace Building.Buildings
         private BuildingFilter filter;
 
 
-
+        private void LoadData(string search = "")
+        {
+            try
+            {
+                _ = new Waiter("درحال خواندن اطلاعات ...", this, Task.Run(() => LoadDataAsync(search)), true);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private async Task LoadDataAsync(string search = "")
         {
             try
             {
                 if (!_isLoad) return;
                 if (filter == null) filter = new BuildingFilter() { Status = _st };
-                var task = Task.Run(() => BuildingReportBussines.GetAllAsync(filter));
-                _ = new Waiter("درحال خواندن اطلاعات ...", this, task, true);
-                _list = await task;
-                Search(search);
+                _list = await BuildingReportBussines.GetAllAsync(filter);
+                await SearchAsync(search);
             }
             catch (Exception ex)
             {
@@ -544,14 +552,14 @@ namespace Building.Buildings
             }
         }
 
-        private async void frmShowBuildings_Load(object sender, EventArgs e)
+        private void frmShowBuildings_Load(object sender, EventArgs e)
         {
             try
             {
                 _isLoad = true;
                 var t = new ToolTip();
                 t.SetToolTip(picFilter, "فیلتر");
-                await LoadDataAsync();
+                LoadData();
             }
             catch (Exception ex)
             {
@@ -601,7 +609,7 @@ namespace Building.Buildings
                             DGrid.Focus();
                         break;
                     case Keys.F5:
-                        _ = Task.Run(() => LoadDataAsync(txtSearch.Text));
+                        LoadData(txtSearch.Text);
                         break;
                 }
             }
@@ -748,13 +756,13 @@ namespace Building.Buildings
                 {
                     var frm = new frmBuilding(bu);
                     if (frm.ShowDialog(this) == DialogResult.OK)
-                        _ = Task.Run(() => LoadDataAsync(txtSearch.Text));
+                        LoadData(txtSearch.Text);
                 }
                 else
                 {
                     var frm = new frmSelectBuildingType(this, bu);
                     if (frm.ShowDialog(this) == DialogResult.OK)
-                        _ = Task.Run(() => LoadDataAsync(txtSearch.Text));
+                        LoadData(txtSearch.Text);
                 }
             }
             catch (Exception ex)
@@ -768,7 +776,7 @@ namespace Building.Buildings
             {
                 var frm = new frmSelectBuildingType(this, new BuildingBussines());
                 if (frm.ShowDialog(this) == DialogResult.OK)
-                    _ = Task.Run(() => LoadDataAsync(txtSearch.Text));
+                    LoadData(txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -813,7 +821,7 @@ namespace Building.Buildings
             {
                 if (res.HasError)
                     this.ShowError(res, "خطا در تغییر وضعیت ملک");
-                else _ = Task.Run(() => LoadDataAsync(txtSearch.Text));
+                else LoadData(txtSearch.Text);
             }
         }
         private async void mnuSlideShow_Click(object sender, EventArgs e)
@@ -870,7 +878,7 @@ namespace Building.Buildings
                 else
                 {
                     this.ShowMessage("ملک مورد نظر به بایگانی اضافه شد");
-                    _ = Task.Run(() => LoadDataAsync(txtSearch.Text));
+                    LoadData(txtSearch.Text);
                 }
             }
         }
@@ -905,7 +913,7 @@ namespace Building.Buildings
                 else
                 {
                     this.ShowMessage("ملک مورد نظر از بایگانی خارج شد");
-                    _ = Task.Run(() => LoadDataAsync(txtSearch.Text));
+                    LoadData(txtSearch.Text);
                 }
             }
         }
@@ -1151,7 +1159,7 @@ namespace Building.Buildings
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
                 filter = frm.Filter;
                 filter.Status = _st;
-                _ = Task.Run(() => LoadDataAsync(txtSearch.Text));
+                LoadData(txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -1182,7 +1190,7 @@ namespace Building.Buildings
                 else
                 {
                     this.ShowMessage("فایل موردنظر به فایل های شخصی اضافه شد");
-                    _ = Task.Run(() => LoadDataAsync(txtSearch.Text));
+                    LoadData(txtSearch.Text);
                 }
             }
             catch (Exception ex)
