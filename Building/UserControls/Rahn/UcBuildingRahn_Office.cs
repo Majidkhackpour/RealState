@@ -2,6 +2,7 @@
 using Services;
 using System;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Building.UserControls.Rahn
 {
@@ -32,6 +33,7 @@ namespace Building.UserControls.Rahn
                     _bu.Tabdil = chbTabdil.Checked;
                     _bu.IsOwnerHere = chbIsOwnerHere.Checked;
                     _bu.IsShortTime = chbShortTime.Checked;
+                    _bu.VahedNo = ucVahedNo.Value;
                 }
                 catch (Exception ex)
                 {
@@ -40,7 +42,6 @@ namespace Building.UserControls.Rahn
                 return _bu;
             }
         }
-
         public override async Task SetBuildingAsync(BuildingBussines value)
         {
             try
@@ -64,6 +65,7 @@ namespace Building.UserControls.Rahn
                 if (_bu.Tabdil != null) chbTabdil.Checked = _bu.Tabdil.Value;
                 if (_bu.IsOwnerHere != null) chbIsOwnerHere.Checked = _bu.IsOwnerHere.Value;
                 if (_bu.IsShortTime != null) chbShortTime.Checked = _bu.IsShortTime.Value;
+                ucVahedNo.Value = _bu.VahedNo;
             }
             catch (Exception ex)
             {

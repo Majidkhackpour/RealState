@@ -15,6 +15,10 @@ namespace Persistence.Entities
         public bool Status { get; set; }
         public ServerStatus ServerStatus { get; set; }
         public DateTime ServerDeliveryDate { get; set; }
+        [ForeignKey("Zoncan")]
+        public Guid? ZoncanGuid { get; set; }
+        [ForeignKey("Window")]
+        public Guid? WindowGuid { get; set; }
         public DateTime CreateDate { get; set; }
         [MaxLength(50)]
         public string Code { get; set; }
@@ -70,6 +74,7 @@ namespace Persistence.Entities
         public int TedadTabaqe { get; set; }
         public int TabaqeNo { get; set; }
         public int VahedPerTabaqe { get; set; }
+        public int VahedNo { get; set; }
         public float MetrazhKouche { get; set; }
         public float ErtefaSaqf { get; set; }
         public float Hashie { get; set; }
@@ -91,17 +96,12 @@ namespace Persistence.Entities
         public bool IsArchive { get; set; }
         [MaxLength(100)]
         public string Image { get; set; }
-        public int TelegramCount { get; set; }
-        public int WhatsAppCount { get; set; }
-        public int DivarCount { get; set; }
-        public int SheypoorCount { get; set; }
         public AdvertiseType? AdvertiseType { get; set; }
         public string DivarTitle { get; set; }
         [MaxLength(250)]
         public string Hiting { get; set; }
         [MaxLength(250)]
         public string Colling { get; set; }
-
         public EnVillaType? VillaType { get; set; }
         public EnCommericallLicense? CommericallLicense { get; set; }
         public string SuitableFor { get; set; }
@@ -120,10 +120,13 @@ namespace Persistence.Entities
         public virtual BuildingView BView { get; set; }
         public virtual FloorCover FloorCover { get; set; }
         public virtual KitchenService KitchenService { get; set; }
+        public virtual BuildingZoncan Zoncan { get; set; }
+        public virtual BuildingWindow Window { get; set; }
         public virtual ICollection<Contract> Contract { get; set; }
         public virtual ICollection<BuildingGallery> BuildingGallery { get; set; }
         public virtual ICollection<BuildingMedia> BuildingMedia { get; set; }
         public virtual ICollection<BuildingNotes> BuildingNote { get; set; }
         public virtual ICollection<BuildingRelatedOptions> BuildingRelatedOptions { get; set; }
+        public virtual ICollection<BuildingReview> BuildingReview { get; set; }
     }
 }

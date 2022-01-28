@@ -4653,14 +4653,10 @@ ALTER PROCEDURE [dbo].[sp_Building_Save]
 	@serverSt smallint,
 	@serverDate datetime=null,
 	@lenght real,
-	@telegramCount int,
-	@divarCount int,
-	@sheypoorCount int,
 	@advType smallint=null,
 	@divarTitle nvarchar(500)='',
 	@hitting nvarchar(250)='',
 	@colling nvarchar(250)='',
-	@whatsAppCount int=0,
 	@tabdil bit=null,
 	@reformArear float=0,
 	@buildingPermits bit=null,
@@ -4671,7 +4667,10 @@ ALTER PROCEDURE [dbo].[sp_Building_Save]
 	@wallCovering nvarchar(max)='',
 	@treeCount int=0,
 	@constructionStage smallint=null,
-	@parent smallint=null
+	@parent smallint=null,
+	@zoncanGuid uniqueidentifier=null,
+	@windowGuid uniqueidentifier=null,
+	@vahedNo int=0
 AS
 BEGIN
 	UPDATE [dbo].[Buildings]
@@ -4732,14 +4731,10 @@ BEGIN
 		  ,[ServerStatus] = @serverSt
 		  ,[ServerDeliveryDate] = @serverDate
 		  ,[Lenght] = @lenght
-		  ,[TelegramCount] = @telegramCount
-		  ,[DivarCount] = @divarCount
-		  ,[SheypoorCount] = @sheypoorCount
 		  ,[AdvertiseType] = @advType
 		  ,[DivarTitle] = @divarTitle
 		  ,[Hiting] = @hitting
 		  ,[Colling] = @colling
-		  ,[WhatsAppCount] = @whatsAppCount
 		  ,[Tabdil] = @tabdil
 		  ,[ReformArea] = @reformArear
 		  ,[BuildingPermits] = @buildingPermits
@@ -4751,6 +4746,9 @@ BEGIN
 		  ,[TreeCount] = @treeCount
 		  ,[ConstructionStage] = @constructionStage
 		  ,[Parent] = @parent
+		  ,[ZoncanGuid] = @zoncanGuid
+		  ,[WindowGuid] = @windowGuid
+		  ,[VahedNo] = @vahedNo
 	 WHERE [Guid] = @guid
 	if @@ROWCOUNT = 0
 	begin
@@ -4815,14 +4813,10 @@ BEGIN
 		   ,[ServerStatus]
 		   ,[ServerDeliveryDate]
 		   ,[Lenght]
-		   ,[TelegramCount]
-		   ,[DivarCount]
-		   ,[SheypoorCount]
 		   ,[AdvertiseType]
 		   ,[DivarTitle]
 		   ,[Hiting]
 		   ,[Colling]
-		   ,[WhatsAppCount]
 		   ,[Tabdil] 
 		   ,[ReformArea] 
 		   ,[BuildingPermits] 
@@ -4833,7 +4827,10 @@ BEGIN
 		   ,[WallCovering] 
 		   ,[TreeCount] 
 		   ,[ConstructionStage] 
-		   ,[Parent])
+		   ,[Parent]
+		   ,[ZoncanGuid]
+		   ,[WindowGuid]
+		   ,[VahedNo])
 		VALUES
            (@guid
            ,@modif
@@ -4895,14 +4892,10 @@ BEGIN
 		   ,@serverSt
 		   ,@serverDate
 		   ,@lenght
-		   ,@telegramCount
-		   ,@divarCount
-		   ,@sheypoorCount
 		   ,@advType
 		   ,@divarTitle
 		   ,@hitting
 		   ,@colling
-		   ,@whatsAppCount
 		   ,@tabdil
 		   ,@reformArear
 		   ,@buildingPermits
@@ -4913,7 +4906,10 @@ BEGIN
 		   ,@wallCovering
 		   ,@treeCount
 		   ,@constructionStage
-		   ,@parent)
+		   ,@parent
+		   ,@zoncanGuid
+		   ,@windowGuid
+		   ,@vahedNo)
 	end
 END
 GO
@@ -7266,11 +7262,11 @@ ALTER PROCEDURE [dbo].[sp_Buildings_Search]
 	@isFullRahn bit='false',
 	@isSell bit='false',
 	@isPishForoush bit='false',
-	@isMosharekat bit='false',
-	@priority smallint=null
+	@isMosharekat bit='false'
 AS
 BEGIN
-select [dbo].[Buildings].*,[dbo].[Peoples].Name As OwnerName,
+select [dbo].[Buildings].*,
+	   [dbo].[Peoples].Name As OwnerName,
        [dbo].[BuildingTypes].Name As BuildingTypeName,
 	   [dbo].[Users].Name As UserName,
 	   [dbo].[Regions].Name As RegionName,
@@ -7280,7 +7276,9 @@ select [dbo].[Buildings].*,[dbo].[Peoples].Name As OwnerName,
 	   [dbo].[BuildingViews].Name As BuildingViewName,
 	   [dbo].[FloorCovers].Name As FloorCoverName,
 	   [dbo].[KitchenServices].Name As KitchenServiceName,
-	   [dbo].[BuildingAccountTypes].Name As BuildingAccountTypeName
+	   [dbo].[BuildingAccountTypes].Name As BuildingAccountTypeName,
+	   [dbo].[BuildingZoncans].Name As ZoncanName,
+	   [dbo].[BuildingWindows].Name As WindowName
 From [dbo].[Buildings] 
      inner join [dbo].[Peoples] on [dbo].[Buildings].OwnerGuid=[dbo].[Peoples].Guid
 	 left outer join [dbo].[BuildingTypes] on [dbo].[Buildings].BuildingTypeGuid=[dbo].[BuildingTypes].Guid
@@ -7293,6 +7291,8 @@ From [dbo].[Buildings]
 	 left outer join [dbo].[FloorCovers] on [dbo].[Buildings].FloorCoverGuid=[dbo].[FloorCovers].Guid
 	 left outer join [dbo].[KitchenServices] on [dbo].[Buildings].KitchenServiceGuid=[dbo].[KitchenServices].Guid
 	 left outer join [dbo].[BuildingAccountTypes] on [dbo].[Buildings].BuildingAccountTypeGuid=[dbo].[BuildingAccountTypes].Guid
+	 left outer join [dbo].[BuildingZoncans] on [dbo].[Buildings].ZoncanGuid=[dbo].[BuildingZoncans].Guid
+	 left outer join [dbo].[BuildingWindows] on [dbo].[Buildings].WindowGuid=[dbo].[BuildingWindows].Guid
 	 where (@ownerGuid is null or Buildings.OwnerGuid=@ownerGuid) and
 		   (@advType is null or Buildings.AdvertiseType=@advType) and
 		   (@buildingTypeGuid is null or Buildings.BuildingTypeGuid=@buildingTypeGuid) and
@@ -7312,8 +7312,7 @@ From [dbo].[Buildings]
 		   (@isFullRahn='false' or Buildings.Parent in (113,114,115,116))and
 		   (@isSell='false' or Buildings.Parent in (101,102,103,104,105,106,107,108))and
 		   (@isMosharekat='false' or Buildings.Parent in (125,126))and
-		   (@isPishForoush='false' or Buildings.Parent in (117,118,119,120)) and
-		   (@priority is null or Buildings.Priority=@priority)
+		   (@isPishForoush='false' or Buildings.Parent in (117,118,119,120))
 	 Order By [dbo].[Buildings].CreateDate desc
 End
 GO
@@ -8139,7 +8138,9 @@ select [dbo].[Buildings].*,[dbo].[Peoples].Name As OwnerName,
 	   [dbo].[BuildingViews].Name As BuildingViewName,
 	   [dbo].[FloorCovers].Name As FloorCoverName,
 	   [dbo].[KitchenServices].Name As KitchenServiceName,
-	   [dbo].[BuildingAccountTypes].Name As BuildingAccountTypeName
+	   [dbo].[BuildingAccountTypes].Name As BuildingAccountTypeName,
+	   [dbo].[BuildingZoncans].Name As ZoncanName,
+	   [dbo].[BuildingWindows].Name As WindowName
 From [dbo].[Buildings] 
      inner join [dbo].[Peoples] on [dbo].[Buildings].OwnerGuid=[dbo].[Peoples].Guid
 	 left outer join [dbo].[BuildingTypes] on [dbo].[Buildings].BuildingTypeGuid=[dbo].[BuildingTypes].Guid
@@ -8152,5 +8153,7 @@ From [dbo].[Buildings]
 	 left outer join [dbo].[FloorCovers] on [dbo].[Buildings].FloorCoverGuid=[dbo].[FloorCovers].Guid
 	 left outer join [dbo].[KitchenServices] on [dbo].[Buildings].KitchenServiceGuid=[dbo].[KitchenServices].Guid
 	 left outer join [dbo].[BuildingAccountTypes] on [dbo].[Buildings].BuildingAccountTypeGuid=[dbo].[BuildingAccountTypes].Guid
+	 left outer join [dbo].[BuildingZoncans] on [dbo].[Buildings].ZoncanGuid=[dbo].[BuildingZoncans].Guid
+	 left outer join [dbo].[BuildingWindows] on [dbo].[Buildings].WindowGuid=[dbo].[BuildingWindows].Guid
 	 where Buildings.Guid=@Guid
 End

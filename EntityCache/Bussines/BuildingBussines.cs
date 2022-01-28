@@ -22,6 +22,8 @@ namespace EntityCache.Bussines
         public bool Status { get; set; } = true;
         public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
         public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
+        public Guid? ZoncanGuid { get; set; }
+        public Guid? WindowGuid { get; set; }
         public DateTime CreateDate { get; set; } = DateTime.Now;
         public string DateSh => Calendar.MiladiToShamsi(CreateDate);
         public string Code { get; set; }
@@ -83,10 +85,6 @@ namespace EntityCache.Bussines
         public EnBuildingPriority Priority { get; set; }
         public bool IsArchive { get; set; }
         public string Image { get; set; }
-        public int TelegramCount { get; set; }
-        public int WhatsAppCount { get; set; }
-        public int DivarCount { get; set; }
-        public int SheypoorCount { get; set; }
         public AdvertiseType? AdvertiseType { get; set; } = null;
         public string DivarTitle { get; set; } = "";
         public string Hiting { get; set; }

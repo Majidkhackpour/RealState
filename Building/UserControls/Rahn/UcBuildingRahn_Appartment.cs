@@ -2,6 +2,7 @@
 using Services;
 using System;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Building.UserControls.Rahn
 {
@@ -31,6 +32,7 @@ namespace Building.UserControls.Rahn
                     _bu.IsOwnerHere = chbIsOwnerHere.Checked;
                     _bu.IsShortTime = chbShortTime.Checked;
                     _bu.RentalAutorityGuid = ucRentalAuthority1.RentalAuthorityGuid;
+                    _bu.VahedNo = ucVahedNo.Value;
                 }
                 catch (Exception ex)
                 {
@@ -39,7 +41,6 @@ namespace Building.UserControls.Rahn
                 return _bu;
             }
         }
-
         public override async Task SetBuildingAsync(BuildingBussines value)
         {
             try
@@ -53,6 +54,7 @@ namespace Building.UserControls.Rahn
                 ucTabaqeNo1.TabaqeNo = _bu.TabaqeNo;
                 ucVahedPertabaqe.Value = _bu.VahedPerTabaqe;
                 ucSide1.Side = _bu.Side;
+                ucVahedNo.Value = _bu.VahedNo;
                 await ucBuildingView1.SetBuildingViewGuidAsync(_bu.BuildingViewGuid);
                 await ucFloorCover1.SetFloorCoverGuidAsync(_bu.FloorCoverGuid);
                 await ucKitchenService1.SetKitchenServiceGuidAsync(_bu.KitchenServiceGuid);

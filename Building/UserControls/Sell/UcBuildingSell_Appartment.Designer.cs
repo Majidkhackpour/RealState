@@ -52,6 +52,7 @@ namespace Building.UserControls.Sell
             this.ucVam = new Building.UserControls.Objects.UcPrice();
             this.ucQest = new Building.UserControls.Objects.UcPrice();
             this.ucPricePerZirBana = new Building.UserControls.Objects.UcPrice();
+            this.ucVahedNo = new Building.UserControls.Objects.UcNumericTitleValue();
             this.SuspendLayout();
             // 
             // ucBuildingCondition1
@@ -395,10 +396,25 @@ namespace Building.UserControls.Sell
             this.ucPricePerZirBana.Title = "قیمت هر متر بنا";
             this.ucPricePerZirBana.OnTextChanged += new System.Action(this.ucPricePerZirBana_OnTextChanged);
             // 
+            // ucVahedNo
+            // 
+            this.ucVahedNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucVahedNo.BackColor = System.Drawing.Color.Transparent;
+            this.ucVahedNo.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucVahedNo.Location = new System.Drawing.Point(6, 42);
+            this.ucVahedNo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucVahedNo.Name = "ucVahedNo";
+            this.ucVahedNo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucVahedNo.Size = new System.Drawing.Size(159, 36);
+            this.ucVahedNo.TabIndex = 22;
+            this.ucVahedNo.Title = "شماره واحد";
+            this.ucVahedNo.Value = 0;
+            // 
             // UcBuildingSell_Appartment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.ucVahedNo);
             this.Controls.Add(this.ucPricePerZirBana);
             this.Controls.Add(this.ucPricePerMasahat);
             this.Controls.Add(this.ucTotalPrice);
@@ -451,5 +467,6 @@ namespace Building.UserControls.Sell
         private Objects.UcPrice ucVam;
         private Objects.UcPrice ucQest;
         private Objects.UcPrice ucPricePerZirBana;
+        private Objects.UcNumericTitleValue ucVahedNo;
     }
 }

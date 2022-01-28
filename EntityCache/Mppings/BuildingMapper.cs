@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using EntityCache.Bussines;
-using EntityCache.Bussines.ReportBussines;
+﻿using EntityCache.Bussines;
 using Services;
+using System;
+using System.Collections.Generic;
 using WebHesabBussines;
 
 namespace EntityCache.Mppings
@@ -78,11 +77,7 @@ namespace EntityCache.Mppings
                 AdvertiseType = cls.AdvertiseType,
                 Hiting = cls.Hiting,
                 Colling = cls.Colling,
-                TelegramCount = cls.TelegramCount,
-                SheypoorCount = cls.SheypoorCount,
-                DivarCount = cls.DivarCount,
                 DivarTitle = cls.DivarTitle,
-                WhatsAppCount = cls.WhatsAppCount,
                 Tabdil = cls.Tabdil,
                 ConstructionStage = cls.ConstructionStage,
                 CommericallLicense = cls.CommericallLicense,
@@ -94,7 +89,10 @@ namespace EntityCache.Mppings
                 WallCovering = cls.WallCovering,
                 WidthOfPassage = cls.WidthOfPassage,
                 Parent = cls.Parent,
-                NoteList = BuildingNoteMapper.Instance.MapList(cls.NoteList)
+                NoteList = BuildingNoteMapper.Instance.MapList(cls.NoteList),
+                VahedNo = cls.VahedNo,
+                WindowGuid = cls.WindowGuid,
+                ZoncanGuid = cls.ZoncanGuid
             };
         }
         public List<WebBuilding> MapList(List<BuildingBussines> cls)

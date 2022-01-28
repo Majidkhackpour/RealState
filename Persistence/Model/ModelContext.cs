@@ -84,5 +84,8 @@ namespace Persistence.Model
         public virtual DbSet<WorkingRange> WorkingRange { get; set; }
         public virtual DbSet<BuildingRelatedNumber> BuildingRelatedNumber { get; set; }
         public virtual DbSet<BuildingNotes> BuildingNotes { get; set; }
+        public virtual DbSet<BuildingZoncan> BuildingZoncan { get; set; }
+        public virtual DbSet<BuildingWindow> BuildingWindow { get; set; }
+        public virtual DbSet<BuildingReview> BuildingReview { get; set; }
     }
 }

@@ -42,6 +42,7 @@ namespace EntityCache.Bussines.ReportBussines
         public string ParentName => Parent.GetDisplay();
         public Guid RegionGuid { get; set; }
         public string WindowName { get; set; }
+        public string ZoncanName { get; set; }
         public double TabaqeCount { get; set; }
         public double TabaqeNo { get; set; }
         public EnBuildingSide Side { get; set; } = EnBuildingSide.None;

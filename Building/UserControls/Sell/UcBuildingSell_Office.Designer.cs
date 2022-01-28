@@ -48,6 +48,7 @@ namespace Building.UserControls.Sell
             this.ucTotalPrice = new Building.UserControls.Objects.UcPrice();
             this.ucVam = new Building.UserControls.Objects.UcPrice();
             this.ucQest = new Building.UserControls.Objects.UcPrice();
+            this.ucVahedNo = new Building.UserControls.Objects.UcNumericTitleValue();
             this.SuspendLayout();
             // 
             // ucZirBana1
@@ -251,7 +252,7 @@ namespace Building.UserControls.Sell
             this.ucPricePerMasahat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ucPricePerMasahat.BackColor = System.Drawing.Color.Transparent;
             this.ucPricePerMasahat.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucPricePerMasahat.Location = new System.Drawing.Point(388, 186);
+            this.ucPricePerMasahat.Location = new System.Drawing.Point(388, 220);
             this.ucPricePerMasahat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucPricePerMasahat.Name = "ucPricePerMasahat";
             this.ucPricePerMasahat.Price = new decimal(new int[] {
@@ -270,7 +271,7 @@ namespace Building.UserControls.Sell
             this.ucTotalPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ucTotalPrice.BackColor = System.Drawing.Color.Transparent;
             this.ucTotalPrice.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucTotalPrice.Location = new System.Drawing.Point(18, 186);
+            this.ucTotalPrice.Location = new System.Drawing.Point(18, 220);
             this.ucTotalPrice.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucTotalPrice.Name = "ucTotalPrice";
             this.ucTotalPrice.Price = new decimal(new int[] {
@@ -289,7 +290,7 @@ namespace Building.UserControls.Sell
             this.ucVam.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ucVam.BackColor = System.Drawing.Color.Transparent;
             this.ucVam.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucVam.Location = new System.Drawing.Point(388, 220);
+            this.ucVam.Location = new System.Drawing.Point(388, 254);
             this.ucVam.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucVam.Name = "ucVam";
             this.ucVam.Price = new decimal(new int[] {
@@ -307,7 +308,7 @@ namespace Building.UserControls.Sell
             this.ucQest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ucQest.BackColor = System.Drawing.Color.Transparent;
             this.ucQest.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucQest.Location = new System.Drawing.Point(18, 220);
+            this.ucQest.Location = new System.Drawing.Point(18, 254);
             this.ucQest.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucQest.Name = "ucQest";
             this.ucQest.Price = new decimal(new int[] {
@@ -319,6 +320,20 @@ namespace Building.UserControls.Sell
             this.ucQest.Size = new System.Drawing.Size(343, 36);
             this.ucQest.TabIndex = 31;
             this.ucQest.Title = "مبلغ قسط";
+            // 
+            // ucVahedNo
+            // 
+            this.ucVahedNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucVahedNo.BackColor = System.Drawing.Color.Transparent;
+            this.ucVahedNo.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucVahedNo.Location = new System.Drawing.Point(559, 183);
+            this.ucVahedNo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucVahedNo.Name = "ucVahedNo";
+            this.ucVahedNo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucVahedNo.Size = new System.Drawing.Size(197, 36);
+            this.ucVahedNo.TabIndex = 23;
+            this.ucVahedNo.Title = "شماره واحد";
+            this.ucVahedNo.Value = 0;
             // 
             // UcBuildingSell_Office
             // 
@@ -332,6 +347,7 @@ namespace Building.UserControls.Sell
             this.Controls.Add(this.ucCommericallLicense1);
             this.Controls.Add(this.ucVahedPertabaqe);
             this.Controls.Add(this.ucTabaqeNo1);
+            this.Controls.Add(this.ucVahedNo);
             this.Controls.Add(this.ucTabaqeCount);
             this.Controls.Add(this.ucSaleSakht1);
             this.Controls.Add(this.ucKitchenService1);
@@ -347,7 +363,7 @@ namespace Building.UserControls.Sell
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "UcBuildingSell_Office";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Size = new System.Drawing.Size(751, 256);
+            this.Size = new System.Drawing.Size(751, 291);
             this.ResumeLayout(false);
 
         }
@@ -373,5 +389,6 @@ namespace Building.UserControls.Sell
         private Objects.UcPrice ucTotalPrice;
         private Objects.UcPrice ucVam;
         private Objects.UcPrice ucQest;
+        private Objects.UcNumericTitleValue ucVahedNo;
     }
 }

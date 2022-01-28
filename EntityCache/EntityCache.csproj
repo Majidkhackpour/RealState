@@ -104,6 +104,7 @@
     <Compile Include="Assistence\Defualts\DefaultRentalAuthority.cs" />
     <Compile Include="Assistence\Defualts\DefaultStates.cs" />
     <Compile Include="Assistence\Defualts\DefaultTafsil.cs" />
+    <Compile Include="Assistence\Defualts\DefaultWindow.cs" />
     <Compile Include="Assistence\Extentions.cs" />
     <Compile Include="Assistence\UnitOfWork.cs" />
     <Compile Include="Bussines\AdjectiveDescriptionBussines.cs" />
@@ -123,6 +124,9 @@
     <Compile Include="Bussines\BuildingOptionsBussines.cs" />
     <Compile Include="Bussines\BuildingRelatedNumberBussines.cs" />
     <Compile Include="Bussines\BuildingRelatedOptionsBussines.cs" />
+    <Compile Include="Bussines\BuildingReviewBussines.cs" />
+    <Compile Include="Bussines\BuildingWindowBussines.cs" />
+    <Compile Include="Bussines\BuildingZoncanBussines.cs" />
     <Compile Include="Bussines\ReportBussines\BuildingReportBussines.cs" />
     <Compile Include="Bussines\BuildingRequestBussines.cs" />
     <Compile Include="Bussines\BuildingRequestRegionBussines.cs" />

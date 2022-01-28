@@ -162,15 +162,11 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
                 cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
                 cmd.Parameters.AddWithValue("@lenght", item.Lenght);
-                cmd.Parameters.AddWithValue("@telegramCount", item.TelegramCount);
-                cmd.Parameters.AddWithValue("@divarCount", item.DivarCount);
-                cmd.Parameters.AddWithValue("@sheypoorCount", item.SheypoorCount);
                 if (item.AdvertiseType != null)
                     cmd.Parameters.AddWithValue("@advType", (short)item.AdvertiseType);
                 cmd.Parameters.AddWithValue("@divarTitle", item.DivarTitle ?? "");
                 cmd.Parameters.AddWithValue("@hitting", item.Hiting ?? "");
                 cmd.Parameters.AddWithValue("@colling", item.Colling ?? "");
-                cmd.Parameters.AddWithValue("@whatsAppCount", item.WhatsAppCount);
                 cmd.Parameters.AddWithValue("@tabdil", item.Tabdil);
                 cmd.Parameters.AddWithValue("@reformArear", item.ReformArea);
                 cmd.Parameters.AddWithValue("@buildingPermits", item.BuildingPermits);
@@ -186,6 +182,9 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@constructionStage", (short)item.ConstructionStage);
                 if (item.Parent != null)
                     cmd.Parameters.AddWithValue("@parent", (short)item.Parent);
+                cmd.Parameters.AddWithValue("@zoncanGuid", item.ZoncanGuid);
+                cmd.Parameters.AddWithValue("@windowGuid", item.WindowGuid);
+                cmd.Parameters.AddWithValue("@vahedNo", item.VahedNo);
 
                 await cmd.ExecuteNonQueryAsync();
             }
@@ -694,14 +693,10 @@ namespace EntityCache.SqlServerPersistence
                 if (dr["IsArchive"] != DBNull.Value) res.IsArchive = (bool)dr["IsArchive"];
                 if (dr["ServerDeliveryDate"] != DBNull.Value) res.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
                 if (dr["ServerStatus"] != DBNull.Value) res.ServerStatus = (ServerStatus)dr["ServerStatus"];
-                if (dr["TelegramCount"] != DBNull.Value) res.TelegramCount = (int)dr["TelegramCount"];
-                if (dr["DivarCount"] != DBNull.Value) res.DivarCount = (int)dr["DivarCount"];
-                if (dr["SheypoorCount"] != DBNull.Value) res.SheypoorCount = (int)dr["SheypoorCount"];
                 if (dr["AdvertiseType"] != DBNull.Value) res.AdvertiseType = (AdvertiseType)dr["AdvertiseType"];
                 if (dr["DivarTitle"] != DBNull.Value) res.DivarTitle = dr["DivarTitle"].ToString();
                 if (dr["Hiting"] != DBNull.Value) res.Hiting = dr["Hiting"].ToString();
                 if (dr["Colling"] != DBNull.Value) res.Colling = dr["Colling"].ToString();
-                if (dr["WhatsAppCount"] != DBNull.Value) res.WhatsAppCount = (int)dr["WhatsAppCount"];
                 if (dr["Tabdil"] != DBNull.Value) res.Tabdil = (bool)dr["Tabdil"];
                 if (dr["ReformArea"] != DBNull.Value) res.ReformArea = (float)dr["ReformArea"];
                 if (dr["BuildingPermits"] != DBNull.Value) res.BuildingPermits = (bool)dr["BuildingPermits"];
@@ -713,6 +708,9 @@ namespace EntityCache.SqlServerPersistence
                 if (dr["TreeCount"] != DBNull.Value) res.TreeCount = (int)dr["TreeCount"];
                 if (dr["ConstructionStage"] != DBNull.Value) res.ConstructionStage = (EnConstructionStage)dr["ConstructionStage"];
                 if (dr["Parent"] != DBNull.Value) res.Parent = (EnBuildingParent)dr["Parent"];
+                if (dr["ZoncanGuid"] != DBNull.Value) res.ZoncanGuid = (Guid)dr["ZoncanGuid"];
+                if (dr["WindowGuid"] != DBNull.Value) res.WindowGuid = (Guid)dr["WindowGuid"];
+                if (dr["VahedNo"] != DBNull.Value) res.VahedNo = (int)dr["VahedNo"];
                 res.GalleryList = await _gallery.GetAllAsync(connectionString, res.Guid);
                 res.NoteList = await _notes.GetAllAsync(connectionString, res.Guid);
                 res.OptionList = await _options.GetAllAsync(connectionString, res.Guid);
@@ -767,6 +765,8 @@ namespace EntityCache.SqlServerPersistence
                 if (dr["Gas"] != DBNull.Value) res.Gas = (EnKhadamati)dr["Gas"];
                 if (dr["Hiting"] != DBNull.Value) res.Hitting = dr["Hiting"].ToString();
                 if (dr["Colling"] != DBNull.Value) res.Colling = dr["Colling"].ToString();
+                if (dr["ZoncanName"] != DBNull.Value) res.WindowName = dr["ZoncanName"].ToString();
+                if (dr["WindowName"] != DBNull.Value) res.ZoncanName = dr["WindowName"].ToString();
             }
             catch (Exception ex)
             {

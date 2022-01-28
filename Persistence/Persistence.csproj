@@ -77,8 +77,11 @@
     <Compile Include="Entities\BuildingRelatedOptions.cs" />
     <Compile Include="Entities\BuildingRequest.cs" />
     <Compile Include="Entities\BuildingRequestRegion.cs" />
+    <Compile Include="Entities\BuildingReview.cs" />
     <Compile Include="Entities\BuildingType.cs" />
     <Compile Include="Entities\BuildingView.cs" />
+    <Compile Include="Entities\BuildingWindow.cs" />
+    <Compile Include="Entities\BuildingZoncan.cs" />
     <Compile Include="Entities\CheckPage.cs" />
     <Compile Include="Entities\Cities.cs" />
     <Compile Include="Entities\Contract.cs" />
@@ -572,6 +575,10 @@
     <Compile Include="Migrations\202201121551512__113.designer.cs">
       <DependentUpon>202201121551512__113.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201281228496__141.cs" />
+    <Compile Include="Migrations\202201281228496__141.designer.cs">
+      <DependentUpon>202201281228496__141.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ModelContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -925,6 +932,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201121551512__113.resx">
       <DependentUpon>202201121551512__113.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201281228496__141.resx">
+      <DependentUpon>202201281228496__141.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

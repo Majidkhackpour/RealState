@@ -155,7 +155,7 @@ namespace EntityCache.Assistence
                 #endregion
 
                 #region BuildingAccountType
-                var allbat = await BuildingAccountTypeBussines.GetAllAsync(new CancellationToken());
+                var allbat = await BuildingAccountTypeBussines.GetAllAsync();
                 if (allbat == null || allbat.Count <= 0)
                 {
                     var bat = DefaultBuildingAccountType.SetDef();
@@ -286,6 +286,9 @@ namespace EntityCache.Assistence
                     };
                     res.AddReturnedValue(await allSetting.SaveAsync());
                 }
+                #endregion
+
+                #region Window
                 #endregion
             }
             catch (Exception ex)

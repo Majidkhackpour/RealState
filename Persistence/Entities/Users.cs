@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using Services;
+using Servicess.Interfaces.Building;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Services;
-using Services.Access;
-using Servicess.Interfaces.Building;
 
 namespace Persistence.Entities
 {
@@ -42,5 +39,6 @@ namespace Persistence.Entities
         public virtual ICollection<Note> Note { get; set; }
         public virtual ICollection<SmsLog> SmsLog { get; set; }
         public virtual ICollection<UserLog> UserLog { get; set; }
+        public virtual ICollection<BuildingReview> BuildingReview { get; set; }
     }
 }

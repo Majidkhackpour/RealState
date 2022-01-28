@@ -2,6 +2,7 @@
 using Services;
 using System;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Building.UserControls.Sell
 {
@@ -32,6 +33,7 @@ namespace Building.UserControls.Sell
                     _bu.SellPrice = ucTotalPrice.Price;
                     _bu.VamPrice = ucVam.Price;
                     _bu.QestPrice = ucQest.Price;
+                    _bu.VahedNo = ucVahedNo.Value;
                 }
                 catch (Exception ex)
                 {
@@ -63,6 +65,7 @@ namespace Building.UserControls.Sell
                 ucTotalPrice.Price = _bu.SellPrice;
                 ucVam.Price = _bu.VamPrice;
                 ucQest.Price = _bu.QestPrice;
+                ucVahedNo.Value = _bu.VahedNo;
                 if (_bu.Dang <= 0) UcDong.DefaultValue = 6;
                 if (_bu.Masahat > 0)
                 {

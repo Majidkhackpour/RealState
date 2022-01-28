@@ -17,6 +17,8 @@ namespace WebHesabBussines
         public DateTime Modified { get; set; }
         public ServerStatus ServerStatus { get; set; }
         public DateTime ServerDeliveryDate { get; set; }
+        public Guid? ZoncanGuid { get; set; }
+        public Guid? WindowGuid { get; set; }
         public bool Status { get; set; }
         public DateTime CreateDate { get; set; }
         public string Code { get; set; }
@@ -61,6 +63,7 @@ namespace WebHesabBussines
         public int TedadTabaqe { get; set; }
         public int TabaqeNo { get; set; }
         public int VahedPerTabaqe { get; set; }
+        public int VahedNo { get; set; }
         public float MetrazhKouche { get; set; }
         public float ErtefaSaqf { get; set; }
         public float Hashie { get; set; }
@@ -77,10 +80,6 @@ namespace WebHesabBussines
         public EnBuildingPriority Priority { get; set; }
         public bool IsArchive { get; set; }
         public string Image { get; set; }
-        public int TelegramCount { get; set; }
-        public int WhatsAppCount { get; set; }
-        public int DivarCount { get; set; }
-        public int SheypoorCount { get; set; }
         public AdvertiseType? AdvertiseType { get; set; }
         public string DivarTitle { get; set; }
         public string Hiting { get; set; }

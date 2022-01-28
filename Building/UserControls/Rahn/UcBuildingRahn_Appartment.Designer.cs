@@ -46,6 +46,7 @@ namespace Building.UserControls.Rahn
             this.chbIsOwnerHere = new System.Windows.Forms.CheckBox();
             this.chbShortTime = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.ucVahedNo = new Building.UserControls.Objects.UcNumericTitleValue();
             this.SuspendLayout();
             // 
             // ucRoomCount1
@@ -134,10 +135,11 @@ namespace Building.UserControls.Rahn
             this.ucSide1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ucSide1.BackColor = System.Drawing.Color.Transparent;
             this.ucSide1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucSide1.Location = new System.Drawing.Point(550, 75);
+            this.ucSide1.Location = new System.Drawing.Point(239, 74);
             this.ucSide1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucSide1.Name = "ucSide1";
             this.ucSide1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucSide1.Side = null;
             this.ucSide1.Size = new System.Drawing.Size(192, 36);
             this.ucSide1.TabIndex = 12;
             // 
@@ -181,7 +183,7 @@ namespace Building.UserControls.Rahn
             // 
             this.ucRentalAuthority1.BackColor = System.Drawing.Color.Transparent;
             this.ucRentalAuthority1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucRentalAuthority1.Location = new System.Drawing.Point(243, 75);
+            this.ucRentalAuthority1.Location = new System.Drawing.Point(14, 74);
             this.ucRentalAuthority1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucRentalAuthority1.Name = "ucRentalAuthority1";
             this.ucRentalAuthority1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -271,10 +273,25 @@ namespace Building.UserControls.Rahn
             this.checkBox1.Text = "مالک در آن محل سکونت دارد";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
+            // ucVahedNo
+            // 
+            this.ucVahedNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucVahedNo.BackColor = System.Drawing.Color.Transparent;
+            this.ucVahedNo.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucVahedNo.Location = new System.Drawing.Point(587, 74);
+            this.ucVahedNo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucVahedNo.Name = "ucVahedNo";
+            this.ucVahedNo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucVahedNo.Size = new System.Drawing.Size(160, 36);
+            this.ucVahedNo.TabIndex = 23;
+            this.ucVahedNo.Title = "شماره واحد";
+            this.ucVahedNo.Value = 0;
+            // 
             // UcBuildingRahn_Appartment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.ucVahedNo);
             this.Controls.Add(this.chbShortTime);
             this.Controls.Add(this.chbIsOwnerHere);
             this.Controls.Add(this.chbTabdil);
@@ -320,5 +337,6 @@ namespace Building.UserControls.Rahn
         private System.Windows.Forms.CheckBox chbIsOwnerHere;
         private System.Windows.Forms.CheckBox chbShortTime;
         private System.Windows.Forms.CheckBox checkBox1;
+        private Objects.UcNumericTitleValue ucVahedNo;
     }
 }
