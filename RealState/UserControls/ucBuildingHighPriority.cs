@@ -2,14 +2,15 @@
 using System.Windows.Forms;
 using Building.Buildings;
 using EntityCache.Bussines;
+using EntityCache.Bussines.ReportBussines;
 using Services;
 
 namespace RealState.UserControls
 {
     public partial class ucBuildingHighPriority : UserControl
     {
-        private BuildingBussines _bu;
-        public BuildingBussines Building
+        private BuildingReportBussines _bu;
+        public BuildingReportBussines Building
         {
             get => _bu;
             set
@@ -35,11 +36,12 @@ namespace RealState.UserControls
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuEditMode_Click(object sender, EventArgs e)
+        private async void mnuEditMode_Click(object sender, EventArgs e)
         {
             try
             {
-                var frm = new frmBuilding(_bu);
+                var bu = await BuildingBussines.GetAsync(_bu.Guid);
+                var frm = new frmBuilding(bu);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -47,11 +49,12 @@ namespace RealState.UserControls
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuViewMode_Click(object sender, EventArgs e)
+        private async void mnuViewMode_Click(object sender, EventArgs e)
         {
             try
             {
-                var frm = new frmBuildingDetail(_bu,false);
+                var bu = await BuildingBussines.GetAsync(_bu.Guid);
+                var frm = new frmBuildingDetail(bu,false);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)

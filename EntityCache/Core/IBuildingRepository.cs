@@ -12,8 +12,6 @@ namespace EntityCache.Core
 {
     public interface IBuildingRepository
     {
-        Task<List<BuildingBussines>> GetAllAsync(string _connectionString, CancellationToken token, bool isLoadDets);
-        Task<List<BuildingBussines>> GetAllWithoutParentAsync(string connectionString);
         Task<ReturnedSaveFuncInfo> SaveAsync(BuildingBussines item, SqlTransaction tr);
         Task<ReturnedSaveFuncInfo> ChangeParentAsync(Guid guid, EnBuildingParent parent, SqlTransaction tr);
         Task<ReturnedSaveFuncInfo> ChangeStatusAsync(BuildingBussines item, bool status, SqlTransaction tr);
@@ -23,7 +21,6 @@ namespace EntityCache.Core
         Task<ReturnedSaveFuncInfo> FixImageAsync(string _connectionString);
         Task<BuildingBussines> GetAsync(string _connectionString, Guid guid);
         Task<ReturnedSaveFuncInfo> SetArchiveAsync(string _connectionString, DateTime date);
-        Task<List<BuildingBussines>> GetAllHighPriorityAsync(string _connectionString, CancellationToken token);
         Task<bool> CheckDuplicateAsync(string connectionString, string divarTitle);
         Task<List<string>> GetAllCollingAsync(string connectionString);
         Task<List<string>> GetAllHittingAsync(string connectionString);

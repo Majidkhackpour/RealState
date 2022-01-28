@@ -22,8 +22,8 @@ namespace Ertegha
                 {
                     //res.AddReturnedValue(await clsFixBuilding.FixBuildingImage());
                     //if (res.HasError) return res;
-                    res.AddReturnedValue(await clsFixBuilding.FixBuildingParentAsync());
-                    if (res.HasError) return res;
+                    //res.AddReturnedValue(await clsFixBuilding.FixBuildingParentAsync());
+                    //if (res.HasError) return res;
                 }
 
                 res.AddReturnedValue(await BuildingBussines.SetArchiveAsync());

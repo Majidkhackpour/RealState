@@ -190,7 +190,7 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task SendToTelegramCustomerChannelAsync(BuildingBussines bu)
+        private async Task SendToTelegramCustomerChannelAsync(BuildingReportBussines bu)
         {
             try
             {
@@ -215,9 +215,9 @@ namespace Building.Buildings
                         Channel = SettingsBussines.Setting.Telegram.Channel
                     };
                     await telegram.SaveAsync();
-                    bu.TelegramCount += 1;
+                    //bu.TelegramCount += 1;
                     await UserLogBussines.SaveBuildingLogAsync(EnLogAction.SendToTelegram, bu.Guid, text);
-                    await bu.SaveAsync(false);
+                    //await bu.SaveAsync(false);
                     this.ShowMessage("فایل مورد نظر به تلگرام ارسال شد");
                     if (WebCustomer.CheckCustomer())
                     {
@@ -232,7 +232,7 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task SendToTelegramManagerChannelAsync(BuildingBussines bu)
+        private async Task SendToTelegramManagerChannelAsync(BuildingReportBussines bu)
         {
             try
             {
@@ -257,9 +257,9 @@ namespace Building.Buildings
                         Channel = SettingsBussines.Setting.Telegram.ManagerChannel
                     };
                     await telegram.SaveAsync();
-                    bu.TelegramCount += 1;
+                    //bu.TelegramCount += 1;
                     await UserLogBussines.SaveBuildingLogAsync(EnLogAction.SendToTelegram, bu.Guid, text);
-                    await bu.SaveAsync(false);
+                    //await bu.SaveAsync(false);
                     this.ShowMessage("فایل مورد نظر به تلگرام ارسال شد");
                     if (WebCustomer.CheckCustomer())
                     {
@@ -275,7 +275,7 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task SendToTelegramBothChannelAsync(BuildingBussines bu)
+        private async Task SendToTelegramBothChannelAsync(BuildingReportBussines bu)
         {
             try
             {
@@ -311,9 +311,9 @@ namespace Building.Buildings
                 };
                 _ = Task.Run(() => telegram_.SaveAsync());
 
-                bu.TelegramCount += 1;
+                //bu.TelegramCount += 1;
                 await UserLogBussines.SaveBuildingLogAsync(EnLogAction.SendToTelegram, bu.Guid, text);
-                await bu.SaveAsync(false);
+                //await bu.SaveAsync(false);
                 this.ShowMessage("فایل مورد نظر به تلگرام ارسال شد");
 
                 if (WebCustomer.CheckCustomer())
@@ -327,7 +327,7 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task SendToWhatsAppCustomerChannelAsync(BuildingBussines bu)
+        private async Task SendToWhatsAppCustomerChannelAsync(BuildingReportBussines bu)
         {
             try
             {
@@ -351,9 +351,9 @@ namespace Building.Buildings
                         Number = SettingsBussines.Setting.Whatsapp.Number
                     };
                     await telegram.SaveAsync();
-                    bu.WhatsAppCount += 1;
+                    //bu.WhatsAppCount += 1;
                     await UserLogBussines.SaveBuildingLogAsync(EnLogAction.SendToWhatsApp, bu.Guid, text);
-                    await bu.SaveAsync(false);
+                    //await bu.SaveAsync(false);
                     this.ShowMessage("فایل مورد نظر به واتساپ ارسال شد");
                     if (WebCustomer.CheckCustomer())
                     {
@@ -368,7 +368,7 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task SendToWhatsAppManagerChannelAsync(BuildingBussines bu)
+        private async Task SendToWhatsAppManagerChannelAsync(BuildingReportBussines bu)
         {
             try
             {
@@ -392,9 +392,9 @@ namespace Building.Buildings
                         Number = SettingsBussines.Setting.Whatsapp.Number
                     };
                     await telegram.SaveAsync();
-                    bu.WhatsAppCount += 1;
+                    //bu.WhatsAppCount += 1;
                     await UserLogBussines.SaveBuildingLogAsync(EnLogAction.SendToWhatsApp, bu.Guid, text);
-                    await bu.SaveAsync(false);
+                    //await bu.SaveAsync(false);
                     this.ShowMessage("فایل مورد نظر به واتساپ ارسال شد");
                     if (WebCustomer.CheckCustomer())
                     {
@@ -409,7 +409,7 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task SendToWhatsAppBothChannelAsync(BuildingBussines bu)
+        private async Task SendToWhatsAppBothChannelAsync(BuildingReportBussines bu)
         {
             try
             {
@@ -442,9 +442,9 @@ namespace Building.Buildings
                 };
                 _ = Task.Run(() => telegram_.SaveAsync());
 
-                bu.WhatsAppCount += 1;
+                //bu.WhatsAppCount += 1;
                 await UserLogBussines.SaveBuildingLogAsync(EnLogAction.SendToWhatsApp, bu.Guid, text);
-                await bu.SaveAsync(false);
+                //await bu.SaveAsync(false);
                 this.ShowMessage("فایل مورد نظر به واتساپ ارسال شد");
                 if (WebCustomer.CheckCustomer())
                 {
@@ -466,10 +466,6 @@ namespace Building.Buildings
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var bu = await BuildingBussines.GetAsync(guid);
                 if (bu == null) return;
-
-                if (bu.Parent == null || bu.Parent == EnBuildingParent.None)
-                    await Ertegha.clsFixBuilding.FixBuildingParentAsync_(bu);
-
                 var frm = new frmBuildingDetail(bu, loadForCustomer);
                 frm.ShowDialog(this);
             }
@@ -693,10 +689,7 @@ namespace Building.Buildings
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var bu = await BuildingBussines.GetAsync(guid);
                 if (bu == null) return;
-
-                if (bu.Parent == null || bu.Parent == EnBuildingParent.None)
-                    await Ertegha.clsFixBuilding.FixBuildingParentAsync_(bu);
-
+                
                 if (bu.Parent != null && bu.Parent != EnBuildingParent.None)
                 {
                     var frm = new frmBuilding(bu);
@@ -781,7 +774,7 @@ namespace Building.Buildings
                     frmNotification.PublicInfo.ShowMessage("داده ای جهت نمایش وجود ندارد");
                     return;
                 }
-                var desc = $"کد ملک:( {bu.Code} ) ** محدوده:( {bu.RegionName} ) ** آدرس:( {bu.Address} )";
+                var desc = $"کد ملک:( {bu.Code} ) ** آدرس:( {bu.Address} )";
                 await UserLogBussines.SaveBuildingLogAsync(EnLogAction.ShowSlideShow, bu.Guid, desc);
                 var frm = new frmSlideShow(bu.GalleryList);
                 frm.ShowDialog();
@@ -808,7 +801,7 @@ namespace Building.Buildings
 
                 cls.IsArchive = true;
                 cls.ServerStatus = ServerStatus.None;
-                var desc = $"کد ملک:( {cls.Code} ) ** محدوده:( {cls.RegionName} ) ** آدرس:( {cls.Address} )";
+                var desc = $"کد ملک:( {cls.Code} ) ** آدرس:( {cls.Address} )";
                 await UserLogBussines.SaveBuildingLogAsync(EnLogAction.AddToArchive, cls.Guid, desc);
                 res.AddReturnedValue(await cls.SaveAsync(false));
             }
@@ -844,7 +837,7 @@ namespace Building.Buildings
 
                 cls.IsArchive = false;
                 cls.ServerStatus = ServerStatus.None;
-                var desc = $"کد ملک:( {cls.Code} ) ** محدوده:( {cls.RegionName} ) ** آدرس:( {cls.Address} )";
+                var desc = $"کد ملک:( {cls.Code} ) ** آدرس:( {cls.Address} )";
                 await UserLogBussines.SaveBuildingLogAsync(EnLogAction.RemoveFromArchive, cls.Guid, desc);
                 res.AddReturnedValue(await cls.SaveAsync(false));
             }
@@ -890,73 +883,73 @@ namespace Building.Buildings
         {
             try
             {
-                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var cls = await BuildingBussines.GetAsync(guid);
-                if (cls == null) return;
-                var rpt = new BuildingReportViewModel()
-                {
-                    Masahat = cls.Masahat,
-                    SellPrice = cls.SellPrice,
-                    RahnPrice1 = cls.RahnPrice1,
-                    EjarePrice1 = cls.EjarePrice1,
-                    Code = cls.Code,
-                    RoomCount = cls.RoomCount,
-                    TabaqeNo = cls.TabaqeNo,
-                    SaleSakht = cls.SaleSakht,
-                    ZirBana = cls.ZirBana,
-                    Address = cls.Address,
-                    TedadTabaqe = cls.TedadTabaqe,
-                    ShortDesc = cls.ShortDesc,
-                    VahedPerTabaqe = cls.VahedPerTabaqe,
-                    PishTotalPrice = cls.PishTotalPrice,
-                    PishPrice = cls.PishPrice,
-                    VamPrice = cls.VamPrice,
-                    Hashie = cls.Hashie,
-                    BarqName = cls.BarqName,
-                    GasName = cls.GasName,
-                    WaterName = cls.WaterName,
-                    OwnerName = cls.OwnerName,
-                    BuildingTypeName = cls.BuildingTypeName,
-                    BuildingConditionName = cls.BuildingConditionName,
-                    BuildingViewName = cls.BuildingViewName,
-                    DocumentTypeName = cls.DocumentTypeName,
-                    FloorCoverName = cls.FloorCoverName,
-                    KitchenServiceName = cls.KitchenServiceName,
-                    SideName = cls.SideName,
-                    UserName = cls.UserName,
-                    TellName = cls.TellName,
-                    //Options = string.Join(", ", cls.OptionList?.Select(q => q.OptionName)),
-                    DeliveryDateSh = Calendar.MiladiToShamsi(cls.DeliveryDate),
-                    RegionName = (await RegionsBussines.GetAsync(cls.RegionGuid))?.Name ?? ""
-                };
-                if (cls.SellPrice > 0 && cls.Masahat > 0)
-                    rpt.SellPricePerMetr = cls.SellPrice / cls.Masahat;
-                var people = await PeoplesBussines.GetAsync(cls.OwnerGuid, cls.Guid);
-                if (people.TellList != null && people.TellList.Count > 0)
-                {
-                    if (people.TellList.Count >= 2)
-                    {
-                        rpt.OwnerTell1 = people.TellList[0].Tell;
-                        rpt.OwnerTell2 = people.TellList[1].Tell;
-                    }
-                    else
-                    {
-                        rpt.OwnerTell1 = people.TellList[0].Tell;
-                        rpt.OwnerTell2 = "";
-                    }
-                }
-                else
-                {
-                    rpt.OwnerTell1 = "";
-                    rpt.OwnerTell2 = "";
-                }
+                //if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                //var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                //var cls = await BuildingBussines.GetAsync(guid);
+                //if (cls == null) return;
+                //var rpt = new BuildingReportViewModel()
+                //{
+                //    Masahat = cls.Masahat,
+                //    SellPrice = cls.SellPrice,
+                //    RahnPrice1 = cls.RahnPrice1,
+                //    EjarePrice1 = cls.EjarePrice1,
+                //    Code = cls.Code,
+                //    RoomCount = cls.RoomCount,
+                //    TabaqeNo = cls.TabaqeNo,
+                //    SaleSakht = cls.SaleSakht,
+                //    ZirBana = cls.ZirBana,
+                //    Address = cls.Address,
+                //    TedadTabaqe = cls.TedadTabaqe,
+                //    ShortDesc = cls.ShortDesc,
+                //    VahedPerTabaqe = cls.VahedPerTabaqe,
+                //    PishTotalPrice = cls.PishTotalPrice,
+                //    PishPrice = cls.PishPrice,
+                //    VamPrice = cls.VamPrice,
+                //    Hashie = cls.Hashie,
+                //    BarqName = cls.BarqName,
+                //    GasName = cls.GasName,
+                //    WaterName = cls.WaterName,
+                //    OwnerName = cls.OwnerName,
+                //    BuildingTypeName = cls.BuildingTypeName,
+                //    BuildingConditionName = cls.BuildingConditionName,
+                //    BuildingViewName = cls.BuildingViewName,
+                //    DocumentTypeName = cls.DocumentTypeName,
+                //    FloorCoverName = cls.FloorCoverName,
+                //    KitchenServiceName = cls.KitchenServiceName,
+                //    SideName = cls.SideName,
+                //    UserName = cls.UserName,
+                //    TellName = cls.TellName,
+                //    //Options = string.Join(", ", cls.OptionList?.Select(q => q.OptionName)),
+                //    DeliveryDateSh = Calendar.MiladiToShamsi(cls.DeliveryDate),
+                //    RegionName = (await RegionsBussines.GetAsync(cls.RegionGuid))?.Name ?? ""
+                //};
+                //if (cls.SellPrice > 0 && cls.Masahat > 0)
+                //    rpt.SellPricePerMetr = cls.SellPrice / cls.Masahat;
+                //var people = await PeoplesBussines.GetAsync(cls.OwnerGuid, cls.Guid);
+                //if (people.TellList != null && people.TellList.Count > 0)
+                //{
+                //    if (people.TellList.Count >= 2)
+                //    {
+                //        rpt.OwnerTell1 = people.TellList[0].Tell;
+                //        rpt.OwnerTell2 = people.TellList[1].Tell;
+                //    }
+                //    else
+                //    {
+                //        rpt.OwnerTell1 = people.TellList[0].Tell;
+                //        rpt.OwnerTell2 = "";
+                //    }
+                //}
+                //else
+                //{
+                //    rpt.OwnerTell1 = "";
+                //    rpt.OwnerTell2 = "";
+                //}
 
-                var cls_ = new ReportGenerator(StiType.Building_One, EnPrintType.Pdf_A4)
-                { Lst = new List<object>() { rpt } };
-                cls_.PrintNew();
-                var desc = $"کد ملک:( {cls.Code} ) ** محدوده:( {cls.RegionName} ) ** آدرس:( {cls.Address} )";
-                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.FullPrint, cls.Guid, desc);
+                //var cls_ = new ReportGenerator(StiType.Building_One, EnPrintType.Pdf_A4)
+                //{ Lst = new List<object>() { rpt } };
+                //cls_.PrintNew();
+                //var desc = $"کد ملک:( {cls.Code} ) ** محدوده:( {cls.RegionName} ) ** آدرس:( {cls.Address} )";
+                //await UserLogBussines.SaveBuildingLogAsync(EnLogAction.FullPrint, cls.Guid, desc);
             }
             catch (Exception ex)
             {
@@ -976,7 +969,7 @@ namespace Building.Buildings
                 if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 if (guid == Guid.Empty) return;
-                var bu = await BuildingBussines.GetAsync(guid);
+                var bu = await BuildingReportBussines.GetAsync(guid);
                 if (bu == null) return;
                 await SendToTelegramCustomerChannelAsync(bu);
             }
@@ -998,7 +991,7 @@ namespace Building.Buildings
                 if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 if (guid == Guid.Empty) return;
-                var bu = await BuildingBussines.GetAsync(guid);
+                var bu = await BuildingReportBussines.GetAsync(guid);
                 if (bu == null) return;
                 await SendToTelegramManagerChannelAsync(bu);
             }
@@ -1020,7 +1013,7 @@ namespace Building.Buildings
                 if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 if (guid == Guid.Empty) return;
-                var bu = await BuildingBussines.GetAsync(guid);
+                var bu = await BuildingReportBussines.GetAsync(guid);
                 if (bu == null) return;
                 await SendToTelegramBothChannelAsync(bu);
             }
@@ -1042,7 +1035,7 @@ namespace Building.Buildings
                 if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 if (guid == Guid.Empty) return;
-                var bu = await BuildingBussines.GetAsync(guid);
+                var bu = await BuildingReportBussines.GetAsync(guid);
                 if (bu == null) return;
                 await SendToWhatsAppCustomerChannelAsync(bu);
             }
@@ -1064,7 +1057,7 @@ namespace Building.Buildings
                 if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 if (guid == Guid.Empty) return;
-                var bu = await BuildingBussines.GetAsync(guid);
+                var bu = await BuildingReportBussines.GetAsync(guid);
                 if (bu == null) return;
                 await SendToWhatsAppManagerChannelAsync(bu);
             }
@@ -1086,7 +1079,7 @@ namespace Building.Buildings
                 if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 if (guid == Guid.Empty) return;
-                var bu = await BuildingBussines.GetAsync(guid);
+                var bu = await BuildingReportBussines.GetAsync(guid);
                 if (bu == null) return;
                 await SendToWhatsAppBothChannelAsync(bu);
             }
@@ -1128,7 +1121,7 @@ namespace Building.Buildings
 
                 cls.AdvertiseType = null;
                 cls.ServerStatus = ServerStatus.None;
-                var desc = $"کد ملک:( {cls.Code} ) ** محدوده:( {cls.RegionName} ) ** آدرس:( {cls.Address} )";
+                var desc = $"کد ملک:( {cls.Code} ) ** آدرس:( {cls.Address} )";
                 await UserLogBussines.SaveBuildingLogAsync(EnLogAction.AddToPersonalFiles, cls.Guid, desc);
                 var res = await cls.SaveAsync(false);
                 if (res.HasError) this.ShowError(res);
@@ -1167,54 +1160,54 @@ namespace Building.Buildings
         {
             try
             {
-                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var cls = await BuildingBussines.GetAsync(guid);
-                if (cls == null) return;
-                var rpt = new BuildingReportViewModel()
-                {
-                    Masahat = cls.Masahat,
-                    SellPrice = cls.SellPrice,
-                    RahnPrice1 = cls.RahnPrice1,
-                    EjarePrice1 = cls.EjarePrice1,
-                    Code = cls.Code,
-                    RoomCount = cls.RoomCount,
-                    TabaqeNo = cls.TabaqeNo,
-                    SaleSakht = cls.SaleSakht,
-                    ZirBana = cls.ZirBana,
-                    Address = cls.Address,
-                    TedadTabaqe = cls.TedadTabaqe,
-                    ShortDesc = cls.ShortDesc,
-                    VahedPerTabaqe = cls.VahedPerTabaqe,
-                    PishTotalPrice = cls.PishTotalPrice,
-                    PishPrice = cls.PishPrice,
-                    VamPrice = cls.VamPrice,
-                    Hashie = cls.Hashie,
-                    BarqName = cls.BarqName,
-                    GasName = cls.GasName,
-                    WaterName = cls.WaterName,
-                    OwnerName = cls.OwnerName,
-                    BuildingTypeName = cls.BuildingTypeName,
-                    BuildingConditionName = cls.BuildingConditionName,
-                    BuildingViewName = cls.BuildingViewName,
-                    DocumentTypeName = cls.DocumentTypeName,
-                    FloorCoverName = cls.FloorCoverName,
-                    KitchenServiceName = cls.KitchenServiceName,
-                    SideName = cls.SideName,
-                    UserName = cls.UserName,
-                    TellName = cls.TellName,
-                    //Options = string.Join(", ", cls.OptionList?.Select(q => q.OptionName)),
-                    DeliveryDateSh = Calendar.MiladiToShamsi(cls.DeliveryDate),
-                    RegionName = (await RegionsBussines.GetAsync(cls.RegionGuid))?.Name ?? ""
-                };
-                if (cls.SellPrice > 0 && cls.Masahat > 0)
-                    rpt.SellPricePerMetr = cls.SellPrice / cls.Masahat;
+                //if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                //var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                //var cls = await BuildingBussines.GetAsync(guid);
+                //if (cls == null) return;
+                //var rpt = new BuildingReportViewModel()
+                //{
+                //    Masahat = cls.Masahat,
+                //    SellPrice = cls.SellPrice,
+                //    RahnPrice1 = cls.RahnPrice1,
+                //    EjarePrice1 = cls.EjarePrice1,
+                //    Code = cls.Code,
+                //    RoomCount = cls.RoomCount,
+                //    TabaqeNo = cls.TabaqeNo,
+                //    SaleSakht = cls.SaleSakht,
+                //    ZirBana = cls.ZirBana,
+                //    Address = cls.Address,
+                //    TedadTabaqe = cls.TedadTabaqe,
+                //    ShortDesc = cls.ShortDesc,
+                //    VahedPerTabaqe = cls.VahedPerTabaqe,
+                //    PishTotalPrice = cls.PishTotalPrice,
+                //    PishPrice = cls.PishPrice,
+                //    VamPrice = cls.VamPrice,
+                //    Hashie = cls.Hashie,
+                //    BarqName = cls.BarqName,
+                //    GasName = cls.GasName,
+                //    WaterName = cls.WaterName,
+                //    OwnerName = cls.OwnerName,
+                //    BuildingTypeName = cls.BuildingTypeName,
+                //    BuildingConditionName = cls.BuildingConditionName,
+                //    BuildingViewName = cls.BuildingViewName,
+                //    DocumentTypeName = cls.DocumentTypeName,
+                //    FloorCoverName = cls.FloorCoverName,
+                //    KitchenServiceName = cls.KitchenServiceName,
+                //    SideName = cls.SideName,
+                //    UserName = cls.UserName,
+                //    TellName = cls.TellName,
+                //    //Options = string.Join(", ", cls.OptionList?.Select(q => q.OptionName)),
+                //    DeliveryDateSh = Calendar.MiladiToShamsi(cls.DeliveryDate),
+                //    RegionName = (await RegionsBussines.GetAsync(cls.RegionGuid))?.Name ?? ""
+                //};
+                //if (cls.SellPrice > 0 && cls.Masahat > 0)
+                //    rpt.SellPricePerMetr = cls.SellPrice / cls.Masahat;
 
-                var cls_ = new ReportGenerator(StiType.Building_One, EnPrintType.Pdf_A5)
-                { Lst = new List<object>() { rpt } };
-                cls_.PrintNew();
-                var desc = $"کد ملک:( {cls.Code} ) ** محدوده:( {cls.RegionName} ) ** آدرس:( {cls.Address} )";
-                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.CustomPrint, cls.Guid, desc);
+                //var cls_ = new ReportGenerator(StiType.Building_One, EnPrintType.Pdf_A5)
+                //{ Lst = new List<object>() { rpt } };
+                //cls_.PrintNew();
+                //var desc = $"کد ملک:( {cls.Code} ) ** محدوده:( {cls.RegionName} ) ** آدرس:( {cls.Address} )";
+                //await UserLogBussines.SaveBuildingLogAsync(EnLogAction.CustomPrint, cls.Guid, desc);
             }
             catch (Exception ex)
             {
@@ -1233,7 +1226,7 @@ namespace Building.Buildings
                     frmNotification.PublicInfo.ShowMessage("داده ای جهت نمایش وجود ندارد");
                     return;
                 }
-                var desc = $"کد ملک:( {bu.Code} ) ** محدوده:( {bu.RegionName} ) ** آدرس:( {bu.Address} )";
+                var desc = $"کد ملک:( {bu.Code} ) ** آدرس:( {bu.Address} )";
                 await UserLogBussines.SaveBuildingLogAsync(EnLogAction.ShowMedia, bu.Guid, desc);
                 var frm = new frmShowMedia(bu);
                 frm.ShowDialog();

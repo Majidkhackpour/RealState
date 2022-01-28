@@ -35,59 +35,6 @@ namespace EntityCache.SqlServerPersistence
             }
         }
 
-        public async Task<List<BuildingBussines>> GetAllAsync(string _connectionString, CancellationToken token, bool isLoadDets)
-        {
-            var list = new List<BuildingBussines>();
-            try
-            {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_Buildings_SelectAll", cn) { CommandType = CommandType.StoredProcedure };
-                    if (token.IsCancellationRequested) return null;
-                    await cn.OpenAsync();
-                    var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read())
-                    {
-                        if (token.IsCancellationRequested) return null;
-                        list.Add(await LoadDataAsync(dr, isLoadDets, _connectionString));
-                    }
-                    dr.Close();
-                    cn.Close();
-                }
-            }
-            catch (TaskCanceledException) { }
-            catch (OperationCanceledException) { }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-
-            return list;
-        }
-        public async Task<List<BuildingBussines>> GetAllWithoutParentAsync(string connectionString)
-        {
-            var list = new List<BuildingBussines>();
-            try
-            {
-                using (var cn = new SqlConnection(connectionString))
-                {
-                    var cmd = new SqlCommand("sp_Building_GetAllWithoutParent", cn) { CommandType = CommandType.StoredProcedure };
-                    await cn.OpenAsync();
-                    var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read()) list.Add(await LoadDataAsync(dr, false, connectionString));
-                    dr.Close();
-                    cn.Close();
-                }
-            }
-            catch (TaskCanceledException) { }
-            catch (OperationCanceledException) { }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-
-            return list;
-        }
         public async Task<ReturnedSaveFuncInfo> SaveAsync(BuildingBussines item, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -288,12 +235,12 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public async Task<string> NextCodeAsync(string _connectionString)
+        public async Task<string> NextCodeAsync(string connectionString)
         {
             var res = "0";
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
+                using (var cn = new SqlConnection(connectionString))
                 {
                     var cmd = new SqlCommand("sp_Building_NextCode", cn) { CommandType = CommandType.StoredProcedure };
 
@@ -310,11 +257,11 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public async Task<bool> CheckCodeAsync(string _connectionString, string code, Guid guid)
+        public async Task<bool> CheckCodeAsync(string connectionString, string code, Guid guid)
         {
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
+                using (var cn = new SqlConnection(connectionString))
                 {
                     var cmd = new SqlCommand("sp_Building_CheckCode", cn) { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@guid", guid);
@@ -332,12 +279,12 @@ namespace EntityCache.SqlServerPersistence
                 return false;
             }
         }
-        public async Task<int> DbCount(string _connectionString, Guid userGuid, short type)
+        public async Task<int> DbCount(string connectionString, Guid userGuid, short type)
         {
             var count = 0;
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
+                using (var cn = new SqlConnection(connectionString))
                 {
                     var cmd = new SqlCommand("sp_Building_Count", cn) { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@userGuid", userGuid);
@@ -354,12 +301,12 @@ namespace EntityCache.SqlServerPersistence
 
             return count;
         }
-        public async Task<ReturnedSaveFuncInfo> FixImageAsync(string _connectionString)
+        public async Task<ReturnedSaveFuncInfo> FixImageAsync(string connectionString)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
+                using (var cn = new SqlConnection(connectionString))
                 {
                     var cmd = new SqlCommand("sp_Building_FixImages", cn) { CommandType = CommandType.StoredProcedure };
 
@@ -376,18 +323,18 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        public async Task<BuildingBussines> GetAsync(string _connectionString, Guid guid)
+        public async Task<BuildingBussines> GetAsync(string connectionString, Guid guid)
         {
             var list = new BuildingBussines();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
+                using (var cn = new SqlConnection(connectionString))
                 {
                     var cmd = new SqlCommand("sp_Buildings_GetByGuid", cn) { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@guid", guid);
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (dr.Read()) list = await LoadDataAsync(dr, true, _connectionString);
+                    if (dr.Read()) list = await LoadDataAsync(dr, connectionString);
                     dr.Close();
                     cn.Close();
                 }
@@ -422,12 +369,12 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
-        public async Task<ReturnedSaveFuncInfo> SetArchiveAsync(string _connectionString, DateTime date)
+        public async Task<ReturnedSaveFuncInfo> SetArchiveAsync(string connectionString, DateTime date)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                using (var cn = new SqlConnection(_connectionString))
+                using (var cn = new SqlConnection(connectionString))
                 {
                     var cmd = new SqlCommand("sp_Building_SetArchive", cn) { CommandType = CommandType.StoredProcedure };
                     cmd.Parameters.AddWithValue("@date", date);
@@ -443,35 +390,6 @@ namespace EntityCache.SqlServerPersistence
             }
 
             return res;
-        }
-        public async Task<List<BuildingBussines>> GetAllHighPriorityAsync(string _connectionString, CancellationToken token)
-        {
-            var list = new List<BuildingBussines>();
-            try
-            {
-                using (var cn = new SqlConnection(_connectionString))
-                {
-                    var cmd = new SqlCommand("sp_Building_GetAllHighPriority", cn) { CommandType = CommandType.StoredProcedure };
-                    if (token.IsCancellationRequested) return null;
-                    await cn.OpenAsync();
-                    var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read())
-                    {
-                        if (token.IsCancellationRequested) return null;
-                        list.Add(await LoadDataAsync(dr, true, _connectionString));
-                    }
-                    dr.Close();
-                    cn.Close();
-                }
-            }
-            catch (TaskCanceledException) { }
-            catch (OperationCanceledException) { }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-
-            return list;
         }
         public async Task<bool> CheckDuplicateAsync(string connectionString, string divarTitle)
         {
@@ -647,7 +565,7 @@ namespace EntityCache.SqlServerPersistence
                     var cmd = new SqlCommand("sp_Buildings_GetAllNotSent", cn) { CommandType = CommandType.StoredProcedure };
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
-                    while (dr.Read()) list.Add(await LoadDataBuildingBussinesAsync(dr, connectionString));
+                    while (dr.Read()) list.Add(await LoadDataAsync(dr, connectionString));
                     dr.Close();
                     cn.Close();
                 }
@@ -707,122 +625,7 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
-        private async Task<BuildingBussines> LoadDataAsync(SqlDataReader dr, bool isLoadDets, string connectionString)
-        {
-            var res = new BuildingBussines();
-            try
-            {
-                if (dr["Guid"] != DBNull.Value) res.Guid = (Guid)dr["Guid"];
-                if (dr["OwnerGuid"] != DBNull.Value) res.OwnerGuid = (Guid)dr["OwnerGuid"];
-                if (dr["SellPrice"] != DBNull.Value) res.SellPrice = (decimal)dr["SellPrice"];
-                if (dr["Modified"] != DBNull.Value) res.Modified = (DateTime)dr["Modified"];
-                if (dr["Status"] != DBNull.Value) res.Status = (bool)dr["Status"];
-                if (dr["Code"] != DBNull.Value) res.Code = dr["Code"].ToString();
-                if (dr["VamPrice"] != DBNull.Value) res.VamPrice = (decimal)dr["VamPrice"];
-                if (dr["QestPrice"] != DBNull.Value) res.QestPrice = (decimal)dr["QestPrice"];
-                if (dr["Dang"] != DBNull.Value) res.Dang = (int)dr["Dang"];
-                if (dr["DocumentType"] != DBNull.Value) res.DocumentType = (Guid)dr["DocumentType"];
-                if (dr["Tarakom"] != DBNull.Value)
-                {
-                    var tr = dr["Tarakom"].ToString().ParseToShort();
-                    res.Tarakom = (EnTarakom?)tr;
-                }
-                if (dr["RahnPrice1"] != DBNull.Value) res.RahnPrice1 = (decimal)dr["RahnPrice1"];
-                if (dr["EjarePrice1"] != DBNull.Value) res.EjarePrice1 = (decimal)dr["EjarePrice1"];
-                if (dr["RentalAutorityGuid"] != DBNull.Value) res.RentalAutorityGuid = (Guid?)dr["RentalAutorityGuid"];
-                if (dr["IsShortTime"] != DBNull.Value) res.IsShortTime = (bool)dr["IsShortTime"];
-                if (dr["IsOwnerHere"] != DBNull.Value) res.IsOwnerHere = (bool)dr["IsOwnerHere"];
-                if (dr["PishTotalPrice"] != DBNull.Value) res.PishTotalPrice = (decimal)dr["PishTotalPrice"];
-                if (dr["PishPrice"] != DBNull.Value) res.PishPrice = (decimal)dr["PishPrice"];
-                if (dr["DeliveryDate"] != DBNull.Value) res.DeliveryDate = (DateTime?)dr["DeliveryDate"];
-                if (dr["PishDesc"] != DBNull.Value) res.PishDesc = dr["PishDesc"].ToString();
-                if (dr["MoavezeDesc"] != DBNull.Value) res.MoavezeDesc = dr["MoavezeDesc"].ToString();
-                if (dr["MosharekatDesc"] != DBNull.Value) res.MosharekatDesc = dr["MosharekatDesc"].ToString();
-                if (dr["UserGuid"] != DBNull.Value) res.UserGuid = (Guid)dr["UserGuid"];
-                if (dr["Masahat"] != DBNull.Value) res.Masahat = (int)dr["Masahat"];
-                if (dr["ZirBana"] != DBNull.Value) res.ZirBana = (int)dr["ZirBana"];
-                if (dr["CityGuid"] != DBNull.Value) res.CityGuid = (Guid)dr["CityGuid"];
-                if (dr["RegionGuid"] != DBNull.Value) res.RegionGuid = (Guid)dr["RegionGuid"];
-                if (dr["Address"] != DBNull.Value) res.Address = dr["Address"].ToString();
-                if (dr["BuildingConditionGuid"] != DBNull.Value) res.BuildingConditionGuid = (Guid)dr["BuildingConditionGuid"];
-                if (dr["Side"] != DBNull.Value) res.Side = (EnBuildingSide)dr["Side"];
-                if (dr["BuildingTypeGuid"] != DBNull.Value) res.BuildingTypeGuid = (Guid)dr["BuildingTypeGuid"];
-                if (dr["ShortDesc"] != DBNull.Value) res.ShortDesc = dr["ShortDesc"].ToString();
-                if (dr["BuildingAccountTypeGuid"] != DBNull.Value) res.BuildingAccountTypeGuid = (Guid)dr["BuildingAccountTypeGuid"];
-                if (dr["MetrazhTejari"] != DBNull.Value) res.MetrazhTejari = (float)dr["MetrazhTejari"];
-                if (dr["BuildingViewGuid"] != DBNull.Value) res.BuildingViewGuid = (Guid)dr["BuildingViewGuid"];
-                if (dr["FloorCoverGuid"] != DBNull.Value) res.FloorCoverGuid = (Guid)dr["FloorCoverGuid"];
-                if (dr["KitchenServiceGuid"] != DBNull.Value) res.KitchenServiceGuid = (Guid)dr["KitchenServiceGuid"];
-                if (dr["Water"] != DBNull.Value) res.Water = (EnKhadamati)dr["Water"];
-                if (dr["Barq"] != DBNull.Value) res.Barq = (EnKhadamati)dr["Barq"];
-                if (dr["Gas"] != DBNull.Value) res.Gas = (EnKhadamati)dr["Gas"];
-                if (dr["Tell"] != DBNull.Value) res.Tell = (EnKhadamati)dr["Tell"];
-                if (dr["TedadTabaqe"] != DBNull.Value) res.TedadTabaqe = (int)dr["TedadTabaqe"];
-                if (dr["TabaqeNo"] != DBNull.Value) res.TabaqeNo = (int)dr["TabaqeNo"];
-                if (dr["VahedPerTabaqe"] != DBNull.Value) res.VahedPerTabaqe = (int)dr["VahedPerTabaqe"];
-                if (dr["MetrazhKouche"] != DBNull.Value) res.MetrazhKouche = (float)dr["MetrazhKouche"];
-                if (dr["ErtefaSaqf"] != DBNull.Value) res.ErtefaSaqf = (float)dr["ErtefaSaqf"];
-                if (dr["Hashie"] != DBNull.Value) res.Hashie = (float)dr["Hashie"];
-                if (dr["Lenght"] != DBNull.Value) res.Lenght = (float)dr["Lenght"];
-                if (dr["SaleSakht"] != DBNull.Value) res.SaleSakht = dr["SaleSakht"].ToString();
-                if (dr["DateParvane"] != DBNull.Value) res.DateParvane = dr["DateParvane"].ToString();
-                if (dr["ParvaneSerial"] != DBNull.Value) res.ParvaneSerial = dr["ParvaneSerial"].ToString();
-                if (dr["BonBast"] != DBNull.Value) res.BonBast = (bool)dr["BonBast"];
-                if (dr["MamarJoda"] != DBNull.Value) res.MamarJoda = (bool)dr["MamarJoda"];
-                if (dr["RoomCount"] != DBNull.Value) res.RoomCount = (int)dr["RoomCount"];
-                if (dr["CreateDate"] != DBNull.Value) res.CreateDate = (DateTime)dr["CreateDate"];
-                if (dr["Image"] != DBNull.Value) res.Image = dr["Image"].ToString();
-                if (dr["Priority"] != DBNull.Value) res.Priority = (EnBuildingPriority)dr["Priority"];
-                if (dr["IsArchive"] != DBNull.Value) res.IsArchive = (bool)dr["IsArchive"];
-                if (isLoadDets)
-                {
-                    res.GalleryList = await _gallery.GetAllAsync(connectionString, res.Guid);
-                    res.MediaList = await _media.GetAllAsync(connectionString, res.Guid);
-                    res.OptionList = await _options.GetAllAsync(connectionString, res.Guid);
-                    res.NoteList = await _notes.GetAllAsync(connectionString, res.Guid);
-                }
-                if (dr["ServerDeliveryDate"] != DBNull.Value) res.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
-                if (dr["ServerStatus"] != DBNull.Value) res.ServerStatus = (ServerStatus)dr["ServerStatus"];
-                if (dr["OwnerName"] != DBNull.Value) res.OwnerName = dr["OwnerName"].ToString();
-                if (dr["BuildingTypeName"] != DBNull.Value) res.BuildingTypeName = dr["BuildingTypeName"].ToString();
-                if (dr["UserName"] != DBNull.Value) res.UserName = dr["UserName"].ToString();
-                if (dr["RegionName"] != DBNull.Value) res.RegionName = dr["RegionName"].ToString();
-                if (dr["RentalAuthorityName"] != DBNull.Value) res.RentalAuthorityName = dr["RentalAuthorityName"].ToString();
-                if (dr["DocumentTypeName"] != DBNull.Value) res.DocumentTypeName = dr["DocumentTypeName"].ToString();
-                if (dr["BuildingConditionName"] != DBNull.Value) res.BuildingConditionName = dr["BuildingConditionName"].ToString();
-                if (dr["BuildingViewName"] != DBNull.Value) res.BuildingViewName = dr["BuildingViewName"].ToString();
-                if (dr["FloorCoverName"] != DBNull.Value) res.FloorCoverName = dr["FloorCoverName"].ToString();
-                if (dr["KitchenServiceName"] != DBNull.Value) res.KitchenServiceName = dr["KitchenServiceName"].ToString();
-                if (dr["BuildingAccountTypeName"] != DBNull.Value) res.BuildingAccountTypeName = dr["BuildingAccountTypeName"].ToString();
-                res.IsModified = true;
-                if (dr["TelegramCount"] != DBNull.Value) res.TelegramCount = (int)dr["TelegramCount"];
-                if (dr["DivarCount"] != DBNull.Value) res.DivarCount = (int)dr["DivarCount"];
-                if (dr["SheypoorCount"] != DBNull.Value) res.SheypoorCount = (int)dr["SheypoorCount"];
-                if (dr["AdvertiseType"] != DBNull.Value) res.AdvertiseType = (AdvertiseType)dr["AdvertiseType"];
-                if (dr["DivarTitle"] != DBNull.Value) res.DivarTitle = dr["DivarTitle"].ToString();
-                if (dr["Hiting"] != DBNull.Value) res.Hiting = dr["Hiting"].ToString();
-                if (dr["Colling"] != DBNull.Value) res.Colling = dr["Colling"].ToString();
-                if (dr["WhatsAppCount"] != DBNull.Value) res.WhatsAppCount = (int)dr["WhatsAppCount"];
-                if (dr["Tabdil"] != DBNull.Value) res.Tabdil = (bool)dr["Tabdil"];
-                if (dr["ReformArea"] != DBNull.Value) res.ReformArea = (float)dr["ReformArea"];
-                if (dr["BuildingPermits"] != DBNull.Value) res.BuildingPermits = (bool)dr["BuildingPermits"];
-                if (dr["WidthOfPassage"] != DBNull.Value) res.WidthOfPassage = (float)dr["WidthOfPassage"];
-                if (dr["VillaType"] != DBNull.Value) res.VillaType = (EnVillaType)dr["VillaType"];
-                if (dr["CommericallLicense"] != DBNull.Value) res.CommericallLicense = (EnCommericallLicense)dr["CommericallLicense"];
-                if (dr["SuitableFor"] != DBNull.Value) res.SuitableFor = dr["SuitableFor"].ToString();
-                if (dr["WallCovering"] != DBNull.Value) res.WallCovering = dr["WallCovering"].ToString();
-                if (dr["TreeCount"] != DBNull.Value) res.TreeCount = (int)dr["TreeCount"];
-                if (dr["ConstructionStage"] != DBNull.Value) res.ConstructionStage = (EnConstructionStage)dr["ConstructionStage"];
-                if (dr["Parent"] != DBNull.Value) res.Parent = (EnBuildingParent)dr["Parent"];
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-
-            return res;
-        }
-        private async Task<BuildingBussines> LoadDataBuildingBussinesAsync(SqlDataReader dr, string connectionString)
+        private async Task<BuildingBussines> LoadDataAsync(SqlDataReader dr, string connectionString)
         {
             var res = new BuildingBussines();
             try
@@ -958,6 +761,12 @@ namespace EntityCache.SqlServerPersistence
                 if (dr["TedadTabaqe"] != DBNull.Value) res.TabaqeCount = dr["TedadTabaqe"].ToString().ParseToDouble();
                 if (dr["TabaqeNo"] != DBNull.Value) res.TabaqeNo = dr["TabaqeNo"].ToString().ParseToDouble();
                 if (dr["Side"] != DBNull.Value) res.Side = (EnBuildingSide)dr["Side"];
+                if (dr["Dang"] != DBNull.Value) res.Dang = (int)dr["Dang"];
+                if (dr["Water"] != DBNull.Value) res.Water = (EnKhadamati)dr["Water"];
+                if (dr["Barq"] != DBNull.Value) res.Barq = (EnKhadamati)dr["Barq"];
+                if (dr["Gas"] != DBNull.Value) res.Gas = (EnKhadamati)dr["Gas"];
+                if (dr["Hiting"] != DBNull.Value) res.Hitting = dr["Hiting"].ToString();
+                if (dr["Colling"] != DBNull.Value) res.Colling = dr["Colling"].ToString();
             }
             catch (Exception ex)
             {

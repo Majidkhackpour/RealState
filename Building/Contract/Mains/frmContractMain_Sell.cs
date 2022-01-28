@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
 using EntityCache.Bussines;
+using EntityCache.Bussines.ReportBussines;
 using MetroFramework.Forms;
 using Services;
 
@@ -27,8 +28,8 @@ namespace Building.Contract
                 await ucFSide.SetGuidAsync(cls.FirstSideGuid);
                 await ucSecondSide.SetGuidAsync(cls.SecondSideGuid);
 
-                var bu = await BuildingBussines.GetAsync(cls.BuildingGuid);
-                uc2.Dong = bu?.Dang ?? 6;
+                var bu = await BuildingReportBussines.GetAsync(cls.BuildingGuid);
+                uc2.Dong = (float) (bu?.Dang ?? 6);
                 uc2.BuildingType = bu?.BuildingTypeName;
                 uc2.RegistryNo = cls.BuildingRegistrationNo;
                 uc2.RegistryNoSub = cls.BuildingRegistrationNoSub;

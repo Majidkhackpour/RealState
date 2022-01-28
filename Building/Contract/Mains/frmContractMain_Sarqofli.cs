@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
 using EntityCache.Bussines;
+using EntityCache.Bussines.ReportBussines;
 using MetroFramework.Forms;
 using Services;
 
@@ -29,7 +30,7 @@ namespace Building.Contract
                 await ucSecondSide.SetGuidAsync(cls.SecondSideGuid);
                 ucSecondSide.Title = "مشخصات انتقال گیرنده";
 
-                var bu = await BuildingBussines.GetAsync(cls.BuildingGuid);
+                var bu = await BuildingReportBussines.GetAsync(cls.BuildingGuid);
                 ucContractSarqofli_21.BuildingType = bu?.BuildingTypeName;
                 ucContractSarqofli_21.RegistryNo = cls?.BuildingRegistrationNo;
                 ucContractSarqofli_21.RegistryNoSub = cls.BuildingRegistrationNoSub;

@@ -47,13 +47,13 @@ namespace Advertise.Forms
             try
             {
                 var content = new StringBuilder();
-
-                content.AppendLine($"محدوده: {bu.RegionName}");
-                content.AppendLine($"متراژ: {bu.Masahat}");
-                content.AppendLine($"سال ساخت: {bu.SaleSakht}");
-                content.AppendLine($"زیربنا: {bu.ZirBana}");
-                content.AppendLine($"کفپوش: {bu.FloorCoverName}");
-                content.AppendLine($"آشپزخانه: {bu.KitchenServiceName}");
+                
+                //content.AppendLine($"محدوده: {bu.RegionName}");
+                //content.AppendLine($"متراژ: {bu.Masahat}");
+                //content.AppendLine($"سال ساخت: {bu.SaleSakht}");
+                //content.AppendLine($"زیربنا: {bu.ZirBana}");
+                //content.AppendLine($"کفپوش: {bu.FloorCoverName}");
+                //content.AppendLine($"آشپزخانه: {bu.KitchenServiceName}");
 
                 if (bu.OptionList.Count <= 0) return content.ToString();
 

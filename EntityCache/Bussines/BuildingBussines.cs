@@ -26,21 +26,17 @@ namespace EntityCache.Bussines
         public string DateSh => Calendar.MiladiToShamsi(CreateDate);
         public string Code { get; set; }
         public Guid OwnerGuid { get; set; }
-        public string OwnerName { get; set; }
         public Guid UserGuid { get; set; }
-        public string UserName { get; set; }
         public decimal SellPrice { get; set; }
         public decimal VamPrice { get; set; }
         public decimal QestPrice { get; set; }
         public int Dang { get; set; }
         public Guid? DocumentType { get; set; }
-        public string DocumentTypeName { get; set; }
         public EnTarakom? Tarakom { get; set; }
         public decimal RahnPrice1 { get; set; }
         public decimal EjarePrice1 { get; set; }
         public Guid? RentalAutorityGuid { get; set; }
         public bool? Tabdil { get; set; }
-        public string RentalAuthorityName { get; set; }
         public bool? IsShortTime { get; set; }
         public bool? IsOwnerHere { get; set; }
         public decimal PishTotalPrice { get; set; }
@@ -53,32 +49,20 @@ namespace EntityCache.Bussines
         public int ZirBana { get; set; }
         public Guid CityGuid { get; set; }
         public Guid RegionGuid { get; set; }
-        public string RegionName { get; set; }
         public string Address { get; set; }
         public Guid? BuildingConditionGuid { get; set; }
-        public string BuildingConditionName { get; set; }
         public EnBuildingSide? Side { get; set; }
-        public string SideName => Side?.GetDisplay();
         public Guid BuildingTypeGuid { get; set; }
-        public string BuildingTypeName { get; set; }
         public string ShortDesc { get; set; }
         public Guid BuildingAccountTypeGuid { get; set; }
-        public string BuildingAccountTypeName { get; set; }
         public float MetrazhTejari { get; set; }
         public Guid? BuildingViewGuid { get; set; }
-        public string BuildingViewName { get; set; }
         public Guid? FloorCoverGuid { get; set; }
-        public string FloorCoverName { get; set; }
         public Guid? KitchenServiceGuid { get; set; }
-        public string KitchenServiceName { get; set; }
         public EnKhadamati? Water { get; set; }
-        public string WaterName => Water?.GetDisplay();
         public EnKhadamati? Barq { get; set; }
-        public string BarqName => Barq?.GetDisplay();
         public EnKhadamati? Gas { get; set; }
-        public string GasName => Gas?.GetDisplay();
         public EnKhadamati? Tell { get; set; }
-        public string TellName => Tell?.GetDisplay();
         public int TedadTabaqe { get; set; }
         public int TabaqeNo { get; set; }
         public int VahedPerTabaqe { get; set; }
@@ -121,7 +105,6 @@ namespace EntityCache.Bussines
         public List<BuildingNoteBussines> NoteList { get; set; }
         #endregion
 
-        public static async Task<List<BuildingBussines>> GetAllAsync(CancellationToken token, bool isLoadDet) => await UnitOfWork.Building.GetAllAsync(Cache.ConnectionString, token, isLoadDet);
         public static async Task<BuildingBussines> GetAsync(Guid guid) => await UnitOfWork.Building.GetAsync(Cache.ConnectionString, guid);
         public async Task<ReturnedSaveFuncInfo> SaveAsync(bool isAddLog, SqlTransaction tr = null, bool isRaiseEvent = true, bool isFromServer = false)
         {
@@ -155,7 +138,7 @@ namespace EntityCache.Bussines
                 if (isAddLog)
                 {
                     var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
-                    var desc = $"کد ملک:( {Code} ) ** محدوده:( {RegionName} ) ** آدرس:( {Address} )";
+                    var desc = $"کد ملک:( {Code} ) ** آدرس:( {Address} )";
                     res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Building, Guid, desc, tr));
                     if (res.HasError) return res;
                 }
@@ -199,7 +182,7 @@ namespace EntityCache.Bussines
                 if (res.HasError) return res;
 
                 var action = status ? EnLogAction.Enable : EnLogAction.Delete;
-                var desc = $"کدملک: ( {Code} ) ** محدوده:( {RegionName} )";
+                var desc = $"کدملک: ( {Code} )";
                 res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Building, Guid, desc, tr));
             }
             catch (Exception ex)
@@ -320,7 +303,6 @@ namespace EntityCache.Bussines
 
             return res;
         }
-        public static async Task<List<BuildingBussines>> GetAllHighPriorityAsync(CancellationToken token) => await UnitOfWork.Building.GetAllHighPriorityAsync(Cache.ConnectionString, token);
         public static async Task<bool> CheckDuplicateAsync(string divarTitle) => await UnitOfWork.Building.CheckDuplicateAsync(Cache.ConnectionString, divarTitle);
         public static async Task<List<string>> GetAllHittingAsync() => await UnitOfWork.Building.GetAllHittingAsync(Cache.ConnectionString);
         public static async Task<List<string>> GetAllCollingAsync() => await UnitOfWork.Building.GetAllCollingAsync(Cache.ConnectionString);
@@ -359,7 +341,6 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public static async Task<List<BuildingBussines>> GetAllWithoutParentAsync() => await UnitOfWork.Building.GetAllWithoutParentAsync(Cache.ConnectionString);
         public async Task<int> CheckAsync() => await UnitOfWork.Building.CheckAsync(Cache.ConnectionString, this);
         public static async Task<List<BuildingBussines>> GetAllNotSentAsync()
             => await UnitOfWork.Building.GetAllNotSentAsync(Cache.ConnectionString);

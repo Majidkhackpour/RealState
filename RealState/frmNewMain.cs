@@ -480,34 +480,34 @@ namespace RealState
         }
         private async Task LoadBuildingHighPriorityAsync()
         {
-            try
-            {
-                var list = await BuildingBussines.GetAllHighPriorityAsync(new CancellationToken());
-                list = list?.Where(q => q.Priority == EnBuildingPriority.SoHigh && !q.IsArchive)?.Take(10)?.ToList();
-                if (list != null && list.Count > 0)
-                {
-                    foreach (var item in list)
-                    {
-                        Invoke(new MethodInvoker(() =>
-                        {
-                            var c = new ucBuildingHighPriority() { Building = item, Width = fPanelPirority.Width - 30 };
-                            fPanelPirority.Controls.Add(c);
-                        }));
-                    }
-                }
-                else
-                {
-                    Invoke(new MethodInvoker(() =>
-                    {
-                        fPanelPirority.Visible = false;
-                        lblBuildingNone.Visible = true;
-                    }));
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
+            //try
+            //{
+            //    var list = await BuildingBussines.GetAllHighPriorityAsync(new CancellationToken());
+            //    list = list?.Where(q => q.Priority == EnBuildingPriority.SoHigh && !q.IsArchive)?.Take(10)?.ToList();
+            //    if (list != null && list.Count > 0)
+            //    {
+            //        foreach (var item in list)
+            //        {
+            //            Invoke(new MethodInvoker(() =>
+            //            {
+            //                var c = new ucBuildingHighPriority() { Building = item, Width = fPanelPirority.Width - 30 };
+            //                fPanelPirority.Controls.Add(c);
+            //            }));
+            //        }
+            //    }
+            //    else
+            //    {
+            //        Invoke(new MethodInvoker(() =>
+            //        {
+            //            fPanelPirority.Visible = false;
+            //            lblBuildingNone.Visible = true;
+            //        }));
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            //}
         }
         private async Task ShowTodayNotesAsync()
         {

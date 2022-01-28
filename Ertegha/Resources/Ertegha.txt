@@ -2072,31 +2072,9 @@ ALTER PROCEDURE [dbo].[sp_Buildings_GetByGuid]
 	@guid uniqueidentifier
 AS
 BEGIN
-	select [dbo].[Buildings].*,[dbo].[Peoples].Name As OwnerName,
-       [dbo].[BuildingTypes].Name As BuildingTypeName,
-	   [dbo].[Users].Name As UserName,
-	   [dbo].[Regions].Name As RegionName,
-	   [dbo].[RentalAuthorities].Name As RentalAuthorityName,
-	   [dbo].[DocumentTypes].Name As DocumentTypeName,
-	   [dbo].[BuildingConditions].Name As BuildingConditionName,
-	   [dbo].[BuildingViews].Name As BuildingViewName,
-	   [dbo].[FloorCovers].Name As FloorCoverName,
-	   [dbo].[KitchenServices].Name As KitchenServiceName,
-	   [dbo].[BuildingAccountTypes].Name As BuildingAccountTypeName
-From [dbo].[Buildings] 
-     inner join [dbo].[Peoples] on [dbo].[Buildings].OwnerGuid=[dbo].[Peoples].Guid
-	 inner join [dbo].[BuildingTypes] on [dbo].[Buildings].BuildingTypeGuid=[dbo].[BuildingTypes].Guid
-	 inner join [dbo].[Users] on [dbo].[Buildings].UserGuid=[dbo].[Users].Guid
-	 inner join [dbo].[Regions] on [dbo].[Buildings].RegionGuid=[dbo].[Regions].Guid
-	 left outer join [dbo].[RentalAuthorities] on [dbo].[Buildings].RentalAutorityGuid=[dbo].[RentalAuthorities].Guid
-	 left outer join [dbo].[DocumentTypes] on [dbo].[Buildings].DocumentType=[dbo].[DocumentTypes].Guid
-	 left outer join [dbo].[BuildingConditions] on [dbo].[Buildings].BuildingConditionGuid=[dbo].[BuildingConditions].Guid
-	 left outer join [dbo].[BuildingViews] on [dbo].[Buildings].BuildingViewGuid=[dbo].[BuildingViews].Guid
-	 left outer join [dbo].[FloorCovers] on [dbo].[Buildings].FloorCoverGuid=[dbo].[FloorCovers].Guid
-	 left outer join [dbo].[KitchenServices] on [dbo].[Buildings].KitchenServiceGuid=[dbo].[KitchenServices].Guid
-	 left outer join [dbo].[BuildingAccountTypes] on [dbo].[Buildings].BuildingAccountTypeGuid=[dbo].[BuildingAccountTypes].Guid
-
-	where Buildings.Guid=@guid
+	select *
+	From [dbo].[Buildings] 
+	where Guid=@guid
 END
 GO
 -- ==========================================================================================
@@ -7239,31 +7217,9 @@ GO
 ALTER PROCEDURE [dbo].[sp_Building_GetAllWithoutParent]
 AS
 BEGIN
-	select [dbo].[Buildings].*,[dbo].[Peoples].Name As OwnerName,
-       [dbo].[BuildingTypes].Name As BuildingTypeName,
-	   [dbo].[Users].Name As UserName,
-	   [dbo].[Regions].Name As RegionName,
-	   [dbo].[RentalAuthorities].Name As RentalAuthorityName,
-	   [dbo].[DocumentTypes].Name As DocumentTypeName,
-	   [dbo].[BuildingConditions].Name As BuildingConditionName,
-	   [dbo].[BuildingViews].Name As BuildingViewName,
-	   [dbo].[FloorCovers].Name As FloorCoverName,
-	   [dbo].[KitchenServices].Name As KitchenServiceName,
-	   [dbo].[BuildingAccountTypes].Name As BuildingAccountTypeName
-From [dbo].[Buildings] 
-     inner join [dbo].[Peoples] on [dbo].[Buildings].OwnerGuid=[dbo].[Peoples].Guid
-	 inner join [dbo].[BuildingTypes] on [dbo].[Buildings].BuildingTypeGuid=[dbo].[BuildingTypes].Guid
-	 inner join [dbo].[Users] on [dbo].[Buildings].UserGuid=[dbo].[Users].Guid
-	 inner join [dbo].[Regions] on [dbo].[Buildings].RegionGuid=[dbo].[Regions].Guid
-	 left outer join [dbo].[RentalAuthorities] on [dbo].[Buildings].RentalAutorityGuid=[dbo].[RentalAuthorities].Guid
-	 left outer join [dbo].[DocumentTypes] on [dbo].[Buildings].DocumentType=[dbo].[DocumentTypes].Guid
-	 left outer join [dbo].[BuildingConditions] on [dbo].[Buildings].BuildingConditionGuid=[dbo].[BuildingConditions].Guid
-	 left outer join [dbo].[BuildingViews] on [dbo].[Buildings].BuildingViewGuid=[dbo].[BuildingViews].Guid
-	 left outer join [dbo].[FloorCovers] on [dbo].[Buildings].FloorCoverGuid=[dbo].[FloorCovers].Guid
-	 left outer join [dbo].[KitchenServices] on [dbo].[Buildings].KitchenServiceGuid=[dbo].[KitchenServices].Guid
-	 left outer join [dbo].[BuildingAccountTypes] on [dbo].[Buildings].BuildingAccountTypeGuid=[dbo].[BuildingAccountTypes].Guid
+	select * from Buildings
 	where Parent is null
-	and Buildings.Status='true'
+	and Status='true'
 END
 GO
 --========================================================================================================
@@ -7310,7 +7266,8 @@ ALTER PROCEDURE [dbo].[sp_Buildings_Search]
 	@isFullRahn bit='false',
 	@isSell bit='false',
 	@isPishForoush bit='false',
-	@isMosharekat bit='false'
+	@isMosharekat bit='false',
+	@priority smallint=null
 AS
 BEGIN
 select [dbo].[Buildings].*,[dbo].[Peoples].Name As OwnerName,
@@ -7355,7 +7312,8 @@ From [dbo].[Buildings]
 		   (@isFullRahn='false' or Buildings.Parent in (113,114,115,116))and
 		   (@isSell='false' or Buildings.Parent in (101,102,103,104,105,106,107,108))and
 		   (@isMosharekat='false' or Buildings.Parent in (125,126))and
-		   (@isPishForoush='false' or Buildings.Parent in (117,118,119,120))
+		   (@isPishForoush='false' or Buildings.Parent in (117,118,119,120)) and
+		   (@priority is null or Buildings.Priority=@priority)
 	 Order By [dbo].[Buildings].CreateDate desc
 End
 GO

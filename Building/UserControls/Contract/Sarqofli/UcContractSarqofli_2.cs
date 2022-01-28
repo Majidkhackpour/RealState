@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Building.Buildings;
 using EntityCache.Bussines;
+using EntityCache.Bussines.ReportBussines;
 using Services;
 using Services.FilterObjects;
 
@@ -73,7 +74,7 @@ namespace Building.UserControls.Contract.Sarqofli
             {
                 var frm = new frmShowBuildings(true, new BuildingFilter() { Status = true, OwnerGuid = OwnerGuid });
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
-                var bu = await BuildingBussines.GetAsync(frm.SelectedGuid);
+                var bu = await BuildingReportBussines.GetAsync(frm.SelectedGuid);
                 if (bu == null) return;
                 RaiseBuildingSelect(frm.SelectedGuid);
                 BuildingType = bu.BuildingTypeName;

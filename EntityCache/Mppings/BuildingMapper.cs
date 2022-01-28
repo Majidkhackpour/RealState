@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using EntityCache.Bussines;
+using EntityCache.Bussines.ReportBussines;
 using Services;
 using WebHesabBussines;
 

@@ -1,7 +1,7 @@
 ﻿using EntityCache.Bussines;
+using EntityCache.Bussines.ReportBussines;
 using Payamak;
 using Services;
-using Settings.Classes;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,17 +10,17 @@ namespace Building
 {
     public class clsTelegramManager
     {
-        public static async Task<string> GetTelegramTextAsync(BuildingBussines bu, string template)
+        public static async Task<string> GetTelegramTextAsync(BuildingReportBussines bu, string template)
         {
             var res = "";
             try
             {
+                BuildingBussines bus = null;
                 res = template;
                 var parkingGuid = await BuildingOptionsBussines.GetParkingGuidAsync();
                 var asGuid = await BuildingOptionsBussines.GetEvelatorGuidAsync();
                 var storeGuid = await BuildingOptionsBussines.GetStoreGuidAsync();
                 var balconyGuid = await BuildingOptionsBussines.GetBalconyGuidAsync();
-                var owner = await PeoplesBussines.GetAsync(bu.OwnerGuid, bu?.Guid);
                 var list = res.Split('\n').ToList();
 
                 if (res.Contains(Replacor.TelegramBuilding.Code))
@@ -179,9 +179,10 @@ namespace Building
                     var type = list.FirstOrDefault(q => q.Contains(Replacor.TelegramBuilding.Tarakom));
                     if (!string.IsNullOrEmpty(type))
                     {
+                        if (bus == null) bus = await BuildingBussines.GetAsync(bu.Guid);
                         var index = list.IndexOf(type);
                         type = type.Replace("\r", "");
-                        type = type.Replace(Replacor.TelegramBuilding.Tarakom, bu.Tarakom?.GetDisplay());
+                        type = type.Replace(Replacor.TelegramBuilding.Tarakom, bus.Tarakom?.GetDisplay());
                         if (bu.RahnPrice1 <= 0 || bu.EjarePrice1 <= 0)
                             list[index] = type;
                         else list[index] = "";
@@ -208,8 +209,8 @@ namespace Building
                     {
                         var index = list.IndexOf(type);
                         type = type.Replace("\r", "");
-                        type = type.Replace(Replacor.TelegramBuilding.TabaqeCount, bu.TedadTabaqe.ToString());
-                        if (bu.TedadTabaqe > 0)
+                        type = type.Replace(Replacor.TelegramBuilding.TabaqeCount, bu.TabaqeCount.ToString());
+                        if (bu.TabaqeCount > 0)
                             list[index] = type;
                         else list[index] = "";
                     }
@@ -245,10 +246,11 @@ namespace Building
                     var type = list.FirstOrDefault(q => q.Contains(Replacor.TelegramBuilding.Tejari));
                     if (!string.IsNullOrEmpty(type))
                     {
+                        if (bus == null) bus = await BuildingBussines.GetAsync(bu.Guid);
                         var index = list.IndexOf(type);
                         type = type.Replace("\r", "");
-                        type = type.Replace(Replacor.TelegramBuilding.Tejari, bu.MetrazhTejari.ToString());
-                        if (bu.MetrazhTejari > 0)
+                        type = type.Replace(Replacor.TelegramBuilding.Tejari, bus.MetrazhTejari.ToString());
+                        if (bus.MetrazhTejari > 0)
                             list[index] = type;
                         else list[index] = "";
                     }
@@ -365,10 +367,11 @@ namespace Building
                     var type = list.FirstOrDefault(q => q.Contains(Replacor.TelegramBuilding.VahedPerTabaqe));
                     if (!string.IsNullOrEmpty(type))
                     {
+                        if (bus == null) bus = await BuildingBussines.GetAsync(bu.Guid);
                         var index = list.IndexOf(type);
                         type = type.Replace("\r", "");
-                        type = type.Replace(Replacor.TelegramBuilding.VahedPerTabaqe, bu.VahedPerTabaqe.ToString());
-                        if (bu.VahedPerTabaqe > 0)
+                        type = type.Replace(Replacor.TelegramBuilding.VahedPerTabaqe, bus.VahedPerTabaqe.ToString());
+                        if (bus.VahedPerTabaqe > 0)
                             list[index] = type;
                         else list[index] = "";
                     }
@@ -380,8 +383,8 @@ namespace Building
                     {
                         var index = list.IndexOf(type);
                         type = type.Replace("\r", "");
-                        type = type.Replace(Replacor.TelegramBuilding.Hitting, bu.Hiting);
-                        if (!string.IsNullOrEmpty(bu.Hiting))
+                        type = type.Replace(Replacor.TelegramBuilding.Hitting, bu.Hitting);
+                        if (!string.IsNullOrEmpty(bu.Hitting))
                             list[index] = type;
                         else list[index] = "";
                     }
@@ -404,9 +407,10 @@ namespace Building
                     var type = list.FirstOrDefault(q => q.Contains(Replacor.TelegramBuilding.Dong));
                     if (!string.IsNullOrEmpty(type))
                     {
+                        if (bus == null) bus = await BuildingBussines.GetAsync(bu.Guid);
                         var index = list.IndexOf(type);
                         type = type.Replace("\r", "");
-                        type = type.Replace(Replacor.TelegramBuilding.Dong, bu.Dang.ToString());
+                        type = type.Replace(Replacor.TelegramBuilding.Dong, bus.Dang.ToString());
                         if (bu.SellPrice > 0)
                             list[index] = type;
                         else list[index] = "";
@@ -417,13 +421,14 @@ namespace Building
                     var type = list.FirstOrDefault(q => q.Contains(Replacor.TelegramBuilding.Parking));
                     if (!string.IsNullOrEmpty(type))
                     {
+                        if (bus == null) bus = await BuildingBussines.GetAsync(bu.Guid);
                         var index = list.IndexOf(type);
                         type = type.Replace("\r", "");
                         var text = "";
-                        if (bu.OptionList == null || bu.OptionList.Count <= 0) text = "❌";
+                        if (bus.OptionList == null || bus.OptionList.Count <= 0) text = "❌";
                         else
                         {
-                            var ev = bu.OptionList.Select(q => q.BuildingOptionGuid).Contains(parkingGuid);
+                            var ev = bus.OptionList.Select(q => q.BuildingOptionGuid).Contains(parkingGuid);
                             text = ev ? "✅" : "❌";
                         }
                         type = type.Replace(Replacor.TelegramBuilding.Parking, text);
@@ -435,13 +440,14 @@ namespace Building
                     var type = list.FirstOrDefault(q => q.Contains(Replacor.TelegramBuilding.Elevator));
                     if (!string.IsNullOrEmpty(type))
                     {
+                        if (bus == null) bus = await BuildingBussines.GetAsync(bu.Guid);
                         var index = list.IndexOf(type);
                         type = type.Replace("\r", "");
                         var text = "";
-                        if (bu.OptionList == null || bu.OptionList.Count <= 0) text = "❌";
+                        if (bus.OptionList == null || bus.OptionList.Count <= 0) text = "❌";
                         else
                         {
-                            var ev = bu.OptionList.Select(q => q.BuildingOptionGuid).Contains(asGuid);
+                            var ev = bus.OptionList.Select(q => q.BuildingOptionGuid).Contains(asGuid);
                             text = ev ? "✅" : "❌";
                         }
                         type = type.Replace(Replacor.TelegramBuilding.Elevator, text);
@@ -453,13 +459,14 @@ namespace Building
                     var type = list.FirstOrDefault(q => q.Contains(Replacor.TelegramBuilding.Store));
                     if (!string.IsNullOrEmpty(type))
                     {
+                        if (bus == null) bus = await BuildingBussines.GetAsync(bu.Guid);
                         var index = list.IndexOf(type);
                         type = type.Replace("\r", "");
                         var text = "";
-                        if (bu.OptionList == null || bu.OptionList.Count <= 0) text = "❌";
+                        if (bus.OptionList == null || bus.OptionList.Count <= 0) text = "❌";
                         else
                         {
-                            var ev = bu.OptionList.Select(q => q.BuildingOptionGuid).Contains(storeGuid);
+                            var ev = bus.OptionList.Select(q => q.BuildingOptionGuid).Contains(storeGuid);
                             text = ev ? "✅" : "❌";
                         }
                         type = type.Replace(Replacor.TelegramBuilding.Store, text);
@@ -471,13 +478,14 @@ namespace Building
                     var type = list.FirstOrDefault(q => q.Contains(Replacor.TelegramBuilding.Balcony));
                     if (!string.IsNullOrEmpty(type))
                     {
+                        if (bus == null) bus = await BuildingBussines.GetAsync(bu.Guid);
                         var index = list.IndexOf(type);
                         type = type.Replace("\r", "");
                         var text = "";
-                        if (bu.OptionList == null || bu.OptionList.Count <= 0) text = "❌";
+                        if (bus.OptionList == null || bus.OptionList.Count <= 0) text = "❌";
                         else
                         {
-                            var ev = bu.OptionList.Select(q => q.BuildingOptionGuid).Contains(balconyGuid);
+                            var ev = bus.OptionList.Select(q => q.BuildingOptionGuid).Contains(balconyGuid);
                             text = ev ? "✅" : "❌";
                         }
                         type = type.Replace(Replacor.TelegramBuilding.Balcony, text);
@@ -489,6 +497,8 @@ namespace Building
                     var type = list.FirstOrDefault(q => q.Contains(Replacor.TelegramBuilding.OwnerName));
                     if (!string.IsNullOrEmpty(type))
                     {
+                        if (bus == null) bus = await BuildingBussines.GetAsync(bu.Guid);
+                        var owner = await PeoplesBussines.GetAsync(bus.OwnerGuid, bu?.Guid);
                         var index = list.IndexOf(type);
                         type = type.Replace("\r", "");
                         type = type.Replace(Replacor.TelegramBuilding.OwnerName, owner?.Name ?? "");
@@ -502,6 +512,8 @@ namespace Building
                     var type = list.FirstOrDefault(q => q.Contains(Replacor.TelegramBuilding.OwnerTell));
                     if (!string.IsNullOrEmpty(type))
                     {
+                        if (bus == null) bus = await BuildingBussines.GetAsync(bu.Guid);
+                        var owner = await PeoplesBussines.GetAsync(bus.OwnerGuid, bu?.Guid);
                         var index = list.IndexOf(type);
                         type = type.Replace("\r", "");
                         type = type.Replace(Replacor.TelegramBuilding.OwnerTell, owner?.FirstNumber ?? "");
@@ -528,13 +540,14 @@ namespace Building
                     var type = list.FirstOrDefault(q => q.Contains(Replacor.TelegramBuilding.OtherOptions));
                     if (!string.IsNullOrEmpty(type))
                     {
+                        if (bus == null) bus = await BuildingBussines.GetAsync(bu.Guid);
                         var index = list.IndexOf(type);
-                        if (bu.OptionList == null || bu.OptionList.Count <= 0)
+                        if (bus.OptionList == null || bus.OptionList.Count <= 0)
                             list[index] = "";
                         else
                         {
                             var str = "";
-                            foreach (var item in bu.OptionList)
+                            foreach (var item in bus.OptionList)
                                 str += (await BuildingOptionsBussines.GetAsync(item.Guid))?.Name + " 🔶 ";
                             type = type.Replace("\r", "");
                             type = type.Replace(Replacor.TelegramBuilding.OtherOptions, str);

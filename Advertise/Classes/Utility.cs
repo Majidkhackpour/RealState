@@ -18,6 +18,8 @@ using Advertise.ViewModels.Divar.Rent.Residential;
 using Advertise.ViewModels.Divar.Sell.Office;
 using Advertise.ViewModels.Divar.Sell.Residential;
 using EntityCache.Bussines;
+using EntityCache.Bussines.ReportBussines;
+using EntityCache.Mppings;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Services;
@@ -388,11 +390,12 @@ namespace Advertise.Classes
         #endregion
 
 
-        private static async Task<ReturnedSaveFuncInfo> SendDivarAdv(BuildingBussines bu, long simCardNumber, bool isGiveChat, string sender, int imageCount, string title, string content)
+        private static async Task<ReturnedSaveFuncInfo> SendDivarAdv(BuildingReportBussines bu, long simCardNumber, bool isGiveChat, string sender, int imageCount, string title, string content)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
+                var bus = await BuildingBussines.GetAsync(bu.Guid);
                 if (bu.Parent == null || bu.Parent == EnBuildingParent.None)
                 {
                     res.AddError("کاربری ملک معتبر نمی باشد");
@@ -400,25 +403,25 @@ namespace Advertise.Classes
                 }
                 if (bu.Parent == EnBuildingParent.RentAprtment || bu.Parent == EnBuildingParent.FullRentAprtment)
                 {
-                    var ret = new Divar_ResidentialApartmentRent(bu, imageCount, isGiveChat, sender, title, content);
+                    var ret = new Divar_ResidentialApartmentRent(bus, imageCount, isGiveChat, sender, title, content);
                     res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                     return res;
                 }
                 if (bu.Parent == EnBuildingParent.RentHome || bu.Parent == EnBuildingParent.FullRentHome)
                 {
-                    var ret = new Divar_ResidentialVillaRent(bu, imageCount, isGiveChat, sender, title, content);
+                    var ret = new Divar_ResidentialVillaRent(bus, imageCount, isGiveChat, sender, title, content);
                     res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                     return res;
                 }
                 if (bu.Parent == EnBuildingParent.RentOffice || bu.Parent == EnBuildingParent.FullRentOffice)
                 {
-                    var ret = new Divar_OfficeOfficeRent(bu, imageCount, isGiveChat, sender, title, content);
+                    var ret = new Divar_OfficeOfficeRent(bus, imageCount, isGiveChat, sender, title, content);
                     res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                     return res;
                 }
                 if (bu.Parent == EnBuildingParent.RentStore || bu.Parent == EnBuildingParent.FullRentStore)
                 {
-                    var ret = new Divar_OfficeStoreRent(bu, imageCount, isGiveChat, sender, title, content);
+                    var ret = new Divar_OfficeStoreRent(bus, imageCount, isGiveChat, sender, title, content);
                     res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                     return res;
                 }
@@ -430,7 +433,7 @@ namespace Advertise.Classes
                         bu.BuildingAccountTypeName.Contains("مرغداری") ||
                         bu.BuildingAccountTypeName.Contains("زراعی"))
                     {
-                        var ret = new Divar_OfficeKeshavarziRent(bu, imageCount, isGiveChat, sender, title, content);
+                        var ret = new Divar_OfficeKeshavarziRent(bus, imageCount, isGiveChat, sender, title, content);
                         res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                         return res;
                     }
@@ -438,31 +441,31 @@ namespace Advertise.Classes
                 }
                 if (bu.Parent == EnBuildingParent.SellAprtment)
                 {
-                    var ret = new Divar_ResidentialApartmentSell(bu, imageCount, isGiveChat, sender, title, content);
+                    var ret = new Divar_ResidentialApartmentSell(bus, imageCount, isGiveChat, sender, title, content);
                     res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                     return res;
                 }
                 if (bu.Parent == EnBuildingParent.SellHome || bu.Parent == EnBuildingParent.SellVilla)
                 {
-                    var ret = new Divar_ResidentialVillaSell(bu, imageCount, isGiveChat, sender, title, content);
+                    var ret = new Divar_ResidentialVillaSell(bus, imageCount, isGiveChat, sender, title, content);
                     res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                     return res;
                 }
                 if (bu.Parent == EnBuildingParent.SellOldHouse || bu.Parent == EnBuildingParent.SellLand)
                 {
-                    var ret = new Divar_ResidentialZaminSell(bu, imageCount, isGiveChat, sender, title, content);
+                    var ret = new Divar_ResidentialZaminSell(bus, imageCount, isGiveChat, sender, title, content);
                     res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                     return res;
                 }
                 if (bu.Parent == EnBuildingParent.SellOffice)
                 {
-                    var ret = new Divar_OfficeOfficeSell(bu, imageCount, isGiveChat, sender, title, content);
+                    var ret = new Divar_OfficeOfficeSell(bus, imageCount, isGiveChat, sender, title, content);
                     res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                     return res;
                 }
                 if (bu.Parent == EnBuildingParent.SellStore)
                 {
-                    var ret = new Divar_OfficeStoreSell(bu, imageCount, isGiveChat, sender, title, content);
+                    var ret = new Divar_OfficeStoreSell(bus, imageCount, isGiveChat, sender, title, content);
                     res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                     return res;
                 }
@@ -474,7 +477,7 @@ namespace Advertise.Classes
                         bu.BuildingAccountTypeName.Contains("مرغداری") ||
                         bu.BuildingAccountTypeName.Contains("زراعی"))
                     {
-                        var ret = new Divar_OfficeKeshavarziSell(bu, imageCount, isGiveChat, sender, title, content);
+                        var ret = new Divar_OfficeKeshavarziSell(bus, imageCount, isGiveChat, sender, title, content);
                         res.AddReturnedValue(await ret.SendAsync(simCardNumber));
                         return res;
                     }
@@ -597,8 +600,8 @@ namespace Advertise.Classes
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                if (type == AdvertiseType.Divar)
-                    res.AddReturnedValue(await SendDivarAdv(bu, simcard.Number, isGiveChat, sender, imageCount, title, content));
+                //if (type == AdvertiseType.Divar)
+                //    res.AddReturnedValue(await SendDivarAdv(bu, simcard.Number, isGiveChat, sender, imageCount, title, content));
 
                 //if (type == AdvertiseType.Sheypoor)
                 //    res.AddReturnedValue(await SendAdv(adv.value, number.Number, AdvertiseType.Sheypoor));

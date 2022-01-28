@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Building.Buildings;
 using EntityCache.Bussines;
+using EntityCache.Bussines.ReportBussines;
 using Services;
 using Services.FilterObjects;
 
@@ -85,17 +86,17 @@ namespace Building.UserControls.Contract.Rahn
                 };
                 var frm = new frmShowBuildings(true, filter);
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
-                var bu = await BuildingBussines.GetAsync(frm.SelectedGuid);
+                var bu = await BuildingReportBussines.GetAsync(frm.SelectedGuid);
                 if (bu == null) return;
                 RaiseBuildingSelect(frm.SelectedGuid);
-                Dong = bu.Dang;
+                Dong = (float) bu.Dang;
                 BuildingType = bu.BuildingTypeName;
                 Masahat = bu.Masahat > 0 ? bu.Masahat : bu.ZirBana;
                 Address = bu.Address;
                 Water = bu.Water ?? EnKhadamati.None;
                 Barq = bu.Barq ?? EnKhadamati.None;
                 Gas = bu.Gas ?? EnKhadamati.None;
-                TabaqeNo = bu.TabaqeNo;
+                TabaqeNo = (int) bu.TabaqeNo;
                 RoomCount = bu.RoomCount;
             }
             catch (Exception ex)

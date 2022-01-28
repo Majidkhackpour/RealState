@@ -46,6 +46,12 @@ namespace EntityCache.Bussines.ReportBussines
         public double TabaqeNo { get; set; }
         public EnBuildingSide Side { get; set; } = EnBuildingSide.None;
         public string SideName => Side.GetDisplay();
+        public string Hitting { get; set; }
+        public string Colling { get; set; }
+        public EnKhadamati? Water { get; set; }
+        public EnKhadamati? Gas { get; set; }
+        public EnKhadamati? Barq { get; set; }
+        public double Dang { get; set; }
 
 
         public static async Task<List<BuildingReportBussines>> GetAllAsync(BuildingFilter filters) => await UnitOfWork.Building.SearchAsync(Cache.ConnectionString, filters);

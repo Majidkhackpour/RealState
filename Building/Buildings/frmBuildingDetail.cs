@@ -63,12 +63,13 @@ namespace Building.Buildings
 
                 await GetContentAsync();
                 BuildingOptionBindingSource.DataSource = bu?.OptionList;
-                var desc = $"کد ملک:( {bu.Code} ) ** محدوده:( {bu.RegionName} ) ** آدرس:( {bu.Address} )";
+                var reg = await RegionsBussines.GetAsync(bu?.RegionGuid??Guid.Empty);
+                var desc = $"کد ملک:( {bu.Code} ) ** محدوده:( {reg?.Name} ) ** آدرس:( {bu.Address} )";
                 if (!_loadForCustomer && _isAddLog)
                 {
                     await UserLogBussines.SaveBuildingLogAsync(EnLogAction.ManagerView, bu.Guid, desc);
                     var city = await CitiesBussines.GetAsync(bu.CityGuid);
-                    lblAddress.Text = $@"{city.Name} - {bu.RegionName} - {bu.Address}";
+                    lblAddress.Text = $@"{city.Name} - {reg?.Name} - {bu.Address}";
                 }
                 else if (_loadForCustomer && _isAddLog)
                     await UserLogBussines.SaveBuildingLogAsync(EnLogAction.CustomerView, bu.Guid, desc);

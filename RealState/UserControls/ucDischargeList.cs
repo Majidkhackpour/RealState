@@ -37,7 +37,7 @@ namespace RealState.UserControls
                 bu.IsArchive = false;
                 bu.CreateDate = DateTime.Now;
                 bu.ServerStatus = ServerStatus.None;
-                var desc = $"کد ملک:( {bu.Code} ) ** محدوده:( {bu.RegionName} ) ** آدرس:( {bu.Address} )";
+                var desc = $"کد ملک:( {bu.Code} ) ** آدرس:( {bu.Address} )";
                 await UserLogBussines.SaveBuildingLogAsync(EnLogAction.RemoveFromArchive, bu.Guid, desc);
                 await bu.SaveAsync(false);
                 this.ShowMessage("ملک قرارداد موردنظر از بایگانی خارج شد");
