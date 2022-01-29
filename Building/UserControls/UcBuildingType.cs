@@ -61,6 +61,7 @@ namespace Building.UserControls
                     await FillBuildingWindowAsync();
                 if (value != null && value != Guid.Empty)
                     cmbWindow.SelectedValue = value;
+                else cmbWindow.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
