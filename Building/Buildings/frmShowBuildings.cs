@@ -31,6 +31,7 @@ namespace Building.Buildings
         public Guid SelectedGuid { get; set; }
         private IEnumerable<BuildingReportBussines> _list;
         private BuildingFilter filter;
+        private CancellationTokenSource _detailToken = new CancellationTokenSource();
 
 
         private void LoadData(string search = "")
@@ -473,6 +474,21 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private async Task ShowDetailAsync(Guid guid, CancellationToken token)
+        {
+            try
+            {
+                await Task.Delay(3000);
+                if (token.IsCancellationRequested) return;
+                var bu = await BuildingReportBussines.GetAsync(guid);
+                if (token.IsCancellationRequested || bu == null) return;
+                BeginInvoke(new MethodInvoker(() => ucBuildingDetail1.Building = bu));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
 
         public frmShowBuildings(bool _isShowMode, BuildingFilter _filter)
         {
@@ -688,7 +704,7 @@ namespace Building.Buildings
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var bu = await BuildingBussines.GetAsync(guid);
                 if (bu == null) return;
-                
+
                 if (bu.Parent != null && bu.Parent != EnBuildingParent.None)
                 {
                     var frm = new frmBuilding(bu);
@@ -1157,7 +1173,21 @@ namespace Building.Buildings
         }
         private void DGrid_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
+            try
+            {
+                ucBuildingDetail1.Building = null;
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
 
+                _detailToken?.Cancel();
+                _detailToken = new CancellationTokenSource();
+                var token = _detailToken.Token;
+                Task.Run(() => ShowDetailAsync(guid, token));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
         private async void mnuPrintInherit_Click(object sender, EventArgs e)
         {

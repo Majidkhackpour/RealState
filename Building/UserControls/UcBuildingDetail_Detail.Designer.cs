@@ -85,7 +85,7 @@ namespace Building.UserControls
             // lblValue
             // 
             this.lblValue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblValue.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblValue.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblValue.Location = new System.Drawing.Point(0, 0);
             this.lblValue.Name = "lblValue";
             this.lblValue.Size = new System.Drawing.Size(70, 29);

@@ -765,8 +765,8 @@ namespace EntityCache.SqlServerPersistence
                 if (dr["Gas"] != DBNull.Value) res.Gas = (EnKhadamati)dr["Gas"];
                 if (dr["Hiting"] != DBNull.Value) res.Hitting = dr["Hiting"].ToString();
                 if (dr["Colling"] != DBNull.Value) res.Colling = dr["Colling"].ToString();
-                if (dr["ZoncanName"] != DBNull.Value) res.WindowName = dr["ZoncanName"].ToString();
-                if (dr["WindowName"] != DBNull.Value) res.ZoncanName = dr["WindowName"].ToString();
+                if (dr["ZoncanName"] != DBNull.Value) res.ZoncanName = dr["ZoncanName"].ToString();
+                if (dr["WindowName"] != DBNull.Value) res.WindowName = dr["WindowName"].ToString();
             }
             catch (Exception ex)
             {
