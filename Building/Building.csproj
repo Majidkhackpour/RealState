@@ -1246,6 +1246,18 @@
     <Compile Include="UserControls\UcBuildingType.Designer.cs">
       <DependentUpon>UcBuildingType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Window\frmWindowMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Window\frmWindowMain.Designer.cs">
+      <DependentUpon>frmWindowMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Window\frmShowWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Window\frmShowWindow.Designer.cs">
+      <DependentUpon>frmShowWindow.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -1729,6 +1741,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcBuildingType.resx">
       <DependentUpon>UcBuildingType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Window\frmWindowMain.resx">
+      <DependentUpon>frmWindowMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Window\frmShowWindow.resx">
+      <DependentUpon>frmShowWindow.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -58,6 +58,7 @@ using User;
 using User.Advisor;
 using WebHesabBussines;
 using WindowsSerivces;
+using Building.Window;
 
 namespace RealState
 {
@@ -205,6 +206,7 @@ namespace RealState
                     case EnForms.Advertise: frm = new frmRobotPanel(); break;
                     case EnForms.BackUp: frm = new frmBackUpLog(); break;
                     case EnForms.Restore: frm = new frmBackUpLog(); break;
+                    case EnForms.BuildingWindow: frm = new frmShowWindow(); break;
                     case EnForms.Advance:
                         {
                             frm = new frmManagementPass();
@@ -650,7 +652,7 @@ namespace RealState
             }
         }
         private Task PeoplesBussines_OnSaved() => _ = Task.Run(LoadDashboard);
-        private void lblBaseInfo_Click(object sender, System.EventArgs e) => grpBaseInfo.Height = grpBaseInfo.Height == 48 ? 481 : 48;
+        private void lblBaseInfo_Click(object sender, System.EventArgs e) => grpBaseInfo.Height = grpBaseInfo.Height == 48 ? 526 : 48;
         private void lblBuildingMenu_Click(object sender, EventArgs e) => grpBuilding.Height = grpBuilding.Height == 48 ? 266 : 48;
         private void lblUsers_Click(object sender, EventArgs e) => grpUsers.Height = grpUsers.Height == 48 ? 156 : 48;
         private void lblAccounting_Click(object sender, EventArgs e) => grpAccounting.Height = grpAccounting.Height == 48 ? 481 : 48;
@@ -844,5 +846,6 @@ namespace RealState
             }
         }
         private void timerCheckInternet_Tick(object sender, EventArgs e) => _ = Task.Run(CheckInternetAsync);
+        private void lblWindow_Click(object sender, EventArgs e) => DisplayFrm(EnForms.BuildingWindow);
     }
 }

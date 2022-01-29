@@ -39,13 +39,14 @@ namespace RealState
             this.lblUserName = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.lblDivar = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.grpBaseInfo = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.groupPanel3 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.lblBaseInfo = new System.Windows.Forms.Label();
             this.groupPanel9 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.lblPeoples = new System.Windows.Forms.Label();
+            this.groupPanel27 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.lblWindow = new System.Windows.Forms.Label();
             this.groupPanel20 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.lblBuildingType = new System.Windows.Forms.Label();
             this.groupPanel10 = new DevComponents.DotNetBar.Controls.GroupPanel();
@@ -92,6 +93,32 @@ namespace RealState
             this.lblAdvisor = new System.Windows.Forms.Label();
             this.groupPanel28 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.lblUserAccess = new System.Windows.Forms.Label();
+            this.grpOptions = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.groupPanel6 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.lblOptions = new System.Windows.Forms.Label();
+            this.groupPanel45 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.lblSetting = new System.Windows.Forms.Label();
+            this.groupPanel46 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.groupPanel47 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.lblPhoneBook = new System.Windows.Forms.Label();
+            this.groupPanel48 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.lblAdvance = new System.Windows.Forms.Label();
+            this.groupPanel49 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.lblNote = new System.Windows.Forms.Label();
+            this.groupPanel50 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.lblErtegha = new System.Windows.Forms.Label();
+            this.groupPanel51 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.lblSmsPanel = new System.Windows.Forms.Label();
+            this.groupPanel52 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.lblBazsazi = new System.Windows.Forms.Label();
+            this.groupPanel53 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.lblSendSms = new System.Windows.Forms.Label();
+            this.groupPanel54 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.lblRestore = new System.Windows.Forms.Label();
+            this.groupPanel55 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.lblAdvertise = new System.Windows.Forms.Label();
+            this.groupPanel56 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.lblBackUp = new System.Windows.Forms.Label();
             this.grpAccounting = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.groupPanel7 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.lblAccounting = new System.Windows.Forms.Label();
@@ -119,32 +146,7 @@ namespace RealState
             this.lblKolMoein = new System.Windows.Forms.Label();
             this.groupPanel44 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.lblTafsil = new System.Windows.Forms.Label();
-            this.grpOptions = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.groupPanel6 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.lblOptions = new System.Windows.Forms.Label();
-            this.groupPanel45 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.lblSetting = new System.Windows.Forms.Label();
-            this.groupPanel46 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.groupPanel47 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.lblPhoneBook = new System.Windows.Forms.Label();
-            this.groupPanel48 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.lblAdvance = new System.Windows.Forms.Label();
-            this.groupPanel49 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.lblNote = new System.Windows.Forms.Label();
-            this.groupPanel50 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.lblErtegha = new System.Windows.Forms.Label();
-            this.groupPanel51 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.lblSmsPanel = new System.Windows.Forms.Label();
-            this.groupPanel52 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.lblBazsazi = new System.Windows.Forms.Label();
-            this.groupPanel53 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.lblSendSms = new System.Windows.Forms.Label();
-            this.groupPanel54 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.lblRestore = new System.Windows.Forms.Label();
-            this.groupPanel55 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.lblAdvertise = new System.Windows.Forms.Label();
-            this.groupPanel56 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.lblBackUp = new System.Windows.Forms.Label();
+            this.lblDivar = new System.Windows.Forms.Label();
             this.lblSecond = new System.Windows.Forms.Label();
             this.lblMinute = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
@@ -222,6 +224,7 @@ namespace RealState
             this.grpBaseInfo.SuspendLayout();
             this.groupPanel3.SuspendLayout();
             this.groupPanel9.SuspendLayout();
+            this.groupPanel27.SuspendLayout();
             this.groupPanel20.SuspendLayout();
             this.groupPanel10.SuspendLayout();
             this.groupPanel19.SuspendLayout();
@@ -246,6 +249,19 @@ namespace RealState
             this.groupPanel24.SuspendLayout();
             this.groupPanel26.SuspendLayout();
             this.groupPanel28.SuspendLayout();
+            this.grpOptions.SuspendLayout();
+            this.groupPanel6.SuspendLayout();
+            this.groupPanel45.SuspendLayout();
+            this.groupPanel47.SuspendLayout();
+            this.groupPanel48.SuspendLayout();
+            this.groupPanel49.SuspendLayout();
+            this.groupPanel50.SuspendLayout();
+            this.groupPanel51.SuspendLayout();
+            this.groupPanel52.SuspendLayout();
+            this.groupPanel53.SuspendLayout();
+            this.groupPanel54.SuspendLayout();
+            this.groupPanel55.SuspendLayout();
+            this.groupPanel56.SuspendLayout();
             this.grpAccounting.SuspendLayout();
             this.groupPanel7.SuspendLayout();
             this.groupPanel30.SuspendLayout();
@@ -260,20 +276,6 @@ namespace RealState
             this.groupPanel42.SuspendLayout();
             this.groupPanel43.SuspendLayout();
             this.groupPanel44.SuspendLayout();
-            this.grpOptions.SuspendLayout();
-            this.groupPanel6.SuspendLayout();
-            this.groupPanel45.SuspendLayout();
-            this.groupPanel46.SuspendLayout();
-            this.groupPanel47.SuspendLayout();
-            this.groupPanel48.SuspendLayout();
-            this.groupPanel49.SuspendLayout();
-            this.groupPanel50.SuspendLayout();
-            this.groupPanel51.SuspendLayout();
-            this.groupPanel52.SuspendLayout();
-            this.groupPanel53.SuspendLayout();
-            this.groupPanel54.SuspendLayout();
-            this.groupPanel55.SuspendLayout();
-            this.groupPanel56.SuspendLayout();
             this.groupPanel2.SuspendLayout();
             this.groupPanel4.SuspendLayout();
             this.groupPanel67.SuspendLayout();
@@ -468,18 +470,6 @@ namespace RealState
             this.groupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel1.TabIndex = 55715;
             // 
-            // lblDivar
-            // 
-            this.lblDivar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDivar.BackColor = System.Drawing.Color.Transparent;
-            this.lblDivar.Font = new System.Drawing.Font("B Yekan", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblDivar.Location = new System.Drawing.Point(3, 63);
-            this.lblDivar.Name = "lblDivar";
-            this.lblDivar.Size = new System.Drawing.Size(278, 29);
-            this.lblDivar.TabIndex = 55728;
-            this.lblDivar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoScroll = true;
@@ -503,6 +493,7 @@ namespace RealState
             this.grpBaseInfo.CanvasColor = System.Drawing.Color.Transparent;
             this.grpBaseInfo.Controls.Add(this.groupPanel3);
             this.grpBaseInfo.Controls.Add(this.groupPanel9);
+            this.grpBaseInfo.Controls.Add(this.groupPanel27);
             this.grpBaseInfo.Controls.Add(this.groupPanel20);
             this.grpBaseInfo.Controls.Add(this.groupPanel10);
             this.grpBaseInfo.Controls.Add(this.groupPanel19);
@@ -518,7 +509,7 @@ namespace RealState
             this.grpBaseInfo.DisabledBackColor = System.Drawing.Color.Empty;
             this.grpBaseInfo.Location = new System.Drawing.Point(3, 3);
             this.grpBaseInfo.Name = "grpBaseInfo";
-            this.grpBaseInfo.Size = new System.Drawing.Size(253, 480);
+            this.grpBaseInfo.Size = new System.Drawing.Size(253, 526);
             // 
             // 
             // 
@@ -622,6 +613,50 @@ namespace RealState
             this.lblPeoples.Text = "مدیریت اشخاص";
             this.lblPeoples.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblPeoples.Click += new System.EventHandler(this.lblPeoples_Click);
+            // 
+            // groupPanel27
+            // 
+            this.groupPanel27.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel27.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel27.Controls.Add(this.lblWindow);
+            this.groupPanel27.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.groupPanel27.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel27.Location = new System.Drawing.Point(3, 481);
+            this.groupPanel27.Name = "groupPanel27";
+            this.groupPanel27.Size = new System.Drawing.Size(169, 30);
+            // 
+            // 
+            // 
+            this.groupPanel27.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel27.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel27.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.groupPanel27.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.groupPanel27.Style.CornerDiameter = 10;
+            this.groupPanel27.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel27.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel27.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel27.TabIndex = 55730;
+            // 
+            // lblWindow
+            // 
+            this.lblWindow.BackColor = System.Drawing.Color.Transparent;
+            this.lblWindow.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblWindow.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblWindow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lblWindow.Location = new System.Drawing.Point(0, 0);
+            this.lblWindow.Name = "lblWindow";
+            this.lblWindow.Size = new System.Drawing.Size(169, 30);
+            this.lblWindow.TabIndex = 0;
+            this.lblWindow.Text = "نوع پنجره";
+            this.lblWindow.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblWindow.Click += new System.EventHandler(this.lblWindow_Click);
             // 
             // groupPanel20
             // 
@@ -1121,7 +1156,7 @@ namespace RealState
             this.grpBuilding.Controls.Add(this.groupPanel34);
             this.grpBuilding.Cursor = System.Windows.Forms.Cursors.Default;
             this.grpBuilding.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grpBuilding.Location = new System.Drawing.Point(3, 489);
+            this.grpBuilding.Location = new System.Drawing.Point(3, 535);
             this.grpBuilding.Name = "grpBuilding";
             this.grpBuilding.Size = new System.Drawing.Size(253, 266);
             // 
@@ -1459,7 +1494,7 @@ namespace RealState
             this.grpUsers.Controls.Add(this.groupPanel28);
             this.grpUsers.Cursor = System.Windows.Forms.Cursors.Default;
             this.grpUsers.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grpUsers.Location = new System.Drawing.Point(3, 761);
+            this.grpUsers.Location = new System.Drawing.Point(3, 807);
             this.grpUsers.Name = "grpUsers";
             this.grpUsers.Size = new System.Drawing.Size(253, 156);
             // 
@@ -1664,6 +1699,602 @@ namespace RealState
             this.lblUserAccess.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblUserAccess.Click += new System.EventHandler(this.lblUserAccess_Click);
             // 
+            // grpOptions
+            // 
+            this.grpOptions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpOptions.CanvasColor = System.Drawing.Color.Transparent;
+            this.grpOptions.Controls.Add(this.groupPanel6);
+            this.grpOptions.Controls.Add(this.groupPanel45);
+            this.grpOptions.Controls.Add(this.groupPanel46);
+            this.grpOptions.Controls.Add(this.groupPanel47);
+            this.grpOptions.Controls.Add(this.groupPanel48);
+            this.grpOptions.Controls.Add(this.groupPanel49);
+            this.grpOptions.Controls.Add(this.groupPanel50);
+            this.grpOptions.Controls.Add(this.groupPanel51);
+            this.grpOptions.Controls.Add(this.groupPanel52);
+            this.grpOptions.Controls.Add(this.groupPanel53);
+            this.grpOptions.Controls.Add(this.groupPanel54);
+            this.grpOptions.Controls.Add(this.groupPanel55);
+            this.grpOptions.Controls.Add(this.groupPanel56);
+            this.grpOptions.Cursor = System.Windows.Forms.Cursors.Default;
+            this.grpOptions.DisabledBackColor = System.Drawing.Color.Empty;
+            this.grpOptions.Location = new System.Drawing.Point(3, 969);
+            this.grpOptions.Name = "grpOptions";
+            this.grpOptions.Size = new System.Drawing.Size(253, 481);
+            // 
+            // 
+            // 
+            this.grpOptions.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(253)))));
+            this.grpOptions.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(253)))));
+            this.grpOptions.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.grpOptions.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.grpOptions.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.grpOptions.TabIndex = 55720;
+            // 
+            // groupPanel6
+            // 
+            this.groupPanel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel6.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel6.Controls.Add(this.lblOptions);
+            this.groupPanel6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.groupPanel6.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel6.Location = new System.Drawing.Point(3, 4);
+            this.groupPanel6.Name = "groupPanel6";
+            this.groupPanel6.Size = new System.Drawing.Size(247, 39);
+            // 
+            // 
+            // 
+            this.groupPanel6.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
+            this.groupPanel6.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
+            this.groupPanel6.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.groupPanel6.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.groupPanel6.Style.CornerDiameter = 15;
+            this.groupPanel6.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel6.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel6.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel6.TabIndex = 55718;
+            // 
+            // lblOptions
+            // 
+            this.lblOptions.BackColor = System.Drawing.Color.Transparent;
+            this.lblOptions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblOptions.Font = new System.Drawing.Font("B Yekan", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblOptions.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.lblOptions.Location = new System.Drawing.Point(0, 0);
+            this.lblOptions.Name = "lblOptions";
+            this.lblOptions.Size = new System.Drawing.Size(247, 39);
+            this.lblOptions.TabIndex = 0;
+            this.lblOptions.Text = "امکانات";
+            this.lblOptions.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblOptions.Click += new System.EventHandler(this.lblOptions_Click);
+            // 
+            // groupPanel45
+            // 
+            this.groupPanel45.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel45.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel45.Controls.Add(this.lblSetting);
+            this.groupPanel45.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.groupPanel45.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel45.Location = new System.Drawing.Point(3, 49);
+            this.groupPanel45.Name = "groupPanel45";
+            this.groupPanel45.Size = new System.Drawing.Size(169, 30);
+            // 
+            // 
+            // 
+            this.groupPanel45.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel45.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel45.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.groupPanel45.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.groupPanel45.Style.CornerDiameter = 10;
+            this.groupPanel45.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel45.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel45.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel45.TabIndex = 55719;
+            // 
+            // lblSetting
+            // 
+            this.lblSetting.BackColor = System.Drawing.Color.Transparent;
+            this.lblSetting.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblSetting.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblSetting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lblSetting.Location = new System.Drawing.Point(0, 0);
+            this.lblSetting.Name = "lblSetting";
+            this.lblSetting.Size = new System.Drawing.Size(169, 30);
+            this.lblSetting.TabIndex = 0;
+            this.lblSetting.Text = "تنظیمات";
+            this.lblSetting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblSetting.Click += new System.EventHandler(this.lblSetting_Click);
+            // 
+            // groupPanel46
+            // 
+            this.groupPanel46.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel46.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel46.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.groupPanel46.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel46.Location = new System.Drawing.Point(3, 445);
+            this.groupPanel46.Name = "groupPanel46";
+            this.groupPanel46.Size = new System.Drawing.Size(169, 30);
+            // 
+            // 
+            // 
+            this.groupPanel46.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel46.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel46.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.groupPanel46.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.groupPanel46.Style.CornerDiameter = 10;
+            this.groupPanel46.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel46.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel46.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel46.TabIndex = 55730;
+            // 
+            // groupPanel47
+            // 
+            this.groupPanel47.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel47.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel47.Controls.Add(this.lblPhoneBook);
+            this.groupPanel47.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.groupPanel47.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel47.Location = new System.Drawing.Point(3, 85);
+            this.groupPanel47.Name = "groupPanel47";
+            this.groupPanel47.Size = new System.Drawing.Size(169, 30);
+            // 
+            // 
+            // 
+            this.groupPanel47.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel47.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel47.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.groupPanel47.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.groupPanel47.Style.CornerDiameter = 10;
+            this.groupPanel47.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel47.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel47.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel47.TabIndex = 55720;
+            // 
+            // lblPhoneBook
+            // 
+            this.lblPhoneBook.BackColor = System.Drawing.Color.Transparent;
+            this.lblPhoneBook.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPhoneBook.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblPhoneBook.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lblPhoneBook.Location = new System.Drawing.Point(0, 0);
+            this.lblPhoneBook.Name = "lblPhoneBook";
+            this.lblPhoneBook.Size = new System.Drawing.Size(169, 30);
+            this.lblPhoneBook.TabIndex = 0;
+            this.lblPhoneBook.Text = "دفترچه تلفن";
+            this.lblPhoneBook.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblPhoneBook.Click += new System.EventHandler(this.lblPhoneBook_Click);
+            // 
+            // groupPanel48
+            // 
+            this.groupPanel48.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel48.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel48.Controls.Add(this.lblAdvance);
+            this.groupPanel48.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.groupPanel48.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel48.Location = new System.Drawing.Point(3, 409);
+            this.groupPanel48.Name = "groupPanel48";
+            this.groupPanel48.Size = new System.Drawing.Size(169, 30);
+            // 
+            // 
+            // 
+            this.groupPanel48.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel48.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel48.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.groupPanel48.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.groupPanel48.Style.CornerDiameter = 10;
+            this.groupPanel48.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel48.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel48.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel48.TabIndex = 55729;
+            // 
+            // lblAdvance
+            // 
+            this.lblAdvance.BackColor = System.Drawing.Color.Transparent;
+            this.lblAdvance.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblAdvance.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblAdvance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lblAdvance.Location = new System.Drawing.Point(0, 0);
+            this.lblAdvance.Name = "lblAdvance";
+            this.lblAdvance.Size = new System.Drawing.Size(169, 30);
+            this.lblAdvance.TabIndex = 0;
+            this.lblAdvance.Text = "مدیریت ویژه";
+            this.lblAdvance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblAdvance.Click += new System.EventHandler(this.lblAdvance_Click);
+            // 
+            // groupPanel49
+            // 
+            this.groupPanel49.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel49.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel49.Controls.Add(this.lblNote);
+            this.groupPanel49.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.groupPanel49.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel49.Location = new System.Drawing.Point(3, 121);
+            this.groupPanel49.Name = "groupPanel49";
+            this.groupPanel49.Size = new System.Drawing.Size(169, 30);
+            // 
+            // 
+            // 
+            this.groupPanel49.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel49.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel49.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.groupPanel49.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.groupPanel49.Style.CornerDiameter = 10;
+            this.groupPanel49.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel49.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel49.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel49.TabIndex = 55721;
+            // 
+            // lblNote
+            // 
+            this.lblNote.BackColor = System.Drawing.Color.Transparent;
+            this.lblNote.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblNote.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblNote.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lblNote.Location = new System.Drawing.Point(0, 0);
+            this.lblNote.Name = "lblNote";
+            this.lblNote.Size = new System.Drawing.Size(169, 30);
+            this.lblNote.TabIndex = 0;
+            this.lblNote.Text = "دفترچه یادداشت";
+            this.lblNote.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblNote.Click += new System.EventHandler(this.lblNote_Click);
+            // 
+            // groupPanel50
+            // 
+            this.groupPanel50.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel50.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel50.Controls.Add(this.lblErtegha);
+            this.groupPanel50.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.groupPanel50.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel50.Location = new System.Drawing.Point(3, 373);
+            this.groupPanel50.Name = "groupPanel50";
+            this.groupPanel50.Size = new System.Drawing.Size(169, 30);
+            // 
+            // 
+            // 
+            this.groupPanel50.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel50.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel50.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.groupPanel50.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.groupPanel50.Style.CornerDiameter = 10;
+            this.groupPanel50.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel50.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel50.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel50.TabIndex = 55728;
+            // 
+            // lblErtegha
+            // 
+            this.lblErtegha.BackColor = System.Drawing.Color.Transparent;
+            this.lblErtegha.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblErtegha.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblErtegha.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lblErtegha.Location = new System.Drawing.Point(0, 0);
+            this.lblErtegha.Name = "lblErtegha";
+            this.lblErtegha.Size = new System.Drawing.Size(169, 30);
+            this.lblErtegha.TabIndex = 0;
+            this.lblErtegha.Text = "ارتقای نسخه";
+            this.lblErtegha.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblErtegha.Click += new System.EventHandler(this.lblErtegha_Click);
+            // 
+            // groupPanel51
+            // 
+            this.groupPanel51.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel51.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel51.Controls.Add(this.lblSmsPanel);
+            this.groupPanel51.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.groupPanel51.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel51.Location = new System.Drawing.Point(3, 157);
+            this.groupPanel51.Name = "groupPanel51";
+            this.groupPanel51.Size = new System.Drawing.Size(169, 30);
+            // 
+            // 
+            // 
+            this.groupPanel51.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel51.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel51.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.groupPanel51.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.groupPanel51.Style.CornerDiameter = 10;
+            this.groupPanel51.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel51.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel51.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel51.TabIndex = 55722;
+            // 
+            // lblSmsPanel
+            // 
+            this.lblSmsPanel.BackColor = System.Drawing.Color.Transparent;
+            this.lblSmsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblSmsPanel.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblSmsPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lblSmsPanel.Location = new System.Drawing.Point(0, 0);
+            this.lblSmsPanel.Name = "lblSmsPanel";
+            this.lblSmsPanel.Size = new System.Drawing.Size(169, 30);
+            this.lblSmsPanel.TabIndex = 0;
+            this.lblSmsPanel.Text = "مدیریت پنل های پیامک";
+            this.lblSmsPanel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblSmsPanel.Click += new System.EventHandler(this.lblSmsPanel_Click);
+            // 
+            // groupPanel52
+            // 
+            this.groupPanel52.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel52.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel52.Controls.Add(this.lblBazsazi);
+            this.groupPanel52.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.groupPanel52.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel52.Location = new System.Drawing.Point(3, 337);
+            this.groupPanel52.Name = "groupPanel52";
+            this.groupPanel52.Size = new System.Drawing.Size(169, 30);
+            // 
+            // 
+            // 
+            this.groupPanel52.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel52.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel52.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.groupPanel52.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.groupPanel52.Style.CornerDiameter = 10;
+            this.groupPanel52.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel52.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel52.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel52.TabIndex = 55727;
+            // 
+            // lblBazsazi
+            // 
+            this.lblBazsazi.BackColor = System.Drawing.Color.Transparent;
+            this.lblBazsazi.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblBazsazi.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblBazsazi.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lblBazsazi.Location = new System.Drawing.Point(0, 0);
+            this.lblBazsazi.Name = "lblBazsazi";
+            this.lblBazsazi.Size = new System.Drawing.Size(169, 30);
+            this.lblBazsazi.TabIndex = 0;
+            this.lblBazsazi.Text = "بازسازی اطلاعات";
+            this.lblBazsazi.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblBazsazi.Click += new System.EventHandler(this.lblBazsazi_Click);
+            // 
+            // groupPanel53
+            // 
+            this.groupPanel53.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel53.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel53.Controls.Add(this.lblSendSms);
+            this.groupPanel53.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.groupPanel53.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel53.Location = new System.Drawing.Point(3, 193);
+            this.groupPanel53.Name = "groupPanel53";
+            this.groupPanel53.Size = new System.Drawing.Size(169, 30);
+            // 
+            // 
+            // 
+            this.groupPanel53.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel53.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel53.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.groupPanel53.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.groupPanel53.Style.CornerDiameter = 10;
+            this.groupPanel53.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel53.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel53.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel53.TabIndex = 55723;
+            // 
+            // lblSendSms
+            // 
+            this.lblSendSms.BackColor = System.Drawing.Color.Transparent;
+            this.lblSendSms.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblSendSms.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblSendSms.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lblSendSms.Location = new System.Drawing.Point(0, 0);
+            this.lblSendSms.Name = "lblSendSms";
+            this.lblSendSms.Size = new System.Drawing.Size(169, 30);
+            this.lblSendSms.TabIndex = 0;
+            this.lblSendSms.Text = "ارسال پیامک";
+            this.lblSendSms.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblSendSms.Click += new System.EventHandler(this.lblSendSms_Click);
+            // 
+            // groupPanel54
+            // 
+            this.groupPanel54.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel54.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel54.Controls.Add(this.lblRestore);
+            this.groupPanel54.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.groupPanel54.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel54.Location = new System.Drawing.Point(3, 301);
+            this.groupPanel54.Name = "groupPanel54";
+            this.groupPanel54.Size = new System.Drawing.Size(169, 30);
+            // 
+            // 
+            // 
+            this.groupPanel54.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel54.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel54.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.groupPanel54.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.groupPanel54.Style.CornerDiameter = 10;
+            this.groupPanel54.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel54.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel54.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel54.TabIndex = 55726;
+            // 
+            // lblRestore
+            // 
+            this.lblRestore.BackColor = System.Drawing.Color.Transparent;
+            this.lblRestore.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblRestore.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblRestore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lblRestore.Location = new System.Drawing.Point(0, 0);
+            this.lblRestore.Name = "lblRestore";
+            this.lblRestore.Size = new System.Drawing.Size(169, 30);
+            this.lblRestore.TabIndex = 0;
+            this.lblRestore.Text = "بازگردانی فایل پشتیبان";
+            this.lblRestore.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblRestore.Click += new System.EventHandler(this.lblRestore_Click);
+            // 
+            // groupPanel55
+            // 
+            this.groupPanel55.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel55.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel55.Controls.Add(this.lblAdvertise);
+            this.groupPanel55.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.groupPanel55.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel55.Location = new System.Drawing.Point(3, 229);
+            this.groupPanel55.Name = "groupPanel55";
+            this.groupPanel55.Size = new System.Drawing.Size(169, 30);
+            // 
+            // 
+            // 
+            this.groupPanel55.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel55.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel55.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.groupPanel55.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.groupPanel55.Style.CornerDiameter = 10;
+            this.groupPanel55.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel55.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel55.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel55.TabIndex = 55724;
+            // 
+            // lblAdvertise
+            // 
+            this.lblAdvertise.BackColor = System.Drawing.Color.Transparent;
+            this.lblAdvertise.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblAdvertise.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblAdvertise.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lblAdvertise.Location = new System.Drawing.Point(0, 0);
+            this.lblAdvertise.Name = "lblAdvertise";
+            this.lblAdvertise.Size = new System.Drawing.Size(169, 30);
+            this.lblAdvertise.TabIndex = 0;
+            this.lblAdvertise.Text = "آگهی تبلیغاتی";
+            this.lblAdvertise.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblAdvertise.Click += new System.EventHandler(this.lblAdvertise_Click);
+            // 
+            // groupPanel56
+            // 
+            this.groupPanel56.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel56.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel56.Controls.Add(this.lblBackUp);
+            this.groupPanel56.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.groupPanel56.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel56.Location = new System.Drawing.Point(3, 265);
+            this.groupPanel56.Name = "groupPanel56";
+            this.groupPanel56.Size = new System.Drawing.Size(169, 30);
+            // 
+            // 
+            // 
+            this.groupPanel56.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel56.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
+            this.groupPanel56.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.groupPanel56.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.groupPanel56.Style.CornerDiameter = 10;
+            this.groupPanel56.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.groupPanel56.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel56.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel56.TabIndex = 55725;
+            // 
+            // lblBackUp
+            // 
+            this.lblBackUp.BackColor = System.Drawing.Color.Transparent;
+            this.lblBackUp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblBackUp.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblBackUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lblBackUp.Location = new System.Drawing.Point(0, 0);
+            this.lblBackUp.Name = "lblBackUp";
+            this.lblBackUp.Size = new System.Drawing.Size(169, 30);
+            this.lblBackUp.TabIndex = 0;
+            this.lblBackUp.Text = "پشتیبان گیری";
+            this.lblBackUp.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblBackUp.Click += new System.EventHandler(this.lblBackUp_Click);
+            // 
             // grpAccounting
             // 
             this.grpAccounting.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1684,7 +2315,7 @@ namespace RealState
             this.grpAccounting.Controls.Add(this.groupPanel44);
             this.grpAccounting.Cursor = System.Windows.Forms.Cursors.Default;
             this.grpAccounting.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grpAccounting.Location = new System.Drawing.Point(3, 1410);
+            this.grpAccounting.Location = new System.Drawing.Point(3, 1456);
             this.grpAccounting.Name = "grpAccounting";
             this.grpAccounting.Size = new System.Drawing.Size(253, 481);
             // 
@@ -2273,601 +2904,17 @@ namespace RealState
             this.lblTafsil.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblTafsil.Click += new System.EventHandler(this.lblTafsil_Click);
             // 
-            // grpOptions
+            // lblDivar
             // 
-            this.grpOptions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblDivar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpOptions.CanvasColor = System.Drawing.Color.Transparent;
-            this.grpOptions.Controls.Add(this.groupPanel6);
-            this.grpOptions.Controls.Add(this.groupPanel45);
-            this.grpOptions.Controls.Add(this.groupPanel46);
-            this.grpOptions.Controls.Add(this.groupPanel47);
-            this.grpOptions.Controls.Add(this.groupPanel48);
-            this.grpOptions.Controls.Add(this.groupPanel49);
-            this.grpOptions.Controls.Add(this.groupPanel50);
-            this.grpOptions.Controls.Add(this.groupPanel51);
-            this.grpOptions.Controls.Add(this.groupPanel52);
-            this.grpOptions.Controls.Add(this.groupPanel53);
-            this.grpOptions.Controls.Add(this.groupPanel54);
-            this.grpOptions.Controls.Add(this.groupPanel55);
-            this.grpOptions.Controls.Add(this.groupPanel56);
-            this.grpOptions.Cursor = System.Windows.Forms.Cursors.Default;
-            this.grpOptions.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grpOptions.Location = new System.Drawing.Point(3, 923);
-            this.grpOptions.Name = "grpOptions";
-            this.grpOptions.Size = new System.Drawing.Size(253, 481);
-            // 
-            // 
-            // 
-            this.grpOptions.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(253)))));
-            this.grpOptions.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(253)))));
-            this.grpOptions.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.grpOptions.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.grpOptions.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.grpOptions.TabIndex = 55720;
-            // 
-            // groupPanel6
-            // 
-            this.groupPanel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupPanel6.CanvasColor = System.Drawing.Color.Transparent;
-            this.groupPanel6.Controls.Add(this.lblOptions);
-            this.groupPanel6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.groupPanel6.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel6.Location = new System.Drawing.Point(3, 4);
-            this.groupPanel6.Name = "groupPanel6";
-            this.groupPanel6.Size = new System.Drawing.Size(247, 39);
-            // 
-            // 
-            // 
-            this.groupPanel6.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
-            this.groupPanel6.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(221)))), ((int)(((byte)(251)))));
-            this.groupPanel6.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.groupPanel6.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.groupPanel6.Style.CornerDiameter = 15;
-            this.groupPanel6.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            // 
-            // 
-            // 
-            this.groupPanel6.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.groupPanel6.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel6.TabIndex = 55718;
-            // 
-            // lblOptions
-            // 
-            this.lblOptions.BackColor = System.Drawing.Color.Transparent;
-            this.lblOptions.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblOptions.Font = new System.Drawing.Font("B Yekan", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblOptions.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.lblOptions.Location = new System.Drawing.Point(0, 0);
-            this.lblOptions.Name = "lblOptions";
-            this.lblOptions.Size = new System.Drawing.Size(247, 39);
-            this.lblOptions.TabIndex = 0;
-            this.lblOptions.Text = "امکانات";
-            this.lblOptions.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblOptions.Click += new System.EventHandler(this.lblOptions_Click);
-            // 
-            // groupPanel45
-            // 
-            this.groupPanel45.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupPanel45.CanvasColor = System.Drawing.Color.Transparent;
-            this.groupPanel45.Controls.Add(this.lblSetting);
-            this.groupPanel45.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.groupPanel45.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel45.Location = new System.Drawing.Point(3, 49);
-            this.groupPanel45.Name = "groupPanel45";
-            this.groupPanel45.Size = new System.Drawing.Size(169, 30);
-            // 
-            // 
-            // 
-            this.groupPanel45.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
-            this.groupPanel45.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
-            this.groupPanel45.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.groupPanel45.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.groupPanel45.Style.CornerDiameter = 10;
-            this.groupPanel45.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            // 
-            // 
-            // 
-            this.groupPanel45.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.groupPanel45.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel45.TabIndex = 55719;
-            // 
-            // lblSetting
-            // 
-            this.lblSetting.BackColor = System.Drawing.Color.Transparent;
-            this.lblSetting.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblSetting.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblSetting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblSetting.Location = new System.Drawing.Point(0, 0);
-            this.lblSetting.Name = "lblSetting";
-            this.lblSetting.Size = new System.Drawing.Size(169, 30);
-            this.lblSetting.TabIndex = 0;
-            this.lblSetting.Text = "تنظیمات";
-            this.lblSetting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblSetting.Click += new System.EventHandler(this.lblSetting_Click);
-            // 
-            // groupPanel46
-            // 
-            this.groupPanel46.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupPanel46.CanvasColor = System.Drawing.Color.Transparent;
-            this.groupPanel46.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.groupPanel46.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel46.Location = new System.Drawing.Point(3, 445);
-            this.groupPanel46.Name = "groupPanel46";
-            this.groupPanel46.Size = new System.Drawing.Size(169, 30);
-            // 
-            // 
-            // 
-            this.groupPanel46.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
-            this.groupPanel46.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
-            this.groupPanel46.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.groupPanel46.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.groupPanel46.Style.CornerDiameter = 10;
-            this.groupPanel46.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            // 
-            // 
-            // 
-            this.groupPanel46.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.groupPanel46.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel46.TabIndex = 55730;
-            // 
-            // groupPanel47
-            // 
-            this.groupPanel47.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupPanel47.CanvasColor = System.Drawing.Color.Transparent;
-            this.groupPanel47.Controls.Add(this.lblPhoneBook);
-            this.groupPanel47.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.groupPanel47.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel47.Location = new System.Drawing.Point(3, 85);
-            this.groupPanel47.Name = "groupPanel47";
-            this.groupPanel47.Size = new System.Drawing.Size(169, 30);
-            // 
-            // 
-            // 
-            this.groupPanel47.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
-            this.groupPanel47.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
-            this.groupPanel47.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.groupPanel47.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.groupPanel47.Style.CornerDiameter = 10;
-            this.groupPanel47.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            // 
-            // 
-            // 
-            this.groupPanel47.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.groupPanel47.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel47.TabIndex = 55720;
-            // 
-            // lblPhoneBook
-            // 
-            this.lblPhoneBook.BackColor = System.Drawing.Color.Transparent;
-            this.lblPhoneBook.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblPhoneBook.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblPhoneBook.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblPhoneBook.Location = new System.Drawing.Point(0, 0);
-            this.lblPhoneBook.Name = "lblPhoneBook";
-            this.lblPhoneBook.Size = new System.Drawing.Size(169, 30);
-            this.lblPhoneBook.TabIndex = 0;
-            this.lblPhoneBook.Text = "دفترچه تلفن";
-            this.lblPhoneBook.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblPhoneBook.Click += new System.EventHandler(this.lblPhoneBook_Click);
-            // 
-            // groupPanel48
-            // 
-            this.groupPanel48.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupPanel48.CanvasColor = System.Drawing.Color.Transparent;
-            this.groupPanel48.Controls.Add(this.lblAdvance);
-            this.groupPanel48.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.groupPanel48.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel48.Location = new System.Drawing.Point(3, 409);
-            this.groupPanel48.Name = "groupPanel48";
-            this.groupPanel48.Size = new System.Drawing.Size(169, 30);
-            // 
-            // 
-            // 
-            this.groupPanel48.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
-            this.groupPanel48.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
-            this.groupPanel48.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.groupPanel48.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.groupPanel48.Style.CornerDiameter = 10;
-            this.groupPanel48.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            // 
-            // 
-            // 
-            this.groupPanel48.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.groupPanel48.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel48.TabIndex = 55729;
-            // 
-            // lblAdvance
-            // 
-            this.lblAdvance.BackColor = System.Drawing.Color.Transparent;
-            this.lblAdvance.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblAdvance.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblAdvance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblAdvance.Location = new System.Drawing.Point(0, 0);
-            this.lblAdvance.Name = "lblAdvance";
-            this.lblAdvance.Size = new System.Drawing.Size(169, 30);
-            this.lblAdvance.TabIndex = 0;
-            this.lblAdvance.Text = "مدیریت ویژه";
-            this.lblAdvance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblAdvance.Click += new System.EventHandler(this.lblAdvance_Click);
-            // 
-            // groupPanel49
-            // 
-            this.groupPanel49.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupPanel49.CanvasColor = System.Drawing.Color.Transparent;
-            this.groupPanel49.Controls.Add(this.lblNote);
-            this.groupPanel49.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.groupPanel49.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel49.Location = new System.Drawing.Point(3, 121);
-            this.groupPanel49.Name = "groupPanel49";
-            this.groupPanel49.Size = new System.Drawing.Size(169, 30);
-            // 
-            // 
-            // 
-            this.groupPanel49.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
-            this.groupPanel49.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
-            this.groupPanel49.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.groupPanel49.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.groupPanel49.Style.CornerDiameter = 10;
-            this.groupPanel49.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            // 
-            // 
-            // 
-            this.groupPanel49.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.groupPanel49.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel49.TabIndex = 55721;
-            // 
-            // lblNote
-            // 
-            this.lblNote.BackColor = System.Drawing.Color.Transparent;
-            this.lblNote.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblNote.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblNote.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblNote.Location = new System.Drawing.Point(0, 0);
-            this.lblNote.Name = "lblNote";
-            this.lblNote.Size = new System.Drawing.Size(169, 30);
-            this.lblNote.TabIndex = 0;
-            this.lblNote.Text = "دفترچه یادداشت";
-            this.lblNote.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblNote.Click += new System.EventHandler(this.lblNote_Click);
-            // 
-            // groupPanel50
-            // 
-            this.groupPanel50.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupPanel50.CanvasColor = System.Drawing.Color.Transparent;
-            this.groupPanel50.Controls.Add(this.lblErtegha);
-            this.groupPanel50.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.groupPanel50.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel50.Location = new System.Drawing.Point(3, 373);
-            this.groupPanel50.Name = "groupPanel50";
-            this.groupPanel50.Size = new System.Drawing.Size(169, 30);
-            // 
-            // 
-            // 
-            this.groupPanel50.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
-            this.groupPanel50.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
-            this.groupPanel50.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.groupPanel50.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.groupPanel50.Style.CornerDiameter = 10;
-            this.groupPanel50.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            // 
-            // 
-            // 
-            this.groupPanel50.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.groupPanel50.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel50.TabIndex = 55728;
-            // 
-            // lblErtegha
-            // 
-            this.lblErtegha.BackColor = System.Drawing.Color.Transparent;
-            this.lblErtegha.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblErtegha.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblErtegha.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblErtegha.Location = new System.Drawing.Point(0, 0);
-            this.lblErtegha.Name = "lblErtegha";
-            this.lblErtegha.Size = new System.Drawing.Size(169, 30);
-            this.lblErtegha.TabIndex = 0;
-            this.lblErtegha.Text = "ارتقای نسخه";
-            this.lblErtegha.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblErtegha.Click += new System.EventHandler(this.lblErtegha_Click);
-            // 
-            // groupPanel51
-            // 
-            this.groupPanel51.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupPanel51.CanvasColor = System.Drawing.Color.Transparent;
-            this.groupPanel51.Controls.Add(this.lblSmsPanel);
-            this.groupPanel51.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.groupPanel51.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel51.Location = new System.Drawing.Point(3, 157);
-            this.groupPanel51.Name = "groupPanel51";
-            this.groupPanel51.Size = new System.Drawing.Size(169, 30);
-            // 
-            // 
-            // 
-            this.groupPanel51.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
-            this.groupPanel51.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
-            this.groupPanel51.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.groupPanel51.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.groupPanel51.Style.CornerDiameter = 10;
-            this.groupPanel51.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            // 
-            // 
-            // 
-            this.groupPanel51.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.groupPanel51.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel51.TabIndex = 55722;
-            // 
-            // lblSmsPanel
-            // 
-            this.lblSmsPanel.BackColor = System.Drawing.Color.Transparent;
-            this.lblSmsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblSmsPanel.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblSmsPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblSmsPanel.Location = new System.Drawing.Point(0, 0);
-            this.lblSmsPanel.Name = "lblSmsPanel";
-            this.lblSmsPanel.Size = new System.Drawing.Size(169, 30);
-            this.lblSmsPanel.TabIndex = 0;
-            this.lblSmsPanel.Text = "مدیریت پنل های پیامک";
-            this.lblSmsPanel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblSmsPanel.Click += new System.EventHandler(this.lblSmsPanel_Click);
-            // 
-            // groupPanel52
-            // 
-            this.groupPanel52.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupPanel52.CanvasColor = System.Drawing.Color.Transparent;
-            this.groupPanel52.Controls.Add(this.lblBazsazi);
-            this.groupPanel52.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.groupPanel52.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel52.Location = new System.Drawing.Point(3, 337);
-            this.groupPanel52.Name = "groupPanel52";
-            this.groupPanel52.Size = new System.Drawing.Size(169, 30);
-            // 
-            // 
-            // 
-            this.groupPanel52.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
-            this.groupPanel52.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
-            this.groupPanel52.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.groupPanel52.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.groupPanel52.Style.CornerDiameter = 10;
-            this.groupPanel52.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            // 
-            // 
-            // 
-            this.groupPanel52.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.groupPanel52.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel52.TabIndex = 55727;
-            // 
-            // lblBazsazi
-            // 
-            this.lblBazsazi.BackColor = System.Drawing.Color.Transparent;
-            this.lblBazsazi.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblBazsazi.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblBazsazi.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblBazsazi.Location = new System.Drawing.Point(0, 0);
-            this.lblBazsazi.Name = "lblBazsazi";
-            this.lblBazsazi.Size = new System.Drawing.Size(169, 30);
-            this.lblBazsazi.TabIndex = 0;
-            this.lblBazsazi.Text = "بازسازی اطلاعات";
-            this.lblBazsazi.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblBazsazi.Click += new System.EventHandler(this.lblBazsazi_Click);
-            // 
-            // groupPanel53
-            // 
-            this.groupPanel53.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupPanel53.CanvasColor = System.Drawing.Color.Transparent;
-            this.groupPanel53.Controls.Add(this.lblSendSms);
-            this.groupPanel53.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.groupPanel53.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel53.Location = new System.Drawing.Point(3, 193);
-            this.groupPanel53.Name = "groupPanel53";
-            this.groupPanel53.Size = new System.Drawing.Size(169, 30);
-            // 
-            // 
-            // 
-            this.groupPanel53.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
-            this.groupPanel53.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
-            this.groupPanel53.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.groupPanel53.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.groupPanel53.Style.CornerDiameter = 10;
-            this.groupPanel53.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            // 
-            // 
-            // 
-            this.groupPanel53.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.groupPanel53.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel53.TabIndex = 55723;
-            // 
-            // lblSendSms
-            // 
-            this.lblSendSms.BackColor = System.Drawing.Color.Transparent;
-            this.lblSendSms.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblSendSms.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblSendSms.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblSendSms.Location = new System.Drawing.Point(0, 0);
-            this.lblSendSms.Name = "lblSendSms";
-            this.lblSendSms.Size = new System.Drawing.Size(169, 30);
-            this.lblSendSms.TabIndex = 0;
-            this.lblSendSms.Text = "ارسال پیامک";
-            this.lblSendSms.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblSendSms.Click += new System.EventHandler(this.lblSendSms_Click);
-            // 
-            // groupPanel54
-            // 
-            this.groupPanel54.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupPanel54.CanvasColor = System.Drawing.Color.Transparent;
-            this.groupPanel54.Controls.Add(this.lblRestore);
-            this.groupPanel54.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.groupPanel54.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel54.Location = new System.Drawing.Point(3, 301);
-            this.groupPanel54.Name = "groupPanel54";
-            this.groupPanel54.Size = new System.Drawing.Size(169, 30);
-            // 
-            // 
-            // 
-            this.groupPanel54.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
-            this.groupPanel54.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
-            this.groupPanel54.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.groupPanel54.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.groupPanel54.Style.CornerDiameter = 10;
-            this.groupPanel54.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            // 
-            // 
-            // 
-            this.groupPanel54.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.groupPanel54.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel54.TabIndex = 55726;
-            // 
-            // lblRestore
-            // 
-            this.lblRestore.BackColor = System.Drawing.Color.Transparent;
-            this.lblRestore.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblRestore.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblRestore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblRestore.Location = new System.Drawing.Point(0, 0);
-            this.lblRestore.Name = "lblRestore";
-            this.lblRestore.Size = new System.Drawing.Size(169, 30);
-            this.lblRestore.TabIndex = 0;
-            this.lblRestore.Text = "بازگردانی فایل پشتیبان";
-            this.lblRestore.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblRestore.Click += new System.EventHandler(this.lblRestore_Click);
-            // 
-            // groupPanel55
-            // 
-            this.groupPanel55.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupPanel55.CanvasColor = System.Drawing.Color.Transparent;
-            this.groupPanel55.Controls.Add(this.lblAdvertise);
-            this.groupPanel55.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.groupPanel55.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel55.Location = new System.Drawing.Point(3, 229);
-            this.groupPanel55.Name = "groupPanel55";
-            this.groupPanel55.Size = new System.Drawing.Size(169, 30);
-            // 
-            // 
-            // 
-            this.groupPanel55.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
-            this.groupPanel55.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
-            this.groupPanel55.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.groupPanel55.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.groupPanel55.Style.CornerDiameter = 10;
-            this.groupPanel55.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            // 
-            // 
-            // 
-            this.groupPanel55.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.groupPanel55.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel55.TabIndex = 55724;
-            // 
-            // lblAdvertise
-            // 
-            this.lblAdvertise.BackColor = System.Drawing.Color.Transparent;
-            this.lblAdvertise.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblAdvertise.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblAdvertise.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblAdvertise.Location = new System.Drawing.Point(0, 0);
-            this.lblAdvertise.Name = "lblAdvertise";
-            this.lblAdvertise.Size = new System.Drawing.Size(169, 30);
-            this.lblAdvertise.TabIndex = 0;
-            this.lblAdvertise.Text = "آگهی تبلیغاتی";
-            this.lblAdvertise.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblAdvertise.Click += new System.EventHandler(this.lblAdvertise_Click);
-            // 
-            // groupPanel56
-            // 
-            this.groupPanel56.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupPanel56.CanvasColor = System.Drawing.Color.Transparent;
-            this.groupPanel56.Controls.Add(this.lblBackUp);
-            this.groupPanel56.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.groupPanel56.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel56.Location = new System.Drawing.Point(3, 265);
-            this.groupPanel56.Name = "groupPanel56";
-            this.groupPanel56.Size = new System.Drawing.Size(169, 30);
-            // 
-            // 
-            // 
-            this.groupPanel56.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
-            this.groupPanel56.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(115)))), ((int)(((byte)(231)))));
-            this.groupPanel56.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.groupPanel56.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.groupPanel56.Style.CornerDiameter = 10;
-            this.groupPanel56.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            // 
-            // 
-            // 
-            this.groupPanel56.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.groupPanel56.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel56.TabIndex = 55725;
-            // 
-            // lblBackUp
-            // 
-            this.lblBackUp.BackColor = System.Drawing.Color.Transparent;
-            this.lblBackUp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblBackUp.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblBackUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblBackUp.Location = new System.Drawing.Point(0, 0);
-            this.lblBackUp.Name = "lblBackUp";
-            this.lblBackUp.Size = new System.Drawing.Size(169, 30);
-            this.lblBackUp.TabIndex = 0;
-            this.lblBackUp.Text = "پشتیبان گیری";
-            this.lblBackUp.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblBackUp.Click += new System.EventHandler(this.lblBackUp_Click);
+            this.lblDivar.BackColor = System.Drawing.Color.Transparent;
+            this.lblDivar.Font = new System.Drawing.Font("B Yekan", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblDivar.Location = new System.Drawing.Point(3, 63);
+            this.lblDivar.Name = "lblDivar";
+            this.lblDivar.Size = new System.Drawing.Size(278, 29);
+            this.lblDivar.TabIndex = 55728;
+            this.lblDivar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblSecond
             // 
@@ -4245,6 +4292,7 @@ namespace RealState
             this.grpBaseInfo.ResumeLayout(false);
             this.groupPanel3.ResumeLayout(false);
             this.groupPanel9.ResumeLayout(false);
+            this.groupPanel27.ResumeLayout(false);
             this.groupPanel20.ResumeLayout(false);
             this.groupPanel10.ResumeLayout(false);
             this.groupPanel19.ResumeLayout(false);
@@ -4269,6 +4317,19 @@ namespace RealState
             this.groupPanel24.ResumeLayout(false);
             this.groupPanel26.ResumeLayout(false);
             this.groupPanel28.ResumeLayout(false);
+            this.grpOptions.ResumeLayout(false);
+            this.groupPanel6.ResumeLayout(false);
+            this.groupPanel45.ResumeLayout(false);
+            this.groupPanel47.ResumeLayout(false);
+            this.groupPanel48.ResumeLayout(false);
+            this.groupPanel49.ResumeLayout(false);
+            this.groupPanel50.ResumeLayout(false);
+            this.groupPanel51.ResumeLayout(false);
+            this.groupPanel52.ResumeLayout(false);
+            this.groupPanel53.ResumeLayout(false);
+            this.groupPanel54.ResumeLayout(false);
+            this.groupPanel55.ResumeLayout(false);
+            this.groupPanel56.ResumeLayout(false);
             this.grpAccounting.ResumeLayout(false);
             this.groupPanel7.ResumeLayout(false);
             this.groupPanel30.ResumeLayout(false);
@@ -4283,20 +4344,6 @@ namespace RealState
             this.groupPanel42.ResumeLayout(false);
             this.groupPanel43.ResumeLayout(false);
             this.groupPanel44.ResumeLayout(false);
-            this.grpOptions.ResumeLayout(false);
-            this.groupPanel6.ResumeLayout(false);
-            this.groupPanel45.ResumeLayout(false);
-            this.groupPanel46.ResumeLayout(false);
-            this.groupPanel47.ResumeLayout(false);
-            this.groupPanel48.ResumeLayout(false);
-            this.groupPanel49.ResumeLayout(false);
-            this.groupPanel50.ResumeLayout(false);
-            this.groupPanel51.ResumeLayout(false);
-            this.groupPanel52.ResumeLayout(false);
-            this.groupPanel53.ResumeLayout(false);
-            this.groupPanel54.ResumeLayout(false);
-            this.groupPanel55.ResumeLayout(false);
-            this.groupPanel56.ResumeLayout(false);
             this.groupPanel2.ResumeLayout(false);
             this.groupPanel2.PerformLayout();
             this.groupPanel4.ResumeLayout(false);
@@ -4522,5 +4569,7 @@ namespace RealState
         private System.Windows.Forms.Label lblInternet;
         private System.Windows.Forms.Timer timerCheckInternet;
         private System.Windows.Forms.Label lblDivar;
+        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel27;
+        private System.Windows.Forms.Label lblWindow;
     }
 }
