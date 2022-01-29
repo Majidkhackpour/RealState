@@ -190,4 +190,76 @@
   <data name="photo_2021-11-17_18-34-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\photo_2021-11-17_18-34-50.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="AccountType" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AccountType.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BuildingType" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BuildingType.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Colling" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Colling.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DocumentType" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentType.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Ejare" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Ejare.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FloorCover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FloorCover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Hitting" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Hitting.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KitchenService" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\KitchenService.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Masahat" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Masahat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MeterPrice" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MeterPrice.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Qest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Qest.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Rahn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Rahn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Region" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Region.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SaleSakht" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SaleSakht.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Sell" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Sell.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Side" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Side.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TabaqeCount" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TabaqeCount.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TabaqeNo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TabaqeNo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="User" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\User.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Vam" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Vam.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="View" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\View.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Window" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Window.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zirbana" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zirbana.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zoncan" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zoncan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

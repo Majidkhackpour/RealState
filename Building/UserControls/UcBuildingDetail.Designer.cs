@@ -138,6 +138,7 @@ namespace Building.UserControls
             this.ucBuildingType.Location = new System.Drawing.Point(0, 5);
             this.ucBuildingType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucBuildingType.Name = "ucBuildingType";
+            this.ucBuildingType.Png = global::Building.Properties.Resources.DocumentType;
             this.ucBuildingType.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucBuildingType.Size = new System.Drawing.Size(290, 37);
             this.ucBuildingType.TabIndex = 0;
@@ -151,6 +152,7 @@ namespace Building.UserControls
             this.ucMasahat.Location = new System.Drawing.Point(0, 52);
             this.ucMasahat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucMasahat.Name = "ucMasahat";
+            this.ucMasahat.Png = global::Building.Properties.Resources.Masahat;
             this.ucMasahat.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucMasahat.Size = new System.Drawing.Size(290, 37);
             this.ucMasahat.TabIndex = 1;
@@ -164,6 +166,7 @@ namespace Building.UserControls
             this.ucZirbana.Location = new System.Drawing.Point(0, 99);
             this.ucZirbana.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucZirbana.Name = "ucZirbana";
+            this.ucZirbana.Png = global::Building.Properties.Resources.Zirbana;
             this.ucZirbana.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucZirbana.Size = new System.Drawing.Size(290, 37);
             this.ucZirbana.TabIndex = 2;
@@ -177,6 +180,7 @@ namespace Building.UserControls
             this.ucRahn.Location = new System.Drawing.Point(0, 146);
             this.ucRahn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucRahn.Name = "ucRahn";
+            this.ucRahn.Png = global::Building.Properties.Resources.Rahn;
             this.ucRahn.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucRahn.Size = new System.Drawing.Size(290, 37);
             this.ucRahn.TabIndex = 3;
@@ -190,6 +194,7 @@ namespace Building.UserControls
             this.ucEjare.Location = new System.Drawing.Point(0, 193);
             this.ucEjare.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucEjare.Name = "ucEjare";
+            this.ucEjare.Png = global::Building.Properties.Resources.Ejare;
             this.ucEjare.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucEjare.Size = new System.Drawing.Size(290, 37);
             this.ucEjare.TabIndex = 4;
@@ -203,6 +208,7 @@ namespace Building.UserControls
             this.ucSell.Location = new System.Drawing.Point(0, 240);
             this.ucSell.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucSell.Name = "ucSell";
+            this.ucSell.Png = global::Building.Properties.Resources.Sell;
             this.ucSell.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucSell.Size = new System.Drawing.Size(290, 37);
             this.ucSell.TabIndex = 5;
@@ -216,6 +222,7 @@ namespace Building.UserControls
             this.ucPricePerMeter.Location = new System.Drawing.Point(0, 287);
             this.ucPricePerMeter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucPricePerMeter.Name = "ucPricePerMeter";
+            this.ucPricePerMeter.Png = global::Building.Properties.Resources.MeterPrice;
             this.ucPricePerMeter.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucPricePerMeter.Size = new System.Drawing.Size(290, 37);
             this.ucPricePerMeter.TabIndex = 6;
@@ -229,6 +236,7 @@ namespace Building.UserControls
             this.ucVam.Location = new System.Drawing.Point(0, 334);
             this.ucVam.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucVam.Name = "ucVam";
+            this.ucVam.Png = global::Building.Properties.Resources.Vam;
             this.ucVam.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucVam.Size = new System.Drawing.Size(290, 37);
             this.ucVam.TabIndex = 7;
@@ -242,6 +250,7 @@ namespace Building.UserControls
             this.ucQest.Location = new System.Drawing.Point(0, 381);
             this.ucQest.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucQest.Name = "ucQest";
+            this.ucQest.Png = global::Building.Properties.Resources.Qest;
             this.ucQest.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucQest.Size = new System.Drawing.Size(290, 37);
             this.ucQest.TabIndex = 8;
@@ -255,6 +264,7 @@ namespace Building.UserControls
             this.ucDocumentType.Location = new System.Drawing.Point(0, 428);
             this.ucDocumentType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucDocumentType.Name = "ucDocumentType";
+            this.ucDocumentType.Png = global::Building.Properties.Resources.DocumentType;
             this.ucDocumentType.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucDocumentType.Size = new System.Drawing.Size(290, 37);
             this.ucDocumentType.TabIndex = 9;
@@ -268,6 +278,7 @@ namespace Building.UserControls
             this.ucRegion.Location = new System.Drawing.Point(0, 475);
             this.ucRegion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucRegion.Name = "ucRegion";
+            this.ucRegion.Png = global::Building.Properties.Resources.Region;
             this.ucRegion.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucRegion.Size = new System.Drawing.Size(290, 37);
             this.ucRegion.TabIndex = 10;
@@ -281,6 +292,7 @@ namespace Building.UserControls
             this.ucSaleSakht.Location = new System.Drawing.Point(0, 522);
             this.ucSaleSakht.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucSaleSakht.Name = "ucSaleSakht";
+            this.ucSaleSakht.Png = global::Building.Properties.Resources.SaleSakht;
             this.ucSaleSakht.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucSaleSakht.Size = new System.Drawing.Size(290, 37);
             this.ucSaleSakht.TabIndex = 11;
@@ -294,6 +306,7 @@ namespace Building.UserControls
             this.ucUser.Location = new System.Drawing.Point(0, 569);
             this.ucUser.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucUser.Name = "ucUser";
+            this.ucUser.Png = global::Building.Properties.Resources.User;
             this.ucUser.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucUser.Size = new System.Drawing.Size(290, 37);
             this.ucUser.TabIndex = 12;
@@ -307,6 +320,7 @@ namespace Building.UserControls
             this.ucAccountType.Location = new System.Drawing.Point(0, 616);
             this.ucAccountType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucAccountType.Name = "ucAccountType";
+            this.ucAccountType.Png = global::Building.Properties.Resources.AccountType;
             this.ucAccountType.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucAccountType.Size = new System.Drawing.Size(290, 37);
             this.ucAccountType.TabIndex = 13;
@@ -320,6 +334,7 @@ namespace Building.UserControls
             this.ucCondition.Location = new System.Drawing.Point(0, 663);
             this.ucCondition.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucCondition.Name = "ucCondition";
+            this.ucCondition.Png = global::Building.Properties.Resources.TabaqeNo;
             this.ucCondition.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucCondition.Size = new System.Drawing.Size(290, 37);
             this.ucCondition.TabIndex = 14;
@@ -333,6 +348,7 @@ namespace Building.UserControls
             this.ucView.Location = new System.Drawing.Point(0, 710);
             this.ucView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucView.Name = "ucView";
+            this.ucView.Png = global::Building.Properties.Resources.View;
             this.ucView.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucView.Size = new System.Drawing.Size(290, 37);
             this.ucView.TabIndex = 15;
@@ -346,6 +362,7 @@ namespace Building.UserControls
             this.ucFloor.Location = new System.Drawing.Point(0, 757);
             this.ucFloor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucFloor.Name = "ucFloor";
+            this.ucFloor.Png = global::Building.Properties.Resources.FloorCover;
             this.ucFloor.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucFloor.Size = new System.Drawing.Size(290, 37);
             this.ucFloor.TabIndex = 16;
@@ -359,6 +376,7 @@ namespace Building.UserControls
             this.ucKitchen.Location = new System.Drawing.Point(0, 804);
             this.ucKitchen.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucKitchen.Name = "ucKitchen";
+            this.ucKitchen.Png = global::Building.Properties.Resources.KitchenService;
             this.ucKitchen.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucKitchen.Size = new System.Drawing.Size(290, 37);
             this.ucKitchen.TabIndex = 17;
@@ -372,6 +390,7 @@ namespace Building.UserControls
             this.ucWindow.Location = new System.Drawing.Point(0, 851);
             this.ucWindow.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucWindow.Name = "ucWindow";
+            this.ucWindow.Png = global::Building.Properties.Resources.Window;
             this.ucWindow.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucWindow.Size = new System.Drawing.Size(290, 37);
             this.ucWindow.TabIndex = 18;
@@ -385,6 +404,7 @@ namespace Building.UserControls
             this.ucTabaqe.Location = new System.Drawing.Point(0, 898);
             this.ucTabaqe.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucTabaqe.Name = "ucTabaqe";
+            this.ucTabaqe.Png = global::Building.Properties.Resources.TabaqeCount;
             this.ucTabaqe.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucTabaqe.Size = new System.Drawing.Size(290, 37);
             this.ucTabaqe.TabIndex = 19;
@@ -398,6 +418,7 @@ namespace Building.UserControls
             this.ucSide.Location = new System.Drawing.Point(0, 945);
             this.ucSide.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucSide.Name = "ucSide";
+            this.ucSide.Png = global::Building.Properties.Resources.Side;
             this.ucSide.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucSide.Size = new System.Drawing.Size(290, 37);
             this.ucSide.TabIndex = 20;
@@ -411,6 +432,7 @@ namespace Building.UserControls
             this.ucHitting.Location = new System.Drawing.Point(0, 992);
             this.ucHitting.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucHitting.Name = "ucHitting";
+            this.ucHitting.Png = global::Building.Properties.Resources.Hitting;
             this.ucHitting.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucHitting.Size = new System.Drawing.Size(290, 37);
             this.ucHitting.TabIndex = 21;
@@ -424,6 +446,7 @@ namespace Building.UserControls
             this.ucColling.Location = new System.Drawing.Point(0, 1039);
             this.ucColling.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucColling.Name = "ucColling";
+            this.ucColling.Png = global::Building.Properties.Resources.Colling;
             this.ucColling.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucColling.Size = new System.Drawing.Size(290, 37);
             this.ucColling.TabIndex = 22;

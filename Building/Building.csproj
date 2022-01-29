@@ -1884,7 +1884,78 @@
   <ItemGroup>
     <None Include="Resources\photo_2021-11-17_18-34-50.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\TabaqeNo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\User.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Vam.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\View.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Window.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Zirbana.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Zoncan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AccountType.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BuildingType.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Colling.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DocumentType.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ejare.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FloorCover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Hitting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KitchenService.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Masahat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MeterPrice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Qest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rahn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Region.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SaleSakht.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sell.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Side.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TabaqeCount.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
