@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
 using EntityCache.Bussines;
@@ -29,7 +30,7 @@ namespace Building.BuildingType
                     ucHeader.Text = !isShowMode ? $"ویرایش نوع ملک {cls.Name}" : $"مشاهده نوع ملک {cls.Name}";
                 ucHeader.IsModified = cls.IsModified;
                 grp.Enabled = !isShowMode;
-                btnFinish.Enabled = !isShowMode;
+                ucAccept.Enabled = !isShowMode;
             }
             catch (Exception ex)
             {
@@ -58,11 +59,6 @@ namespace Building.BuildingType
         }
         private void txtName_Enter(object sender, EventArgs e) => txtSetter.Focus(txtName);
         private void txtName_Leave(object sender, EventArgs e) => txtSetter.Follow(txtName);
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-            Close();
-        }
         private void frmBuildingTypeMain_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -70,14 +66,14 @@ namespace Building.BuildingType
                 switch (e.KeyCode)
                 {
                     case Keys.Enter:
-                        if (!btnFinish.Focused && !btnCancel.Focused)
+                        if (!ucAccept.Focused && !ucCancel.Focused)
                             SendKeys.Send("{Tab}");
                         break;
                     case Keys.F5:
-                        btnFinish.PerformClick();
+                        ucAccept.PerformClick();
                         break;
                     case Keys.Escape:
-                        btnCancel.PerformClick();
+                        ucCancel.PerformClick();
                         break;
                 }
             }
@@ -86,7 +82,7 @@ namespace Building.BuildingType
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-        private async void btnFinish_Click(object sender, EventArgs e)
+        private async Task ucAccept_OnClick(object arg1, EventArgs arg2)
         {
             var res = new ReturnedSaveFuncInfo();
             try
@@ -112,6 +108,11 @@ namespace Building.BuildingType
                     Close();
                 }
             }
+        }
+        private async Task ucCancel_OnClick(object arg1, EventArgs arg2)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }

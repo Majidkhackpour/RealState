@@ -64,7 +64,7 @@ namespace Building.Window
                 switch (e.KeyCode)
                 {
                     case Keys.Enter:
-                        if (!ucAccept.Focused && !ucAccept.Focused)
+                        if (!ucAccept.Focused && !ucCancel.Focused)
                             SendKeys.Send("{Tab}");
                         break;
                     case Keys.F5:

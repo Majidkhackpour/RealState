@@ -325,7 +325,7 @@ namespace Building.BuildingRequest
                 else
                     ucHeader.Text = !isShowMode ? $"ویرایش تقاضای {cls.AskerName}" : $"مشاهده تقاضای {cls.AskerName}";
                 ucHeader.IsModified = cls.IsModified;
-                btnFinish.Enabled = !isShowMode;
+                ucAccept.Enabled = !isShowMode;
                 groupPanel1.Enabled = groupPanel2.Enabled = groupPanel3.Enabled = !isShowMode;
                 groupPanel4.Enabled = groupPanel5.Enabled = !isShowMode;
                 WindowState = FormWindowState.Maximized;
@@ -409,14 +409,14 @@ namespace Building.BuildingRequest
                 switch (e.KeyCode)
                 {
                     case Keys.Enter:
-                        if (!btnFinish.Focused && !btnCancel.Focused && !txtDesc.Focused)
+                        if (!ucAccept.Focused && !ucCancel.Focused && !txtDesc.Focused)
                             SendKeys.Send("{Tab}");
                         break;
                     case Keys.F5:
-                        btnFinish.PerformClick();
+                        ucAccept.PerformClick();
                         break;
                     case Keys.Escape:
-                        btnCancel.PerformClick();
+                        ucCancel.PerformClick();
                         break;
                 }
             }
@@ -424,11 +424,6 @@ namespace Building.BuildingRequest
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
-        }
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-            Close();
         }
         private void DGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -445,10 +440,10 @@ namespace Building.BuildingRequest
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-        private async void btnFinish_Click(object sender, EventArgs e)
+        private async Task ucAccept_OnClick(object arg1, EventArgs arg2)
         {
             var res = new ReturnedSaveFuncInfo();
-            btnFinish.Enabled = false;
+            ucAccept.Enabled = false;
             try
             {
                 var isSendSms = false;
@@ -537,7 +532,7 @@ namespace Building.BuildingRequest
             }
             finally
             {
-                btnFinish.Enabled = true;
+                ucAccept.Enabled = true;
                 if (res.HasError) this.ShowError(res, "خطا در ثبت تقاضا");
                 else
                 {
@@ -545,6 +540,11 @@ namespace Building.BuildingRequest
                     Close();
                 }
             }
+        }
+        private async Task ucCancel_OnClick(object arg1, EventArgs arg2)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }

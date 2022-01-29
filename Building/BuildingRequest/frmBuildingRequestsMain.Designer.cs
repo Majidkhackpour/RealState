@@ -39,14 +39,32 @@ namespace Building.BuildingRequest
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupPanel5 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.dgChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.serverStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.serverDeliveryDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stateNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cityGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stateGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cityNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isCheckedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.isModifiedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.RegionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbCity = new System.Windows.Forms.ComboBox();
+            this.CityBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.cmbState = new System.Windows.Forms.ComboBox();
+            this.StateBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupPanel4 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.txtEjare2 = new WindowsSerivces.CurrencyTextBox();
             this.txtRahn2 = new WindowsSerivces.CurrencyTextBox();
             this.cmbRentalAuthority = new System.Windows.Forms.ComboBox();
+            this.rentalBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtEjare1 = new WindowsSerivces.CurrencyTextBox();
             this.txtRahn1 = new WindowsSerivces.CurrencyTextBox();
             this.label19 = new System.Windows.Forms.Label();
@@ -70,8 +88,11 @@ namespace Building.BuildingRequest
             this.txtRoomCount = new System.Windows.Forms.NumericUpDown();
             this.label13 = new System.Windows.Forms.Label();
             this.cmbBuildingType = new System.Windows.Forms.ComboBox();
+            this.bTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbBuildingAccountType = new System.Windows.Forms.ComboBox();
+            this.batBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbBuildingCondition = new System.Windows.Forms.ComboBox();
+            this.bConditionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label36 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
@@ -82,6 +103,7 @@ namespace Building.BuildingRequest
             this.txtMasahat1 = new System.Windows.Forms.NumericUpDown();
             this.label32 = new System.Windows.Forms.Label();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.lblUserName = new System.Windows.Forms.Label();
             this.lblDateNow = new System.Windows.Forms.Label();
             this.btnCreateOwner = new DevComponents.DotNetBar.ButtonX();
             this.label15 = new System.Windows.Forms.Label();
@@ -90,50 +112,27 @@ namespace Building.BuildingRequest
             this.label14 = new System.Windows.Forms.Label();
             this.lblOwnerName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnCancel = new DevComponents.DotNetBar.ButtonX();
-            this.btnFinish = new DevComponents.DotNetBar.ButtonX();
-            this.lblUserName = new System.Windows.Forms.Label();
             this.ucHeader = new WindowsSerivces.UC_Header();
-            this.bTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.batBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bConditionBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.RegionBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.CityBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.StateBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.rentalBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dgChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.serverStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.serverDeliveryDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stateNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cityGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stateGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cityNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isCheckedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.hardSerialDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isModifiedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ucCancel = new WindowsSerivces.UcActionButton();
+            this.ucAccept = new WindowsSerivces.UcActionButton();
             this.panel1.SuspendLayout();
             this.groupPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RegionBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CityBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StateBindingSource)).BeginInit();
             this.groupPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rentalBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPeopleCount)).BeginInit();
             this.groupPanel3.SuspendLayout();
             this.groupPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtRoomCount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMasahat2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMasahat1)).BeginInit();
-            this.groupPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.batBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bConditionBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RegionBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CityBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StateBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rentalBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMasahat2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMasahat1)).BeginInit();
+            this.groupPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -238,7 +237,6 @@ namespace Building.BuildingRequest
             this.stateGuidDataGridViewTextBoxColumn,
             this.cityNameDataGridViewTextBoxColumn,
             this.isCheckedDataGridViewCheckBoxColumn,
-            this.hardSerialDataGridViewTextBoxColumn,
             this.isModifiedDataGridViewCheckBoxColumn});
             this.DGrid.DataSource = this.RegionBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
@@ -277,6 +275,110 @@ namespace Building.BuildingRequest
             this.DGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGrid_CellClick);
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             // 
+            // dgChecked
+            // 
+            this.dgChecked.DataPropertyName = "IsChecked";
+            this.dgChecked.HeaderText = "";
+            this.dgChecked.Name = "dgChecked";
+            this.dgChecked.ReadOnly = true;
+            this.dgChecked.Width = 30;
+            // 
+            // dgRadif
+            // 
+            this.dgRadif.HeaderText = "ردیف";
+            this.dgRadif.Name = "dgRadif";
+            this.dgRadif.ReadOnly = true;
+            this.dgRadif.Width = 50;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "عنوان";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dgGuid
+            // 
+            this.dgGuid.DataPropertyName = "Guid";
+            this.dgGuid.HeaderText = "Guid";
+            this.dgGuid.Name = "dgGuid";
+            this.dgGuid.Visible = false;
+            // 
+            // modifiedDataGridViewTextBoxColumn
+            // 
+            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
+            this.modifiedDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // statusDataGridViewCheckBoxColumn
+            // 
+            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
+            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
+            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
+            this.statusDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // serverStatusDataGridViewTextBoxColumn
+            // 
+            this.serverStatusDataGridViewTextBoxColumn.DataPropertyName = "ServerStatus";
+            this.serverStatusDataGridViewTextBoxColumn.HeaderText = "ServerStatus";
+            this.serverStatusDataGridViewTextBoxColumn.Name = "serverStatusDataGridViewTextBoxColumn";
+            this.serverStatusDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // serverDeliveryDateDataGridViewTextBoxColumn
+            // 
+            this.serverDeliveryDateDataGridViewTextBoxColumn.DataPropertyName = "ServerDeliveryDate";
+            this.serverDeliveryDateDataGridViewTextBoxColumn.HeaderText = "ServerDeliveryDate";
+            this.serverDeliveryDateDataGridViewTextBoxColumn.Name = "serverDeliveryDateDataGridViewTextBoxColumn";
+            this.serverDeliveryDateDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // stateNameDataGridViewTextBoxColumn
+            // 
+            this.stateNameDataGridViewTextBoxColumn.DataPropertyName = "StateName";
+            this.stateNameDataGridViewTextBoxColumn.HeaderText = "StateName";
+            this.stateNameDataGridViewTextBoxColumn.Name = "stateNameDataGridViewTextBoxColumn";
+            this.stateNameDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // cityGuidDataGridViewTextBoxColumn
+            // 
+            this.cityGuidDataGridViewTextBoxColumn.DataPropertyName = "CityGuid";
+            this.cityGuidDataGridViewTextBoxColumn.HeaderText = "CityGuid";
+            this.cityGuidDataGridViewTextBoxColumn.Name = "cityGuidDataGridViewTextBoxColumn";
+            this.cityGuidDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // stateGuidDataGridViewTextBoxColumn
+            // 
+            this.stateGuidDataGridViewTextBoxColumn.DataPropertyName = "StateGuid";
+            this.stateGuidDataGridViewTextBoxColumn.HeaderText = "StateGuid";
+            this.stateGuidDataGridViewTextBoxColumn.Name = "stateGuidDataGridViewTextBoxColumn";
+            this.stateGuidDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // cityNameDataGridViewTextBoxColumn
+            // 
+            this.cityNameDataGridViewTextBoxColumn.DataPropertyName = "CityName";
+            this.cityNameDataGridViewTextBoxColumn.HeaderText = "CityName";
+            this.cityNameDataGridViewTextBoxColumn.Name = "cityNameDataGridViewTextBoxColumn";
+            this.cityNameDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // isCheckedDataGridViewCheckBoxColumn
+            // 
+            this.isCheckedDataGridViewCheckBoxColumn.DataPropertyName = "IsChecked";
+            this.isCheckedDataGridViewCheckBoxColumn.HeaderText = "IsChecked";
+            this.isCheckedDataGridViewCheckBoxColumn.Name = "isCheckedDataGridViewCheckBoxColumn";
+            this.isCheckedDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // isModifiedDataGridViewCheckBoxColumn
+            // 
+            this.isModifiedDataGridViewCheckBoxColumn.DataPropertyName = "IsModified";
+            this.isModifiedDataGridViewCheckBoxColumn.HeaderText = "IsModified";
+            this.isModifiedDataGridViewCheckBoxColumn.Name = "isModifiedDataGridViewCheckBoxColumn";
+            this.isModifiedDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // RegionBindingSource
+            // 
+            this.RegionBindingSource.DataSource = typeof(EntityCache.Bussines.RegionsBussines);
+            // 
             // cmbCity
             // 
             this.cmbCity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -291,6 +393,10 @@ namespace Building.BuildingRequest
             this.cmbCity.TabIndex = 37;
             this.cmbCity.ValueMember = "Guid";
             this.cmbCity.SelectedIndexChanged += new System.EventHandler(this.cmbCity_SelectedIndexChanged);
+            // 
+            // CityBindingSource
+            // 
+            this.CityBindingSource.DataSource = typeof(EntityCache.Bussines.CitiesBussines);
             // 
             // label34
             // 
@@ -328,6 +434,10 @@ namespace Building.BuildingRequest
             this.cmbState.TabIndex = 36;
             this.cmbState.ValueMember = "Guid";
             this.cmbState.SelectedIndexChanged += new System.EventHandler(this.cmbState_SelectedIndexChanged);
+            // 
+            // StateBindingSource
+            // 
+            this.StateBindingSource.DataSource = typeof(EntityCache.Bussines.StatesBussines);
             // 
             // groupPanel4
             // 
@@ -435,6 +545,10 @@ namespace Building.BuildingRequest
             this.cmbRentalAuthority.Size = new System.Drawing.Size(210, 28);
             this.cmbRentalAuthority.TabIndex = 21;
             this.cmbRentalAuthority.ValueMember = "Guid";
+            // 
+            // rentalBindingSource
+            // 
+            this.rentalBindingSource.DataSource = typeof(EntityCache.Bussines.RentalAuthorityBussines);
             // 
             // txtEjare1
             // 
@@ -826,6 +940,10 @@ namespace Building.BuildingRequest
             this.cmbBuildingType.TabIndex = 54;
             this.cmbBuildingType.ValueMember = "Guid";
             // 
+            // bTypeBindingSource
+            // 
+            this.bTypeBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingTypeBussines);
+            // 
             // cmbBuildingAccountType
             // 
             this.cmbBuildingAccountType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -841,6 +959,10 @@ namespace Building.BuildingRequest
             this.cmbBuildingAccountType.TabIndex = 56;
             this.cmbBuildingAccountType.ValueMember = "Guid";
             // 
+            // batBindingSource
+            // 
+            this.batBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingAccountTypeBussines);
+            // 
             // cmbBuildingCondition
             // 
             this.cmbBuildingCondition.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -855,6 +977,10 @@ namespace Building.BuildingRequest
             this.cmbBuildingCondition.Size = new System.Drawing.Size(228, 28);
             this.cmbBuildingCondition.TabIndex = 55;
             this.cmbBuildingCondition.ValueMember = "Guid";
+            // 
+            // bConditionBindingSource
+            // 
+            this.bConditionBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingConditionBussines);
             // 
             // label36
             // 
@@ -1013,6 +1139,16 @@ namespace Building.BuildingRequest
             this.groupPanel1.TabIndex = 1;
             this.groupPanel1.Text = "مشخصات متقاضی";
             // 
+            // lblUserName
+            // 
+            this.lblUserName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblUserName.BackColor = System.Drawing.Color.Transparent;
+            this.lblUserName.Location = new System.Drawing.Point(14, 11);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.Size = new System.Drawing.Size(202, 20);
+            this.lblUserName.TabIndex = 13;
+            // 
             // lblDateNow
             // 
             this.lblDateNow.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -1112,55 +1248,6 @@ namespace Building.BuildingRequest
             this.label1.TabIndex = 9;
             this.label1.Text = "کد شناسایی";
             // 
-            // btnCancel
-            // 
-            this.btnCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCancel.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Image = global::Building.Properties.Resources.tab_close_;
-            this.btnCancel.Location = new System.Drawing.Point(20, 563);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnCancel.Size = new System.Drawing.Size(125, 31);
-            this.btnCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnCancel.TabIndex = 37;
-            this.btnCancel.Text = "انصراف (Esc)";
-            this.btnCancel.TextColor = System.Drawing.Color.Black;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnFinish
-            // 
-            this.btnFinish.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnFinish.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFinish.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.btnFinish.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFinish.Image = global::Building.Properties.Resources.tab_checkbox__;
-            this.btnFinish.Location = new System.Drawing.Point(668, 563);
-            this.btnFinish.Name = "btnFinish";
-            this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnFinish.Size = new System.Drawing.Size(125, 31);
-            this.btnFinish.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnFinish.TabIndex = 36;
-            this.btnFinish.Text = "تایید (F5)";
-            this.btnFinish.TextColor = System.Drawing.Color.Black;
-            this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
-            // 
-            // lblUserName
-            // 
-            this.lblUserName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblUserName.BackColor = System.Drawing.Color.Transparent;
-            this.lblUserName.Location = new System.Drawing.Point(14, 11);
-            this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(202, 20);
-            this.lblUserName.TabIndex = 13;
-            // 
             // ucHeader
             // 
             this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -1179,150 +1266,44 @@ namespace Building.BuildingRequest
             this.ucHeader.Size = new System.Drawing.Size(815, 34);
             this.ucHeader.TabIndex = 55749;
             // 
-            // bTypeBindingSource
+            // ucCancel
             // 
-            this.bTypeBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingTypeBussines);
+            this.ucCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ucCancel.BackColor = System.Drawing.Color.Transparent;
+            this.ucCancel.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucCancel.Location = new System.Drawing.Point(38, 563);
+            this.ucCancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucCancel.Name = "ucCancel";
+            this.ucCancel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucCancel.Size = new System.Drawing.Size(125, 31);
+            this.ucCancel.TabIndex = 55750;
+            this.ucCancel.Title = "انصراف (Esc)";
+            this.ucCancel.Type = Services.ButtonType.CancelButton;
+            this.ucCancel.OnClick += new System.Func<object, System.EventArgs, System.Threading.Tasks.Task>(this.ucCancel_OnClick);
             // 
-            // batBindingSource
+            // ucAccept
             // 
-            this.batBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingAccountTypeBussines);
-            // 
-            // bConditionBindingSource
-            // 
-            this.bConditionBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingConditionBussines);
-            // 
-            // RegionBindingSource
-            // 
-            this.RegionBindingSource.DataSource = typeof(EntityCache.Bussines.RegionsBussines);
-            // 
-            // CityBindingSource
-            // 
-            this.CityBindingSource.DataSource = typeof(EntityCache.Bussines.CitiesBussines);
-            // 
-            // StateBindingSource
-            // 
-            this.StateBindingSource.DataSource = typeof(EntityCache.Bussines.StatesBussines);
-            // 
-            // rentalBindingSource
-            // 
-            this.rentalBindingSource.DataSource = typeof(EntityCache.Bussines.RentalAuthorityBussines);
-            // 
-            // dgChecked
-            // 
-            this.dgChecked.DataPropertyName = "IsChecked";
-            this.dgChecked.HeaderText = "";
-            this.dgChecked.Name = "dgChecked";
-            this.dgChecked.ReadOnly = true;
-            this.dgChecked.Width = 30;
-            // 
-            // dgRadif
-            // 
-            this.dgRadif.HeaderText = "ردیف";
-            this.dgRadif.Name = "dgRadif";
-            this.dgRadif.ReadOnly = true;
-            this.dgRadif.Width = 50;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "عنوان";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dgGuid
-            // 
-            this.dgGuid.DataPropertyName = "Guid";
-            this.dgGuid.HeaderText = "Guid";
-            this.dgGuid.Name = "dgGuid";
-            this.dgGuid.Visible = false;
-            // 
-            // modifiedDataGridViewTextBoxColumn
-            // 
-            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
-            this.modifiedDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // statusDataGridViewCheckBoxColumn
-            // 
-            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
-            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
-            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
-            this.statusDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // serverStatusDataGridViewTextBoxColumn
-            // 
-            this.serverStatusDataGridViewTextBoxColumn.DataPropertyName = "ServerStatus";
-            this.serverStatusDataGridViewTextBoxColumn.HeaderText = "ServerStatus";
-            this.serverStatusDataGridViewTextBoxColumn.Name = "serverStatusDataGridViewTextBoxColumn";
-            this.serverStatusDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // serverDeliveryDateDataGridViewTextBoxColumn
-            // 
-            this.serverDeliveryDateDataGridViewTextBoxColumn.DataPropertyName = "ServerDeliveryDate";
-            this.serverDeliveryDateDataGridViewTextBoxColumn.HeaderText = "ServerDeliveryDate";
-            this.serverDeliveryDateDataGridViewTextBoxColumn.Name = "serverDeliveryDateDataGridViewTextBoxColumn";
-            this.serverDeliveryDateDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // stateNameDataGridViewTextBoxColumn
-            // 
-            this.stateNameDataGridViewTextBoxColumn.DataPropertyName = "StateName";
-            this.stateNameDataGridViewTextBoxColumn.HeaderText = "StateName";
-            this.stateNameDataGridViewTextBoxColumn.Name = "stateNameDataGridViewTextBoxColumn";
-            this.stateNameDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // cityGuidDataGridViewTextBoxColumn
-            // 
-            this.cityGuidDataGridViewTextBoxColumn.DataPropertyName = "CityGuid";
-            this.cityGuidDataGridViewTextBoxColumn.HeaderText = "CityGuid";
-            this.cityGuidDataGridViewTextBoxColumn.Name = "cityGuidDataGridViewTextBoxColumn";
-            this.cityGuidDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // stateGuidDataGridViewTextBoxColumn
-            // 
-            this.stateGuidDataGridViewTextBoxColumn.DataPropertyName = "StateGuid";
-            this.stateGuidDataGridViewTextBoxColumn.HeaderText = "StateGuid";
-            this.stateGuidDataGridViewTextBoxColumn.Name = "stateGuidDataGridViewTextBoxColumn";
-            this.stateGuidDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // cityNameDataGridViewTextBoxColumn
-            // 
-            this.cityNameDataGridViewTextBoxColumn.DataPropertyName = "CityName";
-            this.cityNameDataGridViewTextBoxColumn.HeaderText = "CityName";
-            this.cityNameDataGridViewTextBoxColumn.Name = "cityNameDataGridViewTextBoxColumn";
-            this.cityNameDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // isCheckedDataGridViewCheckBoxColumn
-            // 
-            this.isCheckedDataGridViewCheckBoxColumn.DataPropertyName = "IsChecked";
-            this.isCheckedDataGridViewCheckBoxColumn.HeaderText = "IsChecked";
-            this.isCheckedDataGridViewCheckBoxColumn.Name = "isCheckedDataGridViewCheckBoxColumn";
-            this.isCheckedDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // hardSerialDataGridViewTextBoxColumn
-            // 
-            this.hardSerialDataGridViewTextBoxColumn.DataPropertyName = "HardSerial";
-            this.hardSerialDataGridViewTextBoxColumn.HeaderText = "HardSerial";
-            this.hardSerialDataGridViewTextBoxColumn.Name = "hardSerialDataGridViewTextBoxColumn";
-            this.hardSerialDataGridViewTextBoxColumn.ReadOnly = true;
-            this.hardSerialDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // isModifiedDataGridViewCheckBoxColumn
-            // 
-            this.isModifiedDataGridViewCheckBoxColumn.DataPropertyName = "IsModified";
-            this.isModifiedDataGridViewCheckBoxColumn.HeaderText = "IsModified";
-            this.isModifiedDataGridViewCheckBoxColumn.Name = "isModifiedDataGridViewCheckBoxColumn";
-            this.isModifiedDataGridViewCheckBoxColumn.Visible = false;
+            this.ucAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucAccept.BackColor = System.Drawing.Color.Transparent;
+            this.ucAccept.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucAccept.Location = new System.Drawing.Point(672, 563);
+            this.ucAccept.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucAccept.Name = "ucAccept";
+            this.ucAccept.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucAccept.Size = new System.Drawing.Size(125, 31);
+            this.ucAccept.TabIndex = 55751;
+            this.ucAccept.Title = "تایید (F5)";
+            this.ucAccept.Type = Services.ButtonType.AcceptButton;
+            this.ucAccept.OnClick += new System.Func<object, System.EventArgs, System.Threading.Tasks.Task>(this.ucAccept_OnClick);
             // 
             // frmBuildingRequestsMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(823, 600);
+            this.Controls.Add(this.ucCancel);
+            this.Controls.Add(this.ucAccept);
             this.Controls.Add(this.ucHeader);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnFinish);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1339,25 +1320,25 @@ namespace Building.BuildingRequest
             this.groupPanel5.ResumeLayout(false);
             this.groupPanel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RegionBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CityBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StateBindingSource)).EndInit();
             this.groupPanel4.ResumeLayout(false);
             this.groupPanel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rentalBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPeopleCount)).EndInit();
             this.groupPanel3.ResumeLayout(false);
             this.groupPanel3.PerformLayout();
             this.groupPanel2.ResumeLayout(false);
             this.groupPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtRoomCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bTypeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.batBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bConditionBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMasahat2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMasahat1)).EndInit();
             this.groupPanel1.ResumeLayout(false);
             this.groupPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bTypeBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.batBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bConditionBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RegionBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CityBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StateBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rentalBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1418,8 +1399,6 @@ namespace Building.BuildingRequest
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.ComboBox cmbState;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
-        private DevComponents.DotNetBar.ButtonX btnCancel;
-        private DevComponents.DotNetBar.ButtonX btnFinish;
         private System.Windows.Forms.Label lblUserName;
         private WindowsSerivces.UC_Header ucHeader;
         private System.Windows.Forms.BindingSource RegionBindingSource;
@@ -1444,5 +1423,7 @@ namespace Building.BuildingRequest
         private System.Windows.Forms.DataGridViewCheckBoxColumn isCheckedDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn hardSerialDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isModifiedDataGridViewCheckBoxColumn;
+        private WindowsSerivces.UcActionButton ucCancel;
+        private WindowsSerivces.UcActionButton ucAccept;
     }
 }
