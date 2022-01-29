@@ -86,11 +86,11 @@ namespace Building.UserControls.Sell
             this.ucTarakom1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ucTarakom1.BackColor = System.Drawing.Color.Transparent;
             this.ucTarakom1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucTarakom1.Location = new System.Drawing.Point(523, 42);
+            this.ucTarakom1.Location = new System.Drawing.Point(2, 42);
             this.ucTarakom1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucTarakom1.Name = "ucTarakom1";
             this.ucTarakom1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucTarakom1.Size = new System.Drawing.Size(210, 36);
+            this.ucTarakom1.Size = new System.Drawing.Size(330, 36);
             this.ucTarakom1.TabIndex = 8;
             this.ucTarakom1.Tarakom = null;
             // 
@@ -99,7 +99,7 @@ namespace Building.UserControls.Sell
             this.UcTejari.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.UcTejari.BackColor = System.Drawing.Color.Transparent;
             this.UcTejari.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.UcTejari.Location = new System.Drawing.Point(330, 42);
+            this.UcTejari.Location = new System.Drawing.Point(587, 42);
             this.UcTejari.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.UcTejari.Name = "UcTejari";
             this.UcTejari.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -113,7 +113,7 @@ namespace Building.UserControls.Sell
             this.ucRoomCount1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ucRoomCount1.BackColor = System.Drawing.Color.Transparent;
             this.ucRoomCount1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucRoomCount1.Location = new System.Drawing.Point(59, 42);
+            this.ucRoomCount1.Location = new System.Drawing.Point(316, 42);
             this.ucRoomCount1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucRoomCount1.Name = "ucRoomCount1";
             this.ucRoomCount1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;

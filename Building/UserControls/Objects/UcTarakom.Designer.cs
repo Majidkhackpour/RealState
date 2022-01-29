@@ -33,13 +33,15 @@ namespace Building.UserControls.Objects
             this.rbtnLow = new System.Windows.Forms.RadioButton();
             this.label9 = new System.Windows.Forms.Label();
             this.rbtnHigh = new System.Windows.Forms.RadioButton();
+            this.rbtnNamhdod = new System.Windows.Forms.RadioButton();
+            this.rbtnOther = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // rbtnMedium
             // 
             this.rbtnMedium.AutoSize = true;
             this.rbtnMedium.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rbtnMedium.Location = new System.Drawing.Point(55, 6);
+            this.rbtnMedium.Location = new System.Drawing.Point(169, 6);
             this.rbtnMedium.Name = "rbtnMedium";
             this.rbtnMedium.Size = new System.Drawing.Size(59, 24);
             this.rbtnMedium.TabIndex = 12;
@@ -51,7 +53,7 @@ namespace Building.UserControls.Objects
             // 
             this.rbtnLow.AutoSize = true;
             this.rbtnLow.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rbtnLow.Location = new System.Drawing.Point(120, 6);
+            this.rbtnLow.Location = new System.Drawing.Point(234, 6);
             this.rbtnLow.Name = "rbtnLow";
             this.rbtnLow.Size = new System.Drawing.Size(40, 24);
             this.rbtnLow.TabIndex = 11;
@@ -63,7 +65,7 @@ namespace Building.UserControls.Objects
             // 
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Location = new System.Drawing.Point(166, 8);
+            this.label9.Location = new System.Drawing.Point(280, 8);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(36, 20);
             this.label9.TabIndex = 10;
@@ -73,7 +75,7 @@ namespace Building.UserControls.Objects
             // 
             this.rbtnHigh.AutoSize = true;
             this.rbtnHigh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rbtnHigh.Location = new System.Drawing.Point(3, 6);
+            this.rbtnHigh.Location = new System.Drawing.Point(117, 6);
             this.rbtnHigh.Name = "rbtnHigh";
             this.rbtnHigh.Size = new System.Drawing.Size(46, 24);
             this.rbtnHigh.TabIndex = 12;
@@ -81,12 +83,38 @@ namespace Building.UserControls.Objects
             this.rbtnHigh.Text = "زیاد";
             this.rbtnHigh.UseVisualStyleBackColor = true;
             // 
+            // rbtnNamhdod
+            // 
+            this.rbtnNamhdod.AutoSize = true;
+            this.rbtnNamhdod.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rbtnNamhdod.Location = new System.Drawing.Point(51, 6);
+            this.rbtnNamhdod.Name = "rbtnNamhdod";
+            this.rbtnNamhdod.Size = new System.Drawing.Size(65, 24);
+            this.rbtnNamhdod.TabIndex = 12;
+            this.rbtnNamhdod.TabStop = true;
+            this.rbtnNamhdod.Text = "نامحدود";
+            this.rbtnNamhdod.UseVisualStyleBackColor = true;
+            // 
+            // rbtnOther
+            // 
+            this.rbtnOther.AutoSize = true;
+            this.rbtnOther.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rbtnOther.Location = new System.Drawing.Point(-1, 6);
+            this.rbtnOther.Name = "rbtnOther";
+            this.rbtnOther.Size = new System.Drawing.Size(49, 24);
+            this.rbtnOther.TabIndex = 12;
+            this.rbtnOther.TabStop = true;
+            this.rbtnOther.Text = "سایر";
+            this.rbtnOther.UseVisualStyleBackColor = true;
+            // 
             // UcTarakom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.rbtnOther);
             this.Controls.Add(this.rbtnHigh);
+            this.Controls.Add(this.rbtnNamhdod);
             this.Controls.Add(this.rbtnMedium);
             this.Controls.Add(this.rbtnLow);
             this.Controls.Add(this.label9);
@@ -94,7 +122,7 @@ namespace Building.UserControls.Objects
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "UcTarakom";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Size = new System.Drawing.Size(210, 36);
+            this.Size = new System.Drawing.Size(322, 36);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -106,5 +134,7 @@ namespace Building.UserControls.Objects
         private System.Windows.Forms.RadioButton rbtnLow;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.RadioButton rbtnHigh;
+        private System.Windows.Forms.RadioButton rbtnNamhdod;
+        private System.Windows.Forms.RadioButton rbtnOther;
     }
 }

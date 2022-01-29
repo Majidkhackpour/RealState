@@ -151,7 +151,7 @@ namespace Building.UserControls.Sell
             this.ucTarakom1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucTarakom1.Name = "ucTarakom1";
             this.ucTarakom1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucTarakom1.Size = new System.Drawing.Size(210, 36);
+            this.ucTarakom1.Size = new System.Drawing.Size(317, 36);
             this.ucTarakom1.TabIndex = 16;
             this.ucTarakom1.Tarakom = null;
             // 
