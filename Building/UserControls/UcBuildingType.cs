@@ -97,7 +97,7 @@ namespace Building.UserControls
             try
             {
                 var list = await BuildingWindowBussines.GetAllAsync();
-                BuildingAccountTypeBindingSource.DataSource = list?.Where(q => q.Status)?.ToList()?.OrderBy(q => q.Name);
+                WindowBindingSource.DataSource = list?.Where(q => q.Status)?.ToList()?.OrderBy(q => q.Name);
             }
             catch (Exception ex)
             {

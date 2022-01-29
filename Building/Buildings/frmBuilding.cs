@@ -1,10 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using WindowsSerivces;
-using Building.BuildingMatchesItem;
-using Building.UserControls;
+﻿using Building.BuildingMatchesItem;
 using Building.UserControls.Other;
 using Building.UserControls.Rahn;
 using Building.UserControls.Sell;
@@ -15,6 +9,11 @@ using Notification;
 using Payamak.PhoneBook;
 using Services;
 using Services.FilterObjects;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using WindowsSerivces;
 
 namespace Building.Buildings
 {
