@@ -1182,7 +1182,7 @@ namespace Building.Buildings
                 _detailToken?.Cancel();
                 _detailToken = new CancellationTokenSource();
                 var token = _detailToken.Token;
-                Task.Run(() => ShowDetailAsync(guid, token));
+                _=new Waiter("اطلاعات تکمیلی",ucBuildingDetail1, Task.Run(() => ShowDetailAsync(guid, token)));
             }
             catch (Exception ex)
             {
