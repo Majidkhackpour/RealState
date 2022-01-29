@@ -63,26 +63,6 @@ namespace Building.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _5282549_call_chat_mobile_whatsapp_whatsapp_logo_icon {
-            get {
-                object obj = ResourceManager.GetObject("5282549_call_chat_mobile_whatsapp_whatsapp logo_icon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap _843786_whatsapp_icon {
-            get {
-                object obj = ResourceManager.GetObject("843786_whatsapp_icon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap add {
             get {
                 object obj = ResourceManager.GetObject("add", resourceCulture);

@@ -428,7 +428,6 @@
             this.mnuWhatsAppCustomer,
             this.mnuWhatsAppManager,
             this.mnuWhatsAppBoth});
-            this.mnuWhatsApp.Image = global::Building.Properties.Resources._843786_whatsapp_icon;
             this.mnuWhatsApp.Name = "mnuWhatsApp";
             this.mnuWhatsApp.Size = new System.Drawing.Size(245, 24);
             this.mnuWhatsApp.Text = "ارسال ملک در واتساپ";
