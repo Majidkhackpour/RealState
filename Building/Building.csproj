@@ -1192,6 +1192,18 @@
     <Compile Include="UserControls\UcBuildingCode.Designer.cs">
       <DependentUpon>UcBuildingCode.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UcBuildingDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcBuildingDetail.Designer.cs">
+      <DependentUpon>UcBuildingDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UcBuildingDetail_Detail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcBuildingDetail_Detail.Designer.cs">
+      <DependentUpon>UcBuildingDetail_Detail.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ucBuildingFeatures.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1714,6 +1726,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcBuildingCode.resx">
       <DependentUpon>UcBuildingCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcBuildingDetail.resx">
+      <DependentUpon>UcBuildingDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcBuildingDetail_Detail.resx">
+      <DependentUpon>UcBuildingDetail_Detail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucBuildingFeatures.resx">
       <DependentUpon>ucBuildingFeatures.cs</DependentUpon>
