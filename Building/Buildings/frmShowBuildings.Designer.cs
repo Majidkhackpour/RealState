@@ -97,6 +97,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblCounter = new System.Windows.Forms.Label();
+            this.ucBuildingDetail1 = new Building.UserControls.UcBuildingDetail();
             this.dgCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgDateSh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgOwnerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -209,8 +210,9 @@
             this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(1018, 508);
+            this.DGrid.Size = new System.Drawing.Size(769, 508);
             this.DGrid.TabIndex = 55744;
+            this.DGrid.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGrid_CellEnter);
             this.DGrid.Sorted += new System.EventHandler(this.DGrid_Sorted);
             this.DGrid.DoubleClick += new System.EventHandler(this.DGrid_DoubleClick);
             // 
@@ -742,6 +744,19 @@
             this.lblCounter.Size = new System.Drawing.Size(0, 20);
             this.lblCounter.TabIndex = 55760;
             // 
+            // ucBuildingDetail1
+            // 
+            this.ucBuildingDetail1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucBuildingDetail1.BackColor = System.Drawing.Color.Transparent;
+            this.ucBuildingDetail1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucBuildingDetail1.Location = new System.Drawing.Point(779, 116);
+            this.ucBuildingDetail1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucBuildingDetail1.Name = "ucBuildingDetail1";
+            this.ucBuildingDetail1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucBuildingDetail1.Size = new System.Drawing.Size(236, 512);
+            this.ucBuildingDetail1.TabIndex = 55773;
+            // 
             // dgCode
             // 
             this.dgCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -764,6 +779,7 @@
             this.dgOwnerName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dgOwnerName.DataPropertyName = "OwnerName";
             this.dgOwnerName.HeaderText = "مالک";
+            this.dgOwnerName.MinimumWidth = 150;
             this.dgOwnerName.Name = "dgOwnerName";
             this.dgOwnerName.ReadOnly = true;
             // 
@@ -774,15 +790,16 @@
             this.ParentName.HeaderText = "نوع قرارداد";
             this.ParentName.Name = "ParentName";
             this.ParentName.ReadOnly = true;
-            this.ParentName.Width = 200;
+            this.ParentName.Width = 150;
             // 
             // dgRoomCount
             // 
             this.dgRoomCount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.dgRoomCount.DataPropertyName = "RoomCount";
-            this.dgRoomCount.HeaderText = "اتاق خواب";
+            this.dgRoomCount.HeaderText = "اتاق";
             this.dgRoomCount.Name = "dgRoomCount";
             this.dgRoomCount.ReadOnly = true;
+            this.dgRoomCount.Width = 50;
             // 
             // dgAddress
             // 
@@ -831,6 +848,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1021, 631);
+            this.Controls.Add(this.ucBuildingDetail1);
             this.Controls.Add(this.picFilter);
             this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.lblCounter);
@@ -939,6 +957,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuView2;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem7;
         private System.Windows.Forms.ToolStripMenuItem mnuViewLog;
+        private UserControls.UcBuildingDetail ucBuildingDetail1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgDateSh;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgOwnerName;

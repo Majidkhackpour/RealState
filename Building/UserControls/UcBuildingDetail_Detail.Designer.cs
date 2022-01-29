@@ -49,12 +49,13 @@ namespace Building.UserControls
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(290, 37);
+            this.panel1.Size = new System.Drawing.Size(174, 29);
             this.panel1.TabIndex = 0;
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -67,36 +68,36 @@ namespace Building.UserControls
             // 
             this.splitContainer1.Panel2.Controls.Add(this.lblValue);
             this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.splitContainer1.Size = new System.Drawing.Size(249, 37);
-            this.splitContainer1.SplitterDistance = 119;
+            this.splitContainer1.Size = new System.Drawing.Size(140, 29);
+            this.splitContainer1.SplitterDistance = 66;
             this.splitContainer1.TabIndex = 1;
             // 
             // lblTitle
             // 
             this.lblTitle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTitle.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblTitle.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(119, 37);
+            this.lblTitle.Size = new System.Drawing.Size(66, 29);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblValue
             // 
             this.lblValue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblValue.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblValue.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblValue.Location = new System.Drawing.Point(0, 0);
             this.lblValue.Name = "lblValue";
-            this.lblValue.Size = new System.Drawing.Size(126, 37);
+            this.lblValue.Size = new System.Drawing.Size(70, 29);
             this.lblValue.TabIndex = 0;
             this.lblValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox1.Location = new System.Drawing.Point(249, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(146, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(41, 37);
+            this.pictureBox1.Size = new System.Drawing.Size(28, 29);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -111,7 +112,7 @@ namespace Building.UserControls
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "UcBuildingDetail_Detail";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Size = new System.Drawing.Size(290, 37);
+            this.Size = new System.Drawing.Size(174, 29);
             this.panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);

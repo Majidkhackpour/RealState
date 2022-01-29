@@ -30,7 +30,6 @@ namespace Building.Buildings
         private CancellationTokenSource _token = new CancellationTokenSource();
         public Guid SelectedGuid { get; set; }
         private IEnumerable<BuildingReportBussines> _list;
-        private List<string> _columnList;
         private BuildingFilter filter;
 
 
@@ -38,7 +37,7 @@ namespace Building.Buildings
         {
             try
             {
-                _ = new Waiter("درحال خواندن اطلاعات ...", this, Task.Run(() => LoadDataAsync(search)), true);
+                _ = new Waiter("درحال خواندن اطلاعات ...", this, Task.Run(() => LoadDataAsync(search)));
             }
             catch (Exception ex)
             {
@@ -1155,6 +1154,10 @@ namespace Building.Buildings
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+        }
+        private void DGrid_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
         private async void mnuPrintInherit_Click(object sender, EventArgs e)
         {
