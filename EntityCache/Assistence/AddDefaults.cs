@@ -289,6 +289,13 @@ namespace EntityCache.Assistence
                 #endregion
 
                 #region Window
+                var allwin = await BuildingWindowBussines.GetAllAsync();
+                if (allwin == null || allwin.Count <= 0)
+                {
+                    var win = DefaultWindow.SetDef();
+                    res.AddReturnedValue(await BuildingWindowBussines.SaveRangeAsync(win));
+                    if (res.HasError) return;
+                }
                 #endregion
             }
             catch (Exception ex)

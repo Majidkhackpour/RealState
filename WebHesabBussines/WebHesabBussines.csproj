@@ -83,6 +83,7 @@
     <Compile Include="WebBuildingRequestRegion.cs" />
     <Compile Include="WebBuildingType.cs" />
     <Compile Include="WebBuildingView.cs" />
+    <Compile Include="WebBuildingWindow.cs" />
     <Compile Include="WebCity.cs" />
     <Compile Include="WebCustomer.cs" />
     <Compile Include="WebDocumentType.cs" />

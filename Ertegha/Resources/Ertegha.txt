@@ -8157,3 +8157,130 @@ From [dbo].[Buildings]
 	 left outer join [dbo].[BuildingWindows] on [dbo].[Buildings].WindowGuid=[dbo].[BuildingWindows].Guid
 	 where Buildings.Guid=@Guid
 End
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingWindow_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingWindow_ChangeStatus]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingWindow_ChangeStatus]
+	@guid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	update BuildingWindows
+	set Status=@st
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingWindow_SetSaveResult]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingWindow_SetSaveResult]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingWindow_SetSaveResult]
+	@guid uniqueidentifier,
+	@st smallint
+AS
+BEGIN
+	update BuildingWindows
+	set ServerStatus=@st,
+		ServerDeliveryDate=GETDATE()
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingWindow_Reset]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingWindow_Reset]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingWindow_Reset]
+AS
+BEGIN
+	update BuildingWindows
+	set ServerStatus=0,
+		Modified=GETDATE()
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingWindow_GetAllNotSent]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingWindow_GetAllNotSent]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingWindow_GetAllNotSent]
+AS
+BEGIN
+	Select * from BuildingWindows
+	where ServerStatus<>1 
+	and ServerStatus<>2
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingWindow_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingWindow_Save]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingWindow_Save]
+	@guid uniqueidentifier,
+	@modif datetime,
+	@st bit,
+	@name nvarchar(250),
+	@serverSt smallint,
+	@serverDate datetime
+AS
+BEGIN
+	UPDATE [dbo].[BuildingWindows]
+	   SET [Modified] = @modif
+		  ,[Status] = @st
+		  ,[Name] = @name
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
+	 WHERE [Guid] = @guid
+	 if @@ROWCOUNT = 0
+	 begin
+		INSERT INTO [dbo].[BuildingWindows]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[Name]
+		   ,[ServerStatus]
+		   ,[ServerDeliveryDate])
+		VALUES
+           (@guid
+           ,@modif
+           ,@st
+           ,@name
+		   ,@serverSt
+		   ,@serverDate)
+	 end
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingWindow_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingWindow_GetAll]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingWindow_GetAll]
+AS
+BEGIN
+	select * from BuildingWindows
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingWindow_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingWindow_Get]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingWindow_Get]
+	@guid uniqueidentifier
+AS
+BEGIN
+	SELECT * from BuildingWindows
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingWindow_CheckName]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingWindow_CheckName]	As Begin print 11 end')  
+GO
+ALTER PROCEDURE [dbo].[sp_BuildingWindow_CheckName]
+	@guid uniqueidentifier,
+	@name nvarchar(250)
+AS
+BEGIN
+	select COUNT(*) from BuildingWindows
+	where Name=@name and Guid<>@guid
+END

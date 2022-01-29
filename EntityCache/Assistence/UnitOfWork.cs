@@ -27,16 +27,11 @@ namespace EntityCache.Assistence
         private static IPeopleGroupRepository _peopleGroupRepository;
         private static IPeoplesRepository _peopleRepository;
         private static IPhoneBookRepository _phoneBookRepository;
-        private static IPeoplesBankAccountRepository _peopleBankRepository;
         private static ISmsPanelsRepository _smsPanelsRepository;
         private static ISimcardRepository _simcardRepository;
         private static IAdvertiseLogRepository _advertiseLogRepository;
         private static IBuildingRepository _buildingRepository;
-        private static IBuildingRelatedOptionsRepository _buildingRelatedOptionsRepository;
-        private static IBuildingGalleryRepository _buildingGalleryRepository;
-        private static IBuildingMediaRepository _buildingMediaRepository;
         private static IBuildingRequestRepository _buildingRequestRepository;
-        private static IBuildingRequestRegionRepository _buildingRequestRegionRepository;
         private static IContractRepository _contractRepository;
         private static IUserLogRepository _userLogRepository;
         private static ISmsLogRepository _smsLogRepository;
@@ -56,21 +51,16 @@ namespace EntityCache.Assistence
         private static ISanadDetailRepository _sanadDetailRepository;
         private static IReceptionRepository _receptionRepository;
         private static IReceptionCheckRepository _receptionCheckRepository;
-        private static IReceptionHavaleRepository _receptionHavaleRepository;
-        private static IReceptionNaqdRepository _receptionNaqdRepository;
         private static IBankSegestRepository _bankSegestRepository;
         private static IPardakhtRepository _pardakhtRepository;
-        private static IPardakhtNaqdRepository _pardakhtNaqdRepository;
-        private static IPardakhtHavaleRepository _pardakhtHavaleRepository;
         private static IPardakhtCheckShakhsiRepository _pardakhtCheckShakhsiRepository;
-        private static IPardakhtCheckMoshtariRepository _pardakhtCheckMoshtariRepository;
         private static IReceptionCheckAvalDoreRepository _receptionCheckAvalDoreRepository;
         private static IPardakhtCheckAvalDoreRepository _pardakhtCheckAvalDoreRepository;
         private static IAdvisorRepository _advisorRepository;
         private static IAdjectiveDescriptionRepository _adjectiveDescriptionRepository;
         private static IWorkingRangeRepository _workingRangeRepository;
         private static IBuildingRelatedNumberRepository _buildingRelatedNumberRepository;
-        private static IBuildingNoteRepository _buildingNoteRepository;
+        private static IBuildingWindowRepository _buildingWindowRepository;
 
         public static void Dispose() => db?.Dispose();
         public static void Set_Save() => db.SaveChanges();
@@ -94,16 +84,11 @@ namespace EntityCache.Assistence
         public static IPeopleGroupRepository PeopleGroup => _peopleGroupRepository ?? (_peopleGroupRepository = new PeopleGroupPersistenceRepository());
         public static IPeoplesRepository Peoples => _peopleRepository ?? (_peopleRepository = new PeoplesPersistenceRepository());
         public static IPhoneBookRepository PhoneBook => _phoneBookRepository ?? (_phoneBookRepository = new PhoneBookPersistenceRepository());
-        public static IPeoplesBankAccountRepository PeopleBankAccount => _peopleBankRepository ?? (_peopleBankRepository = new PeopleBankAccountPersistenceRepository());
         public static ISmsPanelsRepository SmsPanels => _smsPanelsRepository ?? (_smsPanelsRepository = new SmsPanelsPersistenceRepository());
         public static ISimcardRepository Simcard => _simcardRepository ?? (_simcardRepository = new SimcardPersistenceRepository());
         public static IAdvertiseLogRepository AdvertiseLog => _advertiseLogRepository ?? (_advertiseLogRepository = new AdvertiseLogPersistenceRepository());
         public static IBuildingRepository Building => _buildingRepository ?? (_buildingRepository = new BuildingPersistenceRepository());
-        public static IBuildingRelatedOptionsRepository BuildingRelatedOptions => _buildingRelatedOptionsRepository ?? (_buildingRelatedOptionsRepository = new BuildingRelatedOptionsPersistenceRepository());
-        public static IBuildingGalleryRepository BuildingGallery => _buildingGalleryRepository ?? (_buildingGalleryRepository = new BuildingGalleryPersistenceRepository());
-        public static IBuildingMediaRepository BuildingMedia => _buildingMediaRepository ?? (_buildingMediaRepository = new BuildingMediaPersistenceRepository());
         public static IBuildingRequestRepository BuildingRequest => _buildingRequestRepository ?? (_buildingRequestRepository = new BuildingRequestPersistenceRepository());
-        public static IBuildingRequestRegionRepository BuildingRequestRegion => _buildingRequestRegionRepository ?? (_buildingRequestRegionRepository = new BuildingRequestRegionPersistenceRepository());
         public static IContractRepository Contract => _contractRepository ?? (_contractRepository = new ContractPersistenceRepository());
         public static IUserLogRepository UserLog => _userLogRepository ?? (_userLogRepository = new UserLogPersistenceRepository());
         public static ISmsLogRepository SmsLog => _smsLogRepository ?? (_smsLogRepository = new SmsLogPersistenceRepository());
@@ -123,20 +108,15 @@ namespace EntityCache.Assistence
         public static ISanadDetailRepository SanadDetail => _sanadDetailRepository ?? (_sanadDetailRepository = new SanadDetailPersistenceRepository());
         public static IReceptionRepository Reception => _receptionRepository ?? (_receptionRepository = new ReceptionPersistenceRepository());
         public static IReceptionCheckRepository ReceptionCheck => _receptionCheckRepository ?? (_receptionCheckRepository = new ReceptionCheckPersistenceRepository());
-        public static IReceptionHavaleRepository ReceptionHavale => _receptionHavaleRepository ?? (_receptionHavaleRepository = new ReceptionHavalePersistenceRepository());
-        public static IReceptionNaqdRepository ReceptionNaqd => _receptionNaqdRepository ?? (_receptionNaqdRepository = new ReceptionNaqdPersistenceRepository());
         public static IBankSegestRepository BankSegest => _bankSegestRepository ?? (_bankSegestRepository = new BankSegestPersistenseRepository());
         public static IPardakhtRepository Pardakht => _pardakhtRepository ?? (_pardakhtRepository = new PardakhtPersistenceRepository());
-        public static IPardakhtNaqdRepository PardakhtNaqd => _pardakhtNaqdRepository ?? (_pardakhtNaqdRepository = new PardakhtNaqdPersistenceRepository());
-        public static IPardakhtHavaleRepository PardakhtHavale => _pardakhtHavaleRepository ?? (_pardakhtHavaleRepository = new PardakhtHavalePersistenceRepository());
         public static IPardakhtCheckShakhsiRepository PardakhtCheckShakhsi => _pardakhtCheckShakhsiRepository ?? (_pardakhtCheckShakhsiRepository = new PardakhtCheckShakhsiPersistenceRepository());
-        public static IPardakhtCheckMoshtariRepository PardakhtCheckMoshtari => _pardakhtCheckMoshtariRepository ?? (_pardakhtCheckMoshtariRepository = new PardakhtCheckMoshtariPersistenceRepository());
         public static IReceptionCheckAvalDoreRepository ReceptionCheckAvalDore => _receptionCheckAvalDoreRepository ?? (_receptionCheckAvalDoreRepository = new ReceptionCheckAvalDorePersistenceRepository());
         public static IPardakhtCheckAvalDoreRepository PardakhtCheckAvalDore => _pardakhtCheckAvalDoreRepository ?? (_pardakhtCheckAvalDoreRepository = new PardakhtCheckAvalDorePersistenceRepository());
         public static IAdvisorRepository Advisor => _advisorRepository ?? (_advisorRepository = new AdvisorPersistenceRepository());
         public static IAdjectiveDescriptionRepository AdjectiveDescription => _adjectiveDescriptionRepository ?? (_adjectiveDescriptionRepository = new AdjectiveDescriptionPersistenceRepository());
         public static IWorkingRangeRepository WorkingRange => _workingRangeRepository ?? (_workingRangeRepository = new WorkingRangePersistenceRepository());
         public static IBuildingRelatedNumberRepository BuildingRelatedNumber => _buildingRelatedNumberRepository ?? (_buildingRelatedNumberRepository = new BuildingRelatedNumberPersistenceRepository());
-        public static IBuildingNoteRepository BuildingNotes => _buildingNoteRepository ?? (_buildingNoteRepository = new BuildingNotePersistenceRepository());
+        public static IBuildingWindowRepository BuildingWindow => _buildingWindowRepository ?? (_buildingWindowRepository = new BuildingWindowPersistenceRepository());
     }
 }

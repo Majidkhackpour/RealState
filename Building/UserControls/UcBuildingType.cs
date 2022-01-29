@@ -9,6 +9,7 @@ namespace Building.UserControls
 {
     public partial class UcBuildingType : UserControl
     {
+        public bool IsShowWindow { set => cmbWindow.Visible = label2.Visible = value; }
         public Guid BuildingTypeGuid
         {
             get
@@ -51,6 +52,21 @@ namespace Building.UserControls
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        public Guid? BuildingWindowGuid => (Guid?)cmbWindow.SelectedValue;
+        public async Task SetBuildingWindowGuidAsync(Guid? value)
+        {
+            try
+            {
+                if (WindowBindingSource.Count <= 0)
+                    await FillBuildingWindowAsync();
+                if (value != null && value != Guid.Empty)
+                    cmbWindow.SelectedValue = value;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         public UcBuildingType() => InitializeComponent();
         private async Task FillBuildingTypeAsync()
         {
@@ -70,6 +86,18 @@ namespace Building.UserControls
             {
                 var list = await BuildingAccountTypeBussines.GetAllAsync();
                 BuildingAccountTypeBindingSource.DataSource = list?.Where(q => q.Status).ToList().OrderBy(q => q.Name);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async Task FillBuildingWindowAsync()
+        {
+            try
+            {
+                var list = await BuildingWindowBussines.GetAllAsync();
+                BuildingAccountTypeBindingSource.DataSource = list?.Where(q => q.Status)?.ToList()?.OrderBy(q => q.Name);
             }
             catch (Exception ex)
             {
