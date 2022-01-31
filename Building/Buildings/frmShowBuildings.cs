@@ -113,22 +113,18 @@ namespace Building.Buildings
             try
             {
                 var access = UserBussines.CurrentUser.UserAccess;
-                mnuAdd.Enabled = access?.Building.Building_Insert ?? false;
-                mnuEdit.Enabled = access?.Building.Building_Update ?? false;
-                mnuDelete.Enabled = access?.Building.Building_Delete ?? false;
-                mnuView.Enabled = access?.Building.Building_View ?? false;
-                mnuMatchRequest.Enabled = access?.Building.Building_Show_request ?? false;
-                mnuSendSms.Enabled = access?.Building.Building_Send_Sms ?? false;
-                mnuSendToDivar.Enabled = access?.Building.Building_Send_Divar ?? false;
-                mnuSendToSheypoor.Enabled = access?.Building.Building_Send_Sheypoor ?? false;
-                mnuSendToTelegram.Enabled = access?.Building.Building_Send_Telegram ?? false;
-                mnuPrint.Enabled = access?.Building.Building_Print ?? false;
+                menuAdd.Enabled = access?.Building.Building_Insert ?? false;
+                menuEdit.Enabled = access?.Building.Building_Update ?? false;
+                menuDelete.Enabled = access?.Building.Building_Delete ?? false;
+                menuView.Enabled = access?.Building.Building_View ?? false;
+                menuMatch.Enabled = access?.Building.Building_Show_request ?? false;
+                menuSedSmsToOwner.Enabled = access?.Building.Building_Send_Sms ?? false;
+                menuTelegram.Enabled = access?.Building.Building_Send_Telegram ?? false;
+                menuPrint.Enabled = access?.Building.Building_Print ?? false;
 
-                mnuSendSms.Visible = VersionAccess.Sms;
-                mnuSendToDivar.Visible = VersionAccess.Advertise;
-                mnuSendToSheypoor.Visible = VersionAccess.Advertise;
-                mnuSendToTelegram.Visible = VersionAccess.Telegram;
-                mnuChangeAdvType.Visible = VersionAccess.Advertise;
+                menuSedSmsToOwner.Visible = VersionAccess.Sms;
+                menuTelegram.Visible = VersionAccess.Telegram;
+                menuAddPersonal.Visible = VersionAccess.Advertise;
             }
             catch (Exception ex)
             {
@@ -500,7 +496,7 @@ namespace Building.Buildings
                 _st = filter.Status;
                 isShowMode = _isShowMode;
                 SetAccess();
-                if (_isShowMode || (filter.IsArchive != null && filter.IsArchive.Value)) contextMenu.Enabled = false;
+                if (_isShowMode || (filter.IsArchive != null && filter.IsArchive.Value)) menu.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -530,19 +526,19 @@ namespace Building.Buildings
                 switch (e.KeyCode)
                 {
                     case Keys.Insert:
-                        mnuAdd.PerformClick();
+                        menuAdd.PerformClick();
                         break;
                     case Keys.F7:
-                        mnuEdit.PerformClick();
+                        menuEdit.PerformClick();
                         break;
                     case Keys.Delete:
-                        mnuDelete.PerformClick();
+                        menuDelete.PerformClick();
                         break;
                     case Keys.F12:
-                        mnuView.PerformClick();
+                        menuView.PerformClick();
                         break;
                     case Keys.F11:
-                        mnuView2.PerformClick();
+                        menuLimitedView.PerformClick();
                         break;
                     case Keys.Escape:
                         if (!string.IsNullOrEmpty(txtSearch.Text))
@@ -557,7 +553,7 @@ namespace Building.Buildings
                         else if (e.Alt) picFilter_Click(null, null);
                         break;
                     case Keys.Enter:
-                        if (!isShowMode) mnuEdit.PerformClick();
+                        if (!isShowMode) menuEdit.PerformClick();
                         else Select();
                         break;
                     case Keys.Down:
@@ -667,29 +663,54 @@ namespace Building.Buildings
                     this.ShowError(res, "خطا در ارسال ملک به دیوار");
             }
         }
-        private void mnuPrint_Click(object sender, EventArgs e)
+        private void picFilter_Click(object sender, EventArgs e)
         {
             try
             {
-                var frm = new frmSetPrintSize();
+                var frm = new frmBuildingFilter { Filter = filter };
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
-
-                if (frm._PrintType != EnPrintType.Excel)
-                {
-                    var cls = new ReportGenerator(StiType.Building_List, frm._PrintType) { Lst = new List<object>(_list) };
-                    cls.PrintNew();
-                    return;
-                }
-
-                ExportToExcel.ExportBuilding(_list, this);
+                filter = frm.Filter;
+                filter.Status = _st;
+                LoadData(txtSearch.Text);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async void mnuView_Click(object sender, EventArgs e) => await ShowBuildingDetailFormAsync(false);
-        private async void mnuEdit_Click(object sender, EventArgs e)
+        private void DGrid_Sorted(object sender, EventArgs e) => SetGridColor();
+        private void DGrid_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                ucBuildingDetail1.Building = null;
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+
+                _detailToken?.Cancel();
+                _detailToken = new CancellationTokenSource();
+                var token = _detailToken.Token;
+                _=new Waiter("اطلاعات تکمیلی",ucBuildingDetail1, Task.Run(() => ShowDetailAsync(guid, token)));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void menuAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmSelectBuildingType(this, new BuildingBussines());
+                if (frm.ShowDialog(this) == DialogResult.OK)
+                    LoadData(txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void menuEdit_Click(object sender, EventArgs e)
         {
             try
             {
@@ -723,20 +744,7 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void mnuAdd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var frm = new frmSelectBuildingType(this, new BuildingBussines());
-                if (frm.ShowDialog(this) == DialogResult.OK)
-                    LoadData(txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async void mnuDelete_Click(object sender, EventArgs e)
+        private async void menuDelete_Click(object sender, EventArgs e)
         {
             var res = new ReturnedSaveFuncInfo();
             try
@@ -777,29 +785,24 @@ namespace Building.Buildings
                 else LoadData(txtSearch.Text);
             }
         }
-        private async void mnuSlideShow_Click(object sender, EventArgs e)
+        private async void menuView_Click(object sender, EventArgs e) => await ShowBuildingDetailFormAsync(false);
+        private async void menuLimitedView_Click(object sender, EventArgs e) => await ShowBuildingDetailFormAsync(true);
+        private void menuLogView_Click(object sender, EventArgs e)
         {
             try
             {
                 if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var bu = await BuildingBussines.GetAsync(guid);
-                if (bu?.GalleryList == null || bu?.GalleryList?.Count <= 0)
-                {
-                    frmNotification.PublicInfo.ShowMessage("داده ای جهت نمایش وجود ندارد");
-                    return;
-                }
-                var desc = $"کد ملک:( {bu.Code} ) ** آدرس:( {bu.Address} )";
-                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.ShowSlideShow, bu.Guid, desc);
-                var frm = new frmSlideShow(bu.GalleryList);
-                frm.ShowDialog();
+
+                var frm = new frmBuildingLog(guid);
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async void mnuAddToArchive_Click(object sender, EventArgs e)
+        private async void menuAddArchive_Click(object sender, EventArgs e)
         {
             var res = new ReturnedSaveFuncInfo();
             try
@@ -835,7 +838,7 @@ namespace Building.Buildings
                 }
             }
         }
-        private async void mnuRemoveFromArchive_Click(object sender, EventArgs e)
+        private async void menuRemoveArchive_Click(object sender, EventArgs e)
         {
             var res = new ReturnedSaveFuncInfo();
             try
@@ -870,7 +873,149 @@ namespace Building.Buildings
                 }
             }
         }
-        private async void mnuMatchRequest_Click(object sender, EventArgs e)
+        private async void menuAddPersonal_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var cls = await BuildingBussines.GetAsync(guid);
+                if (cls == null) return;
+
+                if (cls.AdvertiseType == null || cls.AdvertiseType == AdvertiseType.None)
+                {
+                    this.ShowMessage("فایل موردنظر جزو فایل های شخصی می باشد");
+                    return;
+                }
+
+                cls.AdvertiseType = null;
+                cls.ServerStatus = ServerStatus.None;
+                var desc = $"کد ملک:( {cls.Code} ) ** آدرس:( {cls.Address} )";
+                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.AddToPersonalFiles, cls.Guid, desc);
+                var res = await cls.SaveAsync(false);
+                if (res.HasError) this.ShowError(res);
+                else
+                {
+                    this.ShowMessage("فایل موردنظر به فایل های شخصی اضافه شد");
+                    LoadData(txtSearch.Text);
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void menuSlideShow_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var bu = await BuildingBussines.GetAsync(guid);
+                if (bu?.GalleryList == null || bu?.GalleryList?.Count <= 0)
+                {
+                    frmNotification.PublicInfo.ShowMessage("داده ای جهت نمایش وجود ندارد");
+                    return;
+                }
+                var desc = $"کد ملک:( {bu.Code} ) ** آدرس:( {bu.Address} )";
+                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.ShowSlideShow, bu.Guid, desc);
+                var frm = new frmSlideShow(bu.GalleryList);
+                frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void menuMedia_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var bu = await BuildingBussines.GetAsync(guid);
+                if (bu?.MediaList == null || bu?.MediaList?.Count <= 0)
+                {
+                    frmNotification.PublicInfo.ShowMessage("داده ای جهت نمایش وجود ندارد");
+                    return;
+                }
+                var desc = $"کد ملک:( {bu.Code} ) ** آدرس:( {bu.Address} )";
+                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.ShowMedia, bu.Guid, desc);
+                var frm = new frmShowMedia(bu);
+                frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void menuTelegramCustomer_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var res = await Utilities.PingHostAsync();
+                if (res.HasError)
+                {
+                    this.ShowError(res);
+                    return;
+                }
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                if (guid == Guid.Empty) return;
+                var bu = await BuildingReportBussines.GetAsync(guid);
+                if (bu == null) return;
+                await SendToTelegramCustomerChannelAsync(bu);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void menuTelegramManager_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var res = await Utilities.PingHostAsync();
+                if (res.HasError)
+                {
+                    this.ShowError(res);
+                    return;
+                }
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                if (guid == Guid.Empty) return;
+                var bu = await BuildingReportBussines.GetAsync(guid);
+                if (bu == null) return;
+                await SendToTelegramManagerChannelAsync(bu);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void menuTelegramBoth_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var res = await Utilities.PingHostAsync();
+                if (res.HasError)
+                {
+                    this.ShowError(res);
+                    return;
+                }
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                if (guid == Guid.Empty) return;
+                var bu = await BuildingReportBussines.GetAsync(guid);
+                if (bu == null) return;
+                await SendToTelegramBothChannelAsync(bu);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void menuMatch_Click(object sender, EventArgs e)
         {
             try
             {
@@ -894,7 +1039,7 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async void mnuPrintFull_Click(object sender, EventArgs e)
+        private void menuPrintFull_Click(object sender, EventArgs e)
         {
             try
             {
@@ -971,225 +1116,7 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async void cmbSendToCustomerChannel_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var res = await Utilities.PingHostAsync();
-                if (res.HasError)
-                {
-                    this.ShowError(res);
-                    return;
-                }
-                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                if (guid == Guid.Empty) return;
-                var bu = await BuildingReportBussines.GetAsync(guid);
-                if (bu == null) return;
-                await SendToTelegramCustomerChannelAsync(bu);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async void cmbSendToManagerChannel_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var res = await Utilities.PingHostAsync();
-                if (res.HasError)
-                {
-                    this.ShowError(res);
-                    return;
-                }
-                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                if (guid == Guid.Empty) return;
-                var bu = await BuildingReportBussines.GetAsync(guid);
-                if (bu == null) return;
-                await SendToTelegramManagerChannelAsync(bu);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async void cmbSendToBothChannel_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var res = await Utilities.PingHostAsync();
-                if (res.HasError)
-                {
-                    this.ShowError(res);
-                    return;
-                }
-                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                if (guid == Guid.Empty) return;
-                var bu = await BuildingReportBussines.GetAsync(guid);
-                if (bu == null) return;
-                await SendToTelegramBothChannelAsync(bu);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async void mnuWhatsAppCustomer_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var res = await Utilities.PingHostAsync();
-                if (res.HasError)
-                {
-                    this.ShowError(res);
-                    return;
-                }
-                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                if (guid == Guid.Empty) return;
-                var bu = await BuildingReportBussines.GetAsync(guid);
-                if (bu == null) return;
-                await SendToWhatsAppCustomerChannelAsync(bu);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async void mnuWhatsAppManager_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var res = await Utilities.PingHostAsync();
-                if (res.HasError)
-                {
-                    this.ShowError(res);
-                    return;
-                }
-                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                if (guid == Guid.Empty) return;
-                var bu = await BuildingReportBussines.GetAsync(guid);
-                if (bu == null) return;
-                await SendToWhatsAppManagerChannelAsync(bu);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async void mnuWhatsAppBoth_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var res = await Utilities.PingHostAsync();
-                if (res.HasError)
-                {
-                    this.ShowError(res);
-                    return;
-                }
-                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                if (guid == Guid.Empty) return;
-                var bu = await BuildingReportBussines.GetAsync(guid);
-                if (bu == null) return;
-                await SendToWhatsAppBothChannelAsync(bu);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async void mnuView2_Click(object sender, EventArgs e) => await ShowBuildingDetailFormAsync(true);
-        private void picFilter_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var frm = new frmBuildingFilter { Filter = filter };
-                if (frm.ShowDialog(this) != DialogResult.OK) return;
-                filter = frm.Filter;
-                filter.Status = _st;
-                LoadData(txtSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async void mnuChangeAdvType_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var cls = await BuildingBussines.GetAsync(guid);
-                if (cls == null) return;
-
-                if (cls.AdvertiseType == null || cls.AdvertiseType == AdvertiseType.None)
-                {
-                    this.ShowMessage("فایل موردنظر جزو فایل های شخصی می باشد");
-                    return;
-                }
-
-                cls.AdvertiseType = null;
-                cls.ServerStatus = ServerStatus.None;
-                var desc = $"کد ملک:( {cls.Code} ) ** آدرس:( {cls.Address} )";
-                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.AddToPersonalFiles, cls.Guid, desc);
-                var res = await cls.SaveAsync(false);
-                if (res.HasError) this.ShowError(res);
-                else
-                {
-                    this.ShowMessage("فایل موردنظر به فایل های شخصی اضافه شد");
-                    LoadData(txtSearch.Text);
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void DGrid_Sorted(object sender, EventArgs e) => SetGridColor();
-        private void mnuSendSms_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void mnuViewLog_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-
-                var frm = new frmBuildingLog(guid);
-                frm.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void DGrid_CellEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                ucBuildingDetail1.Building = null;
-                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-
-                _detailToken?.Cancel();
-                _detailToken = new CancellationTokenSource();
-                var token = _detailToken.Token;
-                _=new Waiter("اطلاعات تکمیلی",ucBuildingDetail1, Task.Run(() => ShowDetailAsync(guid, token)));
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async void mnuPrintInherit_Click(object sender, EventArgs e)
+        private void menuLimitedPrint_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1247,22 +1174,21 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async void mnuMedia_Click(object sender, EventArgs e)
+        private void menuPrintList_Click(object sender, EventArgs e)
         {
             try
             {
-                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var bu = await BuildingBussines.GetAsync(guid);
-                if (bu?.MediaList == null || bu?.MediaList?.Count <= 0)
+                var frm = new frmSetPrintSize();
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
+
+                if (frm._PrintType != EnPrintType.Excel)
                 {
-                    frmNotification.PublicInfo.ShowMessage("داده ای جهت نمایش وجود ندارد");
+                    var cls = new ReportGenerator(StiType.Building_List, frm._PrintType) { Lst = new List<object>(_list) };
+                    cls.PrintNew();
                     return;
                 }
-                var desc = $"کد ملک:( {bu.Code} ) ** آدرس:( {bu.Address} )";
-                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.ShowMedia, bu.Guid, desc);
-                var frm = new frmShowMedia(bu);
-                frm.ShowDialog();
+
+                ExportToExcel.ExportBuilding(_list, this);
             }
             catch (Exception ex)
             {
