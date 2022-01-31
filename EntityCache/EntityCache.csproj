@@ -197,6 +197,7 @@
     <Compile Include="Core\IBuildingTypeRepository.cs" />
     <Compile Include="Core\IBuildingViewRepository.cs" />
     <Compile Include="Core\IBuildingWindowRepository.cs" />
+    <Compile Include="Core\IBuildingZoncanRepository.cs" />
     <Compile Include="Core\ICheckPageRepository.cs" />
     <Compile Include="Core\ICitiesRepository.cs" />
     <Compile Include="Core\IContractRepository.cs" />
@@ -249,6 +250,7 @@
     <Compile Include="Mppings\BuildingTypeMapper.cs" />
     <Compile Include="Mppings\BuildingViewMapper.cs" />
     <Compile Include="Mppings\BuildingWindowMapper.cs" />
+    <Compile Include="Mppings\BuildingZoncanMapper.cs" />
     <Compile Include="Mppings\CityMapper.cs" />
     <Compile Include="Mppings\DocumentTypeMapper.cs" />
     <Compile Include="Mppings\FloorCoverMapper.cs" />
@@ -282,6 +284,7 @@
     <Compile Include="SqlServerPersistence\BuildingTypePersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\BuildingViewPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\BuildingWindowPersistenceRepository.cs" />
+    <Compile Include="SqlServerPersistence\BuildingZoncanPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\CheckPagePersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\CitiesPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\ContractPersistenceRepository.cs" />

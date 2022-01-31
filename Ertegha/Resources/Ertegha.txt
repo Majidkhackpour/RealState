@@ -8284,3 +8284,134 @@ BEGIN
 	select COUNT(*) from BuildingWindows
 	where Name=@name and Guid<>@guid
 END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Zoncan_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Zoncan_Get]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Zoncan_Get
+	@guid uniqueidentifier
+AS
+BEGIN
+	select * from BuildingZoncans
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Zoncan_GetAll]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Zoncan_GetAll]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Zoncan_GetAll
+AS
+BEGIN
+	select * from BuildingZoncans
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Zoncan_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Zoncan_Save]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Zoncan_Save
+	@Guid uniqueidentifier,
+	@st bit,
+	@name nvarchar(200),
+	@desc nvarchar(max),
+	@serverSt smallint,
+	@serverDate datetime
+AS
+BEGIN
+	UPDATE [dbo].[BuildingZoncans]
+	   SET [Modified] = GETDATE()
+		  ,[Status] = @st
+		  ,[Name] = @name
+		  ,[Description] = @desc
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
+	 WHERE Guid = @Guid
+	 if @@ROWCOUNT = 0
+	 begin
+		INSERT INTO [dbo].[BuildingZoncans]
+           ([Guid]
+           ,[Modified]
+           ,[Status]
+           ,[Name]
+           ,[Description]
+           ,[ServerStatus]
+           ,[ServerDeliveryDate])
+		VALUES
+           (@Guid
+           ,GETDATE()
+           ,@st
+           ,@name
+           ,@desc
+           ,@serverSt
+           ,@serverDate)
+	 end
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Zoncan_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Zoncan_ChangeStatus]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Zoncan_ChangeStatus
+	@Guid uniqueidentifier,
+	@st bit
+AS
+BEGIN
+	update BuildingZoncans
+	set Status=@st,
+		ServerStatus=0
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Zoncan_GetAllNotSent]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Zoncan_GetAllNotSent]	As Begin print 11 end')  
+GO
+alter PROCEDURE sp_Zoncan_GetAllNotSent
+AS
+BEGIN
+	Select * from BuildingZoncans
+	where ServerStatus<>1 
+	and ServerStatus<>2
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Zoncan_SetSaveResult]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Zoncan_SetSaveResult]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Zoncan_SetSaveResult
+	@guid uniqueidentifier,
+	@st smallint
+AS
+BEGIN
+	update BuildingZoncans
+	set ServerStatus=@st,
+		ServerDeliveryDate=GETDATE()
+	where Guid=@guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Zoncan_Reset]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Zoncan_Reset]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_Zoncan_Reset
+AS
+BEGIN
+	update BuildingZoncans
+	set ServerStatus=0,
+		Modified=GETDATE()
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_Zoncan_CheckName]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_Zoncan_CheckName]	As Begin print 11 end')  
+GO
+Alter PROCEDURE [dbo].[sp_Zoncan_CheckName]
+	@guid uniqueidentifier,
+	@name nvarchar(250)
+AS
+BEGIN
+	select COUNT(*) from BuildingZoncans
+	where Name=@name and Guid<>@guid
+END

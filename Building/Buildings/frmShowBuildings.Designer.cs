@@ -62,6 +62,7 @@
             this.menuAddArchive = new System.Windows.Forms.ToolStripMenuItem();
             this.menuRemoveArchive = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAddPersonal = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuChangeZoncan = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripSeparator();
             this.گالریToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSlideShow = new System.Windows.Forms.ToolStripMenuItem();
@@ -108,7 +109,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblCounter = new System.Windows.Forms.Label();
             this.ucBuildingDetail1 = new Building.UserControls.UcBuildingDetail();
-            this.menuChangeZoncan = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
@@ -326,7 +326,7 @@
             this.menuZoncan});
             this.menu.Name = "menu";
             this.menu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.menu.Size = new System.Drawing.Size(215, 286);
+            this.menu.Size = new System.Drawing.Size(215, 308);
             // 
             // menuAdd
             // 
@@ -438,6 +438,13 @@
             this.menuAddPersonal.Size = new System.Drawing.Size(228, 24);
             this.menuAddPersonal.Text = "تبدیل فایل به فایل های شخصی";
             this.menuAddPersonal.Click += new System.EventHandler(this.menuAddPersonal_Click);
+            // 
+            // menuChangeZoncan
+            // 
+            this.menuChangeZoncan.Image = global::Building.Properties.Resources.refresh_round_symbol;
+            this.menuChangeZoncan.Name = "menuChangeZoncan";
+            this.menuChangeZoncan.Size = new System.Drawing.Size(228, 24);
+            this.menuChangeZoncan.Text = "تغییر زونکن فایل";
             // 
             // toolStripMenuItem11
             // 
@@ -600,6 +607,7 @@
             this.menuZoncan.Name = "menuZoncan";
             this.menuZoncan.Size = new System.Drawing.Size(214, 24);
             this.menuZoncan.Text = "مدیریت زونکن ها";
+            this.menuZoncan.Click += new System.EventHandler(this.menuZoncan_Click);
             // 
             // BuildingBindingSource
             // 
@@ -847,13 +855,6 @@
             this.ucBuildingDetail1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucBuildingDetail1.Size = new System.Drawing.Size(236, 512);
             this.ucBuildingDetail1.TabIndex = 55773;
-            // 
-            // menuChangeZoncan
-            // 
-            this.menuChangeZoncan.Image = global::Building.Properties.Resources.refresh_round_symbol;
-            this.menuChangeZoncan.Name = "menuChangeZoncan";
-            this.menuChangeZoncan.Size = new System.Drawing.Size(228, 24);
-            this.menuChangeZoncan.Text = "تغییر زونکن فایل";
             // 
             // frmShowBuildings
             // 

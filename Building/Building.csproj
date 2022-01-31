@@ -1258,6 +1258,18 @@
     <Compile Include="Window\frmShowWindow.Designer.cs">
       <DependentUpon>frmShowWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Zoncan\frmShowZoncans.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Zoncan\frmShowZoncans.Designer.cs">
+      <DependentUpon>frmShowZoncans.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Zoncan\frmZoncanMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Zoncan\frmZoncanMain.Designer.cs">
+      <DependentUpon>frmZoncanMain.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -1748,6 +1760,12 @@
     <EmbeddedResource Include="Window\frmShowWindow.resx">
       <DependentUpon>frmShowWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Zoncan\frmShowZoncans.resx">
+      <DependentUpon>frmShowZoncans.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Zoncan\frmZoncanMain.resx">
+      <DependentUpon>frmZoncanMain.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\DataSources\EntityCache.Bussines.BuildingMediaBussines.datasource" />
@@ -1757,6 +1775,7 @@
     <None Include="Properties\DataSources\EntityCache.Bussines.BuildingTypeBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.BuildingViewBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.BuildingWindowBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.BuildingZoncanBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.CitiesBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.ContractBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.ContractReportBusiness.datasource" />
@@ -1939,6 +1958,7 @@
   <ItemGroup>
     <None Include="Resources\TabaqeCount.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

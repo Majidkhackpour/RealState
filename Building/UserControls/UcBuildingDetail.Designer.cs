@@ -324,7 +324,7 @@ namespace Building.UserControls
             this.ucUser.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucUser.Size = new System.Drawing.Size(202, 22);
             this.ucUser.TabIndex = 12;
-            this.ucUser.Title = "کاربر ثبت کننده:";
+            this.ucUser.Title = "مشاور:";
             this.ucUser.Value = "---";
             this.ucUser.Visible = false;
             // 

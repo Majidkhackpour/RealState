@@ -21,6 +21,7 @@ using System.Windows.Forms;
 using WebHesabBussines;
 using WindowsSerivces;
 using WindowsSerivces.Waiter;
+using Building.Zoncan;
 
 namespace Building.Buildings
 {
@@ -1113,6 +1114,18 @@ namespace Building.Buildings
                 //cls_.PrintNew();
                 //var desc = $"کد ملک:( {cls.Code} ) ** محدوده:( {cls.RegionName} ) ** آدرس:( {cls.Address} )";
                 //await UserLogBussines.SaveBuildingLogAsync(EnLogAction.FullPrint, cls.Guid, desc);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void menuZoncan_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmShowZoncans();
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {

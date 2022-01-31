@@ -1,18 +1,18 @@
-﻿using System;
+﻿using EntityCache.Bussines;
+using MetroFramework.Forms;
+using Services;
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
-using EntityCache.Bussines;
-using MetroFramework.Forms;
+using Building.BuildingCondition;
 using Notification;
-using Services;
-using User;
 
-namespace Building.BuildingCondition
+namespace Building.Zoncan
 {
-    public partial class frmShowBuildingCondition : MetroForm
+    public partial class frmShowZoncans : MetroForm
     {
         private bool _st = true;
         private CancellationTokenSource _token = new CancellationTokenSource();
@@ -23,24 +23,9 @@ namespace Building.BuildingCondition
             {
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
-                var list = await BuildingConditionBussines.GetAllAsync(search, _token.Token);
-                Invoke(new MethodInvoker(() => BCBindingSource.DataSource =
-                    list.Where(q => q.Status == _st).OrderBy(q => q.Name).ToSortableBindingList()));
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private void SetAccess()
-        {
-            try
-            {
-                var access = UserBussines.CurrentUser.UserAccess;
-                mnuAdd.Enabled = access?.BuildingCondition.Building_Condition_Insert ?? false;
-                mnuEdit.Enabled = access?.BuildingCondition.Building_Condition_Update ?? false;
-                mnuDelete.Enabled = access?.BuildingCondition.Building_Condition_Delete ?? false;
-                mnuView.Enabled = access?.BuildingCondition.Building_Condition_View ?? false;
+                var list = await BuildingZoncanBussines.GetAllAsync(search, _token.Token);
+                BeginInvoke(new MethodInvoker(() => ZoncanBindingSource.DataSource =
+                    list?.Where(q => q.Status == _st)?.OrderBy(q => q.Name)?.ToSortableBindingList()));
             }
             catch (Exception ex)
             {
@@ -48,13 +33,11 @@ namespace Building.BuildingCondition
             }
         }
 
-        public frmShowBuildingCondition(bool status = true)
+        public frmShowZoncans()
         {
             InitializeComponent();
-            _st = status;
-            SetAccess();
             DGrid.Focus();
-            ucHeader.Text = "نمایش لیست انواع بنا";
+            ucHeader.Text = "نمایش لیست زونکن ها";
         }
 
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -62,7 +45,7 @@ namespace Building.BuildingCondition
             DGrid.Rows[e.RowIndex].Cells["dgRadif"].Value = e.RowIndex + 1;
         }
         private async void txtSearch_TextChanged(object sender, EventArgs e) => await LoadDataAsync(txtSearch.Text);
-        private void frmShowBuildingCondition_KeyDown(object sender, KeyEventArgs e)
+        private void frmShowZoncans_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -105,7 +88,7 @@ namespace Building.BuildingCondition
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async void frmShowBuildingCondition_Load(object sender, EventArgs e) => await LoadDataAsync();
+        private async void frmShowZoncans_Load(object sender, EventArgs e) => await LoadDataAsync();
         private async void mnuView_Click(object sender, EventArgs e)
         {
             try
@@ -113,9 +96,9 @@ namespace Building.BuildingCondition
                 if (DGrid.RowCount <= 0) return;
                 if (DGrid.CurrentRow == null) return;
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var obj = await BuildingConditionBussines.GetAsync(guid);
+                var obj = await BuildingZoncanBussines.GetAsync(guid);
                 if (obj == null) return;
-                var frm = new frmBuildingConditionMain(obj, true);
+                var frm = new frmZoncanMain(obj, true);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -136,9 +119,9 @@ namespace Building.BuildingCondition
                     return;
                 }
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var obj = await BuildingConditionBussines.GetAsync(guid);
+                var obj = await BuildingZoncanBussines.GetAsync(guid);
                 if (obj == null) return;
-                var frm = new frmBuildingConditionMain(obj, false);
+                var frm = new frmZoncanMain(obj, false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync(txtSearch.Text);
             }
@@ -151,7 +134,7 @@ namespace Building.BuildingCondition
         {
             try
             {
-                var frm = new frmBuildingConditionMain(new BuildingConditionBussines(), false);
+                var frm = new frmZoncanMain(new BuildingZoncanBussines(), false);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     await LoadDataAsync();
             }
@@ -174,7 +157,7 @@ namespace Building.BuildingCondition
                             $@"آیا از حذف {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
-                    var prd = await BuildingConditionBussines.GetAsync(guid);
+                    var prd = await BuildingZoncanBussines.GetAsync(guid);
                     res.AddReturnedValue(await prd.ChangeStatusAsync(false));
                 }
                 else
@@ -184,7 +167,7 @@ namespace Building.BuildingCondition
                             "حذف",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.No) return;
-                    var prd = await BuildingConditionBussines.GetAsync(guid);
+                    var prd = await BuildingZoncanBussines.GetAsync(guid);
                     res.AddReturnedValue(await prd.ChangeStatusAsync(true));
                 }
             }
@@ -196,7 +179,7 @@ namespace Building.BuildingCondition
             finally
             {
                 if (res.HasError)
-                    this.ShowError(res, "خطا در تغییر وضعیت نوع ملک");
+                    this.ShowError(res, "خطا در تغییر وضعیت زونکن");
                 else await LoadDataAsync(txtSearch.Text);
             }
         }
