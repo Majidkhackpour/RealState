@@ -146,6 +146,7 @@ namespace Building.UserControls
             this.ucBuildingType.TabIndex = 0;
             this.ucBuildingType.Title = "نوع ملک:";
             this.ucBuildingType.Value = "---";
+            this.ucBuildingType.Visible = false;
             // 
             // ucMasahat
             // 
@@ -160,6 +161,7 @@ namespace Building.UserControls
             this.ucMasahat.TabIndex = 1;
             this.ucMasahat.Title = "مساحت:";
             this.ucMasahat.Value = "---";
+            this.ucMasahat.Visible = false;
             // 
             // ucZirbana
             // 
@@ -174,6 +176,7 @@ namespace Building.UserControls
             this.ucZirbana.TabIndex = 2;
             this.ucZirbana.Title = "زیربنا:";
             this.ucZirbana.Value = "---";
+            this.ucZirbana.Visible = false;
             // 
             // ucRahn
             // 
@@ -188,6 +191,7 @@ namespace Building.UserControls
             this.ucRahn.TabIndex = 3;
             this.ucRahn.Title = "قیمت رهن:";
             this.ucRahn.Value = "---";
+            this.ucRahn.Visible = false;
             // 
             // ucEjare
             // 
@@ -202,6 +206,7 @@ namespace Building.UserControls
             this.ucEjare.TabIndex = 4;
             this.ucEjare.Title = "اجاره ماهانه:";
             this.ucEjare.Value = "---";
+            this.ucEjare.Visible = false;
             // 
             // ucSell
             // 
@@ -216,6 +221,7 @@ namespace Building.UserControls
             this.ucSell.TabIndex = 5;
             this.ucSell.Title = "فی فروش:";
             this.ucSell.Value = "---";
+            this.ucSell.Visible = false;
             // 
             // ucPricePerMeter
             // 
@@ -230,6 +236,7 @@ namespace Building.UserControls
             this.ucPricePerMeter.TabIndex = 6;
             this.ucPricePerMeter.Title = "قیمت هر متر:";
             this.ucPricePerMeter.Value = "---";
+            this.ucPricePerMeter.Visible = false;
             // 
             // ucVam
             // 
@@ -244,6 +251,7 @@ namespace Building.UserControls
             this.ucVam.TabIndex = 7;
             this.ucVam.Title = "مبلغ کل وام:";
             this.ucVam.Value = "---";
+            this.ucVam.Visible = false;
             // 
             // ucQest
             // 
@@ -258,6 +266,7 @@ namespace Building.UserControls
             this.ucQest.TabIndex = 8;
             this.ucQest.Title = "اقساط ماهانه:";
             this.ucQest.Value = "---";
+            this.ucQest.Visible = false;
             // 
             // ucDocumentType
             // 
@@ -272,6 +281,7 @@ namespace Building.UserControls
             this.ucDocumentType.TabIndex = 9;
             this.ucDocumentType.Title = "نوع سند:";
             this.ucDocumentType.Value = "---";
+            this.ucDocumentType.Visible = false;
             // 
             // ucRegion
             // 
@@ -286,6 +296,7 @@ namespace Building.UserControls
             this.ucRegion.TabIndex = 10;
             this.ucRegion.Title = "محدوده:";
             this.ucRegion.Value = "---";
+            this.ucRegion.Visible = false;
             // 
             // ucSaleSakht
             // 
@@ -300,6 +311,7 @@ namespace Building.UserControls
             this.ucSaleSakht.TabIndex = 11;
             this.ucSaleSakht.Title = "سال ساخت:";
             this.ucSaleSakht.Value = "---";
+            this.ucSaleSakht.Visible = false;
             // 
             // ucUser
             // 
@@ -314,6 +326,7 @@ namespace Building.UserControls
             this.ucUser.TabIndex = 12;
             this.ucUser.Title = "کاربر ثبت کننده:";
             this.ucUser.Value = "---";
+            this.ucUser.Visible = false;
             // 
             // ucAccountType
             // 
@@ -328,6 +341,7 @@ namespace Building.UserControls
             this.ucAccountType.TabIndex = 13;
             this.ucAccountType.Title = "کاربری ملک:";
             this.ucAccountType.Value = "---";
+            this.ucAccountType.Visible = false;
             // 
             // ucCondition
             // 
@@ -342,6 +356,7 @@ namespace Building.UserControls
             this.ucCondition.TabIndex = 14;
             this.ucCondition.Title = "وضعیت ملک:";
             this.ucCondition.Value = "---";
+            this.ucCondition.Visible = false;
             // 
             // ucView
             // 
@@ -356,6 +371,7 @@ namespace Building.UserControls
             this.ucView.TabIndex = 15;
             this.ucView.Title = "نما:";
             this.ucView.Value = "---";
+            this.ucView.Visible = false;
             // 
             // ucFloor
             // 
@@ -370,6 +386,7 @@ namespace Building.UserControls
             this.ucFloor.TabIndex = 16;
             this.ucFloor.Title = "کفپوش:";
             this.ucFloor.Value = "---";
+            this.ucFloor.Visible = false;
             // 
             // ucKitchen
             // 
@@ -384,6 +401,7 @@ namespace Building.UserControls
             this.ucKitchen.TabIndex = 17;
             this.ucKitchen.Title = "آشپزخانه:";
             this.ucKitchen.Value = "---";
+            this.ucKitchen.Visible = false;
             // 
             // ucWindow
             // 
@@ -398,6 +416,7 @@ namespace Building.UserControls
             this.ucWindow.TabIndex = 18;
             this.ucWindow.Title = "پنجره:";
             this.ucWindow.Value = "---";
+            this.ucWindow.Visible = false;
             // 
             // ucTabaqe
             // 
@@ -412,6 +431,7 @@ namespace Building.UserControls
             this.ucTabaqe.TabIndex = 19;
             this.ucTabaqe.Title = "طبقه:";
             this.ucTabaqe.Value = "---";
+            this.ucTabaqe.Visible = false;
             // 
             // ucSide
             // 
@@ -426,6 +446,7 @@ namespace Building.UserControls
             this.ucSide.TabIndex = 20;
             this.ucSide.Title = "موقعیت:";
             this.ucSide.Value = "---";
+            this.ucSide.Visible = false;
             // 
             // ucHitting
             // 
@@ -440,6 +461,7 @@ namespace Building.UserControls
             this.ucHitting.TabIndex = 21;
             this.ucHitting.Title = "گرمایش:";
             this.ucHitting.Value = "---";
+            this.ucHitting.Visible = false;
             // 
             // ucColling
             // 
@@ -454,6 +476,7 @@ namespace Building.UserControls
             this.ucColling.TabIndex = 22;
             this.ucColling.Title = "سرمایش:";
             this.ucColling.Value = "---";
+            this.ucColling.Visible = false;
             // 
             // UcBuildingDetail
             // 
