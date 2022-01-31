@@ -108,6 +108,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblCounter = new System.Windows.Forms.Label();
             this.ucBuildingDetail1 = new Building.UserControls.UcBuildingDetail();
+            this.menuChangeZoncan = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
@@ -325,7 +326,7 @@
             this.menuZoncan});
             this.menu.Name = "menu";
             this.menu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.menu.Size = new System.Drawing.Size(215, 308);
+            this.menu.Size = new System.Drawing.Size(215, 286);
             // 
             // menuAdd
             // 
@@ -407,7 +408,8 @@
             this.تغییروضعیتملکToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuAddArchive,
             this.menuRemoveArchive,
-            this.menuAddPersonal});
+            this.menuAddPersonal,
+            this.menuChangeZoncan});
             this.تغییروضعیتملکToolStripMenuItem.Image = global::Building.Properties.Resources.refresh_round_symbol;
             this.تغییروضعیتملکToolStripMenuItem.Name = "تغییروضعیتملکToolStripMenuItem";
             this.تغییروضعیتملکToolStripMenuItem.Size = new System.Drawing.Size(214, 24);
@@ -846,6 +848,13 @@
             this.ucBuildingDetail1.Size = new System.Drawing.Size(236, 512);
             this.ucBuildingDetail1.TabIndex = 55773;
             // 
+            // menuChangeZoncan
+            // 
+            this.menuChangeZoncan.Image = global::Building.Properties.Resources.refresh_round_symbol;
+            this.menuChangeZoncan.Name = "menuChangeZoncan";
+            this.menuChangeZoncan.Size = new System.Drawing.Size(228, 24);
+            this.menuChangeZoncan.Text = "تغییر زونکن فایل";
+            // 
             // frmShowBuildings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -971,5 +980,6 @@
         private System.Windows.Forms.ToolStripMenuItem menuPrintList;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem17;
         private System.Windows.Forms.ToolStripMenuItem menuZoncan;
+        private System.Windows.Forms.ToolStripMenuItem menuChangeZoncan;
     }
 }

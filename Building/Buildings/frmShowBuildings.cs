@@ -152,7 +152,7 @@ namespace Building.Buildings
             {
                 for (var i = 0; i < DGrid.RowCount; i++)
                 {
-                    if ((bool)DGrid[dgIsArchive.Index, i].Value)
+                    if (DGrid[dgIsArchive.Index, i].Value != null && (bool)DGrid[dgIsArchive.Index, i].Value)
                     {
                         DGrid.Rows[i].DefaultCellStyle.BackColor = Color.Silver;
                         continue;
@@ -163,21 +163,24 @@ namespace Building.Buildings
                         DGrid.Rows[i].DefaultCellStyle.BackColor = color;
                         continue;
                     }
-                    var priority = (EnBuildingPriority)DGrid[dgPriority.Index, i].Value;
-                    switch (priority)
+                    if (DGrid[dgPriority.Index, i].Value != null)
                     {
-                        case EnBuildingPriority.SoHigh:
-                            DGrid.Rows[i].DefaultCellStyle.BackColor = Color.OrangeRed;
-                            break;
-                        case EnBuildingPriority.High:
-                            DGrid.Rows[i].DefaultCellStyle.BackColor = Color.Orange;
-                            break;
-                        case EnBuildingPriority.Medium:
-                            DGrid.Rows[i].DefaultCellStyle.BackColor = Color.Khaki;
-                            break;
-                        case EnBuildingPriority.Low:
-                            DGrid.Rows[i].DefaultCellStyle.BackColor = Color.PaleTurquoise;
-                            break;
+                        var priority = (EnBuildingPriority) DGrid[dgPriority.Index, i].Value;
+                        switch (priority)
+                        {
+                            case EnBuildingPriority.SoHigh:
+                                DGrid.Rows[i].DefaultCellStyle.BackColor = Color.OrangeRed;
+                                break;
+                            case EnBuildingPriority.High:
+                                DGrid.Rows[i].DefaultCellStyle.BackColor = Color.Orange;
+                                break;
+                            case EnBuildingPriority.Medium:
+                                DGrid.Rows[i].DefaultCellStyle.BackColor = Color.Khaki;
+                                break;
+                            case EnBuildingPriority.Low:
+                                DGrid.Rows[i].DefaultCellStyle.BackColor = Color.PaleTurquoise;
+                                break;
+                        }
                     }
                 }
             }
@@ -690,7 +693,7 @@ namespace Building.Buildings
                 _detailToken?.Cancel();
                 _detailToken = new CancellationTokenSource();
                 var token = _detailToken.Token;
-                _=new Waiter("اطلاعات تکمیلی",ucBuildingDetail1, Task.Run(() => ShowDetailAsync(guid, token)));
+                _ = new Waiter("اطلاعات تکمیلی", ucBuildingDetail1, Task.Run(() => ShowDetailAsync(guid, token)));
             }
             catch (Exception ex)
             {

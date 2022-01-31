@@ -1222,12 +1222,6 @@
     <Compile Include="UserControls\UcBuildingImages.Designer.cs">
       <DependentUpon>UcBuildingImages.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\UcBuildingLog.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\UcBuildingLog.Designer.cs">
-      <DependentUpon>UcBuildingLog.cs</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\UcBuildingMedia.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1742,9 +1736,6 @@
     <EmbeddedResource Include="UserControls\UcBuildingImages.resx">
       <DependentUpon>UcBuildingImages.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UcBuildingLog.resx">
-      <DependentUpon>UcBuildingLog.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcBuildingMedia.resx">
       <DependentUpon>UcBuildingMedia.cs</DependentUpon>
     </EmbeddedResource>
@@ -1786,6 +1777,7 @@
     <None Include="Properties\DataSources\EntityCache.Bussines.RentalAuthorityBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.StatesBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.UserBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.UserLogBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.ViewModels.BuildingDischargeViewModel.datasource" />
     <None Include="Properties\DataSources\EntityCache.ViewModels.BuildingRequestViewModel.datasource" />
     <None Include="Resources\add.png" />

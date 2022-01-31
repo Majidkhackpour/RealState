@@ -1,14 +1,12 @@
-﻿using System;
+﻿using Building.UserControls;
+using EntityCache.Bussines;
+using MetroFramework.Forms;
+using Services;
+using System;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
-using Building.UserControls;
-using EntityCache.Bussines;
-using EntityCache.ViewModels;
-using MetroFramework.Forms;
-using Services;
 
 namespace Building.Buildings
 {
@@ -23,18 +21,11 @@ namespace Building.Buildings
                 if (list != null && list.Count > 0)
                 {
                     list = list.OrderBy(q => q.Date)?.ToList();
-                    foreach (var item in list)
-                    {
-                        Invoke(new MethodInvoker(() =>
-                        {
-                            var c = new UcBuildingLog() { Log = item};
-                            fPanel.Controls.Add(c);
-                        }));
-                    }
+                    BeginInvoke(new MethodInvoker(() => UserLogBindingSource.DataSource = list?.ToSortableBindingList()));
                 }
                 else
                 {
-                    Invoke(new MethodInvoker(() =>
+                    BeginInvoke(new MethodInvoker(() =>
                     {
                         this.ShowMessage("داده ای جهت نمایش وجود ندارد");
                     }));
