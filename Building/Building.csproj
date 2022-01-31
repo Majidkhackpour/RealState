@@ -1258,6 +1258,12 @@
     <Compile Include="Window\frmShowWindow.Designer.cs">
       <DependentUpon>frmShowWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Zoncan\frmSelectZoncan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Zoncan\frmSelectZoncan.Designer.cs">
+      <DependentUpon>frmSelectZoncan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Zoncan\frmShowZoncans.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1759,6 +1765,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Window\frmShowWindow.resx">
       <DependentUpon>frmShowWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Zoncan\frmSelectZoncan.resx">
+      <DependentUpon>frmSelectZoncan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Zoncan\frmShowZoncans.resx">
       <DependentUpon>frmShowZoncans.cs</DependentUpon>

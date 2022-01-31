@@ -244,7 +244,7 @@
             this.menuZoncan});
             this.menu.Name = "menu";
             this.menu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.menu.Size = new System.Drawing.Size(229, 286);
+            this.menu.Size = new System.Drawing.Size(229, 308);
             // 
             // menuAdd
             // 
@@ -363,6 +363,7 @@
             this.menuChangeZoncan.Name = "menuChangeZoncan";
             this.menuChangeZoncan.Size = new System.Drawing.Size(297, 24);
             this.menuChangeZoncan.Text = "تغییر زونکن فایل (های) انتخابی";
+            this.menuChangeZoncan.Click += new System.EventHandler(this.menuChangeZoncan_Click);
             // 
             // toolStripMenuItem11
             // 

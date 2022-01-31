@@ -33,7 +33,7 @@ namespace Building.Buildings
         private IEnumerable<BuildingReportBussines> _list, _filteredList;
         private BuildingFilter filter;
         private CancellationTokenSource _detailToken = new CancellationTokenSource();
-        public List<Guid> SelectedList
+        private List<Guid> SelectedList
         {
             get
             {
@@ -526,6 +526,29 @@ namespace Building.Buildings
             }
             return res;
         }
+        private async Task<ReturnedSaveFuncInfo> ChangeZoncanAsync(List<Guid> lstGuid, Guid zoncanGuid)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                foreach (var guid in lstGuid)
+                {
+                    var cls = await BuildingBussines.GetAsync(guid);
+                    if (cls == null) continue;
+                    cls.ZoncanGuid = zoncanGuid;
+                    cls.ServerStatus = ServerStatus.None;
+                    var desc = $"کد ملک:( {cls.Code} ) ** آدرس:( {cls.Address} )";
+                    await UserLogBussines.SaveBuildingLogAsync(EnLogAction.ChangeZoncan, cls.Guid, desc);
+                    res.AddReturnedValue(await cls.SaveAsync(false, isRaiseEvent: false));
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            return res;
+        }
 
         public frmShowBuildings(bool _isShowMode, BuildingFilter _filter)
         {
@@ -790,6 +813,7 @@ namespace Building.Buildings
             var res = new ReturnedSaveFuncInfo();
             try
             {
+                if (DGrid.RowCount <= 0) return;
                 if (_st)
                 {
                     if (MessageBox.Show(this, $@"آیا از حذف فایل (های) انتخاب شده اطمینان دارید؟", "حذف", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
@@ -845,21 +869,23 @@ namespace Building.Buildings
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var cls = await BuildingBussines.GetAsync(guid);
-                if (cls == null) return;
-                if (cls.IsArchive)
+                if (DGrid.RowCount <= 0) return;
+                foreach (var guid in SelectedList)
                 {
-                    frmNotification.PublicInfo.ShowMessage("ملک موردنظر درحال حاظر بایگانی شده است");
-                    return;
-                }
+                    var cls = await BuildingBussines.GetAsync(guid);
+                    if (cls == null) continue;
+                    if (cls.IsArchive)
+                    {
+                        res.AddWarning($"ملک {cls.Code} درحال حاظر بایگانی شده است");
+                        continue;
+                    }
 
-                cls.IsArchive = true;
-                cls.ServerStatus = ServerStatus.None;
-                var desc = $"کد ملک:( {cls.Code} ) ** آدرس:( {cls.Address} )";
-                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.AddToArchive, cls.Guid, desc);
-                res.AddReturnedValue(await cls.SaveAsync(false));
+                    cls.IsArchive = true;
+                    cls.ServerStatus = ServerStatus.None;
+                    var desc = $"کد ملک:( {cls.Code} ) ** آدرس:( {cls.Address} )";
+                    await UserLogBussines.SaveBuildingLogAsync(EnLogAction.AddToArchive, cls.Guid, desc);
+                    res.AddReturnedValue(await cls.SaveAsync(false, isRaiseEvent: false));
+                }
             }
             catch (Exception ex)
             {
@@ -868,10 +894,10 @@ namespace Building.Buildings
             }
             finally
             {
-                if (res.HasError) this.ShowError(res);
+                if (res.HasError || res.HasWarning) this.ShowError(res);
                 else
                 {
-                    this.ShowMessage("ملک مورد نظر به بایگانی اضافه شد");
+                    this.ShowMessage("ملک (های) مورد نظر به بایگانی اضافه شد");
                     LoadData(txtSearch.Text);
                 }
             }
@@ -881,66 +907,76 @@ namespace Building.Buildings
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var cls = await BuildingBussines.GetAsync(guid);
-                if (cls == null) return;
-                if (!cls.IsArchive)
+                if (DGrid.RowCount <= 0) return;
+                foreach (var guid in SelectedList)
                 {
-                    frmNotification.PublicInfo.ShowMessage("ملک موردنظر درحال حاظر خارج از بایگانی می باشد");
-                    return;
-                }
+                    var cls = await BuildingBussines.GetAsync(guid);
+                    if (cls == null) continue;
+                    if (!cls.IsArchive)
+                    {
+                        res.AddWarning($"ملک {cls.Code} درحال حاظر خارج از بایگانی می باشد");
+                        continue;
+                    }
 
-                cls.IsArchive = false;
-                cls.ServerStatus = ServerStatus.None;
-                var desc = $"کد ملک:( {cls.Code} ) ** آدرس:( {cls.Address} )";
-                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.RemoveFromArchive, cls.Guid, desc);
-                res.AddReturnedValue(await cls.SaveAsync(false));
+                    cls.IsArchive = false;
+                    cls.ServerStatus = ServerStatus.None;
+                    var desc = $"کد ملک:( {cls.Code} ) ** آدرس:( {cls.Address} )";
+                    await UserLogBussines.SaveBuildingLogAsync(EnLogAction.RemoveFromArchive, cls.Guid, desc);
+                    res.AddReturnedValue(await cls.SaveAsync(false, isRaiseEvent: false));
+                }
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
             }
             finally
             {
-                if (res.HasError) this.ShowError(res);
+                if (res.HasError || res.HasWarning) this.ShowError(res);
                 else
                 {
-                    this.ShowMessage("ملک مورد نظر از بایگانی خارج شد");
+                    this.ShowMessage("ملک (های) مورد نظر از بایگانی خارج شد");
                     LoadData(txtSearch.Text);
                 }
             }
         }
         private async void menuAddPersonal_Click(object sender, EventArgs e)
         {
+            var res = new ReturnedSaveFuncInfo();
             try
             {
-                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                var cls = await BuildingBussines.GetAsync(guid);
-                if (cls == null) return;
-
-                if (cls.AdvertiseType == null || cls.AdvertiseType == AdvertiseType.None)
+                if (DGrid.RowCount <= 0) return;
+                foreach (var guid in SelectedList)
                 {
-                    this.ShowMessage("فایل موردنظر جزو فایل های شخصی می باشد");
-                    return;
-                }
+                    var cls = await BuildingBussines.GetAsync(guid);
+                    if (cls == null) continue;
 
-                cls.AdvertiseType = null;
-                cls.ServerStatus = ServerStatus.None;
-                var desc = $"کد ملک:( {cls.Code} ) ** آدرس:( {cls.Address} )";
-                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.AddToPersonalFiles, cls.Guid, desc);
-                var res = await cls.SaveAsync(false);
-                if (res.HasError) this.ShowError(res);
-                else
-                {
-                    this.ShowMessage("فایل موردنظر به فایل های شخصی اضافه شد");
-                    LoadData(txtSearch.Text);
+                    if (cls.AdvertiseType == null || cls.AdvertiseType == AdvertiseType.None)
+                    {
+                        res.AddWarning($"فایل {cls.Code} جزو فایل های شخصی می باشد");
+                        continue;
+                    }
+
+                    cls.AdvertiseType = null;
+                    cls.ServerStatus = ServerStatus.None;
+                    var desc = $"کد ملک:( {cls.Code} ) ** آدرس:( {cls.Address} )";
+                    await UserLogBussines.SaveBuildingLogAsync(EnLogAction.AddToPersonalFiles, cls.Guid, desc);
+                    res.AddReturnedValue(await cls.SaveAsync(false, isRaiseEvent: false));
                 }
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError || res.HasWarning) this.ShowError(res);
+                else
+                {
+                    this.ShowMessage("فایل (های) موردنظر به فایل های شخصی اضافه شد");
+                    LoadData(txtSearch.Text);
+                }
             }
         }
         private async void menuSlideShow_Click(object sender, EventArgs e)
@@ -1167,6 +1203,38 @@ namespace Building.Buildings
             }
         }
         private void DGrid_DataError(object sender, DataGridViewDataErrorEventArgs e) { }
+        private async void menuChangeZoncan_Click(object sender, EventArgs e)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                var frm = new frmSelectZoncan();
+                if (frm.ShowDialog(this) != DialogResult.OK)
+                    return;
+                var zoncanGuid = frm.ZoncanGuid;
+                frm.Dispose();
+                if (zoncanGuid == Guid.Empty) return;
+                var lstGuid = SelectedList;
+                var t = Task.Run(() => ChangeZoncanAsync(lstGuid, zoncanGuid));
+                _ = new Waiter("درحال پردازش", this, t);
+                await t;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError) this.ShowError(res);
+                else
+                {
+                    this.ShowMessage("ملک (های) مورد نظر به زونکن اضافه شد");
+                    LoadData(txtSearch.Text);
+                }
+            }
+        }
         private void DGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
