@@ -549,6 +549,41 @@ namespace Building.Buildings
             }
             return res;
         }
+        private async Task<ReturnedSaveFuncInfo> ChangeArchiveAsync(List<Guid> lstGuid, bool isArchive)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                foreach (var guid in lstGuid)
+                {
+                    var cls = await BuildingBussines.GetAsync(guid);
+                    if (cls == null) continue;
+                    if (isArchive && cls.IsArchive)
+                    {
+                        res.AddWarning($"ملک {cls.Code} درحال حاظر بایگانی شده است");
+                        continue;
+                    }
+                    if (!isArchive && !cls.IsArchive)
+                    {
+                        res.AddWarning($"ملک {cls.Code} درحال حاظر خارج از بایگانی می باشد");
+                        continue;
+                    }
+                    cls.IsArchive = isArchive;
+                    cls.ServerStatus = ServerStatus.None;
+                    var desc = $"کد ملک:( {cls.Code} ) ** آدرس:( {cls.Address} )";
+                    var log = EnLogAction.AddToArchive;
+                    if (!isArchive) log = EnLogAction.RemoveFromArchive;
+                    await UserLogBussines.SaveBuildingLogAsync(log, cls.Guid, desc);
+                    res.AddReturnedValue(await cls.SaveAsync(false, isRaiseEvent: false));
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            return res;
+        }
 
         public frmShowBuildings(bool _isShowMode, BuildingFilter _filter)
         {
@@ -870,22 +905,10 @@ namespace Building.Buildings
             try
             {
                 if (DGrid.RowCount <= 0) return;
-                foreach (var guid in SelectedList)
-                {
-                    var cls = await BuildingBussines.GetAsync(guid);
-                    if (cls == null) continue;
-                    if (cls.IsArchive)
-                    {
-                        res.AddWarning($"ملک {cls.Code} درحال حاظر بایگانی شده است");
-                        continue;
-                    }
-
-                    cls.IsArchive = true;
-                    cls.ServerStatus = ServerStatus.None;
-                    var desc = $"کد ملک:( {cls.Code} ) ** آدرس:( {cls.Address} )";
-                    await UserLogBussines.SaveBuildingLogAsync(EnLogAction.AddToArchive, cls.Guid, desc);
-                    res.AddReturnedValue(await cls.SaveAsync(false, isRaiseEvent: false));
-                }
+                var lstGuid = SelectedList;
+                var t = Task.Run(() => ChangeArchiveAsync(lstGuid, true));
+                _ = new Waiter("درحال پردازش", this, t);
+                await t;
             }
             catch (Exception ex)
             {
@@ -908,22 +931,10 @@ namespace Building.Buildings
             try
             {
                 if (DGrid.RowCount <= 0) return;
-                foreach (var guid in SelectedList)
-                {
-                    var cls = await BuildingBussines.GetAsync(guid);
-                    if (cls == null) continue;
-                    if (!cls.IsArchive)
-                    {
-                        res.AddWarning($"ملک {cls.Code} درحال حاظر خارج از بایگانی می باشد");
-                        continue;
-                    }
-
-                    cls.IsArchive = false;
-                    cls.ServerStatus = ServerStatus.None;
-                    var desc = $"کد ملک:( {cls.Code} ) ** آدرس:( {cls.Address} )";
-                    await UserLogBussines.SaveBuildingLogAsync(EnLogAction.RemoveFromArchive, cls.Guid, desc);
-                    res.AddReturnedValue(await cls.SaveAsync(false, isRaiseEvent: false));
-                }
+                var lstGuid = SelectedList;
+                var t = Task.Run(() => ChangeArchiveAsync(lstGuid, false));
+                _ = new Waiter("درحال پردازش", this, t);
+                await t;
             }
             catch (Exception ex)
             {
