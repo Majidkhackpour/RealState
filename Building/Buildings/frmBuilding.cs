@@ -486,12 +486,40 @@ namespace Building.Buildings
             }
         }
 
-        public frmBuilding(BuildingBussines bu)
+        public frmBuilding(BuildingBussines bu, bool isShowMode,bool isShortDetail=false)
         {
-            InitializeComponent();
-            cls = bu;
-            UcPeople.OnShowNumbers += UcPeople_OnShowNumbers;
-            UcPeople.OnShowFiles += UcPeople_OnShowFiles;
+            try
+            {
+                InitializeComponent();
+                cls = bu;
+                if (isShowMode)
+                {
+                    UcPeople.Enabled = false;
+                    UcCity.Enabled = false;
+                    UcCode.Enabled = false;
+                    UcHitting_Colling.Enabled = false;
+                    UcOptions.Enabled = false;
+                    txtShortDesc.Enabled = false;
+                    ucBuildingHitting1.Enabled = false;
+                    groupPanel3.Enabled = false;
+                    pnlContent.Enabled = false;
+                    ucType.Enabled = false;
+                    UcNotes.Enabled = false;
+                    btnFinish.Enabled = false;
+                    btnSavePersonal.Enabled = false;
+                }
+                else
+                {
+                    UcPeople.OnShowNumbers += UcPeople_OnShowNumbers;
+                    UcPeople.OnShowFiles += UcPeople_OnShowFiles;
+                }
+
+                UcCity.IsShowAddress = !isShortDetail;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private async void frmBuilding_Load(object sender, EventArgs e) => await SetDataAsync();

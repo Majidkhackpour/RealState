@@ -41,7 +41,7 @@ namespace RealState.UserControls
             try
             {
                 var bu = await BuildingBussines.GetAsync(_bu.Guid);
-                var frm = new frmBuilding(bu);
+                var frm = new frmBuilding(bu,false);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -54,7 +54,7 @@ namespace RealState.UserControls
             try
             {
                 var bu = await BuildingBussines.GetAsync(_bu.Guid);
-                var frm = new frmBuildingDetail(bu,false);
+                var frm = new frmBuilding(bu,true);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)

@@ -176,14 +176,14 @@ namespace Building.Buildings.Selector
             Make_Buttons();
         }
 
-        private async void timer1_Tick(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
         {
             try
             {
                 timer1.Stop();
                 Close();
                 bu.Parent = TypeSwitcher();
-                new frmBuilding(bu).ShowDialog(owner);
+                new frmBuilding(bu,false).ShowDialog(owner);
             }
             catch (Exception ex)
             {

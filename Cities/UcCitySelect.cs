@@ -11,7 +11,7 @@ namespace Cities
     public partial class UcCitySelect : UserControl
     {
         private Guid _stateGuid, _cityGuid, _regionGuid;
-
+        public bool IsShowAddress { set => label37.Visible = txtAddress.Visible = value; }
         public Guid StateGuid => _stateGuid;
         public async Task SetStateGuidAsync(Guid value)
         {

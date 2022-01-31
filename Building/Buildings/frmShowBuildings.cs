@@ -165,7 +165,7 @@ namespace Building.Buildings
                     }
                     if (DGrid[dgPriority.Index, i].Value != null)
                     {
-                        var priority = (EnBuildingPriority) DGrid[dgPriority.Index, i].Value;
+                        var priority = (EnBuildingPriority)DGrid[dgPriority.Index, i].Value;
                         switch (priority)
                         {
                             case EnBuildingPriority.SoHigh:
@@ -465,7 +465,7 @@ namespace Building.Buildings
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var bu = await BuildingBussines.GetAsync(guid);
                 if (bu == null) return;
-                var frm = new frmBuildingDetail(bu, loadForCustomer);
+                var frm = new frmBuilding(bu, true, loadForCustomer);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
@@ -731,7 +731,7 @@ namespace Building.Buildings
 
                 if (bu.Parent != null && bu.Parent != EnBuildingParent.None)
                 {
-                    var frm = new frmBuilding(bu);
+                    var frm = new frmBuilding(bu, false);
                     if (frm.ShowDialog(this) == DialogResult.OK)
                         LoadData(txtSearch.Text);
                 }
