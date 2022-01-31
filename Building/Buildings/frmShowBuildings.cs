@@ -30,9 +30,31 @@ namespace Building.Buildings
         private bool _st = true, isShowMode = false, _isLoad = false;
         private CancellationTokenSource _token = new CancellationTokenSource();
         public Guid SelectedGuid { get; set; }
-        private IEnumerable<BuildingReportBussines> _list;
+        private IEnumerable<BuildingReportBussines> _list, _filteredList;
         private BuildingFilter filter;
         private CancellationTokenSource _detailToken = new CancellationTokenSource();
+        public List<Guid> SelectedList
+        {
+            get
+            {
+                var list = new List<Guid>();
+                try
+                {
+                    if (!(_filteredList?.Any() ?? false)) return list;
+                    var lst = _filteredList?.Where(q => q.IsChecked)?.Select(q => q.Guid);
+                    if (lst?.Any() ?? false) return lst?.ToList();
+                    if (DGrid.CurrentRow == null) return list;
+                    var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                    list.Add(guid);
+                    return list;
+                }
+                catch (Exception ex)
+                {
+                    WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                }
+                return list;
+            }
+        }
 
 
         private void LoadData(string search = "")
@@ -66,7 +88,7 @@ namespace Building.Buildings
             try
             {
                 if (!_isLoad) return;
-                var lst = _list;
+                _filteredList = _list;
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
                 var t = _token.Token;
@@ -78,7 +100,7 @@ namespace Building.Buildings
                         if (t.IsCancellationRequested) return;
                         if (!string.IsNullOrEmpty(item) && item.Trim() != "")
                         {
-                            lst = lst?.Where(x => x.Code.ToLower().Contains(item.ToLower()) ||
+                            _filteredList = _filteredList?.Where(x => x.Code.ToLower().Contains(item.ToLower()) ||
                                                  x.OwnerName.ToLower().Contains(item.ToLower()) ||
                                                  x.BuildingTypeName.ToLower().Contains(item.ToLower()) ||
                                                  x.Masahat.ToString().ToLower().Contains(item.ToLower()) ||
@@ -90,7 +112,7 @@ namespace Building.Buildings
                         }
                     }
 
-                if (!(lst?.Any() ?? false))
+                if (!(_filteredList?.Any() ?? false))
                 {
                     BeginInvoke(new MethodInvoker(() => this.ShowMessage("داده ای جهت نمایش وجود ندارد")));
                     return;
@@ -98,10 +120,10 @@ namespace Building.Buildings
 
                 BeginInvoke(new MethodInvoker(() =>
                 {
-                    BuildingBindingSource.DataSource = lst?.OrderBy(q => q.IsArchive)
+                    BuildingBindingSource.DataSource = _filteredList?.OrderBy(q => q.IsArchive)
                         ?.ThenByDescending(q => q.CreateDate)?.ThenByDescending(q => q.Code)?.ToSortableBindingList();
                     SetGridColor();
-                    lblCounter.Text = (lst?.Count() ?? 0).ToString();
+                    lblCounter.Text = (_filteredList?.Count() ?? 0).ToString();
                 }));
             }
             catch (Exception ex)
@@ -489,6 +511,21 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, bool stats)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                var prd = await BuildingBussines.GetAsync(guid);
+                res.AddReturnedValue(await prd.ChangeStatusAsync(stats));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            return res;
+        }
 
         public frmShowBuildings(bool _isShowMode, BuildingFilter _filter)
         {
@@ -753,28 +790,25 @@ namespace Building.Buildings
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 if (_st)
                 {
-                    if (MessageBox.Show(this,
-                            $@" آیا از حذف ملک{DGrid[dgCode.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟",
-                            "حذف",
-                            MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Question) == DialogResult.No) return;
-                    var prd = await BuildingBussines.GetAsync(guid);
-                    res.AddReturnedValue(await prd.ChangeStatusAsync(false));
+                    if (MessageBox.Show(this, $@"آیا از حذف فایل (های) انتخاب شده اطمینان دارید؟", "حذف", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                        return;
+                    foreach (var item in SelectedList)
+                    {
+                        res.AddReturnedValue(await RemoveAsync(item, false));
+                        if (res.HasError) return;
+                    }
                 }
                 else
                 {
-                    if (MessageBox.Show(this,
-                            $@"آیا از فعال کردن ملک{DGrid[dgCode.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟",
-                            "حذف",
-                            MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Question) == DialogResult.No) return;
-                    var prd = await BuildingBussines.GetAsync(guid);
-                    res.AddReturnedValue(await prd.ChangeStatusAsync(true));
+                    if (MessageBox.Show(this, $@"آیا از فعال کردن فایل (های) انتخاب شده اطمینان دارید؟", "حذف", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                        return;
+                    foreach (var item in SelectedList)
+                    {
+                        res.AddReturnedValue(await RemoveAsync(item, true));
+                        if (res.HasError) return;
+                    }
                 }
             }
             catch (Exception ex)
@@ -1126,6 +1160,21 @@ namespace Building.Buildings
             {
                 var frm = new frmShowZoncans();
                 frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void DGrid_DataError(object sender, DataGridViewDataErrorEventArgs e) { }
+        private void DGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (DGrid.CurrentCell.ColumnIndex != dgIsChecked.Index) return;
+                var current = (BuildingReportBussines)BuildingBindingSource.Current;
+                if (current == null) return;
+                current.IsChecked = !current.IsChecked;
             }
             catch (Exception ex)
             {

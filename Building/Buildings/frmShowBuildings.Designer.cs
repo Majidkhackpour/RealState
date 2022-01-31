@@ -37,16 +37,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowBuildings));
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.dgCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDateSh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgOwnerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ParentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgRoomCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgPriority = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgIsArchive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dgAdvertiseType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.menuEdit = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,7 +75,6 @@
             this.menuPrintList = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem17 = new System.Windows.Forms.ToolStripSeparator();
             this.menuZoncan = new System.Windows.Forms.ToolStripMenuItem();
-            this.BuildingBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -98,7 +87,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.ucHeader = new WindowsSerivces.UC_Header();
             this.picFilter = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
@@ -108,10 +96,22 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblCounter = new System.Windows.Forms.Label();
+            this.ucHeader = new WindowsSerivces.UC_Header();
+            this.BuildingBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dgIsChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dgCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDateSh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgOwnerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ParentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgRoomCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgPriority = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgIsArchive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dgAdvertiseType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ucBuildingDetail1 = new Building.UserControls.UcBuildingDetail();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.menu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -119,6 +119,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // txtSearch
@@ -167,6 +168,7 @@
             this.DGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgIsChecked,
             this.dgCode,
             this.dgDateSh,
             this.dgOwnerName,
@@ -213,95 +215,11 @@
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGrid.Size = new System.Drawing.Size(769, 508);
             this.DGrid.TabIndex = 55744;
+            this.DGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGrid_CellClick);
             this.DGrid.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGrid_CellEnter);
+            this.DGrid.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.DGrid_DataError);
             this.DGrid.Sorted += new System.EventHandler(this.DGrid_Sorted);
             this.DGrid.DoubleClick += new System.EventHandler(this.DGrid_DoubleClick);
-            // 
-            // dgCode
-            // 
-            this.dgCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dgCode.DataPropertyName = "Code";
-            this.dgCode.HeaderText = "کد ملک";
-            this.dgCode.Name = "dgCode";
-            this.dgCode.ReadOnly = true;
-            this.dgCode.Width = 69;
-            // 
-            // dgDateSh
-            // 
-            this.dgDateSh.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dgDateSh.DataPropertyName = "DateSh";
-            this.dgDateSh.HeaderText = "تاریخ ثبت";
-            this.dgDateSh.Name = "dgDateSh";
-            this.dgDateSh.ReadOnly = true;
-            // 
-            // dgOwnerName
-            // 
-            this.dgOwnerName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgOwnerName.DataPropertyName = "OwnerName";
-            this.dgOwnerName.HeaderText = "مالک";
-            this.dgOwnerName.MinimumWidth = 150;
-            this.dgOwnerName.Name = "dgOwnerName";
-            this.dgOwnerName.ReadOnly = true;
-            // 
-            // ParentName
-            // 
-            this.ParentName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ParentName.DataPropertyName = "ParentName";
-            this.ParentName.HeaderText = "نوع قرارداد";
-            this.ParentName.Name = "ParentName";
-            this.ParentName.ReadOnly = true;
-            this.ParentName.Width = 150;
-            // 
-            // dgRoomCount
-            // 
-            this.dgRoomCount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dgRoomCount.DataPropertyName = "RoomCount";
-            this.dgRoomCount.HeaderText = "اتاق";
-            this.dgRoomCount.Name = "dgRoomCount";
-            this.dgRoomCount.ReadOnly = true;
-            this.dgRoomCount.Width = 50;
-            // 
-            // dgAddress
-            // 
-            this.dgAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgAddress.DataPropertyName = "Address";
-            this.dgAddress.FillWeight = 500F;
-            this.dgAddress.HeaderText = "آدرس";
-            this.dgAddress.MinimumWidth = 100;
-            this.dgAddress.Name = "dgAddress";
-            this.dgAddress.ReadOnly = true;
-            // 
-            // dgGuid
-            // 
-            this.dgGuid.DataPropertyName = "Guid";
-            this.dgGuid.HeaderText = "Guid";
-            this.dgGuid.Name = "dgGuid";
-            this.dgGuid.ReadOnly = true;
-            this.dgGuid.Visible = false;
-            // 
-            // dgPriority
-            // 
-            this.dgPriority.DataPropertyName = "Priority";
-            this.dgPriority.HeaderText = "Priority";
-            this.dgPriority.Name = "dgPriority";
-            this.dgPriority.ReadOnly = true;
-            this.dgPriority.Visible = false;
-            // 
-            // dgIsArchive
-            // 
-            this.dgIsArchive.DataPropertyName = "IsArchive";
-            this.dgIsArchive.HeaderText = "IsArchive";
-            this.dgIsArchive.Name = "dgIsArchive";
-            this.dgIsArchive.ReadOnly = true;
-            this.dgIsArchive.Visible = false;
-            // 
-            // dgAdvertiseType
-            // 
-            this.dgAdvertiseType.DataPropertyName = "AdvertiseType";
-            this.dgAdvertiseType.HeaderText = "AdvertiseType";
-            this.dgAdvertiseType.Name = "dgAdvertiseType";
-            this.dgAdvertiseType.ReadOnly = true;
-            this.dgAdvertiseType.Visible = false;
             // 
             // menu
             // 
@@ -326,13 +244,13 @@
             this.menuZoncan});
             this.menu.Name = "menu";
             this.menu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.menu.Size = new System.Drawing.Size(215, 308);
+            this.menu.Size = new System.Drawing.Size(229, 286);
             // 
             // menuAdd
             // 
             this.menuAdd.Image = global::Building.Properties.Resources.add_2_;
             this.menuAdd.Name = "menuAdd";
-            this.menuAdd.Size = new System.Drawing.Size(214, 24);
+            this.menuAdd.Size = new System.Drawing.Size(228, 24);
             this.menuAdd.Text = "افزودن ملک جدید (Ins)";
             this.menuAdd.Click += new System.EventHandler(this.menuAdd_Click);
             // 
@@ -340,7 +258,7 @@
             // 
             this.menuEdit.Image = global::Building.Properties.Resources.edit_1_;
             this.menuEdit.Name = "menuEdit";
-            this.menuEdit.Size = new System.Drawing.Size(214, 24);
+            this.menuEdit.Size = new System.Drawing.Size(228, 24);
             this.menuEdit.Text = "ویرایش ملک جاری (F7)";
             this.menuEdit.Click += new System.EventHandler(this.menuEdit_Click);
             // 
@@ -348,14 +266,14 @@
             // 
             this.menuDelete.Image = global::Building.Properties.Resources.delete_1_;
             this.menuDelete.Name = "menuDelete";
-            this.menuDelete.Size = new System.Drawing.Size(214, 24);
-            this.menuDelete.Text = "حذف ملک جاری (Del)";
+            this.menuDelete.Size = new System.Drawing.Size(228, 24);
+            this.menuDelete.Text = "حذف ملک (های) انتخابی (Del)";
             this.menuDelete.Click += new System.EventHandler(this.menuDelete_Click);
             // 
             // toolStripMenuItem8
             // 
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(211, 6);
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(225, 6);
             // 
             // مشاهدهToolStripMenuItem1
             // 
@@ -366,7 +284,7 @@
             this.menuLogView});
             this.مشاهدهToolStripMenuItem1.Image = global::Building.Properties.Resources.article_1_;
             this.مشاهدهToolStripMenuItem1.Name = "مشاهدهToolStripMenuItem1";
-            this.مشاهدهToolStripMenuItem1.Size = new System.Drawing.Size(214, 24);
+            this.مشاهدهToolStripMenuItem1.Size = new System.Drawing.Size(228, 24);
             this.مشاهدهToolStripMenuItem1.Text = "مشاهده";
             // 
             // menuView
@@ -401,7 +319,7 @@
             // toolStripMenuItem10
             // 
             this.toolStripMenuItem10.Name = "toolStripMenuItem10";
-            this.toolStripMenuItem10.Size = new System.Drawing.Size(211, 6);
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(225, 6);
             // 
             // تغییروضعیتملکToolStripMenuItem
             // 
@@ -412,44 +330,44 @@
             this.menuChangeZoncan});
             this.تغییروضعیتملکToolStripMenuItem.Image = global::Building.Properties.Resources.refresh_round_symbol;
             this.تغییروضعیتملکToolStripMenuItem.Name = "تغییروضعیتملکToolStripMenuItem";
-            this.تغییروضعیتملکToolStripMenuItem.Size = new System.Drawing.Size(214, 24);
+            this.تغییروضعیتملکToolStripMenuItem.Size = new System.Drawing.Size(228, 24);
             this.تغییروضعیتملکToolStripMenuItem.Text = "تغییر وضعیت ملک";
             // 
             // menuAddArchive
             // 
             this.menuAddArchive.Image = global::Building.Properties.Resources.refresh_round_symbol;
             this.menuAddArchive.Name = "menuAddArchive";
-            this.menuAddArchive.Size = new System.Drawing.Size(228, 24);
-            this.menuAddArchive.Text = "افزودن به بایگانی";
+            this.menuAddArchive.Size = new System.Drawing.Size(297, 24);
+            this.menuAddArchive.Text = "افزودن ملک (های) انتخابی به بایگانی";
             this.menuAddArchive.Click += new System.EventHandler(this.menuAddArchive_Click);
             // 
             // menuRemoveArchive
             // 
             this.menuRemoveArchive.Image = global::Building.Properties.Resources.refresh_round_symbol;
             this.menuRemoveArchive.Name = "menuRemoveArchive";
-            this.menuRemoveArchive.Size = new System.Drawing.Size(228, 24);
-            this.menuRemoveArchive.Text = "حذف از بایگانی";
+            this.menuRemoveArchive.Size = new System.Drawing.Size(297, 24);
+            this.menuRemoveArchive.Text = "حذف ملک (های) انتخابی از بایگانی";
             this.menuRemoveArchive.Click += new System.EventHandler(this.menuRemoveArchive_Click);
             // 
             // menuAddPersonal
             // 
             this.menuAddPersonal.Image = global::Building.Properties.Resources.refresh_round_symbol;
             this.menuAddPersonal.Name = "menuAddPersonal";
-            this.menuAddPersonal.Size = new System.Drawing.Size(228, 24);
-            this.menuAddPersonal.Text = "تبدیل فایل به فایل های شخصی";
+            this.menuAddPersonal.Size = new System.Drawing.Size(297, 24);
+            this.menuAddPersonal.Text = "تبدیل فایل (های) انتخابی به فایل های شخصی";
             this.menuAddPersonal.Click += new System.EventHandler(this.menuAddPersonal_Click);
             // 
             // menuChangeZoncan
             // 
             this.menuChangeZoncan.Image = global::Building.Properties.Resources.refresh_round_symbol;
             this.menuChangeZoncan.Name = "menuChangeZoncan";
-            this.menuChangeZoncan.Size = new System.Drawing.Size(228, 24);
-            this.menuChangeZoncan.Text = "تغییر زونکن فایل";
+            this.menuChangeZoncan.Size = new System.Drawing.Size(297, 24);
+            this.menuChangeZoncan.Text = "تغییر زونکن فایل (های) انتخابی";
             // 
             // toolStripMenuItem11
             // 
             this.toolStripMenuItem11.Name = "toolStripMenuItem11";
-            this.toolStripMenuItem11.Size = new System.Drawing.Size(211, 6);
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(225, 6);
             // 
             // گالریToolStripMenuItem
             // 
@@ -458,7 +376,7 @@
             this.menuMedia});
             this.گالریToolStripMenuItem.Image = global::Building.Properties.Resources.add_2_;
             this.گالریToolStripMenuItem.Name = "گالریToolStripMenuItem";
-            this.گالریToolStripMenuItem.Size = new System.Drawing.Size(214, 24);
+            this.گالریToolStripMenuItem.Size = new System.Drawing.Size(228, 24);
             this.گالریToolStripMenuItem.Text = "گالری";
             // 
             // menuSlideShow
@@ -480,7 +398,7 @@
             // toolStripMenuItem12
             // 
             this.toolStripMenuItem12.Name = "toolStripMenuItem12";
-            this.toolStripMenuItem12.Size = new System.Drawing.Size(211, 6);
+            this.toolStripMenuItem12.Size = new System.Drawing.Size(225, 6);
             // 
             // تبلیغاتوشبکههایاجتماعیToolStripMenuItem
             // 
@@ -490,7 +408,7 @@
             this.menuTelegram});
             this.تبلیغاتوشبکههایاجتماعیToolStripMenuItem.Image = global::Building.Properties.Resources.icons8_telegram_app_24;
             this.تبلیغاتوشبکههایاجتماعیToolStripMenuItem.Name = "تبلیغاتوشبکههایاجتماعیToolStripMenuItem";
-            this.تبلیغاتوشبکههایاجتماعیToolStripMenuItem.Size = new System.Drawing.Size(214, 24);
+            this.تبلیغاتوشبکههایاجتماعیToolStripMenuItem.Size = new System.Drawing.Size(228, 24);
             this.تبلیغاتوشبکههایاجتماعیToolStripMenuItem.Text = "تبلیغات و شبکه های اجتماعی";
             // 
             // menuSedSmsToOwner
@@ -540,20 +458,20 @@
             // toolStripMenuItem13
             // 
             this.toolStripMenuItem13.Name = "toolStripMenuItem13";
-            this.toolStripMenuItem13.Size = new System.Drawing.Size(211, 6);
+            this.toolStripMenuItem13.Size = new System.Drawing.Size(225, 6);
             // 
             // menuMatch
             // 
             this.menuMatch.Image = global::Building.Properties.Resources.article_1_;
             this.menuMatch.Name = "menuMatch";
-            this.menuMatch.Size = new System.Drawing.Size(214, 24);
+            this.menuMatch.Size = new System.Drawing.Size(228, 24);
             this.menuMatch.Text = "تطابق ملک با درخواست ها";
             this.menuMatch.Click += new System.EventHandler(this.menuMatch_Click);
             // 
             // toolStripMenuItem15
             // 
             this.toolStripMenuItem15.Name = "toolStripMenuItem15";
-            this.toolStripMenuItem15.Size = new System.Drawing.Size(211, 6);
+            this.toolStripMenuItem15.Size = new System.Drawing.Size(225, 6);
             // 
             // menuPrint
             // 
@@ -564,7 +482,7 @@
             this.menuPrintList});
             this.menuPrint.Image = global::Building.Properties.Resources.printer;
             this.menuPrint.Name = "menuPrint";
-            this.menuPrint.Size = new System.Drawing.Size(214, 24);
+            this.menuPrint.Size = new System.Drawing.Size(228, 24);
             this.menuPrint.Text = "چاپ";
             // 
             // menuPrintFull
@@ -599,19 +517,15 @@
             // toolStripMenuItem17
             // 
             this.toolStripMenuItem17.Name = "toolStripMenuItem17";
-            this.toolStripMenuItem17.Size = new System.Drawing.Size(211, 6);
+            this.toolStripMenuItem17.Size = new System.Drawing.Size(225, 6);
             // 
             // menuZoncan
             // 
             this.menuZoncan.Image = global::Building.Properties.Resources.Zoncan;
             this.menuZoncan.Name = "menuZoncan";
-            this.menuZoncan.Size = new System.Drawing.Size(214, 24);
+            this.menuZoncan.Size = new System.Drawing.Size(228, 24);
             this.menuZoncan.Text = "مدیریت زونکن ها";
             this.menuZoncan.Click += new System.EventHandler(this.menuZoncan_Click);
-            // 
-            // BuildingBindingSource
-            // 
-            this.BuildingBindingSource.DataSource = typeof(EntityCache.Bussines.ReportBussines.BuildingReportBussines);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -727,24 +641,6 @@
             this.label6.TabIndex = 55760;
             this.label6.Text = "اولویت فوق العاده بالا";
             // 
-            // ucHeader
-            // 
-            this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.ucHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ucHeader.BackColor = System.Drawing.Color.White;
-            this.ucHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ucHeader.Cursor = System.Windows.Forms.Cursors.Default;
-            this.ucHeader.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucHeader.IsModified = false;
-            this.ucHeader.Location = new System.Drawing.Point(-5, 22);
-            this.ucHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ucHeader.MinimumSize = new System.Drawing.Size(297, 34);
-            this.ucHeader.Name = "ucHeader";
-            this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucHeader.Size = new System.Drawing.Size(1027, 34);
-            this.ucHeader.TabIndex = 55772;
-            // 
             // picFilter
             // 
             this.picFilter.BackColor = System.Drawing.Color.Transparent;
@@ -843,6 +739,122 @@
             this.lblCounter.Size = new System.Drawing.Size(0, 20);
             this.lblCounter.TabIndex = 55760;
             // 
+            // ucHeader
+            // 
+            this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.ucHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucHeader.BackColor = System.Drawing.Color.White;
+            this.ucHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ucHeader.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ucHeader.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucHeader.IsModified = false;
+            this.ucHeader.Location = new System.Drawing.Point(-5, 22);
+            this.ucHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucHeader.MinimumSize = new System.Drawing.Size(297, 34);
+            this.ucHeader.Name = "ucHeader";
+            this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucHeader.Size = new System.Drawing.Size(1027, 34);
+            this.ucHeader.TabIndex = 55772;
+            // 
+            // BuildingBindingSource
+            // 
+            this.BuildingBindingSource.DataSource = typeof(EntityCache.Bussines.ReportBussines.BuildingReportBussines);
+            // 
+            // dgIsChecked
+            // 
+            this.dgIsChecked.DataPropertyName = "IsChecked";
+            this.dgIsChecked.HeaderText = "";
+            this.dgIsChecked.Name = "dgIsChecked";
+            this.dgIsChecked.ReadOnly = true;
+            this.dgIsChecked.Width = 20;
+            // 
+            // dgCode
+            // 
+            this.dgCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dgCode.DataPropertyName = "Code";
+            this.dgCode.HeaderText = "کد ملک";
+            this.dgCode.Name = "dgCode";
+            this.dgCode.ReadOnly = true;
+            this.dgCode.Width = 69;
+            // 
+            // dgDateSh
+            // 
+            this.dgDateSh.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dgDateSh.DataPropertyName = "DateSh";
+            this.dgDateSh.HeaderText = "تاریخ ثبت";
+            this.dgDateSh.Name = "dgDateSh";
+            this.dgDateSh.ReadOnly = true;
+            // 
+            // dgOwnerName
+            // 
+            this.dgOwnerName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgOwnerName.DataPropertyName = "OwnerName";
+            this.dgOwnerName.HeaderText = "مالک";
+            this.dgOwnerName.MinimumWidth = 150;
+            this.dgOwnerName.Name = "dgOwnerName";
+            this.dgOwnerName.ReadOnly = true;
+            // 
+            // ParentName
+            // 
+            this.ParentName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ParentName.DataPropertyName = "ParentName";
+            this.ParentName.HeaderText = "نوع قرارداد";
+            this.ParentName.Name = "ParentName";
+            this.ParentName.ReadOnly = true;
+            this.ParentName.Width = 150;
+            // 
+            // dgRoomCount
+            // 
+            this.dgRoomCount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dgRoomCount.DataPropertyName = "RoomCount";
+            this.dgRoomCount.HeaderText = "اتاق";
+            this.dgRoomCount.Name = "dgRoomCount";
+            this.dgRoomCount.ReadOnly = true;
+            this.dgRoomCount.Width = 50;
+            // 
+            // dgAddress
+            // 
+            this.dgAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgAddress.DataPropertyName = "Address";
+            this.dgAddress.FillWeight = 500F;
+            this.dgAddress.HeaderText = "آدرس";
+            this.dgAddress.MinimumWidth = 100;
+            this.dgAddress.Name = "dgAddress";
+            this.dgAddress.ReadOnly = true;
+            // 
+            // dgGuid
+            // 
+            this.dgGuid.DataPropertyName = "Guid";
+            this.dgGuid.HeaderText = "Guid";
+            this.dgGuid.Name = "dgGuid";
+            this.dgGuid.ReadOnly = true;
+            this.dgGuid.Visible = false;
+            // 
+            // dgPriority
+            // 
+            this.dgPriority.DataPropertyName = "Priority";
+            this.dgPriority.HeaderText = "Priority";
+            this.dgPriority.Name = "dgPriority";
+            this.dgPriority.ReadOnly = true;
+            this.dgPriority.Visible = false;
+            // 
+            // dgIsArchive
+            // 
+            this.dgIsArchive.DataPropertyName = "IsArchive";
+            this.dgIsArchive.HeaderText = "IsArchive";
+            this.dgIsArchive.Name = "dgIsArchive";
+            this.dgIsArchive.ReadOnly = true;
+            this.dgIsArchive.Visible = false;
+            // 
+            // dgAdvertiseType
+            // 
+            this.dgAdvertiseType.DataPropertyName = "AdvertiseType";
+            this.dgAdvertiseType.HeaderText = "AdvertiseType";
+            this.dgAdvertiseType.Name = "dgAdvertiseType";
+            this.dgAdvertiseType.ReadOnly = true;
+            this.dgAdvertiseType.Visible = false;
+            // 
             // ucBuildingDetail1
             // 
             this.ucBuildingDetail1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -894,7 +906,6 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmShowBuildings_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
             this.menu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFilter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
@@ -902,6 +913,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -934,16 +946,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblCounter;
         private UserControls.UcBuildingDetail ucBuildingDetail1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgDateSh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgOwnerName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ParentName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgRoomCount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgAddress;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgPriority;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dgIsArchive;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgAdvertiseType;
         private System.Windows.Forms.ContextMenuStrip menu;
         private System.Windows.Forms.ToolStripMenuItem menuAdd;
         private System.Windows.Forms.ToolStripMenuItem menuEdit;
@@ -982,5 +984,16 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem17;
         private System.Windows.Forms.ToolStripMenuItem menuZoncan;
         private System.Windows.Forms.ToolStripMenuItem menuChangeZoncan;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dgIsChecked;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgDateSh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgOwnerName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ParentName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgRoomCount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgAddress;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgPriority;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dgIsArchive;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgAdvertiseType;
     }
 }

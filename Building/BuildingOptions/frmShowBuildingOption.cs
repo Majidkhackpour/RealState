@@ -28,7 +28,7 @@ namespace Building.BuildingOptions
                 var list = await BuildingOptionsBussines.GetAllAsync(search, _token.Token);
                 Invoke(new MethodInvoker(() => BOBindingSource.DataSource =
                     list.Where(q => q.Status == _st).OrderBy(q => q.Name).ToSortableBindingList()));
-                await LoadFullOptionAsync();
+                LoadFullOption();
             }
             catch (Exception ex)
             {
@@ -50,16 +50,10 @@ namespace Building.BuildingOptions
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task LoadFullOptionAsync()
+        private void LoadFullOption()
         {
             try
             {
-                if (InvokeRequired)
-                {
-                    Invoke(new MethodInvoker(() => LoadFullOptionAsync()));
-                    return;
-                }
-
                 for (var i = 0; i < DGrid.RowCount; i++)
                 {
                     var val = DGrid[dgIsFullOption.Index, i].Value;

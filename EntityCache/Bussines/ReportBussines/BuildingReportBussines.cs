@@ -53,6 +53,7 @@ namespace EntityCache.Bussines.ReportBussines
         public EnKhadamati? Gas { get; set; }
         public EnKhadamati? Barq { get; set; }
         public double Dang { get; set; }
+        public bool IsChecked { get; set; } = false;
 
 
         public static async Task<List<BuildingReportBussines>> GetAllAsync(BuildingFilter filters) => await UnitOfWork.Building.SearchAsync(Cache.ConnectionString, filters);
