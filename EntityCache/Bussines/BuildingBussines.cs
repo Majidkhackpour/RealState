@@ -103,6 +103,7 @@ namespace EntityCache.Bussines
         public List<BuildingNoteBussines> NoteList { get; set; }
         #endregion
 
+        public static async Task<List<BuildingBussines>> GetAllWithoutParentAsync() => await UnitOfWork.Building.GetAllWithoutParentAsync(Cache.ConnectionString);
         public static async Task<BuildingBussines> GetAsync(Guid guid) => await UnitOfWork.Building.GetAsync(Cache.ConnectionString, guid);
         public async Task<ReturnedSaveFuncInfo> SaveAsync(bool isAddLog, SqlTransaction tr = null, bool isRaiseEvent = true, bool isFromServer = false)
         {

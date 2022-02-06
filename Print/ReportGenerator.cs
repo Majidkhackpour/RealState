@@ -1,22 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Threading.Tasks;
-using Print.Classes;
+﻿using Print.Classes;
 using Services;
 using Stimulsoft.Report;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Print
 {
     public class ReportGenerator
     {
         public StiType ReportType { get; set; }
-        public DataSet Ds { get; set; }
         public StiReport Sti { get; set; }
         private bool _displayPrintPreview = false;
-        public int SanadId { get; set; }
+        public Guid SanadGuid { get; set; }
         public int SanadType { get; set; }
         public List<object> Lst { get; set; }
+        public int RefrenceId { get; set; }
+        public object CompanyInfo { get; set; }
         private static bool StimulRegistered = false;
 
         public ReportGenerator(StiType reportType, EnPrintType printType)
@@ -126,46 +126,13 @@ namespace Print
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public bool AddTable(DataTable tbl)
-        {
-            try
-            {
-                var dv = new DataView();
-                dv.Table = tbl;
-                AddView(dv);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                return false;
-            }
-        }
-        public bool AddView(DataView v)
-        {
-            try
-            {
-                Ds.Tables.Add(v.ToTable());
-                return true;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                return false;
-            }
-        }
-        public bool AddDs(DataSet ds)
-        {
-            Ds = ds;
-            return true;
-        }
         public ReturnedSaveFuncInfo Print2PrinterNew()
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
                 var cls = new _clsPrint();
-                cls.Print2PrinterNew(Sti, Ds, SanadId, SanadType, Lst);
+                cls.Print2PrinterNew(Sti, SanadGuid, SanadType, Lst, RefrenceId, CompanyInfo);
             }
             catch (Exception ex)
             {
@@ -197,7 +164,7 @@ namespace Print
             try
             {
                 var cls = new _clsPrint();
-                cls.PrintPreviewNew(Sti, Ds, SanadId, SanadType, Lst);
+                cls.PrintPreviewNew(Sti, SanadGuid, SanadType, Lst, RefrenceId, CompanyInfo);
             }
             catch (Exception ex)
             {
@@ -213,7 +180,7 @@ namespace Print
             try
             {
                 var cls = new _clsPrint();
-                return cls.DesignNew(Sti, Ds, SanadId, SanadType, Lst);
+                return cls.DesignNew(Sti, SanadGuid, SanadType, Lst, RefrenceId, CompanyInfo);
             }
             catch (Exception ex)
             {

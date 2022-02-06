@@ -58,13 +58,13 @@ namespace RealState
                     return res;
                 }
 
-                res.AddReturnedValue(await SetDefultsAsync(owner));
-                if (res.HasError) return res;
-
                 if (SettingsBussines.Setting == null)
                     SettingsBussines.Setting = new GlobalSetting();
                 if (SettingsBussines.AdvertiseSetting == null)
                     SettingsBussines.AdvertiseSetting = new AdvertiseSetting();
+
+                res.AddReturnedValue(await SetDefultsAsync(owner));
+                if (res.HasError) return res;
 
                 res.AddReturnedValue(await CheckHardSerialAsync(hardSerial));
                 if (res.HasError) return res;

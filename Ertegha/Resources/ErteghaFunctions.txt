@@ -144,3 +144,82 @@
 	END
 	' 
 	END
+	GO
+
+
+Create or Alter function [dbo].[GetBuildingParent] (@parent smallint)
+RETURNS nvarchar(100) AS
+Begin
+	Declare @ret nvarchar(100)
+	Set @ret = Case @parent
+			   when 0 Then N'تعیین نشده'
+			   when 101 Then N'فروش آپارتمان'
+			   when 102 Then N'فروش ویلایی'
+			   when 103 Then N'فروش زمین'
+			   when 104 Then N'فروش ویلا'
+			   when 105 Then N'فروش واحد تجاری'
+			   when 106 Then N'فروش واحد اداری'
+			   when 107 Then N'فروش باغ'
+			   when 108 Then N'فروش کلنگی'
+			   when 109 Then N'رهن و اجاره آپارتمان'
+			   when 110 Then N'رهن و اجاره ویلایی'
+			   when 111 Then N'رهن و اجاره واحد تجاری'
+			   when 112 Then N'رهن و اجاره واحد اداری'
+			   when 113 Then N'رهن کامل آپارتمان'
+			   when 114 Then N'رهن کامل ویلایی'
+			   when 115 Then N'رهن کامل واحد تجاری'
+			   when 116 Then N'رهن کامل واحد اداری'
+			   when 117 Then N'پیش فروش آپارتمان'
+			   when 118 Then N'پیش فروش ویلایی'
+			   when 119 Then N'پیش فروش واحد تجاری'
+			   when 120 Then N'پیش فروش واحد اداری'
+			   when 121 Then N'معاوضه آپارتمان'
+			   when 122 Then N'معاوضه ویلایی'
+			   when 123 Then N'معاوضه واحد تجاری'
+			   when 124 Then N'معاوضه واحد اداری'
+			   when 125 Then N'مشارکت در ساخت آپارتمان'
+			   when 126 Then N'مشارکت در ساخت ویلایی'
+			   end
+	return @ret
+End
+GO
+
+Create or Alter function [dbo].[GetBuildingSide] (@side smallint)
+RETURNS nvarchar(100) AS
+Begin
+	Declare @ret nvarchar(100)
+	set @ret = Case @side
+			   when 0 Then N'شمالی'
+			   when 1 Then N'جنوبی'
+			   when 2 Then N'شرقی'
+			   when 3 Then N'غربی'
+			   when 4 Then N'شمالی شرقی'
+			   when 5 Then N'شمالی غربی'
+			   when 6 Then N'جنوبی شرقی'
+			   when 7 Then N'جنوبی غربی'
+			   when 8 Then N'شمالی جنوبی دوکله'
+			   when 9 Then N'شرقی غربی دوکله'
+			   when 10 Then N'شمالی شرقی غربی'
+			   when 11 Then N'جنوبی شرقی غربی'
+			   when 12 Then N'شرقی شمالی جنوبی'
+			   when 13 Then N'غربی شمالی جنوبی'
+			   else N'تعیین نشده'
+			   end
+	return @ret
+End
+GO
+
+Create or Alter function [dbo].[GetTafsilNumbers] (@Guid Uniqueidentifier, @ordinal smallint)
+RETURNS nvarchar(100) AS
+Begin
+	Declare @ret nvarchar(100)
+	Set @ret = (Select Tell From
+					(
+						Select *,RANK() over(order by Title) As Rank
+						From PhoneBooks
+						Where ParentGuid=@Guid
+					) As Ranked
+				 Where Rank=@ordinal
+				)
+	return @ret
+End

@@ -102,12 +102,8 @@ namespace Building.Buildings
                         {
                             _filteredList = _filteredList?.Where(x => x.Code.ToLower().Contains(item.ToLower()) ||
                                                  x.OwnerName.ToLower().Contains(item.ToLower()) ||
-                                                 x.BuildingTypeName.ToLower().Contains(item.ToLower()) ||
-                                                 x.Masahat.ToString().ToLower().Contains(item.ToLower()) ||
-                                                 x.ZirBana.ToString().ToLower().Contains(item.ToLower()) ||
-                                                 x.UserName.ToLower().Contains(item.ToLower()) ||
                                                  x.Address.ToLower().Contains(item.ToLower()) ||
-                                                 x.RegionName.ToLower().Contains(item.ToLower()))
+                                                 x.ParentName.ToLower().Contains(item.ToLower()))
                                 ?.ToList();
                         }
                     }
@@ -504,6 +500,11 @@ namespace Building.Buildings
                 if (token.IsCancellationRequested) return;
                 var bu = await BuildingReportBussines.GetAsync(guid);
                 if (token.IsCancellationRequested || bu == null) return;
+                while (!IsHandleCreated)
+                {
+                    await Task.Delay(100);
+                    if (IsDisposed || token.IsCancellationRequested) return;
+                }
                 BeginInvoke(new MethodInvoker(() => ucBuildingDetail1.Building = bu));
             }
             catch (Exception ex)
@@ -1244,6 +1245,48 @@ namespace Building.Buildings
                     this.ShowMessage("ملک (های) مورد نظر به زونکن اضافه شد");
                     LoadData(txtSearch.Text);
                 }
+            }
+        }
+        private void menuSelectAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!(_filteredList?.Any() ?? false)) return;
+                foreach (var item in _filteredList)
+                    item.IsChecked = true;
+                DGrid.ResetBindings();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void menuSelectNone_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!(_filteredList?.Any() ?? false)) return;
+                foreach (var item in _filteredList)
+                    item.IsChecked = false;
+                DGrid.ResetBindings();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void menuSelectReverse_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!(_filteredList?.Any() ?? false)) return;
+                foreach (var item in _filteredList)
+                    item.IsChecked = !item.IsChecked;
+                DGrid.ResetBindings();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
         private void DGrid_CellClick(object sender, DataGridViewCellEventArgs e)

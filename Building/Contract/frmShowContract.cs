@@ -248,7 +248,7 @@ namespace Building.Contract
                     };
                     var lst = new List<object>() { view };
                     var cls = new ReportGenerator(StiType.Contract_One, EnPrintType.Pdf_A4)
-                    { Lst = lst, SanadId = (int)contract?.Code };
+                    { Lst = lst };
                     cls.PrintNew();
                 }
                 else if (contract.Type == EnRequestType.Forush)
@@ -291,7 +291,7 @@ namespace Building.Contract
                     };
                     var lst = new List<object>() { view };
                     var cls = new ReportGenerator(StiType.Contract_One, EnPrintType.Pdf_A5)
-                    { Lst = lst, SanadId = (int)contract?.Code };
+                    { Lst = lst };
                     cls.PrintNew();
                 }
             }

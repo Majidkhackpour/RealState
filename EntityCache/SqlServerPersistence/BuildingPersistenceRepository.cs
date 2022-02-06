@@ -196,6 +196,30 @@ namespace EntityCache.SqlServerPersistence
 
             return res;
         }
+        public async Task<List<BuildingBussines>> GetAllWithoutParentAsync(string connectionString)
+        {
+            var list = new List<BuildingBussines>();
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_Building_GetAllWithoutParent", cn) { CommandType = CommandType.StoredProcedure };
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read()) list.Add(await LoadDataAsync(dr, connectionString));
+                    dr.Close();
+                    cn.Close();
+                }
+            }
+            catch (TaskCanceledException) { }
+            catch (OperationCanceledException) { }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
         public async Task<ReturnedSaveFuncInfo> ChangeParentAsync(Guid guid, EnBuildingParent parent, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -465,7 +489,11 @@ namespace EntityCache.SqlServerPersistence
             {
                 using (var cn = new SqlConnection(connectionString))
                 {
-                    var cmd = new SqlCommand("sp_Buildings_Search", cn) { CommandType = CommandType.StoredProcedure };
+                    var cmd = new SqlCommand("sp_Buildings_Search", cn)
+                    {
+                        CommandType = CommandType.StoredProcedure,
+                        CommandTimeout = 60
+                    };
                     if (filter.AdvertiseType != null && filter.AdvertiseType != AdvertiseType.None)
                         cmd.Parameters.AddWithValue("@advType", (short)filter.AdvertiseType);
                     if (filter.BuildingTypeGuid == Guid.Empty) filter.BuildingTypeGuid = null;
