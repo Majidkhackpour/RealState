@@ -8415,3 +8415,103 @@ BEGIN
 	select COUNT(*) from BuildingZoncans
 	where Name=@name and Guid<>@guid
 END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingReview_Get]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingReview_Get]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_BuildingReview_Get
+	@Guid uniqueidentifier
+AS
+BEGIN	
+	Select * From BuildingReviews
+	Where Guid=@Guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingReview_Save]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingReview_Save]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_BuildingReview_Save
+	@Guid uniqueidentifier,
+	@BuildingGuid uniqueidentifier,
+	@UserGuid uniqueidentifier,
+	@CustomerGuid uniqueidentifier,
+	@Date Datetime,
+	@Report nvarchar(Max)='',
+	@serverSt smallint,
+	@serverDate datetime
+AS
+BEGIN	
+	UPDATE [dbo].[BuildingReviews]
+	   SET [Modified] = GETDATE()
+		  ,[BuildingGuid] = @BuildingGuid
+		  ,[UserGuid] = @UserGuid
+		  ,[CustometGuid] = @CustomerGuid
+		  ,[Date] = @Date
+		  ,[Report] = @Report
+		  ,[ServerStatus] = @serverSt
+		  ,[ServerDeliveryDate] = @serverDate
+	 WHERE Guid = @Guid
+	if @@ROWCOUNT = 0
+	Begin
+		INSERT INTO [dbo].[BuildingReviews]
+           ([Guid]
+           ,[Modified]
+           ,[BuildingGuid]
+           ,[UserGuid]
+           ,[CustometGuid]
+           ,[Date]
+           ,[Report]
+           ,[ServerStatus]
+           ,[ServerDeliveryDate])
+		 VALUES
+			   (@Guid
+			   ,GETDATE()
+			   ,@BuildingGuid
+			   ,@UserGuid
+			   ,@CustomerGuid
+			   ,@Date
+			   ,@Report
+			   ,@serverSt
+			   ,@serverDate)
+	End
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingReview_Remove]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingReview_Remove]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_BuildingReview_Remove
+	@Guid uniqueidentifier
+AS
+BEGIN
+	Delete From BuildingReviews
+	Where Guid=@Guid
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingReview_GetAllForReport]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingReview_GetAllForReport]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_BuildingReview_GetAllForReport
+	@BuildingGuid uniqueidentifier=null,
+	@CustomerGuid uniqueidentifier=null,
+	@UserGuid uniqueidentifier=null,
+	@date1 datetime=null,
+	@date2 datetime=null
+AS
+BEGIN
+	Select   BuildingReviews.* 
+		   , Peoples.Name As CustomerName
+		   , Users.Name As UserName
+	From BuildingReviews
+	inner join Buildings on BuildingReviews.BuildingGuid=Buildings.Guid
+	inner join Peoples on BuildingReviews.CustometGuid=Peoples.Guid
+	inner join Users on BuildingReviews.UserGuid=Users.Guid
+	where (@BuildingGuid is null or BuildingReviews.BuildingGuid=@BuildingGuid) and
+		  (@CustomerGuid is null or BuildingReviews.CustometGuid=@CustomerGuid) and
+		  (@UserGuid is null or BuildingReviews.UserGuid=@UserGuid) and
+		  (@date1 is null or BuildingReviews.Date>=@date1) and
+		  (@date2 is null or BuildingReviews.Date<=@date2)
+END

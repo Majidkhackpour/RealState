@@ -62,6 +62,7 @@ namespace EntityCache.Assistence
         private static IBuildingRelatedNumberRepository _buildingRelatedNumberRepository;
         private static IBuildingWindowRepository _buildingWindowRepository;
         private static IBuildingZoncanRepository _buildingZoncanRepository;
+        private static IBuildingReviewRepository _buildingReviewRepository;
 
         public static void Dispose() => db?.Dispose();
         public static void Set_Save() => db.SaveChanges();
@@ -120,5 +121,6 @@ namespace EntityCache.Assistence
         public static IBuildingRelatedNumberRepository BuildingRelatedNumber => _buildingRelatedNumberRepository ?? (_buildingRelatedNumberRepository = new BuildingRelatedNumberPersistenceRepository());
         public static IBuildingWindowRepository BuildingWindow => _buildingWindowRepository ?? (_buildingWindowRepository = new BuildingWindowPersistenceRepository());
         public static IBuildingZoncanRepository BuildingZoncan => _buildingZoncanRepository ?? (_buildingZoncanRepository = new BuildingZoncanPersistenceRepository());
+        public static IBuildingReviewRepository BuildingReview => _buildingReviewRepository ?? (_buildingReviewRepository = new BuildingReviewPersistenceRepository());
     }
 }

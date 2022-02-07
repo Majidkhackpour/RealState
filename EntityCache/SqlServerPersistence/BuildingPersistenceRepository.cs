@@ -193,7 +193,6 @@ namespace EntityCache.SqlServerPersistence
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
             return res;
         }
         public async Task<List<BuildingBussines>> GetAllWithoutParentAsync(string connectionString)
@@ -366,7 +365,6 @@ namespace EntityCache.SqlServerPersistence
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
-
             return list;
         }
         public async Task<BuildingReportBussines> GetFromReportAsync(string connectionString, Guid guid)
