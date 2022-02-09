@@ -81,6 +81,7 @@
     <Compile Include="WebBuildingRelatedOptions.cs" />
     <Compile Include="WebBuildingRequest.cs" />
     <Compile Include="WebBuildingRequestRegion.cs" />
+    <Compile Include="WebBuildingReview.cs" />
     <Compile Include="WebBuildingType.cs" />
     <Compile Include="WebBuildingView.cs" />
     <Compile Include="WebBuildingWindow.cs" />
