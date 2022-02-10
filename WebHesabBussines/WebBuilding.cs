@@ -93,6 +93,7 @@ namespace WebHesabBussines
         public EnBuildingParent? Parent { get; set; }
         public List<WebBuildingRelatedOptions> OptionList { get; set; }
         public List<WebBuildingNote> NoteList { get; set; }
+        public List<WebBuildingGallery> GalleryList { get; set; }
 
 
         private static void RaiseEvent(Guid objGuid, ServerStatus st, DateTime dateM)

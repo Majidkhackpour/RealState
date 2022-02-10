@@ -92,7 +92,8 @@ namespace EntityCache.Mppings
                 NoteList = BuildingNoteMapper.Instance.MapList(cls.NoteList),
                 VahedNo = cls.VahedNo,
                 WindowGuid = cls.WindowGuid,
-                ZoncanGuid = cls.ZoncanGuid
+                ZoncanGuid = cls.ZoncanGuid,
+                GalleryList = BuildingGalleryMapper.Instance.MapList(cls.GalleryList)
             };
         }
         public List<WebBuilding> MapList(List<BuildingBussines> cls)

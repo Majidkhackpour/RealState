@@ -76,6 +76,7 @@
     <Compile Include="WebBuilding.cs" />
     <Compile Include="WebBuildingAccountType.cs" />
     <Compile Include="WebBuildingCondition.cs" />
+    <Compile Include="WebBuildingGallery.cs" />
     <Compile Include="WebBuildingNote.cs" />
     <Compile Include="WebBuildingOptions.cs" />
     <Compile Include="WebBuildingRelatedOptions.cs" />

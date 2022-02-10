@@ -242,6 +242,7 @@
     <Compile Include="Core\IWorkingRangeRepository.cs" />
     <Compile Include="Mppings\BuildingAccountTypeMapper.cs" />
     <Compile Include="Mppings\BuildingConditionMapper.cs" />
+    <Compile Include="Mppings\BuildingGalleryMapper.cs" />
     <Compile Include="Mppings\BuildingMapper.cs" />
     <Compile Include="Mppings\BuildingNoteMapper.cs" />
     <Compile Include="Mppings\BuildingOptionsMapper.cs" />
