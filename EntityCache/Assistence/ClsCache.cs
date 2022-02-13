@@ -118,7 +118,7 @@ namespace EntityCache.Assistence
             try
             {
                 if (cn == null) return ret;
-                if (cn.State == System.Data.ConnectionState.Open) return ret;
+                if (cn.State == System.Data.ConnectionState.Closed) return ret;
                 cn?.Close();
             }
             catch (Exception ex)
