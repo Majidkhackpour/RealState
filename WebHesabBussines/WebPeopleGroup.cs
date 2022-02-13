@@ -8,7 +8,7 @@ namespace WebHesabBussines
 {
     public class WebPeopleGroup : IPeopleGroup
     {
-        private static string Url = Utilities.WebApi + "/api/Region/SaveAsync";
+        private static string Url = Utilities.WebApi + "/api/PeopleGroup/SaveAsync";
         public static event Func<Guid, ServerStatus, DateTime, Task> OnSaveResult;
 
         public Guid Guid { get; set; }

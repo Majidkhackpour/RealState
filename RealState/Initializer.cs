@@ -84,8 +84,6 @@ namespace RealState
                     return res;
                 }
 
-                WebServiceHandlers.Instance.Init(Cache.Path);
-
                 _ = Task.Run(BuildingBussines.SetArchiveAsync);
                 _ = Task.Run(BuildingRequestBussines.DeleteAfter60DaysAsync);
 
@@ -240,9 +238,11 @@ namespace RealState
         {
             try
             {
-                var customer = await WebHesabBussines.WebCustomer.GetByHardSerialAsync(hSerial);
+                var customer = await WebCustomer.GetByHardSerialAsync(hSerial);
                 if (customer == null || customer.isBlock) return false;
-                WebHesabBussines.WebCustomer.Customer = customer;
+                WebCustomer.Customer = customer;
+                if (WebCustomer.Customer != null)
+                    WebServiceHandlers.Instance.Init(Cache.Path);
                 return true;
             }
             catch (Exception ex)

@@ -65,20 +65,6 @@ namespace WebHesabBussines
                     RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);
                     return;
                 }
-
-                if (RegionList != null && RegionList.Count > 0)
-                {
-                    foreach (var item in RegionList)
-                    {
-                        var ret = await WebBuildingRequestRegion.SaveAsync(item);
-                        if (ret.HasError || ret.value == null || ret.value != ResponseStatus.Success)
-                        {
-                            RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);
-                            return;
-                        }
-                    }
-                }
-
                 RaiseEvent(Guid, ServerStatus.Delivered, DateTime.Now);
             }
             catch (Exception ex)

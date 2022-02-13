@@ -413,8 +413,6 @@ namespace EntityCache.SqlServerPersistence
                 item.Status = (bool)dr["Status"];
                 item.Name = dr["Name"].ToString();
                 item.Code = dr["Code"].ToString();
-                item.Account = (decimal)dr["Account"];
-                item.AccountFirst = (decimal)dr["AccountFirst"];
                 item.NationalCode = dr["NationalCode"].ToString();
                 item.IdCode = dr["IdCode"].ToString();
                 item.FatherName = dr["FatherName"].ToString();

@@ -120,32 +120,6 @@ namespace WebHesabBussines
                     return;
                 }
 
-                if (OptionList != null && OptionList.Count > 0)
-                {
-                    foreach (var item in OptionList)
-                    {
-                        var ret = await WebBuildingRelatedOptions.SendAsync(item);
-                        if (ret.HasError || ret.value == null || ret.value != ResponseStatus.Success)
-                        {
-                            RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);
-                            return;
-                        }
-                    }
-                }
-
-                if (NoteList != null && NoteList.Count > 0)
-                {
-                    foreach (var item in NoteList)
-                    {
-                        var ret = await WebBuildingNote.SendAsync(item);
-                        if (ret.HasError || ret.value == null || ret.value != ResponseStatus.Success)
-                        {
-                            RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);
-                            return;
-                        }
-                    }
-                }
-
                 var bu = res?.Data;
                 if (bu == null)
                 {
