@@ -22,6 +22,8 @@ using WebHesabBussines;
 using WindowsSerivces;
 using WindowsSerivces.Waiter;
 using Building.Zoncan;
+using DataBaseUtilities;
+using Persistence;
 
 namespace Building.Buildings
 {
@@ -144,6 +146,7 @@ namespace Building.Buildings
                 menuSedSmsToOwner.Visible = VersionAccess.Sms;
                 menuTelegram.Visible = VersionAccess.Telegram;
                 menuAddPersonal.Visible = VersionAccess.Advertise;
+                mnuExcel.Visible = VersionAccess.Excel;
             }
             catch (Exception ex)
             {
@@ -1236,6 +1239,18 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void mnuExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                ExportToExcel.ExportBuilding(_filteredList, this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private void DGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -1274,21 +1289,23 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void menuPrintList_Click(object sender, EventArgs e)
+        private async void menuPrintList_Click(object sender, EventArgs e)
         {
             try
             {
-                var frm = new frmSetPrintSize();
-                if (frm.ShowDialog(this) != DialogResult.OK) return;
-
-                if (frm._PrintType != EnPrintType.Excel)
+                if (DGrid.RowCount <= 0) return;
+                var stimulQuery = await StimulQuery.SaveAsync(SelectedList, Cache.ConnectionString);
+                if (stimulQuery.HasError)
                 {
-                    var cls = new ReportGenerator(StiType.Building_List, frm._PrintType) { Lst = new List<object>(_list) };
-                    cls.PrintNew();
+                    this.ShowError(stimulQuery);
                     return;
                 }
-
-                ExportToExcel.ExportBuilding(_list, this);
+                var cls = new ReportGenerator(StiType.Building_List, EnPrintType.Pdf_A4)
+                {
+                    CompanyInfo = SettingsBussines.Setting.CompanyInfo,
+                    RefrenceId = stimulQuery.value
+                };
+                cls.PrintNew();
             }
             catch (Exception ex)
             {

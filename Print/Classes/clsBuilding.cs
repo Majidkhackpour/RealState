@@ -29,7 +29,7 @@ namespace Print.Classes
 
                 return sti;
             }
-            public static Stimulsoft.Report.StiReport Building_One_A4(Stimulsoft.Report.StiReport sti)
+            private static Stimulsoft.Report.StiReport Building_One_A4(Stimulsoft.Report.StiReport sti)
             {
                 try
                 {
@@ -45,7 +45,7 @@ namespace Print.Classes
                 }
                 return sti;
             }
-            public static Stimulsoft.Report.StiReport Building_One_A5(Stimulsoft.Report.StiReport sti)
+            private static Stimulsoft.Report.StiReport Building_One_A5(Stimulsoft.Report.StiReport sti)
             {
                 try
                 {
@@ -83,14 +83,14 @@ namespace Print.Classes
 
                 return sti;
             }
-            public static Stimulsoft.Report.StiReport Building_List_A4(Stimulsoft.Report.StiReport sti)
+            private static Stimulsoft.Report.StiReport Building_List_A4(Stimulsoft.Report.StiReport sti)
             {
                 try
                 {
-                    var fullAdd = ReportPath.ReportPath_ + @"\" + FolderName + @"\Building_List_A4.mrt";
+                    var fullAdd = ReportPath.ReportPath_ + @"\" + FolderName + @"\BuildingList_A4.mrt";
 
                     if (!File.Exists(fullAdd))
-                        File.WriteAllBytes(fullAdd, Properties.Resources.Building_List_A4);
+                        File.WriteAllBytes(fullAdd, Properties.Resources.BuildingList_A4);
                     sti.Load(fullAdd);
                 }
                 catch (Exception ex)
@@ -99,7 +99,7 @@ namespace Print.Classes
                 }
                 return sti;
             }
-            public static Stimulsoft.Report.StiReport Building_List_A5(Stimulsoft.Report.StiReport sti)
+            private static Stimulsoft.Report.StiReport Building_List_A5(Stimulsoft.Report.StiReport sti)
             {
                 try
                 {

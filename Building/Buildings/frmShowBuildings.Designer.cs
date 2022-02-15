@@ -115,6 +115,7 @@
             this.lblCounter = new System.Windows.Forms.Label();
             this.ucHeader = new WindowsSerivces.UC_Header();
             this.ucBuildingDetail1 = new Building.UserControls.UcBuildingDetail();
+            this.mnuExcel = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
@@ -350,7 +351,7 @@
             this.انتخابToolStripMenuItem});
             this.menu.Name = "menu";
             this.menu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.menu.Size = new System.Drawing.Size(229, 316);
+            this.menu.Size = new System.Drawing.Size(229, 338);
             // 
             // menuAdd
             // 
@@ -586,7 +587,8 @@
             this.menuPrintFull,
             this.menuLimitedPrint,
             this.toolStripMenuItem16,
-            this.menuPrintList});
+            this.menuPrintList,
+            this.mnuExcel});
             this.menuPrint.Image = global::Building.Properties.Resources.printer;
             this.menuPrint.Name = "menuPrint";
             this.menuPrint.Size = new System.Drawing.Size(228, 24);
@@ -618,7 +620,7 @@
             this.menuPrintList.Image = global::Building.Properties.Resources.printer;
             this.menuPrintList.Name = "menuPrintList";
             this.menuPrintList.Size = new System.Drawing.Size(276, 24);
-            this.menuPrintList.Text = "چاپ لیست املاک";
+            this.menuPrintList.Text = "چاپ لیست املاک A4";
             this.menuPrintList.Click += new System.EventHandler(this.menuPrintList_Click);
             // 
             // toolStripMenuItem17
@@ -917,6 +919,14 @@
             this.ucBuildingDetail1.Size = new System.Drawing.Size(236, 523);
             this.ucBuildingDetail1.TabIndex = 55773;
             // 
+            // mnuExcel
+            // 
+            this.mnuExcel.Image = global::Building.Properties.Resources.printer;
+            this.mnuExcel.Name = "mnuExcel";
+            this.mnuExcel.Size = new System.Drawing.Size(276, 24);
+            this.mnuExcel.Text = "خروجی لیست املاک در فایل اکسل";
+            this.mnuExcel.Click += new System.EventHandler(this.mnuExcel_Click);
+            // 
             // frmShowBuildings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -1049,5 +1059,6 @@
         private System.Windows.Forms.ToolStripMenuItem menuSelectAll;
         private System.Windows.Forms.ToolStripMenuItem menuSelectNone;
         private System.Windows.Forms.ToolStripMenuItem menuSelectReverse;
+        private System.Windows.Forms.ToolStripMenuItem mnuExcel;
     }
 }

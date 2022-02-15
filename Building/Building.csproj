@@ -1286,6 +1286,10 @@
     <None Include="Properties\DataSources\EntityCache.Bussines.BuildingConditionBussines.datasource" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\DataBaseUtilities\DataBaseUtilities\DataBaseUtilities\DataBaseUtilities.csproj">
+      <Project>{6c91d45f-9ab2-4202-916b-dc256bdc02d7}</Project>
+      <Name>DataBaseUtilities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Services\Services\Services\Services.csproj">
       <Project>{dcb5bde2-6238-422d-ad4e-f53afce9bf30}</Project>
       <Name>Services</Name>
