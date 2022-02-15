@@ -24,15 +24,21 @@ namespace EntityCache.Bussines
         public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public string Name { get; set; }
         public bool IsModified { get; set; } = false;
-        //public static Guid DefaultGuid
-        //{
-        //    get
-        //    {
-        //        if (_defGuid == Guid.Empty)
-        //            _defGuid = AsyncContext.Run(() => GetDefultGuidAsync("تعیین نشده"));
-        //        return _defGuid;
-        //    }
-        //}
+        public byte[] ServerStatusImage
+        {
+            get
+            {
+                if (ServerStatus == ServerStatus.Delivered || ServerStatus == ServerStatus.DirectDelivery)
+                    return ImageResourceManager.ServerStatusDelivered;
+                if (ServerStatus == ServerStatus.DeliveryError)
+                    return ImageResourceManager.ServerStatusDeliveryFailed;
+                if (ServerStatus == ServerStatus.Sent)
+                    return ImageResourceManager.ServerStatusSent;
+                if (ServerStatus == ServerStatus.SendError)
+                    return ImageResourceManager.ServerStatusSentError;
+                return ImageResourceManager.ServerStatusNone;
+            }
+        }
 
 
         public static async Task<List<BuildingAccountTypeBussines>> GetAllAsync(CancellationToken token=default) => await UnitOfWork.BuildingAccountType.GetAllAsync(Cache.ConnectionString, token);

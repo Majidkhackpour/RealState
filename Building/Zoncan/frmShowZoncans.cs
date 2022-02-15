@@ -38,6 +38,7 @@ namespace Building.Zoncan
             InitializeComponent();
             DGrid.Focus();
             ucHeader.Text = "نمایش لیست زونکن ها";
+            dgServerStatusImage.Visible = VersionAccess.WebService;
         }
 
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

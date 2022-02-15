@@ -80,6 +80,7 @@ namespace Cities.Region
                 mnuEdit.Enabled = access?.Regions.Region_Update ?? false;
                 mnuDelete.Enabled = access?.Regions.Region_Delete ?? false;
                 mnuView.Enabled = access?.Regions.Region_View ?? false;
+                dgServerStatusImage.Visible = VersionAccess.WebService;
             }
             catch (Exception ex)
             {

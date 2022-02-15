@@ -41,6 +41,7 @@ namespace Building.DocumentType
                 mnuEdit.Enabled = access?.DocumentType.Document_Type_Update ?? false;
                 mnuDelete.Enabled = access?.DocumentType.Document_Type_Delete ?? false;
                 mnuView.Enabled = access?.DocumentType.Document_Type_View ?? false;
+                dgServerStatusImage.Visible = VersionAccess.WebService;
             }
             catch (Exception ex)
             {

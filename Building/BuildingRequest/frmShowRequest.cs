@@ -49,6 +49,7 @@ namespace Building.BuildingRequest
                 mnuPrint.Enabled = access?.BuildingRequest.Building_Request_Print ?? false;
 
                 mnuSendSms.Visible = VersionAccess.Sms;
+                dgServerStatusImage.Visible = VersionAccess.WebService;
             }
             catch (Exception ex)
             {

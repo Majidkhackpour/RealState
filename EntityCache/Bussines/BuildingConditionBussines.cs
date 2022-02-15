@@ -24,6 +24,21 @@ namespace EntityCache.Bussines
         public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public string Name { get; set; }
         public bool IsModified { get; set; } = false;
+        public byte[] ServerStatusImage
+        {
+            get
+            {
+                if (ServerStatus == ServerStatus.Delivered || ServerStatus == ServerStatus.DirectDelivery)
+                    return ImageResourceManager.ServerStatusDelivered;
+                if (ServerStatus == ServerStatus.DeliveryError)
+                    return ImageResourceManager.ServerStatusDeliveryFailed;
+                if (ServerStatus == ServerStatus.Sent)
+                    return ImageResourceManager.ServerStatusSent;
+                if (ServerStatus == ServerStatus.SendError)
+                    return ImageResourceManager.ServerStatusSentError;
+                return ImageResourceManager.ServerStatusNone;
+            }
+        }
 
 
         public static async Task<List<BuildingConditionBussines>> GetAllAsync(CancellationToken token = default) => await UnitOfWork.BuildingCondition.GetAllAsync(Cache.ConnectionString, token);

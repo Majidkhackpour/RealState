@@ -41,6 +41,7 @@ namespace Building.BuildingCondition
                 mnuEdit.Enabled = access?.BuildingCondition.Building_Condition_Update ?? false;
                 mnuDelete.Enabled = access?.BuildingCondition.Building_Condition_Delete ?? false;
                 mnuView.Enabled = access?.BuildingCondition.Building_Condition_View ?? false;
+                dgServerStatusImage.Visible = VersionAccess.WebService;
             }
             catch (Exception ex)
             {

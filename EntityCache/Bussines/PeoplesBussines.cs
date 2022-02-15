@@ -46,6 +46,21 @@ namespace EntityCache.Bussines
         public List<PhoneBookBussines> TellList { get; set; }
         public List<PeoplesBankAccountBussines> BankList { get; set; }
         public bool IsModified { get; set; } = false;
+        public byte[] ServerStatusImage
+        {
+            get
+            {
+                if (ServerStatus == ServerStatus.Delivered || ServerStatus == ServerStatus.DirectDelivery)
+                    return ImageResourceManager.ServerStatusDelivered;
+                if (ServerStatus == ServerStatus.DeliveryError)
+                    return ImageResourceManager.ServerStatusDeliveryFailed;
+                if (ServerStatus == ServerStatus.Sent)
+                    return ImageResourceManager.ServerStatusSent;
+                if (ServerStatus == ServerStatus.SendError)
+                    return ImageResourceManager.ServerStatusSentError;
+                return ImageResourceManager.ServerStatusNone;
+            }
+        }
 
 
         public static async Task<List<PeoplesBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Peoples.GetAllAsync(Cache.ConnectionString, token);

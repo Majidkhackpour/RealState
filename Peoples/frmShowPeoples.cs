@@ -97,6 +97,7 @@ namespace Peoples
                 mnuTell.Enabled = access?.Peoples.People_Show_Tell ?? false;
                 mnuPrint.Enabled = access?.Peoples.People_Print ?? false;
                 mnuIpmortFromExcel.Visible = VersionAccess.Excel;
+                dgServerStatusImage.Visible = VersionAccess.WebService;
             }
             catch (Exception ex)
             {

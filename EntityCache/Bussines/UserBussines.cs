@@ -57,6 +57,21 @@ namespace EntityCache.Bussines
         public static UserBussines CurrentUser { get; set; }
         public static DateTime DateVorrod { get; set; }
         public static string DateSh => Calendar.MiladiToShamsi(DateVorrod);
+        public byte[] ServerStatusImage
+        {
+            get
+            {
+                if (ServerStatus == ServerStatus.Delivered || ServerStatus == ServerStatus.DirectDelivery)
+                    return ImageResourceManager.ServerStatusDelivered;
+                if (ServerStatus == ServerStatus.DeliveryError)
+                    return ImageResourceManager.ServerStatusDeliveryFailed;
+                if (ServerStatus == ServerStatus.Sent)
+                    return ImageResourceManager.ServerStatusSent;
+                if (ServerStatus == ServerStatus.SendError)
+                    return ImageResourceManager.ServerStatusSentError;
+                return ImageResourceManager.ServerStatusNone;
+            }
+        }
 
 
         public static async Task<UserBussines> GetAsync(Guid guid) => await UnitOfWork.Users.GetAsync(Cache.ConnectionString, guid);

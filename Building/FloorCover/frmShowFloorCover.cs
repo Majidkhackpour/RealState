@@ -40,6 +40,7 @@ namespace Building.FloorCover
                 mnuEdit.Enabled = access?.FloorCover.Floor_Cover_Update ?? false;
                 mnuDelete.Enabled = access?.FloorCover.Floor_Cover_Delete ?? false;
                 mnuView.Enabled = access?.FloorCover.Floor_Cover_View ?? false;
+                dgServerStatusImage.Visible = VersionAccess.WebService;
             }
             catch (Exception ex)
             {

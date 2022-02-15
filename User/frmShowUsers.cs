@@ -43,6 +43,7 @@ namespace User
                 mnuEdit.Enabled = access?.User.User_Update ?? false;
                 mnuDelete.Enabled = access?.User.User_Delete ?? false;
                 mnuView.Enabled = access?.User.User_View ?? false;
+                dgServerStatusImage.Visible = VersionAccess.WebService;
             }
             catch (Exception ex)
             {

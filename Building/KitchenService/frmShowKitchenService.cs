@@ -39,6 +39,7 @@ namespace Building.KitchenService
                 mnuEdit.Enabled = access?.KitchenService.Kitchen_Service_Update ?? false;
                 mnuDelete.Enabled = access?.KitchenService.Kitchen_Service_Delete ?? false;
                 mnuView.Enabled = access?.KitchenService.Kitchen_Service_View ?? false;
+                dgServerStatusImage.Visible = VersionAccess.WebService;
             }
             catch (Exception ex)
             {

@@ -47,6 +47,7 @@ namespace Building.Zoncan
             this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
             this.ucHeader = new WindowsSerivces.UC_Header();
             this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgServerStatusImage = new System.Windows.Forms.DataGridViewImageColumn();
             this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -111,6 +112,7 @@ namespace Building.Zoncan
             this.DGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgRadif,
+            this.dgServerStatusImage,
             this.dgName,
             this.descriptionDataGridViewTextBoxColumn,
             this.dgGuid,
@@ -232,6 +234,14 @@ namespace Building.Zoncan
             this.dgRadif.ReadOnly = true;
             this.dgRadif.Width = 50;
             // 
+            // dgServerStatusImage
+            // 
+            this.dgServerStatusImage.DataPropertyName = "ServerStatusImage";
+            this.dgServerStatusImage.HeaderText = "";
+            this.dgServerStatusImage.Name = "dgServerStatusImage";
+            this.dgServerStatusImage.ReadOnly = true;
+            this.dgServerStatusImage.Width = 35;
+            // 
             // dgName
             // 
             this.dgName.DataPropertyName = "Name";
@@ -335,6 +345,7 @@ namespace Building.Zoncan
         private System.Windows.Forms.ToolStripMenuItem mnuView;
         private WindowsSerivces.UC_Header ucHeader;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
+        private System.Windows.Forms.DataGridViewImageColumn dgServerStatusImage;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
         private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;

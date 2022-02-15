@@ -66,6 +66,7 @@ namespace Cities.City
                 mnuEdit.Enabled = access?.Cities.City_Update ?? false;
                 mnuDelete.Enabled = access?.Cities.City_Delete ?? false;
                 mnuView.Enabled = access?.Cities.City_View ?? false;
+                dgServerStatusImage.Visible = VersionAccess.WebService;
             }
             catch (Exception ex)
             {

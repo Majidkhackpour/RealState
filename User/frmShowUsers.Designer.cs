@@ -36,18 +36,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowUsers));
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.Radif = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mobileDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.accessDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.securityQuestionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.answerQuestionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,6 +48,19 @@
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.btnSelect = new DevComponents.DotNetBar.ButtonX();
             this.ucHeader = new WindowsSerivces.UC_Header();
+            this.Radif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgServerStatusImage = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mobileDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.accessDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.securityQuestionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.answerQuestionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UserBindingSource)).BeginInit();
@@ -93,6 +94,7 @@
             this.DGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Radif,
+            this.dgServerStatusImage,
             this.dgName,
             this.emailDataGridViewTextBoxColumn,
             this.mobileDataGridViewTextBoxColumn,
@@ -142,101 +144,6 @@
             this.DGrid.TabIndex = 55707;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             this.DGrid.DoubleClick += new System.EventHandler(this.DGrid_DoubleClick);
-            // 
-            // Radif
-            // 
-            this.Radif.HeaderText = "ردیف";
-            this.Radif.Name = "Radif";
-            this.Radif.ReadOnly = true;
-            this.Radif.Width = 50;
-            // 
-            // dgName
-            // 
-            this.dgName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgName.DataPropertyName = "Name";
-            this.dgName.HeaderText = "عنوان";
-            this.dgName.Name = "dgName";
-            this.dgName.ReadOnly = true;
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "ایمیل";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
-            this.emailDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // mobileDataGridViewTextBoxColumn
-            // 
-            this.mobileDataGridViewTextBoxColumn.DataPropertyName = "Mobile";
-            this.mobileDataGridViewTextBoxColumn.HeaderText = "همراه";
-            this.mobileDataGridViewTextBoxColumn.Name = "mobileDataGridViewTextBoxColumn";
-            this.mobileDataGridViewTextBoxColumn.ReadOnly = true;
-            this.mobileDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // dgGuid
-            // 
-            this.dgGuid.DataPropertyName = "Guid";
-            this.dgGuid.HeaderText = "Guid";
-            this.dgGuid.Name = "dgGuid";
-            this.dgGuid.ReadOnly = true;
-            this.dgGuid.Visible = false;
-            // 
-            // modifiedDataGridViewTextBoxColumn
-            // 
-            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
-            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
-            this.modifiedDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // statusDataGridViewCheckBoxColumn
-            // 
-            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
-            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
-            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
-            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.statusDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // userNameDataGridViewTextBoxColumn
-            // 
-            this.userNameDataGridViewTextBoxColumn.DataPropertyName = "UserName";
-            this.userNameDataGridViewTextBoxColumn.HeaderText = "UserName";
-            this.userNameDataGridViewTextBoxColumn.Name = "userNameDataGridViewTextBoxColumn";
-            this.userNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.userNameDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // passwordDataGridViewTextBoxColumn
-            // 
-            this.passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
-            this.passwordDataGridViewTextBoxColumn.HeaderText = "Password";
-            this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
-            this.passwordDataGridViewTextBoxColumn.ReadOnly = true;
-            this.passwordDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // accessDataGridViewTextBoxColumn
-            // 
-            this.accessDataGridViewTextBoxColumn.DataPropertyName = "Access";
-            this.accessDataGridViewTextBoxColumn.HeaderText = "Access";
-            this.accessDataGridViewTextBoxColumn.Name = "accessDataGridViewTextBoxColumn";
-            this.accessDataGridViewTextBoxColumn.ReadOnly = true;
-            this.accessDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // securityQuestionDataGridViewTextBoxColumn
-            // 
-            this.securityQuestionDataGridViewTextBoxColumn.DataPropertyName = "SecurityQuestion";
-            this.securityQuestionDataGridViewTextBoxColumn.HeaderText = "SecurityQuestion";
-            this.securityQuestionDataGridViewTextBoxColumn.Name = "securityQuestionDataGridViewTextBoxColumn";
-            this.securityQuestionDataGridViewTextBoxColumn.ReadOnly = true;
-            this.securityQuestionDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // answerQuestionDataGridViewTextBoxColumn
-            // 
-            this.answerQuestionDataGridViewTextBoxColumn.DataPropertyName = "AnswerQuestion";
-            this.answerQuestionDataGridViewTextBoxColumn.HeaderText = "AnswerQuestion";
-            this.answerQuestionDataGridViewTextBoxColumn.Name = "answerQuestionDataGridViewTextBoxColumn";
-            this.answerQuestionDataGridViewTextBoxColumn.ReadOnly = true;
-            this.answerQuestionDataGridViewTextBoxColumn.Visible = false;
             // 
             // contextMenu
             // 
@@ -364,6 +271,109 @@
             this.ucHeader.Size = new System.Drawing.Size(815, 34);
             this.ucHeader.TabIndex = 55762;
             // 
+            // Radif
+            // 
+            this.Radif.HeaderText = "ردیف";
+            this.Radif.Name = "Radif";
+            this.Radif.ReadOnly = true;
+            this.Radif.Width = 50;
+            // 
+            // dgServerStatusImage
+            // 
+            this.dgServerStatusImage.DataPropertyName = "ServerStatusImage";
+            this.dgServerStatusImage.HeaderText = "";
+            this.dgServerStatusImage.Name = "dgServerStatusImage";
+            this.dgServerStatusImage.ReadOnly = true;
+            this.dgServerStatusImage.Width = 35;
+            // 
+            // dgName
+            // 
+            this.dgName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgName.DataPropertyName = "Name";
+            this.dgName.HeaderText = "عنوان";
+            this.dgName.Name = "dgName";
+            this.dgName.ReadOnly = true;
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "ایمیل";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
+            this.emailDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // mobileDataGridViewTextBoxColumn
+            // 
+            this.mobileDataGridViewTextBoxColumn.DataPropertyName = "Mobile";
+            this.mobileDataGridViewTextBoxColumn.HeaderText = "همراه";
+            this.mobileDataGridViewTextBoxColumn.Name = "mobileDataGridViewTextBoxColumn";
+            this.mobileDataGridViewTextBoxColumn.ReadOnly = true;
+            this.mobileDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // dgGuid
+            // 
+            this.dgGuid.DataPropertyName = "Guid";
+            this.dgGuid.HeaderText = "Guid";
+            this.dgGuid.Name = "dgGuid";
+            this.dgGuid.ReadOnly = true;
+            this.dgGuid.Visible = false;
+            // 
+            // modifiedDataGridViewTextBoxColumn
+            // 
+            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
+            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
+            this.modifiedDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // statusDataGridViewCheckBoxColumn
+            // 
+            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
+            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
+            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
+            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.statusDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // userNameDataGridViewTextBoxColumn
+            // 
+            this.userNameDataGridViewTextBoxColumn.DataPropertyName = "UserName";
+            this.userNameDataGridViewTextBoxColumn.HeaderText = "UserName";
+            this.userNameDataGridViewTextBoxColumn.Name = "userNameDataGridViewTextBoxColumn";
+            this.userNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.userNameDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // passwordDataGridViewTextBoxColumn
+            // 
+            this.passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
+            this.passwordDataGridViewTextBoxColumn.HeaderText = "Password";
+            this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
+            this.passwordDataGridViewTextBoxColumn.ReadOnly = true;
+            this.passwordDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // accessDataGridViewTextBoxColumn
+            // 
+            this.accessDataGridViewTextBoxColumn.DataPropertyName = "Access";
+            this.accessDataGridViewTextBoxColumn.HeaderText = "Access";
+            this.accessDataGridViewTextBoxColumn.Name = "accessDataGridViewTextBoxColumn";
+            this.accessDataGridViewTextBoxColumn.ReadOnly = true;
+            this.accessDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // securityQuestionDataGridViewTextBoxColumn
+            // 
+            this.securityQuestionDataGridViewTextBoxColumn.DataPropertyName = "SecurityQuestion";
+            this.securityQuestionDataGridViewTextBoxColumn.HeaderText = "SecurityQuestion";
+            this.securityQuestionDataGridViewTextBoxColumn.Name = "securityQuestionDataGridViewTextBoxColumn";
+            this.securityQuestionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.securityQuestionDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // answerQuestionDataGridViewTextBoxColumn
+            // 
+            this.answerQuestionDataGridViewTextBoxColumn.DataPropertyName = "AnswerQuestion";
+            this.answerQuestionDataGridViewTextBoxColumn.HeaderText = "AnswerQuestion";
+            this.answerQuestionDataGridViewTextBoxColumn.Name = "answerQuestionDataGridViewTextBoxColumn";
+            this.answerQuestionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.answerQuestionDataGridViewTextBoxColumn.Visible = false;
+            // 
             // frmShowUsers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -396,7 +406,18 @@
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
         private DevComponents.DotNetBar.Controls.TextBoxX txtSearch;
         private System.Windows.Forms.BindingSource UserBindingSource;
+        private DevComponents.DotNetBar.ButtonX btnSelect;
+        private System.Windows.Forms.ContextMenuStrip contextMenu;
+        private System.Windows.Forms.ToolStripMenuItem mnuAdd;
+        private System.Windows.Forms.ToolStripMenuItem mnuEdit;
+        private System.Windows.Forms.ToolStripMenuItem mnuDelete;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem mnuView;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem mnuReport;
+        private WindowsSerivces.UC_Header ucHeader;
         private System.Windows.Forms.DataGridViewTextBoxColumn Radif;
+        private System.Windows.Forms.DataGridViewImageColumn dgServerStatusImage;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
         private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn mobileDataGridViewTextBoxColumn;
@@ -408,15 +429,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn accessDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn securityQuestionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn answerQuestionDataGridViewTextBoxColumn;
-        private DevComponents.DotNetBar.ButtonX btnSelect;
-        private System.Windows.Forms.ContextMenuStrip contextMenu;
-        private System.Windows.Forms.ToolStripMenuItem mnuAdd;
-        private System.Windows.Forms.ToolStripMenuItem mnuEdit;
-        private System.Windows.Forms.ToolStripMenuItem mnuDelete;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem mnuView;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem mnuReport;
-        private WindowsSerivces.UC_Header ucHeader;
     }
 }

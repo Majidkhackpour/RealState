@@ -24,7 +24,22 @@ namespace EntityCache.Bussines
         public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
         public string Name { get; set; }
         public bool IsModified { get; set; } = false;
-       
+        public byte[] ServerStatusImage
+        {
+            get
+            {
+                if (ServerStatus == ServerStatus.Delivered || ServerStatus == ServerStatus.DirectDelivery)
+                    return ImageResourceManager.ServerStatusDelivered;
+                if (ServerStatus == ServerStatus.DeliveryError)
+                    return ImageResourceManager.ServerStatusDeliveryFailed;
+                if (ServerStatus == ServerStatus.Sent)
+                    return ImageResourceManager.ServerStatusSent;
+                if (ServerStatus == ServerStatus.SendError)
+                    return ImageResourceManager.ServerStatusSentError;
+                return ImageResourceManager.ServerStatusNone;
+            }
+        }
+
 
         public static async Task<List<FloorCoverBussines>> GetAllAsync(CancellationToken token=default) => await UnitOfWork.FloorCover.GetAllAsync(Cache.ConnectionString, token);
         public static async Task<ReturnedSaveFuncInfo> SaveRangeAsync(List<FloorCoverBussines> list, SqlTransaction tr = null)

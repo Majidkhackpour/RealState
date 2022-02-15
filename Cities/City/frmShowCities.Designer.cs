@@ -46,13 +46,6 @@
             this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StateName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.modifiedDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.stateGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,6 +57,14 @@
             this.stateBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label5 = new System.Windows.Forms.Label();
             this.ucHeader = new WindowsSerivces.UC_Header();
+            this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgServerStatusImage = new System.Windows.Forms.DataGridViewImageColumn();
+            this.StateName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.modifiedDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.stateGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CityBindingSource)).BeginInit();
@@ -180,6 +181,7 @@
             this.DGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgRadif,
+            this.dgServerStatusImage,
             this.StateName,
             this.dgName,
             this.dgGuid,
@@ -224,61 +226,6 @@
             this.DGrid.TabIndex = 55711;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             // 
-            // dgRadif
-            // 
-            this.dgRadif.HeaderText = "ردیف";
-            this.dgRadif.Name = "dgRadif";
-            this.dgRadif.ReadOnly = true;
-            this.dgRadif.Width = 50;
-            // 
-            // StateName
-            // 
-            this.StateName.DataPropertyName = "StateName";
-            this.StateName.HeaderText = "استان";
-            this.StateName.Name = "StateName";
-            this.StateName.ReadOnly = true;
-            this.StateName.Width = 250;
-            // 
-            // dgName
-            // 
-            this.dgName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgName.DataPropertyName = "Name";
-            this.dgName.HeaderText = "شهرستان";
-            this.dgName.Name = "dgName";
-            this.dgName.ReadOnly = true;
-            // 
-            // dgGuid
-            // 
-            this.dgGuid.DataPropertyName = "Guid";
-            this.dgGuid.HeaderText = "Guid";
-            this.dgGuid.Name = "dgGuid";
-            this.dgGuid.ReadOnly = true;
-            this.dgGuid.Visible = false;
-            // 
-            // modifiedDataGridViewTextBoxColumn1
-            // 
-            this.modifiedDataGridViewTextBoxColumn1.DataPropertyName = "Modified";
-            this.modifiedDataGridViewTextBoxColumn1.HeaderText = "Modified";
-            this.modifiedDataGridViewTextBoxColumn1.Name = "modifiedDataGridViewTextBoxColumn1";
-            this.modifiedDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.modifiedDataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // statusDataGridViewCheckBoxColumn1
-            // 
-            this.statusDataGridViewCheckBoxColumn1.DataPropertyName = "Status";
-            this.statusDataGridViewCheckBoxColumn1.HeaderText = "Status";
-            this.statusDataGridViewCheckBoxColumn1.Name = "statusDataGridViewCheckBoxColumn1";
-            this.statusDataGridViewCheckBoxColumn1.ReadOnly = true;
-            this.statusDataGridViewCheckBoxColumn1.Visible = false;
-            // 
-            // stateGuidDataGridViewTextBoxColumn
-            // 
-            this.stateGuidDataGridViewTextBoxColumn.DataPropertyName = "StateGuid";
-            this.stateGuidDataGridViewTextBoxColumn.HeaderText = "StateGuid";
-            this.stateGuidDataGridViewTextBoxColumn.Name = "stateGuidDataGridViewTextBoxColumn";
-            this.stateGuidDataGridViewTextBoxColumn.ReadOnly = true;
-            this.stateGuidDataGridViewTextBoxColumn.Visible = false;
-            // 
             // contextMenu
             // 
             this.contextMenu.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -290,7 +237,7 @@
             this.mnuView});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(197, 128);
+            this.contextMenu.Size = new System.Drawing.Size(197, 106);
             // 
             // mnuAdd
             // 
@@ -380,6 +327,69 @@
             this.ucHeader.Size = new System.Drawing.Size(815, 34);
             this.ucHeader.TabIndex = 55721;
             // 
+            // dgRadif
+            // 
+            this.dgRadif.HeaderText = "ردیف";
+            this.dgRadif.Name = "dgRadif";
+            this.dgRadif.ReadOnly = true;
+            this.dgRadif.Width = 50;
+            // 
+            // dgServerStatusImage
+            // 
+            this.dgServerStatusImage.DataPropertyName = "ServerStatusImage";
+            this.dgServerStatusImage.HeaderText = "";
+            this.dgServerStatusImage.Name = "dgServerStatusImage";
+            this.dgServerStatusImage.ReadOnly = true;
+            this.dgServerStatusImage.Width = 35;
+            // 
+            // StateName
+            // 
+            this.StateName.DataPropertyName = "StateName";
+            this.StateName.HeaderText = "استان";
+            this.StateName.Name = "StateName";
+            this.StateName.ReadOnly = true;
+            this.StateName.Width = 250;
+            // 
+            // dgName
+            // 
+            this.dgName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgName.DataPropertyName = "Name";
+            this.dgName.HeaderText = "شهرستان";
+            this.dgName.Name = "dgName";
+            this.dgName.ReadOnly = true;
+            // 
+            // dgGuid
+            // 
+            this.dgGuid.DataPropertyName = "Guid";
+            this.dgGuid.HeaderText = "Guid";
+            this.dgGuid.Name = "dgGuid";
+            this.dgGuid.ReadOnly = true;
+            this.dgGuid.Visible = false;
+            // 
+            // modifiedDataGridViewTextBoxColumn1
+            // 
+            this.modifiedDataGridViewTextBoxColumn1.DataPropertyName = "Modified";
+            this.modifiedDataGridViewTextBoxColumn1.HeaderText = "Modified";
+            this.modifiedDataGridViewTextBoxColumn1.Name = "modifiedDataGridViewTextBoxColumn1";
+            this.modifiedDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.modifiedDataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // statusDataGridViewCheckBoxColumn1
+            // 
+            this.statusDataGridViewCheckBoxColumn1.DataPropertyName = "Status";
+            this.statusDataGridViewCheckBoxColumn1.HeaderText = "Status";
+            this.statusDataGridViewCheckBoxColumn1.Name = "statusDataGridViewCheckBoxColumn1";
+            this.statusDataGridViewCheckBoxColumn1.ReadOnly = true;
+            this.statusDataGridViewCheckBoxColumn1.Visible = false;
+            // 
+            // stateGuidDataGridViewTextBoxColumn
+            // 
+            this.stateGuidDataGridViewTextBoxColumn.DataPropertyName = "StateGuid";
+            this.stateGuidDataGridViewTextBoxColumn.HeaderText = "StateGuid";
+            this.stateGuidDataGridViewTextBoxColumn.Name = "stateGuidDataGridViewTextBoxColumn";
+            this.stateGuidDataGridViewTextBoxColumn.ReadOnly = true;
+            this.stateGuidDataGridViewTextBoxColumn.Visible = false;
+            // 
             // frmShowCities
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -423,13 +433,6 @@
         private DevComponents.DotNetBar.Controls.TextBoxX txtSearch;
         private System.Windows.Forms.BindingSource CityBindingSource;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StateName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stateGuidDataGridViewTextBoxColumn;
         private System.Windows.Forms.ComboBox cmbState;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.BindingSource stateBindingSource;
@@ -440,5 +443,13 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mnuView;
         private WindowsSerivces.UC_Header ucHeader;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
+        private System.Windows.Forms.DataGridViewImageColumn dgServerStatusImage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StateName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stateGuidDataGridViewTextBoxColumn;
     }
 }

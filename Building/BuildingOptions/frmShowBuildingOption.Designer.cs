@@ -44,9 +44,10 @@
             this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
-            this.ucHeader = new WindowsSerivces.UC_Header();
             this.mnuSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.ucHeader = new WindowsSerivces.UC_Header();
             this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgServerStatusImage = new System.Windows.Forms.DataGridViewImageColumn();
             this.dgIsFullOption = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -108,6 +109,7 @@
             this.DGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgRadif,
+            this.dgServerStatusImage,
             this.dgIsFullOption,
             this.dgName,
             this.dgGuid,
@@ -201,6 +203,13 @@
             this.mnuView.Text = "مشاهده (F12)";
             this.mnuView.Click += new System.EventHandler(this.mnuView_Click);
             // 
+            // mnuSave
+            // 
+            this.mnuSave.Name = "mnuSave";
+            this.mnuSave.Size = new System.Drawing.Size(298, 24);
+            this.mnuSave.Text = "افزودن امکانات انتخابی به لیست فول امکانات";
+            this.mnuSave.Click += new System.EventHandler(this.mnuSave_Click);
+            // 
             // ucHeader
             // 
             this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -219,19 +228,20 @@
             this.ucHeader.Size = new System.Drawing.Size(815, 34);
             this.ucHeader.TabIndex = 55747;
             // 
-            // mnuSave
-            // 
-            this.mnuSave.Name = "mnuSave";
-            this.mnuSave.Size = new System.Drawing.Size(298, 24);
-            this.mnuSave.Text = "افزودن امکانات انتخابی به لیست فول امکانات";
-            this.mnuSave.Click += new System.EventHandler(this.mnuSave_Click);
-            // 
             // dgRadif
             // 
             this.dgRadif.HeaderText = "ردیف";
             this.dgRadif.Name = "dgRadif";
             this.dgRadif.ReadOnly = true;
             this.dgRadif.Width = 50;
+            // 
+            // dgServerStatusImage
+            // 
+            this.dgServerStatusImage.DataPropertyName = "ServerStatusImage";
+            this.dgServerStatusImage.HeaderText = "";
+            this.dgServerStatusImage.Name = "dgServerStatusImage";
+            this.dgServerStatusImage.ReadOnly = true;
+            this.dgServerStatusImage.Width = 35;
             // 
             // dgIsFullOption
             // 
@@ -310,6 +320,7 @@
         private WindowsSerivces.UC_Header ucHeader;
         private System.Windows.Forms.ToolStripMenuItem mnuSave;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
+        private System.Windows.Forms.DataGridViewImageColumn dgServerStatusImage;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgIsFullOption;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;

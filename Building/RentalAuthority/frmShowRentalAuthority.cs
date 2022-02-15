@@ -41,6 +41,7 @@ namespace Building.RentalAuthority
                 mnuEdit.Enabled = access?.RentalAuthority.Rental_Update ?? false;
                 mnuDelete.Enabled = access?.RentalAuthority.Rental_Delete ?? false;
                 mnuView.Enabled = access?.RentalAuthority.Rental_View ?? false;
+                dgServerStatusImage.Visible = VersionAccess.WebService;
             }
             catch (Exception ex)
             {

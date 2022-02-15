@@ -44,12 +44,13 @@
             this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuWorkingRange = new System.Windows.Forms.ToolStripMenuItem();
             this.rbtnAll = new System.Windows.Forms.RadioButton();
             this.rbtnMyRegion = new System.Windows.Forms.RadioButton();
             this.ucHeader = new WindowsSerivces.UC_Header();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuWorkingRange = new System.Windows.Forms.ToolStripMenuItem();
             this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgServerStatusImage = new System.Windows.Forms.DataGridViewImageColumn();
             this.dgWorkingRange = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.stateNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cityNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -114,6 +115,7 @@
             this.DGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgRadif,
+            this.dgServerStatusImage,
             this.dgWorkingRange,
             this.stateNameDataGridViewTextBoxColumn,
             this.cityNameDataGridViewTextBoxColumn,
@@ -211,6 +213,18 @@
             this.mnuView.Text = "مشاهده (F12)";
             this.mnuView.Click += new System.EventHandler(this.mnuView_Click);
             // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(289, 6);
+            // 
+            // mnuWorkingRange
+            // 
+            this.mnuWorkingRange.Name = "mnuWorkingRange";
+            this.mnuWorkingRange.Size = new System.Drawing.Size(292, 24);
+            this.mnuWorkingRange.Text = "افزودن مناطق انتخابی به لیست محدوده کاری";
+            this.mnuWorkingRange.Click += new System.EventHandler(this.mnuWorkingRange_Click);
+            // 
             // rbtnAll
             // 
             this.rbtnAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -257,24 +271,20 @@
             this.ucHeader.Size = new System.Drawing.Size(815, 34);
             this.ucHeader.TabIndex = 55728;
             // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(289, 6);
-            // 
-            // mnuWorkingRange
-            // 
-            this.mnuWorkingRange.Name = "mnuWorkingRange";
-            this.mnuWorkingRange.Size = new System.Drawing.Size(292, 24);
-            this.mnuWorkingRange.Text = "افزودن مناطق انتخابی به لیست محدوده کاری";
-            this.mnuWorkingRange.Click += new System.EventHandler(this.mnuWorkingRange_Click);
-            // 
             // dgRadif
             // 
             this.dgRadif.HeaderText = "ردیف";
             this.dgRadif.Name = "dgRadif";
             this.dgRadif.ReadOnly = true;
             this.dgRadif.Width = 50;
+            // 
+            // dgServerStatusImage
+            // 
+            this.dgServerStatusImage.DataPropertyName = "ServerStatusImage";
+            this.dgServerStatusImage.HeaderText = "";
+            this.dgServerStatusImage.Name = "dgServerStatusImage";
+            this.dgServerStatusImage.ReadOnly = true;
+            this.dgServerStatusImage.Width = 35;
             // 
             // dgWorkingRange
             // 
@@ -380,6 +390,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem mnuWorkingRange;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
+        private System.Windows.Forms.DataGridViewImageColumn dgServerStatusImage;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgWorkingRange;
         private System.Windows.Forms.DataGridViewTextBoxColumn stateNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cityNameDataGridViewTextBoxColumn;

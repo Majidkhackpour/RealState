@@ -20,8 +20,8 @@ namespace EntityCache.Bussines
         public Guid CustometGuid { get; set; }
         public DateTime Date { get; set; }
         public string Report { get; set; }
-        public ServerStatus ServerStatus { get; set; }
-        public DateTime ServerDeliveryDate { get; set; }
+        public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
+        public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
 
         public static async Task<BuildingReviewBussines> GetAsync(Guid guid) => await UnitOfWork.BuildingReview.GetAsync(Cache.ConnectionString, guid);
         public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)
