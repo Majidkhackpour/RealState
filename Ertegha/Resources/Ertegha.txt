@@ -8494,7 +8494,7 @@ GO
 IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingReview_GetAllForReport]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
 	exec('Create Procedure [dbo].[sp_BuildingReview_GetAllForReport]	As Begin print 11 end')  
 GO
-Alter PROCEDURE sp_BuildingReview_GetAllForReport
+ALTER PROCEDURE [dbo].[sp_BuildingReview_GetAllForReport]
 	@BuildingGuid uniqueidentifier=null,
 	@CustomerGuid uniqueidentifier=null,
 	@UserGuid uniqueidentifier=null,
@@ -8505,6 +8505,7 @@ BEGIN
 	Select   BuildingReviews.* 
 		   , Peoples.Name As CustomerName
 		   , Users.Name As UserName
+		   , Buildings.Code As BuildingCode
 	From BuildingReviews
 	inner join Buildings on BuildingReviews.BuildingGuid=Buildings.Guid
 	inner join Peoples on BuildingReviews.CustometGuid=Peoples.Guid

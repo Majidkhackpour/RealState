@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
+using EntityCache.Bussines.ReportBussines;
+using Services.FilterObjects;
 
 namespace EntityCache.Core
 {
@@ -15,5 +17,6 @@ namespace EntityCache.Core
         Task<List<BuildingReviewBussines>> GetAllNotSentAsync(string connectionString);
         Task<ReturnedSaveFuncInfo> SetSaveResultAsync(string connectionString, Guid guid, ServerStatus status);
         Task<ReturnedSaveFuncInfo> ResetAsync(string connectionString);
+        Task<List<BuildingReviewReportBussines>> GetAllReportAsync(string connectionString, BuildingReviewFilter filter);
     }
 }

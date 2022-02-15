@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
+using EntityCache.Bussines.ReportBussines;
+using Services.FilterObjects;
 
 namespace EntityCache.SqlServerPersistence
 {
@@ -25,6 +27,26 @@ namespace EntityCache.SqlServerPersistence
                 if (dr["Report"] != DBNull.Value) item.Report = dr["Report"].ToString();
                 if (dr["ServerStatus"] != DBNull.Value) item.ServerStatus = (ServerStatus)dr["ServerStatus"];
                 if (dr["ServerDeliveryDate"] != DBNull.Value) item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+            return item;
+        }
+        private BuildingReviewReportBussines LoadDataReport(SqlDataReader dr)
+        {
+            var item = new BuildingReviewReportBussines();
+            try
+            {
+                if (dr["Guid"] != DBNull.Value) item.Guid = (Guid)dr["Guid"];
+                if (dr["BuildingGuid"] != DBNull.Value) item.BuildingGuid = (Guid)dr["BuildingGuid"];
+                if (dr["Date"] != DBNull.Value) item.Date = (DateTime)dr["Date"];
+                if (dr["Report"] != DBNull.Value) item.Report = dr["Report"].ToString();
+                if (dr["ServerStatus"] != DBNull.Value) item.ServerStatus = (ServerStatus)dr["ServerStatus"];
+                if (dr["UserName"] != DBNull.Value) item.UserName = dr["UserName"].ToString();
+                if (dr["CustomerName"] != DBNull.Value) item.UserName = dr["CustomerName"].ToString();
+                if (dr["BuildingCode"] != DBNull.Value) item.UserName = dr["BuildingCode"].ToString();
             }
             catch (Exception ex)
             {
@@ -82,7 +104,7 @@ namespace EntityCache.SqlServerPersistence
                 cmd.Parameters.AddWithValue("@UserGuid", item.UserGuid);
                 cmd.Parameters.AddWithValue("@CustomerGuid", item.CustometGuid);
                 cmd.Parameters.AddWithValue("@Date", item.Date);
-                cmd.Parameters.AddWithValue("@Report", item.Report??"");
+                cmd.Parameters.AddWithValue("@Report", item.Report ?? "");
                 cmd.Parameters.AddWithValue("@serverSt", (short)item.ServerStatus);
                 cmd.Parameters.AddWithValue("@serverDate", item.ServerDeliveryDate);
 
@@ -116,7 +138,6 @@ namespace EntityCache.SqlServerPersistence
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
-
             return list;
         }
         public async Task<ReturnedSaveFuncInfo> SetSaveResultAsync(string connectionString, Guid guid, ServerStatus status)
@@ -164,6 +185,34 @@ namespace EntityCache.SqlServerPersistence
             }
 
             return res;
+        }
+        public async Task<List<BuildingReviewReportBussines>> GetAllReportAsync(string connectionString, BuildingReviewFilter filter)
+        {
+            var list = new List<BuildingReviewReportBussines>();
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_BuildingReview_GetAllForReport", cn) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@BuildingGuid", filter.BuildingGuid);
+                    cmd.Parameters.AddWithValue("@CustomerGuid", filter.CustomerGuid);
+                    cmd.Parameters.AddWithValue("@UserGuid", filter.UserGuid);
+                    cmd.Parameters.AddWithValue("@date1", filter.Date1);
+                    cmd.Parameters.AddWithValue("@date2", filter.Date2);
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read()) list.Add(LoadDataReport(dr));
+                    dr.Close();
+                    cn.Close();
+                }
+            }
+            catch (TaskCanceledException) { }
+            catch (OperationCanceledException) { }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+            return list;
         }
     }
 }

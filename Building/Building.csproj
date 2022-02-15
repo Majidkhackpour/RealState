@@ -475,6 +475,12 @@
     <Compile Include="BuildingRequest\frmShowRequest.Designer.cs">
       <DependentUpon>frmShowRequest.cs</DependentUpon>
     </Compile>
+    <Compile Include="BuildingReview\frmShowReview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuildingReview\frmShowReview.Designer.cs">
+      <DependentUpon>frmShowReview.cs</DependentUpon>
+    </Compile>
     <Compile Include="Buildings\frmBuildingFilter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1381,6 +1387,9 @@
     <EmbeddedResource Include="BuildingRequest\frmShowRequest.resx">
       <DependentUpon>frmShowRequest.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BuildingReview\frmShowReview.resx">
+      <DependentUpon>frmShowReview.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Buildings\frmBuildingFilter.resx">
       <DependentUpon>frmBuildingFilter.cs</DependentUpon>
     </EmbeddedResource>
@@ -1798,6 +1807,7 @@
     <None Include="Properties\DataSources\EntityCache.Bussines.PhoneBookBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.RegionsBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.RentalAuthorityBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.ReportBussines.BuildingReviewReportBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.StatesBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.UserBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.UserLogBussines.datasource" />

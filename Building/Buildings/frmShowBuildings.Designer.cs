@@ -88,6 +88,11 @@
             this.mnuExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem17 = new System.Windows.Forms.ToolStripSeparator();
             this.menuZoncan = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuReview = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuAddReview = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuReviewList = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCurrentReview = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.انتخابToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSelectAll = new System.Windows.Forms.ToolStripMenuItem();
@@ -117,11 +122,6 @@
             this.lblCounter = new System.Windows.Forms.Label();
             this.ucHeader = new WindowsSerivces.UC_Header();
             this.ucBuildingDetail1 = new Building.UserControls.UcBuildingDetail();
-            this.mnuReview = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuCurrentReview = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuReviewList = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuAddReview = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
@@ -660,6 +660,46 @@
             this.menuZoncan.Text = "مدیریت زونکن ها";
             this.menuZoncan.Click += new System.EventHandler(this.menuZoncan_Click);
             // 
+            // mnuReview
+            // 
+            this.mnuReview.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuAddReview,
+            this.toolStripMenuItem2,
+            this.mnuReviewList,
+            this.mnuCurrentReview});
+            this.mnuReview.Image = global::Building.Properties.Resources.article_1_;
+            this.mnuReview.Name = "mnuReview";
+            this.mnuReview.Size = new System.Drawing.Size(228, 24);
+            this.mnuReview.Text = "گزارش بازدید";
+            // 
+            // mnuAddReview
+            // 
+            this.mnuAddReview.Image = global::Building.Properties.Resources.article_1_;
+            this.mnuAddReview.Name = "mnuAddReview";
+            this.mnuAddReview.Size = new System.Drawing.Size(213, 24);
+            this.mnuAddReview.Text = "افزودن گزارش بازدید جدید";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(210, 6);
+            // 
+            // mnuReviewList
+            // 
+            this.mnuReviewList.Image = global::Building.Properties.Resources.article_1_;
+            this.mnuReviewList.Name = "mnuReviewList";
+            this.mnuReviewList.Size = new System.Drawing.Size(213, 24);
+            this.mnuReviewList.Text = "لیست گزارش بازدیدها";
+            this.mnuReviewList.Click += new System.EventHandler(this.mnuReviewList_Click);
+            // 
+            // mnuCurrentReview
+            // 
+            this.mnuCurrentReview.Image = global::Building.Properties.Resources.article_1_;
+            this.mnuCurrentReview.Name = "mnuCurrentReview";
+            this.mnuCurrentReview.Size = new System.Drawing.Size(213, 24);
+            this.mnuCurrentReview.Text = "گزارش بازدید ملک جاری";
+            this.mnuCurrentReview.Click += new System.EventHandler(this.mnuCurrentReview_Click);
+            // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
@@ -942,44 +982,6 @@
             this.ucBuildingDetail1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucBuildingDetail1.Size = new System.Drawing.Size(236, 523);
             this.ucBuildingDetail1.TabIndex = 55773;
-            // 
-            // mnuReview
-            // 
-            this.mnuReview.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuAddReview,
-            this.toolStripMenuItem2,
-            this.mnuReviewList,
-            this.mnuCurrentReview});
-            this.mnuReview.Image = global::Building.Properties.Resources.article_1_;
-            this.mnuReview.Name = "mnuReview";
-            this.mnuReview.Size = new System.Drawing.Size(228, 24);
-            this.mnuReview.Text = "گزارش بازدید";
-            // 
-            // mnuCurrentReview
-            // 
-            this.mnuCurrentReview.Image = global::Building.Properties.Resources.article_1_;
-            this.mnuCurrentReview.Name = "mnuCurrentReview";
-            this.mnuCurrentReview.Size = new System.Drawing.Size(213, 24);
-            this.mnuCurrentReview.Text = "گزارش بازدید ملک جاری";
-            // 
-            // mnuReviewList
-            // 
-            this.mnuReviewList.Image = global::Building.Properties.Resources.article_1_;
-            this.mnuReviewList.Name = "mnuReviewList";
-            this.mnuReviewList.Size = new System.Drawing.Size(213, 24);
-            this.mnuReviewList.Text = "لیست گزارش بازدیدها";
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(210, 6);
-            // 
-            // mnuAddReview
-            // 
-            this.mnuAddReview.Image = global::Building.Properties.Resources.article_1_;
-            this.mnuAddReview.Name = "mnuAddReview";
-            this.mnuAddReview.Size = new System.Drawing.Size(213, 24);
-            this.mnuAddReview.Text = "افزودن گزارش بازدید جدید";
             // 
             // frmShowBuildings
             // 

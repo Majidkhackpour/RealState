@@ -21,6 +21,7 @@ using System.Windows.Forms;
 using WebHesabBussines;
 using WindowsSerivces;
 using WindowsSerivces.Waiter;
+using Building.BuildingReview;
 using Building.Zoncan;
 using DataBaseUtilities;
 using Persistence;
@@ -600,7 +601,8 @@ namespace Building.Buildings
                 _st = filter.Status;
                 isShowMode = _isShowMode;
                 SetAccess();
-                if (_isShowMode || (filter.IsArchive != null && filter.IsArchive.Value)) menu.Enabled = false;
+                if (_isShowMode || (filter.IsArchive != null && filter.IsArchive.Value)) 
+                    menu.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -1246,6 +1248,33 @@ namespace Building.Buildings
             {
                 if (DGrid.RowCount <= 0) return;
                 ExportToExcel.ExportBuilding(_filteredList, this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void mnuReviewList_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmShowReview(null);
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void mnuCurrentReview_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                if (guid == Guid.Empty) return;
+                var frm = new frmShowReview(new BuildingReviewFilter() { BuildingGuid = guid });
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {

@@ -1,5 +1,6 @@
 ﻿using EntityCache.Bussines;
 using MetroFramework.Forms;
+using Notification;
 using Services;
 using System;
 using System.Linq;
@@ -7,8 +8,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
-using Building.BuildingCondition;
-using Notification;
 
 namespace Building.Zoncan
 {
