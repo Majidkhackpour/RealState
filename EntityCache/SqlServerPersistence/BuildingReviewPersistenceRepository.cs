@@ -27,6 +27,7 @@ namespace EntityCache.SqlServerPersistence
                 if (dr["Report"] != DBNull.Value) item.Report = dr["Report"].ToString();
                 if (dr["ServerStatus"] != DBNull.Value) item.ServerStatus = (ServerStatus)dr["ServerStatus"];
                 if (dr["ServerDeliveryDate"] != DBNull.Value) item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
+                item.IsModified = true;
             }
             catch (Exception ex)
             {
@@ -45,8 +46,8 @@ namespace EntityCache.SqlServerPersistence
                 if (dr["Report"] != DBNull.Value) item.Report = dr["Report"].ToString();
                 if (dr["ServerStatus"] != DBNull.Value) item.ServerStatus = (ServerStatus)dr["ServerStatus"];
                 if (dr["UserName"] != DBNull.Value) item.UserName = dr["UserName"].ToString();
-                if (dr["CustomerName"] != DBNull.Value) item.UserName = dr["CustomerName"].ToString();
-                if (dr["BuildingCode"] != DBNull.Value) item.UserName = dr["BuildingCode"].ToString();
+                if (dr["CustomerName"] != DBNull.Value) item.CustomerName = dr["CustomerName"].ToString();
+                if (dr["BuildingCode"] != DBNull.Value) item.BuildingCode = dr["BuildingCode"].ToString();
             }
             catch (Exception ex)
             {

@@ -75,7 +75,7 @@ namespace EntityCache.Bussines
 
 
         public static async Task<UserBussines> GetAsync(Guid guid) => await UnitOfWork.Users.GetAsync(Cache.ConnectionString, guid);
-        public static async Task<List<UserBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Users.GetAllAsync(Cache.ConnectionString, token);
+        public static async Task<List<UserBussines>> GetAllAsync(CancellationToken token = default) => await UnitOfWork.Users.GetAllAsync(Cache.ConnectionString, token);
         public async Task<ReturnedSaveFuncInfo> SaveAsync(bool isLog = true, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();

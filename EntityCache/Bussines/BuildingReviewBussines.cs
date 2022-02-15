@@ -22,6 +22,7 @@ namespace EntityCache.Bussines
         public string Report { get; set; }
         public ServerStatus ServerStatus { get; set; } = ServerStatus.None;
         public DateTime ServerDeliveryDate { get; set; } = DateTime.Now;
+        public bool IsModified { get; set; } = false;
 
         public static async Task<BuildingReviewBussines> GetAsync(Guid guid) => await UnitOfWork.BuildingReview.GetAsync(Cache.ConnectionString, guid);
         public async Task<ReturnedSaveFuncInfo> SaveAsync(SqlTransaction tr = null)

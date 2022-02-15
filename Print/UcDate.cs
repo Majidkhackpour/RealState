@@ -43,7 +43,11 @@ namespace Print
                 }
             }
         }
-        public DateTime DateM => Calendar.ShamsiToMiladi(DateSh);
+        public DateTime DateM
+        {
+            get => Calendar.ShamsiToMiladi(DateSh);
+            set => DateSh = Calendar.MiladiToShamsi(value);
+        }
         public UcDate() => InitializeComponent();
         private void RaiseDateChange(string date)
         {

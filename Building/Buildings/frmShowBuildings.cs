@@ -1285,7 +1285,7 @@ namespace Building.Buildings
         {
             try
             {
-                var frm = new frmReviewMain(null);
+                var frm = new frmReviewMain(new BuildingReviewBussines());
                 frm.ShowDialog(this);
             }
             catch (Exception ex)

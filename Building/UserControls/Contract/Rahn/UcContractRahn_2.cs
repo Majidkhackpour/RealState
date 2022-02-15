@@ -1,18 +1,17 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Building.Buildings;
-using EntityCache.Bussines;
+﻿using Building.Buildings;
 using EntityCache.Bussines.ReportBussines;
 using Services;
 using Services.FilterObjects;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Building.UserControls.Contract.Rahn
 {
     public partial class UcContractRahn_2 : UserControl
     {
-        public event Func<Guid,Task> OnBuildingSelect;
+        public event Func<Guid, Task> OnBuildingSelect;
         public float Dong { get => (float)txtDong.Value; set => txtDong.Value = (decimal)value; }
         public string BuildingType { get => txtBuildingType.Text; set => txtBuildingType.Text = value; }
         public string Address { get => txtAddress.Text; set => txtAddress.Text = value; }
@@ -89,14 +88,14 @@ namespace Building.UserControls.Contract.Rahn
                 var bu = await BuildingReportBussines.GetAsync(frm.SelectedGuid);
                 if (bu == null) return;
                 RaiseBuildingSelect(frm.SelectedGuid);
-                Dong = (float) bu.Dang;
+                Dong = (float)bu.Dang;
                 BuildingType = bu.BuildingTypeName;
                 Masahat = bu.Masahat > 0 ? bu.Masahat : bu.ZirBana;
                 Address = bu.Address;
                 Water = bu.Water ?? EnKhadamati.None;
                 Barq = bu.Barq ?? EnKhadamati.None;
                 Gas = bu.Gas ?? EnKhadamati.None;
-                TabaqeNo = (int) bu.TabaqeNo;
+                TabaqeNo = (int)bu.TabaqeNo;
                 RoomCount = bu.RoomCount;
             }
             catch (Exception ex)

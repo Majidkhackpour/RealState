@@ -44,6 +44,8 @@ namespace Building.BuildingReview
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.ReviewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgServerStatusImage = new System.Windows.Forms.DataGridViewImageColumn();
             this.dateShDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,8 +57,6 @@ namespace Building.BuildingReview
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.serverStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buildingGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReviewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReviewBindingSource)).BeginInit();
@@ -202,6 +202,29 @@ namespace Building.BuildingReview
             this.DGrid.TabIndex = 55750;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             // 
+            // ReviewBindingSource
+            // 
+            this.ReviewBindingSource.DataSource = typeof(EntityCache.Bussines.ReportBussines.BuildingReviewReportBussines);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            // 
+            // 
+            this.txtSearch.Border.Class = "TextBoxBorder";
+            this.txtSearch.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtSearch.Location = new System.Drawing.Point(46, 59);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.PreventEnterBeep = true;
+            this.txtSearch.Size = new System.Drawing.Size(701, 27);
+            this.txtSearch.TabIndex = 55751;
+            this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
             // dgRadif
             // 
             this.dgRadif.HeaderText = "ردیف";
@@ -222,6 +245,7 @@ namespace Building.BuildingReview
             this.dateShDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dateShDataGridViewTextBoxColumn.DataPropertyName = "DateSh";
             this.dateShDataGridViewTextBoxColumn.HeaderText = "تاریخ ثبت";
+            this.dateShDataGridViewTextBoxColumn.MinimumWidth = 80;
             this.dateShDataGridViewTextBoxColumn.Name = "dateShDataGridViewTextBoxColumn";
             this.dateShDataGridViewTextBoxColumn.ReadOnly = true;
             this.dateShDataGridViewTextBoxColumn.Width = 80;
@@ -231,6 +255,7 @@ namespace Building.BuildingReview
             this.userNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.userNameDataGridViewTextBoxColumn.DataPropertyName = "UserName";
             this.userNameDataGridViewTextBoxColumn.HeaderText = "کاربر ثبت کننده";
+            this.userNameDataGridViewTextBoxColumn.MinimumWidth = 108;
             this.userNameDataGridViewTextBoxColumn.Name = "userNameDataGridViewTextBoxColumn";
             this.userNameDataGridViewTextBoxColumn.ReadOnly = true;
             this.userNameDataGridViewTextBoxColumn.Width = 108;
@@ -240,6 +265,7 @@ namespace Building.BuildingReview
             this.buildingCodeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.buildingCodeDataGridViewTextBoxColumn.DataPropertyName = "BuildingCode";
             this.buildingCodeDataGridViewTextBoxColumn.HeaderText = "کد ملک";
+            this.buildingCodeDataGridViewTextBoxColumn.MinimumWidth = 69;
             this.buildingCodeDataGridViewTextBoxColumn.Name = "buildingCodeDataGridViewTextBoxColumn";
             this.buildingCodeDataGridViewTextBoxColumn.ReadOnly = true;
             this.buildingCodeDataGridViewTextBoxColumn.Width = 69;
@@ -249,6 +275,7 @@ namespace Building.BuildingReview
             this.customerNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.customerNameDataGridViewTextBoxColumn.DataPropertyName = "CustomerName";
             this.customerNameDataGridViewTextBoxColumn.HeaderText = "بازدید کننده";
+            this.customerNameDataGridViewTextBoxColumn.MinimumWidth = 92;
             this.customerNameDataGridViewTextBoxColumn.Name = "customerNameDataGridViewTextBoxColumn";
             this.customerNameDataGridViewTextBoxColumn.ReadOnly = true;
             this.customerNameDataGridViewTextBoxColumn.Width = 92;
@@ -292,29 +319,6 @@ namespace Building.BuildingReview
             this.buildingGuidDataGridViewTextBoxColumn.Name = "buildingGuidDataGridViewTextBoxColumn";
             this.buildingGuidDataGridViewTextBoxColumn.ReadOnly = true;
             this.buildingGuidDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // ReviewBindingSource
-            // 
-            this.ReviewBindingSource.DataSource = typeof(EntityCache.Bussines.ReportBussines.BuildingReviewReportBussines);
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // 
-            // 
-            this.txtSearch.Border.Class = "TextBoxBorder";
-            this.txtSearch.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtSearch.Location = new System.Drawing.Point(46, 59);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.PreventEnterBeep = true;
-            this.txtSearch.Size = new System.Drawing.Size(701, 27);
-            this.txtSearch.TabIndex = 55751;
-            this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // frmShowReview
             // 
