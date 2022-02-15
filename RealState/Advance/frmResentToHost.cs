@@ -80,6 +80,12 @@ namespace RealState.Advance
                     res.AddReturnedValue(await BuildingBussines.ResetAsync());
                 if (chbRequest.Checked)
                     res.AddReturnedValue(await BuildingRequestBussines.ResetAsync());
+                if (chbZoncan.Checked)
+                    res.AddReturnedValue(await BuildingZoncanBussines.ResetAsync());
+                if (chbWindow.Checked)
+                    res.AddReturnedValue(await BuildingWindowBussines.ResetAsync());
+                if (chbReview.Checked)
+                    res.AddReturnedValue(await BuildingReviewBussines.ResetAsync());
             }
             catch (Exception ex)
             {

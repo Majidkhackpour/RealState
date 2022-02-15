@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 using EntityCache.Assistence;
+using EntityCache.Mppings;
 using Persistence;
 using Services;
 using Services.Interfaces.Building;
+using WebHesabBussines;
 
 namespace EntityCache.Bussines
 {
@@ -94,6 +97,49 @@ namespace EntityCache.Bussines
                 //if (!res.HasError && Cache.IsSendToServer)
                 //    _ = Task.Run(() => SendToServerAsync(this));
             }
+            return res;
+        }
+        public static async Task<List<BuildingReviewBussines>> GetAllNotSentAsync()
+            => await UnitOfWork.BuildingReview.GetAllNotSentAsync(Cache.ConnectionString);
+        public static async Task<ReturnedSaveFuncInfo> SetSaveResultAsync(Guid guid, ServerStatus status)
+            => await UnitOfWork.BuildingReview.SetSaveResultAsync(Cache.ConnectionString, guid, status);
+        public static async Task<ReturnedSaveFuncInfo> SendToServerAsync(List<BuildingReviewBussines> list)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                foreach (var item in list)
+                {
+                    var web = BuildingReviewMapper.Instance.Map(item);
+                    res.AddReturnedValue(await WebBuildingReview.SendAsync(web));
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            return res;
+        }
+        public static async Task<ReturnedSaveFuncInfo> SendToServerAsync(BuildingReviewBussines item)
+            => await SendToServerAsync(new List<BuildingReviewBussines>() { item });
+        public static async Task<ReturnedSaveFuncInfo> ResetAsync() => await UnitOfWork.BuildingReview.ResetAsync(Cache.ConnectionString);
+        public static async Task<ReturnedSaveFuncInfo> ResendNotSentAsync()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                var list = await GetAllNotSentAsync();
+                if (list == null || list.Count <= 0) return res;
+                foreach (var item in list)
+                    res.AddReturnedValue(await SendToServerAsync(item));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
             return res;
         }
     }

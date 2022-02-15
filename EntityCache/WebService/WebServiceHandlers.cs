@@ -48,6 +48,9 @@ namespace EntityCache.WebService
                 WebRental.OnSaveResult += WebRentalOnOnSaveResult;
                 WebStates.OnSaveResult += WebStatesOnOnSaveResult;
                 WebUser.OnSaveResult += WebUserOnOnSaveResult;
+                WebBuildingZoncan.OnSaveResult += WebBuildingZoncan_OnSaveResult;
+                WebBuildingWindow.OnSaveResult += WebBuildingWindow_OnSaveResult;
+                WebBuildingReview.OnSaveResult += WebBuildingReview_OnSaveResult;
             }
             catch (Exception ex)
             {
@@ -55,6 +58,12 @@ namespace EntityCache.WebService
             }
         }
 
+        private async Task WebBuildingReview_OnSaveResult(Guid objGuid, ServerStatus st, DateTime dateM)
+            => await BuildingReviewBussines.SetSaveResultAsync(objGuid, st);
+        private async Task WebBuildingWindow_OnSaveResult(Guid objGuid, ServerStatus st, DateTime dateM)
+            => await BuildingWindowBussines.SetSaveResultAsync(objGuid, st);
+        private async Task WebBuildingZoncan_OnSaveResult(Guid objGuid, ServerStatus st, DateTime dateM)
+            => await BuildingZoncanBussines.SetSaveResultAsync(objGuid, st);
         private async Task WebUserOnOnSaveResult(Guid objGuid, ServerStatus st, DateTime dateM)
             => await UserBussines.SetSaveResultAsync(objGuid, st);
         private async Task WebStatesOnOnSaveResult(Guid objGuid, ServerStatus st, DateTime dateM)
@@ -156,13 +165,16 @@ namespace EntityCache.WebService
                         Task.Run(FloorCoverBussines.ResendNotSentAsync),
                         Task.Run(KitchenServiceBussines.ResendNotSentAsync),
                         Task.Run(RentalAuthorityBussines.ResendNotSentAsync),
-                        Task.Run(BuildingOptionsBussines.ResendNotSentAsync)
+                        Task.Run(BuildingOptionsBussines.ResendNotSentAsync),
+                        Task.Run(BuildingWindowBussines.ResendNotSentAsync),
+                        Task.Run(BuildingZoncanBussines.ResendNotSentAsync)
                     };
                     var ret = await Task.WhenAll(list);
                     res.AddReturnedValue(ret);
                     if (res.HasError) continue;
                     res.AddReturnedValue(await BuildingBussines.ResendNotSentAsync());
                     res.AddReturnedValue(await BuildingRequestBussines.ResendNotSentAsync());
+                    res.AddReturnedValue(await BuildingReviewBussines.ResendNotSentAsync());
 
                     await Task.Delay(2000);
                 }

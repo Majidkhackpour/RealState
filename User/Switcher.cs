@@ -91,7 +91,7 @@ namespace User
                         break;
                     case EnLogPart.Building:
                         var bu = await BuildingBussines.GetAsync(guid);
-                        frm = new frmBuildingDetail(bu, false, false);
+                        frm = new frmBuilding(bu, false);
                         break;
                     case EnLogPart.BuildingRequest:
                         var req = await BuildingRequestBussines.GetAsync(guid);

@@ -2,6 +2,7 @@
 using EntityCache.Core;
 using Services;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
@@ -92,6 +93,76 @@ namespace EntityCache.SqlServerPersistence
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
+            return res;
+        }
+        public async Task<List<BuildingReviewBussines>> GetAllNotSentAsync(string connectionString)
+        {
+            var list = new List<BuildingReviewBussines>();
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_BuildingReview_GetAllNotSent", cn) { CommandType = CommandType.StoredProcedure };
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read()) list.Add(LoadData(dr));
+                    dr.Close();
+                    cn.Close();
+                }
+            }
+            catch (TaskCanceledException) { }
+            catch (OperationCanceledException) { }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+
+            return list;
+        }
+        public async Task<ReturnedSaveFuncInfo> SetSaveResultAsync(string connectionString, Guid guid, ServerStatus status)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_BuildingReView_SetSaveResult", cn)
+                    { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@Guid", guid);
+                    cmd.Parameters.AddWithValue("@st", (short)status);
+                    await cn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
+            return res;
+        }
+        public async Task<ReturnedSaveFuncInfo> ResetAsync(string connectionString)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_BuildingReview_Reset", cn)
+                    { CommandType = CommandType.StoredProcedure };
+                    await cn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+
             return res;
         }
     }

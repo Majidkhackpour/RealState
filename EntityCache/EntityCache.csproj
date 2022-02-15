@@ -249,6 +249,7 @@
     <Compile Include="Mppings\BuildingRelatedOptionMapper.cs" />
     <Compile Include="Mppings\BuildingRequestMapper.cs" />
     <Compile Include="Mppings\BuildingRequestRegionMapper.cs" />
+    <Compile Include="Mppings\BuildingReviewMapper.cs" />
     <Compile Include="Mppings\BuildingTypeMapper.cs" />
     <Compile Include="Mppings\BuildingViewMapper.cs" />
     <Compile Include="Mppings\BuildingWindowMapper.cs" />

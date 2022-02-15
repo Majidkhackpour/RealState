@@ -35,14 +35,14 @@ namespace WebHesabBussines
         {
             try
             {
-                //var res = await Extentions.PostToApi<WebBuildingWindow, WebBuildingWindow>(this, Url, WebCustomer.Customer.Guid);
-                //if (res == null || res.ResponseStatus != ResponseStatus.Success)
-                //{
+                var res = await Extentions.PostToApi<WebBuildingWindow, WebBuildingWindow>(this, Url, WebCustomer.Customer.Guid);
+                if (res == null || res.ResponseStatus != ResponseStatus.Success)
+                {
 
-                //    RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);
-                //    return;
-                //}
-                //RaiseEvent(Guid, ServerStatus.Delivered, DateTime.Now);
+                    RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);
+                    return;
+                }
+                RaiseEvent(Guid, ServerStatus.Delivered, DateTime.Now);
             }
             catch (Exception ex)
             {
