@@ -86,6 +86,11 @@
             this.menuPrintList = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem17 = new System.Windows.Forms.ToolStripSeparator();
             this.menuZoncan = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.انتخابToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuSelectAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuSelectNone = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuSelectReverse = new System.Windows.Forms.ToolStripMenuItem();
             this.BuildingBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -110,11 +115,6 @@
             this.lblCounter = new System.Windows.Forms.Label();
             this.ucHeader = new WindowsSerivces.UC_Header();
             this.ucBuildingDetail1 = new Building.UserControls.UcBuildingDetail();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.انتخابToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuSelectAll = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuSelectNone = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuSelectReverse = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
@@ -134,13 +134,18 @@
             // 
             // 
             // 
+            this.txtSearch.Border.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtSearch.Border.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.txtSearch.Border.Class = "TextBoxBorder";
-            this.txtSearch.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtSearch.Border.CornerDiameter = 5;
+            this.txtSearch.Border.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.txtSearch.Border.PaddingLeft = 20;
+            this.txtSearch.Border.PaddingRight = 20;
             this.txtSearch.Location = new System.Drawing.Point(46, 58);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PreventEnterBeep = true;
-            this.txtSearch.Size = new System.Drawing.Size(962, 27);
+            this.txtSearch.Size = new System.Drawing.Size(962, 31);
             this.txtSearch.TabIndex = 55745;
             this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
@@ -195,7 +200,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DGrid.DefaultCellStyle = dataGridViewCellStyle3;
             this.DGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.DGrid.Location = new System.Drawing.Point(4, 120);
+            this.DGrid.Location = new System.Drawing.Point(4, 121);
             this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DGrid.Name = "DGrid";
             this.DGrid.ReadOnly = true;
@@ -218,7 +223,7 @@
             this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(769, 508);
+            this.DGrid.Size = new System.Drawing.Size(769, 523);
             this.DGrid.TabIndex = 55744;
             this.DGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGrid_CellClick);
             this.DGrid.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGrid_CellEnter);
@@ -345,7 +350,7 @@
             this.انتخابToolStripMenuItem});
             this.menu.Name = "menu";
             this.menu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.menu.Size = new System.Drawing.Size(229, 338);
+            this.menu.Size = new System.Drawing.Size(229, 316);
             // 
             // menuAdd
             // 
@@ -629,6 +634,42 @@
             this.menuZoncan.Text = "مدیریت زونکن ها";
             this.menuZoncan.Click += new System.EventHandler(this.menuZoncan_Click);
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(225, 6);
+            // 
+            // انتخابToolStripMenuItem
+            // 
+            this.انتخابToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuSelectAll,
+            this.menuSelectNone,
+            this.menuSelectReverse});
+            this.انتخابToolStripMenuItem.Name = "انتخابToolStripMenuItem";
+            this.انتخابToolStripMenuItem.Size = new System.Drawing.Size(228, 24);
+            this.انتخابToolStripMenuItem.Text = "انتخاب";
+            // 
+            // menuSelectAll
+            // 
+            this.menuSelectAll.Name = "menuSelectAll";
+            this.menuSelectAll.Size = new System.Drawing.Size(178, 24);
+            this.menuSelectAll.Text = "انتخاب همه";
+            this.menuSelectAll.Click += new System.EventHandler(this.menuSelectAll_Click);
+            // 
+            // menuSelectNone
+            // 
+            this.menuSelectNone.Name = "menuSelectNone";
+            this.menuSelectNone.Size = new System.Drawing.Size(178, 24);
+            this.menuSelectNone.Text = "انتخاب هیچکدام";
+            this.menuSelectNone.Click += new System.EventHandler(this.menuSelectNone_Click);
+            // 
+            // menuSelectReverse
+            // 
+            this.menuSelectReverse.Name = "menuSelectReverse";
+            this.menuSelectReverse.Size = new System.Drawing.Size(178, 24);
+            this.menuSelectReverse.Text = "معکوس کردن انتخاب";
+            this.menuSelectReverse.Click += new System.EventHandler(this.menuSelectReverse_Click);
+            // 
             // BuildingBindingSource
             // 
             this.BuildingBindingSource.DataSource = typeof(EntityCache.Bussines.ReportBussines.BuildingReportBussines);
@@ -686,7 +727,7 @@
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Location = new System.Drawing.Point(374, 92);
+            this.label11.Location = new System.Drawing.Point(374, 95);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(69, 20);
             this.label11.TabIndex = 55760;
@@ -697,7 +738,7 @@
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Location = new System.Drawing.Point(474, 91);
+            this.label10.Location = new System.Drawing.Point(474, 94);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(113, 20);
             this.label10.TabIndex = 55760;
@@ -708,7 +749,7 @@
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Location = new System.Drawing.Point(617, 91);
+            this.label9.Location = new System.Drawing.Point(617, 94);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(71, 20);
             this.label9.TabIndex = 55760;
@@ -719,7 +760,7 @@
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Location = new System.Drawing.Point(717, 90);
+            this.label8.Location = new System.Drawing.Point(717, 93);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(42, 20);
             this.label8.TabIndex = 55760;
@@ -730,7 +771,7 @@
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Location = new System.Drawing.Point(789, 92);
+            this.label7.Location = new System.Drawing.Point(789, 95);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(60, 20);
             this.label7.TabIndex = 55760;
@@ -741,7 +782,7 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Location = new System.Drawing.Point(879, 92);
+            this.label6.Location = new System.Drawing.Point(879, 95);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(112, 20);
             this.label6.TabIndex = 55760;
@@ -752,10 +793,10 @@
             this.picFilter.BackColor = System.Drawing.Color.Transparent;
             this.picFilter.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picFilter.Image = global::Building.Properties.Resources.cogwheel_1;
-            this.picFilter.Location = new System.Drawing.Point(15, 58);
+            this.picFilter.Location = new System.Drawing.Point(7, 58);
             this.picFilter.Name = "picFilter";
-            this.picFilter.Size = new System.Drawing.Size(25, 27);
-            this.picFilter.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picFilter.Size = new System.Drawing.Size(36, 30);
+            this.picFilter.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picFilter.TabIndex = 55761;
             this.picFilter.TabStop = false;
             this.picFilter.Click += new System.EventHandler(this.picFilter_Click);
@@ -764,7 +805,7 @@
             // 
             this.pictureBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.pictureBox6.Location = new System.Drawing.Point(449, 94);
+            this.pictureBox6.Location = new System.Drawing.Point(449, 97);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(19, 18);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -775,7 +816,7 @@
             // 
             this.pictureBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox5.BackColor = System.Drawing.Color.Silver;
-            this.pictureBox5.Location = new System.Drawing.Point(592, 93);
+            this.pictureBox5.Location = new System.Drawing.Point(592, 96);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(19, 18);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -786,7 +827,7 @@
             // 
             this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox4.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.pictureBox4.Location = new System.Drawing.Point(692, 92);
+            this.pictureBox4.Location = new System.Drawing.Point(692, 95);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(19, 18);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -797,7 +838,7 @@
             // 
             this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox3.BackColor = System.Drawing.Color.Khaki;
-            this.pictureBox3.Location = new System.Drawing.Point(764, 93);
+            this.pictureBox3.Location = new System.Drawing.Point(764, 96);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(19, 18);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -808,7 +849,7 @@
             // 
             this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.BackColor = System.Drawing.Color.Orange;
-            this.pictureBox2.Location = new System.Drawing.Point(854, 92);
+            this.pictureBox2.Location = new System.Drawing.Point(854, 95);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(19, 18);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -819,7 +860,7 @@
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.Color.OrangeRed;
-            this.pictureBox1.Location = new System.Drawing.Point(994, 93);
+            this.pictureBox1.Location = new System.Drawing.Point(994, 94);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(19, 18);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -830,7 +871,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(94, 91);
+            this.label1.Location = new System.Drawing.Point(94, 94);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(135, 20);
             this.label1.TabIndex = 55760;
@@ -869,54 +910,18 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ucBuildingDetail1.BackColor = System.Drawing.Color.Transparent;
             this.ucBuildingDetail1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucBuildingDetail1.Location = new System.Drawing.Point(779, 116);
+            this.ucBuildingDetail1.Location = new System.Drawing.Point(779, 121);
             this.ucBuildingDetail1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucBuildingDetail1.Name = "ucBuildingDetail1";
             this.ucBuildingDetail1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucBuildingDetail1.Size = new System.Drawing.Size(236, 512);
+            this.ucBuildingDetail1.Size = new System.Drawing.Size(236, 523);
             this.ucBuildingDetail1.TabIndex = 55773;
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(225, 6);
-            // 
-            // انتخابToolStripMenuItem
-            // 
-            this.انتخابToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuSelectAll,
-            this.menuSelectNone,
-            this.menuSelectReverse});
-            this.انتخابToolStripMenuItem.Name = "انتخابToolStripMenuItem";
-            this.انتخابToolStripMenuItem.Size = new System.Drawing.Size(228, 24);
-            this.انتخابToolStripMenuItem.Text = "انتخاب";
-            // 
-            // menuSelectAll
-            // 
-            this.menuSelectAll.Name = "menuSelectAll";
-            this.menuSelectAll.Size = new System.Drawing.Size(180, 24);
-            this.menuSelectAll.Text = "انتخاب همه";
-            this.menuSelectAll.Click += new System.EventHandler(this.menuSelectAll_Click);
-            // 
-            // menuSelectNone
-            // 
-            this.menuSelectNone.Name = "menuSelectNone";
-            this.menuSelectNone.Size = new System.Drawing.Size(180, 24);
-            this.menuSelectNone.Text = "انتخاب هیچکدام";
-            this.menuSelectNone.Click += new System.EventHandler(this.menuSelectNone_Click);
-            // 
-            // menuSelectReverse
-            // 
-            this.menuSelectReverse.Name = "menuSelectReverse";
-            this.menuSelectReverse.Size = new System.Drawing.Size(180, 24);
-            this.menuSelectReverse.Text = "معکوس کردن انتخاب";
-            this.menuSelectReverse.Click += new System.EventHandler(this.menuSelectReverse_Click);
             // 
             // frmShowBuildings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1021, 631);
+            this.ClientSize = new System.Drawing.Size(1021, 647);
             this.Controls.Add(this.ucBuildingDetail1);
             this.Controls.Add(this.picFilter);
             this.Controls.Add(this.pictureBox6);
