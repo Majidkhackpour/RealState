@@ -678,6 +678,7 @@
             this.mnuAddReview.Name = "mnuAddReview";
             this.mnuAddReview.Size = new System.Drawing.Size(213, 24);
             this.mnuAddReview.Text = "افزودن گزارش بازدید جدید";
+            this.mnuAddReview.Click += new System.EventHandler(this.mnuAddReview_Click);
             // 
             // toolStripMenuItem2
             // 

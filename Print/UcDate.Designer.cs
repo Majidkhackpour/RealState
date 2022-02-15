@@ -147,6 +147,7 @@ namespace Print
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.cmbDay);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbMounth);

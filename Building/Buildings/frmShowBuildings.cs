@@ -1281,6 +1281,18 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void mnuAddReview_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmReviewMain(null);
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private void DGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
