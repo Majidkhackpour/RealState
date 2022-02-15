@@ -106,6 +106,7 @@
     <Compile Include="Assistence\Defualts\DefaultTafsil.cs" />
     <Compile Include="Assistence\Defualts\DefaultWindow.cs" />
     <Compile Include="Assistence\Extentions.cs" />
+    <Compile Include="Assistence\ImageResourceManager.cs" />
     <Compile Include="Assistence\UnitOfWork.cs" />
     <Compile Include="Bussines\AdjectiveDescriptionBussines.cs" />
     <Compile Include="Bussines\AdvertiseLogBussines.cs" />

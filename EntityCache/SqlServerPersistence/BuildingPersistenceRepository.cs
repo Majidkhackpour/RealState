@@ -793,6 +793,7 @@ namespace EntityCache.SqlServerPersistence
                 if (dr["Colling"] != DBNull.Value) res.Colling = dr["Colling"].ToString();
                 if (dr["ZoncanName"] != DBNull.Value) res.ZoncanName = dr["ZoncanName"].ToString();
                 if (dr["WindowName"] != DBNull.Value) res.WindowName = dr["WindowName"].ToString();
+                if (dr["ServerStatus"] != DBNull.Value) res.ServerStatus = (ServerStatus)dr["ServerStatus"];
             }
             catch (Exception ex)
             {

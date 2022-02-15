@@ -1055,6 +1055,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Arad_Icon.ico" />
+    <None Include="Resources\ServerStatus_None.png" />
+    <None Include="Resources\ServerStatus_DeliveryFailed.png" />
+    <None Include="Resources\ServerStatus_Delivered.png" />
+    <None Include="Resources\ServerStatus_Sent.png" />
+    <None Include="Resources\ServerStatus_SendError.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

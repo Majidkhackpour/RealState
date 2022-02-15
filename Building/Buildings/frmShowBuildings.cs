@@ -147,6 +147,7 @@ namespace Building.Buildings
                 menuTelegram.Visible = VersionAccess.Telegram;
                 menuAddPersonal.Visible = VersionAccess.Advertise;
                 mnuExcel.Visible = VersionAccess.Excel;
+                dgServerStatusImage.Visible = VersionAccess.WebService;
             }
             catch (Exception ex)
             {

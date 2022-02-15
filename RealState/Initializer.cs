@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Security.Principal;
@@ -86,6 +87,7 @@ namespace RealState
 
                 _ = Task.Run(BuildingBussines.SetArchiveAsync);
                 _ = Task.Run(BuildingRequestBussines.DeleteAfter60DaysAsync);
+                SetResources();
 
                 FileFormatter.Init();
                 if (!Cache.IsClient)
@@ -342,6 +344,22 @@ namespace RealState
                             break;
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private static void SetResources()
+        {
+            try
+            {
+                var converter = new ImageConverter();
+                ImageResourceManager.ServerStatusSent = (byte[])converter.ConvertTo(Properties.Resources.ServerStatus_Sent, typeof(byte[]));
+                ImageResourceManager.ServerStatusSentError = (byte[])converter.ConvertTo(Properties.Resources.ServerStatus_SendError, typeof(byte[]));
+                ImageResourceManager.ServerStatusNone = (byte[])converter.ConvertTo(Properties.Resources.ServerStatus_None, typeof(byte[]));
+                ImageResourceManager.ServerStatusDeliveryFailed = (byte[])converter.ConvertTo(Properties.Resources.ServerStatus_DeliveryFailed, typeof(byte[]));
+                ImageResourceManager.ServerStatusDelivered = (byte[])converter.ConvertTo(Properties.Resources.ServerStatus_Delivered, typeof(byte[]));
             }
             catch (Exception ex)
             {

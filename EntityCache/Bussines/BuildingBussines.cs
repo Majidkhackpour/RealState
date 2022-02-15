@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using WebHesabBussines;
 
@@ -132,7 +131,7 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await UnitOfWork.Building.SaveAsync(this, tr));
                 if (res.HasError) return res;
 
-                
+
 
                 if (isAddLog)
                 {
