@@ -49,10 +49,10 @@ namespace Print.Classes
             {
                 try
                 {
-                    var fullAdd = ReportPath.ReportPath_ + @"\" + FolderName + @"\Building_One_A5.mrt";
+                    var fullAdd = ReportPath.ReportPath_ + @"\" + FolderName + @"\BuildingOne_A5.mrt";
 
                     if (!File.Exists(fullAdd))
-                        File.WriteAllBytes(fullAdd, Properties.Resources.Building_One_A5);
+                        File.WriteAllBytes(fullAdd, Properties.Resources.BuildingOne_A5);
                     sti.Load(fullAdd);
                 }
                 catch (Exception ex)

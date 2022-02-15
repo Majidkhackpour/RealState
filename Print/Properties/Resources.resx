@@ -124,6 +124,9 @@
   <data name="Account_Perf_List_A5" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Account_Perf_List_A5.mrt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="BuildingOne_A5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BuildingOne_A5.mrt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Building_List_A4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Building_List_A4.mrt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

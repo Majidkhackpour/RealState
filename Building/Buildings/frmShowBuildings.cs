@@ -1125,77 +1125,24 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void menuPrintFull_Click(object sender, EventArgs e)
+        private async void menuPrintFull_Click(object sender, EventArgs e)
         {
             try
             {
-                //if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
-                //var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                //var cls = await BuildingBussines.GetAsync(guid);
-                //if (cls == null) return;
-                //var rpt = new BuildingReportViewModel()
-                //{
-                //    Masahat = cls.Masahat,
-                //    SellPrice = cls.SellPrice,
-                //    RahnPrice1 = cls.RahnPrice1,
-                //    EjarePrice1 = cls.EjarePrice1,
-                //    Code = cls.Code,
-                //    RoomCount = cls.RoomCount,
-                //    TabaqeNo = cls.TabaqeNo,
-                //    SaleSakht = cls.SaleSakht,
-                //    ZirBana = cls.ZirBana,
-                //    Address = cls.Address,
-                //    TedadTabaqe = cls.TedadTabaqe,
-                //    ShortDesc = cls.ShortDesc,
-                //    VahedPerTabaqe = cls.VahedPerTabaqe,
-                //    PishTotalPrice = cls.PishTotalPrice,
-                //    PishPrice = cls.PishPrice,
-                //    VamPrice = cls.VamPrice,
-                //    Hashie = cls.Hashie,
-                //    BarqName = cls.BarqName,
-                //    GasName = cls.GasName,
-                //    WaterName = cls.WaterName,
-                //    OwnerName = cls.OwnerName,
-                //    BuildingTypeName = cls.BuildingTypeName,
-                //    BuildingConditionName = cls.BuildingConditionName,
-                //    BuildingViewName = cls.BuildingViewName,
-                //    DocumentTypeName = cls.DocumentTypeName,
-                //    FloorCoverName = cls.FloorCoverName,
-                //    KitchenServiceName = cls.KitchenServiceName,
-                //    SideName = cls.SideName,
-                //    UserName = cls.UserName,
-                //    TellName = cls.TellName,
-                //    //Options = string.Join(", ", cls.OptionList?.Select(q => q.OptionName)),
-                //    DeliveryDateSh = Calendar.MiladiToShamsi(cls.DeliveryDate),
-                //    RegionName = (await RegionsBussines.GetAsync(cls.RegionGuid))?.Name ?? ""
-                //};
-                //if (cls.SellPrice > 0 && cls.Masahat > 0)
-                //    rpt.SellPricePerMetr = cls.SellPrice / cls.Masahat;
-                //var people = await PeoplesBussines.GetAsync(cls.OwnerGuid, cls.Guid);
-                //if (people.TellList != null && people.TellList.Count > 0)
-                //{
-                //    if (people.TellList.Count >= 2)
-                //    {
-                //        rpt.OwnerTell1 = people.TellList[0].Tell;
-                //        rpt.OwnerTell2 = people.TellList[1].Tell;
-                //    }
-                //    else
-                //    {
-                //        rpt.OwnerTell1 = people.TellList[0].Tell;
-                //        rpt.OwnerTell2 = "";
-                //    }
-                //}
-                //else
-                //{
-                //    rpt.OwnerTell1 = "";
-                //    rpt.OwnerTell2 = "";
-                //}
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                if (guid == Guid.Empty) return;
+                var cls = new ReportGenerator(StiType.Building_One, EnPrintType.Pdf_A5)
+                {
+                    CompanyInfo = SettingsBussines.Setting.CompanyInfo,
+                    SanadGuid = guid,
+                    IsLimited = false
+                };
+                cls.PrintNew();
 
-                //var cls_ = new ReportGenerator(StiType.Building_One, EnPrintType.Pdf_A4)
-                //{ Lst = new List<object>() { rpt } };
-                //cls_.PrintNew();
-                //var desc = $"کد ملک:( {cls.Code} ) ** محدوده:( {cls.RegionName} ) ** آدرس:( {cls.Address} )";
-                //await UserLogBussines.SaveBuildingLogAsync(EnLogAction.FullPrint, cls.Guid, desc);
+                var bu = await BuildingBussines.GetAsync(guid);
+                var desc = $"کد ملک:( {bu.Code} ) ** آدرس:( {bu.Address} )";
+                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.FullPrint, bu.Guid, desc);
             }
             catch (Exception ex)
             {
@@ -1303,58 +1250,24 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void menuLimitedPrint_Click(object sender, EventArgs e)
+        private async void menuLimitedPrint_Click(object sender, EventArgs e)
         {
             try
             {
-                //if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
-                //var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
-                //var cls = await BuildingBussines.GetAsync(guid);
-                //if (cls == null) return;
-                //var rpt = new BuildingReportViewModel()
-                //{
-                //    Masahat = cls.Masahat,
-                //    SellPrice = cls.SellPrice,
-                //    RahnPrice1 = cls.RahnPrice1,
-                //    EjarePrice1 = cls.EjarePrice1,
-                //    Code = cls.Code,
-                //    RoomCount = cls.RoomCount,
-                //    TabaqeNo = cls.TabaqeNo,
-                //    SaleSakht = cls.SaleSakht,
-                //    ZirBana = cls.ZirBana,
-                //    Address = cls.Address,
-                //    TedadTabaqe = cls.TedadTabaqe,
-                //    ShortDesc = cls.ShortDesc,
-                //    VahedPerTabaqe = cls.VahedPerTabaqe,
-                //    PishTotalPrice = cls.PishTotalPrice,
-                //    PishPrice = cls.PishPrice,
-                //    VamPrice = cls.VamPrice,
-                //    Hashie = cls.Hashie,
-                //    BarqName = cls.BarqName,
-                //    GasName = cls.GasName,
-                //    WaterName = cls.WaterName,
-                //    OwnerName = cls.OwnerName,
-                //    BuildingTypeName = cls.BuildingTypeName,
-                //    BuildingConditionName = cls.BuildingConditionName,
-                //    BuildingViewName = cls.BuildingViewName,
-                //    DocumentTypeName = cls.DocumentTypeName,
-                //    FloorCoverName = cls.FloorCoverName,
-                //    KitchenServiceName = cls.KitchenServiceName,
-                //    SideName = cls.SideName,
-                //    UserName = cls.UserName,
-                //    TellName = cls.TellName,
-                //    //Options = string.Join(", ", cls.OptionList?.Select(q => q.OptionName)),
-                //    DeliveryDateSh = Calendar.MiladiToShamsi(cls.DeliveryDate),
-                //    RegionName = (await RegionsBussines.GetAsync(cls.RegionGuid))?.Name ?? ""
-                //};
-                //if (cls.SellPrice > 0 && cls.Masahat > 0)
-                //    rpt.SellPricePerMetr = cls.SellPrice / cls.Masahat;
+                if (DGrid.RowCount <= 0 || DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                if (guid == Guid.Empty) return;
+                var cls = new ReportGenerator(StiType.Building_One, EnPrintType.Pdf_A5)
+                {
+                    CompanyInfo = SettingsBussines.Setting.CompanyInfo,
+                    SanadGuid = guid,
+                    IsLimited = true
+                };
+                cls.PrintNew();
 
-                //var cls_ = new ReportGenerator(StiType.Building_One, EnPrintType.Pdf_A5)
-                //{ Lst = new List<object>() { rpt } };
-                //cls_.PrintNew();
-                //var desc = $"کد ملک:( {cls.Code} ) ** محدوده:( {cls.RegionName} ) ** آدرس:( {cls.Address} )";
-                //await UserLogBussines.SaveBuildingLogAsync(EnLogAction.CustomPrint, cls.Guid, desc);
+                var bu = await BuildingBussines.GetAsync(guid);
+                var desc = $"کد ملک:( {bu.Code} ) ** آدرس:( {bu.Address} )";
+                await UserLogBussines.SaveBuildingLogAsync(EnLogAction.CustomPrint, bu.Guid, desc);
             }
             catch (Exception ex)
             {

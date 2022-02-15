@@ -298,6 +298,7 @@
     <None Include="packages.config" />
     <None Include="Resources\Account_Perf_List_A4.mrt" />
     <None Include="Resources\Account_Perf_List_A5.mrt" />
+    <None Include="Resources\BuildingOne_A5.mrt" />
     <None Include="Resources\Building_List_A4.mrt" />
     <None Include="Resources\Building_List_A5.mrt" />
     <None Include="Resources\Building_One_A4.mrt" />

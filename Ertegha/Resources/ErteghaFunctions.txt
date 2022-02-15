@@ -223,3 +223,19 @@ Begin
 				)
 	return @ret
 End
+GO
+
+Create or Alter FUNCTION func_GetBuildingOptions
+(
+	@buGuid uniqueidentifier
+)
+RETURNS nvarchar(max)
+AS
+BEGIN
+	declare @ret nvarchar(max)
+	SELECT @ret= STRING_AGG(BuildingOptions.Name, ', ')
+	FROM BuildingRelatedOptions
+		 inner join BuildingOptions on BuildingOptions.Guid=BuildingRelatedOptions.BuildingOptionGuid
+		 where BuildingRelatedOptions.BuildinGuid=@buGuid
+	return @ret
+END

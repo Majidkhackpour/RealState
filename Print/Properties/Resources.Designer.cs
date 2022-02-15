@@ -143,6 +143,16 @@ namespace Print.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] BuildingOne_A5 {
+            get {
+                object obj = ResourceManager.GetObject("BuildingOne_A5", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] Contract_List_A4 {
             get {
                 object obj = ResourceManager.GetObject("Contract_List_A4", resourceCulture);
