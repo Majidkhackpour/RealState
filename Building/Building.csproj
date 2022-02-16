@@ -475,6 +475,12 @@
     <Compile Include="BuildingRequest\frmShowRequest.Designer.cs">
       <DependentUpon>frmShowRequest.cs</DependentUpon>
     </Compile>
+    <Compile Include="BuildingReview\frmBuildingReviewFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuildingReview\frmBuildingReviewFilter.Designer.cs">
+      <DependentUpon>frmBuildingReviewFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="BuildingReview\frmReviewMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1392,6 +1398,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BuildingRequest\frmShowRequest.resx">
       <DependentUpon>frmShowRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BuildingReview\frmBuildingReviewFilter.resx">
+      <DependentUpon>frmBuildingReviewFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BuildingReview\frmReviewMain.resx">
       <DependentUpon>frmReviewMain.cs</DependentUpon>

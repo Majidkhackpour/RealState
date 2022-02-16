@@ -4,12 +4,16 @@ using Services;
 using Services.FilterObjects;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace EntityCache.Bussines.ReportBussines
 {
-    public class BuildingReportBussines
+    public class BuildingReportBussines : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        private bool _isChecked = false;
+
         public Guid Guid { get; set; }
         public DateTime CreateDate { get; set; }
         public string DateSh => Calendar.MiladiToShamsi(CreateDate);
@@ -53,7 +57,15 @@ namespace EntityCache.Bussines.ReportBussines
         public EnKhadamati? Gas { get; set; }
         public EnKhadamati? Barq { get; set; }
         public double Dang { get; set; }
-        public bool IsChecked { get; set; } = false;
+        public bool IsChecked
+        {
+            get => _isChecked;
+            set
+            {
+                _isChecked = value;
+                PropertyChanged?.Invoke(this,new PropertyChangedEventArgs(nameof(IsChecked)));
+            }
+        }
         public ServerStatus ServerStatus { get; set; }
         public byte[] ServerStatusImage
         {

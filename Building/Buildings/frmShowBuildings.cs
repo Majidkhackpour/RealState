@@ -601,7 +601,7 @@ namespace Building.Buildings
                 _st = filter.Status;
                 isShowMode = _isShowMode;
                 SetAccess();
-                if (_isShowMode || (filter.IsArchive != null && filter.IsArchive.Value)) 
+                if (_isShowMode || (filter.IsArchive != null && filter.IsArchive.Value))
                     menu.Enabled = false;
             }
             catch (Exception ex)
@@ -1258,7 +1258,9 @@ namespace Building.Buildings
         {
             try
             {
-                var frm = new frmShowReview(null);
+                var filterForm = new frmBuildingReviewFilter();
+                if (filterForm.ShowDialog(this) != DialogResult.OK) return;
+                var frm = new frmShowReview(filterForm.Filter);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
