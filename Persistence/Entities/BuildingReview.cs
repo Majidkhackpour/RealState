@@ -24,5 +24,6 @@ namespace Persistence.Entities
         public virtual Building Building { get; set; }
         public virtual Users User { get; set; }
         public virtual Tafsil Tafsil { get; set; }
+        public bool Status { get; set; }
     }
 }

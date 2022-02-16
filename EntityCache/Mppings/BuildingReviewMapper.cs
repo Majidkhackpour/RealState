@@ -21,7 +21,8 @@ namespace EntityCache.Mppings
                 UserGuid = cls.UserGuid,
                 Date = cls.Date,
                 Report = cls.Report,
-                CustometGuid = cls.CustometGuid
+                CustometGuid = cls.CustometGuid,
+                Status = cls.Status
             };
         }
         public List<WebBuildingReview> MapList(List<BuildingReviewBussines> cls)

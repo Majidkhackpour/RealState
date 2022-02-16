@@ -20,6 +20,7 @@ namespace WebHesabBussines
         public DateTime ServerDeliveryDate { get; set; }
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; }
+        public bool Status { get; set; }
 
 
         private static void RaiseEvent(Guid objGuid, ServerStatus st, DateTime dateM)

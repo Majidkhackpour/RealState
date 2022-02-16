@@ -53,7 +53,7 @@ namespace Building.BuildingReview
             this.buildingCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.reportDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.guidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.serverStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buildingGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -91,6 +91,7 @@ namespace Building.BuildingReview
             this.mnuDelete.Name = "mnuDelete";
             this.mnuDelete.Size = new System.Drawing.Size(244, 24);
             this.mnuDelete.Text = "حذف گزارش بازدید جاری (Del)";
+            this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
             // 
             // mnuEdit
             // 
@@ -98,6 +99,7 @@ namespace Building.BuildingReview
             this.mnuEdit.Name = "mnuEdit";
             this.mnuEdit.Size = new System.Drawing.Size(244, 24);
             this.mnuEdit.Text = "ویرایش گزارش بازدید جاری (F7)";
+            this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
             // 
             // mnuAdd
             // 
@@ -105,6 +107,7 @@ namespace Building.BuildingReview
             this.mnuAdd.Name = "mnuAdd";
             this.mnuAdd.Size = new System.Drawing.Size(244, 24);
             this.mnuAdd.Text = "افزودن گزارش بازدید جدید (Ins)";
+            this.mnuAdd.Click += new System.EventHandler(this.mnuAdd_Click);
             // 
             // contextMenu
             // 
@@ -117,7 +120,7 @@ namespace Building.BuildingReview
             this.mnuView});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(245, 106);
+            this.contextMenu.Size = new System.Drawing.Size(245, 128);
             // 
             // mnuView
             // 
@@ -125,6 +128,7 @@ namespace Building.BuildingReview
             this.mnuView.Name = "mnuView";
             this.mnuView.Size = new System.Drawing.Size(244, 24);
             this.mnuView.Text = "مشاهده (F12)";
+            this.mnuView.Click += new System.EventHandler(this.mnuView_Click);
             // 
             // DGrid
             // 
@@ -160,7 +164,7 @@ namespace Building.BuildingReview
             this.buildingCodeDataGridViewTextBoxColumn,
             this.customerNameDataGridViewTextBoxColumn,
             this.reportDataGridViewTextBoxColumn,
-            this.guidDataGridViewTextBoxColumn,
+            this.dgGuid,
             this.dateDataGridViewTextBoxColumn,
             this.serverStatusDataGridViewTextBoxColumn,
             this.buildingGuidDataGridViewTextBoxColumn});
@@ -288,13 +292,13 @@ namespace Building.BuildingReview
             this.reportDataGridViewTextBoxColumn.Name = "reportDataGridViewTextBoxColumn";
             this.reportDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // guidDataGridViewTextBoxColumn
+            // dgGuid
             // 
-            this.guidDataGridViewTextBoxColumn.DataPropertyName = "Guid";
-            this.guidDataGridViewTextBoxColumn.HeaderText = "Guid";
-            this.guidDataGridViewTextBoxColumn.Name = "guidDataGridViewTextBoxColumn";
-            this.guidDataGridViewTextBoxColumn.ReadOnly = true;
-            this.guidDataGridViewTextBoxColumn.Visible = false;
+            this.dgGuid.DataPropertyName = "Guid";
+            this.dgGuid.HeaderText = "Guid";
+            this.dgGuid.Name = "dgGuid";
+            this.dgGuid.ReadOnly = true;
+            this.dgGuid.Visible = false;
             // 
             // dateDataGridViewTextBoxColumn
             // 
@@ -365,7 +369,7 @@ namespace Building.BuildingReview
         private System.Windows.Forms.DataGridViewTextBoxColumn buildingCodeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn customerNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn reportDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn guidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn serverStatusDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn buildingGuidDataGridViewTextBoxColumn;

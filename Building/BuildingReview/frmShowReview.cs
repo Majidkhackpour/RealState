@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
+using EntityCache.Bussines;
 using EntityCache.Bussines.ReportBussines;
 using MetroFramework.Forms;
 using Services;
@@ -126,5 +127,81 @@ namespace Building.BuildingReview
             }
         }
         private void txtSearch_TextChanged(object sender, EventArgs e) => _ = Task.Run(() => SearchAsync(txtSearch.Text));
+        private async void mnuAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var obj = new BuildingReviewBussines();
+                if (_filter.BuildingGuid != null)
+                    obj.BuildingGuid = _filter.BuildingGuid.Value;
+                var frm = new frmReviewMain(obj);
+                if (frm.ShowDialog(this) == DialogResult.OK)
+                    await LoadDataAsync();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var obj = await BuildingReviewBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmReviewMain(obj, true);
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var obj = await BuildingReviewBussines.GetAsync(guid);
+                if (obj == null) return;
+                var frm = new frmReviewMain(obj);
+                if (frm.ShowDialog(this) == DialogResult.OK)
+                    await LoadDataAsync(txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void mnuDelete_Click(object sender, EventArgs e)
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                if (MessageBox.Show(this, @"آیا از حذف اطمینان دارید؟", "حذف", MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question) == DialogResult.No) return;
+                var prd = await BuildingReviewBussines.GetAsync(guid);
+                res.AddReturnedValue(await prd.ChangeStataus(false));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            finally
+            {
+                if (res.HasError)
+                    this.ShowError(res, "خطا در تغییر وضعیت زونکن");
+                else await LoadDataAsync(txtSearch.Text);
+            }
+        }
     }
 }

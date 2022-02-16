@@ -15,6 +15,7 @@ namespace EntityCache.Bussines
     {
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
+        public bool Status { get; set; } = true;
         public Guid BuildingGuid { get; set; }
         public Guid UserGuid { get; set; }
         public Guid CustometGuid { get; set; }
@@ -39,11 +40,13 @@ namespace EntityCache.Bussines
                     tr = cn.BeginTransaction();
                 }
 
+                res.AddReturnedValue(CheckValidation());
+                if (res.HasError) return res;
                 res.AddReturnedValue(await UnitOfWork.BuildingReview.SaveAsync(this, tr));
                 if (res.HasError) return res;
 
-                //var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
-                //res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingType, Guid, "", tr));
+                var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingReview, Guid, "", tr));
             }
             catch (Exception ex)
             {
@@ -57,12 +60,28 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
                     res.AddReturnedValue(cn.CloseConnection());
                 }
-                //if (!res.HasError && Cache.IsSendToServer)
-                //    _ = Task.Run(() => SendToServerAsync(this));
+                if (!res.HasError && Cache.IsSendToServer)
+                    _ = Task.Run(() => SendToServerAsync(this));
             }
             return res;
         }
-        public async Task<ReturnedSaveFuncInfo> RemoveAsync(SqlTransaction tr = null)
+        private ReturnedSaveFuncInfo CheckValidation()
+        {
+            var res = new ReturnedSaveFuncInfo();
+            try
+            {
+                if (BuildingGuid == Guid.Empty) res.AddError("لطفا ملک مورد تقاضا را انتخاب نمایید");
+                if (CustometGuid == Guid.Empty) res.AddError("لطفا بازدیدکننده را انتخاب نمایید");
+                if (UserGuid == Guid.Empty) res.AddError("لطفا مامور بازدید را انتخاب نمایید");
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                res.AddReturnedValue(ex);
+            }
+            return res;
+        }
+        public async Task<ReturnedSaveFuncInfo> ChangeStataus(bool status, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = tr == null;
@@ -77,11 +96,11 @@ namespace EntityCache.Bussines
                 }
 
                 ServerStatus = ServerStatus.None;
-                res.AddReturnedValue(await UnitOfWork.BuildingReview.RemoveAsync(Guid, tr));
+                res.AddReturnedValue(await UnitOfWork.BuildingReview.ChangeStatusAsync(this, status, tr));
                 if (res.HasError) return res;
 
-                //var action = status ? EnLogAction.Enable : EnLogAction.Delete;
-                //res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingType, Guid, "", tr));
+                var action = status ? EnLogAction.Enable : EnLogAction.Delete;
+                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingReview, Guid, "", tr));
             }
             catch (Exception ex)
             {
@@ -95,8 +114,8 @@ namespace EntityCache.Bussines
                     res.AddReturnedValue(tr.TransactionDestiny(res.HasError));
                     res.AddReturnedValue(cn.CloseConnection());
                 }
-                //if (!res.HasError && Cache.IsSendToServer)
-                //    _ = Task.Run(() => SendToServerAsync(this));
+                if (!res.HasError && Cache.IsSendToServer)
+                    _ = Task.Run(() => SendToServerAsync(this));
             }
             return res;
         }

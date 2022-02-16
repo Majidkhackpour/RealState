@@ -27,6 +27,7 @@ namespace EntityCache.SqlServerPersistence
                 if (dr["Report"] != DBNull.Value) item.Report = dr["Report"].ToString();
                 if (dr["ServerStatus"] != DBNull.Value) item.ServerStatus = (ServerStatus)dr["ServerStatus"];
                 if (dr["ServerDeliveryDate"] != DBNull.Value) item.ServerDeliveryDate = (DateTime)dr["ServerDeliveryDate"];
+                if (dr["Status"] != DBNull.Value) item.Status = (bool) dr["Status"];
                 item.IsModified = true;
             }
             catch (Exception ex)
@@ -77,13 +78,14 @@ namespace EntityCache.SqlServerPersistence
             }
             return list;
         }
-        public async Task<ReturnedSaveFuncInfo> RemoveAsync(Guid guid, SqlTransaction tr)
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(BuildingReviewBussines item, bool status, SqlTransaction tr)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var cmd = new SqlCommand("sp_BuildingReview_Remove", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
-                cmd.Parameters.AddWithValue("@guid", guid);
+                var cmd = new SqlCommand("sp_BuildingReview_ChangeStatus", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.AddWithValue("@Guid", item.Guid);
+                cmd.Parameters.AddWithValue("@st", status);
 
                 await cmd.ExecuteNonQueryAsync();
             }
@@ -92,6 +94,7 @@ namespace EntityCache.SqlServerPersistence
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
+
             return res;
         }
         public async Task<ReturnedSaveFuncInfo> SaveAsync(BuildingReviewBussines item, SqlTransaction tr)
@@ -101,6 +104,7 @@ namespace EntityCache.SqlServerPersistence
             {
                 var cmd = new SqlCommand("sp_BuildingReview_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
                 cmd.Parameters.AddWithValue("@Guid", item.Guid);
+                cmd.Parameters.AddWithValue("@st", item.Status);
                 cmd.Parameters.AddWithValue("@BuildingGuid", item.BuildingGuid);
                 cmd.Parameters.AddWithValue("@UserGuid", item.UserGuid);
                 cmd.Parameters.AddWithValue("@CustomerGuid", item.CustometGuid);

@@ -8434,6 +8434,7 @@ IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingR
 GO
 Alter PROCEDURE sp_BuildingReview_Save
 	@Guid uniqueidentifier,
+	@st bit,
 	@BuildingGuid uniqueidentifier,
 	@UserGuid uniqueidentifier,
 	@CustomerGuid uniqueidentifier,
@@ -8446,6 +8447,7 @@ BEGIN
 	UPDATE [dbo].[BuildingReviews]
 	   SET [Modified] = GETDATE()
 		  ,[BuildingGuid] = @BuildingGuid
+		  ,[Status] = @st
 		  ,[UserGuid] = @UserGuid
 		  ,[CustometGuid] = @CustomerGuid
 		  ,[Date] = @Date
@@ -8458,6 +8460,7 @@ BEGIN
 		INSERT INTO [dbo].[BuildingReviews]
            ([Guid]
            ,[Modified]
+		   ,[Status]
            ,[BuildingGuid]
            ,[UserGuid]
            ,[CustometGuid]
@@ -8468,6 +8471,7 @@ BEGIN
 		 VALUES
 			   (@Guid
 			   ,GETDATE()
+			   ,@st
 			   ,@BuildingGuid
 			   ,@UserGuid
 			   ,@CustomerGuid
@@ -8479,15 +8483,17 @@ BEGIN
 END
 GO
 --========================================================================================================
-IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingReview_Remove]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-	exec('Create Procedure [dbo].[sp_BuildingReview_Remove]	As Begin print 11 end')  
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_BuildingReview_ChangeStatus]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_BuildingReview_ChangeStatus]	As Begin print 11 end')  
 GO
-Alter PROCEDURE sp_BuildingReview_Remove
-	@Guid uniqueidentifier
+ALTER PROCEDURE [dbo].[sp_BuildingReview_ChangeStatus]
+	@guid uniqueidentifier,
+	@st bit
 AS
 BEGIN
-	Delete From BuildingReviews
-	Where Guid=@Guid
+	update BuildingReviews
+	set Status=@st
+	where Guid=@guid
 END
 GO
 --========================================================================================================
@@ -8514,7 +8520,8 @@ BEGIN
 		  (@CustomerGuid is null or BuildingReviews.CustometGuid=@CustomerGuid) and
 		  (@UserGuid is null or BuildingReviews.UserGuid=@UserGuid) and
 		  (@date1 is null or BuildingReviews.Date>=@date1) and
-		  (@date2 is null or BuildingReviews.Date<=@date2)
+		  (@date2 is null or BuildingReviews.Date<=@date2) and
+		  BuildingReviews.Status = 'true'
 END
 GO
 --========================================================================================================
