@@ -1,5 +1,4 @@
-﻿using Notification;
-using Persistence;
+﻿using Persistence;
 using RealState.LoginPanel;
 using Services;
 using Settings;
@@ -35,8 +34,6 @@ namespace RealState
                 Application.Exit();
                 return;
             }
-
-            new frmNewPlash().ShowDialog();
 
             if (WebCustomer.CheckCustomer() && WebCustomer.Customer.HardSerial != "265155255")
                 _ = Task.Run(() => WebTelegramReporter.SendBuildingReport(WebCustomer.Customer.Guid, "ورود به نرم افزار"));

@@ -54,6 +54,7 @@ using User;
 using User.Advisor;
 using WebHesabBussines;
 using WindowsSerivces;
+using WindowsSerivces.Waiter;
 
 namespace RealState
 {
@@ -114,6 +115,7 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
         private void SetButtomLables()
         {
             try
@@ -130,6 +132,7 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
         private async Task CheckInternetAsync()
         {
             var res = new ReturnedSaveFuncInfo();
@@ -142,21 +145,12 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
+
             Invoke(res.HasError
                 ? new MethodInvoker(() => lblInternet.Text = "وضعیت اتصال سیستم به اینترنت: عدم اتصال")
                 : new MethodInvoker(() => lblInternet.Text = "وضعیت اتصال سیستم به اینترنت: متصل"));
         }
-        private void LoadDashboard()
-        {
-            try
-            {
 
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
         private async Task ShowTodayNotesAsync()
         {
             try
@@ -176,6 +170,7 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
         private void SetClock()
         {
             try
@@ -190,6 +185,7 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
         private void DisplayFrm(Form frm, bool autoDispose = true)
         {
             try
@@ -204,7 +200,10 @@ namespace RealState
                 else
                     frm?.Show(this);
             }
-            catch (Exception ex) { WebErrorLog.ErrorInstence.StartErrorLog(ex); }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         public frmNewMain()
@@ -226,12 +225,16 @@ namespace RealState
             }
         }
 
-        private Task BuildingRequestBussines_OnSaved() => _ = Task.Run(LoadDashboard);
+        private Task BuildingRequestBussines_OnSaved()
+        {
+            _ = new Waiter("درحال ایجاد گزارش", ucReport1, Task.Run(ucReport1.InitAsync));
+            return Task.CompletedTask;
+        }
         private Task BuildingBussines_OnSaved()
         {
             try
             {
-                _ = Task.Run(LoadDashboard);
+                _ = new Waiter("درحال ایجاد گزارش", ucReport1, Task.Run(ucReport1.InitAsync));
                 FileFormatter.Init();
             }
             catch (Exception ex)
@@ -240,7 +243,11 @@ namespace RealState
             }
             return Task.CompletedTask;
         }
-        private Task PeoplesBussines_OnSaved() => _ = Task.Run(LoadDashboard);
+        private Task PeoplesBussines_OnSaved()
+        {
+            _ = new Waiter("درحال ایجاد گزارش", ucReport1, Task.Run(ucReport1.InitAsync));
+            return Task.CompletedTask;
+        }
         private void lblBaseInfo_Click(object sender, System.EventArgs e) => grpBaseInfo.Height = grpBaseInfo.Height == 48 ? 570 : 48;
         private void lblBuildingMenu_Click(object sender, EventArgs e) => grpBuilding.Height = grpBuilding.Height == 48 ? 293 : 48;
         private void lblUsers_Click(object sender, EventArgs e) => grpUsers.Height = grpUsers.Height == 48 ? 171 : 48;
@@ -256,7 +263,7 @@ namespace RealState
                 SetClock();
                 _showDialog = SettingsBussines.Setting.Global.ShowDialog;
                 _ = Task.Run(() => AutoBackUp.BackUpAsync(@"C:\", false, EnBackUpType.Auto));
-                LoadDashboard();
+                _ = new Waiter("درحال ایجاد گزارش", ucReport1, Task.Run(ucReport1.InitAsync));
                 SetButtomLables();
                 _ = Task.Run(ShowTodayNotesAsync);
             }
@@ -271,7 +278,7 @@ namespace RealState
             {
                 if (e.KeyCode == Keys.F5)
                 {
-                    LoadDashboard();
+                    _ = new Waiter("درحال ایجاد گزارش", ucReport1, Task.Run(ucReport1.InitAsync));
                     return;
                 }
                 if (pnlInfo.Visible) pnlInfo.Visible = false;

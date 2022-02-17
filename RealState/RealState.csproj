@@ -336,12 +336,6 @@
     <Compile Include="LoginPanel\frmLoginMain.Designer.cs">
       <DependentUpon>frmLoginMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginPanel\frmNewPlash.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="LoginPanel\frmNewPlash.Designer.cs">
-      <DependentUpon>frmNewPlash.cs</DependentUpon>
-    </Compile>
     <Compile Include="Note\frmNoteMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -385,9 +379,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LoginPanel\frmLoginMain.resx">
       <DependentUpon>frmLoginMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="LoginPanel\frmNewPlash.resx">
-      <DependentUpon>frmNewPlash.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Note\frmNoteMain.resx">
       <DependentUpon>frmNoteMain.cs</DependentUpon>

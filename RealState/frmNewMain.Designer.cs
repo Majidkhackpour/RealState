@@ -116,6 +116,7 @@ namespace RealState
             this.panel1 = new System.Windows.Forms.Panel();
             this.timerSecond = new System.Windows.Forms.Timer(this.components);
             this.timerCheckInternet = new System.Windows.Forms.Timer(this.components);
+            this.ucReport1 = new Building.UserControls.Report.UcReport();
             this.pnlOk.SuspendLayout();
             this.groupPanel1.SuspendLayout();
             this.pnlInfo.SuspendLayout();
@@ -131,6 +132,7 @@ namespace RealState
             this.grpAccounting.SuspendLayout();
             this.groupPanel7.SuspendLayout();
             this.groupPanel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlOk
@@ -1590,6 +1592,7 @@ namespace RealState
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Controls.Add(this.ucReport1);
             this.panel1.Location = new System.Drawing.Point(1, 40);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(628, 512);
@@ -1606,6 +1609,18 @@ namespace RealState
             this.timerCheckInternet.Enabled = true;
             this.timerCheckInternet.Interval = 60000;
             this.timerCheckInternet.Tick += new System.EventHandler(this.timerCheckInternet_Tick);
+            // 
+            // ucReport1
+            // 
+            this.ucReport1.BackColor = System.Drawing.Color.Transparent;
+            this.ucReport1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucReport1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucReport1.Location = new System.Drawing.Point(0, 0);
+            this.ucReport1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucReport1.Name = "ucReport1";
+            this.ucReport1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucReport1.Size = new System.Drawing.Size(628, 512);
+            this.ucReport1.TabIndex = 0;
             // 
             // frmNewMain
             // 
@@ -1647,6 +1662,7 @@ namespace RealState
             this.groupPanel7.ResumeLayout(false);
             this.groupPanel2.ResumeLayout(false);
             this.groupPanel2.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1736,5 +1752,6 @@ namespace RealState
         private WindowsSerivces.UcButton ucKolMoein;
         private WindowsSerivces.UcButton ucPardakhtCheck;
         private WindowsSerivces.UcButton ucRecieveCheck;
+        private Building.UserControls.Report.UcReport ucReport1;
     }
 }
