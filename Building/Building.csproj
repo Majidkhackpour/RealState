@@ -1150,6 +1150,36 @@
     <Compile Include="UserControls\Rahn\UcBuildingRahn_Store.Designer.cs">
       <DependentUpon>UcBuildingRahn_Store.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Report\MajorObject\UcShowCustomerBirthday.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Report\MajorObject\UcShowCustomerBirthday.Designer.cs">
+      <DependentUpon>UcShowCustomerBirthday.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Report\MajorObject\UcShowDischargeList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Report\MajorObject\UcShowDischargeList.Designer.cs">
+      <DependentUpon>UcShowDischargeList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Report\MajorObject\UcShowHighPriority.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Report\MajorObject\UcShowHighPriority.Designer.cs">
+      <DependentUpon>UcShowHighPriority.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Report\MajorObject\UcShowMatcheItems.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Report\MajorObject\UcShowMatcheItems.Designer.cs">
+      <DependentUpon>UcShowMatcheItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Report\MajorObject\UcShowSchema.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Report\MajorObject\UcShowSchema.Designer.cs">
+      <DependentUpon>UcShowSchema.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Report\MinorObjects\ucBuildingHighPriority.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1763,6 +1793,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Rahn\UcBuildingRahn_Store.resx">
       <DependentUpon>UcBuildingRahn_Store.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Report\MajorObject\UcShowCustomerBirthday.resx">
+      <DependentUpon>UcShowCustomerBirthday.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Report\MajorObject\UcShowDischargeList.resx">
+      <DependentUpon>UcShowDischargeList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Report\MajorObject\UcShowHighPriority.resx">
+      <DependentUpon>UcShowHighPriority.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Report\MajorObject\UcShowMatcheItems.resx">
+      <DependentUpon>UcShowMatcheItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Report\MajorObject\UcShowSchema.resx">
+      <DependentUpon>UcShowSchema.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Report\MinorObjects\ucBuildingHighPriority.resx">
       <DependentUpon>ucBuildingHighPriority.cs</DependentUpon>
