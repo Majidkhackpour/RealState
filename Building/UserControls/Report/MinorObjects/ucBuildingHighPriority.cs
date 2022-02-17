@@ -5,7 +5,7 @@ using EntityCache.Bussines;
 using EntityCache.Bussines.ReportBussines;
 using Services;
 
-namespace RealState.UserControls
+namespace Building.UserControls.Report.MinorObjects
 {
     public partial class ucBuildingHighPriority : UserControl
     {

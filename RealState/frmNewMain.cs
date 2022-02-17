@@ -39,7 +39,6 @@ using Persistence;
 using RealState.Advance;
 using RealState.BackUpLog;
 using RealState.Note;
-using RealState.UserControls;
 using Services;
 using Services.FilterObjects;
 using Settings;
@@ -280,237 +279,237 @@ namespace RealState
             try
             {
                 ClearFlowPanels();
-                _ = Task.Run(LoadCustomerBirthdayAsync);
-                _ = Task.Run(LoadSarresidAsync);
-                _ = Task.Run(LoadSchemaAsync);
-                _ = Task.Run(LoadBuildingRegionAsync);
-                _ = Task.Run(LoadRequestRegionAsync);
-                _ = Task.Run(LoadMatchAsync);
-                _ = Task.Run(LoadBuildingHighPriorityAsync);
+                //_ = Task.Run(LoadCustomerBirthdayAsync);
+                //_ = Task.Run(LoadSarresidAsync);
+                //_ = Task.Run(LoadSchemaAsync);
+                //_ = Task.Run(LoadBuildingRegionAsync);
+                //_ = Task.Run(LoadRequestRegionAsync);
+                //_ = Task.Run(LoadMatchAsync);
+                //_ = Task.Run(LoadBuildingHighPriorityAsync);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task LoadCustomerBirthdayAsync()
-        {
-            try
-            {
-                var dateSh = Calendar.MiladiToShamsi(DateTime.Now);
-                var day = Calendar.GetDayOfDateSh(dateSh);
-                var dayStr = day.ToString();
-                if (day < 10) dayStr = $"0{day}";
-                var mounth = Calendar.GetMonthOfDateSh(dateSh);
-                var mounthStr = mounth.ToString();
-                if (mounth < 10) mounthStr = $"0{mounth}";
-                var newDate = $"/{mounthStr}/{dayStr}";
-                var birthdayList = await PeoplesBussines.GetAllBirthDayAsync(newDate);
-                if (birthdayList != null && birthdayList.Count > 0)
-                {
-                    foreach (var item in birthdayList)
-                    {
-                        Invoke(new MethodInvoker(() =>
-                        {
-                            var c = new ucCustomerBirthday { People = item, Width = fPanelCustomerBirthDay.Width - 30 };
-                            fPanelCustomerBirthDay.Controls.Add(c);
-                        }));
-                    }
-                }
-                else
-                {
-                    Invoke(new MethodInvoker(() =>
-                    {
-                        fPanelCustomerBirthDay.Visible = false;
-                        lblBirthDayNone.Visible = true;
-                    }));
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async Task LoadSarresidAsync()
-        {
-            try
-            {
-                var list = await ContractBussines.DischargeListAsync();
-                if (list != null && list.Count > 0)
-                {
-                    list = list?.OrderBy(q => q.ToDate)?.Take(10)?.ToList();
-                    foreach (var item in list)
-                    {
-                        Invoke(new MethodInvoker(() =>
-                        {
-                            var c = new ucDischargeList() { Model = item, Width = fPanelSarresidEjare.Width - 30 };
-                            fPanelSarresidEjare.Controls.Add(c);
-                        }));
-                    }
-                }
-                else
-                {
-                    Invoke(new MethodInvoker(() =>
-                    {
-                        fPanelSarresidEjare.Visible = false;
-                        lblSarresidNone.Visible = true;
-                    }));
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async Task LoadSchemaAsync()
-        {
-            try
-            {
-                var allBuilding = await BuildingBussines.DbCount(Guid.Empty, 0);
-                var myBuilding = await BuildingBussines.DbCount(UserBussines.CurrentUser.Guid, 0);
-                var rahn = await BuildingBussines.DbCount(Guid.Empty, 1);
-                var foroush = await BuildingBussines.DbCount(Guid.Empty, 2);
-                var allReq = await BuildingRequestBussines.DbCount(Guid.Empty);
-                var myReq = await BuildingRequestBussines.DbCount(UserBussines.CurrentUser.Guid);
-                Invoke(new MethodInvoker(() =>
-                {
-                    lblAllBuilding.Text = allBuilding.ToString();
-                    lblMyBuilding.Text = myBuilding.ToString();
-                    lblAllRahn.Text = rahn.ToString();
-                    lblAllForoosh.Text = foroush.ToString();
-                    lblAllRequest.Text = allReq.ToString();
-                    lblMyRequest.Text = myReq.ToString();
-                }));
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async Task LoadBuildingRegionAsync()
-        {
-            try
-            {
-                var list = await RegionsBussines.GetAllBuildingReportAsync(new CancellationToken());
-                if (list != null && list.Count > 0)
-                {
-                    list = list?.OrderByDescending(q => q.Count)?.Take(10)?.ToList();
-                    foreach (var item in list)
-                    {
-                        Invoke(new MethodInvoker(() =>
-                        {
-                            var c = new ucRegionReport() { Report = item, Width = fPanelBuildingRegion.Width - 30 };
-                            fPanelBuildingRegion.Controls.Add(c);
-                        }));
-                    }
-                }
-                else
-                {
-                    Invoke(new MethodInvoker(() =>
-                    {
-                        fPanelBuildingRegion.Visible = false;
-                        lblRegionBuildingNone.Visible = true;
-                    }));
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async Task LoadRequestRegionAsync()
-        {
-            try
-            {
-                var list = await RegionsBussines.GetAllRequestReportAsync(new CancellationToken());
-                if (list != null && list.Count > 0)
-                {
-                    list = list?.OrderByDescending(q => q.Count)?.Take(10)?.ToList();
-                    foreach (var item in list)
-                    {
-                        Invoke(new MethodInvoker(() =>
-                        {
-                            var c = new ucRegionReport() { Report = item, Width = fPanelRequestRegion.Width - 30 };
-                            fPanelRequestRegion.Controls.Add(c);
-                        }));
-                    }
-                }
-                else
-                {
-                    Invoke(new MethodInvoker(() =>
-                    {
-                        fPanelRequestRegion.Visible = false;
-                        lblRegionRequestNone.Visible = true;
-                    }));
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async Task LoadMatchAsync()
-        {
-            try
-            {
-                var list = await BuildingRequestViewModel.GetAllMatchesItemsAsync(new CancellationToken());
-                if (list != null && list.Count > 0)
-                {
-                    list = list.OrderByDescending(q => q.RequestCount)?.Take(10)?.ToList();
-                    foreach (var item in list)
-                    {
-                        Invoke(new MethodInvoker(() =>
-                        {
-                            var c = new ucBuildingMatch() { Model = item, Width = fPanelMath.Width - 30 };
-                            fPanelMath.Controls.Add(c);
-                        }));
-                    }
-                }
-                else
-                {
-                    Invoke(new MethodInvoker(() =>
-                    {
-                        fPanelMath.Visible = false;
-                        lblMatchNone.Visible = true;
-                    }));
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async Task LoadBuildingHighPriorityAsync()
-        {
-            //try
-            //{
-            //    var list = await BuildingBussines.GetAllHighPriorityAsync(new CancellationToken());
-            //    list = list?.Where(q => q.Priority == EnBuildingPriority.SoHigh && !q.IsArchive)?.Take(10)?.ToList();
-            //    if (list != null && list.Count > 0)
-            //    {
-            //        foreach (var item in list)
-            //        {
-            //            Invoke(new MethodInvoker(() =>
-            //            {
-            //                var c = new ucBuildingHighPriority() { Building = item, Width = fPanelPirority.Width - 30 };
-            //                fPanelPirority.Controls.Add(c);
-            //            }));
-            //        }
-            //    }
-            //    else
-            //    {
-            //        Invoke(new MethodInvoker(() =>
-            //        {
-            //            fPanelPirority.Visible = false;
-            //            lblBuildingNone.Visible = true;
-            //        }));
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            //}
-        }
+        //private async Task LoadCustomerBirthdayAsync()
+        //{
+        //    try
+        //    {
+        //        var dateSh = Calendar.MiladiToShamsi(DateTime.Now);
+        //        var day = Calendar.GetDayOfDateSh(dateSh);
+        //        var dayStr = day.ToString();
+        //        if (day < 10) dayStr = $"0{day}";
+        //        var mounth = Calendar.GetMonthOfDateSh(dateSh);
+        //        var mounthStr = mounth.ToString();
+        //        if (mounth < 10) mounthStr = $"0{mounth}";
+        //        var newDate = $"/{mounthStr}/{dayStr}";
+        //        var birthdayList = await PeoplesBussines.GetAllBirthDayAsync(newDate);
+        //        if (birthdayList != null && birthdayList.Count > 0)
+        //        {
+        //            foreach (var item in birthdayList)
+        //            {
+        //                Invoke(new MethodInvoker(() =>
+        //                {
+        //                    var c = new ucCustomerBirthday { People = item, Width = fPanelCustomerBirthDay.Width - 30 };
+        //                    fPanelCustomerBirthDay.Controls.Add(c);
+        //                }));
+        //            }
+        //        }
+        //        else
+        //        {
+        //            Invoke(new MethodInvoker(() =>
+        //            {
+        //                fPanelCustomerBirthDay.Visible = false;
+        //                lblBirthDayNone.Visible = true;
+        //            }));
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        WebErrorLog.ErrorInstence.StartErrorLog(ex);
+        //    }
+        //}
+        //private async Task LoadSarresidAsync()
+        //{
+        //    try
+        //    {
+        //        var list = await ContractBussines.DischargeListAsync();
+        //        if (list != null && list.Count > 0)
+        //        {
+        //            list = list?.OrderBy(q => q.ToDate)?.Take(10)?.ToList();
+        //            foreach (var item in list)
+        //            {
+        //                Invoke(new MethodInvoker(() =>
+        //                {
+        //                    var c = new ucDischargeList() { Model = item, Width = fPanelSarresidEjare.Width - 30 };
+        //                    fPanelSarresidEjare.Controls.Add(c);
+        //                }));
+        //            }
+        //        }
+        //        else
+        //        {
+        //            Invoke(new MethodInvoker(() =>
+        //            {
+        //                fPanelSarresidEjare.Visible = false;
+        //                lblSarresidNone.Visible = true;
+        //            }));
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        WebErrorLog.ErrorInstence.StartErrorLog(ex);
+        //    }
+        //}
+        //private async Task LoadSchemaAsync()
+        //{
+        //    try
+        //    {
+        //        var allBuilding = await BuildingBussines.DbCount(Guid.Empty, 0);
+        //        var myBuilding = await BuildingBussines.DbCount(UserBussines.CurrentUser.Guid, 0);
+        //        var rahn = await BuildingBussines.DbCount(Guid.Empty, 1);
+        //        var foroush = await BuildingBussines.DbCount(Guid.Empty, 2);
+        //        var allReq = await BuildingRequestBussines.DbCount(Guid.Empty);
+        //        var myReq = await BuildingRequestBussines.DbCount(UserBussines.CurrentUser.Guid);
+        //        Invoke(new MethodInvoker(() =>
+        //        {
+        //            lblAllBuilding.Text = allBuilding.ToString();
+        //            lblMyBuilding.Text = myBuilding.ToString();
+        //            lblAllRahn.Text = rahn.ToString();
+        //            lblAllForoosh.Text = foroush.ToString();
+        //            lblAllRequest.Text = allReq.ToString();
+        //            lblMyRequest.Text = myReq.ToString();
+        //        }));
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        WebErrorLog.ErrorInstence.StartErrorLog(ex);
+        //    }
+        //}
+        //private async Task LoadBuildingRegionAsync()
+        //{
+        //    try
+        //    {
+        //        var list = await RegionsBussines.GetAllBuildingReportAsync(new CancellationToken());
+        //        if (list != null && list.Count > 0)
+        //        {
+        //            list = list?.OrderByDescending(q => q.Count)?.Take(10)?.ToList();
+        //            foreach (var item in list)
+        //            {
+        //                Invoke(new MethodInvoker(() =>
+        //                {
+        //                    var c = new ucRegionReport() { Report = item, Width = fPanelBuildingRegion.Width - 30 };
+        //                    fPanelBuildingRegion.Controls.Add(c);
+        //                }));
+        //            }
+        //        }
+        //        else
+        //        {
+        //            Invoke(new MethodInvoker(() =>
+        //            {
+        //                fPanelBuildingRegion.Visible = false;
+        //                lblRegionBuildingNone.Visible = true;
+        //            }));
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        WebErrorLog.ErrorInstence.StartErrorLog(ex);
+        //    }
+        //}
+        //private async Task LoadRequestRegionAsync()
+        //{
+        //    try
+        //    {
+        //        var list = await RegionsBussines.GetAllRequestReportAsync(new CancellationToken());
+        //        if (list != null && list.Count > 0)
+        //        {
+        //            list = list?.OrderByDescending(q => q.Count)?.Take(10)?.ToList();
+        //            foreach (var item in list)
+        //            {
+        //                Invoke(new MethodInvoker(() =>
+        //                {
+        //                    var c = new ucRegionReport() { Report = item, Width = fPanelRequestRegion.Width - 30 };
+        //                    fPanelRequestRegion.Controls.Add(c);
+        //                }));
+        //            }
+        //        }
+        //        else
+        //        {
+        //            Invoke(new MethodInvoker(() =>
+        //            {
+        //                fPanelRequestRegion.Visible = false;
+        //                lblRegionRequestNone.Visible = true;
+        //            }));
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        WebErrorLog.ErrorInstence.StartErrorLog(ex);
+        //    }
+        //}
+        //private async Task LoadMatchAsync()
+        //{
+        //    try
+        //    {
+        //        var list = await BuildingRequestViewModel.GetAllMatchesItemsAsync(new CancellationToken());
+        //        if (list != null && list.Count > 0)
+        //        {
+        //            list = list.OrderByDescending(q => q.RequestCount)?.Take(10)?.ToList();
+        //            foreach (var item in list)
+        //            {
+        //                Invoke(new MethodInvoker(() =>
+        //                {
+        //                    var c = new ucBuildingMatch() { Model = item, Width = fPanelMath.Width - 30 };
+        //                    fPanelMath.Controls.Add(c);
+        //                }));
+        //            }
+        //        }
+        //        else
+        //        {
+        //            Invoke(new MethodInvoker(() =>
+        //            {
+        //                fPanelMath.Visible = false;
+        //                lblMatchNone.Visible = true;
+        //            }));
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        WebErrorLog.ErrorInstence.StartErrorLog(ex);
+        //    }
+        //}
+        //private async Task LoadBuildingHighPriorityAsync()
+        //{
+        //    //try
+        //    //{
+        //    //    var list = await BuildingBussines.GetAllHighPriorityAsync(new CancellationToken());
+        //    //    list = list?.Where(q => q.Priority == EnBuildingPriority.SoHigh && !q.IsArchive)?.Take(10)?.ToList();
+        //    //    if (list != null && list.Count > 0)
+        //    //    {
+        //    //        foreach (var item in list)
+        //    //        {
+        //    //            Invoke(new MethodInvoker(() =>
+        //    //            {
+        //    //                var c = new ucBuildingHighPriority() { Building = item, Width = fPanelPirority.Width - 30 };
+        //    //                fPanelPirority.Controls.Add(c);
+        //    //            }));
+        //    //        }
+        //    //    }
+        //    //    else
+        //    //    {
+        //    //        Invoke(new MethodInvoker(() =>
+        //    //        {
+        //    //            fPanelPirority.Visible = false;
+        //    //            lblBuildingNone.Visible = true;
+        //    //        }));
+        //    //    }
+        //    //}
+        //    //catch (Exception ex)
+        //    //{
+        //    //    WebErrorLog.ErrorInstence.StartErrorLog(ex);
+        //    //}
+        //}
         private async Task ShowTodayNotesAsync()
         {
             try

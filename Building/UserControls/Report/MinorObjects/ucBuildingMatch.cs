@@ -4,7 +4,7 @@ using Building.BuildingMatchesItem;
 using EntityCache.ViewModels;
 using Services;
 
-namespace RealState.UserControls
+namespace Building.UserControls.Report.MinorObjects
 {
     public partial class ucBuildingMatch : UserControl
     {

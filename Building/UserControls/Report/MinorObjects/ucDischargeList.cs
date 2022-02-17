@@ -6,7 +6,7 @@ using EntityCache.ViewModels;
 using Notification;
 using Services;
 
-namespace RealState.UserControls
+namespace Building.UserControls.Report.MinorObjects
 {
     public partial class ucDischargeList : UserControl
     {

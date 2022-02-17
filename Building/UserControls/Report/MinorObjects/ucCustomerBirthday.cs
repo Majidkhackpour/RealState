@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 using EntityCache.Bussines;
 
-namespace RealState.UserControls
+namespace Building.UserControls.Report.MinorObjects
 {
     public partial class ucCustomerBirthday : UserControl
     {

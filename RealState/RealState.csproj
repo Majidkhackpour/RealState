@@ -356,36 +356,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserControls\ucBuildingHighPriority.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\ucBuildingHighPriority.Designer.cs">
-      <DependentUpon>ucBuildingHighPriority.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\ucBuildingMatch.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\ucBuildingMatch.Designer.cs">
-      <DependentUpon>ucBuildingMatch.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\ucCustomerBirthday.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\ucCustomerBirthday.Designer.cs">
-      <DependentUpon>ucCustomerBirthday.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\ucDischargeList.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\ucDischargeList.Designer.cs">
-      <DependentUpon>ucDischargeList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\ucRegionReport.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\ucRegionReport.Designer.cs">
-      <DependentUpon>ucRegionReport.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Advance\frmResentToHost.resx">
       <DependentUpon>frmResentToHost.cs</DependentUpon>
     </EmbeddedResource>
@@ -435,21 +405,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UserControls\ucBuildingHighPriority.resx">
-      <DependentUpon>ucBuildingHighPriority.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\ucBuildingMatch.resx">
-      <DependentUpon>ucBuildingMatch.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\ucCustomerBirthday.resx">
-      <DependentUpon>ucCustomerBirthday.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\ucDischargeList.resx">
-      <DependentUpon>ucDischargeList.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\ucRegionReport.resx">
-      <DependentUpon>ucRegionReport.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\EntityCache.Bussines.BackUpLogBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.CalendarBussines.datasource" />
@@ -1061,6 +1016,7 @@
     <None Include="Resources\ServerStatus_Sent.png" />
     <None Include="Resources\ServerStatus_SendError.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

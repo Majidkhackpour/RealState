@@ -1,5 +1,5 @@
 ﻿
-namespace RealState.UserControls
+namespace Building.UserControls.Report.MinorObjects
 {
     partial class ucRegionReport
     {

@@ -1150,6 +1150,36 @@
     <Compile Include="UserControls\Rahn\UcBuildingRahn_Store.Designer.cs">
       <DependentUpon>UcBuildingRahn_Store.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Report\MinorObjects\ucBuildingHighPriority.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Report\MinorObjects\ucBuildingHighPriority.Designer.cs">
+      <DependentUpon>ucBuildingHighPriority.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Report\MinorObjects\ucBuildingMatch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Report\MinorObjects\ucBuildingMatch.Designer.cs">
+      <DependentUpon>ucBuildingMatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Report\MinorObjects\ucCustomerBirthday.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Report\MinorObjects\ucCustomerBirthday.Designer.cs">
+      <DependentUpon>ucCustomerBirthday.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Report\MinorObjects\ucDischargeList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Report\MinorObjects\ucDischargeList.Designer.cs">
+      <DependentUpon>ucDischargeList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Report\MinorObjects\ucRegionReport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Report\MinorObjects\ucRegionReport.Designer.cs">
+      <DependentUpon>ucRegionReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Sell\UcBuildingSell_Appartment.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1733,6 +1763,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Rahn\UcBuildingRahn_Store.resx">
       <DependentUpon>UcBuildingRahn_Store.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Report\MinorObjects\ucBuildingHighPriority.resx">
+      <DependentUpon>ucBuildingHighPriority.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Report\MinorObjects\ucBuildingMatch.resx">
+      <DependentUpon>ucBuildingMatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Report\MinorObjects\ucCustomerBirthday.resx">
+      <DependentUpon>ucCustomerBirthday.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Report\MinorObjects\ucDischargeList.resx">
+      <DependentUpon>ucDischargeList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Report\MinorObjects\ucRegionReport.resx">
+      <DependentUpon>ucRegionReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Sell\UcBuildingSell_Appartment.resx">
       <DependentUpon>UcBuildingSell_Appartment.cs</DependentUpon>
