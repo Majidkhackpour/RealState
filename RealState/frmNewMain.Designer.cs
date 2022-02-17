@@ -1468,8 +1468,6 @@ namespace RealState
             // 
             // groupPanel2
             // 
-            this.groupPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel2.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel2.Controls.Add(this.label9);
             this.groupPanel2.Controls.Add(this.label8);
@@ -1481,7 +1479,7 @@ namespace RealState
             this.groupPanel2.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel2.Location = new System.Drawing.Point(0, 556);
             this.groupPanel2.Name = "groupPanel2";
-            this.groupPanel2.Size = new System.Drawing.Size(905, 25);
+            this.groupPanel2.Size = new System.Drawing.Size(910, 25);
             // 
             // 
             // 
@@ -1507,7 +1505,7 @@ namespace RealState
             this.label9.Cursor = System.Windows.Forms.Cursors.Default;
             this.label9.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
-            this.label9.Location = new System.Drawing.Point(519, 4);
+            this.label9.Location = new System.Drawing.Point(524, 4);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(53, 17);
             this.label9.TabIndex = 55783;
@@ -1521,7 +1519,7 @@ namespace RealState
             this.label8.Cursor = System.Windows.Forms.Cursors.Default;
             this.label8.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
-            this.label8.Location = new System.Drawing.Point(816, 4);
+            this.label8.Location = new System.Drawing.Point(821, 4);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(90, 17);
             this.label8.TabIndex = 55781;
@@ -1535,7 +1533,7 @@ namespace RealState
             this.label10.Cursor = System.Windows.Forms.Cursors.Default;
             this.label10.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
-            this.label10.Location = new System.Drawing.Point(656, 4);
+            this.label10.Location = new System.Drawing.Point(661, 4);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(70, 17);
             this.label10.TabIndex = 55784;
@@ -1550,7 +1548,7 @@ namespace RealState
             this.lblVersion.Cursor = System.Windows.Forms.Cursors.Default;
             this.lblVersion.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
-            this.lblVersion.Location = new System.Drawing.Point(484, 4);
+            this.lblVersion.Location = new System.Drawing.Point(489, 4);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(29, 20);
             this.lblVersion.TabIndex = 55786;
@@ -1564,7 +1562,7 @@ namespace RealState
             this.lblEconomyName.Cursor = System.Windows.Forms.Cursors.Default;
             this.lblEconomyName.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblEconomyName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
-            this.lblEconomyName.Location = new System.Drawing.Point(727, 4);
+            this.lblEconomyName.Location = new System.Drawing.Point(732, 4);
             this.lblEconomyName.Name = "lblEconomyName";
             this.lblEconomyName.Size = new System.Drawing.Size(90, 17);
             this.lblEconomyName.TabIndex = 55782;
@@ -1578,7 +1576,7 @@ namespace RealState
             this.lblDbName.Cursor = System.Windows.Forms.Cursors.Default;
             this.lblDbName.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblDbName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
-            this.lblDbName.Location = new System.Drawing.Point(571, 4);
+            this.lblDbName.Location = new System.Drawing.Point(576, 4);
             this.lblDbName.Name = "lblDbName";
             this.lblDbName.Size = new System.Drawing.Size(88, 17);
             this.lblDbName.TabIndex = 55785;
