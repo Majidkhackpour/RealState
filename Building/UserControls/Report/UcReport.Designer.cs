@@ -92,7 +92,7 @@ namespace Building.UserControls.Report
             // 
             this.splitContainer1.Panel2.Controls.Add(this.ucShowMatcheItems1);
             this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.splitContainer1.Size = new System.Drawing.Size(912, 232);
+            this.splitContainer1.Size = new System.Drawing.Size(912, 192);
             this.splitContainer1.SplitterDistance = 380;
             this.splitContainer1.TabIndex = 3;
             // 
@@ -105,7 +105,7 @@ namespace Building.UserControls.Report
             this.ucShowMatcheItems1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucShowMatcheItems1.Name = "ucShowMatcheItems1";
             this.ucShowMatcheItems1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucShowMatcheItems1.Size = new System.Drawing.Size(528, 232);
+            this.ucShowMatcheItems1.Size = new System.Drawing.Size(528, 192);
             this.ucShowMatcheItems1.TabIndex = 0;
             // 
             // ucShowHighPriority1
@@ -115,11 +115,11 @@ namespace Building.UserControls.Report
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ucShowHighPriority1.BackColor = System.Drawing.Color.Transparent;
             this.ucShowHighPriority1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucShowHighPriority1.Location = new System.Drawing.Point(4, 470);
+            this.ucShowHighPriority1.Location = new System.Drawing.Point(4, 434);
             this.ucShowHighPriority1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucShowHighPriority1.Name = "ucShowHighPriority1";
             this.ucShowHighPriority1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucShowHighPriority1.Size = new System.Drawing.Size(912, 142);
+            this.ucShowHighPriority1.Size = new System.Drawing.Size(912, 178);
             this.ucShowHighPriority1.TabIndex = 4;
             // 
             // UcReport

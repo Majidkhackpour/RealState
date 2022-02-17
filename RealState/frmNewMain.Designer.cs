@@ -114,9 +114,9 @@ namespace RealState
             this.lblEconomyName = new System.Windows.Forms.Label();
             this.lblDbName = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ucReport1 = new Building.UserControls.Report.UcReport();
             this.timerSecond = new System.Windows.Forms.Timer(this.components);
             this.timerCheckInternet = new System.Windows.Forms.Timer(this.components);
-            this.ucReport1 = new Building.UserControls.Report.UcReport();
             this.pnlOk.SuspendLayout();
             this.groupPanel1.SuspendLayout();
             this.pnlInfo.SuspendLayout();
@@ -168,6 +168,7 @@ namespace RealState
             // 
             this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitle.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblTitle.Font = new System.Drawing.Font("B Titr", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
             this.lblTitle.Location = new System.Drawing.Point(657, -1);
@@ -1598,18 +1599,6 @@ namespace RealState
             this.panel1.Size = new System.Drawing.Size(628, 512);
             this.panel1.TabIndex = 55720;
             // 
-            // timerSecond
-            // 
-            this.timerSecond.Enabled = true;
-            this.timerSecond.Interval = 1000;
-            this.timerSecond.Tick += new System.EventHandler(this.timerSecond_Tick);
-            // 
-            // timerCheckInternet
-            // 
-            this.timerCheckInternet.Enabled = true;
-            this.timerCheckInternet.Interval = 60000;
-            this.timerCheckInternet.Tick += new System.EventHandler(this.timerCheckInternet_Tick);
-            // 
             // ucReport1
             // 
             this.ucReport1.BackColor = System.Drawing.Color.Transparent;
@@ -1621,6 +1610,18 @@ namespace RealState
             this.ucReport1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucReport1.Size = new System.Drawing.Size(628, 512);
             this.ucReport1.TabIndex = 0;
+            // 
+            // timerSecond
+            // 
+            this.timerSecond.Enabled = true;
+            this.timerSecond.Interval = 1000;
+            this.timerSecond.Tick += new System.EventHandler(this.timerSecond_Tick);
+            // 
+            // timerCheckInternet
+            // 
+            this.timerCheckInternet.Enabled = true;
+            this.timerCheckInternet.Interval = 60000;
+            this.timerCheckInternet.Tick += new System.EventHandler(this.timerCheckInternet_Tick);
             // 
             // frmNewMain
             // 
