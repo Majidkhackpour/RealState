@@ -1210,6 +1210,12 @@
     <Compile Include="UserControls\Report\MinorObjects\ucRegionReport.Designer.cs">
       <DependentUpon>ucRegionReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Report\UcReport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Report\UcReport.Designer.cs">
+      <DependentUpon>UcReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Sell\UcBuildingSell_Appartment.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1823,6 +1829,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Report\MinorObjects\ucRegionReport.resx">
       <DependentUpon>ucRegionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Report\UcReport.resx">
+      <DependentUpon>UcReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Sell\UcBuildingSell_Appartment.resx">
       <DependentUpon>UcBuildingSell_Appartment.cs</DependentUpon>
