@@ -27,7 +27,6 @@ namespace RealState
 
             txtSetter.Switch_Language_To_Persian();
 
-            new frmSplashCircle().ShowDialog();
             var client = clsRegistery.GetRegistery("X1001MR");
             Cache.IsClient = !string.IsNullOrEmpty(client) && client.ParseToBoolean();
             var res = frmLoginMain.Instance.Load_();

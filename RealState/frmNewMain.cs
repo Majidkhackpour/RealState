@@ -219,10 +219,6 @@ namespace RealState
                 PeoplesBussines.OnSaved += PeoplesBussines_OnSaved;
                 BuildingBussines.OnSaved += BuildingBussines_OnSaved;
                 BuildingRequestBussines.OnSaved += BuildingRequestBussines_OnSaved;
-                if (Cache.IsClient || !VersionAccess.Advertise) return;
-                DivarFiles.OnSavedStarted += DivarFilesOnOnSavedStarted;
-                DivarFiles.OnSavedFinished += DivarFilesOnOnSavedFinished;
-                DivarFiles.OnDataRecieved += DivarFilesOnOnDataRecieved;
             }
             catch (Exception ex)
             {
@@ -230,59 +226,8 @@ namespace RealState
             }
         }
 
-        private async Task DivarFilesOnOnDataRecieved(int count)
-        {
-            try
-            {
-                Invoke(new MethodInvoker(() => lblDivar.Text = $"درحال دریافت فایل از سرور ... ({count})"));
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async Task DivarFilesOnOnSavedFinished(int count)
-        {
-            try
-            {
-                if (WebCustomer.CheckCustomer())
-                {
-                    var msg = "اتمام دریافت فایل از سرور \r\n" +
-                              $"تعداد فایل ذخیره شده: {count}";
-                    _ = Task.Run(() => WebTelegramReporter.SendBuildingReport(WebCustomer.Customer.Guid, msg));
-                }
-                Invoke(new MethodInvoker(() => lblDivar.Text = "اتمام دریافت فایل از سرور ..."));
-                await Task.Delay(10 * 6000);
-                Invoke(new MethodInvoker(() =>
-                {
-                    lblDivar.Text = "";
-                    lblDivar.Visible = false;
-                }));
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async Task DivarFilesOnOnSavedStarted(int count)
-        {
-            try
-            {
-                if (WebCustomer.CheckCustomer())
-                {
-                    var msg = "آغاز دریافت فایل از سرور \r\n" +
-                              $"تعداد فایل دریافت شده: {count}";
-                    _ = Task.Run(() => WebTelegramReporter.SendBuildingReport(WebCustomer.Customer.Guid, msg));
-                }
-                Invoke(new MethodInvoker(() => lblDivar.Text = "درحال دریافت فایل از سرور ..."));
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
         private Task BuildingRequestBussines_OnSaved() => _ = Task.Run(LoadDashboard);
-        private async Task BuildingBussines_OnSaved()
+        private Task BuildingBussines_OnSaved()
         {
             try
             {
@@ -293,6 +238,7 @@ namespace RealState
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+            return Task.CompletedTask;
         }
         private Task PeoplesBussines_OnSaved() => _ = Task.Run(LoadDashboard);
         private void lblBaseInfo_Click(object sender, System.EventArgs e) => grpBaseInfo.Height = grpBaseInfo.Height == 48 ? 570 : 48;
@@ -350,7 +296,6 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void picInfo_Click(object sender, EventArgs e) => pnlInfo.Visible = !pnlInfo.Visible;
         private void lblExit_MouseEnter(object sender, EventArgs e) => lblExit.ForeColor = Color.Red;
         private void lblExit_MouseLeave(object sender, EventArgs e) => lblExit.ForeColor = foreColor;
         private async void lblExit_Click(object sender, EventArgs e)
@@ -964,5 +909,6 @@ namespace RealState
             }
             return Task.CompletedTask;
         }
+        private void lblTitle_Click(object sender, EventArgs e) => pnlInfo.Visible = !pnlInfo.Visible;
     }
 }

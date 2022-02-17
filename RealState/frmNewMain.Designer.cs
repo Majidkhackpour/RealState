@@ -34,10 +34,13 @@ namespace RealState
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNewMain));
             this.pnlOk = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.picInfo = new System.Windows.Forms.PictureBox();
-            this.lblUserName = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.lblUserName = new System.Windows.Forms.Label();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.pnlInfo = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.lblExit = new System.Windows.Forms.Label();
+            this.lblInternet = new System.Windows.Forms.Label();
+            this.lblSerial = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.grpBaseInfo = new System.Windows.Forms.FlowLayoutPanel();
             this.groupPanel3 = new DevComponents.DotNetBar.Controls.GroupPanel();
@@ -111,15 +114,11 @@ namespace RealState
             this.lblEconomyName = new System.Windows.Forms.Label();
             this.lblDbName = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pnlInfo = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.lblExit = new System.Windows.Forms.Label();
-            this.lblInternet = new System.Windows.Forms.Label();
-            this.lblSerial = new System.Windows.Forms.Label();
             this.timerSecond = new System.Windows.Forms.Timer(this.components);
             this.timerCheckInternet = new System.Windows.Forms.Timer(this.components);
             this.pnlOk.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picInfo)).BeginInit();
             this.groupPanel1.SuspendLayout();
+            this.pnlInfo.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.grpBaseInfo.SuspendLayout();
             this.groupPanel3.SuspendLayout();
@@ -132,8 +131,6 @@ namespace RealState
             this.grpAccounting.SuspendLayout();
             this.groupPanel7.SuspendLayout();
             this.groupPanel2.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.pnlInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlOk
@@ -141,8 +138,6 @@ namespace RealState
             this.pnlOk.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlOk.CanvasColor = System.Drawing.Color.Transparent;
-            this.pnlOk.Controls.Add(this.picInfo);
-            this.pnlOk.Controls.Add(this.lblUserName);
             this.pnlOk.Controls.Add(this.lblTitle);
             this.pnlOk.Cursor = System.Windows.Forms.Cursors.Default;
             this.pnlOk.DisabledBackColor = System.Drawing.Color.Empty;
@@ -167,31 +162,6 @@ namespace RealState
             this.pnlOk.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.pnlOk.TabIndex = 55714;
             // 
-            // picInfo
-            // 
-            this.picInfo.BackColor = System.Drawing.Color.Transparent;
-            this.picInfo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picInfo.Image = global::RealState.Properties.Resources.help_button;
-            this.picInfo.Location = new System.Drawing.Point(3, 7);
-            this.picInfo.Name = "picInfo";
-            this.picInfo.Size = new System.Drawing.Size(22, 23);
-            this.picInfo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picInfo.TabIndex = 55730;
-            this.picInfo.TabStop = false;
-            this.picInfo.Click += new System.EventHandler(this.picInfo_Click);
-            // 
-            // lblUserName
-            // 
-            this.lblUserName.BackColor = System.Drawing.Color.Transparent;
-            this.lblUserName.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblUserName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
-            this.lblUserName.Location = new System.Drawing.Point(45, 10);
-            this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(204, 20);
-            this.lblUserName.TabIndex = 55728;
-            this.lblUserName.Text = "محمد حسین خاکپور نورمحمد";
-            this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // lblTitle
             // 
             this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -204,12 +174,26 @@ namespace RealState
             this.lblTitle.TabIndex = 55728;
             this.lblTitle.Text = "نرم افزار جامع مدیریت املاک آراد";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTitle.Click += new System.EventHandler(this.lblTitle_Click);
+            // 
+            // lblUserName
+            // 
+            this.lblUserName.BackColor = System.Drawing.Color.Transparent;
+            this.lblUserName.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblUserName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
+            this.lblUserName.Location = new System.Drawing.Point(28, 8);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.Size = new System.Drawing.Size(242, 20);
+            this.lblUserName.TabIndex = 55728;
+            this.lblUserName.Text = "محمد حسین خاکپور نورمحمد";
+            this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // groupPanel1
             // 
             this.groupPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel1.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel1.Controls.Add(this.pnlInfo);
             this.groupPanel1.Controls.Add(this.flowLayoutPanel1);
             this.groupPanel1.Controls.Add(this.lblDivar);
             this.groupPanel1.Controls.Add(this.lblSecond);
@@ -243,8 +227,86 @@ namespace RealState
             this.groupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel1.TabIndex = 55715;
             // 
+            // pnlInfo
+            // 
+            this.pnlInfo.CanvasColor = System.Drawing.Color.Transparent;
+            this.pnlInfo.Controls.Add(this.lblExit);
+            this.pnlInfo.Controls.Add(this.lblUserName);
+            this.pnlInfo.Controls.Add(this.lblInternet);
+            this.pnlInfo.Controls.Add(this.lblSerial);
+            this.pnlInfo.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pnlInfo.DisabledBackColor = System.Drawing.Color.Empty;
+            this.pnlInfo.Location = new System.Drawing.Point(3, 0);
+            this.pnlInfo.Name = "pnlInfo";
+            this.pnlInfo.Size = new System.Drawing.Size(278, 110);
+            // 
+            // 
+            // 
+            this.pnlInfo.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.pnlInfo.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.pnlInfo.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.pnlInfo.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.pnlInfo.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
+            this.pnlInfo.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.pnlInfo.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.pnlInfo.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.pnlInfo.Style.CornerDiameter = 15;
+            this.pnlInfo.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            // 
+            // 
+            // 
+            this.pnlInfo.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.pnlInfo.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.pnlInfo.TabIndex = 55720;
+            // 
+            // lblExit
+            // 
+            this.lblExit.AutoSize = true;
+            this.lblExit.BackColor = System.Drawing.Color.Transparent;
+            this.lblExit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblExit.Font = new System.Drawing.Font("B Yekan", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
+            this.lblExit.Location = new System.Drawing.Point(116, 78);
+            this.lblExit.Name = "lblExit";
+            this.lblExit.Size = new System.Drawing.Size(49, 29);
+            this.lblExit.TabIndex = 55729;
+            this.lblExit.Text = "خروج";
+            this.lblExit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblExit.Click += new System.EventHandler(this.lblExit_Click);
+            this.lblExit.MouseEnter += new System.EventHandler(this.lblExit_MouseEnter);
+            this.lblExit.MouseLeave += new System.EventHandler(this.lblExit_MouseLeave);
+            // 
+            // lblInternet
+            // 
+            this.lblInternet.BackColor = System.Drawing.Color.Transparent;
+            this.lblInternet.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblInternet.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
+            this.lblInternet.Location = new System.Drawing.Point(1, 30);
+            this.lblInternet.Name = "lblInternet";
+            this.lblInternet.Size = new System.Drawing.Size(269, 20);
+            this.lblInternet.TabIndex = 55729;
+            this.lblInternet.Text = "وضعیت اتصال سیستم به اینترنت: عدم اتصال";
+            this.lblInternet.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblSerial
+            // 
+            this.lblSerial.BackColor = System.Drawing.Color.Transparent;
+            this.lblSerial.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblSerial.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
+            this.lblSerial.Location = new System.Drawing.Point(1, 51);
+            this.lblSerial.Name = "lblSerial";
+            this.lblSerial.Size = new System.Drawing.Size(269, 20);
+            this.lblSerial.TabIndex = 55729;
+            this.lblSerial.Text = "سذیال نرم افزار: 2222222222222222222222";
+            this.lblSerial.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(253)))));
             this.flowLayoutPanel1.Controls.Add(this.grpBaseInfo);
@@ -255,7 +317,7 @@ namespace RealState
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 67);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(276, 465);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(276, 446);
             this.flowLayoutPanel1.TabIndex = 55717;
             this.flowLayoutPanel1.WrapContents = false;
             // 
@@ -1419,7 +1481,7 @@ namespace RealState
             this.groupPanel2.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel2.Location = new System.Drawing.Point(0, 556);
             this.groupPanel2.Name = "groupPanel2";
-            this.groupPanel2.Size = new System.Drawing.Size(632, 25);
+            this.groupPanel2.Size = new System.Drawing.Size(905, 25);
             // 
             // 
             // 
@@ -1445,7 +1507,7 @@ namespace RealState
             this.label9.Cursor = System.Windows.Forms.Cursors.Default;
             this.label9.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
-            this.label9.Location = new System.Drawing.Point(246, 4);
+            this.label9.Location = new System.Drawing.Point(519, 4);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(53, 17);
             this.label9.TabIndex = 55783;
@@ -1459,7 +1521,7 @@ namespace RealState
             this.label8.Cursor = System.Windows.Forms.Cursors.Default;
             this.label8.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
-            this.label8.Location = new System.Drawing.Point(543, 4);
+            this.label8.Location = new System.Drawing.Point(816, 4);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(90, 17);
             this.label8.TabIndex = 55781;
@@ -1473,7 +1535,7 @@ namespace RealState
             this.label10.Cursor = System.Windows.Forms.Cursors.Default;
             this.label10.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
-            this.label10.Location = new System.Drawing.Point(383, 4);
+            this.label10.Location = new System.Drawing.Point(656, 4);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(70, 17);
             this.label10.TabIndex = 55784;
@@ -1488,7 +1550,7 @@ namespace RealState
             this.lblVersion.Cursor = System.Windows.Forms.Cursors.Default;
             this.lblVersion.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
-            this.lblVersion.Location = new System.Drawing.Point(211, 4);
+            this.lblVersion.Location = new System.Drawing.Point(484, 4);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(29, 20);
             this.lblVersion.TabIndex = 55786;
@@ -1502,7 +1564,7 @@ namespace RealState
             this.lblEconomyName.Cursor = System.Windows.Forms.Cursors.Default;
             this.lblEconomyName.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblEconomyName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
-            this.lblEconomyName.Location = new System.Drawing.Point(454, 4);
+            this.lblEconomyName.Location = new System.Drawing.Point(727, 4);
             this.lblEconomyName.Name = "lblEconomyName";
             this.lblEconomyName.Size = new System.Drawing.Size(90, 17);
             this.lblEconomyName.TabIndex = 55782;
@@ -1516,7 +1578,7 @@ namespace RealState
             this.lblDbName.Cursor = System.Windows.Forms.Cursors.Default;
             this.lblDbName.Font = new System.Drawing.Font("B Titr", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblDbName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
-            this.lblDbName.Location = new System.Drawing.Point(298, 4);
+            this.lblDbName.Location = new System.Drawing.Point(571, 4);
             this.lblDbName.Name = "lblDbName";
             this.lblDbName.Size = new System.Drawing.Size(88, 17);
             this.lblDbName.TabIndex = 55785;
@@ -1530,86 +1592,10 @@ namespace RealState
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Controls.Add(this.pnlInfo);
             this.panel1.Location = new System.Drawing.Point(1, 40);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(628, 512);
             this.panel1.TabIndex = 55720;
-            // 
-            // pnlInfo
-            // 
-            this.pnlInfo.CanvasColor = System.Drawing.Color.Transparent;
-            this.pnlInfo.Controls.Add(this.lblExit);
-            this.pnlInfo.Controls.Add(this.lblInternet);
-            this.pnlInfo.Controls.Add(this.lblSerial);
-            this.pnlInfo.Cursor = System.Windows.Forms.Cursors.Default;
-            this.pnlInfo.DisabledBackColor = System.Drawing.Color.Empty;
-            this.pnlInfo.Location = new System.Drawing.Point(1, 1);
-            this.pnlInfo.Name = "pnlInfo";
-            this.pnlInfo.Size = new System.Drawing.Size(278, 94);
-            // 
-            // 
-            // 
-            this.pnlInfo.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.pnlInfo.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.pnlInfo.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.pnlInfo.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.pnlInfo.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(81)))), ((int)(((byte)(219)))));
-            this.pnlInfo.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.pnlInfo.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.pnlInfo.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.pnlInfo.Style.CornerDiameter = 15;
-            this.pnlInfo.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            // 
-            // 
-            // 
-            this.pnlInfo.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.pnlInfo.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.pnlInfo.TabIndex = 55720;
-            // 
-            // lblExit
-            // 
-            this.lblExit.AutoSize = true;
-            this.lblExit.BackColor = System.Drawing.Color.Transparent;
-            this.lblExit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblExit.Font = new System.Drawing.Font("B Yekan", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
-            this.lblExit.Location = new System.Drawing.Point(111, 57);
-            this.lblExit.Name = "lblExit";
-            this.lblExit.Size = new System.Drawing.Size(49, 29);
-            this.lblExit.TabIndex = 55729;
-            this.lblExit.Text = "خروج";
-            this.lblExit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblExit.Click += new System.EventHandler(this.lblExit_Click);
-            this.lblExit.MouseEnter += new System.EventHandler(this.lblExit_MouseEnter);
-            this.lblExit.MouseLeave += new System.EventHandler(this.lblExit_MouseLeave);
-            // 
-            // lblInternet
-            // 
-            this.lblInternet.BackColor = System.Drawing.Color.Transparent;
-            this.lblInternet.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblInternet.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
-            this.lblInternet.Location = new System.Drawing.Point(-4, 9);
-            this.lblInternet.Name = "lblInternet";
-            this.lblInternet.Size = new System.Drawing.Size(269, 20);
-            this.lblInternet.TabIndex = 55729;
-            this.lblInternet.Text = "وضعیت اتصال سیستم به اینترنت: عدم اتصال";
-            this.lblInternet.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblSerial
-            // 
-            this.lblSerial.BackColor = System.Drawing.Color.Transparent;
-            this.lblSerial.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblSerial.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
-            this.lblSerial.Location = new System.Drawing.Point(-4, 30);
-            this.lblSerial.Name = "lblSerial";
-            this.lblSerial.Size = new System.Drawing.Size(269, 20);
-            this.lblSerial.TabIndex = 55729;
-            this.lblSerial.Text = "سذیال نرم افزار: 2222222222222222222222";
-            this.lblSerial.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // timerSecond
             // 
@@ -1646,9 +1632,10 @@ namespace RealState
             this.Load += new System.EventHandler(this.frmNewMain_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmNewMain_KeyDown);
             this.pnlOk.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picInfo)).EndInit();
             this.groupPanel1.ResumeLayout(false);
             this.groupPanel1.PerformLayout();
+            this.pnlInfo.ResumeLayout(false);
+            this.pnlInfo.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.grpBaseInfo.ResumeLayout(false);
             this.groupPanel3.ResumeLayout(false);
@@ -1662,9 +1649,6 @@ namespace RealState
             this.groupPanel7.ResumeLayout(false);
             this.groupPanel2.ResumeLayout(false);
             this.groupPanel2.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.pnlInfo.ResumeLayout(false);
-            this.pnlInfo.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1704,7 +1688,6 @@ namespace RealState
         private FlowLayoutPanel grpOptions;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Timer timerSecond;
-        private System.Windows.Forms.PictureBox picInfo;
         private DevComponents.DotNetBar.Controls.GroupPanel pnlInfo;
         private System.Windows.Forms.Label lblExit;
         private System.Windows.Forms.Label lblSerial;
