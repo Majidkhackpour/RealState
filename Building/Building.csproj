@@ -535,12 +535,6 @@
     <Compile Include="Buildings\frmBuilding.Designer.cs">
       <DependentUpon>frmBuilding.cs</DependentUpon>
     </Compile>
-    <Compile Include="Buildings\frmBuildingSimilar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Buildings\frmBuildingSimilar.Designer.cs">
-      <DependentUpon>frmBuildingSimilar.cs</DependentUpon>
-    </Compile>
     <Compile Include="Buildings\frmBuildingTelegramText.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -580,7 +574,6 @@
     <Compile Include="clsBuildingColtrols.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="clsBuildingSimilar.cs" />
     <Compile Include="clsBuildingValidator.cs" />
     <Compile Include="clsTelegramManager.cs" />
     <Compile Include="Contract\CalculateCommition.cs" />
@@ -1324,12 +1317,6 @@
     <Compile Include="UserControls\UcBuildingOptions.Designer.cs">
       <DependentUpon>UcBuildingOptions.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ucBuildingSimilar.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\ucBuildingSimilar.Designer.cs">
-      <DependentUpon>ucBuildingSimilar.cs</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\UcBuildingType.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1500,9 +1487,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Buildings\frmBuilding.resx">
       <DependentUpon>frmBuilding.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Buildings\frmBuildingSimilar.resx">
-      <DependentUpon>frmBuildingSimilar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Buildings\frmBuildingTelegramText.resx">
       <DependentUpon>frmBuildingTelegramText.cs</DependentUpon>
@@ -1892,9 +1876,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcBuildingOptions.resx">
       <DependentUpon>UcBuildingOptions.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\ucBuildingSimilar.resx">
-      <DependentUpon>ucBuildingSimilar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcBuildingType.resx">
       <DependentUpon>UcBuildingType.cs</DependentUpon>
