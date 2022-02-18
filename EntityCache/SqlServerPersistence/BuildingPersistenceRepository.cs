@@ -390,6 +390,27 @@ namespace EntityCache.SqlServerPersistence
 
             return list;
         }
+        public async Task<List<Guid>> GetBuildingGuidListAsync(string connectionString)
+        {
+            var list = new List<Guid>();
+            try
+            {
+                using (var cn = new SqlConnection(connectionString))
+                {
+                    var cmd = new SqlCommand("sp_GetBuildingsGuid", cn) { CommandType = CommandType.StoredProcedure };
+                    await cn.OpenAsync();
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read()) list.Add((Guid)dr["Guid"]);
+                    dr.Close();
+                    cn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+            return list;
+        }
         public async Task<ReturnedSaveFuncInfo> SetArchiveAsync(string connectionString, DateTime date)
         {
             var res = new ReturnedSaveFuncInfo();
@@ -524,6 +545,7 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@isSell", filter.IsSell);
                     cmd.Parameters.AddWithValue("@isPishForoush", filter.IsPishForoush);
                     cmd.Parameters.AddWithValue("@isMosharekat", filter.IsMosharekat);
+                    cmd.Parameters.AddWithValue("@priority", filter.Priority);
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();
@@ -794,6 +816,8 @@ namespace EntityCache.SqlServerPersistence
                 if (dr["ZoncanName"] != DBNull.Value) res.ZoncanName = dr["ZoncanName"].ToString();
                 if (dr["WindowName"] != DBNull.Value) res.WindowName = dr["WindowName"].ToString();
                 if (dr["ServerStatus"] != DBNull.Value) res.ServerStatus = (ServerStatus)dr["ServerStatus"];
+                if (dr["BuildingAccountTypeGuid"] != DBNull.Value) res.BuildingAccountTypeGuid = (Guid)dr["BuildingAccountTypeGuid"];
+                if (dr["OwnerGuid"] != DBNull.Value) res.OwnerGuid = (Guid)dr["OwnerGuid"];
             }
             catch (Exception ex)
             {

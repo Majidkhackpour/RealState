@@ -1,4 +1,10 @@
-﻿using System;
+﻿using Building.Buildings;
+using EntityCache.Bussines;
+using MetroFramework.Forms;
+using Peoples;
+using Services;
+using Services.FilterObjects;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -6,14 +12,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
-using Building.Buildings;
-using EntityCache.Bussines;
-using EntityCache.ViewModels;
-using MetroFramework.Forms;
-using Peoples;
-using Services;
-using Services.FilterObjects;
-using Settings.Classes;
 
 namespace Building.BuildingRequest
 {
@@ -77,7 +75,7 @@ namespace Building.BuildingRequest
                     cmbBuildingType.SelectedIndex = 0;
                     cmbBuildingCondition.SelectedIndex = 0;
                     cmbBuildingAccountType.SelectedIndex = 0;
-                    if (SettingsBussines.Setting.CompanyInfo.EconomyState==Guid.Empty)
+                    if (SettingsBussines.Setting.CompanyInfo.EconomyState == Guid.Empty)
                         cmbState.SelectedIndex = 0;
                     else
                         cmbState.SelectedValue = SettingsBussines.Setting.CompanyInfo.EconomyState;
@@ -346,7 +344,7 @@ namespace Building.BuildingRequest
                 var list = await CitiesBussines.GetAllAsync((Guid)cmbState.SelectedValue, _token.Token);
                 CityBindingSource.DataSource = list?.Where(q => q.Status).OrderBy(q => q.Name).ToList();
                 if (cls.Guid != Guid.Empty) cmbCity.SelectedValue = cls.CityGuid;
-                else if (SettingsBussines.Setting.CompanyInfo.EconomyCity!=Guid.Empty)
+                else if (SettingsBussines.Setting.CompanyInfo.EconomyCity != Guid.Empty)
                     cmbCity.SelectedValue = SettingsBussines.Setting.CompanyInfo.EconomyCity;
 
                 SetRelatedRegions();
@@ -379,7 +377,7 @@ namespace Building.BuildingRequest
             {
                 var frm = new frmShowPeoples(true);
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
-                asker =await PeoplesBussines.GetAsync(frm.SelectedGuid, null);
+                asker = await PeoplesBussines.GetAsync(frm.SelectedGuid, null);
                 LoadAsker();
             }
             catch (Exception ex)

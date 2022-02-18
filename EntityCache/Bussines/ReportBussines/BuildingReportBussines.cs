@@ -18,6 +18,7 @@ namespace EntityCache.Bussines.ReportBussines
         public DateTime CreateDate { get; set; }
         public string DateSh => Calendar.MiladiToShamsi(CreateDate);
         public string Code { get; set; }
+        public Guid OwnerGuid { get; set; }
         public string OwnerName { get; set; }
         public string UserName { get; set; }
         public decimal SellPrice { get; set; }
@@ -32,6 +33,7 @@ namespace EntityCache.Bussines.ReportBussines
         public string Address { get; set; }
         public string BuildingConditionName { get; set; }
         public string BuildingTypeName { get; set; }
+        public Guid? BuildingAccountTypeGuid { get; set; } = null;
         public string BuildingAccountTypeName { get; set; }
         public string BuildingViewName { get; set; }
         public string FloorCoverName { get; set; }

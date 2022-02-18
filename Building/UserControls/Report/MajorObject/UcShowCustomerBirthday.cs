@@ -27,6 +27,8 @@ namespace Building.UserControls.Report.MajorObject
                 {
                     BeginInvoke(new MethodInvoker(() =>
                     {
+                        fPanelCustomerBirthDay.Visible = true;
+                        lblBirthDayNone.Visible = false;
                         fPanelCustomerBirthDay.Controls?.Clear();
                         foreach (var item in birthdayList)
                         {

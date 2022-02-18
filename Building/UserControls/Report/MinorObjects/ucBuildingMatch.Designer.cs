@@ -29,24 +29,25 @@ namespace Building.UserControls.Report.MinorObjects
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupPanel67 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.lblOwner = new System.Windows.Forms.Label();
             this.groupPanel68 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.lblCount = new System.Windows.Forms.Label();
-            this.lblEjare = new System.Windows.Forms.Label();
-            this.lblRahn = new System.Windows.Forms.Label();
-            this.lblSell = new System.Windows.Forms.Label();
             this.lblCode = new System.Windows.Forms.Label();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuEditMode = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuViewMode = new System.Windows.Forms.ToolStripMenuItem();
             this.groupPanel67.SuspendLayout();
             this.groupPanel68.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupPanel67
             // 
             this.groupPanel67.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel67.Controls.Add(this.lblOwner);
             this.groupPanel67.Controls.Add(this.groupPanel68);
-            this.groupPanel67.Controls.Add(this.lblEjare);
-            this.groupPanel67.Controls.Add(this.lblRahn);
-            this.groupPanel67.Controls.Add(this.lblSell);
             this.groupPanel67.Controls.Add(this.lblCode);
             this.groupPanel67.Cursor = System.Windows.Forms.Cursors.Default;
             this.groupPanel67.DisabledBackColor = System.Drawing.Color.Empty;
@@ -77,6 +78,21 @@ namespace Building.UserControls.Report.MinorObjects
             // 
             this.groupPanel67.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel67.TabIndex = 55728;
+            // 
+            // lblOwner
+            // 
+            this.lblOwner.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblOwner.BackColor = System.Drawing.Color.Transparent;
+            this.lblOwner.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblOwner.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblOwner.ForeColor = System.Drawing.Color.White;
+            this.lblOwner.Location = new System.Drawing.Point(59, 0);
+            this.lblOwner.Name = "lblOwner";
+            this.lblOwner.Size = new System.Drawing.Size(316, 34);
+            this.lblOwner.TabIndex = 55722;
+            this.lblOwner.Text = "مالک:";
+            this.lblOwner.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblOwner.Click += new System.EventHandler(this.lblOwner_Click);
             // 
             // groupPanel68
             // 
@@ -124,57 +140,45 @@ namespace Building.UserControls.Report.MinorObjects
             this.lblCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblCount.Click += new System.EventHandler(this.lblCount_Click);
             // 
-            // lblEjare
-            // 
-            this.lblEjare.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblEjare.BackColor = System.Drawing.Color.Transparent;
-            this.lblEjare.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblEjare.ForeColor = System.Drawing.Color.White;
-            this.lblEjare.Location = new System.Drawing.Point(50, 9);
-            this.lblEjare.Name = "lblEjare";
-            this.lblEjare.Size = new System.Drawing.Size(102, 17);
-            this.lblEjare.TabIndex = 0;
-            this.lblEjare.Text = "اجاره:1.000.000.000";
-            this.lblEjare.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblRahn
-            // 
-            this.lblRahn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblRahn.BackColor = System.Drawing.Color.Transparent;
-            this.lblRahn.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblRahn.ForeColor = System.Drawing.Color.White;
-            this.lblRahn.Location = new System.Drawing.Point(149, 9);
-            this.lblRahn.Name = "lblRahn";
-            this.lblRahn.Size = new System.Drawing.Size(112, 17);
-            this.lblRahn.TabIndex = 0;
-            this.lblRahn.Text = "رهن: 1.000.000.000";
-            this.lblRahn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblSell
-            // 
-            this.lblSell.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblSell.BackColor = System.Drawing.Color.Transparent;
-            this.lblSell.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblSell.ForeColor = System.Drawing.Color.White;
-            this.lblSell.Location = new System.Drawing.Point(263, 9);
-            this.lblSell.Name = "lblSell";
-            this.lblSell.Size = new System.Drawing.Size(137, 17);
-            this.lblSell.TabIndex = 0;
-            this.lblSell.Text = "فروش: 1.000.000.000.000";
-            this.lblSell.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // lblCode
             // 
             this.lblCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCode.BackColor = System.Drawing.Color.Transparent;
+            this.lblCode.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblCode.Font = new System.Drawing.Font("B Yekan", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblCode.ForeColor = System.Drawing.Color.White;
-            this.lblCode.Location = new System.Drawing.Point(401, 8);
+            this.lblCode.Location = new System.Drawing.Point(381, 0);
             this.lblCode.Name = "lblCode";
-            this.lblCode.Size = new System.Drawing.Size(80, 18);
+            this.lblCode.Size = new System.Drawing.Size(100, 34);
             this.lblCode.TabIndex = 0;
-            this.lblCode.Text = "کد :1200";
+            this.lblCode.Text = "کد ملک:";
             this.lblCode.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblCode.Click += new System.EventHandler(this.lblCode_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuEditMode,
+            this.mnuViewMode});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.contextMenuStrip1.Size = new System.Drawing.Size(172, 52);
+            // 
+            // mnuEditMode
+            // 
+            this.mnuEditMode.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.mnuEditMode.Name = "mnuEditMode";
+            this.mnuEditMode.Size = new System.Drawing.Size(171, 24);
+            this.mnuEditMode.Text = "حالت ویرایش";
+            this.mnuEditMode.Click += new System.EventHandler(this.mnuEditMode_Click);
+            // 
+            // mnuViewMode
+            // 
+            this.mnuViewMode.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.mnuViewMode.Name = "mnuViewMode";
+            this.mnuViewMode.Size = new System.Drawing.Size(171, 24);
+            this.mnuViewMode.Text = "مشاهده ریز اطلاعات";
+            this.mnuViewMode.Click += new System.EventHandler(this.mnuViewMode_Click);
             // 
             // ucBuildingMatch
             // 
@@ -189,6 +193,7 @@ namespace Building.UserControls.Report.MinorObjects
             this.Size = new System.Drawing.Size(484, 34);
             this.groupPanel67.ResumeLayout(false);
             this.groupPanel68.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -196,11 +201,12 @@ namespace Building.UserControls.Report.MinorObjects
         #endregion
 
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel67;
-        private System.Windows.Forms.Label lblSell;
         private System.Windows.Forms.Label lblCode;
-        private System.Windows.Forms.Label lblEjare;
-        private System.Windows.Forms.Label lblRahn;
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel68;
         private System.Windows.Forms.Label lblCount;
+        private System.Windows.Forms.Label lblOwner;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem mnuEditMode;
+        private System.Windows.Forms.ToolStripMenuItem mnuViewMode;
     }
 }

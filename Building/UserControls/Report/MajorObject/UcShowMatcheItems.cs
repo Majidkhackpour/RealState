@@ -24,6 +24,8 @@ namespace Building.UserControls.Report.MajorObject
                     BeginInvoke(new MethodInvoker(() =>
                     {
                         fPanelMath.Controls?.Clear();
+                        fPanelMath.Visible = true;
+                        lblMatchNone.Visible = false;
                         foreach (var item in list)
                         {
                             var c = new ucBuildingMatch() { Model = item, Width = fPanelMath.Width - 30 };

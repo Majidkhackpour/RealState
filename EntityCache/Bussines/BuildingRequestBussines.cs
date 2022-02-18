@@ -192,6 +192,8 @@ namespace EntityCache.Bussines
             {
                 IEnumerable<BuildingRequestBussines> res = await GetAllAsync(true, token);
                 if (token.IsCancellationRequested) return null;
+                res = res?.Where(q => q.Status);
+                if (token.IsCancellationRequested) return null;
                 if (filter.Type == EnRequestType.Forush)
                     res = res.Where(q => q.SellPrice1 <= filter.Price1 && q.SellPrice2 >= filter.Price1);
                 else if (filter.Type == EnRequestType.Rahn)
@@ -208,14 +210,14 @@ namespace EntityCache.Bussines
                 if (token.IsCancellationRequested) return null;
                 if (filter.RoomCount > 0) res = res.Where(q => q.RoomCount <= filter.RoomCount);
                 if (token.IsCancellationRequested) return null;
-                if (filter.BuildingAccountTypeGuid != Guid.Empty)
+                if (filter.BuildingAccountTypeGuid != null && filter.BuildingAccountTypeGuid != Guid.Empty)
                     res = res.Where(q =>
                         q.BuildingAccountTypeGuid == Guid.Empty ||
                         q.BuildingAccountTypeGuid == filter.BuildingAccountTypeGuid);
                 if (token.IsCancellationRequested) return null;
                 if (res == null) return null;
-                if (filter.RegionGuid != Guid.Empty)
-                    res = res.Where(q => q.RegionList == null || q.RegionList.Select(p => p.RegionGuid).Contains(filter.RegionGuid));
+                if (filter.RegionGuid != null && filter.RegionGuid != Guid.Empty)
+                    res = res.Where(q => q.RegionList == null || q.RegionList.Select(p => p.RegionGuid).Contains(filter.RegionGuid.Value));
                 return token.IsCancellationRequested ? null : res?.ToList();
             }
             catch (Exception ex)

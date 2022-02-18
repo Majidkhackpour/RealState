@@ -86,6 +86,7 @@ namespace Building.UserControls.Report.MinorObjects
             // 
             this.lblOwner.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblOwner.BackColor = System.Drawing.Color.Transparent;
+            this.lblOwner.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblOwner.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblOwner.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.lblOwner.Location = new System.Drawing.Point(562, 0);
@@ -94,6 +95,7 @@ namespace Building.UserControls.Report.MinorObjects
             this.lblOwner.TabIndex = 0;
             this.lblOwner.Text = "مالک: محمدحسین خاکپور نورمحمد";
             this.lblOwner.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblOwner.Click += new System.EventHandler(this.lblOwner_Click);
             // 
             // lblRegion
             // 
@@ -165,13 +167,13 @@ namespace Building.UserControls.Report.MinorObjects
             this.mnuViewMode});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 74);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(172, 52);
             // 
             // mnuEditMode
             // 
             this.mnuEditMode.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.mnuEditMode.Name = "mnuEditMode";
-            this.mnuEditMode.Size = new System.Drawing.Size(180, 24);
+            this.mnuEditMode.Size = new System.Drawing.Size(171, 24);
             this.mnuEditMode.Text = "حالت ویرایش";
             this.mnuEditMode.Click += new System.EventHandler(this.mnuEditMode_Click);
             // 
@@ -179,7 +181,7 @@ namespace Building.UserControls.Report.MinorObjects
             // 
             this.mnuViewMode.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.mnuViewMode.Name = "mnuViewMode";
-            this.mnuViewMode.Size = new System.Drawing.Size(180, 24);
+            this.mnuViewMode.Size = new System.Drawing.Size(171, 24);
             this.mnuViewMode.Text = "مشاهده ریز اطلاعات";
             this.mnuViewMode.Click += new System.EventHandler(this.mnuViewMode_Click);
             // 

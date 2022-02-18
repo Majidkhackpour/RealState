@@ -7262,7 +7262,8 @@ ALTER PROCEDURE [dbo].[sp_Buildings_Search]
 	@isFullRahn bit='false',
 	@isSell bit='false',
 	@isPishForoush bit='false',
-	@isMosharekat bit='false'
+	@isMosharekat bit='false',
+	@priority smallint=null
 AS
 BEGIN
 select [dbo].[Buildings].*,
@@ -7312,7 +7313,8 @@ From [dbo].[Buildings]
 		   (@isFullRahn='false' or Buildings.Parent in (113,114,115,116))and
 		   (@isSell='false' or Buildings.Parent in (101,102,103,104,105,106,107,108))and
 		   (@isMosharekat='false' or Buildings.Parent in (125,126))and
-		   (@isPishForoush='false' or Buildings.Parent in (117,118,119,120))
+		   (@isPishForoush='false' or Buildings.Parent in (117,118,119,120)) and 
+		   (@priority is null or Buildings.Priority=@priority)
 	 Order By [dbo].[Buildings].CreateDate desc
 End
 GO
@@ -8561,4 +8563,15 @@ BEGIN
 	update BuildingReviews
 	set ServerStatus=0,
 		Modified=GETDATE()
+END
+GO
+--========================================================================================================
+IF Not EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[sp_GetBuildingsGuid]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	exec('Create Procedure [dbo].[sp_GetBuildingsGuid]	As Begin print 11 end')  
+GO
+Alter PROCEDURE sp_GetBuildingsGuid
+AS
+BEGIN
+	Select Guid From Buildings
+	Where Status='true'
 END

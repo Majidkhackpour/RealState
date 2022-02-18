@@ -1,19 +1,17 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Building.UserControls.Report.MinorObjects;
+﻿using Building.UserControls.Report.MinorObjects;
 using EntityCache.Bussines.ReportBussines;
-using EntityCache.ViewModels;
 using Services;
 using Services.FilterObjects;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Building.UserControls.Report.MajorObject
 {
     public partial class UcShowReview : UserControl
     {
-        public UcShowReview() =>InitializeComponent();
+        public UcShowReview() => InitializeComponent();
         public async Task InitAsync()
         {
             try
@@ -30,6 +28,8 @@ namespace Building.UserControls.Report.MajorObject
 
                     BeginInvoke(new MethodInvoker(() =>
                     {
+                        fPanelMath.Visible = true;
+                        lblMatchNone.Visible = false;
                         fPanelMath.Controls?.Clear();
                         foreach (var item in list)
                         {

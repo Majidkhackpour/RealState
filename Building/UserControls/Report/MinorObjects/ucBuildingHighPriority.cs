@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Building.Buildings;
 using EntityCache.Bussines;
 using EntityCache.Bussines.ReportBussines;
+using Peoples;
 using Services;
 
 namespace Building.UserControls.Report.MinorObjects
@@ -56,6 +57,20 @@ namespace Building.UserControls.Report.MinorObjects
                 var bu = await BuildingBussines.GetAsync(_bu.Guid);
                 var frm = new frmBuilding(bu,true);
                 frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private async void lblOwner_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var pe = await PeoplesBussines.GetAsync(_bu.OwnerGuid, null);
+                if (pe == null) return;
+                var frm = new frmPeopleMain(pe, true);
+                frm.ShowDialog(FindForm());
             }
             catch (Exception ex)
             {

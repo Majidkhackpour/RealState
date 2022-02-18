@@ -334,7 +334,6 @@
     <Compile Include="SqlServerPersistence\UsersPersistenceRepository.cs" />
     <Compile Include="SqlServerPersistence\WorkingRangePersistenceRepository.cs" />
     <Compile Include="ViewModels\BuildingDischargeViewModel.cs" />
-    <Compile Include="ViewModels\BuildingReportViewModel.cs" />
     <Compile Include="ViewModels\BuildingRequestViewModel.cs" />
     <Compile Include="ViewModels\ContractOrderViewModel.cs" />
     <Compile Include="ViewModels\DivarCategory.cs" />

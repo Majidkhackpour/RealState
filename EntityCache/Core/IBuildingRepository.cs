@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Threading;
-using System.Threading.Tasks;
-using EntityCache.Bussines;
+﻿using EntityCache.Bussines;
 using EntityCache.Bussines.ReportBussines;
 using Services;
 using Services.FilterObjects;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace EntityCache.Core
 {
@@ -31,5 +30,6 @@ namespace EntityCache.Core
         Task<ReturnedSaveFuncInfo> SetSaveResultAsync(string connectionString, Guid guid, ServerStatus status);
         Task<ReturnedSaveFuncInfo> ResetAsync(string connectionString);
         Task<BuildingReportBussines> GetFromReportAsync(string connectionString, Guid guid);
+        Task<List<Guid>> GetBuildingGuidListAsync(string connectionString);
     }
 }

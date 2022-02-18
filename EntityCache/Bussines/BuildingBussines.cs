@@ -182,6 +182,8 @@ namespace EntityCache.Bussines
                 var action = status ? EnLogAction.Enable : EnLogAction.Delete;
                 var desc = $"کدملک: ( {Code} )";
                 res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Building, Guid, desc, tr));
+
+                RaiseEvent();
             }
             catch (Exception ex)
             {
@@ -383,5 +385,6 @@ namespace EntityCache.Bussines
 
             return res;
         }
+        public static async Task<List<Guid>> GetGuidListAsync() => await UnitOfWork.Building.GetBuildingGuidListAsync(Cache.ConnectionString);
     }
 }

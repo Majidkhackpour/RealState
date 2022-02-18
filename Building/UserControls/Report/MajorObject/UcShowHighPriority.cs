@@ -18,13 +18,17 @@ namespace Building.UserControls.Report.MajorObject
             {
                 var list = await BuildingReportBussines.GetAllAsync(new BuildingFilter()
                 {
-                    Priority = EnBuildingPriority.High
+                    Priority = EnBuildingPriority.SoHigh,
+                    Status = true,
+                    IsArchive = false
                 });
-                list = list?.Where(q => q.Priority == EnBuildingPriority.SoHigh && !q.IsArchive)?.Take(10)?.ToList();
+                list = list?.Take(10)?.ToList();
                 if (list != null && list.Count > 0)
                 {
                     BeginInvoke(new MethodInvoker(() =>
                     {
+                        fPanelPirority.Visible = true;
+                        lblBuildingNone.Visible = false;
                         fPanelPirority.Controls?.Clear();
                         foreach (var item in list)
                         {

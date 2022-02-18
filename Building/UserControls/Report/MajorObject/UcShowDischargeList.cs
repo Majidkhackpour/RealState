@@ -22,6 +22,8 @@ namespace Building.UserControls.Report.MajorObject
 
                     BeginInvoke(new MethodInvoker(() =>
                     {
+                        fPanelSarresidEjare.Visible = true;
+                        lblSarresidNone.Visible = false;
                         fPanelSarresidEjare.Controls?.Clear();
                         foreach (var item in list)
                         {

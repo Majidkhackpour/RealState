@@ -459,7 +459,7 @@ namespace Building.Buildings
                     return;
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
-                var list = await BuildingRequestViewModel.GetAllMatchesItemsAsync(cls, _token.Token);
+                var list = await BuildingRequestViewModel.GetAllMatchesItemsAsync(cls.Guid, _token.Token);
                 if (list.Count <= 0)
                 {
                     this.ShowMessage("فایل مطابقی جهت نمایش وجود ندارد");
