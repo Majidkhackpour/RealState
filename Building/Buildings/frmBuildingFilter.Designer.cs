@@ -32,6 +32,15 @@ namespace Building.Buildings
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBuildingFilter));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.groupPanel12 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.cmbZoncan = new System.Windows.Forms.ComboBox();
+            this.zoncanBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label17 = new System.Windows.Forms.Label();
+            this.chbIsArchive = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.ucFilterDate1 = new Print.UcFilterDate();
+            this.groupPanel11 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.txtTabaqeNo = new System.Windows.Forms.NumericUpDown();
+            this.label18 = new System.Windows.Forms.Label();
             this.groupPanel10 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.txtEjare2 = new WindowsSerivces.CurrencyTextBox();
             this.txtEjare1 = new WindowsSerivces.CurrencyTextBox();
@@ -92,10 +101,11 @@ namespace Building.Buildings
             this.ucHeader = new WindowsSerivces.UC_Header();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
-            this.groupPanel11 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.txtTabaqeNo = new System.Windows.Forms.NumericUpDown();
-            this.label18 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            this.groupPanel12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.zoncanBindingSource)).BeginInit();
+            this.groupPanel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTabaqeNo)).BeginInit();
             this.groupPanel10.SuspendLayout();
             this.groupPanel8.SuspendLayout();
             this.groupPanel9.SuspendLayout();
@@ -116,8 +126,6 @@ namespace Building.Buildings
             this.groupPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AccTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btBindingSource)).BeginInit();
-            this.groupPanel11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTabaqeNo)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -125,6 +133,8 @@ namespace Building.Buildings
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.groupPanel12);
+            this.panel1.Controls.Add(this.ucFilterDate1);
             this.panel1.Controls.Add(this.groupPanel11);
             this.panel1.Controls.Add(this.groupPanel10);
             this.panel1.Controls.Add(this.groupPanel8);
@@ -141,6 +151,172 @@ namespace Building.Buildings
             this.panel1.Size = new System.Drawing.Size(507, 340);
             this.panel1.TabIndex = 3;
             // 
+            // groupPanel12
+            // 
+            this.groupPanel12.CanvasColor = System.Drawing.SystemColors.Control;
+            this.groupPanel12.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel12.Controls.Add(this.cmbZoncan);
+            this.groupPanel12.Controls.Add(this.label17);
+            this.groupPanel12.Controls.Add(this.chbIsArchive);
+            this.groupPanel12.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel12.Location = new System.Drawing.Point(15, 442);
+            this.groupPanel12.Name = "groupPanel12";
+            this.groupPanel12.Size = new System.Drawing.Size(473, 74);
+            // 
+            // 
+            // 
+            this.groupPanel12.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.groupPanel12.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.groupPanel12.Style.BackColorGradientAngle = 90;
+            this.groupPanel12.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel12.Style.BorderBottomWidth = 2;
+            this.groupPanel12.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(195)))), ((int)(((byte)(198)))));
+            this.groupPanel12.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(195)))), ((int)(((byte)(198)))));
+            this.groupPanel12.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel12.Style.BorderLeftWidth = 2;
+            this.groupPanel12.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel12.Style.BorderRightWidth = 2;
+            this.groupPanel12.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel12.Style.BorderTopWidth = 2;
+            this.groupPanel12.Style.CornerDiameter = 4;
+            this.groupPanel12.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.groupPanel12.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
+            this.groupPanel12.Style.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.groupPanel12.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near;
+            // 
+            // 
+            // 
+            this.groupPanel12.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel12.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel12.TabIndex = 23;
+            // 
+            // cmbZoncan
+            // 
+            this.cmbZoncan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbZoncan.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbZoncan.DataSource = this.zoncanBindingSource;
+            this.cmbZoncan.DisplayMember = "Name";
+            this.cmbZoncan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbZoncan.FormattingEnabled = true;
+            this.cmbZoncan.Location = new System.Drawing.Point(7, 34);
+            this.cmbZoncan.Name = "cmbZoncan";
+            this.cmbZoncan.Size = new System.Drawing.Size(398, 28);
+            this.cmbZoncan.TabIndex = 55783;
+            this.cmbZoncan.ValueMember = "Guid";
+            // 
+            // zoncanBindingSource
+            // 
+            this.zoncanBindingSource.DataSource = typeof(EntityCache.Bussines.BuildingZoncanBussines);
+            // 
+            // label17
+            // 
+            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label17.AutoSize = true;
+            this.label17.BackColor = System.Drawing.Color.Transparent;
+            this.label17.Location = new System.Drawing.Point(421, 37);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(40, 20);
+            this.label17.TabIndex = 55784;
+            this.label17.Text = "زونکن";
+            // 
+            // chbIsArchive
+            // 
+            this.chbIsArchive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbIsArchive.AutoSize = true;
+            this.chbIsArchive.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbIsArchive.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbIsArchive.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbIsArchive.Location = new System.Drawing.Point(229, 6);
+            this.chbIsArchive.Name = "chbIsArchive";
+            this.chbIsArchive.Size = new System.Drawing.Size(229, 22);
+            this.chbIsArchive.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbIsArchive.TabIndex = 55782;
+            this.chbIsArchive.Text = "جستجو در فایل های بایگانی شده فعال باشد";
+            // 
+            // ucFilterDate1
+            // 
+            this.ucFilterDate1.BackColor = System.Drawing.Color.Transparent;
+            this.ucFilterDate1.Date1 = new System.DateTime(((long)(0)));
+            this.ucFilterDate1.Date2 = new System.DateTime(((long)(0)));
+            this.ucFilterDate1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucFilterDate1.Location = new System.Drawing.Point(13, 6);
+            this.ucFilterDate1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucFilterDate1.Name = "ucFilterDate1";
+            this.ucFilterDate1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucFilterDate1.Size = new System.Drawing.Size(473, 183);
+            this.ucFilterDate1.TabIndex = 22;
+            this.ucFilterDate1.Title = "تاریخ ثبت فایل";
+            // 
+            // groupPanel11
+            // 
+            this.groupPanel11.CanvasColor = System.Drawing.SystemColors.Control;
+            this.groupPanel11.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel11.Controls.Add(this.txtTabaqeNo);
+            this.groupPanel11.Controls.Add(this.label18);
+            this.groupPanel11.DisabledBackColor = System.Drawing.Color.Empty;
+            this.groupPanel11.Location = new System.Drawing.Point(16, 645);
+            this.groupPanel11.Name = "groupPanel11";
+            this.groupPanel11.Size = new System.Drawing.Size(473, 42);
+            // 
+            // 
+            // 
+            this.groupPanel11.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.groupPanel11.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.groupPanel11.Style.BackColorGradientAngle = 90;
+            this.groupPanel11.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel11.Style.BorderBottomWidth = 2;
+            this.groupPanel11.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(195)))), ((int)(((byte)(198)))));
+            this.groupPanel11.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(195)))), ((int)(((byte)(198)))));
+            this.groupPanel11.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel11.Style.BorderLeftWidth = 2;
+            this.groupPanel11.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel11.Style.BorderRightWidth = 2;
+            this.groupPanel11.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel11.Style.BorderTopWidth = 2;
+            this.groupPanel11.Style.CornerDiameter = 4;
+            this.groupPanel11.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.groupPanel11.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
+            this.groupPanel11.Style.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.groupPanel11.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near;
+            // 
+            // 
+            // 
+            this.groupPanel11.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel11.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel11.TabIndex = 21;
+            // 
+            // txtTabaqeNo
+            // 
+            this.txtTabaqeNo.Location = new System.Drawing.Point(210, 5);
+            this.txtTabaqeNo.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.txtTabaqeNo.Name = "txtTabaqeNo";
+            this.txtTabaqeNo.Size = new System.Drawing.Size(142, 27);
+            this.txtTabaqeNo.TabIndex = 55799;
+            // 
+            // label18
+            // 
+            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label18.AutoSize = true;
+            this.label18.BackColor = System.Drawing.Color.Transparent;
+            this.label18.Location = new System.Drawing.Point(358, 7);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(100, 20);
+            this.label18.TabIndex = 55800;
+            this.label18.Text = "حداکثر شماره طبقه";
+            // 
             // groupPanel10
             // 
             this.groupPanel10.CanvasColor = System.Drawing.SystemColors.Control;
@@ -150,7 +326,7 @@ namespace Building.Buildings
             this.groupPanel10.Controls.Add(this.label15);
             this.groupPanel10.Controls.Add(this.label16);
             this.groupPanel10.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel10.Location = new System.Drawing.Point(13, 532);
+            this.groupPanel10.Location = new System.Drawing.Point(13, 797);
             this.groupPanel10.Name = "groupPanel10";
             this.groupPanel10.Size = new System.Drawing.Size(473, 48);
             // 
@@ -251,7 +427,7 @@ namespace Building.Buildings
             this.groupPanel8.Controls.Add(this.label13);
             this.groupPanel8.Controls.Add(this.label14);
             this.groupPanel8.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel8.Location = new System.Drawing.Point(14, 480);
+            this.groupPanel8.Location = new System.Drawing.Point(14, 745);
             this.groupPanel8.Name = "groupPanel8";
             this.groupPanel8.Size = new System.Drawing.Size(473, 48);
             // 
@@ -352,7 +528,7 @@ namespace Building.Buildings
             this.groupPanel9.Controls.Add(this.label11);
             this.groupPanel9.Controls.Add(this.label12);
             this.groupPanel9.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel9.Location = new System.Drawing.Point(15, 426);
+            this.groupPanel9.Location = new System.Drawing.Point(15, 691);
             this.groupPanel9.Name = "groupPanel9";
             this.groupPanel9.Size = new System.Drawing.Size(473, 48);
             // 
@@ -457,7 +633,7 @@ namespace Building.Buildings
             this.groupPanel7.Controls.Add(this.label7);
             this.groupPanel7.Controls.Add(this.label6);
             this.groupPanel7.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel7.Location = new System.Drawing.Point(15, 301);
+            this.groupPanel7.Location = new System.Drawing.Point(15, 566);
             this.groupPanel7.Name = "groupPanel7";
             this.groupPanel7.Size = new System.Drawing.Size(473, 75);
             // 
@@ -614,7 +790,7 @@ namespace Building.Buildings
             this.groupPanel5.Controls.Add(this.rbtnAll);
             this.groupPanel5.Controls.Add(this.rbtnRahn);
             this.groupPanel5.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel5.Location = new System.Drawing.Point(15, 160);
+            this.groupPanel5.Location = new System.Drawing.Point(13, 348);
             this.groupPanel5.Name = "groupPanel5";
             this.groupPanel5.Size = new System.Drawing.Size(473, 42);
             // 
@@ -764,7 +940,7 @@ namespace Building.Buildings
             this.groupPanel4.Controls.Add(this.rbtnAdvType_All);
             this.groupPanel4.Controls.Add(this.rbtnAdvType_None);
             this.groupPanel4.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel4.Location = new System.Drawing.Point(15, 112);
+            this.groupPanel4.Location = new System.Drawing.Point(13, 302);
             this.groupPanel4.Name = "groupPanel4";
             this.groupPanel4.Size = new System.Drawing.Size(473, 42);
             // 
@@ -861,7 +1037,7 @@ namespace Building.Buildings
             this.groupPanel6.Controls.Add(this.label1);
             this.groupPanel6.Controls.Add(this.label9);
             this.groupPanel6.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel6.Location = new System.Drawing.Point(15, 255);
+            this.groupPanel6.Location = new System.Drawing.Point(15, 520);
             this.groupPanel6.Name = "groupPanel6";
             this.groupPanel6.Size = new System.Drawing.Size(473, 42);
             // 
@@ -948,7 +1124,7 @@ namespace Building.Buildings
             this.groupPanel3.Controls.Add(this.chbRegion);
             this.groupPanel3.Controls.Add(this.lblRegionCount);
             this.groupPanel3.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel3.Location = new System.Drawing.Point(15, 207);
+            this.groupPanel3.Location = new System.Drawing.Point(13, 395);
             this.groupPanel3.Name = "groupPanel3";
             this.groupPanel3.Size = new System.Drawing.Size(473, 42);
             // 
@@ -1019,7 +1195,7 @@ namespace Building.Buildings
             this.groupPanel1.Controls.Add(this.cmbUser);
             this.groupPanel1.Controls.Add(this.label3);
             this.groupPanel1.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel1.Location = new System.Drawing.Point(15, 58);
+            this.groupPanel1.Location = new System.Drawing.Point(13, 248);
             this.groupPanel1.Name = "groupPanel1";
             this.groupPanel1.Size = new System.Drawing.Size(473, 48);
             // 
@@ -1120,7 +1296,7 @@ namespace Building.Buildings
             this.groupPanel2.Controls.Add(this.label2);
             this.groupPanel2.Controls.Add(this.cmbBuildingType);
             this.groupPanel2.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel2.Location = new System.Drawing.Point(15, 4);
+            this.groupPanel2.Location = new System.Drawing.Point(13, 194);
             this.groupPanel2.Name = "groupPanel2";
             this.groupPanel2.Size = new System.Drawing.Size(473, 48);
             // 
@@ -1265,70 +1441,6 @@ namespace Building.Buildings
             this.btnFinish.TextColor = System.Drawing.Color.Black;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
-            // groupPanel11
-            // 
-            this.groupPanel11.CanvasColor = System.Drawing.SystemColors.Control;
-            this.groupPanel11.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.groupPanel11.Controls.Add(this.txtTabaqeNo);
-            this.groupPanel11.Controls.Add(this.label18);
-            this.groupPanel11.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel11.Location = new System.Drawing.Point(16, 380);
-            this.groupPanel11.Name = "groupPanel11";
-            this.groupPanel11.Size = new System.Drawing.Size(473, 42);
-            // 
-            // 
-            // 
-            this.groupPanel11.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
-            this.groupPanel11.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.groupPanel11.Style.BackColorGradientAngle = 90;
-            this.groupPanel11.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel11.Style.BorderBottomWidth = 2;
-            this.groupPanel11.Style.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(195)))), ((int)(((byte)(198)))));
-            this.groupPanel11.Style.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(195)))), ((int)(((byte)(198)))));
-            this.groupPanel11.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel11.Style.BorderLeftWidth = 2;
-            this.groupPanel11.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel11.Style.BorderRightWidth = 2;
-            this.groupPanel11.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel11.Style.BorderTopWidth = 2;
-            this.groupPanel11.Style.CornerDiameter = 4;
-            this.groupPanel11.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.groupPanel11.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
-            this.groupPanel11.Style.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.groupPanel11.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near;
-            // 
-            // 
-            // 
-            this.groupPanel11.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.groupPanel11.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel11.TabIndex = 21;
-            // 
-            // txtTabaqeNo
-            // 
-            this.txtTabaqeNo.Location = new System.Drawing.Point(210, 5);
-            this.txtTabaqeNo.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.txtTabaqeNo.Name = "txtTabaqeNo";
-            this.txtTabaqeNo.Size = new System.Drawing.Size(142, 27);
-            this.txtTabaqeNo.TabIndex = 55799;
-            // 
-            // label18
-            // 
-            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label18.AutoSize = true;
-            this.label18.BackColor = System.Drawing.Color.Transparent;
-            this.label18.Location = new System.Drawing.Point(358, 7);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(100, 20);
-            this.label18.TabIndex = 55800;
-            this.label18.Text = "حداکثر شماره طبقه";
-            // 
             // frmBuildingFilter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -1352,6 +1464,12 @@ namespace Building.Buildings
             this.Style = MetroFramework.MetroColorStyle.Teal;
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmBuildingFilter_KeyDown);
             this.panel1.ResumeLayout(false);
+            this.groupPanel12.ResumeLayout(false);
+            this.groupPanel12.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.zoncanBindingSource)).EndInit();
+            this.groupPanel11.ResumeLayout(false);
+            this.groupPanel11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTabaqeNo)).EndInit();
             this.groupPanel10.ResumeLayout(false);
             this.groupPanel10.PerformLayout();
             this.groupPanel8.ResumeLayout(false);
@@ -1382,9 +1500,6 @@ namespace Building.Buildings
             this.groupPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AccTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btBindingSource)).EndInit();
-            this.groupPanel11.ResumeLayout(false);
-            this.groupPanel11.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTabaqeNo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1455,5 +1570,11 @@ namespace Building.Buildings
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel11;
         private System.Windows.Forms.NumericUpDown txtTabaqeNo;
         private System.Windows.Forms.Label label18;
+        private Print.UcFilterDate ucFilterDate1;
+        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel12;
+        private DevComponents.DotNetBar.Controls.CheckBoxX chbIsArchive;
+        private System.Windows.Forms.ComboBox cmbZoncan;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.BindingSource zoncanBindingSource;
     }
 }

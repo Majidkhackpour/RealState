@@ -8,11 +8,19 @@ namespace Print
     {
         public DateTime Date1 { get; set; }
         public DateTime Date2 { get; set; }
+        public string Title { get => grpPanel.Text; set => grpPanel.Text = value; }
         public bool Today
         {
             set
             {
                 if (value) rbtnToday.Checked = true;
+            }
+        }
+        public bool All
+        {
+            set
+            {
+                if (value) rbtnAll.Checked = true;
             }
         }
 

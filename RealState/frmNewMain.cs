@@ -543,14 +543,11 @@ namespace RealState
             try
             {
                 var filter = new BuildingFilter();
-                if (Cache.IsClient)
-                {
-                    var frmFilter = new frmBuildingFilter { Filter = filter };
-                    if (frmFilter.ShowDialog(this) != DialogResult.OK)
-                        return Task.CompletedTask;
-                    filter = frmFilter.Filter;
-                }
 
+                var frmFilter = new frmBuildingFilter { Filter = filter };
+                if (frmFilter.ShowDialog(this) != DialogResult.OK)
+                    return Task.CompletedTask;
+                filter = frmFilter.Filter;
                 filter.Status = true;
                 var frm = new frmShowBuildings(false, filter);
                 frm.ShowDialog(this);

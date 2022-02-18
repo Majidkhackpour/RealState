@@ -546,6 +546,10 @@ namespace EntityCache.SqlServerPersistence
                     cmd.Parameters.AddWithValue("@isPishForoush", filter.IsPishForoush);
                     cmd.Parameters.AddWithValue("@isMosharekat", filter.IsMosharekat);
                     cmd.Parameters.AddWithValue("@priority", filter.Priority);
+                    if (filter.ZoncanGuid != null && filter.ZoncanGuid != Guid.Empty)
+                        cmd.Parameters.AddWithValue("@zoncanGuid", filter.ZoncanGuid);
+                    cmd.Parameters.AddWithValue("@cDate1", filter.CreateDate1);
+                    cmd.Parameters.AddWithValue("@cDate2", filter.CreateDate2);
 
                     await cn.OpenAsync();
                     var dr = await cmd.ExecuteReaderAsync();

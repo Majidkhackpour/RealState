@@ -61,6 +61,12 @@ namespace Building.Buildings
                     _filter.EjarePrice1 = txtEjare1.TextDecimal;
                     _filter.EjarePrice2 = txtEjare2.TextDecimal;
                     _filter.MaxTabaqeNo = (int)txtTabaqeNo.Value;
+
+                    _filter.IsArchive = chbIsArchive.Checked;
+                    _filter.CreateDate1 = ucFilterDate1.Date1;
+                    _filter.CreateDate2 = ucFilterDate1.Date2;
+                    if (cmbZoncan.SelectedValue != null)
+                        _filter.ZoncanGuid = (Guid?)cmbZoncan.SelectedValue;
                 }
                 catch (Exception ex)
                 {
@@ -117,6 +123,19 @@ namespace Building.Buildings
                     txtEjare1.TextDecimal = value.EjarePrice1;
                     txtEjare2.TextDecimal = value.EjarePrice2;
                     txtTabaqeNo.Value = value.MaxTabaqeNo;
+
+                    if (value.ZoncanGuid != null)
+                        cmbZoncan.SelectedValue = value.ZoncanGuid;
+                    if (value.IsArchive != null) chbIsArchive.Checked = value.IsArchive.Value;
+                    if (value.CreateDate1 == null && value.CreateDate2 == null)
+                        ucFilterDate1.All = true;
+                    else
+                    {
+                        if (value.CreateDate1 != null)
+                            ucFilterDate1.Date1 = value.CreateDate1.Value;
+                        if (value.CreateDate2 != null)
+                            ucFilterDate1.Date2 = value.CreateDate2.Value;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -159,19 +178,29 @@ namespace Building.Buildings
                     Name = "[همه]"
                 });
 
+                var list5 = await BuildingZoncanBussines.GetAllAsync(_token.Token);
+                list5.Add(new BuildingZoncanBussines()
+                {
+                    Guid = Guid.Empty,
+                    Name = "[همه]"
+                });
+
+
                 while (!IsHandleCreated)
                     await Task.Delay(100);
 
                 BeginInvoke(new MethodInvoker(() =>
                 {
-                    btBindingSource.DataSource = list.OrderBy(q => q.Name).ToList();
-                    userBindingSource.DataSource = list2?.Where(q => q.Status)?.OrderBy(q => q.Name).ToList();
-                    docTypeBindingSource.DataSource = list3.OrderBy(q => q.Name).ToList();
-                    AccTypeBindingSource.DataSource = list4.OrderBy(q => q.Name).ToList();
+                    btBindingSource.DataSource = list?.OrderBy(q => q.Name)?.ToList();
+                    userBindingSource.DataSource = list2?.Where(q => q.Status)?.OrderBy(q => q.Name)?.ToList();
+                    docTypeBindingSource.DataSource = list3?.OrderBy(q => q.Name)?.ToList();
+                    AccTypeBindingSource.DataSource = list4?.OrderBy(q => q.Name)?.ToList();
+                    zoncanBindingSource.DataSource = list5?.OrderBy(q => q.Name)?.ToList();
                     cmbBuildingType.SelectedIndex = 0;
-                    cmbUser.SelectedValue = UserBussines.CurrentUser.Guid;
+                    cmbUser.SelectedIndex = 0;
                     cmbDocType.SelectedIndex = 0;
                     cmbAccType.SelectedIndex = 0;
+                    cmbZoncan.SelectedIndex = 0;
                 }));
             }
             catch (Exception ex)
@@ -185,6 +214,7 @@ namespace Building.Buildings
             InitializeComponent();
             ucHeader.Text = "فیلتر املاک";
             Task.Run(FillCmbAsync);
+            ucFilterDate1.All = true;
         }
 
         private async void chbRegion_CheckedChanged(object sender, System.EventArgs e)

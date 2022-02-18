@@ -7263,7 +7263,10 @@ ALTER PROCEDURE [dbo].[sp_Buildings_Search]
 	@isSell bit='false',
 	@isPishForoush bit='false',
 	@isMosharekat bit='false',
-	@priority smallint=null
+	@priority smallint=null,
+	@zoncanGuid uniqueidentifier=null,
+	@cDate1 datetime=null,
+	@cDate2 datetime=null
 AS
 BEGIN
 select [dbo].[Buildings].*,
@@ -7314,7 +7317,10 @@ From [dbo].[Buildings]
 		   (@isSell='false' or Buildings.Parent in (101,102,103,104,105,106,107,108))and
 		   (@isMosharekat='false' or Buildings.Parent in (125,126))and
 		   (@isPishForoush='false' or Buildings.Parent in (117,118,119,120)) and 
-		   (@priority is null or Buildings.Priority=@priority)
+		   (@priority is null or Buildings.Priority=@priority) and
+		   (@zoncanGuid is null or Buildings.ZoncanGuid=@zoncanGuid) and
+		   (@cDate1 is null or Buildings.CreateDate>=@cDate1) and
+		   (@cDate2 is null or Buildings.CreateDate<=@cDate2) 
 	 Order By [dbo].[Buildings].CreateDate desc
 End
 GO
