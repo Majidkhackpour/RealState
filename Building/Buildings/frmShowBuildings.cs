@@ -111,12 +111,6 @@ namespace Building.Buildings
                         }
                     }
 
-                if (!(_filteredList?.Any() ?? false))
-                {
-                    BeginInvoke(new MethodInvoker(() => this.ShowMessage("داده ای جهت نمایش وجود ندارد")));
-                    return;
-                }
-
                 BeginInvoke(new MethodInvoker(() =>
                 {
                     BuildingBindingSource.DataSource = _filteredList?.OrderBy(q => q.IsArchive)

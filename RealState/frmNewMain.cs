@@ -46,13 +46,11 @@ using Settings.Forms;
 using System;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using User;
 using User.Advisor;
-using WebHesabBussines;
 using WindowsSerivces;
 using WindowsSerivces.Waiter;
 
@@ -115,7 +113,6 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void SetButtomLables()
         {
             try
@@ -132,7 +129,6 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private async Task CheckInternetAsync()
         {
             var res = new ReturnedSaveFuncInfo();
@@ -150,7 +146,6 @@ namespace RealState
                 ? new MethodInvoker(() => lblInternet.Text = "وضعیت اتصال سیستم به اینترنت: عدم اتصال")
                 : new MethodInvoker(() => lblInternet.Text = "وضعیت اتصال سیستم به اینترنت: متصل"));
         }
-
         private async Task ShowTodayNotesAsync()
         {
             try
@@ -170,7 +165,6 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void SetClock()
         {
             try
@@ -185,7 +179,6 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-
         private void DisplayFrm(Form frm, bool autoDispose = true)
         {
             try
@@ -218,6 +211,7 @@ namespace RealState
                 PeoplesBussines.OnSaved += PeoplesBussines_OnSaved;
                 BuildingBussines.OnSaved += BuildingBussines_OnSaved;
                 BuildingRequestBussines.OnSaved += BuildingRequestBussines_OnSaved;
+                BuildingReviewBussines.OnSaved += BuildingReviewBussines_OnSaved;
             }
             catch (Exception ex)
             {
@@ -225,6 +219,11 @@ namespace RealState
             }
         }
 
+        private Task BuildingReviewBussines_OnSaved()
+        {
+            _ = new Waiter("درحال ایجاد گزارش", ucReport1, Task.Run(ucReport1.InitAsync));
+            return Task.CompletedTask;
+        }
         private Task BuildingRequestBussines_OnSaved()
         {
             _ = new Waiter("درحال ایجاد گزارش", ucReport1, Task.Run(ucReport1.InitAsync));

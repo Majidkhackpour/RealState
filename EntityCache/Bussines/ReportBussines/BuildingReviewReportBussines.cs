@@ -17,6 +17,7 @@ namespace EntityCache.Bussines.ReportBussines
         public string Report { get; set; }
         public ServerStatus ServerStatus { get; set; }
         public string UserName { get; set; }
+        public Guid CustomerGuid { get; set; }
         public string CustomerName { get; set; }
         public string BuildingCode { get; set; }
         public byte[] ServerStatusImage

@@ -49,6 +49,7 @@ namespace EntityCache.SqlServerPersistence
                 if (dr["UserName"] != DBNull.Value) item.UserName = dr["UserName"].ToString();
                 if (dr["CustomerName"] != DBNull.Value) item.CustomerName = dr["CustomerName"].ToString();
                 if (dr["BuildingCode"] != DBNull.Value) item.BuildingCode = dr["BuildingCode"].ToString();
+                if (dr["CustometGuid"] != DBNull.Value) item.CustomerGuid = (Guid)dr["CustometGuid"];
             }
             catch (Exception ex)
             {

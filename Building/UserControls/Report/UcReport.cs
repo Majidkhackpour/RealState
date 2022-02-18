@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Services;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using EntityCache.Bussines;
-using Services;
 
 namespace Building.UserControls.Report
 {
@@ -20,6 +19,7 @@ namespace Building.UserControls.Report
                     Task.Run(ucShowDischargeList1.InitAsync),
                     Task.Run(ucShowHighPriority1.InitAsync),
                     Task.Run(ucShowMatcheItems1.InitAsync),
+                    Task.Run(ucShowReview1.InitAsync)
                 };
                 await Task.WhenAll(list);
             }

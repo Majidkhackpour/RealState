@@ -35,7 +35,9 @@ namespace Building.UserControls.Report
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.ucShowMatcheItems1 = new Building.UserControls.Report.MajorObject.UcShowMatcheItems();
             this.ucShowHighPriority1 = new Building.UserControls.Report.MajorObject.UcShowHighPriority();
+            this.ucShowReview1 = new Building.UserControls.Report.MajorObject.UcShowReview();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
@@ -86,6 +88,7 @@ namespace Building.UserControls.Report
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.ucShowReview1);
             this.splitContainer1.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             // 
             // splitContainer1.Panel2
@@ -122,6 +125,18 @@ namespace Building.UserControls.Report
             this.ucShowHighPriority1.Size = new System.Drawing.Size(912, 178);
             this.ucShowHighPriority1.TabIndex = 4;
             // 
+            // ucShowReview1
+            // 
+            this.ucShowReview1.BackColor = System.Drawing.Color.Transparent;
+            this.ucShowReview1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucShowReview1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucShowReview1.Location = new System.Drawing.Point(0, 0);
+            this.ucShowReview1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucShowReview1.Name = "ucShowReview1";
+            this.ucShowReview1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucShowReview1.Size = new System.Drawing.Size(380, 192);
+            this.ucShowReview1.TabIndex = 0;
+            // 
             // UcReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -137,6 +152,7 @@ namespace Building.UserControls.Report
             this.Name = "UcReport";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Size = new System.Drawing.Size(920, 616);
+            this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
@@ -152,5 +168,6 @@ namespace Building.UserControls.Report
         private System.Windows.Forms.SplitContainer splitContainer1;
         private MajorObject.UcShowMatcheItems ucShowMatcheItems1;
         private MajorObject.UcShowHighPriority ucShowHighPriority1;
+        private MajorObject.UcShowReview ucShowReview1;
     }
 }

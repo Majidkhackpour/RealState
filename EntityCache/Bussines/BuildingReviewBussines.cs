@@ -13,6 +13,8 @@ namespace EntityCache.Bussines
 {
     public class BuildingReviewBussines : IBuildingReview
     {
+        public static event Func<Task> OnSaved;
+
         public Guid Guid { get; set; }
         public DateTime Modified { get; set; } = DateTime.Now;
         public bool Status { get; set; } = true;
@@ -47,6 +49,8 @@ namespace EntityCache.Bussines
 
                 var action = IsModified ? EnLogAction.Update : EnLogAction.Insert;
                 res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingReview, Guid, "", tr));
+
+                RaiseEvent();
             }
             catch (Exception ex)
             {
@@ -101,6 +105,8 @@ namespace EntityCache.Bussines
 
                 var action = status ? EnLogAction.Enable : EnLogAction.Delete;
                 res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.BuildingReview, Guid, "", tr));
+
+                RaiseEvent();
             }
             catch (Exception ex)
             {
@@ -161,6 +167,18 @@ namespace EntityCache.Bussines
             }
 
             return res;
+        }
+        private void RaiseEvent()
+        {
+            try
+            {
+                var handler = OnSaved;
+                if (handler != null) OnSaved?.Invoke();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
     }
 }
