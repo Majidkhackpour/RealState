@@ -33,9 +33,9 @@ namespace Building.UserControls.Report
             this.ucShowCustomerBirthday1 = new Building.UserControls.Report.MajorObject.UcShowCustomerBirthday();
             this.ucShowDischargeList1 = new Building.UserControls.Report.MajorObject.UcShowDischargeList();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.ucShowReview1 = new Building.UserControls.Report.MajorObject.UcShowReview();
             this.ucShowMatcheItems1 = new Building.UserControls.Report.MajorObject.UcShowMatcheItems();
             this.ucShowHighPriority1 = new Building.UserControls.Report.MajorObject.UcShowHighPriority();
-            this.ucShowReview1 = new Building.UserControls.Report.MajorObject.UcShowReview();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -96,8 +96,20 @@ namespace Building.UserControls.Report
             this.splitContainer1.Panel2.Controls.Add(this.ucShowMatcheItems1);
             this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.splitContainer1.Size = new System.Drawing.Size(912, 192);
-            this.splitContainer1.SplitterDistance = 380;
+            this.splitContainer1.SplitterDistance = 399;
             this.splitContainer1.TabIndex = 3;
+            // 
+            // ucShowReview1
+            // 
+            this.ucShowReview1.BackColor = System.Drawing.Color.Transparent;
+            this.ucShowReview1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucShowReview1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucShowReview1.Location = new System.Drawing.Point(0, 0);
+            this.ucShowReview1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucShowReview1.Name = "ucShowReview1";
+            this.ucShowReview1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucShowReview1.Size = new System.Drawing.Size(399, 192);
+            this.ucShowReview1.TabIndex = 0;
             // 
             // ucShowMatcheItems1
             // 
@@ -108,7 +120,7 @@ namespace Building.UserControls.Report
             this.ucShowMatcheItems1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucShowMatcheItems1.Name = "ucShowMatcheItems1";
             this.ucShowMatcheItems1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucShowMatcheItems1.Size = new System.Drawing.Size(528, 192);
+            this.ucShowMatcheItems1.Size = new System.Drawing.Size(509, 192);
             this.ucShowMatcheItems1.TabIndex = 0;
             // 
             // ucShowHighPriority1
@@ -124,18 +136,6 @@ namespace Building.UserControls.Report
             this.ucShowHighPriority1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucShowHighPriority1.Size = new System.Drawing.Size(912, 178);
             this.ucShowHighPriority1.TabIndex = 4;
-            // 
-            // ucShowReview1
-            // 
-            this.ucShowReview1.BackColor = System.Drawing.Color.Transparent;
-            this.ucShowReview1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucShowReview1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucShowReview1.Location = new System.Drawing.Point(0, 0);
-            this.ucShowReview1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ucShowReview1.Name = "ucShowReview1";
-            this.ucShowReview1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucShowReview1.Size = new System.Drawing.Size(380, 192);
-            this.ucShowReview1.TabIndex = 0;
             // 
             // UcReport
             // 
