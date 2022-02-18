@@ -23,10 +23,6 @@ namespace Peoples
                 excel.Visible = false;
                 var index = 1;
 
-                var frm = new frmSplash(list.ToList().Count);
-                frm.Show(owner);
-
-
                 //Add column
                 ws.Cells[1, 1] = "کد شخص";
                 ws.Cells[1, 2] = "عنوان";
@@ -45,7 +41,6 @@ namespace Peoples
                 foreach (var item in list)
                 {
                     index++;
-                    frm.Level = index;
 
                     ws.Cells[index, 1] = item.Code;
                     ws.Cells[index, 2] = item.Name;
@@ -68,8 +63,6 @@ namespace Peoples
                     XlSaveAsAccessMode.xlNoChange, XlSaveConflictResolution.xlLocalSessionChanges, Type.Missing,
                     Type.Missing);
                 excel.Quit();
-                frm.Close();
-
             }
             catch (Exception ex)
             {

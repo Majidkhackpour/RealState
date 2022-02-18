@@ -23,9 +23,6 @@ namespace User
                 excel.Visible = false;
                 var index = 1;
 
-                var frm = new frmSplash(list.ToList().Count);
-                frm.Show(owner);
-
 
                 //Add column
                 ws.Cells[1, 1] = "تاریخ";
@@ -38,7 +35,6 @@ namespace User
                 foreach (var item in list)
                 {
                     index++;
-                    frm.Level = index;
 
                     ws.Cells[index, 1] = item.DateSh;
                     ws.Cells[index, 2] = item.Time;
@@ -52,7 +48,6 @@ namespace User
                     XlSaveAsAccessMode.xlNoChange, XlSaveConflictResolution.xlLocalSessionChanges, Type.Missing,
                     Type.Missing);
                 excel.Quit();
-                frm.Close();
             }
             catch (Exception ex)
             {

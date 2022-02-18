@@ -652,9 +652,12 @@ namespace RealState
         }
         private async Task ucBazsazi_OnClick(UcButton arg)
         {
+            var task = new TaskCompletionSource<bool>();
             try
             {
-                var res = await clsErtegha.StartErteghaAsync(AppSettings.DefaultConnectionString, this, true, !Cache.IsClient);
+                _ = new Waiter("در حال بروزرسانی ...", this, task.Task);
+                var res = await clsErtegha.StartErteghaAsync(AppSettings.DefaultConnectionString, this, !Cache.IsClient);
+                task.TrySetResult(true);
                 if (!res.HasError)
                 {
                     this.ShowMessage("بازسازی اطلاعات با موفقیت انجام شد");

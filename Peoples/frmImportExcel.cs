@@ -275,19 +275,15 @@ namespace Peoples
                 }
 
                 btnFinish.Enabled = btnCancel.Enabled = false;
-                var frm = new frmSplash(DGrid.RowCount);
-                frm.Show(this);
                 for (var i = 0; i < DGrid.RowCount; i++)
                 {
                     var x = await GetItemsAsync(i);
-                    frm.Level = i;
                     if (x == null) continue;
                     x.ServerStatus = ServerStatus.None;
                     await x.SaveAsync();
                 }
 
                 DialogResult = DialogResult.OK;
-                frm.Close();
                 Close();
             }
             catch (Exception ex)

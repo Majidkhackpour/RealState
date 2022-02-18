@@ -24,9 +24,6 @@ namespace Building
                 excel.Visible = false;
                 var index = 1;
 
-                var frm = new frmSplash(list.ToList().Count);
-                frm.Show(owner);
-
 
                 //Add column
                 ws.Cells[1, 1] = "تاریخ ثبت";
@@ -39,7 +36,6 @@ namespace Building
                 foreach (var item in list)
                 {
                     index++;
-                    frm.Level = index;
 
                     ws.Cells[index, 1] = item.DateSh;
                     ws.Cells[index, 2] = item.Code;
@@ -53,7 +49,6 @@ namespace Building
                     XlSaveAsAccessMode.xlNoChange, XlSaveConflictResolution.xlLocalSessionChanges, Type.Missing,
                     Type.Missing);
                 excel.Quit();
-                frm.Close();
             }
             catch (Exception ex)
             {
@@ -73,10 +68,6 @@ namespace Building
                 excel.Visible = false;
                 var index = 1;
 
-                var frm = new frmSplash(list.ToList().Count);
-                frm.Show(owner);
-
-
                 //Add column
                 ws.Cells[1, 1] = "متقاضی";
                 ws.Cells[1, 2] = "مشاور";
@@ -86,7 +77,6 @@ namespace Building
                 foreach (var item in list)
                 {
                     index++;
-                    frm.Level = index;
 
                     ws.Cells[index, 1] = item.AskerName;
                     ws.Cells[index, 2] = item.UserName;
@@ -98,7 +88,6 @@ namespace Building
                     XlSaveAsAccessMode.xlNoChange, XlSaveConflictResolution.xlLocalSessionChanges, Type.Missing,
                     Type.Missing);
                 excel.Quit();
-                frm.Close();
             }
             catch (Exception ex)
             {
@@ -117,10 +106,6 @@ namespace Building
                 excel.Visible = false;
                 var index = 1;
 
-                var frm = new frmSplash(list.ToList().Count);
-                frm.Show(owner);
-
-
                 //Add column
                 ws.Cells[1, 1] = "کد ملک";
                 ws.Cells[1, 2] = "تاریخ ثبت";
@@ -136,7 +121,6 @@ namespace Building
                 foreach (var item in list)
                 {
                     index++;
-                    frm.Level = index;
 
                     ws.Cells[index, 1] = item.Code;
                     ws.Cells[index, 2] = item.DateSh;
@@ -155,7 +139,6 @@ namespace Building
                     XlSaveAsAccessMode.xlNoChange, XlSaveConflictResolution.xlLocalSessionChanges, Type.Missing,
                     Type.Missing);
                 excel.Quit();
-                frm.Close();
             }
             catch (Exception ex)
             {

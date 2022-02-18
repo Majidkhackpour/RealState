@@ -132,7 +132,7 @@ namespace RealState
                 var dbVersion = (await clsGlobalSetting.GetApplicationVersionAsync()).ParseToInt();
                 if (dbVersion <= 0 || currentVersion > dbVersion)
                 {
-                    res.AddReturnedValue(await clsErtegha.StartErteghaAsync(AppSettings.DefaultConnectionString, owner, false, !Cache.IsClient));
+                    res.AddReturnedValue(await clsErtegha.StartErteghaAsync(AppSettings.DefaultConnectionString, owner, !Cache.IsClient));
                     await ClsCache.InserDefultsAsync();
                 }
             }

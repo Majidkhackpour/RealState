@@ -23,9 +23,6 @@ namespace Payamak
                 excel.Visible = false;
                 var index = 1;
 
-                var frm = new frmSplash(list.ToList().Count);
-                frm.Show(owner);
-
 
                 //Add column
                 ws.Cells[1, 1] = "تاریخ ارسال";
@@ -38,7 +35,6 @@ namespace Payamak
                 foreach (var item in list)
                 {
                     index++;
-                    frm.Level = index;
 
                     ws.Cells[index, 1] = item.DateSh;
                     ws.Cells[index, 2] = item.UserName;
@@ -52,7 +48,6 @@ namespace Payamak
                     XlSaveAsAccessMode.xlNoChange, XlSaveConflictResolution.xlLocalSessionChanges, Type.Missing,
                     Type.Missing);
                 excel.Quit();
-                frm.Close();
             }
             catch (Exception ex)
             {

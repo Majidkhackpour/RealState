@@ -9,14 +9,14 @@ namespace Ertegha
 {
     public class clsErtegha
     {
-        public static async Task<ReturnedSaveFuncInfo> StartErteghaAsync(string connectionString, IWin32Window owner, bool isShowUi, bool isFixBuilding)
+        public static async Task<ReturnedSaveFuncInfo> StartErteghaAsync(string connectionString, IWin32Window owner, bool isFixBuilding)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
                 var cn = new SqlConnection(connectionString);
-                res.AddReturnedValue(await DataBaseUtilities.RunScript.RunAsync(isShowUi, owner, Properties.Resources.ErteghaFunctions, cn));
-                res.AddReturnedValue(await DataBaseUtilities.RunScript.RunAsync(isShowUi, owner, Properties.Resources.Ertegha, cn));
+                res.AddReturnedValue(await DataBaseUtilities.RunScript.RunAsync(owner, Properties.Resources.ErteghaFunctions, cn));
+                res.AddReturnedValue(await DataBaseUtilities.RunScript.RunAsync(owner, Properties.Resources.Ertegha, cn));
                 if (res.HasError) return res;
                 if (isFixBuilding)
                 {

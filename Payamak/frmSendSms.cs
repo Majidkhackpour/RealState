@@ -236,16 +236,12 @@ namespace Payamak
                 if (panel == null) return;
                 var sApi = new Sms.Api(panel.API.Trim());
 
-                var index = 0;
-                var frm = new frmSplash(list.Count);
-                frm.Show(this);
 
                 var res = sApi.Send(panel.Sender, list, txtMessage.Text);
 
                 if (res.Count <= 0) return;
                 foreach (var result in res)
                 {
-                    frm.Level = index;
                     var smsLog = new SmsLogBussines()
                     {
                         Guid = Guid.NewGuid(),
@@ -259,7 +255,6 @@ namespace Payamak
                     };
 
                     await smsLog.SaveAsync();
-                    index++;
                 }
 
                 frmNotification.PublicInfo.ShowMessage("ارسال پیامک با موفقیت انجام شد");
