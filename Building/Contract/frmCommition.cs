@@ -91,7 +91,7 @@ namespace Building.Contract
                     ucContractVisitor1.Enabled = false;
                     ucTotalCommition1.Enabled = false;
                     UcV1.Enabled = UcV2.Enabled = false;
-                    btnFinish.Enabled = false;
+                    ucAccept.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -99,6 +99,8 @@ namespace Building.Contract
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
+
         private void UcTotalCommition1_OnSumChanged(decimal sum)
         {
             try
@@ -128,14 +130,14 @@ namespace Building.Contract
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void frmCommition_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        private void frmCommition_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 switch (e.KeyCode)
                 {
-                    case Keys.F5: btnFinish.PerformClick(); break;
-                    case Keys.Escape: btnCancel.PerformClick(); break;
+                    case Keys.F5: ucAccept.PerformClick(); break;
+                    case Keys.Escape: ucCancel.PerformClick(); break;
                 }
             }
             catch (Exception ex)
@@ -143,7 +145,13 @@ namespace Building.Contract
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void btnFinish_Click(object sender, EventArgs e)
+        private Task ucCancel_OnClick(object arg1, EventArgs arg2)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+            return Task.CompletedTask;
+        }
+        private Task ucAccept_OnClick(object arg1, EventArgs arg2)
         {
             try
             {
@@ -177,11 +185,20 @@ namespace Building.Contract
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+            return Task.CompletedTask;
         }
-        private void btnCancel_Click(object sender, EventArgs e)
+        private Task ucHelp_OnClick(object arg1, EventArgs arg2)
         {
-            DialogResult = DialogResult.Cancel;
-            Close();
+            try
+            {
+                var frm=new frmHelpCalculateCommition();
+                frm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+            return Task.CompletedTask;
         }
     }
 }

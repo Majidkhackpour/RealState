@@ -37,7 +37,6 @@ namespace Building.Contract
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnAddExcel = new DevComponents.DotNetBar.ButtonX();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -57,6 +56,7 @@ namespace Building.Contract
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
+            this.ucCancel = new WindowsSerivces.UcActionButton();
             this.grp1.SuspendLayout();
             this.groupPanel1.SuspendLayout();
             this.groupPanel2.SuspendLayout();
@@ -168,24 +168,6 @@ namespace Building.Contract
             this.label2.Size = new System.Drawing.Size(162, 20);
             this.label2.TabIndex = 4;
             this.label2.Text = "جمع رهن تبدیل شده با اجاره بها";
-            // 
-            // btnAddExcel
-            // 
-            this.btnAddExcel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnAddExcel.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.btnAddExcel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnAddExcel.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnAddExcel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddExcel.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnAddExcel.Location = new System.Drawing.Point(10, 467);
-            this.btnAddExcel.Name = "btnAddExcel";
-            this.btnAddExcel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnAddExcel.Size = new System.Drawing.Size(262, 27);
-            this.btnAddExcel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnAddExcel.TabIndex = 5;
-            this.btnAddExcel.Text = "خروج";
-            this.btnAddExcel.TextColor = System.Drawing.Color.Black;
-            this.btnAddExcel.Click += new System.EventHandler(this.btnAddExcel_Click);
             // 
             // groupPanel1
             // 
@@ -512,12 +494,26 @@ namespace Building.Contract
             this.label23.TabIndex = 4;
             this.label23.Text = "ارزش ملک فروخته شده ضربدر ۰٫۵ درصد";
             // 
+            // ucCancel
+            // 
+            this.ucCancel.BackColor = System.Drawing.Color.Transparent;
+            this.ucCancel.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucCancel.Location = new System.Drawing.Point(10, 463);
+            this.ucCancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucCancel.Name = "ucCancel";
+            this.ucCancel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucCancel.Size = new System.Drawing.Size(262, 31);
+            this.ucCancel.TabIndex = 55808;
+            this.ucCancel.Title = "انصراف (Esc)";
+            this.ucCancel.Type = Services.ButtonType.CancelButton;
+            this.ucCancel.OnClick += new System.Func<object, System.EventArgs, System.Threading.Tasks.Task>(this.ucCancel_OnClick);
+            // 
             // frmHelpCalculateCommition
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(533, 505);
-            this.Controls.Add(this.btnAddExcel);
+            this.Controls.Add(this.ucCancel);
             this.Controls.Add(this.groupPanel2);
             this.Controls.Add(this.groupPanel1);
             this.Controls.Add(this.groupPanel4);
@@ -557,7 +553,6 @@ namespace Building.Contract
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
         private DevComponents.DotNetBar.Controls.GroupPanel grp1;
-        private DevComponents.DotNetBar.ButtonX btnAddExcel;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
@@ -581,5 +576,6 @@ namespace Building.Contract
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label23;
+        private WindowsSerivces.UcActionButton ucCancel;
     }
 }

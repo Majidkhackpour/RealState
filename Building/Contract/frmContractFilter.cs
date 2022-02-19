@@ -2,6 +2,7 @@
 using Peoples;
 using Services;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCache.Bussines;
 using Services.FilterObjects;
@@ -19,13 +20,38 @@ namespace Building.Contract
             rbtnAll.Checked = true;
             _tafsilGuid = null;
         }
-
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void frmBuildingFilter_KeyDown(object sender, KeyEventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
-            Close();
+            try
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.Escape: ucCancel.PerformClick(); break;
+                    case Keys.F5: ucAccept.PerformClick(); break;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
-        private void btnFinish_Click(object sender, EventArgs e)
+        private async void btnSearchOwner_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmShowPeoples(true);
+                if (frm.ShowDialog(this) != DialogResult.OK) return;
+                var cus = await PeoplesBussines.GetAsync(frm.SelectedGuid, null);
+                if (cus == null) return;
+                _tafsilGuid = frm.SelectedGuid;
+                txttxtOwnerCode.Text = cus.Name;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private Task ucAccept_OnClick(object arg1, EventArgs arg2)
         {
             try
             {
@@ -53,37 +79,13 @@ namespace Building.Contract
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+            return Task.CompletedTask;
         }
-        private void frmBuildingFilter_KeyDown(object sender, KeyEventArgs e)
+        private Task ucCancel_OnClick(object arg1, EventArgs arg2)
         {
-            try
-            {
-                switch (e.KeyCode)
-                {
-                    case Keys.Escape: btnCancel.PerformClick(); break;
-                    case Keys.F5: btnFinish.PerformClick(); break;
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-        }
-        private async void btnSearchOwner_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var frm = new frmShowPeoples(true);
-                if (frm.ShowDialog(this) != DialogResult.OK) return;
-                var cus = await PeoplesBussines.GetAsync(frm.SelectedGuid, null);
-                if (cus == null) return;
-                _tafsilGuid = frm.SelectedGuid;
-                txttxtOwnerCode.Text = cus.Name;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
+            DialogResult = DialogResult.Cancel;
+            Close();
+            return Task.CompletedTask;
         }
     }
 }

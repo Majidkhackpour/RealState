@@ -29,13 +29,11 @@ namespace Building.Contract
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.ucFSide = new Peoples.UcPeopleContract();
             this.ucSecondSide = new Peoples.UcPeopleContract();
-            this.btnCommition = new DevComponents.DotNetBar.ButtonX();
             this.panel1 = new System.Windows.Forms.Panel();
             this.ucContractHeader1 = new Building.UserControls.Contract.Public.UcContractHeader();
             this.ucContractPishForoush_21 = new Building.UserControls.Contract.PishForoush.UcContractPishForoush_2();
@@ -56,24 +54,6 @@ namespace Building.Contract
             this.splitContainer1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // buttonX1
-            // 
-            this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonX1.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.buttonX1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.buttonX1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonX1.Location = new System.Drawing.Point(547, 554);
-            this.buttonX1.Name = "buttonX1";
-            this.buttonX1.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.buttonX1.Size = new System.Drawing.Size(125, 31);
-            this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.buttonX1.TabIndex = 55811;
-            this.buttonX1.Text = "کمیسیون و مالی (F8)";
-            this.buttonX1.TextColor = System.Drawing.Color.Black;
-            this.buttonX1.Click += new System.EventHandler(this.buttonX1_Click);
             // 
             // btnCancel
             // 
@@ -159,23 +139,6 @@ namespace Building.Contract
             this.ucSecondSide.Size = new System.Drawing.Size(391, 260);
             this.ucSecondSide.TabIndex = 1;
             this.ucSecondSide.Title = "مشخصات خریدار";
-            // 
-            // btnCommition
-            // 
-            this.btnCommition.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnCommition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCommition.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.btnCommition.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnCommition.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnCommition.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCommition.Location = new System.Drawing.Point(547, 554);
-            this.btnCommition.Name = "btnCommition";
-            this.btnCommition.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnCommition.Size = new System.Drawing.Size(125, 31);
-            this.btnCommition.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnCommition.TabIndex = 55813;
-            this.btnCommition.Text = "کمیسیون و مالی (F8)";
-            this.btnCommition.TextColor = System.Drawing.Color.Black;
             // 
             // panel1
             // 
@@ -421,10 +384,8 @@ namespace Building.Contract
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(821, 600);
-            this.Controls.Add(this.buttonX1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnFinish);
-            this.Controls.Add(this.btnCommition);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.KeyPreview = true;
@@ -448,13 +409,11 @@ namespace Building.Contract
 
         #endregion
 
-        private DevComponents.DotNetBar.ButtonX buttonX1;
         private DevComponents.DotNetBar.ButtonX btnCancel;
         private DevComponents.DotNetBar.ButtonX btnFinish;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private Peoples.UcPeopleContract ucFSide;
         private Peoples.UcPeopleContract ucSecondSide;
-        private DevComponents.DotNetBar.ButtonX btnCommition;
         private System.Windows.Forms.Panel panel1;
         private UserControls.Contract.Public.UcContractHeader ucContractHeader1;
         private UserControls.Contract.PishForoush.UcContractPishForoush_2 ucContractPishForoush_21;

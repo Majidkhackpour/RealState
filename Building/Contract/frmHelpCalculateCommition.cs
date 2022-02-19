@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Threading.Tasks;
+using System.Windows.Forms;
 using MetroFramework.Forms;
 
 namespace Building.Contract
@@ -7,10 +8,14 @@ namespace Building.Contract
     {
         public frmHelpCalculateCommition() => InitializeComponent();
 
-        private void btnAddExcel_Click(object sender, System.EventArgs e) => Close();
         private void frmHelpCalculateCommition_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape) Close();
+        }
+        private Task ucCancel_OnClick(object arg1, System.EventArgs arg2)
+        {
+            Close();
+            return Task.CompletedTask;
         }
     }
 }

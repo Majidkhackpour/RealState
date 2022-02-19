@@ -12,7 +12,6 @@ namespace Building.Contract
     public partial class frmContractMain_EjareTamlik : MetroForm
     {
         private ContractBussines cls;
-        private bool _isShow = false;
 
         private async Task SetDataAsync()
         {
@@ -152,7 +151,6 @@ namespace Building.Contract
             {
                 InitializeComponent();
                 cls = _cls;
-                _isShow = isShowMode;
                 if (isShowMode)
                 {
                     ucContractHeader1.Enabled = false;
@@ -204,7 +202,6 @@ namespace Building.Contract
                 switch (e.KeyCode)
                 {
                     case Keys.Escape: btnCancel.PerformClick(); break;
-                    case Keys.F8: btnCommition.PerformClick(); break;
                     case Keys.F5: btnFinish.PerformClick(); break;
                 }
             }
@@ -237,19 +234,6 @@ namespace Building.Contract
                     DialogResult = DialogResult.OK;
                     Close();
                 }
-            }
-        }
-        private async void buttonX1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                await GetDataAsync();
-                var frm = new frmCommition(cls, _isShow);
-                frm.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
         private void btnCancel_Click(object sender, EventArgs e)

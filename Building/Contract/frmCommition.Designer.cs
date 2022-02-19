@@ -30,52 +30,77 @@ namespace Building.Contract
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCommition));
-            this.btnFinish = new DevComponents.DotNetBar.ButtonX();
-            this.btnCancel = new DevComponents.DotNetBar.ButtonX();
-            this.ucTotalCommition1 = new Building.UserControls.Contract.Public.UcTotalCommition();
-            this.UcV1 = new Building.UserControls.Contract.Public.UcContractVisitor();
+            this.ucCancel = new WindowsSerivces.UcActionButton();
+            this.ucHelp = new WindowsSerivces.UcActionButton();
+            this.ucAccept = new WindowsSerivces.UcActionButton();
             this.UcV2 = new Building.UserControls.Contract.Public.UcContractVisitor();
+            this.UcV1 = new Building.UserControls.Contract.Public.UcContractVisitor();
+            this.ucTotalCommition1 = new Building.UserControls.Contract.Public.UcTotalCommition();
             this.ucContractVisitor1 = new Building.UserControls.Contract.Public.UcContractVisitor();
             this.SuspendLayout();
             // 
-            // btnFinish
+            // ucCancel
             // 
-            this.btnFinish.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnFinish.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFinish.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.btnFinish.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFinish.Image = global::Building.Properties.Resources.tab_checkbox__;
-            this.btnFinish.Location = new System.Drawing.Point(764, 471);
-            this.btnFinish.Name = "btnFinish";
-            this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnFinish.Size = new System.Drawing.Size(125, 31);
-            this.btnFinish.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnFinish.TabIndex = 55803;
-            this.btnFinish.Text = "تایید (F5)";
-            this.btnFinish.TextColor = System.Drawing.Color.Black;
-            this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
+            this.ucCancel.BackColor = System.Drawing.Color.Transparent;
+            this.ucCancel.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucCancel.Location = new System.Drawing.Point(21, 471);
+            this.ucCancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucCancel.Name = "ucCancel";
+            this.ucCancel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucCancel.Size = new System.Drawing.Size(125, 31);
+            this.ucCancel.TabIndex = 55807;
+            this.ucCancel.Title = "انصراف (Esc)";
+            this.ucCancel.Type = Services.ButtonType.CancelButton;
+            this.ucCancel.OnClick += new System.Func<object, System.EventArgs, System.Threading.Tasks.Task>(this.ucCancel_OnClick);
             // 
-            // btnCancel
+            // ucHelp
             // 
-            this.btnCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCancel.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Image = global::Building.Properties.Resources.tab_close_;
-            this.btnCancel.Location = new System.Drawing.Point(21, 471);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnCancel.Size = new System.Drawing.Size(125, 31);
-            this.btnCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnCancel.TabIndex = 55804;
-            this.btnCancel.Text = "انصراف (Esc)";
-            this.btnCancel.TextColor = System.Drawing.Color.Black;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.ucHelp.BackColor = System.Drawing.Color.Transparent;
+            this.ucHelp.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucHelp.Location = new System.Drawing.Point(592, 471);
+            this.ucHelp.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucHelp.Name = "ucHelp";
+            this.ucHelp.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucHelp.Size = new System.Drawing.Size(156, 31);
+            this.ucHelp.TabIndex = 55806;
+            this.ucHelp.Title = "راهنمای محاسبه کمیسیون";
+            this.ucHelp.Type = Services.ButtonType.None;
+            this.ucHelp.OnClick += new System.Func<object, System.EventArgs, System.Threading.Tasks.Task>(this.ucHelp_OnClick);
+            // 
+            // ucAccept
+            // 
+            this.ucAccept.BackColor = System.Drawing.Color.Transparent;
+            this.ucAccept.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucAccept.Location = new System.Drawing.Point(756, 471);
+            this.ucAccept.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucAccept.Name = "ucAccept";
+            this.ucAccept.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucAccept.Size = new System.Drawing.Size(125, 31);
+            this.ucAccept.TabIndex = 55806;
+            this.ucAccept.Title = "تایید (F5)";
+            this.ucAccept.Type = Services.ButtonType.AcceptButton;
+            this.ucAccept.OnClick += new System.Func<object, System.EventArgs, System.Threading.Tasks.Task>(this.ucAccept_OnClick);
+            // 
+            // UcV2
+            // 
+            this.UcV2.BackColor = System.Drawing.Color.Transparent;
+            this.UcV2.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.UcV2.Location = new System.Drawing.Point(21, 357);
+            this.UcV2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.UcV2.Name = "UcV2";
+            this.UcV2.Price = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.UcV2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.UcV2.Size = new System.Drawing.Size(420, 106);
+            this.UcV2.TabIndex = 55805;
+            this.UcV2.TotalPrice = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             // 
             // UcV1
             // 
@@ -170,37 +195,17 @@ namespace Building.Contract
             0,
             0});
             // 
-            // UcV2
-            // 
-            this.UcV2.BackColor = System.Drawing.Color.Transparent;
-            this.UcV2.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.UcV2.Location = new System.Drawing.Point(21, 357);
-            this.UcV2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.UcV2.Name = "UcV2";
-            this.UcV2.Price = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.UcV2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.UcV2.Size = new System.Drawing.Size(420, 106);
-            this.UcV2.TabIndex = 55805;
-            this.UcV2.TotalPrice = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            // 
             // frmCommition
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(903, 508);
             this.ControlBox = false;
+            this.Controls.Add(this.ucCancel);
+            this.Controls.Add(this.ucHelp);
+            this.Controls.Add(this.ucAccept);
             this.Controls.Add(this.UcV2);
             this.Controls.Add(this.UcV1);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnFinish);
             this.Controls.Add(this.ucTotalCommition1);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -221,10 +226,11 @@ namespace Building.Contract
         #endregion
 
         private UserControls.Contract.Public.UcTotalCommition ucTotalCommition1;
-        private DevComponents.DotNetBar.ButtonX btnFinish;
-        private DevComponents.DotNetBar.ButtonX btnCancel;
         private UserControls.Contract.Public.UcContractVisitor UcV1;
         private UserControls.Contract.Public.UcContractVisitor ucContractVisitor1;
         private UserControls.Contract.Public.UcContractVisitor UcV2;
+        private WindowsSerivces.UcActionButton ucCancel;
+        private WindowsSerivces.UcActionButton ucAccept;
+        private WindowsSerivces.UcActionButton ucHelp;
     }
 }
