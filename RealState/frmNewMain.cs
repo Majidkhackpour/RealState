@@ -543,8 +543,8 @@ namespace RealState
             try
             {
                 var filter = new BuildingFilter();
-
-                var frmFilter = new frmBuildingFilter { Filter = filter };
+                var frmFilter = new frmBuildingFilter ();
+                _ = Task.Run(() => frmFilter.InitAsync(filter));
                 if (frmFilter.ShowDialog(this) != DialogResult.OK)
                     return Task.CompletedTask;
                 filter = frmFilter.Filter;

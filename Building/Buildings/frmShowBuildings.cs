@@ -767,7 +767,8 @@ namespace Building.Buildings
         {
             try
             {
-                var frm = new frmBuildingFilter { Filter = filter };
+                var frm = new frmBuildingFilter();
+                Task.Run(() => frm.InitAsync(filter));
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
                 filter = frm.Filter;
                 filter.Status = _st;

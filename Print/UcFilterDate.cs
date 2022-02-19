@@ -9,18 +9,42 @@ namespace Print
         public DateTime Date1 { get; set; }
         public DateTime Date2 { get; set; }
         public string Title { get => grpPanel.Text; set => grpPanel.Text = value; }
-        public bool Today
+        public bool Today { get => rbtnToday.Checked; set => rbtnToday.Checked = value; }
+        public bool All { set => rbtnAll.Checked = value; }
+        public bool SpecialDate { get => rbtnSpecialDate.Checked; set => rbtnSpecialDate.Checked = value; }
+        public bool BetweenDate { set => rbtnBetweenDate.Checked = value; }
+
+        public void SetDate1(DateTime date)
         {
-            set
+            try
             {
-                if (value) rbtnToday.Checked = true;
+                if (SpecialDate)
+                {
+                    Date1 = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
+                    Date2 = new DateTime(date.Year, date.Month, date.Day, 23, 59, 59);
+                    ucSpecialDate.DateM = Date1;
+                }
+                else
+                {
+                    Date1 = date;
+                    UcDate1.DateM = Date1;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public bool All
+        public void SetDate2(DateTime? date)
         {
-            set
+            try
             {
-                if (value) rbtnAll.Checked = true;
+                Date2 = date ?? new DateTime(2050, 12, 29, 23, 59, 59);
+                UcDare2.DateM = Date2;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
 

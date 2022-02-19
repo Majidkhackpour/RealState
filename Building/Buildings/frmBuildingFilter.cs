@@ -67,6 +67,8 @@ namespace Building.Buildings
                     _filter.CreateDate2 = ucFilterDate1.Date2;
                     if (cmbZoncan.SelectedValue != null)
                         _filter.ZoncanGuid = (Guid?)cmbZoncan.SelectedValue;
+                    _filter.IsSpecialDate = ucFilterDate1.SpecialDate;
+                    _filter.IsTodayDate = ucFilterDate1.Today;
                 }
                 catch (Exception ex)
                 {
@@ -74,77 +76,9 @@ namespace Building.Buildings
                 }
                 return _filter;
             }
-            set
-            {
-                try
-                {
-                    _filter = value;
-                    if (value.BuildingTypeGuid != null)
-                        cmbBuildingType.SelectedValue = value.BuildingTypeGuid;
-                    if (value.BuildingAccountTypeGuid != null)
-                        cmbAccType.SelectedValue = value.BuildingAccountTypeGuid;
-                    if (value.UserGuid != null)
-                        cmbUser.SelectedValue = value.UserGuid;
-                    if (value.DocumentTypeGuid != null)
-                        cmbDocType.SelectedValue = value.DocumentTypeGuid;
-
-                    if (value.AdvertiseType == null)
-                        rbtnAdvType_All.Checked = true;
-                    else if (value.AdvertiseType == AdvertiseType.None)
-                        rbtnAdvType_None.Checked = true;
-                    else if (value.AdvertiseType == AdvertiseType.Divar)
-                        rbtnAdvType_Recieved.Checked = true;
-
-                    if (value.IsFullRahn) rbtnFullRahn.Checked = true;
-                    else if (value.IsRahn) rbtnRahn.Checked = true;
-                    else if (value.IsSell) rbtnSell.Checked = true;
-                    else if (value.IsMosharekat) rbtnMosharekat.Checked = true;
-                    else if (value.IsPishForoush) rbtnPishForoush.Checked = true;
-                    else rbtnAll.Checked = true;
-
-                    if (value.RegionList != null && value.RegionList.Count > 0)
-                    {
-                        _regList = value.RegionList;
-                        chbRegion.Checked = true;
-                        lblRegionCount.Visible = true;
-                        lblRegionCount.Text = $@"تعداد منطقه انتخاب شده جهت فیلتر: {value.RegionList.Count}";
-                    }
-
-                    txtRoomCount1.Value = value.RoomCount1;
-                    txtRoomCount2.Value = value.RoomCount2;
-                    txtFMasahat.Value = value.Masahat1;
-                    txtSMasahat.Value = value.Masahat2;
-                    txtZirBana1.Value = value.ZirBana1;
-                    txtZirBana2.Value = value.ZirBana2;
-                    txtSell1.TextDecimal = value.SellPrice1;
-                    txtSell2.TextDecimal = value.SellPrice2;
-                    txtRahn1.TextDecimal = value.RahnPrice1;
-                    txtRahn2.TextDecimal = value.RahnPrice2;
-                    txtEjare1.TextDecimal = value.EjarePrice1;
-                    txtEjare2.TextDecimal = value.EjarePrice2;
-                    txtTabaqeNo.Value = value.MaxTabaqeNo;
-
-                    if (value.ZoncanGuid != null)
-                        cmbZoncan.SelectedValue = value.ZoncanGuid;
-                    if (value.IsArchive != null) chbIsArchive.Checked = value.IsArchive.Value;
-                    if (value.CreateDate1 == null && value.CreateDate2 == null)
-                        ucFilterDate1.All = true;
-                    else
-                    {
-                        if (value.CreateDate1 != null)
-                            ucFilterDate1.Date1 = value.CreateDate1.Value;
-                        if (value.CreateDate2 != null)
-                            ucFilterDate1.Date2 = value.CreateDate2.Value;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                }
-            }
         }
 
-        private async Task FillCmbAsync()
+        public async Task InitAsync(BuildingFilter value)
         {
             try
             {
@@ -201,7 +135,82 @@ namespace Building.Buildings
                     cmbDocType.SelectedIndex = 0;
                     cmbAccType.SelectedIndex = 0;
                     cmbZoncan.SelectedIndex = 0;
+
+                    SetFilter(value);
                 }));
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+        private void SetFilter(BuildingFilter value)
+        {
+            try
+            {
+                _filter = value;
+                if (value.BuildingTypeGuid != null)
+                    cmbBuildingType.SelectedValue = value.BuildingTypeGuid;
+                if (value.BuildingAccountTypeGuid != null)
+                    cmbAccType.SelectedValue = value.BuildingAccountTypeGuid;
+                if (value.UserGuid != null)
+                    cmbUser.SelectedValue = value.UserGuid;
+                if (value.DocumentTypeGuid != null)
+                    cmbDocType.SelectedValue = value.DocumentTypeGuid;
+
+                if (value.AdvertiseType == null)
+                    rbtnAdvType_All.Checked = true;
+                else if (value.AdvertiseType == AdvertiseType.None)
+                    rbtnAdvType_None.Checked = true;
+                else if (value.AdvertiseType == AdvertiseType.Divar)
+                    rbtnAdvType_Recieved.Checked = true;
+
+                if (value.IsFullRahn) rbtnFullRahn.Checked = true;
+                else if (value.IsRahn) rbtnRahn.Checked = true;
+                else if (value.IsSell) rbtnSell.Checked = true;
+                else if (value.IsMosharekat) rbtnMosharekat.Checked = true;
+                else if (value.IsPishForoush) rbtnPishForoush.Checked = true;
+                else rbtnAll.Checked = true;
+
+                if (value.RegionList != null && value.RegionList.Count > 0)
+                {
+                    _regList = value.RegionList;
+                    chbRegion.Checked = true;
+                    lblRegionCount.Visible = true;
+                    lblRegionCount.Text = $@"تعداد منطقه انتخاب شده جهت فیلتر: {value.RegionList.Count}";
+                }
+
+                txtRoomCount1.Value = value.RoomCount1;
+                txtRoomCount2.Value = value.RoomCount2;
+                txtFMasahat.Value = value.Masahat1;
+                txtSMasahat.Value = value.Masahat2;
+                txtZirBana1.Value = value.ZirBana1;
+                txtZirBana2.Value = value.ZirBana2;
+                txtSell1.TextDecimal = value.SellPrice1;
+                txtSell2.TextDecimal = value.SellPrice2;
+                txtRahn1.TextDecimal = value.RahnPrice1;
+                txtRahn2.TextDecimal = value.RahnPrice2;
+                txtEjare1.TextDecimal = value.EjarePrice1;
+                txtEjare2.TextDecimal = value.EjarePrice2;
+                txtTabaqeNo.Value = value.MaxTabaqeNo;
+
+                if (value.ZoncanGuid != null)
+                    cmbZoncan.SelectedValue = value.ZoncanGuid;
+                if (value.IsArchive != null) chbIsArchive.Checked = value.IsArchive.Value;
+
+                if (value.CreateDate1 == null && value.CreateDate2 == null)
+                    ucFilterDate1.All = true;
+                else
+                {
+                    if (value.IsSpecialDate) ucFilterDate1.SpecialDate = true;
+                    else if (value.IsTodayDate) ucFilterDate1.Today = true;
+                    else ucFilterDate1.BetweenDate = true;
+
+                    if (value.CreateDate1 != null)
+                        ucFilterDate1.SetDate1(value.CreateDate1.Value);
+                    if (value.CreateDate2 != null)
+                        ucFilterDate1.SetDate2(value.CreateDate2.Value);
+                }
             }
             catch (Exception ex)
             {
@@ -213,7 +222,6 @@ namespace Building.Buildings
         {
             InitializeComponent();
             ucHeader.Text = "فیلتر املاک";
-            Task.Run(FillCmbAsync);
             ucFilterDate1.All = true;
         }
 
@@ -246,30 +254,32 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-            Close();
-        }
-        private void btnFinish_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.OK;
-            return;
-        }
         private void frmBuildingFilter_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 switch (e.KeyCode)
                 {
-                    case Keys.Escape: btnCancel.PerformClick(); break;
-                    case Keys.F5: btnFinish.PerformClick(); break;
+                    case Keys.Escape: ucCancel.PerformClick(); break;
+                    case Keys.F5: ucAccept.PerformClick(); break;
                 }
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+        }
+        private Task ucAccept_OnClick(object arg1, EventArgs arg2)
+        {
+            DialogResult = DialogResult.OK;
+            Close();
+            return Task.CompletedTask;
+        }
+        private Task ucCancel_OnClick(object arg1, EventArgs arg2)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+            return Task.CompletedTask;
         }
     }
 }
