@@ -800,11 +800,9 @@ Select    Peoples.*
 			, Tafsils.Account
 			, Tafsils.AccountFirst
 			, PeopleGroups.Name As GroupName
-			, fCon.CodeInArchive As CodeInArchive
 	From Peoples inner join Tafsils on
 	Tafsils.Guid=Peoples.Guid inner join PeopleGroups on
-	PeopleGroups.Guid=Peoples.GroupGuid left outer join Contracts as fCon on
-	fCon.FirstSideGuid=Peoples.Guid 
+	PeopleGroups.Guid=Peoples.GroupGuid 
 END
 GO
 -- ==========================================================================================
@@ -819,11 +817,9 @@ BEGIN
 			, Tafsils.Account
 			, Tafsils.AccountFirst
 			, PeopleGroups.Name As GroupName
-			, fCon.CodeInArchive As CodeInArchive
 	From Peoples inner join Tafsils on
 	Tafsils.Guid=Peoples.Guid inner join PeopleGroups on
-	PeopleGroups.Guid=Peoples.GroupGuid left outer join Contracts as fCon on
-	fCon.FirstSideGuid=Peoples.Guid 
+	PeopleGroups.Guid=Peoples.GroupGuid 
 	where Peoples.Guid=@Guid
 END
 GO
@@ -840,11 +836,9 @@ BEGIN
 			, Tafsils.Account
 			, Tafsils.AccountFirst
 			, PeopleGroups.Name As GroupName
-			, fCon.CodeInArchive As CodeInArchive
 	From Peoples inner join Tafsils on
 	Tafsils.Guid=Peoples.Guid inner join PeopleGroups on
-	PeopleGroups.Guid=Peoples.GroupGuid left outer join Contracts as fCon on
-	fCon.FirstSideGuid=Peoples.Guid 
+	PeopleGroups.Guid=Peoples.GroupGuid 
 	where Peoples.GroupGuid=@GroupGuid and
 		  Peoples.Status=@st
 END
@@ -861,11 +855,9 @@ BEGIN
 			, Tafsils.Account
 			, Tafsils.AccountFirst
 			, PeopleGroups.Name As GroupName
-			, fCon.CodeInArchive As CodeInArchive
 	From Peoples inner join Tafsils on
 	Tafsils.Guid=Peoples.Guid inner join PeopleGroups on
-	PeopleGroups.Guid=Peoples.GroupGuid left outer join Contracts as fCon on
-	fCon.FirstSideGuid=Peoples.Guid 
+	PeopleGroups.Guid=Peoples.GroupGuid 
 	where Peoples.DateBirth Like @dateSh
 END
 GO
@@ -7197,12 +7189,10 @@ BEGIN
 			, Tafsils.Account
 			, Tafsils.AccountFirst
 			, PeopleGroups.Name As GroupName
-			, fCon.CodeInArchive As CodeInArchive
 			, (select Number from BuildingRelatedNumbers where BuildingGuid=@buGuid) As Number
 	From Peoples inner join Tafsils on
 	Tafsils.Guid=Peoples.Guid inner join PeopleGroups on
-	PeopleGroups.Guid=Peoples.GroupGuid left outer join Contracts as fCon on
-	fCon.FirstSideGuid=Peoples.Guid  
+	PeopleGroups.Guid=Peoples.GroupGuid 
 	where Peoples.Guid=@Guid
 END
 GO

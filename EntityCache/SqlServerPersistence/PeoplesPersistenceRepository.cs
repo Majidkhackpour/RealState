@@ -369,7 +369,6 @@ namespace EntityCache.SqlServerPersistence
                 item.ServerStatus = (ServerStatus)dr["ServerStatus"];
                 item.IsModified = true;
                 if (dr["GroupName"] != DBNull.Value) item.GroupName = dr["GroupName"].ToString();
-                if (dr["CodeInArchive"] != DBNull.Value) item.CodeInArchive = dr["CodeInArchive"].ToString();
                 if (isLoadDet)
                 {
                     item.BankList = await _bank.GetAllAsync(connectionString, item.Guid);

@@ -65,7 +65,6 @@
             this.dgServerStatusImage = new System.Windows.Forms.DataGridViewImageColumn();
             this.dgCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CodeInArchive = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgGroupName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgNatCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgFatherName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -138,7 +137,6 @@
             this.dgServerStatusImage,
             this.dgCode,
             this.dgName,
-            this.CodeInArchive,
             this.dgGroupName,
             this.dgNatCode,
             this.dgFatherName,
@@ -431,13 +429,6 @@
             this.dgName.Name = "dgName";
             this.dgName.ReadOnly = true;
             // 
-            // CodeInArchive
-            // 
-            this.CodeInArchive.DataPropertyName = "CodeInArchive";
-            this.CodeInArchive.HeaderText = "شماره پرونده";
-            this.CodeInArchive.Name = "CodeInArchive";
-            this.CodeInArchive.ReadOnly = true;
-            // 
             // dgGroupName
             // 
             this.dgGroupName.DataPropertyName = "GroupName";
@@ -626,7 +617,6 @@
         private System.Windows.Forms.DataGridViewImageColumn dgServerStatusImage;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CodeInArchive;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgGroupName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgNatCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgFatherName;
