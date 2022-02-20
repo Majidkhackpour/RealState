@@ -112,7 +112,7 @@ namespace Ertegha
                         bu.Parent = EnBuildingParent.FullRentHome;
                     else await bu.ChangeStatusAsync(false);
                 }
-                else if (bu.PishTotalPrice > 0 || !string.IsNullOrEmpty(bu.PishDesc))
+                else if (bu.PishTotalPrice > 0)
                 {
                     if ((accountType?.Name?.Contains("دفتر") ?? false) || (type?.Name?.Contains("دفتر") ?? false))
                         bu.Parent = EnBuildingParent.PreSellOffice;
@@ -130,14 +130,7 @@ namespace Ertegha
                         bu.Parent = EnBuildingParent.PreSellHome;
                     else await bu.ChangeStatusAsync(false);
                 }
-                else if (!string.IsNullOrEmpty(bu.MosharekatDesc))
-                {
-                    if ((type?.Name?.Contains("مسکونی") ?? false) || (type?.Name?.Contains("خانه") ?? false) || (accountType?.Name?.Contains("مسکونی") ?? false))
-                        bu.Parent = EnBuildingParent.MosharekatHome;
-                    else if (type?.Name?.Contains("پارتمان") ?? false)
-                        bu.Parent = EnBuildingParent.MosharekatAprtment;
-                    else await bu.ChangeStatusAsync(false);
-                }
+                
                 if (bu.Parent != null)
                     res.AddReturnedValue(await bu.ChangeParentAsync(bu.Parent.Value));
             }

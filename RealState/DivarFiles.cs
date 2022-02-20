@@ -125,7 +125,6 @@ namespace RealState
                             Address = $"{item.State} {item.City} {item.Region}",
                             AdvertiseType = item.Type,
                             Barq = EnKhadamati.Mostaqel,
-                            BonBast = false,
                             BuildingAccountTypeGuid = await BuildingAccountTypeBussines.GetDefultGuidAsync(GetAccountType(item.BuildingType)),
                             BuildingConditionGuid = await BuildingConditionBussines.GetDefultGuidAsync(),
                             BuildingTypeGuid = await BuildingTypeBussines.GetDefultGuidAsync(item.BuildingType),
@@ -135,7 +134,6 @@ namespace RealState
                             Dang = 6,
                             DeliveryDate = DateTime.Now,
                             DocumentType = null,
-                            DateParvane = "",
                             ErtefaSaqf = 3,
                             Gas = EnKhadamati.Mostaqel,
                             Hashie = 0,
@@ -146,12 +144,7 @@ namespace RealState
                             Image = "",
                             KitchenServiceGuid = await KitchenServiceBussines.GetDefultGuidAsync(),
                             Lenght = 0,
-                            MamarJoda = true,
-                            MetrazhKouche = 0,
                             MetrazhTejari = 0,
-                            MoavezeDesc = "",
-                            MosharekatDesc = "",
-                            ParvaneSerial = "",
                             Water = EnKhadamati.Mostaqel,
                             ZirBana = item.Masahat,
                             VamPrice = 0,
@@ -167,16 +160,10 @@ namespace RealState
                             PishTotalPrice = 0,
                             PishPrice = 0,
                             Priority = EnBuildingPriority.Low,
-                            PishDesc = "",
                             OptionList = new List<BuildingRelatedOptionsBussines>(),
                             RentalAutorityGuid = (await RentalAuthorityBussines.GetAsync(item.RentalAuthority))?.Guid ?? null,
                             OwnerGuid = (await PeoplesBussines.GetDefaultPeopleAsync()).Guid
                         };
-
-                        if (item.BuildingType == "پیش‌فروش" || item.BuildingType == "پیش‌ فروش")
-                            bu.PishDesc = item.Description;
-                        if (item.BuildingType == "مشارکت در ساخت")
-                            bu.MosharekatDesc = item.Description;
 
                         if (item.SaleSakht.Contains("از"))
                             bu.SaleSakht = "1370";
