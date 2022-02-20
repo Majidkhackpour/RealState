@@ -69,28 +69,37 @@ namespace Settings.Forms
             this.btnOtherOptions = new DevComponents.DotNetBar.ButtonX();
             this.txtChannel = new System.Windows.Forms.TextBox();
             this.txtToken = new System.Windows.Forms.TextBox();
-            this.txtText = new System.Windows.Forms.TextBox();
+            this.txtText1 = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.btnTelegramManager = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtText2 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtText3 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtText4 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtText5 = new System.Windows.Forms.TextBox();
             this.pnlTelegram.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlTelegram
             // 
             this.pnlTelegram.CanvasColor = System.Drawing.SystemColors.Control;
             this.pnlTelegram.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.pnlTelegram.Controls.Add(this.flowLayoutPanel2);
             this.pnlTelegram.Controls.Add(this.flowLayoutPanel1);
             this.pnlTelegram.Controls.Add(this.txtChannel);
             this.pnlTelegram.Controls.Add(this.txtToken);
-            this.pnlTelegram.Controls.Add(this.txtText);
             this.pnlTelegram.Controls.Add(this.label23);
             this.pnlTelegram.Controls.Add(this.label24);
-            this.pnlTelegram.Controls.Add(this.label25);
             this.pnlTelegram.Controls.Add(this.btnTelegramManager);
             this.pnlTelegram.DisabledBackColor = System.Drawing.Color.Empty;
             this.pnlTelegram.Location = new System.Drawing.Point(5, 11);
@@ -147,9 +156,9 @@ namespace Settings.Forms
             this.flowLayoutPanel1.Controls.Add(this.btnStore);
             this.flowLayoutPanel1.Controls.Add(this.btnBalcony);
             this.flowLayoutPanel1.Controls.Add(this.btnOtherOptions);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(11, 80);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(11, 508);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(192, 596);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(688, 168);
             this.flowLayoutPanel1.TabIndex = 23;
             // 
             // btnType
@@ -159,7 +168,7 @@ namespace Settings.Forms
             this.btnType.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnType.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnType.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnType.Location = new System.Drawing.Point(110, 3);
+            this.btnType.Location = new System.Drawing.Point(606, 3);
             this.btnType.Name = "btnType";
             this.btnType.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnType.Size = new System.Drawing.Size(79, 27);
@@ -176,7 +185,7 @@ namespace Settings.Forms
             this.btnCode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnCode.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnCode.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCode.Location = new System.Drawing.Point(25, 3);
+            this.btnCode.Location = new System.Drawing.Point(521, 3);
             this.btnCode.Name = "btnCode";
             this.btnCode.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnCode.Size = new System.Drawing.Size(79, 27);
@@ -193,7 +202,7 @@ namespace Settings.Forms
             this.btnDocType.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnDocType.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnDocType.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDocType.Location = new System.Drawing.Point(110, 36);
+            this.btnDocType.Location = new System.Drawing.Point(436, 3);
             this.btnDocType.Name = "btnDocType";
             this.btnDocType.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnDocType.Size = new System.Drawing.Size(79, 27);
@@ -210,7 +219,7 @@ namespace Settings.Forms
             this.btnSide.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnSide.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnSide.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSide.Location = new System.Drawing.Point(25, 36);
+            this.btnSide.Location = new System.Drawing.Point(351, 3);
             this.btnSide.Name = "btnSide";
             this.btnSide.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnSide.Size = new System.Drawing.Size(79, 27);
@@ -227,7 +236,7 @@ namespace Settings.Forms
             this.btnConType.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnConType.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnConType.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnConType.Location = new System.Drawing.Point(110, 69);
+            this.btnConType.Location = new System.Drawing.Point(266, 3);
             this.btnConType.Name = "btnConType";
             this.btnConType.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnConType.Size = new System.Drawing.Size(79, 27);
@@ -244,7 +253,7 @@ namespace Settings.Forms
             this.btnTarakom.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnTarakom.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnTarakom.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTarakom.Location = new System.Drawing.Point(25, 69);
+            this.btnTarakom.Location = new System.Drawing.Point(181, 3);
             this.btnTarakom.Name = "btnTarakom";
             this.btnTarakom.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnTarakom.Size = new System.Drawing.Size(79, 27);
@@ -261,7 +270,7 @@ namespace Settings.Forms
             this.btnAccType.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnAccType.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnAccType.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAccType.Location = new System.Drawing.Point(110, 102);
+            this.btnAccType.Location = new System.Drawing.Point(96, 3);
             this.btnAccType.Name = "btnAccType";
             this.btnAccType.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnAccType.Size = new System.Drawing.Size(79, 27);
@@ -278,7 +287,7 @@ namespace Settings.Forms
             this.btnTabaqeNo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnTabaqeNo.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnTabaqeNo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTabaqeNo.Location = new System.Drawing.Point(25, 102);
+            this.btnTabaqeNo.Location = new System.Drawing.Point(11, 3);
             this.btnTabaqeNo.Name = "btnTabaqeNo";
             this.btnTabaqeNo.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnTabaqeNo.Size = new System.Drawing.Size(79, 27);
@@ -295,7 +304,7 @@ namespace Settings.Forms
             this.btnRegion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnRegion.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnRegion.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRegion.Location = new System.Drawing.Point(110, 135);
+            this.btnRegion.Location = new System.Drawing.Point(606, 36);
             this.btnRegion.Name = "btnRegion";
             this.btnRegion.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnRegion.Size = new System.Drawing.Size(79, 27);
@@ -312,7 +321,7 @@ namespace Settings.Forms
             this.btnTabaqeCount.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnTabaqeCount.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnTabaqeCount.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTabaqeCount.Location = new System.Drawing.Point(25, 135);
+            this.btnTabaqeCount.Location = new System.Drawing.Point(521, 36);
             this.btnTabaqeCount.Name = "btnTabaqeCount";
             this.btnTabaqeCount.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnTabaqeCount.Size = new System.Drawing.Size(79, 27);
@@ -329,7 +338,7 @@ namespace Settings.Forms
             this.btnSell.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnSell.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnSell.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSell.Location = new System.Drawing.Point(110, 168);
+            this.btnSell.Location = new System.Drawing.Point(436, 36);
             this.btnSell.Name = "btnSell";
             this.btnSell.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnSell.Size = new System.Drawing.Size(79, 27);
@@ -346,7 +355,7 @@ namespace Settings.Forms
             this.btnRoomCount.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnRoomCount.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnRoomCount.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRoomCount.Location = new System.Drawing.Point(25, 168);
+            this.btnRoomCount.Location = new System.Drawing.Point(351, 36);
             this.btnRoomCount.Name = "btnRoomCount";
             this.btnRoomCount.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnRoomCount.Size = new System.Drawing.Size(79, 27);
@@ -363,7 +372,7 @@ namespace Settings.Forms
             this.btnRahn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnRahn.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnRahn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRahn.Location = new System.Drawing.Point(110, 201);
+            this.btnRahn.Location = new System.Drawing.Point(266, 36);
             this.btnRahn.Name = "btnRahn";
             this.btnRahn.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnRahn.Size = new System.Drawing.Size(79, 27);
@@ -380,7 +389,7 @@ namespace Settings.Forms
             this.btnSaleSakht.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnSaleSakht.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnSaleSakht.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSaleSakht.Location = new System.Drawing.Point(25, 201);
+            this.btnSaleSakht.Location = new System.Drawing.Point(181, 36);
             this.btnSaleSakht.Name = "btnSaleSakht";
             this.btnSaleSakht.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnSaleSakht.Size = new System.Drawing.Size(79, 27);
@@ -397,7 +406,7 @@ namespace Settings.Forms
             this.btnAddress.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnAddress.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnAddress.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddress.Location = new System.Drawing.Point(110, 234);
+            this.btnAddress.Location = new System.Drawing.Point(96, 36);
             this.btnAddress.Name = "btnAddress";
             this.btnAddress.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnAddress.Size = new System.Drawing.Size(79, 27);
@@ -414,7 +423,7 @@ namespace Settings.Forms
             this.btnFloorCover.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnFloorCover.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFloorCover.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFloorCover.Location = new System.Drawing.Point(25, 234);
+            this.btnFloorCover.Location = new System.Drawing.Point(11, 36);
             this.btnFloorCover.Name = "btnFloorCover";
             this.btnFloorCover.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnFloorCover.Size = new System.Drawing.Size(79, 27);
@@ -431,7 +440,7 @@ namespace Settings.Forms
             this.btnMobile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnMobile.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnMobile.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnMobile.Location = new System.Drawing.Point(110, 267);
+            this.btnMobile.Location = new System.Drawing.Point(606, 69);
             this.btnMobile.Name = "btnMobile";
             this.btnMobile.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnMobile.Size = new System.Drawing.Size(79, 27);
@@ -448,7 +457,7 @@ namespace Settings.Forms
             this.btnView.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnView.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnView.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnView.Location = new System.Drawing.Point(25, 267);
+            this.btnView.Location = new System.Drawing.Point(521, 69);
             this.btnView.Name = "btnView";
             this.btnView.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnView.Size = new System.Drawing.Size(79, 27);
@@ -465,7 +474,7 @@ namespace Settings.Forms
             this.btnEjare.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnEjare.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnEjare.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEjare.Location = new System.Drawing.Point(110, 300);
+            this.btnEjare.Location = new System.Drawing.Point(436, 69);
             this.btnEjare.Name = "btnEjare";
             this.btnEjare.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnEjare.Size = new System.Drawing.Size(79, 27);
@@ -482,7 +491,7 @@ namespace Settings.Forms
             this.btnTejari.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnTejari.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnTejari.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTejari.Location = new System.Drawing.Point(25, 300);
+            this.btnTejari.Location = new System.Drawing.Point(351, 69);
             this.btnTejari.Name = "btnTejari";
             this.btnTejari.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnTejari.Size = new System.Drawing.Size(79, 27);
@@ -499,7 +508,7 @@ namespace Settings.Forms
             this.btnTell.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnTell.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnTell.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTell.Location = new System.Drawing.Point(110, 333);
+            this.btnTell.Location = new System.Drawing.Point(266, 69);
             this.btnTell.Name = "btnTell";
             this.btnTell.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnTell.Size = new System.Drawing.Size(79, 27);
@@ -516,7 +525,7 @@ namespace Settings.Forms
             this.btnKitchenService.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnKitchenService.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnKitchenService.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnKitchenService.Location = new System.Drawing.Point(25, 333);
+            this.btnKitchenService.Location = new System.Drawing.Point(181, 69);
             this.btnKitchenService.Name = "btnKitchenService";
             this.btnKitchenService.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnKitchenService.Size = new System.Drawing.Size(79, 27);
@@ -533,7 +542,7 @@ namespace Settings.Forms
             this.btnMasahat.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnMasahat.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnMasahat.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnMasahat.Location = new System.Drawing.Point(110, 366);
+            this.btnMasahat.Location = new System.Drawing.Point(96, 69);
             this.btnMasahat.Name = "btnMasahat";
             this.btnMasahat.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnMasahat.Size = new System.Drawing.Size(79, 27);
@@ -550,7 +559,7 @@ namespace Settings.Forms
             this.btnChannel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnChannel.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnChannel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnChannel.Location = new System.Drawing.Point(25, 366);
+            this.btnChannel.Location = new System.Drawing.Point(11, 69);
             this.btnChannel.Name = "btnChannel";
             this.btnChannel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnChannel.Size = new System.Drawing.Size(79, 27);
@@ -567,7 +576,7 @@ namespace Settings.Forms
             this.btnZirBana.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnZirBana.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnZirBana.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnZirBana.Location = new System.Drawing.Point(110, 399);
+            this.btnZirBana.Location = new System.Drawing.Point(606, 102);
             this.btnZirBana.Name = "btnZirBana";
             this.btnZirBana.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnZirBana.Size = new System.Drawing.Size(79, 27);
@@ -584,7 +593,7 @@ namespace Settings.Forms
             this.btnDong.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnDong.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnDong.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDong.Location = new System.Drawing.Point(25, 399);
+            this.btnDong.Location = new System.Drawing.Point(521, 102);
             this.btnDong.Name = "btnDong";
             this.btnDong.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnDong.Size = new System.Drawing.Size(79, 27);
@@ -601,7 +610,7 @@ namespace Settings.Forms
             this.btnPricePerMeter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnPricePerMeter.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnPricePerMeter.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPricePerMeter.Location = new System.Drawing.Point(110, 432);
+            this.btnPricePerMeter.Location = new System.Drawing.Point(436, 102);
             this.btnPricePerMeter.Name = "btnPricePerMeter";
             this.btnPricePerMeter.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnPricePerMeter.Size = new System.Drawing.Size(79, 27);
@@ -618,7 +627,7 @@ namespace Settings.Forms
             this.btnVahedPerTabaqe.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnVahedPerTabaqe.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnVahedPerTabaqe.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnVahedPerTabaqe.Location = new System.Drawing.Point(25, 432);
+            this.btnVahedPerTabaqe.Location = new System.Drawing.Point(351, 102);
             this.btnVahedPerTabaqe.Name = "btnVahedPerTabaqe";
             this.btnVahedPerTabaqe.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnVahedPerTabaqe.Size = new System.Drawing.Size(79, 27);
@@ -635,7 +644,7 @@ namespace Settings.Forms
             this.btnHitting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnHitting.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnHitting.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnHitting.Location = new System.Drawing.Point(110, 465);
+            this.btnHitting.Location = new System.Drawing.Point(266, 102);
             this.btnHitting.Name = "btnHitting";
             this.btnHitting.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnHitting.Size = new System.Drawing.Size(79, 27);
@@ -652,7 +661,7 @@ namespace Settings.Forms
             this.btnParking.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnParking.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnParking.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnParking.Location = new System.Drawing.Point(25, 465);
+            this.btnParking.Location = new System.Drawing.Point(181, 102);
             this.btnParking.Name = "btnParking";
             this.btnParking.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnParking.Size = new System.Drawing.Size(79, 27);
@@ -669,7 +678,7 @@ namespace Settings.Forms
             this.btnColling.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnColling.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnColling.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnColling.Location = new System.Drawing.Point(110, 498);
+            this.btnColling.Location = new System.Drawing.Point(96, 102);
             this.btnColling.Name = "btnColling";
             this.btnColling.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnColling.Size = new System.Drawing.Size(79, 27);
@@ -686,7 +695,7 @@ namespace Settings.Forms
             this.btnEvelator.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnEvelator.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnEvelator.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEvelator.Location = new System.Drawing.Point(25, 498);
+            this.btnEvelator.Location = new System.Drawing.Point(11, 102);
             this.btnEvelator.Name = "btnEvelator";
             this.btnEvelator.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnEvelator.Size = new System.Drawing.Size(79, 27);
@@ -703,7 +712,7 @@ namespace Settings.Forms
             this.btnStore.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnStore.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnStore.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnStore.Location = new System.Drawing.Point(110, 531);
+            this.btnStore.Location = new System.Drawing.Point(606, 135);
             this.btnStore.Name = "btnStore";
             this.btnStore.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnStore.Size = new System.Drawing.Size(79, 27);
@@ -720,7 +729,7 @@ namespace Settings.Forms
             this.btnBalcony.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnBalcony.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnBalcony.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBalcony.Location = new System.Drawing.Point(25, 531);
+            this.btnBalcony.Location = new System.Drawing.Point(521, 135);
             this.btnBalcony.Name = "btnBalcony";
             this.btnBalcony.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnBalcony.Size = new System.Drawing.Size(79, 27);
@@ -737,10 +746,10 @@ namespace Settings.Forms
             this.btnOtherOptions.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnOtherOptions.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnOtherOptions.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOtherOptions.Location = new System.Drawing.Point(25, 564);
+            this.btnOtherOptions.Location = new System.Drawing.Point(436, 135);
             this.btnOtherOptions.Name = "btnOtherOptions";
             this.btnOtherOptions.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnOtherOptions.Size = new System.Drawing.Size(164, 27);
+            this.btnOtherOptions.Size = new System.Drawing.Size(79, 27);
             this.btnOtherOptions.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnOtherOptions.TabIndex = 22;
             this.btnOtherOptions.Text = "[سایر امکانات]";
@@ -753,7 +762,7 @@ namespace Settings.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtChannel.Location = new System.Drawing.Point(209, 43);
             this.txtChannel.Name = "txtChannel";
-            this.txtChannel.Size = new System.Drawing.Size(384, 27);
+            this.txtChannel.Size = new System.Drawing.Size(371, 27);
             this.txtChannel.TabIndex = 1;
             // 
             // txtToken
@@ -762,20 +771,20 @@ namespace Settings.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtToken.Location = new System.Drawing.Point(11, 10);
             this.txtToken.Name = "txtToken";
-            this.txtToken.Size = new System.Drawing.Size(582, 27);
+            this.txtToken.Size = new System.Drawing.Size(569, 27);
             this.txtToken.TabIndex = 0;
             // 
-            // txtText
+            // txtText1
             // 
-            this.txtText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtText1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtText.Location = new System.Drawing.Point(209, 80);
-            this.txtText.Multiline = true;
-            this.txtText.Name = "txtText";
-            this.txtText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtText.Size = new System.Drawing.Size(384, 582);
-            this.txtText.TabIndex = 22;
+            this.txtText1.Location = new System.Drawing.Point(10, 3);
+            this.txtText1.Multiline = true;
+            this.txtText1.Name = "txtText1";
+            this.txtText1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtText1.Size = new System.Drawing.Size(542, 176);
+            this.txtText1.TabIndex = 22;
+            this.txtText1.Enter += new System.EventHandler(this.txtText1_Enter);
             // 
             // label23
             // 
@@ -804,11 +813,11 @@ namespace Settings.Forms
             this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label25.AutoSize = true;
             this.label25.BackColor = System.Drawing.Color.Transparent;
-            this.label25.Location = new System.Drawing.Point(602, 83);
+            this.label25.Location = new System.Drawing.Point(558, 0);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(101, 20);
+            this.label25.Size = new System.Drawing.Size(110, 20);
             this.label25.TabIndex = 7;
-            this.label25.Text = "الگوی پست ارسالی";
+            this.label25.Text = "الگوی پست ارسال 1";
             // 
             // btnTelegramManager
             // 
@@ -866,6 +875,116 @@ namespace Settings.Forms
             this.btnCancel.TextColor = System.Drawing.Color.Black;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.AutoScroll = true;
+            this.flowLayoutPanel2.Controls.Add(this.label25);
+            this.flowLayoutPanel2.Controls.Add(this.txtText1);
+            this.flowLayoutPanel2.Controls.Add(this.label1);
+            this.flowLayoutPanel2.Controls.Add(this.txtText2);
+            this.flowLayoutPanel2.Controls.Add(this.label2);
+            this.flowLayoutPanel2.Controls.Add(this.txtText3);
+            this.flowLayoutPanel2.Controls.Add(this.label3);
+            this.flowLayoutPanel2.Controls.Add(this.txtText4);
+            this.flowLayoutPanel2.Controls.Add(this.label4);
+            this.flowLayoutPanel2.Controls.Add(this.txtText5);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(11, 76);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(688, 429);
+            this.flowLayoutPanel2.TabIndex = 25;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(558, 182);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(110, 20);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "الگوی پست ارسال 2";
+            // 
+            // txtText2
+            // 
+            this.txtText2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtText2.Location = new System.Drawing.Point(10, 185);
+            this.txtText2.Multiline = true;
+            this.txtText2.Name = "txtText2";
+            this.txtText2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtText2.Size = new System.Drawing.Size(542, 176);
+            this.txtText2.TabIndex = 22;
+            this.txtText2.Enter += new System.EventHandler(this.txtText2_Enter);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Location = new System.Drawing.Point(558, 364);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(110, 20);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "الگوی پست ارسال 3";
+            // 
+            // txtText3
+            // 
+            this.txtText3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtText3.Location = new System.Drawing.Point(10, 367);
+            this.txtText3.Multiline = true;
+            this.txtText3.Name = "txtText3";
+            this.txtText3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtText3.Size = new System.Drawing.Size(542, 176);
+            this.txtText3.TabIndex = 23;
+            this.txtText3.Enter += new System.EventHandler(this.txtText3_Enter);
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Location = new System.Drawing.Point(558, 546);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(110, 20);
+            this.label3.TabIndex = 24;
+            this.label3.Text = "الگوی پست ارسال 4";
+            // 
+            // txtText4
+            // 
+            this.txtText4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtText4.Location = new System.Drawing.Point(10, 549);
+            this.txtText4.Multiline = true;
+            this.txtText4.Name = "txtText4";
+            this.txtText4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtText4.Size = new System.Drawing.Size(542, 176);
+            this.txtText4.TabIndex = 25;
+            this.txtText4.Enter += new System.EventHandler(this.txtText4_Enter);
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Location = new System.Drawing.Point(558, 728);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(110, 20);
+            this.label4.TabIndex = 26;
+            this.label4.Text = "الگوی پست ارسال 5";
+            // 
+            // txtText5
+            // 
+            this.txtText5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtText5.Location = new System.Drawing.Point(10, 731);
+            this.txtText5.Multiline = true;
+            this.txtText5.Name = "txtText5";
+            this.txtText5.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtText5.Size = new System.Drawing.Size(542, 176);
+            this.txtText5.TabIndex = 27;
+            this.txtText5.Enter += new System.EventHandler(this.txtText5_Enter);
+            // 
             // frmTelegram
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -891,6 +1010,8 @@ namespace Settings.Forms
             this.pnlTelegram.ResumeLayout(false);
             this.pnlTelegram.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -936,12 +1057,21 @@ namespace Settings.Forms
         private DevComponents.DotNetBar.ButtonX btnOtherOptions;
         private System.Windows.Forms.TextBox txtChannel;
         private System.Windows.Forms.TextBox txtToken;
-        private System.Windows.Forms.TextBox txtText;
+        private System.Windows.Forms.TextBox txtText1;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label25;
         private DevComponents.DotNetBar.ButtonX btnTelegramManager;
         private DevComponents.DotNetBar.ButtonX btnFinish;
         private DevComponents.DotNetBar.ButtonX btnCancel;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtText2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtText3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtText4;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtText5;
     }
 }
