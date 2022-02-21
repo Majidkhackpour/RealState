@@ -669,6 +669,12 @@
     <Compile Include="frmDischargeList.Designer.cs">
       <DependentUpon>frmDischargeList.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMultiText.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMultiText.Designer.cs">
+      <DependentUpon>frmMultiText.cs</DependentUpon>
+    </Compile>
     <Compile Include="KitchenService\frmKitchenServiceMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1550,6 +1556,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDischargeList.resx">
       <DependentUpon>frmDischargeList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMultiText.resx">
+      <DependentUpon>frmMultiText.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KitchenService\frmKitchenServiceMain.resx">
       <DependentUpon>frmKitchenServiceMain.cs</DependentUpon>

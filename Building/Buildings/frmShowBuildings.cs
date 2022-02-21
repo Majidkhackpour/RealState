@@ -218,12 +218,15 @@ namespace Building.Buildings
                     return;
                 }
 
-                var text = await clsTelegramManager.GetTelegramTextAsync(bu, SettingsBussines.Setting.Telegram.Text);
-                text = text.Trim();
-                var frm = new frmBuildingTelegramText(text);
+                var frm = new frmMultiText(bu);
                 if (frm.ShowDialog(this) == DialogResult.OK)
                 {
-                    text = frm.TelegramText;
+                    var text = frm.TelegramText;
+                    if (string.IsNullOrEmpty(text))
+                    {
+                        this.ShowWarning("الگوس متن ارسالی معتبر نمی باشد");
+                        return;
+                    }
                     var telegram = new WebTelegramBuilding
                     {
                         Content = text,
@@ -232,9 +235,7 @@ namespace Building.Buildings
                         Channel = SettingsBussines.Setting.Telegram.Channel
                     };
                     await telegram.SaveAsync();
-                    //bu.TelegramCount += 1;
                     await UserLogBussines.SaveBuildingLogAsync(EnLogAction.SendToTelegram, bu.Guid, text);
-                    //await bu.SaveAsync(false);
                     this.ShowMessage("فایل مورد نظر به تلگرام ارسال شد");
                     if (WebCustomer.CheckCustomer())
                     {
