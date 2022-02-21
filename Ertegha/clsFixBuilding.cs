@@ -33,6 +33,8 @@ namespace Ertegha
                 if (list == null || list.Count <= 0) return res;
                 foreach (var bu in list)
                     res.AddReturnedValue(await FixBuildingParentAsync_(bu));
+
+                BuildingBussines.RaiseStaticEvent();
             }
             catch (Exception ex)
             {
@@ -42,7 +44,7 @@ namespace Ertegha
 
             return res;
         }
-        public static async Task<ReturnedSaveFuncInfo> FixBuildingParentAsync_(BuildingBussines bu)
+        private static async Task<ReturnedSaveFuncInfo> FixBuildingParentAsync_(BuildingBussines bu)
         {
             var res = new ReturnedSaveFuncInfo();
             try
@@ -130,9 +132,10 @@ namespace Ertegha
                         bu.Parent = EnBuildingParent.PreSellHome;
                     else await bu.ChangeStatusAsync(false);
                 }
-                
-                if (bu.Parent != null)
+
+                if (bu.Parent != null && bu.Parent != EnBuildingParent.None)
                     res.AddReturnedValue(await bu.ChangeParentAsync(bu.Parent.Value));
+                else res.AddReturnedValue(await bu.ChangeStatusAsync(false, false));
             }
             catch (Exception ex)
             {

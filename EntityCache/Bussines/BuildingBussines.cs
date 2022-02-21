@@ -153,7 +153,7 @@ namespace EntityCache.Bussines
             }
             return res;
         }
-        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, SqlTransaction tr = null)
+        public async Task<ReturnedSaveFuncInfo> ChangeStatusAsync(bool status, bool isRaiseEvent = true, SqlTransaction tr = null)
         {
             var res = new ReturnedSaveFuncInfo();
             var autoTran = tr == null;
@@ -171,11 +171,13 @@ namespace EntityCache.Bussines
                 res.AddReturnedValue(await UnitOfWork.Building.ChangeStatusAsync(this, status, tr));
                 if (res.HasError) return res;
 
-                var action = status ? EnLogAction.Enable : EnLogAction.Delete;
-                var desc = $"کدملک: ( {Code} )";
-                res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Building, Guid, desc, tr));
-
-                RaiseEvent();
+                if (isRaiseEvent)
+                {
+                    var action = status ? EnLogAction.Enable : EnLogAction.Delete;
+                    var desc = $"کدملک: ( {Code} )";
+                    res.AddReturnedValue(await UserLogBussines.SaveAsync(action, EnLogPart.Building, Guid, desc, tr));
+                    RaiseEvent();
+                }
             }
             catch (Exception ex)
             {

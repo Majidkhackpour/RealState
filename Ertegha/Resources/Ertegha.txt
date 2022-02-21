@@ -7172,7 +7172,7 @@ ALTER PROCEDURE [dbo].[sp_Building_GetAllWithoutParent]
 AS
 BEGIN
 	select * from Buildings
-	where Parent is null
+	where (Parent is null or Parent=0)
 	and Status='true'
 END
 GO
