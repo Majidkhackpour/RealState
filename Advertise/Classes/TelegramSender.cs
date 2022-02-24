@@ -32,7 +32,7 @@ namespace Advertise.Classes
 
 
         public void Send(string message = "") => Task.Run(() => SendAsync(message));
-        private async Task SendAsync(string message = "")
+        private Task SendAsync(string message = "")
         {
             try
             {
@@ -50,6 +50,8 @@ namespace Advertise.Classes
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+
+            return Task.CompletedTask;
         }
     }
 }

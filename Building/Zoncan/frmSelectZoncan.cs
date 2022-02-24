@@ -29,13 +29,14 @@ namespace Building.Zoncan
             ucHeader.Text = "انتخاب زونکن";
         }
         private async void frmSelectZoncan_Load(object sender, EventArgs e) => await LoadDataAsync();
-        private async Task ucCancel_OnClick(object arg1, EventArgs arg2)
+        private Task ucCancel_OnClick(object arg1, EventArgs arg2)
         {
             ZoncanGuid = Guid.Empty;
             DialogResult = DialogResult.Cancel;
             Close();
+            return Task.CompletedTask;
         }
-        private async Task ucAccept_OnClick(object arg1, EventArgs arg2)
+        private Task ucAccept_OnClick(object arg1, EventArgs arg2)
         {
             try
             {
@@ -49,6 +50,7 @@ namespace Building.Zoncan
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+            return Task.CompletedTask;
         }
     }
 }

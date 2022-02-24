@@ -157,7 +157,7 @@ namespace RealState
                 var inf = new FileInfo(newPath);
                 var x = Path.Combine(path, $"{fileName}_{Cache.HardSerial}.{inf.Extension}");
                 File.Copy(newPath, x);
-                var res = await CompressFile.CompressFileInstance.CompressFileZipAsync(path, newPath);
+                var res = CompressFile.CompressFileInstance.CompressFileZip(path, newPath);
                 if (res.HasError || string.IsNullOrEmpty(res.value)) return;
                 await WebBackUp.UploadFileAsync(res.value, fileName, Cache.HardSerial);
                 File.Delete(res.value);

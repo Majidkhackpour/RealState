@@ -684,229 +684,7 @@ namespace Advertise.Classes
                 return false;
             }
         }
-        private async Task RegisterAdv(AdvertiseLogBussines adv, bool isRaiseEvent)
-        {
-            var ret = new ReturnedSaveFuncInfo();
-            //try
-            //{
-            //    adv.AdvType = AdvertiseType.Divar;
-            //    line = 2;
-            //    _driver = Utility.RefreshDriver(_driver, SettingsBussines.AdvertiseSetting.IsSilent);
-            //    line = 3;
-            //    _driver.Navigate().GoToUrl("https://divar.ir/new");
-            //    line = 4;
-            //    await Utility.Wait(1);
-            //    //کلیک کردن روی کتگوری اصلی
-            //    if (string.IsNullOrEmpty(adv.Category))
-            //    {
-            //        line = 5;
-            //        adv.Category = SettingsBussines.AdvertiseSetting.DivarSetting?.Category1 ?? "";
-            //    }
-
-            //    line = 6;
-            //    _driver.FindElements(By.ClassName("expanded-category-selector__item"))
-            //        .FirstOrDefault(p => p.Text == adv.Category)?.Click();
-            //    line = 7;
-            //    await Utility.Wait(2);
-            //    //کلیک روی ساب کتگوری 1
-            //    if (string.IsNullOrEmpty(adv.SubCategory1))
-            //    {
-            //        line = 8;
-            //        adv.SubCategory1 = SettingsBussines.AdvertiseSetting.DivarSetting?.Category2 ?? "";
-            //    }
-
-            //    line = 9;
-            //    _driver.FindElements(By.ClassName("expanded-category-selector__item"))
-            //        .FirstOrDefault(p => p.Text == adv.SubCategory1)?.Click();
-            //    line = 10;
-            //    await Utility.Wait(2);
-            //    //کلیک روی ساب کتگوری2
-            //    if (string.IsNullOrEmpty(adv.SubCategory2))
-            //    {
-            //        line = 11;
-            //        adv.SubCategory2 = SettingsBussines.AdvertiseSetting.DivarSetting?.Category3 ?? "";
-            //    }
-
-            //    line = 12;
-            //    _driver.FindElements(By.ClassName("expanded-category-selector__item"))
-            //        .FirstOrDefault(p => p.Text == adv.SubCategory2)?.Click();
-            //    line = 13;
-            //    await Utility.Wait(2);
-            //    line = 14;
-            //    var load = _driver.FindElements(By.ClassName("location-selector__city")).Any();
-
-            //    //درج عکسها
-            //    line = 15;
-            //    _driver.FindElement(By.ClassName("image-uploader__item")).FindElement(By.TagName("input"))
-            //        .SendKeys(adv.ImagesPath);
-            //    await Utility.Wait();
-            //    line = 16;
-            //    _driver.FindElement(By.ClassName("kt-select__field--placeholder-shown"))?.Click();
-
-            //    await Utility.Wait();
-
-            //    _driver.FindElement(By.ClassName("kt-select__search-field"))?.SendKeys(adv.City + "\n");
-
-            //    line = 17;
-            //    var el = _driver.FindElements(By.ClassName("text-field")).Any(q => q.Text == "محدودهٔ آگهی");
-            //    await Utility.Wait();
-            //    if (el)
-            //    {
-            //        line = 18;
-            //        var cty = await CitiesBussines.GetAsync(adv.City);
-            //        line = 19;
-            //        await Utility.Wait(1);
-            //        line = 20;
-            //        var cityGuid = cty.Guid;
-            //        line = 21;
-            //        var lst = await RegionsBussines.GetAllAsync(cityGuid, AdvertiseType.Divar);
-            //        line = 22;
-            //        var regionList = lst.ToList() ?? new List<RegionsBussines>();
-            //        line = 23;
-            //        if (regionList.Count > 0)
-            //        {
-            //            line = 24;
-            //            var rnd = new Random().Next(0, regionList.Count);
-            //            line = 25;
-            //            var regName = regionList[rnd].Name;
-            //            await Utility.Wait(2);
-
-            //            line = 26;
-            //            _driver.FindElements(By.ClassName("kt-select__field--placeholder-shown"))?[0].Click();
-            //            await Utility.Wait(2);
-
-            //            _driver.FindElements(By.ClassName("kt-select__search-field"))?[1]?.SendKeys(regName + "\n");
-            //            line = 27;
-            //            adv.Region = regName;
-            //        }
-            //    }
-
-            //    await Utility.Wait();
-            //    //بررسی وضعیت
-            //    line = 28;
-            //    var status = _driver.FindElements(By.ClassName("text-field")).Any(q => q.Text == "وضعیت");
-            //    if (status)
-            //    {
-            //        await Utility.Wait();
-            //        line = 29;
-            //        _driver.FindElement(By.Id("root_status"))?.Click();
-            //        await Utility.Wait();
-            //        line = 30;
-            //        _driver.FindElements(By.ClassName("kt-select__option")).FirstOrDefault(q => q.Text == "نو")?.Click();
-            //    }
-
-
-            //    //درج قیمت
-            //    line = 31;
-            //    var pr = _driver.FindElements(By.CssSelector("input[type=tel]")).Any();
-            //    await Utility.Wait();
-            //    if (pr)
-            //    {
-            //        line = 32;
-            //        _driver.FindElement(By.CssSelector("input[type=tel]")).SendKeys(adv.Price.ToString());
-            //    }
-            //    await Utility.Wait();
-            //    //درج عنوان آگهی
-            //    line = 33;
-            //    _driver.FindElements(By.CssSelector("input[type=text]")).Last().SendKeys(adv.Title);
-            //    await Utility.Wait();
-            //    //درج محتوای آگهی
-            //    line = 34;
-            //    var thread = new Thread(() => Clipboard.SetText(adv.Content));
-            //    line = 35;
-            //    thread.SetApartmentState(ApartmentState.STA);
-            //    line = 36;
-            //    thread.Start();
-            //    line = 37;
-            //    var t = _driver.FindElement(By.TagName("textarea"));
-            //    line = 38;
-            //    t.Click();
-            //    await Utility.Wait();
-            //    line = 39;
-            //    t.SendKeys(OpenQA.Selenium.Keys.Control + "v");
-            //    line = 40;
-            //    var thread1 = new Thread(Clipboard.Clear);
-            //    line = 41;
-            //    thread1.SetApartmentState(ApartmentState.STA);
-            //    line = 42;
-            //    thread1.Start();
-            //    await Utility.Wait();
-
-            //    await Utility.Wait();
-            //    line = 43;
-            //    var loadImg = _driver.FindElements(By.ClassName("kt-progress-bar__inner")).ToList();
-            //    line = 44;
-            //    while (loadImg.Count > 0)
-            //    {
-            //        await Utility.Wait(2);
-            //        line = 45;
-            //        loadImg = _driver.FindElements(By.ClassName("kt-progress-bar__inner")).ToList();
-            //    }
-
-            //    //var listtttt = _driver.FindElements(By.ClassName("kt-select__search-field")).ToList();
-            //    //line = 46;
-            //    //if (listtttt.Count > 0 &&
-            //    //    (string.IsNullOrEmpty(adv.Region) || adv.Region == "-"))
-            //    //{
-            //    //    _driver.FindElements(By.ClassName("kt-select__field--placeholder-shown"))?[0].Click();
-            //    //    await Utility.Wait();
-
-            //    //    line = 27;
-            //    //    adv.Region = adv.Region;
-            //    //}
-
-            //    line = 48;
-            //    var but = _driver.FindElements(By.TagName("button")).Any(q => q.Text.Contains("ارسال آگهی"));
-            //    if (but)
-            //    //کلیک روی دکمه ثبت آگهی
-            //    {
-            //        line = 49;
-            //        _driver.FindElements(By.TagName("button")).FirstOrDefault(q => q.Text.Contains("ارسال آگهی"))
-            //            ?.Click();
-            //    }
-
-
-
-
-
-
-            //    await Utility.Wait(2);
-            //    line = 50;
-            //    adv.URL = _driver.Url;
-            //    line = 51;
-            //    var element = _driver.FindElement(By.ClassName("manage-header__status"));
-            //    line = 400;
-            //    var advStatus = element.Text;
-            //    line = 420;
-            //    element = _driver.FindElement(By.ClassName("manage-header__description"));
-            //    line = 440;
-            //    adv.UpdateDesc = element.Text;
-            //    line = 450;
-            //    adv.StatusCode = Utility.GetAdvStatusCodeByStatus(advStatus);
-            //    line = 55;
-            //    if (_driver.Url != adv.URL)
-            //    {
-            //        line = 56;
-            //        _driver.Navigate().GoToUrl(adv.URL);
-            //    }
-
-            //    await Utility.Wait();
-            //    line = 57;
-            //    if (_driver.Url.Contains("manage")) await adv.SaveAsync();
-
-            //    await Utility.Wait(1);
-            //    line = 58;
-            //    if (isRaiseEvent) RaiseEvent();
-            //}
-            //catch (ElementClickInterceptedException) { }
-            //catch (WebDriverException) { }
-            //catch (Exception ex)
-            //{
-            //    WebErrorLog.ErrorLogInstance.StartLog(ex, $"Error in Line {line}");
-            //    ret.AddReturnedValue(ex);
-            //}
-            //finally { monitor.Dispose(); }
-        }
+       
         public async Task<List<DivarRegion>> GetAllRegionFromDivar(List<DivarCities> City)
         {
             var region = new List<DivarRegion>();
@@ -2127,26 +1905,26 @@ namespace Advertise.Classes
 
         //    return res;
         //}
-        private async Task<string> SetCategory(EnRequestType reqType)
-        {
-            try
-            {
-                switch (reqType)
-                {
-                    case EnRequestType.Rahn: return "اجاره مسکونی";
-                    case EnRequestType.Forush: return "فروش مسکونی";
-                    case EnRequestType.Moavezeh: return "";
-                    case EnRequestType.Mosharekat: return "مشارکت در ساخت";
-                    case EnRequestType.PishForush: return "پیش‌فروش";
-                    default: return "";
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                return "";
-            }
-        }
+        //private async Task<string> SetCategory(EnRequestType reqType)
+        //{
+        //    try
+        //    {
+        //        switch (reqType)
+        //        {
+        //            case EnRequestType.Rahn: return "اجاره مسکونی";
+        //            case EnRequestType.Forush: return "فروش مسکونی";
+        //            case EnRequestType.Moavezeh: return "";
+        //            case EnRequestType.Mosharekat: return "مشارکت در ساخت";
+        //            case EnRequestType.PishForush: return "پیش‌فروش";
+        //            default: return "";
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        WebErrorLog.ErrorInstence.StartErrorLog(ex);
+        //        return "";
+        //    }
+        //}
         //public async Task GetBuildingFromDivarAsync(EnRequestType reqType, long number)
         //{
         //    try

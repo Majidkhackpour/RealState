@@ -539,10 +539,11 @@ namespace Building.BuildingRequest
                 }
             }
         }
-        private async Task ucCancel_OnClick(object arg1, EventArgs arg2)
+        private Task ucCancel_OnClick(object arg1, EventArgs arg2)
         {
             DialogResult = DialogResult.Cancel;
             Close();
+            return Task.CompletedTask;
         }
     }
 }

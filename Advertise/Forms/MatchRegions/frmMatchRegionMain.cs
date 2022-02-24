@@ -14,7 +14,7 @@ namespace Advertise.Forms.MatchRegions
 {
     public partial class frmMatchRegionMain : MetroForm
     {
-        private DivarRegion Region;
+        private DivarRegion _region;
         private List<AdvertiseRelatedRegionBussines> _list = new List<AdvertiseRelatedRegionBussines>();
         private CancellationTokenSource _token = new CancellationTokenSource();
 
@@ -27,7 +27,7 @@ namespace Advertise.Forms.MatchRegions
                 var list = await RegionsBussines.GetAllAsync(SettingsBussines.Setting.CompanyInfo.EconomyCity, _token.Token);
                 regBingingSource.DataSource = list?.OrderBy(q => q.Name)?.ToSortableBindingList();
 
-                await SetRelatedRegionsAsync(Region.Name.Trim());
+                await SetRelatedRegionsAsync(_region.Name.Trim());
             }
             catch (Exception ex)
             {
@@ -67,7 +67,7 @@ namespace Advertise.Forms.MatchRegions
                             {
                                 Guid = Guid.NewGuid(),
                                 LocalRegionGuid = item.Guid,
-                                OnlineRegionName = Region.Name.Trim()
+                                OnlineRegionName = _region.Name.Trim()
                             });
                         }
             }
@@ -79,13 +79,13 @@ namespace Advertise.Forms.MatchRegions
         public frmMatchRegionMain(DivarRegion region)
         {
             InitializeComponent();
-            Region = region;
+            _region = region;
         }
 
         private async void frmMatchRegionMain_Load(object sender, System.EventArgs e)
         {
             await LoadRegionsAsync();
-            lblName.Text = Region.Name;
+            lblName.Text = _region.Name;
         }
 
         private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -149,7 +149,7 @@ namespace Advertise.Forms.MatchRegions
         {
             try
             {
-                var list = await AdvertiseRelatedRegionBussines.GetAllAsync(Region.Name.Trim());
+                var list = await AdvertiseRelatedRegionBussines.GetAllAsync(_region.Name.Trim());
 
                 var res = await AdvertiseRelatedRegionBussines.RemoveRangeAsync(list);
                 if (res.HasError)

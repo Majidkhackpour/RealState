@@ -12,7 +12,6 @@ namespace Building.UserControls
     public partial class UcBuildingImages : UserControl
     {
         private string _picNameJari = "", _pictureNameForClick = null;
-        private PictureBox _orGpicBox, _fakepicBox;
         readonly List<string> _lstList = new List<string>();
         private List<BuildingGalleryBussines> _opList;
         public List<BuildingGalleryBussines> GalleryList
@@ -144,7 +143,6 @@ namespace Building.UserControls
                     ((PictureBox)sender).Padding = new Padding(-1);
                     _pictureNameForClick = null;
                     _lstList.Add(imageLocation);
-                    _orGpicBox = null;
                     return;
                 }
 
@@ -152,7 +150,6 @@ namespace Building.UserControls
                 ((PictureBox)sender).Padding = new Padding(1);
                 _pictureNameForClick = ((PictureBox)sender).Name;
                 _lstList.Remove(imageLocation);
-                _orGpicBox = (PictureBox)sender;
             }
             catch (Exception exception)
             {

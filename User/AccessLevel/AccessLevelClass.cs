@@ -27,7 +27,6 @@ namespace User.AccessLevel
             get => info.CkeckAll;
             set => info.CkeckAll = value;
         }
-        private PropertyInfo _propInfo;
         public static List<AccessLevelClass> ListInfo(Services.Access.AccessLevel access)
         {
             try

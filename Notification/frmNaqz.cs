@@ -14,11 +14,11 @@ namespace Notification
         private int _startPosY;
         private List<NoteBussines> lstNotes;
 
-        private async Task SetNotes()
+        private Task SetNotes()
         {
             try
             {
-                if (lstNotes == null || lstNotes.Count <= 0) return;
+                if (lstNotes == null || lstNotes.Count <= 0) return Task.CompletedTask;
                 foreach (var item in lstNotes)
                 {
                     Invoke(new MethodInvoker(() =>
@@ -32,6 +32,7 @@ namespace Notification
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+            return Task.CompletedTask;
         }
 
         public frmNaqz(List<NoteBussines> notes)

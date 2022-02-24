@@ -2,6 +2,7 @@
 using Services;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
 using EntityCache.Bussines;
@@ -113,12 +114,37 @@ namespace Building.Buildings.Selector
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async System.Threading.Tasks.Task ucForoush_OnClick_1(UcButton arg) => SwitchSelect(arg);
-        private async System.Threading.Tasks.Task ucRahnEjare_OnClick(UcButton arg) => SwitchSelect(arg);
-        private async System.Threading.Tasks.Task ucFullRahn_OnClick(UcButton arg) => SwitchSelect(arg);
-        private async System.Threading.Tasks.Task ucPishForoush_OnClick(UcButton arg) => SwitchSelect(arg);
-        private async System.Threading.Tasks.Task ucMoaveze_OnClick(UcButton arg) => SwitchSelect(arg);
-        private async System.Threading.Tasks.Task ucMosharekat_OnClick(UcButton arg) => SwitchSelect(arg);
+
+        private Task ucForoush_OnClick_1(UcButton arg)
+        {
+            SwitchSelect(arg);
+            return Task.CompletedTask;
+        }
+        private Task ucRahnEjare_OnClick(UcButton arg)
+        {
+            SwitchSelect(arg);
+            return Task.CompletedTask;
+        }
+        private Task ucFullRahn_OnClick(UcButton arg)
+        {
+            SwitchSelect(arg);
+            return Task.CompletedTask;
+        }
+        private Task ucPishForoush_OnClick(UcButton arg)
+        {
+            SwitchSelect(arg);
+            return Task.CompletedTask;
+        }
+        private Task ucMoaveze_OnClick(UcButton arg)
+        {
+            SwitchSelect(arg);
+            return Task.CompletedTask;
+        }
+        private Task ucMosharekat_OnClick(UcButton arg)
+        {
+            SwitchSelect(arg);
+            return Task.CompletedTask;
+        }
         private async void frmSelectBuildingType_KeyDown(object sender, KeyEventArgs e)
         {
             try

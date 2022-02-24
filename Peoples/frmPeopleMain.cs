@@ -102,10 +102,11 @@ namespace Peoples
                 }
             }
         }
-        private async Task ucCancel_OnClick(object sender, EventArgs e)
+        private Task ucCancel_OnClick(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
+            return Task.CompletedTask;
         }
         private async void frmPeopleMain_Load(object sender, EventArgs e)
         {

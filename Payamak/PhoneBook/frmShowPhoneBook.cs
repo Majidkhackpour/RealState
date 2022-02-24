@@ -32,11 +32,11 @@ namespace Payamak.PhoneBook
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task LoadDataAsync(string search = "")
+        private Task LoadDataAsync(string search = "")
         {
             try
             {
-                if (!_isLoadData) return;
+                if (!_isLoadData) return Task.CompletedTask;
                 Invoke(new MethodInvoker(async () =>
                 {
                     var list = await PhoneBookBussines.GetAllAsync(ParentGuid, search, (EnPhoneBookGroup)cmbGroup.SelectedIndex);
@@ -47,6 +47,7 @@ namespace Payamak.PhoneBook
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+            return Task.CompletedTask;
         }
         private void LoadGroups()
         {

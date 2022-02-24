@@ -116,7 +116,7 @@ namespace Peoples
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void Select()
+        private new void Select()
         {
             try
             {

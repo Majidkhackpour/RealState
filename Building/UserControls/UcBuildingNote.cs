@@ -64,12 +64,12 @@ namespace Building.UserControls
                 }
             }
         }
-        private async Task COnOnDeleted(string note)
+        private Task COnOnDeleted(string note)
         {
             try
             {
                 var n = Notes.FirstOrDefault(q => q.Note == note);
-                if (n == null) return;
+                if (n == null) return Task.CompletedTask;
                 _list.Remove(n);
                 Notes = _list;
             }
@@ -77,15 +77,16 @@ namespace Building.UserControls
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+            return Task.CompletedTask;
         }
-        private async Task COnOnEdited(string note)
+        private Task COnOnEdited(string note)
         {
             try
             {
                 var n = Notes.FirstOrDefault(q => q.Note == note);
-                if (n == null) return;
+                if (n == null) return Task.CompletedTask;
                 var frm = new frmBuildingTelegramText(note, "یادداشت");
-                if (frm.ShowDialog(this) != DialogResult.OK) return;
+                if (frm.ShowDialog(this) != DialogResult.OK) return Task.CompletedTask;
                 _list.Remove(n);
                 _list.Add(new BuildingNoteBussines()
                 {
@@ -99,6 +100,7 @@ namespace Building.UserControls
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+            return Task.CompletedTask;
         }
         public UcBuildingNote() => InitializeComponent();
         private void picAddNote_Click(object sender, EventArgs e)

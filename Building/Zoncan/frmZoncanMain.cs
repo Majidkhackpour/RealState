@@ -86,10 +86,11 @@ namespace Building.Zoncan
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-        private async Task ucCancel_OnClick(object arg1, EventArgs arg2)
+        private Task ucCancel_OnClick(object arg1, EventArgs arg2)
         {
             DialogResult = DialogResult.Cancel;
             Close();
+            return Task.CompletedTask;
         }
         private async Task ucAccept_OnClick(object arg1, EventArgs arg2)
         {

@@ -19,7 +19,6 @@ namespace Building.BuildingRequest
     {
         private bool _st = true;
         private List<BuildingRequestBussines> _list;
-        private List<string> _columnList;
         private CancellationTokenSource _token = new CancellationTokenSource();
 
         private async Task LoadDataAsync(string search = "")

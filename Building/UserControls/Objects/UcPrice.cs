@@ -5,7 +5,7 @@ namespace Building.UserControls.Objects
 {
     public partial class UcPrice : UserControl
     {
-        public event Action OnTextChanged;
+        public new event Action OnTextChanged;
         public string Title { get => lblTitle.Text; set => lblTitle.Text = value; }
         public decimal Price { get => txtPrice.TextDecimal; set => txtPrice.TextDecimal = value; }
         public UcPrice() => InitializeComponent();

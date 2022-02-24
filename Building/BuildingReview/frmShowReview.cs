@@ -31,7 +31,7 @@ namespace Building.BuildingReview
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task SearchAsync(string srach = "")
+        private Task SearchAsync(string srach = "")
         {
             try
             {
@@ -44,7 +44,7 @@ namespace Building.BuildingReview
                 if (searchItems?.Count > 0)
                     foreach (var item in searchItems)
                     {
-                        if (t.IsCancellationRequested) return;
+                        if (t.IsCancellationRequested) return Task.CompletedTask;
                         if (!string.IsNullOrEmpty(item) && item.Trim() != "")
                         {
                             filteredList = filteredList?.Where(x => x.UserName.ToLower().Contains(item.ToLower()) ||
@@ -61,6 +61,7 @@ namespace Building.BuildingReview
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+            return Task.CompletedTask;
         }
 
         public frmShowReview(BuildingReviewFilter filter)

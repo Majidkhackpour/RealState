@@ -19,7 +19,6 @@ namespace Building.Contract
     public partial class frmShowContract : MetroForm
     {
         private bool _st = true;
-        private List<ContractBussines> list;
         private CancellationTokenSource _token = new CancellationTokenSource();
         private ContractFilter filter;
         private IEnumerable<ContractReportBusiness> _list;
@@ -178,11 +177,11 @@ namespace Building.Contract
 
                 if (frm._PrintType != EnPrintType.Excel)
                 {
-                    var cls = new ReportGenerator(StiType.Contract_List, frm._PrintType) { Lst = new List<object>(list) };
+                    var cls = new ReportGenerator(StiType.Contract_List, frm._PrintType) { Lst = new List<object>(_list) };
                     cls.PrintNew();
                 }
 
-                ExportToExcel.ExportContract(list, this);
+                //ExportToExcel.ExportContract(_list?.ToList(), this);
             }
             catch (Exception ex)
             {

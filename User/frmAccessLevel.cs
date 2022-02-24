@@ -15,8 +15,6 @@ namespace User
     public partial class frmAccessLevel : MetroForm
     {
         private Services.Access.AccessLevel _currentAccessLevel;
-        private short _selectedValue;
-        private bool _firstindexChange;
         private CancellationTokenSource _token = new CancellationTokenSource();
 
         public frmAccessLevel()
@@ -66,7 +64,7 @@ namespace User
             {
                 if (cmbUser.Items.Count <= 1) return;
 
-                if (!_firstindexChange && MessageBox.Show(this, "مایل به ذخیره تنظیمات هستید ؟", "پیغام سیستم", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2, MessageBoxOptions.RightAlign) == DialogResult.Yes)
+                if (MessageBox.Show(this, "مایل به ذخیره تنظیمات هستید ؟", "پیغام سیستم", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2, MessageBoxOptions.RightAlign) == DialogResult.Yes)
                 {
                     var user = await UserBussines.GetAsync((Guid)cmbUser.SelectedValue);
                     _currentAccessLevel = user.UserAccess;

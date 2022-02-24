@@ -9,7 +9,6 @@ namespace Notification
 {
     public partial class FrmShowErrorMessage : Form
     {
-        private static FrmShowErrorMessage _lastThreadFrm = null;
         short rowIndex = 0;
         private static Bitmap errorImage = new Bitmap(Properties.Resources.error);
         private static Bitmap infoImage = new Bitmap(Properties.Resources.icons8_info_50);

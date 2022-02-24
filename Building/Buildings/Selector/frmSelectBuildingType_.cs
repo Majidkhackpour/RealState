@@ -51,7 +51,7 @@ namespace Building.Buildings.Selector
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-        private async Task BtnOnOnClick(UcButton sender)
+        private Task BtnOnOnClick(UcButton sender)
         {
             try
             {
@@ -64,6 +64,7 @@ namespace Building.Buildings.Selector
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+            return Task.CompletedTask;
         }
         private EnBuildingParent TypeSwitcher()
         {

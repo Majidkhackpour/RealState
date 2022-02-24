@@ -93,11 +93,7 @@ namespace Settings
                     "");
                 return a.ToString();
             }
-            catch (Exception ex)
-            {
-                //WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                return null;
-            }
+            catch { return null; }
         }
     }
 }

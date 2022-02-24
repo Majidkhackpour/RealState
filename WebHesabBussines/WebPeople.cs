@@ -61,7 +61,7 @@ namespace WebHesabBussines
                     foreach (var item in TellList)
                     {
                         var ret = await WebPhoneBook.SaveAsync(item);
-                        if (ret.HasError || ret.value == null || ret.value != ResponseStatus.Success)
+                        if (ret.HasError || ret.value != ResponseStatus.Success)
                         {
                             RaiseEvent(Guid, ServerStatus.DeliveryError, DateTime.Now);
                             return;

@@ -86,11 +86,11 @@ namespace Building.Buildings
             }
         }
         private void Search(string search = "") => _ = new Waiter("درحال جستجو ...", this, Task.Run(() => SearchAsync(search)));
-        private async Task SearchAsync(string srach = "")
+        private Task SearchAsync(string srach = "")
         {
             try
             {
-                if (!_isLoad) return;
+                if (!_isLoad) return Task.CompletedTask;
                 _filteredList = _list;
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
@@ -100,7 +100,7 @@ namespace Building.Buildings
                 if (searchItems?.Count > 0)
                     foreach (var item in searchItems)
                     {
-                        if (t.IsCancellationRequested) return;
+                        if (t.IsCancellationRequested) return Task.CompletedTask;
                         if (!string.IsNullOrEmpty(item) && item.Trim() != "")
                         {
                             _filteredList = _filteredList?.Where(x => x.Code.ToLower().Contains(item.ToLower()) ||
@@ -123,6 +123,7 @@ namespace Building.Buildings
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+            return Task.CompletedTask;
         }
         private void SetAccess()
         {
@@ -149,7 +150,7 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private void Select()
+        private new void Select()
         {
             try
             {
@@ -682,24 +683,24 @@ namespace Building.Buildings
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async void mnuSendToSheypoor_Click(object sender, EventArgs e)
+        private void mnuSendToSheypoor_Click(object sender, EventArgs e)
         {
             var res = new ReturnedSaveFuncInfo();
             try
             {
                 return;
-                if (DGrid.RowCount <= 0) return;
-                if (DGrid.CurrentRow == null) return;
-                var simList = new List<SimcardBussines>();
-                var buList = new List<BuildingBussines>();
+                //if (DGrid.RowCount <= 0) return;
+                //if (DGrid.CurrentRow == null) return;
+                //var simList = new List<SimcardBussines>();
+                //var buList = new List<BuildingBussines>();
 
-                var bu = await BuildingBussines.GetAsync((Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value);
-                if (bu == null) return;
-                buList.Add(bu);
+                //var bu = await BuildingBussines.GetAsync((Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value);
+                //if (bu == null) return;
+                //buList.Add(bu);
 
-                var frm = new frmShowSimcard(true);
-                if (frm.ShowDialog(this) == DialogResult.OK)
-                    simList.Add(await SimcardBussines.GetAsync(frm.SelectedGuid));
+                //var frm = new frmShowSimcard(true);
+                //if (frm.ShowDialog(this) == DialogResult.OK)
+                //    simList.Add(await SimcardBussines.GetAsync(frm.SelectedGuid));
 
                 //res.AddReturnedValue(await Utility.ManageAdvSend(buList, simList, AdvertiseType.Sheypoor,
                 //    clsAdvertise.IsGiveChat, clsAdvertise.Sender, clsAdvertise.Sheypoor_PicCountInPerAdv));
@@ -742,8 +743,8 @@ namespace Building.Buildings
                 title = tc.AdvTitle;
                 content = tc.AdvContent;
 
-                res.AddReturnedValue(await Utility.ManageAdvSend(bu, sim, AdvertiseType.Divar,
-                    SettingsBussines.AdvertiseSetting.IsGiveChat, SettingsBussines.AdvertiseSetting.Sender, SettingsBussines.AdvertiseSetting.Divar_PicCountInPerAdv, title, content));
+                //res.AddReturnedValue(await Utility.ManageAdvSend(bu, sim, AdvertiseType.Divar,
+                //    SettingsBussines.AdvertiseSetting.IsGiveChat, SettingsBussines.AdvertiseSetting.Sender, SettingsBussines.AdvertiseSetting.Divar_PicCountInPerAdv, title, content));
 
                 if (res.HasError) return;
                 await UserLogBussines.SaveBuildingLogAsync(EnLogAction.SendToDivar, bu.Guid, content);

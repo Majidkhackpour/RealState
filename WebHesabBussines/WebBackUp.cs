@@ -8,7 +8,7 @@ namespace WebHesabBussines
 {
     public class WebBackUp
     {
-        public static async Task UploadFileAsync(string filePath, string fileName, string hddSerial)
+        public static Task UploadFileAsync(string filePath, string fileName, string hddSerial)
         {
             try
             {
@@ -19,6 +19,7 @@ namespace WebHesabBussines
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+            return Task.CompletedTask;
         }
         private static void Upload(string url, string filePath, string localFilename, string hardSerial)
         {

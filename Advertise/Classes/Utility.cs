@@ -396,7 +396,7 @@ namespace Advertise.Classes
             try
             {
                 var bus = await BuildingBussines.GetAsync(bu.Guid);
-                if (bu.Parent == null || bu.Parent == EnBuildingParent.None)
+                if (bu.Parent == EnBuildingParent.None)
                 {
                     res.AddError("کاربری ملک معتبر نمی باشد");
                     return res;
@@ -595,36 +595,36 @@ namespace Advertise.Classes
 
             return res;
         }
-        public static async Task<ReturnedSaveFuncInfo> ManageAdvSend(BuildingBussines bu, SimcardBussines simcard, AdvertiseType type, bool isGiveChat, string sender, int imageCount, string title, string content)
-        {
-            var res = new ReturnedSaveFuncInfo();
-            try
-            {
-                //if (type == AdvertiseType.Divar)
-                //    res.AddReturnedValue(await SendDivarAdv(bu, simcard.Number, isGiveChat, sender, imageCount, title, content));
+        //public static async Task<ReturnedSaveFuncInfo> ManageAdvSend(BuildingBussines bu, SimcardBussines simcard, AdvertiseType type, bool isGiveChat, string sender, int imageCount, string title, string content)
+        //{
+        //    var res = new ReturnedSaveFuncInfo();
+        //    try
+        //    {
+        //        //if (type == AdvertiseType.Divar)
+        //        //    res.AddReturnedValue(await SendDivarAdv(bu, simcard.Number, isGiveChat, sender, imageCount, title, content));
 
-                //if (type == AdvertiseType.Sheypoor)
-                //    res.AddReturnedValue(await SendAdv(adv.value, number.Number, AdvertiseType.Sheypoor));
+        //        //if (type == AdvertiseType.Sheypoor)
+        //        //    res.AddReturnedValue(await SendAdv(adv.value, number.Number, AdvertiseType.Sheypoor));
 
-                //if (type == AdvertiseType.Both)
-                //{
-                //    var divarAdv = await GetNextAdv(bu, AdvertiseType.Divar, number.Number);
-                //    var sheypoorAdv = await GetNextAdv(bu, AdvertiseType.Sheypoor, number.Number);
+        //        //if (type == AdvertiseType.Both)
+        //        //{
+        //        //    var divarAdv = await GetNextAdv(bu, AdvertiseType.Divar, number.Number);
+        //        //    var sheypoorAdv = await GetNextAdv(bu, AdvertiseType.Sheypoor, number.Number);
 
-                //    res.AddReturnedValue(await SendAdv(divarAdv.value, number.Number, AdvertiseType.Divar));
-                //    res.AddReturnedValue(await SendAdv(sheypoorAdv.value, number.Number, AdvertiseType.Sheypoor));
-                //}
+        //        //    res.AddReturnedValue(await SendAdv(divarAdv.value, number.Number, AdvertiseType.Divar));
+        //        //    res.AddReturnedValue(await SendAdv(sheypoorAdv.value, number.Number, AdvertiseType.Sheypoor));
+        //        //}
 
-                CloseAllChromeWindows();
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                res.AddReturnedValue(ex);
-            }
+        //        CloseAllChromeWindows();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        WebErrorLog.ErrorInstence.StartErrorLog(ex);
+        //        res.AddReturnedValue(ex);
+        //    }
 
-            return res;
-        }
+        //    return res;
+        //}
         public static async Task<ReturnedSaveFuncInfo> SaveAdv(AdvertiseType type, string fCat, string sCat,
             string thCat, string state, string city, string region, string title, string content, long number,
             decimal price1, decimal price2, string url)

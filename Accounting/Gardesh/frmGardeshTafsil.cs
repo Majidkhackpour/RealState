@@ -30,7 +30,7 @@ namespace Accounting.Gardesh
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task HilightGridAsync()
+        private Task HilightGridAsync()
         {
             try
             {
@@ -52,6 +52,7 @@ namespace Accounting.Gardesh
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+            return Task.CompletedTask;
         }
 
         public frmGardeshTafsil(Guid tafsilGuid)

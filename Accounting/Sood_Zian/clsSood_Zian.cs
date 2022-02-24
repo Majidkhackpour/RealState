@@ -6,10 +6,10 @@ namespace Accounting.Sood_Zian
 {
     public class clsSood_Zian
     {
-        private decimal _totalCommition = 0;
-        private decimal _totalBazarYab = 0;
-        private decimal _totalHazine = 0;
-        private decimal _totalTax = 0;
+        //private decimal _totalCommition = 0;
+        //private decimal _totalBazarYab = 0;
+        //private decimal _totalHazine = 0;
+        //private decimal _totalTax = 0;
         private DateTime _date1, _date2;
 
         public clsSood_Zian(DateTime d1, DateTime d2)

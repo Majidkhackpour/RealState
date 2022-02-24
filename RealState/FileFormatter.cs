@@ -161,11 +161,11 @@ namespace RealState
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private static async Task CopyMediasFromClientToServerAsync(List<string> list)
+        private static Task CopyMediasFromClientToServerAsync(List<string> list)
         {
             try
             {
-                if (list == null || list.Count <= 0) return;
+                if (list == null || list.Count <= 0) return Task.CompletedTask;
                 if (!Directory.Exists(SettingsBussines.Setting.Global.MediaPath))
                     Directory.CreateDirectory(SettingsBussines.Setting.Global.MediaPath);
                 var dir = Path.Combine(Application.StartupPath, "Media");
@@ -187,12 +187,13 @@ namespace RealState
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+            return Task.CompletedTask;
         }
-        private static async Task CopyMediasFromServerToClientAsync(List<string> list)
+        private static Task CopyMediasFromServerToClientAsync(List<string> list)
         {
             try
             {
-                if (list == null || list.Count <= 0) return;
+                if (list == null || list.Count <= 0) return Task.CompletedTask;
                 var dir = Path.Combine(Application.StartupPath, "Media");
                 if (!Directory.Exists(dir))
                     Directory.CreateDirectory(dir);
@@ -214,6 +215,7 @@ namespace RealState
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+            return Task.CompletedTask;
         }
     }
 }

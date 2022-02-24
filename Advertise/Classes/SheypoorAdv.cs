@@ -65,8 +65,8 @@ namespace Advertise.Classes
 
                 await GetChatCount(number);
 
-                var res_ = await RegisterAdv(adv);
-                if (res_.HasError) return;
+                //var res_ = await RegisterAdv(adv);
+                //if (res_.HasError) return;
 
                 //تشخیص بلاکی
                 _driver.Navigate().GoToUrl("https://www.sheypoor.com/session/myListings");
@@ -113,167 +113,167 @@ namespace Advertise.Classes
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task<ReturnedSaveFuncInfo> RegisterAdv(AdvertiseLogBussines adv)
-        {
-            var ret = new ReturnedSaveFuncInfo();
-            //try
-            //{
-            //    var counter = 0;
-            //    adv.AdvType = AdvertiseType.Sheypoor;
-            //    _driver = Utility.RefreshDriver(_driver, SettingsBussines.AdvertiseSetting.IsSilent);
-            //    _driver.Navigate().GoToUrl("https://www.sheypoor.com/listing/new");
-            //    await Utility.Wait();
+        //private async Task<ReturnedSaveFuncInfo> RegisterAdv(AdvertiseLogBussines adv)
+        //{
+        //    var ret = new ReturnedSaveFuncInfo();
+        //    //try
+        //    //{
+        //    //    var counter = 0;
+        //    //    adv.AdvType = AdvertiseType.Sheypoor;
+        //    //    _driver = Utility.RefreshDriver(_driver, SettingsBussines.AdvertiseSetting.IsSilent);
+        //    //    _driver.Navigate().GoToUrl("https://www.sheypoor.com/listing/new");
+        //    //    await Utility.Wait();
 
-            //    //کلیک کردن روی کتگوری اصلی
-            //    _driver.FindElements(By.ClassName("form-select")).FirstOrDefault()?.Click();
-            //    await Utility.Wait();
+        //    //    //کلیک کردن روی کتگوری اصلی
+        //    //    _driver.FindElements(By.ClassName("form-select")).FirstOrDefault()?.Click();
+        //    //    await Utility.Wait();
 
-            //    //کلیک روی ساب کتگوری 1
-            //    if (string.IsNullOrEmpty(adv.SubCategory1))
-            //        adv.SubCategory1 = SettingsBussines.AdvertiseSetting.SheypoorSetting?.Category1 ?? "";
+        //    //    //کلیک روی ساب کتگوری 1
+        //    //    if (string.IsNullOrEmpty(adv.SubCategory1))
+        //    //        adv.SubCategory1 = SettingsBussines.AdvertiseSetting.SheypoorSetting?.Category1 ?? "";
 
-            //    if (string.IsNullOrEmpty(adv.SubCategory1))
-            //        adv.SubCategory1 = SettingsBussines.AdvertiseSetting.SheypoorSetting?.Category1;
+        //    //    if (string.IsNullOrEmpty(adv.SubCategory1))
+        //    //        adv.SubCategory1 = SettingsBussines.AdvertiseSetting.SheypoorSetting?.Category1;
 
-            //    _driver.FindElements(By.ClassName("link")).FirstOrDefault(q => q.Text == adv.SubCategory1)?.Click();
+        //    //    _driver.FindElements(By.ClassName("link")).FirstOrDefault(q => q.Text == adv.SubCategory1)?.Click();
 
-            //    await Utility.Wait();
+        //    //    await Utility.Wait();
 
-            //    //کلیک روی ساب کتگوری2
-            //    if (string.IsNullOrEmpty(adv.SubCategory2))
-            //        adv.SubCategory2 = SettingsBussines.AdvertiseSetting.SheypoorSetting?.Category2 ?? "";
+        //    //    //کلیک روی ساب کتگوری2
+        //    //    if (string.IsNullOrEmpty(adv.SubCategory2))
+        //    //        adv.SubCategory2 = SettingsBussines.AdvertiseSetting.SheypoorSetting?.Category2 ?? "";
 
-            //    if (string.IsNullOrEmpty(adv.SubCategory2))
-            //        adv.SubCategory2 = SettingsBussines.AdvertiseSetting.SheypoorSetting?.Category2;
+        //    //    if (string.IsNullOrEmpty(adv.SubCategory2))
+        //    //        adv.SubCategory2 = SettingsBussines.AdvertiseSetting.SheypoorSetting?.Category2;
 
-            //    _driver.FindElements(By.ClassName("link")).FirstOrDefault(q => q.Text == adv.SubCategory2)?.Click();
+        //    //    _driver.FindElements(By.ClassName("link")).FirstOrDefault(q => q.Text == adv.SubCategory2)?.Click();
 
-            //    //درج عکسها
-            //    _driver.FindElement(By.ClassName("qq-upload-button-selector")).FindElement(By.TagName("input"))
-            //        .SendKeys(adv.ImagesPath);
+        //    //    //درج عکسها
+        //    //    _driver.FindElement(By.ClassName("qq-upload-button-selector")).FindElement(By.TagName("input"))
+        //    //        .SendKeys(adv.ImagesPath);
 
-            //    //درج عنوان آگهی
-            //    _driver.FindElement(By.Name("name")).SendKeys("");
-            //    _driver.FindElement(By.Name("name")).SendKeys(adv.Title);
-            //    //await Wait();
-            //    //درج محتوای آگهی
-            //    var thread = new Thread(() => Clipboard.SetText(adv.Content.Replace('(', '<').Replace(')', '>')));
-            //    thread.SetApartmentState(ApartmentState.STA);
-            //    thread.Start();
-            //    var t = _driver.FindElement(By.Id("item-form-description"));
-            //    t.Click();
-            //    await Utility.Wait();
-            //    t.SendKeys(OpenQA.Selenium.Keys.Control + "v");
-            //    var thread1 = new Thread(Clipboard.Clear);
-            //    thread1.SetApartmentState(ApartmentState.STA);
-            //    thread1.Start();
-
-
-            //    //درج قیمت
-            //    //var txtPrice = _driver.FindElements(By.Id("item-form-price")).Count;
-            //    //if (adv?.Price1 > 0 && txtPrice != 0)
-            //    //{
-            //    //    line = 30;
-            //    //    _driver.FindElement(By.Id("item-form-price"))?.SendKeys("");
-            //    //    line = 31;
-            //    //    _driver.FindElement(By.Id("item-form-price"))?.SendKeys(adv.Price.ToString());
-            //    //}
-
-            //    await Utility.Wait();
-
-            //    //انتخاب شهر
-            //    await Utility.Wait();
-            //    _driver.FindElements(By.ClassName("form-select")).LastOrDefault()?.Click();
-            //    await Utility.Wait();
-            //    var a = _driver.FindElements(By.ClassName("mode-district")).Any();
-            //    if (a)
-            //    {
-            //        _driver.FindElement(By.ClassName("mode-district")).FindElement(By.ClassName("link"))?.Click();
-            //        await Utility.Wait();
-            //        _driver.FindElement(By.ClassName("mode-city")).FindElement(By.ClassName("link"))?.Click();
-            //    }
-
-            //    await Utility.Wait();
-            //    _driver.FindElements(By.TagName("li"))?.FirstOrDefault(q => q.Text.Contains(adv.State))?.Click();
-            //    await Utility.Wait();
-            //    var cc = _driver.FindElements(By.TagName("li")).FirstOrDefault(q => q.Text.Contains(adv.City));
-            //    cc?.Click();
-            //    var cty = await CityBusiness.GetAsync(adv?.City);
-            //    var randCity = await CityBusiness.GetNextRandomCityAsync(adv.MasterVisitorGuid, AdvertiseType.Sheypoor);
-            //    await Utility.Wait();
-            //    var cityGuid = !string.IsNullOrEmpty(adv?.City) ? cty.Guid : randCity.Guid;
-            //    var lst = await RegionBusiness.GetAllAsync(cityGuid, AdvertiseType.Sheypoor);
-            //    var regionList = lst?.ToList() ?? new List<RegionBusiness>();
-            //    if (regionList.Count > 0)
-            //    {
-            //        var rnd = new Random().Next(0, regionList.Count);
-            //        var regName = regionList[rnd].Name;
-            //        await Utility.Wait();
-            //        _driver.FindElements(By.TagName("li"))?.FirstOrDefault(q => q.Text == regName)
-            //            ?.Click();
-            //        adv.Region = regName;
-            //    }
-            //    // await Wait();
-
-            //    //کلیک روی دکمه ثبت آگهی
-            //    while (_driver.Url == "https://www.sheypoor.com/listing/new")
-            //    {
-            //        try
-            //        {
-            //            _driver.SwitchTo().Alert().Accept();
-            //        }
-            //        catch { }
-
-            //        counter++;
-            //        await Utility.Wait(2);
-            //        _driver.FindElements(By.TagName("button")).FirstOrDefault(q => q.Text == "ثبت آگهی")
-            //            ?.Click();
-            //        await Utility.Wait();
-            //        var box = _driver.FindElements(By.ClassName("box")).Any(q => q.Text.Contains("حساب کاربری"));
-            //        if (box) return ret;
-            //        if (counter < 60) continue;
-            //        await Utility.GetScreenShot(_driver);
-            //        adv.URL = "---";
-            //        adv.UpdateDesc = @"خطای درج";
-            //        adv.StatusCode = StatusCode.InsertError;
-            //        adv.AdvType = AdvertiseType.Sheypoor;
-            //        adv.IP = await Utility.GetLocalIpAddress();
-            //        await adv.SaveAsync();
-            //        await Utility.Wait();
-            //        counter = 0;
-            //        _driver.Navigate().GoToUrl("https://www.sheypoor.com");
-            //        return ret;
-            //    }
-            //    //اگر آگهی با موفقیت ثبت شود لینک مدیریت آگهی ذخیره می شود
-            //    await Utility.Wait();
-            //    counter = 0;
-            //    adv.URL = await MakeUrl(_driver.Url);
-            //    adv.UpdateDesc = @"در صف انتشار";
-            //    adv.StatusCode = StatusCode.InPublishQueue;
-            //    adv.AdvType = AdvertiseType.Sheypoor;
-            //    adv.IP = await Utility.GetLocalIpAddress();
-            //    await adv.SaveAsync();
-            //    await Utility.Wait();
-            //    var _30days = _driver.FindElements(By.TagName("strong"))
-            //        .Any(q => q.Text.Contains("شما به سقف ۳۰ آگهی در دوره‌ی ۳۰ روزه رسیده‌اید"));
-            //    if (_30days)
-            //        ret.AddReturnedValue(ReturnedState.Error, "پر شدن تعداد آگهی در ماه");
+        //    //    //درج عنوان آگهی
+        //    //    _driver.FindElement(By.Name("name")).SendKeys("");
+        //    //    _driver.FindElement(By.Name("name")).SendKeys(adv.Title);
+        //    //    //await Wait();
+        //    //    //درج محتوای آگهی
+        //    //    var thread = new Thread(() => Clipboard.SetText(adv.Content.Replace('(', '<').Replace(')', '>')));
+        //    //    thread.SetApartmentState(ApartmentState.STA);
+        //    //    thread.Start();
+        //    //    var t = _driver.FindElement(By.Id("item-form-description"));
+        //    //    t.Click();
+        //    //    await Utility.Wait();
+        //    //    t.SendKeys(OpenQA.Selenium.Keys.Control + "v");
+        //    //    var thread1 = new Thread(Clipboard.Clear);
+        //    //    thread1.SetApartmentState(ApartmentState.STA);
+        //    //    thread1.Start();
 
 
-            //    //await Utility.InsertDataInAdvVisitLog(adv, AdvertiseType.Sheypoor);
-            //    if (!_driver.Url.Contains(adv.URL))
-            //        _driver.Navigate().GoToUrl("https://www.sheypoor.com/session/myListings");
-            //}
-            //catch (ElementClickInterceptedException) { }
-            //catch (WebDriverException) { }
-            //catch (Exception ex)
-            //{
-            //    WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            //    ret.AddReturnedValue(ex);
-            //}
+        //    //    //درج قیمت
+        //    //    //var txtPrice = _driver.FindElements(By.Id("item-form-price")).Count;
+        //    //    //if (adv?.Price1 > 0 && txtPrice != 0)
+        //    //    //{
+        //    //    //    line = 30;
+        //    //    //    _driver.FindElement(By.Id("item-form-price"))?.SendKeys("");
+        //    //    //    line = 31;
+        //    //    //    _driver.FindElement(By.Id("item-form-price"))?.SendKeys(adv.Price.ToString());
+        //    //    //}
 
-            return ret;
-        }
+        //    //    await Utility.Wait();
+
+        //    //    //انتخاب شهر
+        //    //    await Utility.Wait();
+        //    //    _driver.FindElements(By.ClassName("form-select")).LastOrDefault()?.Click();
+        //    //    await Utility.Wait();
+        //    //    var a = _driver.FindElements(By.ClassName("mode-district")).Any();
+        //    //    if (a)
+        //    //    {
+        //    //        _driver.FindElement(By.ClassName("mode-district")).FindElement(By.ClassName("link"))?.Click();
+        //    //        await Utility.Wait();
+        //    //        _driver.FindElement(By.ClassName("mode-city")).FindElement(By.ClassName("link"))?.Click();
+        //    //    }
+
+        //    //    await Utility.Wait();
+        //    //    _driver.FindElements(By.TagName("li"))?.FirstOrDefault(q => q.Text.Contains(adv.State))?.Click();
+        //    //    await Utility.Wait();
+        //    //    var cc = _driver.FindElements(By.TagName("li")).FirstOrDefault(q => q.Text.Contains(adv.City));
+        //    //    cc?.Click();
+        //    //    var cty = await CityBusiness.GetAsync(adv?.City);
+        //    //    var randCity = await CityBusiness.GetNextRandomCityAsync(adv.MasterVisitorGuid, AdvertiseType.Sheypoor);
+        //    //    await Utility.Wait();
+        //    //    var cityGuid = !string.IsNullOrEmpty(adv?.City) ? cty.Guid : randCity.Guid;
+        //    //    var lst = await RegionBusiness.GetAllAsync(cityGuid, AdvertiseType.Sheypoor);
+        //    //    var regionList = lst?.ToList() ?? new List<RegionBusiness>();
+        //    //    if (regionList.Count > 0)
+        //    //    {
+        //    //        var rnd = new Random().Next(0, regionList.Count);
+        //    //        var regName = regionList[rnd].Name;
+        //    //        await Utility.Wait();
+        //    //        _driver.FindElements(By.TagName("li"))?.FirstOrDefault(q => q.Text == regName)
+        //    //            ?.Click();
+        //    //        adv.Region = regName;
+        //    //    }
+        //    //    // await Wait();
+
+        //    //    //کلیک روی دکمه ثبت آگهی
+        //    //    while (_driver.Url == "https://www.sheypoor.com/listing/new")
+        //    //    {
+        //    //        try
+        //    //        {
+        //    //            _driver.SwitchTo().Alert().Accept();
+        //    //        }
+        //    //        catch { }
+
+        //    //        counter++;
+        //    //        await Utility.Wait(2);
+        //    //        _driver.FindElements(By.TagName("button")).FirstOrDefault(q => q.Text == "ثبت آگهی")
+        //    //            ?.Click();
+        //    //        await Utility.Wait();
+        //    //        var box = _driver.FindElements(By.ClassName("box")).Any(q => q.Text.Contains("حساب کاربری"));
+        //    //        if (box) return ret;
+        //    //        if (counter < 60) continue;
+        //    //        await Utility.GetScreenShot(_driver);
+        //    //        adv.URL = "---";
+        //    //        adv.UpdateDesc = @"خطای درج";
+        //    //        adv.StatusCode = StatusCode.InsertError;
+        //    //        adv.AdvType = AdvertiseType.Sheypoor;
+        //    //        adv.IP = await Utility.GetLocalIpAddress();
+        //    //        await adv.SaveAsync();
+        //    //        await Utility.Wait();
+        //    //        counter = 0;
+        //    //        _driver.Navigate().GoToUrl("https://www.sheypoor.com");
+        //    //        return ret;
+        //    //    }
+        //    //    //اگر آگهی با موفقیت ثبت شود لینک مدیریت آگهی ذخیره می شود
+        //    //    await Utility.Wait();
+        //    //    counter = 0;
+        //    //    adv.URL = await MakeUrl(_driver.Url);
+        //    //    adv.UpdateDesc = @"در صف انتشار";
+        //    //    adv.StatusCode = StatusCode.InPublishQueue;
+        //    //    adv.AdvType = AdvertiseType.Sheypoor;
+        //    //    adv.IP = await Utility.GetLocalIpAddress();
+        //    //    await adv.SaveAsync();
+        //    //    await Utility.Wait();
+        //    //    var _30days = _driver.FindElements(By.TagName("strong"))
+        //    //        .Any(q => q.Text.Contains("شما به سقف ۳۰ آگهی در دوره‌ی ۳۰ روزه رسیده‌اید"));
+        //    //    if (_30days)
+        //    //        ret.AddReturnedValue(ReturnedState.Error, "پر شدن تعداد آگهی در ماه");
+
+
+        //    //    //await Utility.InsertDataInAdvVisitLog(adv, AdvertiseType.Sheypoor);
+        //    //    if (!_driver.Url.Contains(adv.URL))
+        //    //        _driver.Navigate().GoToUrl("https://www.sheypoor.com/session/myListings");
+        //    //}
+        //    //catch (ElementClickInterceptedException) { }
+        //    //catch (WebDriverException) { }
+        //    //catch (Exception ex)
+        //    //{
+        //    //    WebErrorLog.ErrorInstence.StartErrorLog(ex);
+        //    //    ret.AddReturnedValue(ex);
+        //    //}
+
+        //    return ret;
+        //}
         public async Task ViewAdv(long simCard, string url)
         {
             try
@@ -668,45 +668,45 @@ namespace Advertise.Classes
         //        return false;
         //    }
         //}
-        private async Task<string> MakeUrl(string url)
-        {
-            try
-            {
-                var charUrl = url.ToCharArray();
-                var counterUrl = 0;
-                var counterCode = 0;
-                var newUrl = "";
-                var code = "";
-                foreach (var item in charUrl)
-                {
-                    if (counterUrl >= 3)
-                        break;
-                    newUrl = newUrl + item;
-                    if (item == '/')
-                        counterUrl++;
-                }
-                foreach (var item in charUrl)
-                {
-                    if (item == '/')
-                        counterCode++;
-                    if (counterCode == 5)
-                    {
-                        code = code + item;
-                    }
+        //private async Task<string> MakeUrl(string url)
+        //{
+        //    try
+        //    {
+        //        var charUrl = url.ToCharArray();
+        //        var counterUrl = 0;
+        //        var counterCode = 0;
+        //        var newUrl = "";
+        //        var code = "";
+        //        foreach (var item in charUrl)
+        //        {
+        //            if (counterUrl >= 3)
+        //                break;
+        //            newUrl = newUrl + item;
+        //            if (item == '/')
+        //                counterUrl++;
+        //        }
+        //        foreach (var item in charUrl)
+        //        {
+        //            if (item == '/')
+        //                counterCode++;
+        //            if (counterCode == 5)
+        //            {
+        //                code = code + item;
+        //            }
 
-                }
+        //        }
 
-                if (code != "")
-                    code = code.Remove(0, 1);
-                newUrl = newUrl + code;
-                return newUrl;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                return null;
-            }
-        }
+        //        if (code != "")
+        //            code = code.Remove(0, 1);
+        //        newUrl = newUrl + code;
+        //        return newUrl;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        WebErrorLog.ErrorInstence.StartErrorLog(ex);
+        //        return null;
+        //    }
+        //}
         public async Task<List<SheypoorCities>> GetAllCityFromSheypoor()
         {
             var cities = new List<SheypoorCities>();
