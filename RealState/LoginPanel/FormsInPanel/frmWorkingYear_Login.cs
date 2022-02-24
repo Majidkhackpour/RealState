@@ -25,6 +25,7 @@ namespace RealState.LoginPanel.FormsInPanel
     public partial class frmWorkingYear_Login : Form
     {
         private Color Color => Color.FromArgb(65, 81, 219);
+        private string contextGuid;
 
         private void SetDesign()
         {
@@ -72,7 +73,11 @@ namespace RealState.LoginPanel.FormsInPanel
             }
         }
 
-        public frmWorkingYear_Login() => InitializeComponent();
+        public frmWorkingYear_Login(string _contextGuid)
+        {
+            InitializeComponent();
+            contextGuid = _contextGuid;
+        }
 
         private void lblCreate_MouseEnter(object sender, System.EventArgs e) => lblCreate.ForeColor = Color.Red;
         private void lblEdit_MouseEnter(object sender, System.EventArgs e) => lblEdit.ForeColor = Color.Red;
@@ -89,7 +94,7 @@ namespace RealState.LoginPanel.FormsInPanel
             try
             {
                 SetDesign();
-                var task = Task.Run(() => Initializer.InitializeAsync(lblCpuSerial.Text, this));
+                var task = Task.Run(() => Initializer.InitializeAsync(lblCpuSerial.Text, this, contextGuid));
                 _ = new Waiter("درحال پردازش ...", this, task, true);
                 res.AddReturnedValue(await task);
                 lblCpuSerial.Text = await clsGlobalSetting.GetHardDriveSerialAsync();
@@ -188,15 +193,15 @@ namespace RealState.LoginPanel.FormsInPanel
                 if (res.HasError) this.ShowError(res, "خطای سیستم");
                 else
                 {
-                    frmLoginMain.Instance.DialogResult = DialogResult.OK;
-                    frmLoginMain.Instance.Close();
+                    frmLoginMain.GetInstance(contextGuid).DialogResult = DialogResult.OK;
+                    frmLoginMain.GetInstance(contextGuid).Close();
                 }
             }
         }
         private void lblExit_Click(object sender, EventArgs e)
         {
-            frmLoginMain.Instance.DialogResult = DialogResult.Cancel;
-            frmLoginMain.Instance.Close();
+            frmLoginMain.GetInstance(contextGuid).DialogResult = DialogResult.Cancel;
+            frmLoginMain.GetInstance(contextGuid).Close();
         }
         private void frmWorkingYear_Login_KeyDown(object sender, KeyEventArgs e)
         {
@@ -214,7 +219,7 @@ namespace RealState.LoginPanel.FormsInPanel
         {
             try
             {
-                frmLoginMain.Instance.CurrentForm = new frmCreateWorkingYear();
+                frmLoginMain.GetInstance(contextGuid).CurrentForm = new frmCreateWorkingYear(contextGuid);
             }
             catch (Exception ex)
             {
@@ -229,7 +234,7 @@ namespace RealState.LoginPanel.FormsInPanel
                 if (cmbWorkingYear.SelectedValue == null) return;
 
                 var guid = (Guid)cmbWorkingYear.SelectedValue;
-                frmLoginMain.Instance.CurrentForm = new frmCreateWorkingYear(guid);
+                frmLoginMain.GetInstance(contextGuid).CurrentForm = new frmCreateWorkingYear(contextGuid, guid);
             }
             catch (Exception ex)
             {

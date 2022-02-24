@@ -19,7 +19,8 @@ namespace Building.UserControls.Report
                     Task.Run(ucShowDischargeList1.InitAsync),
                     Task.Run(ucShowHighPriority1.InitAsync),
                     Task.Run(ucShowMatcheItems1.InitAsync),
-                    Task.Run(ucShowReview1.InitAsync)
+                    Task.Run(ucShowReview1.InitAsync),
+                    Task.Run(ucShowSchema1.InitAsync)
                 };
                 await Task.WhenAll(list);
             }

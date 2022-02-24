@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Security.Principal;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsSerivces.Sync;
 using EntityCache.Assistence;
 using EntityCache.Bussines;
 using EntityCache.WebService;
@@ -37,7 +38,7 @@ namespace RealState
                 return false;
             }
         }
-        public static async Task<ReturnedSaveFuncInfo> InitializeAsync(string hardSerial, IWin32Window owner)
+        public static async Task<ReturnedSaveFuncInfo> InitializeAsync(string hardSerial, IWin32Window owner, string contextGuid)
         {
             var res = new ReturnedSaveFuncInfo();
             try
@@ -49,7 +50,7 @@ namespace RealState
                     Cache.ConnectionString = conString.value;
                 }
 
-                res.AddReturnedValue(InitConfigs());
+                res.AddReturnedValue(InitConfigs(contextGuid));
                 if (res.HasError) return res;
 
                 var list = WorkingYear.GetAll()?.OrderBy(q => q.DbName)?.ToList();
@@ -95,6 +96,7 @@ namespace RealState
                     DivarFiles.Init();
                     AutoBackUp.Init(owner);
                 }
+                ClsCache.SendData2ServerInstance = FrmConnectionSyncStatus.GetInstance(contextGuid).SendData2ServerInstance;
             }
             catch (Exception ex)
             {
@@ -104,7 +106,7 @@ namespace RealState
 
             return res;
         }
-        private static ReturnedSaveFuncInfo InitConfigs()
+        private static ReturnedSaveFuncInfo InitConfigs(string contextGuid)
         {
             var res = new ReturnedSaveFuncInfo();
             try

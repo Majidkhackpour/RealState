@@ -61,6 +61,7 @@ namespace RealState
     {
         private Color foreColor = Color.FromArgb(228, 237, 255);
         private bool _showDialog = false;
+        private string _contextGuid;
 
         private void SetAccess()
         {
@@ -200,11 +201,12 @@ namespace RealState
             }
         }
 
-        public frmNewMain()
+        public frmNewMain(string contextGuid)
         {
             try
             {
                 InitializeComponent();
+                _contextGuid = contextGuid;
                 ShowInTaskbar = true;
                 pnlInfo.Visible = false;
                 grpBuilding.Height = grpAccounting.Height = grpBaseInfo.Height = 48;
@@ -257,6 +259,7 @@ namespace RealState
         {
             try
             {
+                ucCacheStatus1.Init(_contextGuid);
                 SetAccess();
                 lblDate.Text = Calendar.GetFullCalendar();
                 lblSerial.Text = $@"شناسه فنی: {await clsGlobalSetting.GetHardDriveSerialAsync()}";

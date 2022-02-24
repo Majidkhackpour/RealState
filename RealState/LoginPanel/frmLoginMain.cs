@@ -9,6 +9,7 @@ namespace RealState.LoginPanel
     {
         private Form _current;
         private static frmLoginMain _instance = null;
+        private string _contextGuid;
 
         public Form CurrentForm
         {
@@ -148,15 +149,19 @@ namespace RealState.LoginPanel
         }
         public DialogResult Load_() => ShowDialog();
 
-        public frmLoginMain() => InitializeComponent();
-        public static frmLoginMain Instance => _instance ?? (_instance = new frmLoginMain());
+        public frmLoginMain(string contextGuid)
+        {
+            InitializeComponent();
+            _contextGuid = contextGuid;
+        }
+        public static frmLoginMain GetInstance(string contextGuid) => _instance ?? (_instance = new frmLoginMain(contextGuid));
 
         private void frmLoginMain_Load(object sender, EventArgs e)
         {
             try
             {
                 SetBackGround();
-                CurrentForm = new frmWorkingYear_Login();
+                CurrentForm = new frmWorkingYear_Login(_contextGuid);
             }
             catch (Exception ex)
             {

@@ -86,6 +86,7 @@ namespace RealState
             this.ucErtegha = new WindowsSerivces.UcButton();
             this.ucPhoneBook = new WindowsSerivces.UcButton();
             this.ucManagerPanel = new WindowsSerivces.UcButton();
+            this.ucCommition = new WindowsSerivces.UcButton();
             this.grpAccounting = new System.Windows.Forms.FlowLayoutPanel();
             this.groupPanel7 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.lblAccounting = new System.Windows.Forms.Label();
@@ -117,7 +118,7 @@ namespace RealState
             this.ucReport1 = new Building.UserControls.Report.UcReport();
             this.timerSecond = new System.Windows.Forms.Timer(this.components);
             this.timerCheckInternet = new System.Windows.Forms.Timer(this.components);
-            this.ucCommition = new WindowsSerivces.UcButton();
+            this.ucCacheStatus1 = new WindowsSerivces.Sync.UcCacheStatus();
             this.pnlOk.SuspendLayout();
             this.groupPanel1.SuspendLayout();
             this.pnlInfo.SuspendLayout();
@@ -140,6 +141,7 @@ namespace RealState
             // 
             this.pnlOk.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlOk.BackColor = System.Drawing.Color.White;
             this.pnlOk.CanvasColor = System.Drawing.Color.Transparent;
             this.pnlOk.Controls.Add(this.lblTitle);
             this.pnlOk.Cursor = System.Windows.Forms.Cursors.Default;
@@ -196,6 +198,7 @@ namespace RealState
             // 
             this.groupPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel1.BackColor = System.Drawing.Color.White;
             this.groupPanel1.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel1.Controls.Add(this.pnlInfo);
             this.groupPanel1.Controls.Add(this.flowLayoutPanel1);
@@ -233,6 +236,7 @@ namespace RealState
             // 
             // pnlInfo
             // 
+            this.pnlInfo.BackColor = System.Drawing.Color.White;
             this.pnlInfo.CanvasColor = System.Drawing.Color.Transparent;
             this.pnlInfo.Controls.Add(this.lblExit);
             this.pnlInfo.Controls.Add(this.lblUserName);
@@ -355,6 +359,7 @@ namespace RealState
             // 
             this.groupPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel3.BackColor = System.Drawing.Color.White;
             this.groupPanel3.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel3.Controls.Add(this.lblBaseInfo);
             this.groupPanel3.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -639,6 +644,7 @@ namespace RealState
             // 
             this.groupPanel22.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel22.BackColor = System.Drawing.Color.White;
             this.groupPanel22.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel22.Controls.Add(this.lblBuildingMenu);
             this.groupPanel22.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -801,6 +807,7 @@ namespace RealState
             // 
             this.groupPanel21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel21.BackColor = System.Drawing.Color.White;
             this.groupPanel21.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel21.Controls.Add(this.lblUsers);
             this.groupPanel21.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -924,6 +931,7 @@ namespace RealState
             // 
             this.groupPanel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel6.BackColor = System.Drawing.Color.White;
             this.groupPanel6.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel6.Controls.Add(this.lblOptions);
             this.groupPanel6.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -1134,6 +1142,23 @@ namespace RealState
             this.ucManagerPanel.Type = Services.EnContractType_.None;
             this.ucManagerPanel.OnClick += new System.Func<WindowsSerivces.UcButton, System.Threading.Tasks.Task>(this.ucManagerPanel_OnClick);
             // 
+            // ucCommition
+            // 
+            this.ucCommition.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucCommition.BackColor = System.Drawing.Color.Transparent;
+            this.ucCommition.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucCommition.IsSelect = false;
+            this.ucCommition.Location = new System.Drawing.Point(4, 450);
+            this.ucCommition.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucCommition.Name = "ucCommition";
+            this.ucCommition.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucCommition.Size = new System.Drawing.Size(169, 30);
+            this.ucCommition.TabIndex = 55722;
+            this.ucCommition.Title = "محاسبه گر کمیسیون";
+            this.ucCommition.Type = Services.EnContractType_.None;
+            this.ucCommition.OnClick += new System.Func<WindowsSerivces.UcButton, System.Threading.Tasks.Task>(this.ucCommition_OnClick);
+            // 
             // grpAccounting
             // 
             this.grpAccounting.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1163,6 +1188,7 @@ namespace RealState
             // 
             this.groupPanel7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel7.BackColor = System.Drawing.Color.White;
             this.groupPanel7.CanvasColor = System.Drawing.Color.Transparent;
             this.groupPanel7.Controls.Add(this.lblAccounting);
             this.groupPanel7.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -1475,7 +1501,9 @@ namespace RealState
             // 
             this.groupPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPanel2.BackColor = System.Drawing.Color.White;
             this.groupPanel2.CanvasColor = System.Drawing.Color.Transparent;
+            this.groupPanel2.Controls.Add(this.ucCacheStatus1);
             this.groupPanel2.Controls.Add(this.label9);
             this.groupPanel2.Controls.Add(this.label8);
             this.groupPanel2.Controls.Add(this.label10);
@@ -1627,22 +1655,16 @@ namespace RealState
             this.timerCheckInternet.Interval = 60000;
             this.timerCheckInternet.Tick += new System.EventHandler(this.timerCheckInternet_Tick);
             // 
-            // ucCommition
+            // ucCacheStatus1
             // 
-            this.ucCommition.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ucCommition.BackColor = System.Drawing.Color.Transparent;
-            this.ucCommition.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucCommition.IsSelect = false;
-            this.ucCommition.Location = new System.Drawing.Point(4, 450);
-            this.ucCommition.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ucCommition.Name = "ucCommition";
-            this.ucCommition.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucCommition.Size = new System.Drawing.Size(169, 30);
-            this.ucCommition.TabIndex = 55722;
-            this.ucCommition.Title = "محاسبه گر کمیسیون";
-            this.ucCommition.Type = Services.EnContractType_.None;
-            this.ucCommition.OnClick += new System.Func<WindowsSerivces.UcButton, System.Threading.Tasks.Task>(this.ucCommition_OnClick);
+            this.ucCacheStatus1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ucCacheStatus1.BackColor = System.Drawing.Color.Transparent;
+            this.ucCacheStatus1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ucCacheStatus1.Location = new System.Drawing.Point(6, 4);
+            this.ucCacheStatus1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucCacheStatus1.Name = "ucCacheStatus1";
+            this.ucCacheStatus1.Size = new System.Drawing.Size(25, 21);
+            this.ucCacheStatus1.TabIndex = 55787;
             // 
             // frmNewMain
             // 
@@ -1776,5 +1798,6 @@ namespace RealState
         private WindowsSerivces.UcButton ucRecieveCheck;
         private Building.UserControls.Report.UcReport ucReport1;
         private WindowsSerivces.UcButton ucCommition;
+        private WindowsSerivces.Sync.UcCacheStatus ucCacheStatus1;
     }
 }

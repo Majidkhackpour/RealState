@@ -25,10 +25,10 @@ namespace RealState
             Application.SetCompatibleTextRenderingDefault(false);
 
             txtSetter.Switch_Language_To_Persian();
-
+            var contextGuid = Guid.NewGuid().ToString();
             var client = clsRegistery.GetRegistery("X1001MR");
             Cache.IsClient = !string.IsNullOrEmpty(client) && client.ParseToBoolean();
-            var res = frmLoginMain.Instance.Load_();
+            var res = frmLoginMain.GetInstance(contextGuid).Load_();
             if (res != DialogResult.OK)
             {
                 Application.Exit();
@@ -38,7 +38,7 @@ namespace RealState
             if (WebCustomer.CheckCustomer() && WebCustomer.Customer.HardSerial != "265155255")
                 _ = Task.Run(() => WebTelegramReporter.SendBuildingReport(WebCustomer.Customer.Guid, "ورود به نرم افزار"));
 
-            var frmMain = new frmNewMain();
+            var frmMain = new frmNewMain(contextGuid);
             frmMain.ShowDialog();
         }
     }

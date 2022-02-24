@@ -3,6 +3,7 @@ using Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using WebHesabBussines;
 
@@ -11,6 +12,7 @@ namespace EntityCache.WebService
     public class WebServiceHandlers
     {
         private string _appStart;
+        private CancellationTokenSource _token = new CancellationTokenSource();
         private static WebServiceHandlers _instance = null;
         public static WebServiceHandlers Instance => _instance ?? (_instance = new WebServiceHandlers());
         public void Init(string appStart)
@@ -128,33 +130,36 @@ namespace EntityCache.WebService
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task StartSendToServerAsync()
+        public async Task StartSendToServerAsync()
         {
             try
             {
                 var res = new ReturnedSaveFuncInfo();
                 while (true)
                 {
+                    _token?.Cancel();
+                    _token = new CancellationTokenSource();
                     var ping = await Utilities.PingHostAsync();
-                    if (ping.HasError)
-                    {
-                        await Task.Delay(2000);
-                        continue;
-                    }
-
+                    if (ping.HasError) return;
+                    if (_token.IsCancellationRequested) return;
                     res.AddReturnedValue(await UserBussines.ResendNotSentAsync());
                     if (res.HasError) continue;
+                    if (_token.IsCancellationRequested) return;
                     res.AddReturnedValue(await StatesBussines.ResendNotSentAsync());
                     if (res.HasError) continue;
+                    if (_token.IsCancellationRequested) return;
                     res.AddReturnedValue(await CitiesBussines.ResendNotSentAsync());
                     if (res.HasError) continue;
+                    if (_token.IsCancellationRequested) return;
                     res.AddReturnedValue(await RegionsBussines.ResendNotSentAsync());
                     if (res.HasError) continue;
+                    if (_token.IsCancellationRequested) return;
                     res.AddReturnedValue(await PeopleGroupBussines.ResendNotSentAsync());
                     if (res.HasError) continue;
+                    if (_token.IsCancellationRequested) return;
                     res.AddReturnedValue(await PeoplesBussines.ResendNotSentAsync());
                     if (res.HasError) continue;
-
+                    if (_token.IsCancellationRequested) return;
                     var list = new List<Task<ReturnedSaveFuncInfo>>
                     {
                         Task.Run(BuildingAccountTypeBussines.ResendNotSentAsync),
@@ -171,9 +176,12 @@ namespace EntityCache.WebService
                     };
                     var ret = await Task.WhenAll(list);
                     res.AddReturnedValue(ret);
+                    if (_token.IsCancellationRequested) return;
                     if (res.HasError) continue;
                     res.AddReturnedValue(await BuildingBussines.ResendNotSentAsync());
+                    if (_token.IsCancellationRequested) return;
                     res.AddReturnedValue(await BuildingRequestBussines.ResendNotSentAsync());
+                    if (_token.IsCancellationRequested) return;
                     res.AddReturnedValue(await BuildingReviewBussines.ResendNotSentAsync());
 
                     await Task.Delay(2000);

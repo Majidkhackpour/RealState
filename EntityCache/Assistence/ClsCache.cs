@@ -129,6 +129,6 @@ namespace EntityCache.Assistence
             }
             return ret;
         }
-        public static SendData2ServerAggregator SendData2ServerInstance { get; private set; }
+        public static SendData2ServerAggregator SendData2ServerInstance { get; set; }
     }
 }

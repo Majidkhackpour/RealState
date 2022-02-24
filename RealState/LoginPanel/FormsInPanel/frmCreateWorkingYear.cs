@@ -12,20 +12,22 @@ namespace RealState.LoginPanel.FormsInPanel
     public partial class frmCreateWorkingYear : Form
     {
         private WorkingYear cls;
-        private string ConnectionString;
+        private string _connectionString, _contextGuid;
 
         private void SetData() => txtDbName.Text = cls?.DbName;
 
-        public frmCreateWorkingYear()
+        public frmCreateWorkingYear(string contextGuid)
         {
             InitializeComponent();
             cls = new WorkingYear();
+            _contextGuid = contextGuid;
         }
-        public frmCreateWorkingYear(Guid guid)
+        public frmCreateWorkingYear(string contextGuid, Guid guid)
         {
             InitializeComponent();
             cls = WorkingYear.Get(guid);
-            ConnectionString = cls?.ConnectionString;
+            _connectionString = cls?.ConnectionString;
+            _contextGuid = contextGuid;
         }
 
         private void lblOk_Click(object sender, System.EventArgs e)
@@ -42,14 +44,14 @@ namespace RealState.LoginPanel.FormsInPanel
                 var cn = "";
                 var init = "";
 
-                if (string.IsNullOrEmpty(ConnectionString))
+                if (string.IsNullOrEmpty(_connectionString))
                 {
-                    ConnectionString =
+                    _connectionString =
                         AppSettings.CreateConnectionString(new SqlConnectionStringBuilder(), ".", false, "", "");
 
                     for (var i = 1; i < 50; i++)
                     {
-                        var db = DataBase.CreateDatabase("Arad" + i, ConnectionString);
+                        var db = DataBase.CreateDatabase("Arad" + i, _connectionString);
                         if (db.Result.HasError) continue;
                         cn = db.ConnectionString;
                         var connection = new SqlConnection(cn);
@@ -67,7 +69,7 @@ namespace RealState.LoginPanel.FormsInPanel
                 var res = cls.Save();
                 if (!res.HasError)
                 {
-                    frmLoginMain.Instance.CurrentForm = new frmWorkingYear_Login();
+                    frmLoginMain.GetInstance(_contextGuid).CurrentForm = new frmWorkingYear_Login(_contextGuid);
                     return;
                 }
                 frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
@@ -88,9 +90,9 @@ namespace RealState.LoginPanel.FormsInPanel
             {
                 var frm = new FRMInitialSettings();
                 if (frm.ShowDialog() != DialogResult.OK) return;
-                ConnectionString = frm.ConnectionString;
-                cls.ConnectionString = ConnectionString;
-                var connection = new SqlConnection(ConnectionString);
+                _connectionString = frm.ConnectionString;
+                cls.ConnectionString = _connectionString;
+                var connection = new SqlConnection(_connectionString);
                 cls.InitialCatalog = connection.Database;
             }
             catch (Exception ex)
