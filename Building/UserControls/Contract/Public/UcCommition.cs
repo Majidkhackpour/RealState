@@ -14,6 +14,7 @@ namespace Building.UserControls.Contract.Public
         public decimal Tax { get => txtTax.TextDecimal; set => txtTax.TextDecimal = value; }
         public decimal Avarez { get => txtAvarez.TextDecimal; set => txtAvarez.TextDecimal = value; }
         public EnContractBabat Babat { get => (EnContractBabat)cmbBabat.SelectedIndex; set => cmbBabat.SelectedIndex = (int)value; }
+        public bool EnableBabat { get => cmbBabat.Enabled; set => cmbBabat.Enabled = value; }
         public decimal TotalSum => (TotalPrice + Tax + Avarez) - Discount;
         private void FillCmbBabat()
         {

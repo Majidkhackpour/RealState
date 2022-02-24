@@ -10,9 +10,17 @@ namespace Building.Tools
     {
         public frmCommitionCalculator()
         {
-            InitializeComponent();
-            ucHeader.Text = "ابزار محاسبه گر کمیسیون";
-            rbtnRahn.Checked = true;
+            try
+            {
+                InitializeComponent();
+                ucHeader.Text = "ابزار محاسبه گر کمیسیون";
+                rbtnRahn.Checked = true;
+                ucCommition1.EnableBabat = false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
 
         private void rbtnRahn_CheckedChanged(object sender, EventArgs e)
