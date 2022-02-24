@@ -65,7 +65,7 @@ namespace EntityCache.Bussines.ReportBussines
             set
             {
                 _isChecked = value;
-                PropertyChanged?.Invoke(this,new PropertyChangedEventArgs(nameof(IsChecked)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsChecked)));
             }
         }
         public ServerStatus ServerStatus { get; set; }
