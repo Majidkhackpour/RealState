@@ -216,8 +216,10 @@ namespace Building.Buildings
                         ucFilterDate1.SetDate2(value.CreateDate2.Value);
                 }
 
-                if (value.Status != null)
-                    chbStatus.Checked = value.Status.Value;
+                if (value.Status == null)
+                    chbStatus.Checked = true;
+                else
+                    chbStatus.Checked = !value.Status.Value;
             }
             catch (Exception ex)
             {

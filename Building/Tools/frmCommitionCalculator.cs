@@ -2,6 +2,7 @@
 using Services;
 using System;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using EntityCache.Bussines;
 
 namespace Building.Tools
@@ -30,6 +31,9 @@ namespace Building.Tools
                 if (!rbtnRahn.Checked) return;
                 lblPrice1.Text = "مبلغ رهن:";
                 lblPrice2.Visible = txtPrice2.Visible = true;
+                txtPrice1.TextDecimal = txtPrice2.TextDecimal = 0;
+                ucCommition1.TotalPrice = 0;
+                ucCommition1.Tax = 0;
             }
             catch (Exception ex)
             {
@@ -43,6 +47,9 @@ namespace Building.Tools
                 if (!rbtnSell.Checked) return;
                 lblPrice1.Text = "مبلغ فروش:";
                 lblPrice2.Visible = txtPrice2.Visible = false;
+                txtPrice1.TextDecimal = txtPrice2.TextDecimal = 0;
+                ucCommition1.TotalPrice = 0;
+                ucCommition1.Tax = 0;
             }
             catch (Exception ex)
             {
@@ -78,6 +85,21 @@ namespace Building.Tools
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
             return Task.CompletedTask;
+        }
+        private void frmCommitionCalculator_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.Escape:Close(); break;
+                    case Keys.F5:ucAccept.PerformClick(); break;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
     }
 }

@@ -54,7 +54,7 @@ namespace Building.Tools
             this.ucAccept.Name = "ucAccept";
             this.ucAccept.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucAccept.Size = new System.Drawing.Size(346, 31);
-            this.ucAccept.TabIndex = 36;
+            this.ucAccept.TabIndex = 3;
             this.ucAccept.Title = "محاسبه کمیسیون (F5)";
             this.ucAccept.Type = Services.ButtonType.None;
             this.ucAccept.OnClick += new System.Func<object, System.EventArgs, System.Threading.Tasks.Task>(this.ucAccept_OnClick);
@@ -96,7 +96,7 @@ namespace Building.Tools
             this.grp.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
             this.grp.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.grp.Style.GradientAngle = 90;
-            this.grp.TabIndex = 33;
+            this.grp.TabIndex = 0;
             // 
             // rbtnSell
             // 
@@ -105,7 +105,7 @@ namespace Building.Tools
             this.rbtnSell.Location = new System.Drawing.Point(139, 9);
             this.rbtnSell.Name = "rbtnSell";
             this.rbtnSell.Size = new System.Drawing.Size(59, 24);
-            this.rbtnSell.TabIndex = 40;
+            this.rbtnSell.TabIndex = 1;
             this.rbtnSell.TabStop = true;
             this.rbtnSell.Text = "فروش";
             this.rbtnSell.UseVisualStyleBackColor = true;
@@ -118,7 +118,7 @@ namespace Building.Tools
             this.rbtnRahn.Location = new System.Drawing.Point(316, 9);
             this.rbtnRahn.Name = "rbtnRahn";
             this.rbtnRahn.Size = new System.Drawing.Size(86, 24);
-            this.rbtnRahn.TabIndex = 40;
+            this.rbtnRahn.TabIndex = 0;
             this.rbtnRahn.TabStop = true;
             this.rbtnRahn.Text = "رهن و اجاره";
             this.rbtnRahn.UseVisualStyleBackColor = true;
@@ -145,7 +145,7 @@ namespace Building.Tools
             this.panelEx1.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
             this.panelEx1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.panelEx1.Style.GradientAngle = 90;
-            this.panelEx1.TabIndex = 33;
+            this.panelEx1.TabIndex = 1;
             // 
             // txtPrice2
             // 
@@ -160,7 +160,7 @@ namespace Building.Tools
             this.txtPrice2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPrice2.Name = "txtPrice2";
             this.txtPrice2.Size = new System.Drawing.Size(301, 31);
-            this.txtPrice2.TabIndex = 60;
+            this.txtPrice2.TabIndex = 1;
             this.txtPrice2.TextDecimal = new decimal(new int[] {
             0,
             0,
@@ -190,7 +190,7 @@ namespace Building.Tools
             this.txtPrice1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPrice1.Name = "txtPrice1";
             this.txtPrice1.Size = new System.Drawing.Size(301, 31);
-            this.txtPrice1.TabIndex = 60;
+            this.txtPrice1.TabIndex = 0;
             this.txtPrice1.TextDecimal = new decimal(new int[] {
             0,
             0,
@@ -220,13 +220,14 @@ namespace Building.Tools
             0,
             0,
             0});
+            this.ucCommition1.EnableBabat = true;
             this.ucCommition1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.ucCommition1.Location = new System.Drawing.Point(4, 197);
             this.ucCommition1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucCommition1.Name = "ucCommition1";
             this.ucCommition1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucCommition1.Size = new System.Drawing.Size(419, 331);
-            this.ucCommition1.TabIndex = 43;
+            this.ucCommition1.TabIndex = 2;
             this.ucCommition1.Tax = new decimal(new int[] {
             0,
             0,
@@ -259,6 +260,7 @@ namespace Building.Tools
             this.Padding = new System.Windows.Forms.Padding(27, 92, 27, 31);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Style = MetroFramework.MetroColorStyle.Teal;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmCommitionCalculator_KeyDown);
             this.grp.ResumeLayout(false);
             this.grp.PerformLayout();
             this.panelEx1.ResumeLayout(false);
