@@ -364,19 +364,53 @@ namespace EntityCache.Bussines
         public static async Task<ReturnedSaveFuncInfo> ResendNotSentAsync()
         {
             var res = new ReturnedSaveFuncInfo();
+            var uiUpdater = ClsCache.SendData2ServerInstance?.Building;
             try
             {
+                if (uiUpdater != null)
+                {
+                    uiUpdater.ShortMessage = "در حال ارسال املاک";
+                    uiUpdater.Status = SyncStatus.Syncing;
+                    uiUpdater.FinalStatus = res;
+                }
+
                 var list = await GetAllNotSentAsync();
                 if (list == null || list.Count <= 0) return res;
+                if (uiUpdater != null) uiUpdater.TotalCount = list?.Count ?? 0;
+                var current = 0;
                 foreach (var item in list)
+                {
+                    current++;
+                    if (uiUpdater != null)
+                    {
+                        uiUpdater.ShortMessage = $"کد ملک جاری: {item?.Code}";
+                        uiUpdater.Count = current;
+                    }
+
                     res.AddReturnedValue(await SendToServerAsync(item));
+                }
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 res.AddReturnedValue(ex);
             }
-
+            finally
+            {
+                if (uiUpdater != null)
+                {
+                    if (res.HasError)
+                    {
+                        uiUpdater.ShortMessage = "با شکست مواجه شد";
+                        uiUpdater.Status = SyncStatus.SyncFailed;
+                    }
+                    else
+                    {
+                        uiUpdater.ShortMessage = "با موفقیت انجام شد.";
+                        uiUpdater.Status = SyncStatus.SyncedOk;
+                    }
+                }
+            }
             return res;
         }
         public static async Task<List<Guid>> GetGuidListAsync() => await UnitOfWork.Building.GetBuildingGuidListAsync(Cache.ConnectionString);

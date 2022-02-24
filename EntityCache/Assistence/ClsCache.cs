@@ -4,6 +4,7 @@ using System;
 using System.Data.Entity.Migrations;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
+using EntityCache.Sync;
 
 namespace EntityCache.Assistence
 {
@@ -128,5 +129,6 @@ namespace EntityCache.Assistence
             }
             return ret;
         }
+        public static SendData2ServerAggregator SendData2ServerInstance { get; private set; }
     }
 }
