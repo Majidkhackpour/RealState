@@ -151,13 +151,7 @@ namespace EntityCache.WebService
                     res.AddReturnedValue(await CitiesBussines.ResendNotSentAsync());
                     if (res.HasError) continue;
                     if (_token.IsCancellationRequested) return;
-                    res.AddReturnedValue(await RegionsBussines.ResendNotSentAsync());
-                    if (res.HasError) continue;
-                    if (_token.IsCancellationRequested) return;
                     res.AddReturnedValue(await PeopleGroupBussines.ResendNotSentAsync());
-                    if (res.HasError) continue;
-                    if (_token.IsCancellationRequested) return;
-                    res.AddReturnedValue(await PeoplesBussines.ResendNotSentAsync());
                     if (res.HasError) continue;
                     if (_token.IsCancellationRequested) return;
                     var list = new List<Task<ReturnedSaveFuncInfo>>
@@ -172,7 +166,9 @@ namespace EntityCache.WebService
                         Task.Run(RentalAuthorityBussines.ResendNotSentAsync),
                         Task.Run(BuildingOptionsBussines.ResendNotSentAsync),
                         Task.Run(BuildingWindowBussines.ResendNotSentAsync),
-                        Task.Run(BuildingZoncanBussines.ResendNotSentAsync)
+                        Task.Run(BuildingZoncanBussines.ResendNotSentAsync),
+                        Task.Run(RegionsBussines.ResendNotSentAsync),
+                        Task.Run(PeoplesBussines.ResendNotSentAsync)
                     };
                     var ret = await Task.WhenAll(list);
                     res.AddReturnedValue(ret);
