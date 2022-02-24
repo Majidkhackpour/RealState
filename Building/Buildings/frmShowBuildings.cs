@@ -593,7 +593,6 @@ namespace Building.Buildings
                 InitializeComponent();
                 filter = _filter;
                 ucHeader.Text = "نمایش لیست املاک";
-                _st = filter.Status;
                 isShowMode = _isShowMode;
                 SetAccess();
                 if (_isShowMode || (filter.IsArchive != null && filter.IsArchive.Value))
@@ -772,7 +771,6 @@ namespace Building.Buildings
                 Task.Run(() => frm.InitAsync(filter));
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
                 filter = frm.Filter;
-                filter.Status = _st;
                 LoadData(txtSearch.Text);
             }
             catch (Exception ex)

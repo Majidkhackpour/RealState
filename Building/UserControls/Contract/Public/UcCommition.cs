@@ -8,7 +8,7 @@ namespace Building.UserControls.Contract.Public
     public partial class UcCommition : UserControl
     {
         public event Action<decimal> OnSumChanged;
-        public string Title { set => grpPanel.Text = value; }
+        public string Title { get => grpPanel.Text; set => grpPanel.Text = value; }
         public decimal TotalPrice { get => txtTotalPrice.TextDecimal; set => txtTotalPrice.TextDecimal = value; }
         public decimal Discount { get => txtDiscount.TextDecimal; set => txtDiscount.TextDecimal = value; }
         public decimal Tax { get => txtTax.TextDecimal; set => txtTax.TextDecimal = value; }

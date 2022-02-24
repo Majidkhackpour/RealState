@@ -117,6 +117,7 @@ namespace RealState
             this.ucReport1 = new Building.UserControls.Report.UcReport();
             this.timerSecond = new System.Windows.Forms.Timer(this.components);
             this.timerCheckInternet = new System.Windows.Forms.Timer(this.components);
+            this.ucCommition = new WindowsSerivces.UcButton();
             this.pnlOk.SuspendLayout();
             this.groupPanel1.SuspendLayout();
             this.pnlInfo.SuspendLayout();
@@ -911,11 +912,12 @@ namespace RealState
             this.grpOptions.Controls.Add(this.ucErtegha);
             this.grpOptions.Controls.Add(this.ucPhoneBook);
             this.grpOptions.Controls.Add(this.ucManagerPanel);
+            this.grpOptions.Controls.Add(this.ucCommition);
             this.grpOptions.Cursor = System.Windows.Forms.Cursors.Default;
             this.grpOptions.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.grpOptions.Location = new System.Drawing.Point(3, 1055);
             this.grpOptions.Name = "grpOptions";
-            this.grpOptions.Size = new System.Drawing.Size(253, 448);
+            this.grpOptions.Size = new System.Drawing.Size(253, 496);
             this.grpOptions.TabIndex = 55720;
             // 
             // groupPanel6
@@ -1152,7 +1154,7 @@ namespace RealState
             this.grpAccounting.Controls.Add(this.ucReports);
             this.grpAccounting.Cursor = System.Windows.Forms.Cursors.Default;
             this.grpAccounting.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.grpAccounting.Location = new System.Drawing.Point(3, 1509);
+            this.grpAccounting.Location = new System.Drawing.Point(3, 1557);
             this.grpAccounting.Name = "grpAccounting";
             this.grpAccounting.Size = new System.Drawing.Size(253, 528);
             this.grpAccounting.TabIndex = 55719;
@@ -1625,6 +1627,23 @@ namespace RealState
             this.timerCheckInternet.Interval = 60000;
             this.timerCheckInternet.Tick += new System.EventHandler(this.timerCheckInternet_Tick);
             // 
+            // ucCommition
+            // 
+            this.ucCommition.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucCommition.BackColor = System.Drawing.Color.Transparent;
+            this.ucCommition.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucCommition.IsSelect = false;
+            this.ucCommition.Location = new System.Drawing.Point(4, 450);
+            this.ucCommition.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucCommition.Name = "ucCommition";
+            this.ucCommition.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucCommition.Size = new System.Drawing.Size(169, 30);
+            this.ucCommition.TabIndex = 55722;
+            this.ucCommition.Title = "محاسبه گر کمیسیون";
+            this.ucCommition.Type = Services.EnContractType_.None;
+            this.ucCommition.OnClick += new System.Func<WindowsSerivces.UcButton, System.Threading.Tasks.Task>(this.ucCommition_OnClick);
+            // 
             // frmNewMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -1756,5 +1775,6 @@ namespace RealState
         private WindowsSerivces.UcButton ucPardakhtCheck;
         private WindowsSerivces.UcButton ucRecieveCheck;
         private Building.UserControls.Report.UcReport ucReport1;
+        private WindowsSerivces.UcButton ucCommition;
     }
 }

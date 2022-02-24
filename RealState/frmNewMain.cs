@@ -53,6 +53,7 @@ using User;
 using User.Advisor;
 using WindowsSerivces;
 using WindowsSerivces.Waiter;
+using Building.Tools;
 
 namespace RealState
 {
@@ -251,7 +252,7 @@ namespace RealState
         private void lblBuildingMenu_Click(object sender, EventArgs e) => grpBuilding.Height = grpBuilding.Height == 48 ? 293 : 48;
         private void lblUsers_Click(object sender, EventArgs e) => grpUsers.Height = grpUsers.Height == 48 ? 171 : 48;
         private void lblAccounting_Click(object sender, EventArgs e) => grpAccounting.Height = grpAccounting.Height == 48 ? 528 : 48;
-        private void lblOptions_Click(object sender, EventArgs e) => grpOptions.Height = grpOptions.Height == 48 ? 448 : 48;
+        private void lblOptions_Click(object sender, EventArgs e) => grpOptions.Height = grpOptions.Height == 48 ? 496 : 48;
         private async void frmNewMain_Load(object sender, EventArgs e)
         {
             try
@@ -916,5 +917,18 @@ namespace RealState
             return Task.CompletedTask;
         }
         private void lblTitle_Click(object sender, EventArgs e) => pnlInfo.Visible = !pnlInfo.Visible;
+        private Task ucCommition_OnClick(UcButton arg)
+        {
+            try
+            {
+                var frm = new frmCommitionCalculator();
+                DisplayFrm(frm);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+            return Task.CompletedTask;
+        }
     }
 }

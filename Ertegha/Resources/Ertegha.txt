@@ -7213,7 +7213,7 @@ ALTER PROCEDURE [dbo].[sp_Buildings_Search]
 	@rahn2 decimal=0,
 	@ejare1 decimal=0,
 	@ejare2 decimal=0,
-	@st bit='true',
+	@st bit=null,
 	@isArchive bit=null,
 	@maxTabaqeNo int=0,
 	@isRahn bit='false',
@@ -7268,7 +7268,7 @@ From [dbo].[Buildings]
 		   ((ISNULL(@rahn1,0)=0 and ISNULL(@rahn2,0)=0) or Buildings.RahnPrice1 between @rahn1 and @rahn2) and
 		   ((ISNULL(@ejare1,0)=0 and ISNULL(@ejare2,0)=0) or Buildings.EjarePrice1 between @ejare1 and @ejare2) and
 		   (ISNULL(@maxTabaqeNo,0)=0 or Buildings.TabaqeNo<=@maxTabaqeNo) and
-		   Buildings.Status=@st and
+		   (@st is null or Buildings.Status=@st) and
 		   (@isArchive is null or Buildings.IsArchive=@isArchive) and
 		   (@isRahn='false' or Buildings.Parent in (109,110,111,112))and
 		   (@isFullRahn='false' or Buildings.Parent in (113,114,115,116))and

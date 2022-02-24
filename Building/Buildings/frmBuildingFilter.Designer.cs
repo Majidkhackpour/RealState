@@ -101,6 +101,7 @@ namespace Building.Buildings
             this.ucHeader = new WindowsSerivces.UC_Header();
             this.ucAccept = new WindowsSerivces.UcActionButton();
             this.ucCancel = new WindowsSerivces.UcActionButton();
+            this.chbStatus = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.panel1.SuspendLayout();
             this.groupPanel12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.zoncanBindingSource)).BeginInit();
@@ -157,11 +158,12 @@ namespace Building.Buildings
             this.groupPanel12.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.groupPanel12.Controls.Add(this.cmbZoncan);
             this.groupPanel12.Controls.Add(this.label17);
+            this.groupPanel12.Controls.Add(this.chbStatus);
             this.groupPanel12.Controls.Add(this.chbIsArchive);
             this.groupPanel12.DisabledBackColor = System.Drawing.Color.Empty;
             this.groupPanel12.Location = new System.Drawing.Point(15, 442);
             this.groupPanel12.Name = "groupPanel12";
-            this.groupPanel12.Size = new System.Drawing.Size(473, 74);
+            this.groupPanel12.Size = new System.Drawing.Size(473, 92);
             // 
             // 
             // 
@@ -201,7 +203,7 @@ namespace Building.Buildings
             this.cmbZoncan.DisplayMember = "Name";
             this.cmbZoncan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbZoncan.FormattingEnabled = true;
-            this.cmbZoncan.Location = new System.Drawing.Point(7, 34);
+            this.cmbZoncan.Location = new System.Drawing.Point(7, 55);
             this.cmbZoncan.Name = "cmbZoncan";
             this.cmbZoncan.Size = new System.Drawing.Size(398, 28);
             this.cmbZoncan.TabIndex = 55783;
@@ -216,7 +218,7 @@ namespace Building.Buildings
             this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label17.AutoSize = true;
             this.label17.BackColor = System.Drawing.Color.Transparent;
-            this.label17.Location = new System.Drawing.Point(421, 37);
+            this.label17.Location = new System.Drawing.Point(421, 58);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(40, 20);
             this.label17.TabIndex = 55784;
@@ -250,8 +252,10 @@ namespace Building.Buildings
             this.ucFilterDate1.Name = "ucFilterDate1";
             this.ucFilterDate1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucFilterDate1.Size = new System.Drawing.Size(473, 183);
+            this.ucFilterDate1.SpecialDate = false;
             this.ucFilterDate1.TabIndex = 22;
             this.ucFilterDate1.Title = "تاریخ ثبت فایل";
+            this.ucFilterDate1.Today = false;
             // 
             // groupPanel11
             // 
@@ -260,7 +264,7 @@ namespace Building.Buildings
             this.groupPanel11.Controls.Add(this.txtTabaqeNo);
             this.groupPanel11.Controls.Add(this.label18);
             this.groupPanel11.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel11.Location = new System.Drawing.Point(16, 645);
+            this.groupPanel11.Location = new System.Drawing.Point(16, 662);
             this.groupPanel11.Name = "groupPanel11";
             this.groupPanel11.Size = new System.Drawing.Size(473, 42);
             // 
@@ -326,7 +330,7 @@ namespace Building.Buildings
             this.groupPanel10.Controls.Add(this.label15);
             this.groupPanel10.Controls.Add(this.label16);
             this.groupPanel10.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel10.Location = new System.Drawing.Point(13, 797);
+            this.groupPanel10.Location = new System.Drawing.Point(13, 814);
             this.groupPanel10.Name = "groupPanel10";
             this.groupPanel10.Size = new System.Drawing.Size(473, 48);
             // 
@@ -427,7 +431,7 @@ namespace Building.Buildings
             this.groupPanel8.Controls.Add(this.label13);
             this.groupPanel8.Controls.Add(this.label14);
             this.groupPanel8.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel8.Location = new System.Drawing.Point(14, 745);
+            this.groupPanel8.Location = new System.Drawing.Point(14, 762);
             this.groupPanel8.Name = "groupPanel8";
             this.groupPanel8.Size = new System.Drawing.Size(473, 48);
             // 
@@ -528,7 +532,7 @@ namespace Building.Buildings
             this.groupPanel9.Controls.Add(this.label11);
             this.groupPanel9.Controls.Add(this.label12);
             this.groupPanel9.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel9.Location = new System.Drawing.Point(15, 691);
+            this.groupPanel9.Location = new System.Drawing.Point(15, 708);
             this.groupPanel9.Name = "groupPanel9";
             this.groupPanel9.Size = new System.Drawing.Size(473, 48);
             // 
@@ -633,7 +637,7 @@ namespace Building.Buildings
             this.groupPanel7.Controls.Add(this.label7);
             this.groupPanel7.Controls.Add(this.label6);
             this.groupPanel7.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel7.Location = new System.Drawing.Point(15, 566);
+            this.groupPanel7.Location = new System.Drawing.Point(15, 583);
             this.groupPanel7.Name = "groupPanel7";
             this.groupPanel7.Size = new System.Drawing.Size(473, 75);
             // 
@@ -1037,7 +1041,7 @@ namespace Building.Buildings
             this.groupPanel6.Controls.Add(this.label1);
             this.groupPanel6.Controls.Add(this.label9);
             this.groupPanel6.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel6.Location = new System.Drawing.Point(15, 520);
+            this.groupPanel6.Location = new System.Drawing.Point(15, 537);
             this.groupPanel6.Name = "groupPanel6";
             this.groupPanel6.Size = new System.Drawing.Size(473, 42);
             // 
@@ -1430,6 +1434,23 @@ namespace Building.Buildings
             this.ucCancel.Type = Services.ButtonType.CancelButton;
             this.ucCancel.OnClick += new System.Func<object, System.EventArgs, System.Threading.Tasks.Task>(this.ucCancel_OnClick);
             // 
+            // chbStatus
+            // 
+            this.chbStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbStatus.AutoSize = true;
+            this.chbStatus.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbStatus.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbStatus.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbStatus.Location = new System.Drawing.Point(147, 29);
+            this.chbStatus.Name = "chbStatus";
+            this.chbStatus.Size = new System.Drawing.Size(311, 22);
+            this.chbStatus.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbStatus.TabIndex = 55782;
+            this.chbStatus.Text = "جستجو در سطل زباله املاک (فایل های حذف شده) فعال باشد";
+            // 
             // frmBuildingFilter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -1565,5 +1586,6 @@ namespace Building.Buildings
         private System.Windows.Forms.BindingSource zoncanBindingSource;
         private WindowsSerivces.UcActionButton ucAccept;
         private WindowsSerivces.UcActionButton ucCancel;
+        private DevComponents.DotNetBar.Controls.CheckBoxX chbStatus;
     }
 }

@@ -69,6 +69,10 @@ namespace Building.Buildings
                         _filter.ZoncanGuid = (Guid?)cmbZoncan.SelectedValue;
                     _filter.IsSpecialDate = ucFilterDate1.SpecialDate;
                     _filter.IsTodayDate = ucFilterDate1.Today;
+
+                    if (chbStatus.Checked)
+                        _filter.Status = null;
+                    else _filter.Status = true;
                 }
                 catch (Exception ex)
                 {
@@ -211,6 +215,9 @@ namespace Building.Buildings
                     if (value.CreateDate2 != null)
                         ucFilterDate1.SetDate2(value.CreateDate2.Value);
                 }
+
+                if (value.Status != null)
+                    chbStatus.Checked = value.Status.Value;
             }
             catch (Exception ex)
             {
