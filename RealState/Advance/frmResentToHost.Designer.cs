@@ -52,6 +52,7 @@ namespace RealState.Advance
             this.chbWindow = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbZoncan = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbReview = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.chbAll = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.SuspendLayout();
             // 
             // btnSend
@@ -411,6 +412,23 @@ namespace RealState.Advance
             this.chbReview.TabIndex = 29;
             this.chbReview.Text = "بازدید املاک";
             // 
+            // chbAll
+            // 
+            this.chbAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbAll.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chbAll.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chbAll.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbAll.Location = new System.Drawing.Point(205, 64);
+            this.chbAll.Name = "chbAll";
+            this.chbAll.Size = new System.Drawing.Size(76, 23);
+            this.chbAll.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chbAll.TabIndex = 41;
+            this.chbAll.Text = "انتخاب همه";
+            this.chbAll.CheckedChanged += new System.EventHandler(this.chbAll_CheckedChanged);
+            // 
             // frmResentToHost
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -423,6 +441,7 @@ namespace RealState.Advance
             this.Controls.Add(this.chbReview);
             this.Controls.Add(this.chbKitchen);
             this.Controls.Add(this.chbState);
+            this.Controls.Add(this.chbAll);
             this.Controls.Add(this.chbRegion);
             this.Controls.Add(this.chbPeople);
             this.Controls.Add(this.chbZoncan);
@@ -479,5 +498,6 @@ namespace RealState.Advance
         private DevComponents.DotNetBar.Controls.CheckBoxX chbWindow;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbZoncan;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbReview;
+        private DevComponents.DotNetBar.Controls.CheckBoxX chbAll;
     }
 }

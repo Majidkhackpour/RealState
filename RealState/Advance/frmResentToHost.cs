@@ -1,18 +1,34 @@
-﻿using System;
-using System.Threading;
+﻿using EntityCache.Bussines;
+using MetroFramework.Forms;
+using Services;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsSerivces;
-using EntityCache.Bussines;
-using EntityCache.Mppings;
-using MetroFramework.Forms;
-using Services;
-using WebHesabBussines;
+using EntityCache.WebService;
 
 namespace RealState.Advance
 {
     public partial class frmResentToHost : MetroForm
     {
+        private void CheckBoxes(bool value)
+        {
+            try
+            {
+                chbState.Checked = chbCity.Checked = chbRegion.Checked = value;
+                chbUsers.Checked= chbPeopleGroup.Checked= chbPeople.Checked= value;
+                chbAccountType.Checked= chbCondition.Checked= value;
+                chbType.Checked= chbView.Checked= chbDocType.Checked= value;
+                chbFloor.Checked= chbKitchen.Checked= chbRental.Checked= value;
+                chbOptions.Checked= chbBuilding.Checked= chbRequest.Checked= value;
+                chbZoncan.Checked= chbWindow.Checked= chbReview.Checked= value;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
         public frmResentToHost()
         {
             InitializeComponent();
@@ -21,12 +37,14 @@ namespace RealState.Advance
 
         private async void btnSend_Click(object sender, System.EventArgs e)
         {
-            var res=new ReturnedSaveFuncInfo();
+            var res = new ReturnedSaveFuncInfo();
             try
             {
                 btnSend.Enabled = false;
                 Cursor = Cursors.WaitCursor;
                 res.AddReturnedValue(await ResendDataToHost());
+                if (res.HasError) return;
+                _ = Task.Run(() => WebServiceHandlers.Instance.StartSendToServerAsync());
             }
             catch (Exception ex)
             {
@@ -98,5 +116,6 @@ namespace RealState.Advance
         {
             if (e.KeyCode == Keys.Escape) Close();
         }
+        private void chbAll_CheckedChanged(object sender, EventArgs e) => CheckBoxes(chbAll.Checked);
     }
 }
