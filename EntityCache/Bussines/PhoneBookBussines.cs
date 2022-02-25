@@ -277,5 +277,27 @@ namespace EntityCache.Bussines
             return res;
         }
         public static async Task<List<string>> GetAllTitlesAsync() => await UnitOfWork.PhoneBook.GetAllTitlesAsync(Cache.ConnectionString);
+        public bool IsMobile()
+        {
+            try
+            {
+                Tell = Tell.RemoveNoNumbers();
+
+                while (Tell.StartsWith("0"))
+                    Tell = Tell.Substring(1, Tell.Length - 1);
+                if (Tell.Length == 12 && Tell.StartsWith("98"))
+                    Tell = Tell.Substring(2, Tell.Length - 2);
+
+                if (Tell.Length <= 7) return false;
+                if (Tell.Length == 10 && Tell.Substring(0, 1) == "9")
+                    return true;
+                Tell = Tell.Substring(Tell.Length - 8, 8);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+            return false;
+        }
     }
 }

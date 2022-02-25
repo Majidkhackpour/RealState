@@ -94,6 +94,7 @@ namespace Payamak.Panel
                 cls.Name = txtName.Text.Trim();
                 cls.Sender = txtSender.Text.Trim();
                 cls.API = txtApi.Text.Trim();
+                cls.Status = true;
 
                 res.AddReturnedValue(await cls.SaveAsync());
             }

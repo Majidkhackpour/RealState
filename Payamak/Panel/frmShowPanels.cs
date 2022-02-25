@@ -20,8 +20,8 @@ namespace Payamak.Panel
             try
             {
                 var list = await SmsPanelsBussines.GetAllAsync(search);
-                Invoke(new MethodInvoker(() => pnlBindingSource.DataSource =
-                    list.Where(q => q.Status == _st).OrderBy(q => q.Name).ToSortableBindingList()));
+                BeginInvoke(new MethodInvoker(() => pnlBindingSource.DataSource =
+                    list?.Where(q => q.Status == _st).OrderBy(q => q.Name).ToSortableBindingList()));
             }
             catch (Exception ex)
             {

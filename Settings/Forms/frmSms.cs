@@ -32,8 +32,7 @@ namespace Settings.Forms
                 chbSendSayer.Checked = sett.Sms.IsSendToSayer;
                 txtSayerText.Text = sett.Sms.SayerText;
                 chbSendAfterMatch.Checked = sett.Sms.IsSendAfterMatch;
-                txtMatchTextRahn.Text = sett.Sms.SendMatchTextRahn;
-                txtMatchTextKharid.Text = sett.Sms.SendMatchTextKharid;
+                txtMatchTextRahn.Text = sett.Sms.SendMatchText;
             }
             catch (Exception ex)
             {
@@ -63,8 +62,7 @@ namespace Settings.Forms
                 SettingsBussines.Setting.Sms.IsSendToSayer = chbSendSayer.Checked;
                 SettingsBussines.Setting.Sms.SayerText = txtSayerText.Text;
                 SettingsBussines.Setting.Sms.IsSendAfterMatch = chbSendAfterMatch.Checked;
-                SettingsBussines.Setting.Sms.SendMatchTextRahn = txtMatchTextRahn.Text;
-                SettingsBussines.Setting.Sms.SendMatchTextKharid = txtMatchTextKharid.Text;
+                SettingsBussines.Setting.Sms.SendMatchText = txtMatchTextRahn.Text;
 
                 await SettingsBussines.Setting.SaveAsync();
             }
@@ -134,16 +132,11 @@ namespace Settings.Forms
         private void btnOwner_UserName_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtOwnerText);
         private void btnRahn_SayerName_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtMatchTextRahn);
         private void btnRahn_DateSh_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtMatchTextRahn);
-        private void btnRahn_Region_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtMatchTextRahn);
         private void btnRahn_Rahn_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtMatchTextRahn);
         private void btnRahn_Ejare_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtMatchTextRahn);
         private void btnSayer_SayerName_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtSayerText);
         private void btnSayer_DateSh_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtSayerText);
         private void btnSayer_UserName_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtSayerText);
-        private void btnKharid_SayerName_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtMatchTextKharid);
-        private void btnKharid_DateSh_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtMatchTextKharid);
-        private void btnKharid_Region_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtMatchTextKharid);
-        private void btnKharid_Price_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtMatchTextKharid);
         private void frmSms_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -156,5 +149,6 @@ namespace Settings.Forms
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+        private void btnAddress_Click(object sender, EventArgs e) => SetDataInTxt((ButtonX)sender, txtMatchTextRahn);
     }
 }

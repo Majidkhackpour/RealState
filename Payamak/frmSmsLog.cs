@@ -1,14 +1,13 @@
-﻿using System;
+﻿using EntityCache.Bussines;
+using MetroFramework.Forms;
+using Print;
+using Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using EntityCache.Bussines;
-using MetroFramework.Forms;
-using Print;
-using Services;
-using User;
 
 namespace Payamak
 {
@@ -43,7 +42,7 @@ namespace Payamak
                     Guid = Guid.Empty,
                     Name = "[کلیه کاربران]"
                 });
-                userBindingSource.DataSource = list.OrderBy(q => q.Name);
+                userBindingSource.DataSource = list?.Where(q => q.Status)?.OrderBy(q => q.Name);
                 cmbUsers.SelectedValue = UserBussines.CurrentUser?.Guid;
             }
             catch (Exception ex)
@@ -200,7 +199,7 @@ namespace Payamak
                 if (frm._PrintType != EnPrintType.Excel)
                 {
                     var cls = new ReportGenerator(StiType.SmsSent_List, frm._PrintType)
-                        { Lst = new List<object>(list) };
+                    { Lst = new List<object>(list) };
                     cls.PrintNew();
                     return;
                 }

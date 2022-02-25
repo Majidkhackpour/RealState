@@ -34,32 +34,25 @@ namespace Settings.Forms
             this.defBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pnlSms = new DevComponents.DotNetBar.PanelEx();
             this.txtOwnerText = new System.Windows.Forms.TextBox();
-            this.txtMatchTextKharid = new System.Windows.Forms.TextBox();
             this.txtMatchTextRahn = new System.Windows.Forms.TextBox();
             this.txtSayerText = new System.Windows.Forms.TextBox();
             this.chbSendAfterMatch = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chbSendSayer = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.btnOwner_UserName = new DevComponents.DotNetBar.ButtonX();
+            this.btnAddress = new DevComponents.DotNetBar.ButtonX();
             this.btnRahn_Ejare = new DevComponents.DotNetBar.ButtonX();
             this.chbSendOwner = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.btnSayer_UserName = new DevComponents.DotNetBar.ButtonX();
             this.btnOwner_Region = new DevComponents.DotNetBar.ButtonX();
-            this.btnKharid_Price = new DevComponents.DotNetBar.ButtonX();
             this.cmbPanel = new System.Windows.Forms.ComboBox();
             this.btnRahn_Rahn = new DevComponents.DotNetBar.ButtonX();
-            this.btnKharid_Region = new DevComponents.DotNetBar.ButtonX();
             this.btnOwner_BuildingCode = new DevComponents.DotNetBar.ButtonX();
-            this.btnRahn_Region = new DevComponents.DotNetBar.ButtonX();
-            this.btnKharid_DateSh = new DevComponents.DotNetBar.ButtonX();
             this.btnOwner_DateSh = new DevComponents.DotNetBar.ButtonX();
             this.btnRahn_DateSh = new DevComponents.DotNetBar.ButtonX();
-            this.btnKharid_SayerName = new DevComponents.DotNetBar.ButtonX();
             this.btnOwner_OwnerName = new DevComponents.DotNetBar.ButtonX();
             this.btnRahn_SayerName = new DevComponents.DotNetBar.ButtonX();
             this.btnSayer_DateSh = new DevComponents.DotNetBar.ButtonX();
-            this.label18 = new System.Windows.Forms.Label();
             this.btnSayer_SayerName = new DevComponents.DotNetBar.ButtonX();
-            this.label19 = new System.Windows.Forms.Label();
             this.btnAddPanel = new DevComponents.DotNetBar.ButtonX();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
@@ -79,32 +72,25 @@ namespace Settings.Forms
             this.pnlSms.CanvasColor = System.Drawing.SystemColors.Control;
             this.pnlSms.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.pnlSms.Controls.Add(this.txtOwnerText);
-            this.pnlSms.Controls.Add(this.txtMatchTextKharid);
             this.pnlSms.Controls.Add(this.txtMatchTextRahn);
             this.pnlSms.Controls.Add(this.txtSayerText);
             this.pnlSms.Controls.Add(this.chbSendAfterMatch);
             this.pnlSms.Controls.Add(this.chbSendSayer);
             this.pnlSms.Controls.Add(this.btnOwner_UserName);
+            this.pnlSms.Controls.Add(this.btnAddress);
             this.pnlSms.Controls.Add(this.btnRahn_Ejare);
             this.pnlSms.Controls.Add(this.chbSendOwner);
             this.pnlSms.Controls.Add(this.btnSayer_UserName);
             this.pnlSms.Controls.Add(this.btnOwner_Region);
-            this.pnlSms.Controls.Add(this.btnKharid_Price);
             this.pnlSms.Controls.Add(this.cmbPanel);
             this.pnlSms.Controls.Add(this.btnRahn_Rahn);
-            this.pnlSms.Controls.Add(this.btnKharid_Region);
             this.pnlSms.Controls.Add(this.btnOwner_BuildingCode);
-            this.pnlSms.Controls.Add(this.btnRahn_Region);
-            this.pnlSms.Controls.Add(this.btnKharid_DateSh);
             this.pnlSms.Controls.Add(this.btnOwner_DateSh);
             this.pnlSms.Controls.Add(this.btnRahn_DateSh);
-            this.pnlSms.Controls.Add(this.btnKharid_SayerName);
             this.pnlSms.Controls.Add(this.btnOwner_OwnerName);
             this.pnlSms.Controls.Add(this.btnRahn_SayerName);
             this.pnlSms.Controls.Add(this.btnSayer_DateSh);
-            this.pnlSms.Controls.Add(this.label18);
             this.pnlSms.Controls.Add(this.btnSayer_SayerName);
-            this.pnlSms.Controls.Add(this.label19);
             this.pnlSms.Controls.Add(this.btnAddPanel);
             this.pnlSms.Controls.Add(this.label20);
             this.pnlSms.Controls.Add(this.label21);
@@ -134,22 +120,13 @@ namespace Settings.Forms
             this.txtOwnerText.Size = new System.Drawing.Size(177, 178);
             this.txtOwnerText.TabIndex = 3;
             // 
-            // txtMatchTextKharid
-            // 
-            this.txtMatchTextKharid.Location = new System.Drawing.Point(11, 285);
-            this.txtMatchTextKharid.Multiline = true;
-            this.txtMatchTextKharid.Name = "txtMatchTextKharid";
-            this.txtMatchTextKharid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtMatchTextKharid.Size = new System.Drawing.Size(177, 223);
-            this.txtMatchTextKharid.TabIndex = 2;
-            // 
             // txtMatchTextRahn
             // 
-            this.txtMatchTextRahn.Location = new System.Drawing.Point(416, 285);
+            this.txtMatchTextRahn.Location = new System.Drawing.Point(108, 285);
             this.txtMatchTextRahn.Multiline = true;
             this.txtMatchTextRahn.Name = "txtMatchTextRahn";
             this.txtMatchTextRahn.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtMatchTextRahn.Size = new System.Drawing.Size(177, 223);
+            this.txtMatchTextRahn.Size = new System.Drawing.Size(485, 223);
             this.txtMatchTextRahn.TabIndex = 2;
             // 
             // txtSayerText
@@ -211,6 +188,24 @@ namespace Settings.Forms
             this.btnOwner_UserName.TextColor = System.Drawing.Color.White;
             this.btnOwner_UserName.Click += new System.EventHandler(this.btnOwner_UserName_Click);
             // 
+            // btnAddress
+            // 
+            this.btnAddress.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddress.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnAddress.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnAddress.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnAddress.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddress.Location = new System.Drawing.Point(11, 417);
+            this.btnAddress.Name = "btnAddress";
+            this.btnAddress.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnAddress.Size = new System.Drawing.Size(91, 27);
+            this.btnAddress.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.btnAddress.TabIndex = 20;
+            this.btnAddress.Text = "[آدرس مجموعه]";
+            this.btnAddress.TextColor = System.Drawing.Color.White;
+            this.btnAddress.Click += new System.EventHandler(this.btnAddress_Click);
+            // 
             // btnRahn_Ejare
             // 
             this.btnRahn_Ejare.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -219,13 +214,13 @@ namespace Settings.Forms
             this.btnRahn_Ejare.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnRahn_Ejare.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnRahn_Ejare.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRahn_Ejare.Location = new System.Drawing.Point(608, 470);
+            this.btnRahn_Ejare.Location = new System.Drawing.Point(11, 384);
             this.btnRahn_Ejare.Name = "btnRahn_Ejare";
             this.btnRahn_Ejare.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnRahn_Ejare.Size = new System.Drawing.Size(79, 27);
+            this.btnRahn_Ejare.Size = new System.Drawing.Size(91, 27);
             this.btnRahn_Ejare.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnRahn_Ejare.TabIndex = 20;
-            this.btnRahn_Ejare.Text = "[اجاره]";
+            this.btnRahn_Ejare.Text = "[تلفن مجموعه]";
             this.btnRahn_Ejare.TextColor = System.Drawing.Color.White;
             this.btnRahn_Ejare.Click += new System.EventHandler(this.btnRahn_Ejare_Click);
             // 
@@ -280,23 +275,6 @@ namespace Settings.Forms
             this.btnOwner_Region.TextColor = System.Drawing.Color.White;
             this.btnOwner_Region.Click += new System.EventHandler(this.btnOwner_Region_Click);
             // 
-            // btnKharid_Price
-            // 
-            this.btnKharid_Price.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnKharid_Price.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnKharid_Price.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnKharid_Price.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnKharid_Price.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnKharid_Price.Location = new System.Drawing.Point(203, 437);
-            this.btnKharid_Price.Name = "btnKharid_Price";
-            this.btnKharid_Price.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnKharid_Price.Size = new System.Drawing.Size(79, 27);
-            this.btnKharid_Price.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnKharid_Price.TabIndex = 20;
-            this.btnKharid_Price.Text = "[قیمت]";
-            this.btnKharid_Price.TextColor = System.Drawing.Color.White;
-            this.btnKharid_Price.Click += new System.EventHandler(this.btnKharid_Price_Click);
-            // 
             // cmbPanel
             // 
             this.cmbPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -320,32 +298,15 @@ namespace Settings.Forms
             this.btnRahn_Rahn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnRahn_Rahn.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnRahn_Rahn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRahn_Rahn.Location = new System.Drawing.Point(608, 437);
+            this.btnRahn_Rahn.Location = new System.Drawing.Point(11, 351);
             this.btnRahn_Rahn.Name = "btnRahn_Rahn";
             this.btnRahn_Rahn.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnRahn_Rahn.Size = new System.Drawing.Size(79, 27);
+            this.btnRahn_Rahn.Size = new System.Drawing.Size(91, 27);
             this.btnRahn_Rahn.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnRahn_Rahn.TabIndex = 20;
-            this.btnRahn_Rahn.Text = "[رهن]";
+            this.btnRahn_Rahn.Text = "[کانال تلگرام]";
             this.btnRahn_Rahn.TextColor = System.Drawing.Color.White;
             this.btnRahn_Rahn.Click += new System.EventHandler(this.btnRahn_Rahn_Click);
-            // 
-            // btnKharid_Region
-            // 
-            this.btnKharid_Region.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnKharid_Region.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnKharid_Region.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnKharid_Region.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnKharid_Region.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnKharid_Region.Location = new System.Drawing.Point(203, 404);
-            this.btnKharid_Region.Name = "btnKharid_Region";
-            this.btnKharid_Region.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnKharid_Region.Size = new System.Drawing.Size(79, 27);
-            this.btnKharid_Region.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnKharid_Region.TabIndex = 20;
-            this.btnKharid_Region.Text = "[محدوده ملک]";
-            this.btnKharid_Region.TextColor = System.Drawing.Color.White;
-            this.btnKharid_Region.Click += new System.EventHandler(this.btnKharid_Region_Click);
             // 
             // btnOwner_BuildingCode
             // 
@@ -364,41 +325,6 @@ namespace Settings.Forms
             this.btnOwner_BuildingCode.Text = "[کدملک]";
             this.btnOwner_BuildingCode.TextColor = System.Drawing.Color.White;
             this.btnOwner_BuildingCode.Click += new System.EventHandler(this.btnOwner_BuildingCode_Click);
-            // 
-            // btnRahn_Region
-            // 
-            this.btnRahn_Region.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnRahn_Region.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRahn_Region.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnRahn_Region.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnRahn_Region.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnRahn_Region.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRahn_Region.Location = new System.Drawing.Point(608, 404);
-            this.btnRahn_Region.Name = "btnRahn_Region";
-            this.btnRahn_Region.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnRahn_Region.Size = new System.Drawing.Size(79, 27);
-            this.btnRahn_Region.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnRahn_Region.TabIndex = 20;
-            this.btnRahn_Region.Text = "[محدوده ملک]";
-            this.btnRahn_Region.TextColor = System.Drawing.Color.White;
-            this.btnRahn_Region.Click += new System.EventHandler(this.btnRahn_Region_Click);
-            // 
-            // btnKharid_DateSh
-            // 
-            this.btnKharid_DateSh.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnKharid_DateSh.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnKharid_DateSh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnKharid_DateSh.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnKharid_DateSh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnKharid_DateSh.Location = new System.Drawing.Point(203, 371);
-            this.btnKharid_DateSh.Name = "btnKharid_DateSh";
-            this.btnKharid_DateSh.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnKharid_DateSh.Size = new System.Drawing.Size(79, 27);
-            this.btnKharid_DateSh.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnKharid_DateSh.TabIndex = 20;
-            this.btnKharid_DateSh.Text = "[تاریخ ارسال]";
-            this.btnKharid_DateSh.TextColor = System.Drawing.Color.White;
-            this.btnKharid_DateSh.Click += new System.EventHandler(this.btnKharid_DateSh_Click);
             // 
             // btnOwner_DateSh
             // 
@@ -426,32 +352,15 @@ namespace Settings.Forms
             this.btnRahn_DateSh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnRahn_DateSh.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnRahn_DateSh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRahn_DateSh.Location = new System.Drawing.Point(608, 371);
+            this.btnRahn_DateSh.Location = new System.Drawing.Point(11, 318);
             this.btnRahn_DateSh.Name = "btnRahn_DateSh";
             this.btnRahn_DateSh.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnRahn_DateSh.Size = new System.Drawing.Size(79, 27);
+            this.btnRahn_DateSh.Size = new System.Drawing.Size(91, 27);
             this.btnRahn_DateSh.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnRahn_DateSh.TabIndex = 20;
             this.btnRahn_DateSh.Text = "[تاریخ ارسال]";
             this.btnRahn_DateSh.TextColor = System.Drawing.Color.White;
             this.btnRahn_DateSh.Click += new System.EventHandler(this.btnRahn_DateSh_Click);
-            // 
-            // btnKharid_SayerName
-            // 
-            this.btnKharid_SayerName.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnKharid_SayerName.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnKharid_SayerName.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnKharid_SayerName.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnKharid_SayerName.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnKharid_SayerName.Location = new System.Drawing.Point(203, 338);
-            this.btnKharid_SayerName.Name = "btnKharid_SayerName";
-            this.btnKharid_SayerName.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnKharid_SayerName.Size = new System.Drawing.Size(79, 27);
-            this.btnKharid_SayerName.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.btnKharid_SayerName.TabIndex = 20;
-            this.btnKharid_SayerName.Text = "[نام متقاضی]";
-            this.btnKharid_SayerName.TextColor = System.Drawing.Color.White;
-            this.btnKharid_SayerName.Click += new System.EventHandler(this.btnKharid_SayerName_Click);
             // 
             // btnOwner_OwnerName
             // 
@@ -479,10 +388,10 @@ namespace Settings.Forms
             this.btnRahn_SayerName.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnRahn_SayerName.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnRahn_SayerName.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRahn_SayerName.Location = new System.Drawing.Point(608, 338);
+            this.btnRahn_SayerName.Location = new System.Drawing.Point(11, 285);
             this.btnRahn_SayerName.Name = "btnRahn_SayerName";
             this.btnRahn_SayerName.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
-            this.btnRahn_SayerName.Size = new System.Drawing.Size(79, 27);
+            this.btnRahn_SayerName.Size = new System.Drawing.Size(91, 27);
             this.btnRahn_SayerName.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnRahn_SayerName.TabIndex = 20;
             this.btnRahn_SayerName.Text = "[نام متقاضی]";
@@ -506,15 +415,6 @@ namespace Settings.Forms
             this.btnSayer_DateSh.TextColor = System.Drawing.Color.White;
             this.btnSayer_DateSh.Click += new System.EventHandler(this.btnSayer_DateSh_Click);
             // 
-            // label18
-            // 
-            this.label18.BackColor = System.Drawing.Color.Transparent;
-            this.label18.Location = new System.Drawing.Point(194, 288);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(104, 47);
-            this.label18.TabIndex = 7;
-            this.label18.Text = "الگوی پیامک ارسالی خرید";
-            // 
             // btnSayer_SayerName
             // 
             this.btnSayer_SayerName.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -531,16 +431,6 @@ namespace Settings.Forms
             this.btnSayer_SayerName.Text = "[نام متقاضی]";
             this.btnSayer_SayerName.TextColor = System.Drawing.Color.White;
             this.btnSayer_SayerName.Click += new System.EventHandler(this.btnSayer_SayerName_Click);
-            // 
-            // label19
-            // 
-            this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label19.BackColor = System.Drawing.Color.Transparent;
-            this.label19.Location = new System.Drawing.Point(599, 288);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(104, 47);
-            this.label19.TabIndex = 7;
-            this.label19.Text = "الگوی پیامک ارسالی رهن و اجاره";
             // 
             // btnAddPanel
             // 
@@ -664,7 +554,6 @@ namespace Settings.Forms
         private System.Windows.Forms.BindingSource defBindingSource;
         private DevComponents.DotNetBar.PanelEx pnlSms;
         private System.Windows.Forms.TextBox txtOwnerText;
-        private System.Windows.Forms.TextBox txtMatchTextKharid;
         private System.Windows.Forms.TextBox txtMatchTextRahn;
         private System.Windows.Forms.TextBox txtSayerText;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbSendAfterMatch;
@@ -674,27 +563,21 @@ namespace Settings.Forms
         private DevComponents.DotNetBar.Controls.CheckBoxX chbSendOwner;
         private DevComponents.DotNetBar.ButtonX btnSayer_UserName;
         private DevComponents.DotNetBar.ButtonX btnOwner_Region;
-        private DevComponents.DotNetBar.ButtonX btnKharid_Price;
         private System.Windows.Forms.ComboBox cmbPanel;
         private DevComponents.DotNetBar.ButtonX btnRahn_Rahn;
-        private DevComponents.DotNetBar.ButtonX btnKharid_Region;
         private DevComponents.DotNetBar.ButtonX btnOwner_BuildingCode;
-        private DevComponents.DotNetBar.ButtonX btnRahn_Region;
-        private DevComponents.DotNetBar.ButtonX btnKharid_DateSh;
         private DevComponents.DotNetBar.ButtonX btnOwner_DateSh;
         private DevComponents.DotNetBar.ButtonX btnRahn_DateSh;
-        private DevComponents.DotNetBar.ButtonX btnKharid_SayerName;
         private DevComponents.DotNetBar.ButtonX btnOwner_OwnerName;
         private DevComponents.DotNetBar.ButtonX btnRahn_SayerName;
         private DevComponents.DotNetBar.ButtonX btnSayer_DateSh;
-        private System.Windows.Forms.Label label18;
         private DevComponents.DotNetBar.ButtonX btnSayer_SayerName;
-        private System.Windows.Forms.Label label19;
         private DevComponents.DotNetBar.ButtonX btnAddPanel;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
         private DevComponents.DotNetBar.ButtonX btnFinish;
         private DevComponents.DotNetBar.ButtonX btnCancel;
+        private DevComponents.DotNetBar.ButtonX btnAddress;
     }
 }

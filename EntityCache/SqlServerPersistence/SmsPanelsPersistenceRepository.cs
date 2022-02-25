@@ -60,7 +60,7 @@ namespace EntityCache.SqlServerPersistence
             var res = new ReturnedSaveFuncInfo();
             try
             {
-                var cmd = new SqlCommand("sp_SmsPanel_Save", tr.Connection) { CommandType = CommandType.StoredProcedure };
+                var cmd = new SqlCommand("sp_SmsPanel_Save", tr.Connection, tr) { CommandType = CommandType.StoredProcedure };
                 cmd.Parameters.AddWithValue("@guid", item.Guid);
                 cmd.Parameters.AddWithValue("@st", item.Status);
                 cmd.Parameters.AddWithValue("@name", item.Name ?? "");
@@ -105,6 +105,7 @@ namespace EntityCache.SqlServerPersistence
                 item.Name = dr["Name"].ToString();
                 item.Sender = dr["Sender"].ToString();
                 item.API = dr["API"].ToString();
+                item.Status = (bool) dr["Status"];
             }
             catch (Exception ex)
             {

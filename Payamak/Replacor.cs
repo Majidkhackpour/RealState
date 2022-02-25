@@ -16,20 +16,13 @@
             public static string DateSabt => "[تاریخ ثبت]".Trim();
             public static string UserName => "[مشاور]".Trim();
         }
-        public class Rahn
+        public class MathItems
         {
             public static string Name => "[نام متقاضی]".Trim();
             public static string DateSh => "[تاریخ ارسال]".Trim();
-            public static string Region => "[محدوده ملک]".Trim();
-            public static string RahnPrice => "[رهن]".Trim();
-            public static string EjarePrice => "[اجاره]".Trim();
-        }
-        public class Forush
-        {
-            public static string Name => "[نام متقاضی]".Trim();
-            public static string DateSh => "[تاریخ ارسال]".Trim();
-            public static string Region => "[محدوده ملک]".Trim();
-            public static string SellPrice => "[قیمت]".Trim();
+            public static string TelegramChannel => "[کانال تلگرام]".Trim();
+            public static string Tell => "[تلفن مجموعه]".Trim();
+            public static string Address => "[آدرس مجموعه]".Trim();
         }
         public class TelegramBuilding
         {

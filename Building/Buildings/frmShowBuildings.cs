@@ -135,11 +135,9 @@ namespace Building.Buildings
                 menuDelete.Enabled = access?.Building.Building_Delete ?? false;
                 menuView.Enabled = access?.Building.Building_View ?? false;
                 menuMatch.Enabled = access?.Building.Building_Show_request ?? false;
-                menuSedSmsToOwner.Enabled = access?.Building.Building_Send_Sms ?? false;
                 menuTelegram.Enabled = access?.Building.Building_Send_Telegram ?? false;
                 menuPrint.Enabled = access?.Building.Building_Print ?? false;
 
-                menuSedSmsToOwner.Visible = VersionAccess.Sms;
                 menuTelegram.Visible = VersionAccess.Telegram;
                 menuAddPersonal.Visible = VersionAccess.Advertise;
                 mnuExcel.Visible = VersionAccess.Excel;

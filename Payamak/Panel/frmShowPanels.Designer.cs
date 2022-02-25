@@ -37,13 +37,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowPanels));
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.senderDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IsDefult = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.aPIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,12 +44,16 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuDef = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuRemain = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuLog = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ucHeader = new WindowsSerivces.UC_Header();
+            this.dgRadif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.senderDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.aPIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBindingSource)).BeginInit();
@@ -111,7 +108,6 @@
             this.dgRadif,
             this.dgName,
             this.senderDataGridViewTextBoxColumn,
-            this.IsDefult,
             this.dgGuid,
             this.statusDataGridViewCheckBoxColumn,
             this.aPIDataGridViewTextBoxColumn});
@@ -153,62 +149,6 @@
             this.DGrid.TabIndex = 55744;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             // 
-            // dgRadif
-            // 
-            this.dgRadif.HeaderText = "ردیف";
-            this.dgRadif.Name = "dgRadif";
-            this.dgRadif.ReadOnly = true;
-            this.dgRadif.Width = 50;
-            // 
-            // dgName
-            // 
-            this.dgName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgName.DataPropertyName = "Name";
-            this.dgName.HeaderText = "عنوان";
-            this.dgName.Name = "dgName";
-            this.dgName.ReadOnly = true;
-            // 
-            // senderDataGridViewTextBoxColumn
-            // 
-            this.senderDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.senderDataGridViewTextBoxColumn.DataPropertyName = "Sender";
-            this.senderDataGridViewTextBoxColumn.HeaderText = "شماره خط فرستنده";
-            this.senderDataGridViewTextBoxColumn.Name = "senderDataGridViewTextBoxColumn";
-            this.senderDataGridViewTextBoxColumn.ReadOnly = true;
-            this.senderDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // IsDefult
-            // 
-            this.IsDefult.DataPropertyName = "IsDefult";
-            this.IsDefult.HeaderText = "پیش فرض";
-            this.IsDefult.Name = "IsDefult";
-            this.IsDefult.ReadOnly = true;
-            this.IsDefult.Width = 70;
-            // 
-            // dgGuid
-            // 
-            this.dgGuid.DataPropertyName = "Guid";
-            this.dgGuid.HeaderText = "Guid";
-            this.dgGuid.Name = "dgGuid";
-            this.dgGuid.ReadOnly = true;
-            this.dgGuid.Visible = false;
-            // 
-            // statusDataGridViewCheckBoxColumn
-            // 
-            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
-            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
-            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
-            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.statusDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // aPIDataGridViewTextBoxColumn
-            // 
-            this.aPIDataGridViewTextBoxColumn.DataPropertyName = "API";
-            this.aPIDataGridViewTextBoxColumn.HeaderText = "API";
-            this.aPIDataGridViewTextBoxColumn.Name = "aPIDataGridViewTextBoxColumn";
-            this.aPIDataGridViewTextBoxColumn.ReadOnly = true;
-            this.aPIDataGridViewTextBoxColumn.Visible = false;
-            // 
             // contextMenu
             // 
             this.contextMenu.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -219,19 +159,17 @@
             this.toolStripMenuItem1,
             this.mnuView,
             this.toolStripMenuItem2,
-            this.mnuDef,
-            this.toolStripMenuItem3,
             this.mnuRemain,
             this.mnuLog});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenu.Size = new System.Drawing.Size(233, 190);
+            this.contextMenu.Size = new System.Drawing.Size(226, 182);
             // 
             // mnuAdd
             // 
             this.mnuAdd.Image = global::Payamak.Properties.Resources.add_2_;
             this.mnuAdd.Name = "mnuAdd";
-            this.mnuAdd.Size = new System.Drawing.Size(232, 24);
+            this.mnuAdd.Size = new System.Drawing.Size(225, 24);
             this.mnuAdd.Text = "افزودن پنل جدید (Ins)";
             this.mnuAdd.Click += new System.EventHandler(this.mnuAdd_Click);
             // 
@@ -239,7 +177,7 @@
             // 
             this.mnuEdit.Image = global::Payamak.Properties.Resources.edit_1_;
             this.mnuEdit.Name = "mnuEdit";
-            this.mnuEdit.Size = new System.Drawing.Size(232, 24);
+            this.mnuEdit.Size = new System.Drawing.Size(225, 24);
             this.mnuEdit.Text = "ویرایش پنل جاری (F7)";
             this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
             // 
@@ -247,46 +185,33 @@
             // 
             this.mnuDelete.Image = global::Payamak.Properties.Resources.delete_1_;
             this.mnuDelete.Name = "mnuDelete";
-            this.mnuDelete.Size = new System.Drawing.Size(232, 24);
+            this.mnuDelete.Size = new System.Drawing.Size(225, 24);
             this.mnuDelete.Text = "حذف پنل جاری (Del)";
             this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(229, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(222, 6);
             // 
             // mnuView
             // 
             this.mnuView.Image = global::Payamak.Properties.Resources.article_1_;
             this.mnuView.Name = "mnuView";
-            this.mnuView.Size = new System.Drawing.Size(232, 24);
+            this.mnuView.Size = new System.Drawing.Size(225, 24);
             this.mnuView.Text = "مشاهده (F12)";
             this.mnuView.Click += new System.EventHandler(this.mnuView_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(229, 6);
-            // 
-            // mnuDef
-            // 
-            this.mnuDef.Image = global::Payamak.Properties.Resources.tab_checkbox__;
-            this.mnuDef.Name = "mnuDef";
-            this.mnuDef.Size = new System.Drawing.Size(232, 24);
-            this.mnuDef.Text = "انتخاب به عنوان پنل پیش فرض";
-            this.mnuDef.Click += new System.EventHandler(this.mnuDef_Click);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(229, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(222, 6);
             // 
             // mnuRemain
             // 
             this.mnuRemain.Image = global::Payamak.Properties.Resources.profile;
             this.mnuRemain.Name = "mnuRemain";
-            this.mnuRemain.Size = new System.Drawing.Size(232, 24);
+            this.mnuRemain.Size = new System.Drawing.Size(225, 24);
             this.mnuRemain.Text = "مشاهده مانده اعتبار پنل";
             this.mnuRemain.Click += new System.EventHandler(this.mnuRemain_Click);
             // 
@@ -294,7 +219,7 @@
             // 
             this.mnuLog.Image = global::Payamak.Properties.Resources.icons8_sms_24;
             this.mnuLog.Name = "mnuLog";
-            this.mnuLog.Size = new System.Drawing.Size(232, 24);
+            this.mnuLog.Size = new System.Drawing.Size(225, 24);
             this.mnuLog.Text = "مشاهده پیامک های ارسال شده";
             this.mnuLog.Click += new System.EventHandler(this.mnuLog_Click);
             // 
@@ -319,6 +244,54 @@
             this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ucHeader.Size = new System.Drawing.Size(815, 34);
             this.ucHeader.TabIndex = 55755;
+            // 
+            // dgRadif
+            // 
+            this.dgRadif.HeaderText = "ردیف";
+            this.dgRadif.Name = "dgRadif";
+            this.dgRadif.ReadOnly = true;
+            this.dgRadif.Width = 50;
+            // 
+            // dgName
+            // 
+            this.dgName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgName.DataPropertyName = "Name";
+            this.dgName.HeaderText = "عنوان";
+            this.dgName.Name = "dgName";
+            this.dgName.ReadOnly = true;
+            // 
+            // senderDataGridViewTextBoxColumn
+            // 
+            this.senderDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.senderDataGridViewTextBoxColumn.DataPropertyName = "Sender";
+            this.senderDataGridViewTextBoxColumn.HeaderText = "شماره خط فرستنده";
+            this.senderDataGridViewTextBoxColumn.Name = "senderDataGridViewTextBoxColumn";
+            this.senderDataGridViewTextBoxColumn.ReadOnly = true;
+            this.senderDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // dgGuid
+            // 
+            this.dgGuid.DataPropertyName = "Guid";
+            this.dgGuid.HeaderText = "Guid";
+            this.dgGuid.Name = "dgGuid";
+            this.dgGuid.ReadOnly = true;
+            this.dgGuid.Visible = false;
+            // 
+            // statusDataGridViewCheckBoxColumn
+            // 
+            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
+            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
+            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
+            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.statusDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // aPIDataGridViewTextBoxColumn
+            // 
+            this.aPIDataGridViewTextBoxColumn.DataPropertyName = "API";
+            this.aPIDataGridViewTextBoxColumn.HeaderText = "API";
+            this.aPIDataGridViewTextBoxColumn.Name = "aPIDataGridViewTextBoxColumn";
+            this.aPIDataGridViewTextBoxColumn.ReadOnly = true;
+            this.aPIDataGridViewTextBoxColumn.Visible = false;
             // 
             // frmShowPanels
             // 
@@ -351,14 +324,7 @@
         private DevComponents.DotNetBar.Controls.TextBoxX txtSearch;
         private System.Windows.Forms.BindingSource pnlBindingSource;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn senderDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn IsDefult;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn aPIDataGridViewTextBoxColumn;
         private System.Windows.Forms.ContextMenuStrip contextMenu;
         private System.Windows.Forms.ToolStripMenuItem mnuAdd;
         private System.Windows.Forms.ToolStripMenuItem mnuEdit;
@@ -366,10 +332,14 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mnuView;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem mnuDef;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem mnuRemain;
         private System.Windows.Forms.ToolStripMenuItem mnuLog;
         private WindowsSerivces.UC_Header ucHeader;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgRadif;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn senderDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn aPIDataGridViewTextBoxColumn;
     }
 }

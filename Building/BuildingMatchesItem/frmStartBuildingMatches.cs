@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsSerivces.Waiter;
 using EntityCache.Bussines;
 using EntityCache.ViewModels;
 using MetroFramework.Forms;
@@ -42,7 +43,9 @@ namespace Building.BuildingMatchesItem
                 btnSelect.Enabled = false;
                 _token?.Cancel();
                 _token = new CancellationTokenSource();
-                var list = await BuildingRequestViewModel.GetAllMatchesItemsAsync(_token.Token);
+                var task = Task.Run(() => BuildingRequestViewModel.GetAllMatchesItemsAsync(_token.Token));
+                _ = new Waiter("درحال پردازش ...", this, task);
+                var list = await task;
                 if (list.Count <= 0)
                 {
                     MessageBox.Show("فایل مطابقی جهت نمایش وجود ندارد");

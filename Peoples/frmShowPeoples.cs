@@ -304,7 +304,7 @@ namespace Peoples
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var pe = await PhoneBookBussines.GetAllAsync(guid, true);
 
-                var frm = new frmSendSms(pe.Select(q => q.Tell).ToList(), guid);
+                var frm = new frmSendSms(pe?.Where(q => q.IsMobile())?.Select(q => q.Tell)?.ToList(), guid);
                 frm.ShowDialog(this);
             }
             catch (Exception ex)

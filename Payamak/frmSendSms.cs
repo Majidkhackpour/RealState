@@ -86,7 +86,7 @@ namespace Payamak
             InitializeComponent();
             ucHeader.Text = "ارسال پیامک";
             txtMessage.Text = text;
-            Task.Run(()=>FillListAsync(lstGuid));
+            Task.Run(() => FillListAsync(lstGuid));
         }
 
         private async Task FillListAsync(List<Guid> lstGuid)
@@ -103,8 +103,8 @@ namespace Payamak
                     var lstNumbers = new List<string>();
                     foreach (var guid in lstGuid)
                     {
-                        var numbers = await PhoneBookBussines.GetAllAsync(guid, true);
-                        if (numbers.Count <= 0) continue;
+                        var numbers = (await PhoneBookBussines.GetAllAsync(guid, true))?.Where(q => q.IsMobile());
+                        if (!(numbers?.Any() ?? false)) continue;
                         lstNumbers = numbers.Where(q => q.Tell.StartsWith("09") && q.Tell.Length > 10)
                             .Select(q => q.Tell)
                             .ToList();

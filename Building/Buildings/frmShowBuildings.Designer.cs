@@ -71,8 +71,6 @@
             this.menuMedia = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripSeparator();
             this.تبلیغاتوشبکههایاجتماعیToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuSedSmsToOwner = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem14 = new System.Windows.Forms.ToolStripSeparator();
             this.menuTelegram = new System.Windows.Forms.ToolStripMenuItem();
             this.menuTelegramCustomer = new System.Windows.Forms.ToolStripMenuItem();
             this.menuTelegramManager = new System.Windows.Forms.ToolStripMenuItem();
@@ -527,25 +525,11 @@
             // تبلیغاتوشبکههایاجتماعیToolStripMenuItem
             // 
             this.تبلیغاتوشبکههایاجتماعیToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuSedSmsToOwner,
-            this.toolStripMenuItem14,
             this.menuTelegram});
             this.تبلیغاتوشبکههایاجتماعیToolStripMenuItem.Image = global::Building.Properties.Resources.icons8_telegram_app_24;
             this.تبلیغاتوشبکههایاجتماعیToolStripMenuItem.Name = "تبلیغاتوشبکههایاجتماعیToolStripMenuItem";
             this.تبلیغاتوشبکههایاجتماعیToolStripMenuItem.Size = new System.Drawing.Size(228, 24);
             this.تبلیغاتوشبکههایاجتماعیToolStripMenuItem.Text = "تبلیغات و شبکه های اجتماعی";
-            // 
-            // menuSedSmsToOwner
-            // 
-            this.menuSedSmsToOwner.Image = global::Building.Properties.Resources.icons8_sms_24;
-            this.menuSedSmsToOwner.Name = "menuSedSmsToOwner";
-            this.menuSedSmsToOwner.Size = new System.Drawing.Size(182, 24);
-            this.menuSedSmsToOwner.Text = "ارسال پیامک به مالک";
-            // 
-            // toolStripMenuItem14
-            // 
-            this.toolStripMenuItem14.Name = "toolStripMenuItem14";
-            this.toolStripMenuItem14.Size = new System.Drawing.Size(179, 6);
             // 
             // menuTelegram
             // 
@@ -1083,8 +1067,6 @@
         private System.Windows.Forms.ToolStripMenuItem menuMedia;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem12;
         private System.Windows.Forms.ToolStripMenuItem تبلیغاتوشبکههایاجتماعیToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem menuSedSmsToOwner;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem14;
         private System.Windows.Forms.ToolStripMenuItem menuTelegram;
         private System.Windows.Forms.ToolStripMenuItem menuTelegramCustomer;
         private System.Windows.Forms.ToolStripMenuItem menuTelegramManager;

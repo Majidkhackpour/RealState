@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using Services;
@@ -40,7 +41,7 @@ namespace Payamak.FixSms
                 var sApi = new Sms.Api(panel.API.Trim());
 
                 var list = new List<string>();
-                var pe = await PhoneBookBussines.GetAllAsync(bu.AskerGuid, true);
+                var pe = (await PhoneBookBussines.GetAllAsync(bu.AskerGuid, true))?.Where(q=>q.IsMobile());
                 foreach (var item in pe)
                     list.Add(item.Tell);
 

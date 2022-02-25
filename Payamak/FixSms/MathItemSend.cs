@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using EntityCache.Bussines;
 using Services;
 
 namespace Payamak.FixSms
 {
-    public class OwnerSend
+    public class MathItemSend
     {
-        public static async Task<ReturnedSaveFuncInfo> SendAsync(BuildingBussines bu)
+        public static async Task<ReturnedSaveFuncInfo> SendAsync(string text, List<string> numbers)
         {
             var res = new ReturnedSaveFuncInfo();
             try
@@ -17,15 +16,13 @@ namespace Payamak.FixSms
                 res.AddReturnedValue(await Utilities.PingHostAsync());
                 if (res.HasError) return res;
 
-
-                var text = await GetTextAsync(bu);
                 if (string.IsNullOrEmpty(text))
                 {
                     res.AddReturnedValue(ReturnedState.Error, "متن پیش فرض خالی می باشد");
                     return res;
                 }
 
-                if (SettingsBussines.Setting.Sms.DefaultPanelGuid==Guid.Empty)
+                if (SettingsBussines.Setting.Sms.DefaultPanelGuid == Guid.Empty)
                 {
                     res.AddReturnedValue(ReturnedState.Error, "پنل پبش فرض تعریف نشده است");
                     return res;
@@ -40,12 +37,8 @@ namespace Payamak.FixSms
 
                 var sApi = new Sms.Api(panel.API.Trim());
 
-                var list = new List<string>();
-                var pe = (await PhoneBookBussines.GetAllAsync(bu.OwnerGuid, true))?.Where(q=>q.IsMobile());
-                foreach (var item in pe)
-                    list.Add(item.Tell);
 
-                var res_ = sApi.Send(panel.Sender, list, text);
+                var res_ = sApi.Send(panel.Sender, numbers, text);
                 if (res_.Count <= 0)
                 {
                     res.AddReturnedValue(ReturnedState.Error, "ارتباط با پنل با شکست مواجه شد");
@@ -77,29 +70,33 @@ namespace Payamak.FixSms
 
             return res;
         }
-        private static async Task<string> GetTextAsync(BuildingBussines bu)
+        public static string GetText(BuildingRequestBussines bu)
         {
             var res = "";
             try
             {
-                res = SettingsBussines.Setting.Sms.OwnerText;
+                res = SettingsBussines.Setting?.Sms?.SendMatchText ?? "";
+                if (string.IsNullOrEmpty(res)) return res;
 
-                if (res.Contains(Replacor.Owner.Code)) res = res.Replace(Replacor.Owner.Code, bu.Code);
-                if (res.Contains(Replacor.Owner.DateSabt)) res = res.Replace(Replacor.Owner.DateSabt, bu.DateSh);
-                if (res.Contains(Replacor.Owner.OwnerName))
+                if (res.Contains(Replacor.MathItems.Name)) res = res.Replace(Replacor.MathItems.Name, bu.AskerName);
+                if (res.Contains(Replacor.MathItems.DateSh)) res = res.Replace(Replacor.MathItems.DateSh, Calendar.MiladiToShamsi(DateTime.Now));
+                if (res.Contains(Replacor.MathItems.TelegramChannel))
                 {
-                    var owner = await PeoplesBussines.GetAsync(bu.OwnerGuid,null);
-                    res = res.Replace(Replacor.Owner.OwnerName, owner?.Name);
+                    var telChn = SettingsBussines.Setting.Telegram.Channel;
+                    if (!string.IsNullOrEmpty(telChn))
+                        res = res.Replace(Replacor.MathItems.TelegramChannel, telChn);
                 }
-                if (res.Contains(Replacor.Owner.Region))
+                if (res.Contains(Replacor.MathItems.Tell))
                 {
-                    var reg = await RegionsBussines.GetAsync(bu.RegionGuid);
-                    res = res.Replace(Replacor.Owner.Region, reg?.Name);
+                    var tell = SettingsBussines.Setting.CompanyInfo.ManagerTell;
+                    if (!string.IsNullOrEmpty(tell))
+                        res = res.Replace(Replacor.MathItems.Tell, tell);
                 }
-                if (res.Contains(Replacor.Owner.UserName))
+                if (res.Contains(Replacor.MathItems.Address))
                 {
-                    var user = await UserBussines.GetAsync(bu.UserGuid);
-                    res = res.Replace(Replacor.Owner.UserName, user?.Name);
+                    var add = SettingsBussines.Setting.CompanyInfo.ManagerAddress;
+                    if (!string.IsNullOrEmpty(add))
+                        res = res.Replace(Replacor.MathItems.Address, add);
                 }
             }
             catch (Exception ex)

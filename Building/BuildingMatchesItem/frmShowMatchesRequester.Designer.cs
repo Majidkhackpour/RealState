@@ -40,12 +40,13 @@ namespace Building.BuildingMatchesItem
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuSendSms = new System.Windows.Forms.ToolStripMenuItem();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.ucHeader = new WindowsSerivces.UC_Header();
             this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgUserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DateSh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.askerGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ucHeader = new WindowsSerivces.UC_Header();
             ((System.ComponentModel.ISupportInitialize)(this.reqBindingSource)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
@@ -70,6 +71,7 @@ namespace Building.BuildingMatchesItem
             this.mnuSendSms.Name = "mnuSendSms";
             this.mnuSendSms.Size = new System.Drawing.Size(193, 24);
             this.mnuSendSms.Text = "ارسال پیامک به متقاضی";
+            this.mnuSendSms.Click += new System.EventHandler(this.mnuSendSms_Click);
             // 
             // DGrid
             // 
@@ -100,6 +102,7 @@ namespace Building.BuildingMatchesItem
             this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgName,
             this.dgUserName,
+            this.DateSh,
             this.dgDesc,
             this.dgGuid,
             this.askerGuidDataGridViewTextBoxColumn});
@@ -140,6 +143,24 @@ namespace Building.BuildingMatchesItem
             this.DGrid.Size = new System.Drawing.Size(795, 521);
             this.DGrid.TabIndex = 55761;
             // 
+            // ucHeader
+            // 
+            this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.ucHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucHeader.BackColor = System.Drawing.Color.White;
+            this.ucHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ucHeader.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ucHeader.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.ucHeader.IsModified = false;
+            this.ucHeader.Location = new System.Drawing.Point(-5, 31);
+            this.ucHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucHeader.MinimumSize = new System.Drawing.Size(297, 34);
+            this.ucHeader.Name = "ucHeader";
+            this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ucHeader.Size = new System.Drawing.Size(815, 34);
+            this.ucHeader.TabIndex = 55762;
+            // 
             // dgName
             // 
             this.dgName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -157,6 +178,14 @@ namespace Building.BuildingMatchesItem
             this.dgUserName.Name = "dgUserName";
             this.dgUserName.ReadOnly = true;
             this.dgUserName.Width = 64;
+            // 
+            // DateSh
+            // 
+            this.DateSh.DataPropertyName = "DateSh";
+            this.DateSh.HeaderText = "تاریخ ثبت تقاضا";
+            this.DateSh.Name = "DateSh";
+            this.DateSh.ReadOnly = true;
+            this.DateSh.Width = 110;
             // 
             // dgDesc
             // 
@@ -181,24 +210,6 @@ namespace Building.BuildingMatchesItem
             this.askerGuidDataGridViewTextBoxColumn.Name = "askerGuidDataGridViewTextBoxColumn";
             this.askerGuidDataGridViewTextBoxColumn.ReadOnly = true;
             this.askerGuidDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // ucHeader
-            // 
-            this.ucHeader.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.ucHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ucHeader.BackColor = System.Drawing.Color.White;
-            this.ucHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ucHeader.Cursor = System.Windows.Forms.Cursors.Default;
-            this.ucHeader.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.ucHeader.IsModified = false;
-            this.ucHeader.Location = new System.Drawing.Point(-5, 31);
-            this.ucHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ucHeader.MinimumSize = new System.Drawing.Size(297, 34);
-            this.ucHeader.Name = "ucHeader";
-            this.ucHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ucHeader.Size = new System.Drawing.Size(815, 34);
-            this.ucHeader.TabIndex = 55762;
             // 
             // frmShowMatchesRequester
             // 
@@ -231,11 +242,12 @@ namespace Building.BuildingMatchesItem
         private System.Windows.Forms.ContextMenuStrip contextMenu;
         private System.Windows.Forms.ToolStripMenuItem mnuSendSms;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
+        private WindowsSerivces.UC_Header ucHeader;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgUserName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DateSh;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgDesc;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn askerGuidDataGridViewTextBoxColumn;
-        private WindowsSerivces.UC_Header ucHeader;
     }
 }
