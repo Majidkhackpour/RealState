@@ -1,4 +1,4 @@
-﻿namespace RealState
+﻿namespace Building.Tools
 {
     partial class frmShowBirthDay
     {
@@ -42,7 +42,6 @@
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noteBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label1 = new System.Windows.Forms.Label();
             this.btnSendSms = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.noteBindingSource)).BeginInit();
@@ -87,7 +86,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DGrid.DefaultCellStyle = dataGridViewCellStyle3;
             this.DGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.DGrid.Location = new System.Drawing.Point(3, 63);
+            this.DGrid.Location = new System.Drawing.Point(3, 32);
             this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DGrid.Name = "DGrid";
             this.DGrid.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -109,7 +108,7 @@
             this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGrid.Size = new System.Drawing.Size(795, 495);
+            this.DGrid.Size = new System.Drawing.Size(795, 526);
             this.DGrid.TabIndex = 55719;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             // 
@@ -155,16 +154,6 @@
             // 
             this.noteBindingSource.DataSource = typeof(EntityCache.Bussines.PeoplesBussines);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("B Yekan", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label1.Location = new System.Drawing.Point(279, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(293, 41);
-            this.label1.TabIndex = 55720;
-            this.label1.Text = "لیست مشتریان متولد امروز";
-            // 
             // btnSendSms
             // 
             this.btnSendSms.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -190,7 +179,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
             this.Controls.Add(this.btnSendSms);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.DGrid);
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -208,7 +196,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.noteBindingSource)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -216,7 +203,6 @@
 
         private System.Windows.Forms.BindingSource noteBindingSource;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
-        private System.Windows.Forms.Label label1;
         private DevComponents.DotNetBar.ButtonX btnSendSms;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgIsChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn Radif;

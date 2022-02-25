@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using EntityCache.Bussines;
+﻿using EntityCache.Bussines;
 using MetroFramework.Forms;
 using Payamak;
 using Services;
-using Settings;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
-namespace RealState
+namespace Building.Tools
 {
     public partial class frmShowBirthDay : MetroForm
     {

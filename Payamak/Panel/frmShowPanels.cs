@@ -38,7 +38,6 @@ namespace Payamak.Panel
                 mnuDelete.Enabled = access?.SmsPanel.Panel_Delete ?? false;
                 mnuView.Enabled = access?.SmsPanel.Panel_View ?? false;
                 mnuRemain.Enabled = access?.SmsPanel.Panel_Etebar ?? false;
-                mnuDef.Enabled = access?.SmsPanel.Panel_Default ?? false;
             }
             catch (Exception ex)
             {

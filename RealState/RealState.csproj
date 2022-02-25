@@ -311,12 +311,6 @@
     <Compile Include="frmRunAsAdmin.Designer.cs">
       <DependentUpon>frmRunAsAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmShowBirthDay.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmShowBirthDay.Designer.cs">
-      <DependentUpon>frmShowBirthDay.cs</DependentUpon>
-    </Compile>
     <Compile Include="Initializer.cs" />
     <Compile Include="LoginPanel\FormsInPanel\frmCreateWorkingYear.cs">
       <SubType>Form</SubType>
@@ -367,9 +361,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmRunAsAdmin.resx">
       <DependentUpon>frmRunAsAdmin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmShowBirthDay.resx">
-      <DependentUpon>frmShowBirthDay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginPanel\FormsInPanel\frmCreateWorkingYear.resx">
       <DependentUpon>frmCreateWorkingYear.cs</DependentUpon>

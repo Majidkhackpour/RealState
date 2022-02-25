@@ -479,6 +479,12 @@
     <Compile Include="Tools\frmCommitionCalculator.Designer.cs">
       <DependentUpon>frmCommitionCalculator.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tools\frmShowBirthDay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\frmShowBirthDay.Designer.cs">
+      <DependentUpon>frmShowBirthDay.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Contract\EjareTamlik\UcContractEjareTamlik_2.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1347,6 +1353,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\frmCommitionCalculator.resx">
       <DependentUpon>frmCommitionCalculator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\frmShowBirthDay.resx">
+      <DependentUpon>frmShowBirthDay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Contract\EjareTamlik\UcContractEjareTamlik_2.resx">
       <DependentUpon>UcContractEjareTamlik_2.cs</DependentUpon>
