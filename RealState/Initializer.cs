@@ -1,4 +1,14 @@
-﻿using System;
+﻿using EntityCache.Assistence;
+using EntityCache.Bussines;
+using EntityCache.WebService;
+using Ertegha;
+using Persistence;
+using Services;
+using Services.Settings;
+using Settings;
+using Settings.Classes;
+using Settings.WorkingYear;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -6,19 +16,9 @@ using System.Reflection;
 using System.Security.Principal;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsSerivces.Sync;
-using EntityCache.Assistence;
-using EntityCache.Bussines;
-using EntityCache.WebService;
-using Ertegha;
-using Notification;
-using Persistence;
-using Services;
-using Services.Settings;
-using Settings;
-using Settings.Classes;
-using Settings.WorkingYear;
 using WebHesabBussines;
+using WindowsSerivces.Error;
+using WindowsSerivces.Sync;
 
 namespace RealState
 {
