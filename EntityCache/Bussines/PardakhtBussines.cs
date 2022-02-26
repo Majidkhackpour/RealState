@@ -177,10 +177,10 @@ namespace EntityCache.Bussines
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public string NaqdDesc => $"{NumberToString.Num2Str(CountNaqd.ToString())} فقره - جمع: {NumberToString.Num2Str(SumNaqd.ToString())} ریال";
-        public string HavaleDesc => $"{NumberToString.Num2Str(CountHavale.ToString())} فقره - جمع: {NumberToString.Num2Str(SumHavale.ToString())} ریال";
-        public string CheckShDesc => $"{NumberToString.Num2Str(CountCheckShakhsi.ToString())} فقره - جمع: {NumberToString.Num2Str(SumCheckShakhsi.ToString())} ریال";
-        public string CheckMDesc => $"{NumberToString.Num2Str(CountCheckMoshtari.ToString())} فقره - جمع: {NumberToString.Num2Str(SumCheckMoshtari.ToString())} ریال";
+        public string NaqdDesc => $"{CountNaqd.AdadToHoroof()} فقره - جمع: {SumNaqd.AdadToHoroof()} ریال";
+        public string HavaleDesc => $"{CountHavale.AdadToHoroof()} فقره - جمع: {SumHavale.AdadToHoroof()} ریال";
+        public string CheckShDesc => $"{CountCheckShakhsi.AdadToHoroof()} فقره - جمع: {SumCheckShakhsi.AdadToHoroof()} ریال";
+        public string CheckMDesc => $"{CountCheckMoshtari.AdadToHoroof()} فقره - جمع: {SumCheckMoshtari.AdadToHoroof()} ریال";
         public static async Task<List<PardakhtBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Pardakht.GetAllAsync(Cache.ConnectionString, token);
         public static async Task<List<PardakhtBussines>> GetAllAsync(string search, CancellationToken token)
         {

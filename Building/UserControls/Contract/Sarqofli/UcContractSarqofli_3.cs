@@ -18,7 +18,7 @@ namespace Building.UserControls.Contract.Sarqofli
         {
             try
             {
-                lblToman.Text = NumberToString.Num2Str(((double)txtPrice.TextDecimal / 10).ToString());
+                lblToman.Text = (txtPrice.TextDecimal / 10).AdadToHoroof();
             }
             catch (Exception ex)
             {

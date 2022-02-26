@@ -29,49 +29,49 @@ namespace Building.UserControls
                     if (value.Masahat > 0)
                     {
                         ucMasahat.Visible = true;
-                        ucMasahat.Value = value.Masahat.ToString();
+                        ucMasahat.Value = value.MasahatForDisplay;
                     }
                     else ucMasahat.Visible = false;
 
                     if (value.ZirBana > 0)
                     {
                         ucZirbana.Visible = true;
-                        ucZirbana.Value = value.ZirBana.ToString();
+                        ucZirbana.Value = value.ZirBanaForDisplay;
                     }
                     else ucZirbana.Visible = false;
 
                     if (value.RahnPrice1 > 0)
                     {
                         ucRahn.Visible = true;
-                        ucRahn.Value = value.RahnPrice1.ToString("N0");
+                        ucRahn.Value = value.RahnForDisplay;
                     }
                     else ucRahn.Visible = false;
 
                     if (value.EjarePrice1 > 0)
                     {
                         ucEjare.Visible = true;
-                        ucEjare.Value = value.EjarePrice1.ToString("N0");
+                        ucEjare.Value = value.EjareForDisplay;
                     }
                     else ucEjare.Visible = false;
 
                     if (value.SellPrice > 0)
                     {
                         ucSell.Visible = true;
-                        ucSell.Value = value.SellPrice.ToString("N0");
+                        ucSell.Value = value.SellPriceForDisplay;
                     }
                     else ucSell.Visible = false;
 
                     if (value.VamPrice > 0)
                     {
                         ucVam.Visible = true;
-                        ucVam.Value = value.VamPrice.ToString("N0");
+                        ucVam.Value = value.VamPriceForDisplay;
                     }
                     else ucVam.Visible = false;
 
                     if (value.QestPrice > 0)
                     {
                         ucQest.Visible = true;
-                        ucQest.Value = value.QestPrice.ToString("N0");
+                        ucQest.Value = value.QestPriceForDisplay;
                     }
                     else ucQest.Visible = false;
 

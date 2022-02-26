@@ -23,8 +23,8 @@ namespace Building.UserControls.Contract.Sell
         {
             try
             {
-                lblDigit.Text = $"{NumberToString.Num2Str(((double)txtPrice.TextDecimal).ToString())} ریال";
-                lblToman.Text = NumberToString.Num2Str(((double)txtPrice.TextDecimal / 10).ToString());
+                lblDigit.Text = $"{txtPrice.TextDecimal.AdadToHoroof()} ریال";
+                lblToman.Text = (txtPrice.TextDecimal / 10).AdadToHoroof();
             }
             catch (Exception ex)
             {

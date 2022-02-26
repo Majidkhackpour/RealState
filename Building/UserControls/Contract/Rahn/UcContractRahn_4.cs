@@ -55,7 +55,7 @@ namespace Building.UserControls.Contract.Rahn
         {
             try
             {
-                lblToman.Text = NumberToString.Num2Str(((double)Rahn / 10).ToString());
+                lblToman.Text = (Rahn / 10).AdadToHoroof();
             }
             catch (Exception ex)
             {

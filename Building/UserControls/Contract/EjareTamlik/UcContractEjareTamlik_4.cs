@@ -16,7 +16,7 @@ namespace Building.UserControls.Contract.EjareTamlik
         {
             try
             {
-                lblToman.Text = NumberToString.Num2Str(((double)TotalEjare / 10).ToString());
+                lblToman.Text = (TotalEjare / 10).AdadToHoroof();
             }
             catch (Exception ex)
             {

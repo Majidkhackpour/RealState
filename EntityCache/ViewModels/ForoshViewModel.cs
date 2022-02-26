@@ -23,10 +23,10 @@ namespace EntityCache.ViewModels
         public string BuildingAddress { get; set; }
         public int Masahat { get; set; }
         public decimal TotalPrice { get; set; }
-        public string strTotal => NumberToString.Num2Str(TotalPrice.ToString());
+        public string strTotal => TotalPrice.AdadToHoroof();
         public decimal MinorPrice { get; set; }
         public decimal Beyane { get; set; }
-        public string strBeyane => NumberToString.Num2Str(Beyane.ToString());
+        public string strBeyane => Beyane.AdadToHoroof();
         public string CheckNo { get; set; }
         public string BankName { get; set; }
         public string Shobe { get; set; }

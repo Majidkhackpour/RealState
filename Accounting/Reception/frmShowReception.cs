@@ -223,7 +223,7 @@ namespace Accounting.Reception
                         Naqd = item.SumNaqd,
                         TotalRow = totalSum,
                         TotalSum = item.Sum,
-                        TotalHorouf = $"{NumberToString.Num2Str(totalSum.ToString())} ریال"
+                        TotalHorouf = $"{totalSum.AdadToHoroof()} ریال"
                     });
                 }
 

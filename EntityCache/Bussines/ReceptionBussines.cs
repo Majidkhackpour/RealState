@@ -152,9 +152,9 @@ namespace EntityCache.Bussines
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        public string NaqdDesc => $"{NumberToString.Num2Str(CountNaqd.ToString())} فقره - جمع: {NumberToString.Num2Str(SumNaqd.ToString())} ریال";
-        public string HavaleDesc => $"{NumberToString.Num2Str(CountHavale.ToString())} فقره - جمع: {NumberToString.Num2Str(SumHavale.ToString())} ریال";
-        public string CheckDesc => $"{NumberToString.Num2Str(CountCheck.ToString())} فقره - جمع: {NumberToString.Num2Str(SumCheck.ToString())} ریال";
+        public string NaqdDesc => $"{CountNaqd.AdadToHoroof()} فقره - جمع: {SumNaqd.AdadToHoroof()} ریال";
+        public string HavaleDesc => $"{CountHavale.AdadToHoroof()} فقره - جمع: {SumHavale.AdadToHoroof()} ریال";
+        public string CheckDesc => $"{CountCheck.AdadToHoroof()} فقره - جمع: {SumCheck.AdadToHoroof()} ریال";
         public static async Task<List<ReceptionBussines>> GetAllAsync(CancellationToken token) => await UnitOfWork.Reception.GetAllAsync(Cache.ConnectionString, token);
         public static async Task<List<ReceptionBussines>> GetAllAsync(string search, CancellationToken token)
         {

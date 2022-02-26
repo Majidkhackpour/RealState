@@ -37,18 +37,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowBuildings));
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.dgIsChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dgServerStatusImage = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dgCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgDateSh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgOwnerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ParentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgRoomCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgPriority = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgIsArchive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dgAdvertiseType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.menuEdit = new System.Windows.Forms.ToolStripMenuItem();
@@ -120,6 +108,18 @@
             this.lblCounter = new System.Windows.Forms.Label();
             this.ucHeader = new WindowsSerivces.UC_Header();
             this.ucBuildingDetail1 = new Building.UserControls.UcBuildingDetail();
+            this.dgIsChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dgServerStatusImage = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dgCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgDateSh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgOwnerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ParentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgRoomCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgPriority = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgIsArchive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dgAdvertiseType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BuildingBindingSource)).BeginInit();
@@ -237,108 +237,6 @@
             this.DGrid.Sorted += new System.EventHandler(this.DGrid_Sorted);
             this.DGrid.DoubleClick += new System.EventHandler(this.DGrid_DoubleClick);
             // 
-            // dgIsChecked
-            // 
-            this.dgIsChecked.DataPropertyName = "IsChecked";
-            this.dgIsChecked.HeaderText = "";
-            this.dgIsChecked.Name = "dgIsChecked";
-            this.dgIsChecked.ReadOnly = true;
-            this.dgIsChecked.Width = 20;
-            // 
-            // dgServerStatusImage
-            // 
-            this.dgServerStatusImage.DataPropertyName = "ServerStatusImage";
-            this.dgServerStatusImage.HeaderText = "";
-            this.dgServerStatusImage.Name = "dgServerStatusImage";
-            this.dgServerStatusImage.ReadOnly = true;
-            this.dgServerStatusImage.Width = 35;
-            // 
-            // dgCode
-            // 
-            this.dgCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dgCode.DataPropertyName = "Code";
-            this.dgCode.HeaderText = "کد ملک";
-            this.dgCode.Name = "dgCode";
-            this.dgCode.ReadOnly = true;
-            this.dgCode.Width = 69;
-            // 
-            // dgDateSh
-            // 
-            this.dgDateSh.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dgDateSh.DataPropertyName = "DateSh";
-            this.dgDateSh.HeaderText = "تاریخ ثبت";
-            this.dgDateSh.Name = "dgDateSh";
-            this.dgDateSh.ReadOnly = true;
-            // 
-            // dgOwnerName
-            // 
-            this.dgOwnerName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgOwnerName.DataPropertyName = "OwnerName";
-            this.dgOwnerName.HeaderText = "مالک";
-            this.dgOwnerName.MinimumWidth = 150;
-            this.dgOwnerName.Name = "dgOwnerName";
-            this.dgOwnerName.ReadOnly = true;
-            // 
-            // ParentName
-            // 
-            this.ParentName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ParentName.DataPropertyName = "ParentName";
-            this.ParentName.HeaderText = "نوع قرارداد";
-            this.ParentName.Name = "ParentName";
-            this.ParentName.ReadOnly = true;
-            this.ParentName.Width = 150;
-            // 
-            // dgRoomCount
-            // 
-            this.dgRoomCount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dgRoomCount.DataPropertyName = "RoomCount";
-            this.dgRoomCount.HeaderText = "اتاق";
-            this.dgRoomCount.Name = "dgRoomCount";
-            this.dgRoomCount.ReadOnly = true;
-            this.dgRoomCount.Width = 50;
-            // 
-            // dgAddress
-            // 
-            this.dgAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgAddress.DataPropertyName = "Address";
-            this.dgAddress.FillWeight = 500F;
-            this.dgAddress.HeaderText = "آدرس";
-            this.dgAddress.MinimumWidth = 100;
-            this.dgAddress.Name = "dgAddress";
-            this.dgAddress.ReadOnly = true;
-            // 
-            // dgGuid
-            // 
-            this.dgGuid.DataPropertyName = "Guid";
-            this.dgGuid.HeaderText = "Guid";
-            this.dgGuid.Name = "dgGuid";
-            this.dgGuid.ReadOnly = true;
-            this.dgGuid.Visible = false;
-            // 
-            // dgPriority
-            // 
-            this.dgPriority.DataPropertyName = "Priority";
-            this.dgPriority.HeaderText = "Priority";
-            this.dgPriority.Name = "dgPriority";
-            this.dgPriority.ReadOnly = true;
-            this.dgPriority.Visible = false;
-            // 
-            // dgIsArchive
-            // 
-            this.dgIsArchive.DataPropertyName = "IsArchive";
-            this.dgIsArchive.HeaderText = "IsArchive";
-            this.dgIsArchive.Name = "dgIsArchive";
-            this.dgIsArchive.ReadOnly = true;
-            this.dgIsArchive.Visible = false;
-            // 
-            // dgAdvertiseType
-            // 
-            this.dgAdvertiseType.DataPropertyName = "AdvertiseType";
-            this.dgAdvertiseType.HeaderText = "AdvertiseType";
-            this.dgAdvertiseType.Name = "dgAdvertiseType";
-            this.dgAdvertiseType.ReadOnly = true;
-            this.dgAdvertiseType.Visible = false;
-            // 
             // menu
             // 
             this.menu.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -365,7 +263,7 @@
             this.انتخابToolStripMenuItem});
             this.menu.Name = "menu";
             this.menu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.menu.Size = new System.Drawing.Size(229, 362);
+            this.menu.Size = new System.Drawing.Size(229, 340);
             // 
             // menuAdd
             // 
@@ -968,6 +866,107 @@
             this.ucBuildingDetail1.Size = new System.Drawing.Size(236, 523);
             this.ucBuildingDetail1.TabIndex = 55773;
             // 
+            // dgIsChecked
+            // 
+            this.dgIsChecked.DataPropertyName = "IsChecked";
+            this.dgIsChecked.HeaderText = "";
+            this.dgIsChecked.Name = "dgIsChecked";
+            this.dgIsChecked.ReadOnly = true;
+            this.dgIsChecked.Width = 20;
+            // 
+            // dgServerStatusImage
+            // 
+            this.dgServerStatusImage.DataPropertyName = "ServerStatusImage";
+            this.dgServerStatusImage.HeaderText = "";
+            this.dgServerStatusImage.Name = "dgServerStatusImage";
+            this.dgServerStatusImage.ReadOnly = true;
+            this.dgServerStatusImage.Width = 35;
+            // 
+            // dgCode
+            // 
+            this.dgCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dgCode.DataPropertyName = "Code";
+            this.dgCode.HeaderText = "کد ملک";
+            this.dgCode.Name = "dgCode";
+            this.dgCode.ReadOnly = true;
+            this.dgCode.Width = 69;
+            // 
+            // dgDateSh
+            // 
+            this.dgDateSh.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dgDateSh.DataPropertyName = "DateSh";
+            this.dgDateSh.HeaderText = "تاریخ ثبت";
+            this.dgDateSh.Name = "dgDateSh";
+            this.dgDateSh.ReadOnly = true;
+            // 
+            // dgOwnerName
+            // 
+            this.dgOwnerName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgOwnerName.DataPropertyName = "OwnerName";
+            this.dgOwnerName.HeaderText = "مالک";
+            this.dgOwnerName.MinimumWidth = 150;
+            this.dgOwnerName.Name = "dgOwnerName";
+            this.dgOwnerName.ReadOnly = true;
+            // 
+            // ParentName
+            // 
+            this.ParentName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ParentName.DataPropertyName = "ParentName";
+            this.ParentName.HeaderText = "نوع قرارداد";
+            this.ParentName.Name = "ParentName";
+            this.ParentName.ReadOnly = true;
+            this.ParentName.Width = 150;
+            // 
+            // dgRoomCount
+            // 
+            this.dgRoomCount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dgRoomCount.DataPropertyName = "RoomCountForDisplay";
+            this.dgRoomCount.HeaderText = "اتاق";
+            this.dgRoomCount.Name = "dgRoomCount";
+            this.dgRoomCount.ReadOnly = true;
+            // 
+            // dgAddress
+            // 
+            this.dgAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgAddress.DataPropertyName = "Address";
+            this.dgAddress.FillWeight = 500F;
+            this.dgAddress.HeaderText = "آدرس";
+            this.dgAddress.MinimumWidth = 100;
+            this.dgAddress.Name = "dgAddress";
+            this.dgAddress.ReadOnly = true;
+            // 
+            // dgGuid
+            // 
+            this.dgGuid.DataPropertyName = "Guid";
+            this.dgGuid.HeaderText = "Guid";
+            this.dgGuid.Name = "dgGuid";
+            this.dgGuid.ReadOnly = true;
+            this.dgGuid.Visible = false;
+            // 
+            // dgPriority
+            // 
+            this.dgPriority.DataPropertyName = "Priority";
+            this.dgPriority.HeaderText = "Priority";
+            this.dgPriority.Name = "dgPriority";
+            this.dgPriority.ReadOnly = true;
+            this.dgPriority.Visible = false;
+            // 
+            // dgIsArchive
+            // 
+            this.dgIsArchive.DataPropertyName = "IsArchive";
+            this.dgIsArchive.HeaderText = "IsArchive";
+            this.dgIsArchive.Name = "dgIsArchive";
+            this.dgIsArchive.ReadOnly = true;
+            this.dgIsArchive.Visible = false;
+            // 
+            // dgAdvertiseType
+            // 
+            this.dgAdvertiseType.DataPropertyName = "AdvertiseType";
+            this.dgAdvertiseType.HeaderText = "AdvertiseType";
+            this.dgAdvertiseType.Name = "dgAdvertiseType";
+            this.dgAdvertiseType.ReadOnly = true;
+            this.dgAdvertiseType.Visible = false;
+            // 
             // frmShowBuildings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -1088,6 +1087,11 @@
         private System.Windows.Forms.ToolStripMenuItem menuSelectNone;
         private System.Windows.Forms.ToolStripMenuItem menuSelectReverse;
         private System.Windows.Forms.ToolStripMenuItem mnuExcel;
+        private System.Windows.Forms.ToolStripMenuItem mnuReview;
+        private System.Windows.Forms.ToolStripMenuItem mnuAddReview;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem mnuReviewList;
+        private System.Windows.Forms.ToolStripMenuItem mnuCurrentReview;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgIsChecked;
         private System.Windows.Forms.DataGridViewImageColumn dgServerStatusImage;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgCode;
@@ -1100,10 +1104,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgPriority;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgIsArchive;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgAdvertiseType;
-        private System.Windows.Forms.ToolStripMenuItem mnuReview;
-        private System.Windows.Forms.ToolStripMenuItem mnuAddReview;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem mnuReviewList;
-        private System.Windows.Forms.ToolStripMenuItem mnuCurrentReview;
     }
 }

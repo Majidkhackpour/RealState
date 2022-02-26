@@ -22,13 +22,20 @@ namespace EntityCache.Bussines.ReportBussines
         public string OwnerName { get; set; }
         public string UserName { get; set; }
         public decimal SellPrice { get; set; }
+        public string SellPriceForDisplay => SellPrice.ToString("N0");
         public decimal VamPrice { get; set; }
+        public string VamPriceForDisplay => VamPrice.ToString("N0");
         public decimal QestPrice { get; set; }
+        public string QestPriceForDisplay => QestPrice.ToString("N0");
         public string DocumentTypeName { get; set; }
         public decimal RahnPrice1 { get; set; }
+        public string RahnForDisplay => RahnPrice1.ToString("N0");
         public decimal EjarePrice1 { get; set; }
+        public string EjareForDisplay => EjarePrice1.ToString("N0");
         public int Masahat { get; set; }
+        public string MasahatForDisplay => $"{Masahat} مترمربع";
         public int ZirBana { get; set; }
+        public string ZirBanaForDisplay => $"{ZirBana} مترمربع";
         public string RegionName { get; set; }
         public string Address { get; set; }
         public string BuildingConditionName { get; set; }
@@ -40,6 +47,7 @@ namespace EntityCache.Bussines.ReportBussines
         public string KitchenServiceName { get; set; }
         public string SaleSakht { get; set; }
         public int RoomCount { get; set; }
+        public string RoomCountForDisplay => RoomCount <= 0 ? "بدون خواب" : $"{RoomCount} خواب";
         public EnBuildingPriority Priority { get; set; }
         public bool IsArchive { get; set; }
         public AdvertiseType? AdvertiseType { get; set; }
